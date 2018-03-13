@@ -1,7 +1,7 @@
 .DS_Store
 Thumbs.db
-db.json
 *.log
 public/
 .deploy*/
 _config.yml
+./themes/next/_config.yml
