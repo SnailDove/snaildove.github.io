@@ -2,9 +2,8 @@
 Thumbs.db
 db.json
 *.log
-node_modules/
 public/
 .deploy*/
 _config.yml
 ./themes/next/_config.yml
-./source/_drafts
+./source/_drafts/*

@@ -45,7 +45,7 @@ $$P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\cdots P(A_N|\cap^{n-1}_{i=1} A_i)$$.
 
 ![visualization_of_multiplication_rule][base64_of_visualization_of_multiplication_rule]
 
-**The intersection event $A = A_1∩A_2∩· · ·∩A_n$ is associated with a path on the tree of a sequential description of the experiment. We associate the branches of this path with the events $A_1, . . . , A_n$, and we record next to the branches the corresponding conditional probabilities. **
+**The intersection event $A = A_1∩A_2∩· · ·∩A_n$ is associated with a path on the tree of a sequential description of the experiment. We associate the branches of this path with the events $A_1, . . . , A_n$, and we record next to the branches the corresponding conditional probabilities.**
 
 The final node of the path corresponds to the intersection event $A$, and its probability is obtained by multiplying the conditional probabilities recorded along the branches of the path 
 
