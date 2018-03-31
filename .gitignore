@@ -6,5 +6,5 @@ node_modules/
 public/
 .deploy*/
 _config.yml
-./themes/next/_config.yml
-./source/_drafts/
+themes/next/_config.yml
+source/_drafts/
