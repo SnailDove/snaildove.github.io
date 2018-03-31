@@ -35,7 +35,7 @@ And the columns of $R$ are also independent, so $\|Rx\|=x^{T}Ax>0$, except when 
 
 ## $A^{T}A$
 
-$A_{m\times n}$ is almost certainly not symmetric, but $A^{T}A$ is square (m by m) and symmetric. We can easily get the following equations through left multiplying $A^{T}A$ by $x^{T}$ and right multiplying $A^{T}A$ by $x$:
+$A_{m\times n}$ is almost certainly not symmetric, but $A^{T}A$ is square (n by n) and symmetric. We can easily get the following equations through left multiplying $A^{T}A$ by $x^{T}$ and right multiplying $A^{T}A$ by $x$:
 
 $$
 \begin{eqnarray}
@@ -61,7 +61,7 @@ x^{T}A{^T}(Ax)&=&x^{T}0\nonumber\\
 \end{eqnarray}
 $$
 
-From the above equations, we know solutions of $Ax=0$ are also solutions of  $(A{^TA})x=0$. Because $A_{m\times\,n}$ has a full set of column rank (independent columns),  $Ax=0$ only has a zero solution as well as $(A{^T}A)x=0$. Moreover, if $A{^T}A$ is invertible, then $A_{m\times\,n}$ has rank $n$ (independent columns). We also notice that if $A$ is square and invertible, then  $A{^T}A$ is invertible. 
+From the above equations, we know solutions of $Ax=0$ are also solutions of  $(A{^TA})x=0$. Because $A_{m\times\,n}$ has a full set of column rank (independent columns),  $Ax=0$ only has a zero solution as well as $(A{^T}A)x=0$. Furthermore, if $A{^T}A$ is invertible, then $A_{m\times\,n}$ has rank $n$ (independent columns). We also notice that if $A$ is square and invertible, then  $A{^T}A$ is invertible. 
 
 Overall, **if all columns of $A_{m\times\,n}$ are mutual independent, then $(A{^T}A)$ is invertible and positive definite as well, and vice versus.**
 
