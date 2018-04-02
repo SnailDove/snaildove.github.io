@@ -1,6 +1,8 @@
 ---
 title: 同步hexo博客
 date: 2018-02-10
+categories: 中文
+tags: [hexo]
 copyright: true
 ---
 
@@ -17,9 +19,11 @@ git push origin source:source
 ```
 ### 新电脑上博客的新目录下执行
 
+在github的 ~.github.io.git（~代表你的github用户名） 仓库上设置 source 分支为默认分支
+
 git 配置完成以后
 ```shell
-git clone https://github.com/~/~.github.io.git # ~代表你的github用户名
+git clone https://github.com/~/~.github.io.git
 cd ~.github.io.git
 npm install hexo
 npm install

@@ -99,13 +99,32 @@ toc: true
 | `\ll`                                     | ![\ll](http://upload.wikimedia.org/wikipedia/zh/math/9/4/3/9439146cc81e763e0563ccbbcb523314.png) |
 | `\lll`                                    | ![\lll](http://upload.wikimedia.org/wikipedia/zh/math/4/e/8/4e8dc43a1f5be9ea3d8d27fdea882497.png) |
 | `(x-y)^2\equiv(-x+y)^2\equiv x^2-2xy+y^2` | ![(x-y)^2\equiv(-x+y)^2\equiv x^2-2xy+y^2](http://upload.wikimedia.org/wikipedia/zh/math/6/c/9/6c9a2bfd0d3b9a5a74f8682479733cf9.png) |
-|                                           |                                                              |
 | x\not\equiv N                             | ![x\not\equiv N](http://upload.wikimedia.org/wikipedia/zh/math/1/b/0/1b05bef638197b56e7298f7ce316ad13.png) |
 | x\ne A                                    | ![x\ne A](http://upload.wikimedia.org/wikipedia/zh/math/3/1/0/3104de4e8ef189be10d43d6ca8e9444a.png) |
 | x\neq C                                   | ![x\neq C](http://upload.wikimedia.org/wikipedia/zh/math/7/0/1/7016f46da82d8566a65d93a0ed082874.png) |
 | t\propto v                                | ![t\propto v](http://upload.wikimedia.org/wikipedia/zh/math/c/f/f/cfff18dbfebc64e8d6080fa3731249c1.png) |
 | \pm                                       | ![\pm](http://upload.wikimedia.org/wikipedia/zh/math/5/7/2/5722e2f6169308b8be3542900c6d6553.png) |
 | \mp                                       | ![\mp](http://upload.wikimedia.org/wikipedia/zh/math/0/2/f/02f4d839cf96b60132fea53480d63648.png) |
+#### 因为所以
+
+```latex
+\begin{align}
+
+\because
+\begin{cases}
+\acute{a}x^2+bx^2+c\gtrless0\gtrless\grave{a}x^2+bx^2+c\\
+\acute{a}>0>\grave{a}
+\end{cases}\\
+
+\therefore
+\frac{-b\pm\sqrt{b^2-4\acute{a}c}}{2\acute{a}}{}_\lessgtr^\gtrlessx_\lessgtr^\gtrless\frac{-b\pm\sqrt{b^2-4\grave{a}c}}{2\grave{a}}
+
+\end{align}
+```
+
+​                    ![](http://upload.wikimedia.org/wikipedia/zh/math/8/1/0/8105aed2a6a0372d348af577ea8652d8.png)                              
+
+
 
 ### 几何符号
 
