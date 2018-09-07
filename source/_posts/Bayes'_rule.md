@@ -3,10 +3,9 @@ title:  经典摘录-Bayes' rule贝叶斯定律
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-28 20:16:00
 commets: true
-top: true
 toc: true
 ---
 
@@ -25,7 +24,7 @@ P(B) &=& P(A_1\cap B )+\cdots+P(A_n\cap B) \\
 $$
 这是**总概率定律（或翻译为：全概率定律），**下面有图示和证明。直观上，将样本空间分割成若干事件 $A_i$ 的并（ $A_1, \cdots, A_n$ 形成样本空间的一个分割）然后任意事件 $B$ 的概率等于事件 $B$ 在 $A_i$ 发生的情况下的条件概率的加权平均，而权重刚好等于这些事件 $A_i$ 的无条件概率。这条定理的一个主要应用是计算事件 $B$ 的概率。直接计算事件 $B$ 的概率有点难度，但是若条件概率 $P(B|A_i)$ 是已知的或是很容易推导计算时，总概率定律定理就成为了计算 $P(B)$ 的有力工具。应用这条定理的关键是找到合适的分割 $A_1,\cdots, A_n$ ，而合适的分割又与问题的实际背景有关。
 
-![Figure_1.13_visualization_and_verification_of_the_total_probability_theorem.png](http://img.blog.csdn.net/20180301153607785?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![Figure_1.13_visualization_and_verification_of_the_total_probability_theorem.png](http://p8o3egtyk.bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png)
 
 由于事件 $A_1, A_2, \cdots, A_n$ 形成一个样本空间的一个分割，事件 $B$ 可以分解成不想交的 $n$ 个事件的并，即：
 
@@ -138,7 +137,7 @@ $$
 
 在许多情况下，我们会遇到一个没有观察到的对象。用随机变量 $X$ 代表这种未观察到的量，设其概率密度函数是 $ f_X(x)$ 。我们能够观察到的量是经过噪声干扰的量 $Y$ ，$Y$ 的分布函数是条件分布函数，其条件概率密度函数为： $f_{X|Y}(y|x)$ 。当 $Y$ 的值被观察到以后，它包含 $X$ 的多少信息呢？这类问题与离散随机变量的推断问题类似。现在唯一的不同之处在于处理的是连续随机变量。
 
-![Figure_3.20_schematic_description_of_the_inference_problem.png](http://img.blog.csdn.net/20180301153651988?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![Figure_3.20_schematic_description_of_the_inference_problem.png](http://p8o3egtyk.bkt.clouddn.com/introduction_to_probability/Bayes%27rule/2.png)
 
 上图是推断问题的框图，有一个未观察到的变量 $X$ ，其概率密度函数 $f_X$ 是已知的，同时得到一个观察到的随机变量 $Y$ ，其条件概率密度函数为 $f_{Y|X}(y|x)$ 。给定 $Y$ 的观察值 $y$ ，推断问题变成条件概率密度函数 $f_{X|Y}(x|y)$ 的计算问题。
 

@@ -4,7 +4,7 @@ mathjax: true
 mathjax2: true
 categories: 中文
 date: 2014-06-01 22:16:00
-tags: [Data Structure, 数据结构]
+tags: [Basic Algorithm]
 toc: true
 copyright: false
 ---
@@ -167,4 +167,4 @@ int main()
 	return 0;
 }
 ```
-![img](http://img.blog.csdn.net/20180207171333211?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/dynamic-programming/1.png)

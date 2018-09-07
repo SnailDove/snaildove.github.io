@@ -3,7 +3,7 @@ title:  经典摘录-两个信封的悖论
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-24 20:16:00
 commets: true
 toc: true

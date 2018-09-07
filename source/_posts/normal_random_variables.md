@@ -3,7 +3,7 @@ title:  经典摘录-正态随机变量
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-27 20:16:00
 commets: true
 toc: true
@@ -22,7 +22,7 @@ $$
 $$
 下图是正态分布的密度函数和分布函数 $(\mu=1 \text{ 和 } \sigma^2=1)$ 。
 
-![A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1](http://img.blog.csdn.net/20180307010616779?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1](http://p8o3egtyk.bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png)
 
 由图可以看出，正态随机变量的概率密度函数是相对于均值 $\mu$ 对称的钟形曲线。当 $x$ 离开 $\mu$ 的时候，概率密度函数的表达式中的项 $e^{\frac{-(x-\mu)^2}{2\sigma^2}}$ 很快地下降。在图中，概率密度函数在区间 $[-1,3]$ 之外非常接近 $0$ 。
 
@@ -49,7 +49,7 @@ $$
 $$
 这个公式正好是当 $\mu=0$ 和 $\sigma^2=1$ 的时候的正态随机变量的概率密度函数的归一化条件，在本章习题第14题得以证明，截图如下：
 
-![the_normal_PDF_satisfies_the_normalization_property](http://img.blog.csdn.net/20180307010703295?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![the_normal_PDF_satisfies_the_normalization_property](http://p8o3egtyk.bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png)
 
 正态随机变量具有若干重要的性质。下面的性质尤其重要，并且将在 第四章 Further Topics
 on Random Variables 的第一节加以证明。
@@ -178,7 +178,7 @@ $$
 1.   实际被传输的信号为 $-1$，但是噪声变量 $N$ 值至少是 $1$ ，因此 $s+N=-1+N \ge 0$ 。 
 2.   实际被传输的信号为 $+1$，但是噪声变量 $N$ 值小于 $-1$ 。因此 $s+N=1+N <0$ 。
 
-![Figure_3.11_The_signal_detection](http://img.blog.csdn.net/20180307010744238?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![Figure_3.11_The_signal_detection](http://p8o3egtyk.bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png)
 
 因此这种判断方法在情况1下出现误差的概率为：
 $$

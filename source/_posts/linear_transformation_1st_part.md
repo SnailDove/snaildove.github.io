@@ -1,10 +1,10 @@
 ---
-title: 线性变换1
+title: Tsinghua linear-algebra-2 4th-lecture linear-transformation-1st-part
 mathjax: true
 mathjax2: true
 categories: 中文
 date: 2017-08-04 20:16:00
-tags: [linear_algebra, 线性代数]
+tags: [linear_algebra]
 toc: true
 ---
 
@@ -20,29 +20,29 @@ toc: true
 
 ### 向量空间的定义
 
-![definition_of_vector_space](http://img.blog.csdn.net/20171220223939235?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![definition_of_vector_space](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/1.png)
 
 ### 线性变换的定义
 
-![definition_of_linear_transformation](http://img.blog.csdn.net/20171220224007231?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![definition_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/2.png)
 
 #### 例子
 
-![example1_of_linear_transformation](http://img.blog.csdn.net/20171220224030237?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![example2_of_linear_transformation](http://img.blog.csdn.net/20171220224058461?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![example3_of_linear_transformation](http://img.blog.csdn.net/20171220224129556?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![example4_of_linear_transformation](http://img.blog.csdn.net/20171220224156832?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![example5_of_linear_transformation](http://img.blog.csdn.net/20171220224219722?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![example6_of_linear_transformation](http://img.blog.csdn.net/20171220224245061?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![example1_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/3.png) 
+![example2_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/4.png) 
+![example3_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/5.png) 
+![example4_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/6.png) 
+![example5_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/7.png) 
+![example6_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/8.png)
 
 **注意，由线性变换的定义 $T:V\,\rightarrow\,W$ 得到 $T(0)=0$**
 
-![example7_of_linear_transformation](http://img.blog.csdn.net/20171220224330083?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![example8_of_linear_transformation](http://img.blog.csdn.net/20171220224350476?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![example7_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/9.png) 
+![example8_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/10.png)
 
 ### 线性变换的性质
 
-![properties_of_linear_transformation](http://img.blog.csdn.net/20171220224413351?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![properties_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/11.png)
 
 针对第一条证明： 如果 $T(0)\ne0$ 不满足线性变换定义 $T(cx)=cT(x)$，例如： $T(0)=1\,\rightarrow\,T(0)=T(c0)=1\,\ne\,cT(0)=c$
 
@@ -52,65 +52,65 @@ toc: true
 
 #### 加法
 
-![addition_of_linear_transformation](http://img.blog.csdn.net/20171220224501190?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![addition_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/12.png)
 
 #### 数乘
 
-![scalar_multiplication_of_linear_transformation](http://img.blog.csdn.net/20171220224523818?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![scalar_multiplication_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/13.png)
 
 #### 乘积
 
 **注：线性变换的乘积被定义为线性变换的复合运算**
 
-![multiplication_of_linear_transformation](http://img.blog.csdn.net/20171220224549318?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![multiplication_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/14.png)
 
 **注意：线性变换不满足乘法交换律、消去律，与矩阵乘法类似**
 
 #### 逆
 
-![inverse_of_linear_transformation](http://img.blog.csdn.net/20171220224614672?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![inverse_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/15.png)
 
 #### 幂
 
-![exponential_operation_of_linear_transformation1](http://img.blog.csdn.net/20171220224639475?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![exponential_operation_of_linear_transformation1](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/16.png)
 
 #### 多项式
 
-![polynomial_of_linear_transformation](http://img.blog.csdn.net/20171220224701225?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![polynomial_of_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/17.png)
 
 **注：由于线性变换不满足乘法交换律，因此$(\sigma\tau)^{m}=\underbrace{(\sigma\tau)(\sigma\tau)\,...\,(\sigma\tau)}_{m个(\sigma\tau)相乘}\ne\sigma^{m}\tau^{m}$**
 
 ## 线性变化的矩阵表示
 
-![线性变换的矩阵表示1](http://img.blog.csdn.net/20171220224738544?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![线性变换的矩阵表示1](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/18.png) 
 
 由于 $T(v_{1})$,$T(v_{2})$, ... , $T(v_{3})\,\epsilon\,W$ 这个输出空间, 因此可以进行如下： 
-![线性变换的矩阵表示2](http://img.blog.csdn.net/20171220224804691?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![线性变换的矩阵表示3](http://img.blog.csdn.net/20171220224831848?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![线性变换的矩阵表示2](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/19.png) 
+![线性变换的矩阵表示3](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/20.png) 
 
 ### 例子
 
-![线性变换的矩阵表示-例子1](http://img.blog.csdn.net/20171220225003186?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![线性变换的矩阵表示-例子2](http://img.blog.csdn.net/20171220225023158?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![线性变换的矩阵表示-例子3](http://img.blog.csdn.net/20171220225054861?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![线性变换的矩阵表示-例子4](http://img.blog.csdn.net/20171220225116921?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![线性变换的矩阵表示-例子1](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/21.png) 
+![线性变换的矩阵表示-例子2](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/22.png) 
+![线性变换的矩阵表示-例子3](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/23.png) 
+![线性变换的矩阵表示-例子4](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/24.png) 
 
 ## 线性变换与矩阵之间的关系
 
 ### 一一对应
 
-![the_relation_between_transformation_and_matrix](http://img.blog.csdn.net/20171220225147025?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
-![the_inverse_of_transformation_and_matrix](http://img.blog.csdn.net/20171220225208727?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![the_relation_between_transformation_and_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/25.png) 
+![the_inverse_of_transformation_and_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/26.png)
 
 ### 线性变换的乘积与矩阵的乘积
 
-![the_product_of_transfromation_and_matrices](http://img.blog.csdn.net/20171220225248218?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![the_product_of_transfromation_and_matrices](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/27.png)
 
 **注（极其重要）：这里线性变换的乘积（复合）对应的是矩阵的“左乘”。**
 
 ### 线性同构
 
-![linear_isomorphism_between_matrix_and_transformation](http://img.blog.csdn.net/20171220225313979?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![linear_isomorphism_between_matrix_and_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-4/28.png)
 
 **例**：设线性变换$\tau\,:\,R^{3}\rightarrow\,R^{2}$定义为$\tau(x,y,z)=(x+y,y-z)$, 线性变换$\sigma:R^{2}\,\rightarrow\,R^{2}$定义为$\sigma(u,v)=(2u-v,u)$.求线性变换$\sigma\tau:R^{3}\,\rightarrow\,R^{2}$在$R^{3}$与$R^{2}$标准基下的矩阵.
 

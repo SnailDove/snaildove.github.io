@@ -3,7 +3,7 @@ title:  经典摘录-分段常数概率密度函数的均值和方差
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-27 20:16:00
 commets: true
 toc: true
@@ -15,7 +15,7 @@ toc: true
 
 $$f_x(x)=\cases{\frac{1}{3}, & if $0 \le x \le 1$, \\ \frac{2}{3}, & if $ 1 < x \le 2$, \\0, & if otherwise}$$
 
-![Figure3.14_Piecewise_constant_PDF_for_Example3.17.png](http://img.blog.csdn.net/20180226000449592?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![Figure3.14_Piecewise_constant_PDF_for_Example3.17.png](http://p8o3egtyk.bkt.clouddn.com/gitpage/introduction-to-probability/mean_and_variance_of_a_piecewise-constant_PDF/2.png)
 
 考虑事件：
 

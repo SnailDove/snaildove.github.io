@@ -1,10 +1,10 @@
 ---
-title: 马尔科夫矩阵和正矩阵
+title: Tsinghua linear-algebra-2 9th-lecture Markov-matrix_and_positive-matrix
 mathjax: true
 mathjax2: true
 categories: 中文
 date: 2017-08-06 20:16:00
-tags: [linear_algebra, 线性代数]
+tags: [linear_algebra]
 commets: true
 toc: true
 ---
@@ -15,7 +15,7 @@ toc: true
 
 ## 引言
 
-![preface](http://img.blog.csdn.net/20180102233306825?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![preface](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/1.png)
 
 马尔科夫链详细参考：[Markov chain](https://en.wikipedia.org/wiki/Markov_chain)
 
@@ -23,35 +23,35 @@ toc: true
 
 ### 正矩阵
 
-![introduction_of_positive_matrix](http://img.blog.csdn.net/20180102233533038?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![introduction_of_positive_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/2.png)
 
 ### 马尔科夫矩阵定义
 
-![defintion_of_Markov_matrix](http://img.blog.csdn.net/20180102233816802?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![defintion_of_Markov_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/3.png)
 
 ### 马尔科夫矩阵性质
 
-![properties_of_Markov_matrix](http://img.blog.csdn.net/20180102233938256?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![properties_of_Markov_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/4.png)
 
 ### 正马尔科夫矩阵
 
-![positive_Markov_matrix](http://img.blog.csdn.net/20180102234234466?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![positive_Markov_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/5.png)
 
 ### 正马尔科夫矩阵的性质
 
-![正马尔科夫矩阵的性质](http://img.blog.csdn.net/20180102234529456?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![正马尔科夫矩阵的性质](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/6.png)
 
 #### 例子
 
-![example_of_positive_Markov_matrix](http://img.blog.csdn.net/20180102234932701?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![example_of_positive_Markov_matrix](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/7.png)
 
 ### 人口流动模型
 
-![population_flow_model](http://img.blog.csdn.net/20180102235612652?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![population_flow_model](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/8.png)
 
 ## 正矩阵
 
-![positive-matrix_and_spectral_radius](http://img.blog.csdn.net/20180102235700228?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![positive-matrix_and_spectral_radius](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/9.png)
 
 谱半径Spectral radius 定义为谱半径是矩阵特征值模的最大值，而非最大特征值，注意：矩阵来自于线性变换（也叫线性算子），因此线性变换也有谱半径，详询wiki: [谱半径Spectral radius](https://en.wikipedia.org/wiki/Spectral_radius)。
 
@@ -59,4 +59,4 @@ toc: true
 
 **这个原理应用在统计推断，经济，人口统计学，搜索引擎的基础。**
 
-![Perron-Frobenius_theorem](http://img.blog.csdn.net/20180102235733277?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast) 
+![Perron-Frobenius_theorem](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-9/10.png) 

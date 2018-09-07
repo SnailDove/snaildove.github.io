@@ -3,13 +3,13 @@ title:  经典摘录-均匀随机变量的均值和方差
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-26 20:16:00
 commets: true
 toc: true
 ---
 
-说明：全文摘自[Introduction to probability, 2nd Edition](http://www.athenasc.com/probbook.html) 
+说明：全文摘自[Introduction to robability, 2nd Edition](http://www.athenasc.com/probbook.html) 
 
 ## 均匀分布的离散随机变量
 
@@ -17,7 +17,7 @@ toc: true
 
 $$p_X(k)=\cases{\frac{1}{b-a+1}, & if k=a, a+1, ... ,b\\0, &  otherwise}$$
 
-![mean_and_variance_of_the_discrete_uniform_random_variable.png](http://img.blog.csdn.net/20180303161933917?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![mean_and_variance_of_the_discrete_uniform_random_variable.png](http://p8o3egtyk.bkt.clouddn.com/gitpage/introduction-to-probability/mean_and_variance_of_uniform_random_variable/1.png)
 
 其中$a,b$ 是两个整数，作为随机变量的值域的两个端点，$a<b$。由于它的概率函数相对于(a+b)/2 是对称的，所以其均值为：
 

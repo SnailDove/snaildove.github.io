@@ -3,10 +3,9 @@ title:  经典摘录 - 伯努利和泊松随机变量的均值方差
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-28 20:16:00
 commets: true
-top: true
 toc: true
 ---
 

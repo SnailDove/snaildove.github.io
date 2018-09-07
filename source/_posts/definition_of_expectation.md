@@ -3,7 +3,7 @@ title:  期望定义的由来
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-14 20:16:00
 commets: true
 toc: true

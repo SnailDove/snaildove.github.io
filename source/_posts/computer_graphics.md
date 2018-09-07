@@ -1,10 +1,10 @@
 ---
-title: 计算机图像
+title: Tsinghua linear-algebra-2 11th-lecture computer-graphics
 mathjax: true
 mathjax2: true
 categories: 中文
 date: 2017-08-11 20:16:00
-tags: [linear_algebra, 线性代数]
+tags: [linear_algebra]
 commets: true
 toc: true
 ---
@@ -23,32 +23,32 @@ toc: true
 
 ## 平移translation
 
-![translation_isn't_a_linear_transformation](http://img.blog.csdn.net/20180102231717753?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![translation_isn't_a_linear_transformation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/1.png)
 
-![homogeneous_coordinate_and_embedding](http://img.blog.csdn.net/20180102231747264?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![homogeneous_coordinate_and_embedding](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/2.png)
 
 ## 伸缩rescaling
 
-![rescaling](http://img.blog.csdn.net/20180102231808163?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![rescaling](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/3.png)
 
 ## 旋转rotation
 
 ### 3个特殊情形
 
-![special_cases_of_rotation_on_3D](http://img.blog.csdn.net/20180102231830697?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![special_cases_of_rotation_on_3D](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/4.png)
 
 ### 一般情形
 
-![a_general_case_of_rotation_on_3D](http://img.blog.csdn.net/20180102231852925?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![a_general_case_of_rotation_on_3D](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/5.png)
 
 ### 旋转的性质
 
-![properties_of_rotation](http://img.blog.csdn.net/20180102231915627?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![properties_of_rotation](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/6.png)
 
 ## 投影projection
 
-![projection_on_3D](http://img.blog.csdn.net/20180102231935600?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![projection_on_3D](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/7.png)
 
 ## 反射
 
-![refection_of_imags](http://img.blog.csdn.net/20180102232003392?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![refection_of_imags](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/8.png)

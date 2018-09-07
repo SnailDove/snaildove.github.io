@@ -4,7 +4,7 @@ mathjax: true
 mathjax2: true
 categories: 中文
 date: 2013-05-12 22:16:00
-tags: [Data Structure, 数据结构]
+tags: [Data Structure]
 toc: true
 copyright: false
 ---

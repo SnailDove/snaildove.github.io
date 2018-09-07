@@ -191,6 +191,10 @@ toc: true
 | \diamondsuit | ![\diamondsuit](http://upload.wikimedia.org/wikipedia/zh/math/f/b/2/fb24ec60ac1d9b437a64b2edcb5450f4.png) | \heartsuit | ![\heartsuit](http://upload.wikimedia.org/wikipedia/zh/math/7/b/d/7bd6a6158c45891182ef5783234c2c5a.png) | \clubsuit | ![\clubsuit](http://upload.wikimedia.org/wikipedia/zh/math/f/2/4/f243a5ff32cd1dd4a28521b225bb76b5.png) | \spadesuit | ![\spadesuit](http://upload.wikimedia.org/wikipedia/zh/math/8/a/2/8a2e30359d1821a30aff595e4ff18375.png) |
 | \Game        | ![\Game](http://upload.wikimedia.org/wikipedia/zh/math/4/f/6/4f67c5c3f8e2624b0e62de0ee8d38650.png) | \flat      | ![\flat](http://upload.wikimedia.org/wikipedia/zh/math/8/3/8/8380b268482c1a8d9fd36dc88e8a127a.png) | \natural  | ![\natural](http://upload.wikimedia.org/wikipedia/zh/math/3/1/7/3178537e3f3a2bc507823259218904ad.png) | \sharp     | ![\sharp](http://upload.wikimedia.org/wikipedia/zh/math/7/8/1/7818bf5748ed97579507cd14a1d5bb65.png) |
 
+## [分数](http://zh.wikipedia.org/wiki/%E5%88%86%E6%95%B0)、[矩阵](http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5)和多行列式
+
+![](http://p8o3egtyk.bkt.clouddn.com/gitpage/latex/fraction_matrices_determinant.png)
+
 ## 上标、下标及[积分](http://zh.wikipedia.org/wiki/%E7%A7%AF%E5%88%86)等
 
 | 功能                                                         | 语法                                                         | 效果                                                         |
@@ -234,9 +238,6 @@ toc: true
 | [交集](http://zh.wikipedia.org/wiki/%E4%BA%A4%E9%9B%86)      | `\bigcap_1^{n} p`                                            | ![\pagecolor{White} \bigcap_1^{n} p](http://upload.wikimedia.org/wikipedia/zh/math/4/6/3/463d4e4bd315c0c6030354a540d85829.png) |
 | [并集](http://zh.wikipedia.org/wiki/%E5%B9%B6%E9%9B%86)      | `\bigcup_1^{k} p`                                            | ![\pagecolor{White} \bigcup_1^{k} p](http://upload.wikimedia.org/wikipedia/zh/math/8/0/0/80059f454f87af13803b327c202dcec1.png) |
 
-## [分数](http://zh.wikipedia.org/wiki/%E5%88%86%E6%95%B0)、[矩阵](http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5)和多行列式
-
-![latex_matrix](https://img-blog.csdn.net/2018040102233234?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lvdTEzMTQ1MjBtZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
 
 ## 字体
 
@@ -407,8 +408,24 @@ toc: true
 | 好看了 | \left( \frac{1}{2} \right) | ![\left ( \frac{1}{2} \right )](http://upload.wikimedia.org/wikipedia/zh/math/2/8/b/28bcd5b82ce0e92b25e8a0b4bd5be215.png) |
 
 您可以使用 `\left` 和 `\right` 来显示不同的括号：
+![](http://p8o3egtyk.bkt.clouddn.com/gitpage/latex/variants_of_braces.png)
 
-![latex_braces](https://img-blog.csdn.net/20180401020153223?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lvdTEzMTQ1MjBtZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+备注：
+
+- 可以使用 `\big, \Big, \bigg, \Bigg` 控制括号的大小，比如代码
+
+  ```latex
+  \Bigg ( \bigg [ \Big \{\big\langle \left | \| \frac{a}{b} \| \right | \big \rangle\Big\}\bigg ] \Bigg )
+  ```
+
+  ​
+
+
+
+　显示︰
+$$
+\Bigg ( \bigg [ \Big \{\big\langle \left | \| \frac{a}{b} \| \right | \big \rangle\Big\}\bigg ] \Bigg )
+$$
 
 ## 空格
 
@@ -423,6 +440,49 @@ toc: true
 | 小空格      | `\alpha\,\beta`     | ![\alpha\,\beta](http://upload.wikimedia.org/wikipedia/zh/math/5/8/0/580e640ac8bd1b0b421e62a48f9d4815.png) | ![\frac{m}{6}](http://upload.wikimedia.org/wikipedia/zh/math/2/b/2/2b25f9317e1ebccefa69c899bb87f655.png) |
 | 没有空格    | `\alpha\beta`       | ![\alpha\beta\ ](http://upload.wikimedia.org/wikipedia/zh/math/c/7/6/c761464c4ea7b0a18e7bd830bc80fc62.png) | ![0\ ](http://upload.wikimedia.org/wikipedia/zh/math/5/7/1/571e19a3fb35a2f712cd608e89b85dc5.png) |
 | 紧贴        | `\alpha\!\beta`     | ![\alpha\!\beta](http://upload.wikimedia.org/wikipedia/zh/math/6/d/3/6d331458bfd8a10d0639514187a1eb42.png) | ![-\frac{m}{6}](http://upload.wikimedia.org/wikipedia/zh/math/1/a/4/1a40f481cfa743830b2c80b87a4acccc.png) |
+
+## 颜色
+
+- 语法
+  - 字体颜色︰`{\color{色调}表达式}`
+  - 背景颜色︰`{\pagecolor{色调}表达式}`
+
+
+- 支持色调表
+
+| ![\color{Apricot}\text{Apricot}](http://upload.wikimedia.org/wikipedia/zh/math/b/8/9/b8948aeb7bdca5bd4e18d613ac6c5696.png) | ![\color{Aquamarine}\text{Aquamarine}](http://upload.wikimedia.org/wikipedia/zh/math/f/c/4/fc435c38d6cd34147f1b0562b0e580c0.png) | ![\color{Bittersweet}\text{Bittersweet}](http://upload.wikimedia.org/wikipedia/zh/math/d/6/7/d67b10dd93c2300ee8d13b5099078d1b.png) | ![\color{Black}\text{Black}](http://upload.wikimedia.org/wikipedia/zh/math/3/6/4/364fc160f6c30914ad3d70a6bb551dc6.png) |
+| ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| ![\color{Blue}\text{Blue}](http://upload.wikimedia.org/wikipedia/zh/math/5/f/7/5f795126f5d16b97c60578f01b368cd6.png) | ![\color{BlueGreen}\text{BlueGreen}](http://upload.wikimedia.org/wikipedia/zh/math/3/0/2/302ea2ab02b2998679c1f973dfb17395.png) | ![\color{BlueViolet}\text{BlueViolet}](http://upload.wikimedia.org/wikipedia/zh/math/f/7/d/f7d3a6b44f64ec4d9b289bf8ac436d92.png) | ![\color{BrickRed}\text{BrickRed}](http://upload.wikimedia.org/wikipedia/zh/math/a/2/f/a2f94714d1809cb3f71016db0e8c2315.png) |
+| ![\color{Brown}\text{Brown}](http://upload.wikimedia.org/wikipedia/zh/math/9/9/c/99cfd151aa2998fb6b309c8c50393c32.png) | ![\color{BurntOrange}\text{BurntOrange}](http://upload.wikimedia.org/wikipedia/zh/math/3/e/3/3e3b04676ace992e28aaa5608455a289.png) | ![\color{CadetBlue}\text{CadetBlue}](http://upload.wikimedia.org/wikipedia/zh/math/f/d/3/fd392c22a7bb76e6203788f0a5e6584b.png) | ![\color{CarnationPink}\text{CarnationPink}](http://upload.wikimedia.org/wikipedia/zh/math/6/0/7/6079cf2eacc794bf3e99bc9fc233e2d0.png) |
+| ![\color{Cerulean}\text{Cerulean}](http://upload.wikimedia.org/wikipedia/zh/math/9/7/5/9759c3640f8f5a2cfa5cfa5c4bc64e2f.png) | ![\color{CornflowerBlue}\text{CornflowerBlue}](http://upload.wikimedia.org/wikipedia/zh/math/0/7/2/072ea0cddb81b6996a86c5c60042fc8c.png) | ![\color{Cyan}\text{Cyan}](http://upload.wikimedia.org/wikipedia/zh/math/3/2/1/321ecf031772dbe95758cab0dfaa6f27.png) | ![\color{Dandelion}\text{Dandelion}](http://upload.wikimedia.org/wikipedia/zh/math/7/8/6/78686b75a31528404d2e9b365f892142.png) |
+| ![\color{DarkOrchid}\text{DarkOrchid}](http://upload.wikimedia.org/wikipedia/zh/math/1/9/b/19bc495f720e6bb920eed9545880e383.png) | ![\color{Emerald}\text{Emerald}](http://upload.wikimedia.org/wikipedia/zh/math/b/4/3/b4310eecc8d70893a71a728574dc9f0f.png) | ![\color{ForestGreen}\text{ForestGreen}](http://upload.wikimedia.org/wikipedia/zh/math/b/8/9/b89859eb7faadeb40830600590478e6e.png) | ![\color{Fuchsia}\text{Fuchsia}](http://upload.wikimedia.org/wikipedia/zh/math/3/0/7/3073bfb913846b8b74d221b3de291348.png) |
+| ![\color{Goldenrod}\text{Goldenrod}](http://upload.wikimedia.org/wikipedia/zh/math/a/f/6/af66a8061a03abb89bc4d205503d437f.png) | ![\color{Gray}\text{Gray}](http://upload.wikimedia.org/wikipedia/zh/math/1/e/5/1e5478f23b28143107d25266b55ef78a.png) | ![\color{Green}\text{Green}](http://upload.wikimedia.org/wikipedia/zh/math/9/4/7/9474b1edd45b5aefe4533543fe85bbbd.png) | ![\pagecolor{Gray}\color{GreenYellow}\text{GreenYellow}](http://upload.wikimedia.org/wikipedia/zh/math/8/f/1/8f10b1195e9646f9ca5fbf15001a5b12.png) |
+| ![\color{JungleGreen}\text{JungleGreen}](http://upload.wikimedia.org/wikipedia/zh/math/f/7/2/f72158890930502ffd7dae256812f7e4.png) | ![\color{Lavender}\text{Lavender}](http://upload.wikimedia.org/wikipedia/zh/math/f/2/f/f2fa7339ac0b50f73409f1e05eb77800.png) | ![\color{LimeGreen}\text{LimeGreen}](http://upload.wikimedia.org/wikipedia/zh/math/c/4/c/c4c5d14dea2c682d5f4148eab87e332f.png) | ![\color{Magenta}\text{Magenta}](http://upload.wikimedia.org/wikipedia/zh/math/d/9/b/d9bfd6c63b5b8c21f53e52a74a75eb97.png) |
+| ![\color{Mahogany}\text{Mahogany}](http://upload.wikimedia.org/wikipedia/zh/math/d/b/b/dbb2ef205ba8d4d3586b1b9785c54c25.png) | ![\color{Maroon}\text{Maroon}](http://upload.wikimedia.org/wikipedia/zh/math/5/8/6/5861b59a922bda9d96cf03cb8a184a8a.png) | ![\color{Melon}\text{Melon}](http://upload.wikimedia.org/wikipedia/zh/math/e/9/b/e9b605ab8c6a1135ac9bb24e540e645b.png) | ![\color{MidnightBlue}\text{MidnightBlue}](http://upload.wikimedia.org/wikipedia/zh/math/3/c/1/3c196c0de1592080c250b05208cb29c1.png) |
+| ![\color{Mulberry}\text{Mulberry}](http://upload.wikimedia.org/wikipedia/zh/math/7/8/f/78fe49c7ffa31d0309ecad4e17c8533b.png) | ![\color{NavyBlue}\text{NavyBlue}](http://upload.wikimedia.org/wikipedia/zh/math/b/5/7/b57ac6d698f2a553d1de298b8ae86f55.png) | ![\color{OliveGreen}\text{OliveGreen}](http://upload.wikimedia.org/wikipedia/zh/math/1/f/f/1ff90d0c4e6d6901579206062701309a.png) | ![\color{Orange}\text{Orange}](http://upload.wikimedia.org/wikipedia/zh/math/1/d/d/1dd73f756801b262f01f87912b369339.png) |
+| ![\color{OrangeRed}\text{OrangeRed}](http://upload.wikimedia.org/wikipedia/zh/math/6/d/f/6df4aca479f5fa8acae9c21141636557.png) | ![\color{Orchid}\text{Orchid}](http://upload.wikimedia.org/wikipedia/zh/math/e/0/3/e03e079ac7c0138cc85bb20894e42c7d.png) | ![\color{Peach}\text{Peach}](http://upload.wikimedia.org/wikipedia/zh/math/1/6/a/16a4afaaa911b78f102f2e088c596715.png) | ![\color{Periwinkle}\text{Periwinkle}](http://upload.wikimedia.org/wikipedia/zh/math/1/0/4/104bee7d6969d0403571f7aa65390384.png) |
+| ![\color{PineGreen}\text{PineGreen}](http://upload.wikimedia.org/wikipedia/zh/math/5/8/2/5821d738015d4bae29a90be43c9dc760.png) | ![\color{Plum}\text{Plum}](http://upload.wikimedia.org/wikipedia/zh/math/d/e/3/de3328ac78da89a5e86e1917ec8fb87b.png) | ![\color{ProcessBlue}\text{ProcessBlue}](http://upload.wikimedia.org/wikipedia/zh/math/e/2/0/e20ab4232d3130d086b8de76eee6b53c.png) | ![\color{Purple}\text{Purple}](http://upload.wikimedia.org/wikipedia/zh/math/f/e/f/fefd1c1377e3d29213e81e866583adad.png) |
+| ![\color{RawSienna}\text{RawSienna}](http://upload.wikimedia.org/wikipedia/zh/math/7/4/5/745d3d1a6a79b318a497e6fbcb57dc02.png) | ![\color{Red}\text{Red}](http://upload.wikimedia.org/wikipedia/zh/math/9/e/2/9e2052c4c91b5216205fe642a06c5ac1.png) | ![\color{RedOrange}\text{RedOrange}](http://upload.wikimedia.org/wikipedia/zh/math/2/a/0/2a026699e64707b449d7c3811d752725.png) | ![\color{RedViolet}\text{RedViolet}](http://upload.wikimedia.org/wikipedia/zh/math/2/a/c/2ac9ad9fbd882591f7971ff477880fe6.png) |
+| ![\color{Rhodamine}\text{Rhodamine}](http://upload.wikimedia.org/wikipedia/zh/math/2/7/d/27d615add22f24e5689271903afd2ea8.png) | ![\color{RoyalBlue}\text{RoyalBlue}](http://upload.wikimedia.org/wikipedia/zh/math/6/e/2/6e26c2a826a4d55150b804f2e71444af.png) | ![\color{RoyalPurple}\text{RoyalPurple}](http://upload.wikimedia.org/wikipedia/zh/math/d/d/4/dd4a6069922baf4c048592b1bccef491.png) | ![\color{RubineRed}\text{RubineRed}](http://upload.wikimedia.org/wikipedia/zh/math/7/7/1/771e441e86b10ef3db7b7cb90d9570d1.png) |
+| ![\color{Salmon}\text{Salmon}](http://upload.wikimedia.org/wikipedia/zh/math/1/2/0/1204c3c0547f50b71bda5357deba7948.png) | ![\color{SeaGreen}\text{SeaGreen}](http://upload.wikimedia.org/wikipedia/zh/math/e/8/9/e897b90beb4e669c01a63c3d2ac2d954.png) | ![\color{Sepia}\text{Sepia}](http://upload.wikimedia.org/wikipedia/zh/math/e/3/b/e3b0037782599bf00cec26b758627e4b.png) | ![\color{SkyBlue}\text{SkyBlue}](http://upload.wikimedia.org/wikipedia/zh/math/0/3/b/03bc1de1505a991d0f8c2db1a9211740.png) |
+| ![\pagecolor{Gray}\color{SpringGreen}\text{SpringGreen}](http://upload.wikimedia.org/wikipedia/zh/math/d/7/4/d747177fd9554cc703043bf3dfeaad7d.png) | ![\color{Tan}\text{Tan}](http://upload.wikimedia.org/wikipedia/zh/math/6/9/7/6975e0f90106c5e304d39dfebc6ad1d0.png) | ![\color{TealBlue}\text{TealBlue}](http://upload.wikimedia.org/wikipedia/zh/math/2/b/1/2b19a41a6ca9691cdbd5fa9f15665d5a.png) | ![\color{Thistle}\text{Thistle}](http://upload.wikimedia.org/wikipedia/zh/math/8/2/8/828c123619d3d3e078aa28bbb362c389.png) |
+| ![\color{Turquoise}\text{Turquoise}](http://upload.wikimedia.org/wikipedia/zh/math/e/d/b/edbea9eb14e35cbadb5e2df41afae369.png) | ![\color{Violet}\text{Violet}](http://upload.wikimedia.org/wikipedia/zh/math/8/5/d/85da72dd0a892dd3364fefd94a14cf7c.png) | ![\color{VioletRed}\text{VioletRed}](http://upload.wikimedia.org/wikipedia/zh/math/9/b/5/9b5d2430fd995e45f7974583ab86db0c.png) | ![\pagecolor{Black}\color{White}\text{White}](http://upload.wikimedia.org/wikipedia/zh/math/a/e/b/aebc9cd09371478a17387abbc3b09c82.png) |
+| ![\color{WildStrawberry}\text{WildStrawberry}](http://upload.wikimedia.org/wikipedia/zh/math/0/9/6/0962e3794c0315fd26b9668555ebff1c.png) | ![\pagecolor{Gray}\color{Yellow}\text{Yellow}](http://upload.wikimedia.org/wikipedia/zh/math/6/f/0/6f08fd94fdd641d1e7398d6762ae2545.png) | ![\color{YellowGreen}\text{YellowGreen}](http://upload.wikimedia.org/wikipedia/zh/math/7/2/a/72a3756fa95c0da850b33ccb7b3e3900.png) | ![\color{YellowOrange}\text{YellowOrange}](http://upload.wikimedia.org/wikipedia/zh/math/1/1/9/119eb093f2ffcbd3d77a13f55f185f52.png) |
+
+＊注︰输入时第一个字母必需以大写输入，如`\color{OliveGreen}`。
+
+- 例子
+  - ```latex
+     {\color{Blue}x^2}+{\color{Brown}2x} -{\color{OliveGreen}1}
+     ```
+
+     $${\color{Blue}x^2}+{\color{Brown}2x} -{\color{OliveGreen}1}$$
+
+  - ```latex
+       x_{\color{Maroon}1,2}=\frac{-b\pm\sqrt{{\color{Maroon}b^2-4ac}}}{2a}
+       ```
+        $$x_{\color{Maroon}1,2}=\frac{-b\pm\sqrt{{\color{Maroon}b^2-4ac}}}{2a}$$
+
 
 ## 颜色小型数学公式
 

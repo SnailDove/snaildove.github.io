@@ -3,7 +3,7 @@ title:  经典摘录-样本均值的期望方差与模拟的方法估计概率
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-25 20:16:00
 commets: true
 toc: true

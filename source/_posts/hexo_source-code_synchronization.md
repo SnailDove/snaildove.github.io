@@ -1,6 +1,6 @@
 ---
 title: 同步hexo博客
-date: 2018-02-10
+date: 2018-01-23
 categories: 中文
 tags: [hexo]
 copyright: true

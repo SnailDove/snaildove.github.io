@@ -1,10 +1,10 @@
 ---
-title: 复数与复矩阵
+title: Tsinghua linear-algebra-2 12th-lecture complex_and_complex-matrix
 mathjax: true
 mathjax2: true
 categories: 中文
 date: 2017-08-12 20:16:00
-tags: [linear_algebra, 线性代数]
+tags: [linear_algebra]
 toc: true
 ---
 
@@ -147,18 +147,18 @@ $\begin{equation}4a_0=(A_0+A_2)+(A_1+A_3)\\4a_1=(A_0-A_2)-i(A_1-A_3)\\4a_2=(A_0+
 
 引入记号：
 
-![1st_notations_of_FFT](http://img.blog.csdn.net/20171230223141668?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![1st_notations_of_FFT](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-12/1.png)
 
 将$A_0, A_1, A_2, A_3$重新排序$A_0,A_2,A_1,A_3$使用记号，则
 
-![2nd_notations_of_FFT](http://img.blog.csdn.net/20171230223238107?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![2nd_notations_of_FFT](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-12/2.png)
 
 $FFT$算法将$DFT$算法分成$log_2^N$段，每一段有${N\over 2}$个butterfly operation。
 
 举例：$N=8$，第一步将$A_0,A_1,\ldots,A_7$重新排序。原则：考虑$0,1,\ldots,7$的二进制，设$j$的二进制数的反转为$n_j$。若$j<n_j$，则交换$Aj$和$A_{n_j}$。例如1的二进制数为${001}_2$,反转为${100}_2=4, 1<4$，交换$A_1$和$A_4$。
 
 排序后为：$A_0,A_4,A_2,A_6,A_1,A_5,A_3,A_7$（奇偶分离）
-![1st_example_of_reordering_of_FFT](http://img.blog.csdn.net/20171230223407993?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![1st_example_of_reordering_of_FFT](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-12/3.png)
 
 奇偶分离的原因：$\begin{pmatrix}a_0\\a_1\\\vdots\\a_{N-1}\end{pmatrix}=({1\over N}\overline{F})\begin{pmatrix}A_0\\A_1\\\vdots\\A_{N-1}\end{pmatrix}$，
 令$p(x)=A_0+A_1x+\cdots+A_{N-1}x^{N-1}=p_e(x^2)+xp_o(x^2),p_e=A_0+A_2x^2+\cdots\quad p_o=A_1+A_3x^2+\cdots$
@@ -172,14 +172,14 @@ $a_{N\over 2+j}={1\over  N}[p_e(\overline{\omega}_N^{2({N\over 2}+j)})+\overline
 所以：$\cases{a_j={1\over N}[p_e(\overline{\omega}_{N\over 2}^{j})+\overline{\omega}_N^{j}p_o(\overline{\omega}_{N\over 2}^{j})],j=0,1,\cdots,{N\over 2}-1\\a_{N\over 2+j}={1\over  N}[p_e(\overline{\omega}_{N\over 2}^{j})-\overline{\omega}_N^{j}p_o(\overline{\omega}_{N\over 2}^{j})],j=0,1,\cdots,{N\over 2}-1}$
 
 所以：$a_j={1\over N}p(\overline{\omega}_N^j)$，再令$b_j=p_e(\overline{\omega}_{N\over 2}^{j}), b'_j=p_o(\overline{\omega}_{N\over 2}^{j})$，那么：$\cases{a_j = {1\over N}[ b_j+\overline{\omega}_N^{j}b'_j],j=0,1,\cdots,{N\over 2}-1\\a_{N\over 2+j} = {1\over N}[b_j-\overline{\omega}_N^{j}b'_j] ,j=0,1,\cdots,{N\over 2}-1}$，那么这又是一个butterfly operation:
-![3rd_butterfly_operation_of_FFT](http://img.blog.csdn.net/20171230223508262?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![3rd_butterfly_operation_of_FFT](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-12/4.png)
 
 可以重复利用以上原理对$b_j,b'_j$讨论，$b_j=p_e(\overline{\omega}_{N\over 2}^{j}),j=0,1,\cdots,{N\over 2}-1$，令$c_j=p_{ee}(\overline{\omega}_{N\over 4}^{j}), c'_j=p_{eo}(\overline{\omega}_{N\over 4}^{j})$，那么：$\cases{b_j = {1\over N}[c_j+\overline{\omega}_{N\over 2}^{j}c'_j],j=0,1,\cdots,{N\over 4}-1\\b_{N\over 4+j} = {1\over N}[c_j-\overline{\omega}_{N\over 2}^{j}c'_j],j=0,1,\cdots,{N\over 4}-1}$，那么这又是一个butterfly operation:
 
-![4th_butterfly_operation_of_FFT](http://img.blog.csdn.net/20171230223615170?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![4th_butterfly_operation_of_FFT](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-12/5.png)
 
 不停的划分下去，即：$FFT$算法将$DFT$算法分成$log_2^N$段，每一段有${N\over 2}$个butterfly operation。
 
 举例：
 
-![](http://img.blog.csdn.net/20171230223715887?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQveW91MTMxNDUyMG1l/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
+![](http://p8o3egtyk.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-12/6.png)

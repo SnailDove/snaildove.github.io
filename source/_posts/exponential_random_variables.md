@@ -3,7 +3,7 @@ title:  经典摘录-指数型随机变量的均值和方差
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [probability, 概率论]
+tags: [probability]
 date: 2017-08-25 20:16:00
 commets: true
 toc: true
@@ -29,7 +29,7 @@ $$
 $$
 \forall x \ge 0, P(X\le x)=\int_{0}^{x}\lambda e^{-\lambda x}dx=1-e^{-\lambda x}
 $$
-![The_PDF_of_an_exponential_random_variable.png](https://img-blog.csdn.net/20180402130138210?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3lvdTEzMTQ1MjBtZQ==/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![The_PDF_of_an_exponential_random_variable](http://p8o3egtyk.bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png)
 
 **指数型随机变量能够对直到事件发生的时间建模，例如：消息到达计算机的时间，设备的使用寿命，灯泡的寿命，事故发生的时间等等**（An exponential random variable can, for example, be a good model for the amount of time until an incident of interest takes place）。将在后面的章节看到指数型随机变量与几何随机变量紧密关联，几何随机变量也与相关事件发生的（离散）时间相关联。**指数型随机变量将在第六章随机过程的学习中扮演重要的角色**。但是目前为止，仅仅视它为一种特殊的可分析追中的随机变量。
 

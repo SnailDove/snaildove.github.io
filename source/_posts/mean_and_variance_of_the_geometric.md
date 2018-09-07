@@ -4,7 +4,7 @@ mathjax: true
 mathjax2: true
 categories: 中文
 date: 2017-08-23 22:16:00
-tags: [probability, 概率论]
+tags: [probability]
 toc: true
 copyright: false
 ---
