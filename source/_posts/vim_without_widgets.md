@@ -54,8 +54,8 @@ normal模式下：
 
 简记：**标记是为了更好地查找**，normal模式下：
 
-`mx` mean: mark x, x is mark name; 
-`'x` mean: go to the position of x mark
+`mx` meaning: mark x, x is the name of mark; 
+`'x` meaning: go to the position of x mark
 
 1.  **高频使用场景1：** 在函数中看到调用其他函数，你想去看怎么定义的，你看完之后要回来，那么先标记一下，然后在跳回来。
 
@@ -64,8 +64,10 @@ normal模式下：
 normal模式下：
 
 1.  `gd` 意思： go to definition
-2.  先按 `[` 再按 `ctrl+d` 跳转到#define处 语言支持不太良好
-3.  先按 `[` 再按 `ctrl+i` 跳转到函数、变量和#define 语言支持不太良好
+2.  先按 `[` 再按 `ctrl+d` 跳转到#define处 
+3.  先按 `[` 再按 `ctrl+i` 跳转到函数、变量和#define 
+
+**注意**：语言支持不太良好, 大家可以试试所用的语言
 
 ### 快速翻页
 
@@ -180,7 +182,7 @@ normal模式下，任意一个动作都可以重复
 注：N是数字
 
 -   数字：`Nyy`从当前行算起向下拷贝N行、`Ndd`从当前行算起向下删除N行、`Ngg`跳到第N行、`dNw`删除从当前光标开始到第N个单词前（不包含空白，即删除N-1个单词)、`yNe`拷贝从当前光标到第N个单词末尾（注意： `yy`=`1yy` `dd`=`1dd`）、`d$`删除到本行末尾
--   重复前一个命令： `.N` （N表示重复的次数）
+-   重复前一个命令： `N.` （N表示重复的次数）
 
 ## 区块选择
 
@@ -211,9 +213,13 @@ normal模式下：
 | daw             | delete whole word including current cursor |
 | yw or y1 or y1w | copy from current cursor to word end     |
 | yaw             | copy whole word including current cursor |
-| dtword             | delete until before the next 'word' |
-| dfword             | delete until after the next 'word' |
+| d/word             | delete forward until the former character of the next 'word' |
+| d?word             | delete backward until the former character of the last 'word' |
 
+| 动作操作指令+范围       | 效果                                       |
+| --------------- | ---------------------------------------- |
+| dtc            | delete until before the next 'c' |
+| dfc            | delete until after the next 'c' |
 | 范围+动作操作指令             | 效果         |
 | --------------------- | ---------- |
 | `bve` 或 `BvE` + c/d/y | 操作一个变量或字符串 |
@@ -288,7 +294,7 @@ vim 从 vim7 开始加入了多标签切换的功能， 相当于多窗口. 之�
 -   `:tabp` 前一个previous tab window
 -   `:tabn` 后一个next tab window
 
-标准模式下： `gt` , `gT` 可以直接在tab之间切换。 还有很多他命令， :help table 吧。
+ `gt` , `gT` 可以直接在tab之间切换。 还有很多他命令， :help table 吧。
 
 ## 目录
 

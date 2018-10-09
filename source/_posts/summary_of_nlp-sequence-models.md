@@ -16,19 +16,20 @@ top: true
 This is my personal summary after studying the course, [nlp sequence models](https://www.coursera.org/learn/nlp-sequence-models/), which belongs to Deep Learning Specialization. and the copyright belongs to [deeplearning.ai](https://www.deeplearning.ai/).
 
 ## My personal note
-$1_{st}$ week : [Building a Recurrent Neural Network Step by Step](2018/06/01/01_recurrent-neural-networks/)
-[01_why-sequence-models](/2018/06/01/01_recurrent-neural-networks/###01_why-sequence-models)
-[02_notation](/2018/06/01/01_recurrent-neural-networks/###02_notation)
-[03_recurrent-neural-network-model](/2018/06/01/01_recurrent-neural-networks/###03_recurrent-neural-network-model)
-[04_backpropagation-through-time](/2018/06/01/01_recurrent-neural-networks/###04_backpropagation-through-time)
-[05_different-types-of-rnns](/2018/06/01/01_recurrent-neural-networks/###05_different-types-of-rnns)
-[06_language-model-and-sequence-generation](/2018/06/01/01_recurrent-neural-networks/###06_language-model-and-sequence-generation)
-[07_sampling-novel-sequences](/2018/06/01/01_recurrent-neural-networks/###07_sampling-novel-sequences)
-[08_vanishing-gradients-with-rnns](/2018/06/01/01_recurrent-neural-networks/###08_vanishing-gradients-with-rnns)
-[09_gated-recurrent-unit-gru](/2018/06/01/01_recurrent-neural-networks/###09_gated-recurrent-unit-gru)
-[10_long-short-term-memory-lstm](/2018/06/01/01_recurrent-neural-networks/###10_long-short-term-memory-lstm)
-[11_bidirectional-rnn](/2018/06/01/01_recurrent-neural-networks/###11_bidirectional-rnn)
-[12_deep-rnns](/2018/06/01/01_recurrent-neural-networks/###12_deep-rnns)
+
+$1_{st}$ week : [Building a Recurrent Neural Network Step by Step](/2018/06/01/01_recurrent-neural-networks/)
+- [01_why-sequence-models](/2018/06/01/01_recurrent-neural-networks/###01_why-sequence-models)
+- [02_notation](/2018/06/01/01_recurrent-neural-networks/###02_notation)
+- [03_recurrent-neural-network-model](/2018/06/01/01_recurrent-neural-networks/###03_recurrent-neural-network-model)
+- [04_backpropagation-through-time](/2018/06/01/01_recurrent-neural-networks/###04_backpropagation-through-time)
+- [05_different-types-of-rnns](/2018/06/01/01_recurrent-neural-networks/###05_different-types-of-rnns)
+- [06_language-model-and-sequence-generation](/2018/06/01/01_recurrent-neural-networks/###06_language-model-and-sequence-generation)
+- [07_sampling-novel-sequences](/2018/06/01/01_recurrent-neural-networks/###07_sampling-novel-sequences)
+- [08_vanishing-gradients-with-rnns](/2018/06/01/01_recurrent-neural-networks/###08_vanishing-gradients-with-rnns)
+- [09_gated-recurrent-unit-gru](/2018/06/01/01_recurrent-neural-networks/###09_gated-recurrent-unit-gru)
+- [10_long-short-term-memory-lstm](/2018/06/01/01_recurrent-neural-networks/###10_long-short-term-memory-lstm)
+- [11_bidirectional-rnn](/2018/06/01/01_recurrent-neural-networks/###11_bidirectional-rnn)
+- [12_deep-rnns](/2018/06/01/01_recurrent-neural-networks/###12_deep-rnns)
 
 $2_{nd}$ week : [natural language processing word embeddings](/2018/06/02/02_natural-language-processing-word-embeddings/)
 - [01_introduction-to-word-embeddings](/2018/06/02/02_natural-language-processing-word-embeddings/##01_introduction-to-word-embeddings)
@@ -63,7 +64,7 @@ $3_{rd}$ week : [sequence models attention mechanism](/2018/06/03/03_sequence-mo
 
 ## My personal programming assignments
 $1_{st}$ week:
-1. [Building a Recurrent Neural Network Step by Step](2018/06/02/Building+a+Recurrent+Neural+Network+-+Step+by+Step+-+v3)
+1. [Building a Recurrent Neural Network Step by Step](/2018/06/02/Building+a+Recurrent+Neural+Network+-+Step+by+Step+-+v3)
 2. [Dinosaurus Island Character level language model final](/2018/06/02/Dinosaurus+Island+--+Character+level+language+model+final+-+v3/)
 3. [Improvise a Jazz Solo with an LSTM Network](/2018/06/02/Improvise+a+Jazz+Solo+with+an+LSTM+Network+-+v3/)
 

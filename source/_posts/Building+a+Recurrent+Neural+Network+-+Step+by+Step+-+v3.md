@@ -143,7 +143,7 @@ print("yt_pred.shape = ", yt_pred.shape)
     yt_pred[1] = [ 0.9888161   0.01682021  0.21140899  0.36817467  0.98988387  0.88945212
       0.36920224  0.9966312   0.9982559   0.17746526]
     yt_pred.shape =  (2, 10)
-    
+
 
 **Expected Output**: 
 
@@ -182,7 +182,6 @@ print("yt_pred.shape = ", yt_pred.shape)
            (2, 10)
         </td>
     </tr>
-
 </table>
 
 ## 1.2 - RNN forward pass 
@@ -293,7 +292,7 @@ print("len(caches) = ", len(caches))
     y_pred.shape =  (2, 10, 4)
     caches[1][1][3] = [-1.1425182  -0.34934272 -0.20889423  0.58662319]
     len(caches) =  2
-    
+
 
 **Expected Output**:
 
@@ -346,7 +345,6 @@ print("len(caches) = ", len(caches))
            2
         </td>
     </tr>
-
 </table>
 
 Congratulations! You've successfully built the forward propagation of a recurrent neural network from scratch. This will work well enough for some applications, but it suffers from vanishing gradient problems. So it works best when each output $y^{\langle t \rangle}$ can be estimated using mainly "local" context (meaning information from inputs $x^{\langle t' \rangle}$ where $t'$ is not too far from $t$). 
@@ -388,7 +386,9 @@ $$ \tilde{c}^{\langle t \rangle} = \tanh(W_c[a^{\langle t-1 \rangle}, x^{\langle
 
 Finally, the new cell state is: 
 
+{% raw %}
 $$ c^{\langle t \rangle} = \Gamma_f^{\langle t \rangle}* c^{\langle t-1 \rangle} + \Gamma_u^{\langle t \rangle} *\tilde{c}^{\langle t \rangle} \tag{4} $$
+{% endraw %}
 
 
 #### - Output gate
@@ -525,14 +525,14 @@ print("len(cache) = ", len(cache))
     cache[1][3] = [-0.16263996  1.03729328  0.72938082 -0.54101719  0.02752074 -0.30821874
       0.07651101 -1.03752894  1.41219977 -0.37647422]
     len(cache) =  10
-    
 
-**Expected Output**:
+
+**Expected Output** :
 
 <table>
     <tr>
         <td>
-            **a_next[4]**:
+           **a_next[4]**:
         </td>
         <td>
            [-0.66408471  0.0036921   0.02088357  0.22834167 -0.85575339  0.00138482
@@ -598,7 +598,6 @@ print("len(cache) = ", len(cache))
            10
         </td>
     </tr>
-
 </table>
 
 ### 2.2 - Forward pass for LSTM
@@ -715,7 +714,7 @@ print("len(caches) = ", len(caches))
       0.41005165]
     c[1][2][1] -0.855544916718
     len(caches) =  2
-    
+
 
 **Expected Output**:
 
@@ -897,7 +896,7 @@ print("gradients[\"dba\"].shape =", gradients["dba"].shape)
     gradients["dWaa"].shape = (5, 5)
     gradients["dba"][4] = [ 0.80517166]
     gradients["dba"].shape = (5, 1)
-    
+
 
 **Expected Output**:
 
@@ -1087,7 +1086,6 @@ print("gradients[\"dba\"].shape =", gradients["dba"].shape)
     gradients["dWaa"].shape = (5, 5)
     gradients["dba"][4] = [-0.74747722]
     gradients["dba"].shape = (5, 1)
-    
 
 **Expected Output**:
 
@@ -1182,6 +1180,7 @@ The LSTM backward pass is slighltly more complicated than the forward one. We ha
 
 ### 3.2.2 gate derivatives
 
+{% raw %}
 $$d \Gamma_o^{\langle t \rangle} = da_{next}*\tanh(c_{next}) * \Gamma_o^{\langle t \rangle}*(1-\Gamma_o^{\langle t \rangle})\tag{7}$$
 
 $$d\tilde c^{\langle t \rangle} = dc_{next}*\Gamma_u^{\langle t \rangle}+ \Gamma_o^{\langle t \rangle} (1-\tanh(c_{next})^2) * i_t * da_{next} * \tilde c^{\langle t \rangle} * (1-\tanh(\tilde c)^2) \tag{8}$$
@@ -1189,17 +1188,21 @@ $$d\tilde c^{\langle t \rangle} = dc_{next}*\Gamma_u^{\langle t \rangle}+ \Gamma
 $$d\Gamma_u^{\langle t \rangle} = dc_{next}*\tilde c^{\langle t \rangle} + \Gamma_o^{\langle t \rangle} (1-\tanh(c_{next})^2) * \tilde c^{\langle t \rangle} * da_{next}*\Gamma_u^{\langle t \rangle}*(1-\Gamma_u^{\langle t \rangle})\tag{9}$$
 
 $$d\Gamma_f^{\langle t \rangle} = dc_{next}*\tilde c_{prev} + \Gamma_o^{\langle t \rangle} (1-\tanh(c_{next})^2) * c_{prev} * da_{next}*\Gamma_f^{\langle t \rangle}*(1-\Gamma_f^{\langle t \rangle})\tag{10}$$
+{% endraw %}
 
 ### 3.2.3 parameter derivatives 
 
+{% raw %}
 $$ dW_f = d\Gamma_f^{\langle t \rangle} * \begin{pmatrix} a_{prev} \\ x_t\end{pmatrix}^T \tag{11} $$
 $$ dW_u = d\Gamma_u^{\langle t \rangle} * \begin{pmatrix} a_{prev} \\ x_t\end{pmatrix}^T \tag{12} $$
 $$ dW_c = d\tilde c^{\langle t \rangle} * \begin{pmatrix} a_{prev} \\ x_t\end{pmatrix}^T \tag{13} $$
 $$ dW_o = d\Gamma_o^{\langle t \rangle} * \begin{pmatrix} a_{prev} \\ x_t\end{pmatrix}^T \tag{14}$$
 
+
 To calculate $db_f, db_u, db_c, db_o$ you just need to sum across the horizontal (axis= 1) axis on $d\Gamma_f^{\langle t \rangle}, d\Gamma_u^{\langle t \rangle}, d\tilde c^{\langle t \rangle}, d\Gamma_o^{\langle t \rangle}$ respectively. Note that you should have the `keep_dims = True` option.
 
 Finally, you will compute the derivative with respect to the previous hidden state, previous memory state, and input.
+
 
 $$ da_{prev} = W_f^T*d\Gamma_f^{\langle t \rangle} + W_u^T * d\Gamma_u^{\langle t \rangle}+ W_c^T * d\tilde c^{\langle t \rangle} + W_o^T * d\Gamma_o^{\langle t \rangle} \tag{15}$$
 Here, the weights for equations 13 are the first n_a, (i.e. $W_f = W_f[:n_a,:]$ etc...)
@@ -1209,7 +1212,7 @@ $$ dx^{\langle t \rangle} = W_f^T*d\Gamma_f^{\langle t \rangle} + W_u^T * d\Gamm
 where the weights for equation 15 are from n_a to the end, (i.e. $W_f = W_f[n_a:,:]$ etc...)
 
 **Exercise:** Implement `lstm_cell_backward` by implementing equations $7-17$ below. Good luck! :)
-
+{% endraw %}
 
 ```python
 def lstm_cell_backward(da_next, dc_next, cache):
@@ -1348,7 +1351,7 @@ print("gradients[\"dbo\"].shape =", gradients["dbo"].shape)
     gradients["dbc"].shape = (5, 1)
     gradients["dbo"][4] = [ 0.13893342]
     gradients["dbo"].shape = (5, 1)
-    
+
 
 **Expected Output**:
 
@@ -1676,7 +1679,7 @@ print("gradients[\"dbo\"].shape =", gradients["dbo"].shape)
     gradients["dbc"].shape = (5, 1)
     gradients["dbo"][4] = [-0.29798344]
     gradients["dbo"].shape = (5, 1)
-    
+
 
 **Expected Output**:
 

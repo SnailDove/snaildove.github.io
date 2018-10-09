@@ -1,11 +1,11 @@
 ---
-title: 机器学习中的微积分
+title: Calculus and Differential in Machine Learning
 mathjax: true
 mathjax2: true
 categories: 中文
-tags: [linear_algebra]
+tags: [Calculus and Differential]
 date: 2018-01-28
-commets: true
+comments: true
 copyright: true
 toc: true
 top: true
@@ -18,12 +18,12 @@ top: true
 ### 一个点的切线的斜率与法线的斜率相乘等于-1
 
 证明：斜率 $k_1=tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么
-$$k_1 * k_2=tanθ * tan(θ+90)=tanθ * (-cotθ)=-1$$
+{% raw %}$$k_1 * k_2=tan\theta * tan(\theta+90)=tan\theta * (-cot\theta)=-1$${% endraw %}
 
 ### 直线的点法式方程
 
-函数 $y=f(x)$ 在点 $x_0$ 处的导数 $f'(x0)$ 在几何上表示曲线 $y=f(x)$ 在点 $M(x0,f(x0))$ 处的切线的斜率，即
-$$f'(x0)=tan\alpha$$
+函数 $y=f(x)$ 在点 $x_0$ 处的导数 $f'(x_0)$ 在几何上表示曲线 $y=f(x)$ 在点 $M(x_0,f(x_0))$ 处的切线的斜率，即
+$$f'(x_0)=tan\alpha$$
 其中$α$ 是切线的倾角.
 根据导数的几何意义并应用直线的点斜式方程，可知曲线 $y=f(x)$ 在点 $M(x_0,y_0)$ 处的切线方程为
 $$y - y_0=f'(x_0)(x - x_0)$$
@@ -74,6 +74,3 @@ $$\frac{\nabla f(x, y)}{|\nabla f(x, y)|}$$
 1. 参考wiki：[Tailor's theorem](https://en.wikipedia.org/wiki/Taylor%27s_theorem#Higher-order_differentiability)
 
 2. 《高等数学》，同济版上册（一元泰勒公式），同济版下册（二元泰勒公式）
-
-
-
