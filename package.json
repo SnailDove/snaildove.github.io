@@ -6,6 +6,7 @@
     "version": "3.7.1"
   },
   "dependencies": {
+    "cryptiles": "^4.1.2",
     "ejs": "^2.5.5",
     "hexo": "^3.7.1",
     "hexo-deployer-git": "^0.3.1",
