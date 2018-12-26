@@ -3,7 +3,7 @@ title: 05_octave-matlab-tutorial note5
 date: 2018-01-01
 copyright: true
 categories: 中文
-tags: [Machine Learning by Andrew NG]
+tags: [Machine Learning]
 mathjax: true
 mathjax2: true
 ---

@@ -46,7 +46,7 @@ You have a tiny dataset (X, Y) where:
 - X contains 127 sentences (strings)
 - Y contains a integer label between 0 and 4 corresponding to an emoji for each sentence
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png" style="width:700px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png" style="width:700px;height:300px;">
 <caption><center> **Figure 1**: EMOJISET - a classification problem with 5 classes. A few examples of sentences are given here. </center></caption>
 
 Let's load the dataset using the code below. We split the dataset between training (127 examples) and testing (56 examples).
@@ -78,7 +78,7 @@ print(X_train[index], label_to_emoji(Y_train[index]))
 In this part, you are going to implement a baseline model called "Emojifier-v1".  
 
 <center>
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/image_1.png" style="width:900px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/image_1.png" style="width:900px;height:300px;">
 <caption><center> **Figure 2**: Baseline model (Emojifier-V1).</center></caption>
 </center>
 
@@ -659,7 +659,7 @@ np.random.seed(1)
 
 Here is the Emojifier-v2 you will implement:
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br>
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br>
 <caption><center> **Figure 3**: Emojifier-V2. A 2-layer LSTM sequence classifier. </center></caption>
 
 
@@ -677,7 +677,7 @@ In Keras, the embedding matrix is represented as a "layer", and maps positive in
 
 The `Embedding()` layer takes an integer matrix of size (batch size, max input length) as input. This corresponds to sentences converted into lists of indices (integers), as shown in the figure below.
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/embedding1.png" style="width:700px;height:250px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/embedding1.png" style="width:700px;height:250px;">
 <caption><center> **Figure 4**: Embedding layer. This example shows the propagation of two examples through the embedding layer. Both have been zero-padded to a length of `max_len=5`. The final dimension of the representation is  `(2,max_len,50)` because the word embeddings we are using are 50 dimensional. </center></caption>
 
 The largest integer (i.e. word index) in the input should be no larger than the vocabulary size. The layer outputs an array of shape (batch size, max input length, dimension of word vectors).
@@ -843,7 +843,7 @@ print("weights[0][1][3] =", embedding_layer.get_weights()[0][1][3])
 
 Lets now build the Emojifier-V2 model. You will do so using the embedding layer you have built, and feed its output to an LSTM network. 
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br>
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br>
 <caption><center> **Figure 3**: Emojifier-v2. A 2-layer LSTM sequence classifier. </center></caption>
 
 
@@ -1146,7 +1146,7 @@ Congratulations on finishing this assignment and building an Emojifier. We hope 
 
 Thanks to Alison Darcy and the Woebot team for their advice on the creation of this assignment. Woebot is a chatbot friend that is ready to speak with you 24/7. As part of Woebot's technology, it uses word embeddings to understand the emotions of what you say. You can play with it by going to http://woebot.io
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/woebot.png" style="width:600px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/woebot.png" style="width:600px;height:300px;">
 
 
 

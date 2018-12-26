@@ -82,7 +82,7 @@ You will be implementing the building blocks of a convolutional neural network! 
     
 This notebook will ask you to implement these functions from scratch in `numpy`. In the next notebook, you will use the TensorFlow equivalents of these functions to build the following model:
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png" style="width:800px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png" style="width:800px;height:300px;">
 
 **Note** that for every forward function, there is its corresponding backward equivalent. Hence, at every step of your forward module you will store some parameters in a cache. These parameters are used to compute gradients during backpropagation. 
 
@@ -90,7 +90,7 @@ This notebook will ask you to implement these functions from scratch in `numpy`.
 
 Although programming frameworks make convolutions easy to use, they remain one of the hardest concepts to understand in Deep Learning. A convolution layer transforms an input volume into an output volume of different size, as shown below. 
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png" style="width:350px;height:200px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png" style="width:350px;height:200px;">
 
 In this part, you will build every step of the convolution layer. You will first implement two helper functions: one for zero padding and the other for computing the convolution function itself. 
 
@@ -98,7 +98,7 @@ In this part, you will build every step of the convolution layer. You will first
 
 Zero-padding adds zeros around the border of an image:
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png" style="width:600px;height:400px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png" style="width:600px;height:400px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **Zero-Padding**<br> Image (3 channels, RGB) with a padding of 2. </center></caption>
 
 The main benefits of padding are the following:
@@ -175,7 +175,7 @@ axarr[1].imshow(x_pad[0,:,:,0])
 
 
 
-![png](http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png)
+![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png)
 
 
 **Expected Output**:
@@ -304,7 +304,7 @@ print("Z =", Z)
 In the forward pass, you will take many filters and convolve them on the input. Each 'convolution' gives you a 2D matrix output. You will then stack these outputs to get a 3D volume: 
 
 <center>
-<video width="620" height="440" src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_kiank.mp4" type="video/mp4" controls>
+<video width="620" height="440" src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_kiank.mp4" type="video/mp4" controls>
 </video>
 </center>
 
@@ -318,7 +318,7 @@ a_slice_prev = a_prev[0:2,0:2,:]
 This will be useful when you will define `a_slice_prev` below, using the `start/end` indexes you will define.
 2. To define a_slice you will need to first define its corners `vert_start`, `vert_end`, `horiz_start` and `horiz_end`. This figure may be helpful for you to find how each of the corner can be defined using h, w, f and s in the code below.
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png" style="width:400px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png" style="width:400px;height:300px;">
 <caption><center> <u> <font color='purple'> **Figure 3** </u><font color='purple'>  : **Definition of a slice using vertical and horizontal start/end (with a 2x2 filter)** <br> This figure shows only a single channel.  </center></caption>
 
 
@@ -474,11 +474,11 @@ The pooling (POOL) layer reduces the height and width of the input. It helps red
 
 <table>
 <td>
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png" style="width:500px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png" style="width:500px;height:300px;">
 <td>
 
 <td>
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png" style="width:500px;height:300px;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png" style="width:500px;height:300px;">
 <td>
 </table>
 

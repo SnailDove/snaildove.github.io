@@ -12,5 +12,4 @@
       })(document, 'script');
     </script>
   {% endif %}
-
 {% endif %}

@@ -20,7 +20,7 @@ toc: true
 
 表5.1  贷款申请样本数据表（来自[李航《统计方法》](https://book.douban.com/subject/10590856/)）
 
-![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png)
+![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png)
 
 ​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷款申请人的4个特征：年龄、有工作与否、有房子与否、信贷情况，其中最后一列类别的意思是：是否同意发放贷款，这个就是决策树最后要给出的结论，即目标属性——是否发放贷款，即决策树最末端的叶子节点只分成2类：同意发放贷款与不同意发放贷款。
 
@@ -125,32 +125,32 @@ $$Gini(D, A) = \frac{|D_1|}{|D|}Gini(D_1) + \frac{|D_2|}{D}Gini(D_2)$$
 
     （来自[李航《统计方法》](https://book.douban.com/subject/10590856/)）
 
-![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png)
+![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png)
 
 -   ### ID3算法
 
     （来自[李航《统计方法》](https://book.douban.com/subject/10590856/)）
 
-![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png)
+![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png)
 
 -   ### 示例
 
     （来自[李航《统计方法》](https://book.douban.com/subject/10590856/)）
 
-![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png)
+![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png)
 
 ## C4.5生成算法
 
 （来自[李航《统计方法》](https://book.douban.com/subject/10590856/)）
 
-![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/5.png)
+![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/5.png)
 
 ##  CART生成算法
 
 （来自[李航《统计方法》](https://book.douban.com/subject/10590856/)）
 
-![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/6.png)
+![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/6.png)
 
 ### 示例
 
-### ![img](http://p8o3egtyk.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/7.png)
+### ![img](http://pkaunwk1s.bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/7.png)

@@ -55,18 +55,18 @@ from yad2k.models.keras_yolo import yolo_head, yolo_boxes_to_corners, preprocess
 You are working on a self-driving car. As a critical component of this project, you'd like to first build a car detection system. To collect data, you've mounted a camera to the hood (meaning the front) of the car, which takes pictures of the road ahead every few seconds while you drive around. 
 
 <center>
-<video width="400" height="200" src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/road_video_compressed2.mp4" type="video/mp4" controls>
+<video width="400" height="200" src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/road_video_compressed2.mp4" type="video/mp4" controls>
 </video>
 </center>
 
 <caption><center> Pictures taken from a car-mounted camera while driving around Silicon Valley. <br> We would like to especially thank [drive.ai](https://www.drive.ai/) for providing this dataset! Drive.ai is a company building the brains of self-driving vehicles.
 </center></caption>
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/driveai.png" style="width:100px;height:100;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/driveai.png" style="width:100px;height:100;">
 
 You've gathered all these images into a folder and have labelled them by drawing bounding boxes around every car you found. Here's an example of what your bounding boxes look like.
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/box_label.png" style="width:500px;height:250;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/box_label.png" style="width:500px;height:250;">
 <caption><center> <u> **Figure 1** </u>: **Definition of a box**<br> </center></caption>
 
 If you have 80 classes that you want YOLO to recognize, you can represent the class label $c$ either as an integer from 1 to 80, or as an 80-dimensional vector (with 80 numbers) one component of which is 1 and the rest of which are 0. The video lectures had used the latter representation; in this notebook, we will use both representations, depending on which is more convenient for a particular step.  
@@ -87,7 +87,7 @@ We will use 5 anchor boxes. So you can think of the YOLO architecture as the fol
 
 Lets look in greater detail at what this encoding represents. 
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/architecture.png" style="width:700px;height:400;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/architecture.png" style="width:700px;height:400;">
 <caption><center> <u> **Figure 2** </u>: **Encoding architecture for YOLO**<br> </center></caption>
 
 If the center/midpoint of an object falls into a grid cell, that grid cell is responsible for detecting that object.
@@ -96,12 +96,12 @@ Since we are using 5 anchor boxes, each of the 19 x19 cells thus encodes informa
 
 For simplicity, we will flatten the last two last dimensions of the shape (19, 19, 5, 85) encoding. So the output of the Deep CNN is (19, 19, 425).
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/flatten.png" style="width:700px;height:400;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/flatten.png" style="width:700px;height:400;">
 <caption><center> <u> **Figure 3** </u>: **Flattening the last two last dimensions**<br> </center></caption>
 
 Now, for each box (of each cell) we will compute the following elementwise product and extract a probability that the box contains a certain class.
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/probability_extraction.png" style="width:700px;height:400;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/probability_extraction.png" style="width:700px;height:400;">
 <caption><center> <u> **Figure 4** </u>: **Find the class detected by each box**<br> </center></caption>
 
 Here's one way to visualize what YOLO is predicting on an image:
@@ -110,7 +110,7 @@ Here's one way to visualize what YOLO is predicting on an image:
 
 Doing this results in this picture: 
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/proba_map.png" style="width:300px;height:300;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/proba_map.png" style="width:300px;height:300;">
 <caption><center> <u> **Figure 5** </u>: Each of the 19x19 grid cells colored according to which class has the largest predicted probability in that cell.<br> </center></caption>
 
 Note that this visualization isn't a core part of the YOLO algorithm itself for making predictions; it's just a nice way of visualizing an intermediate result of the algorithm. 
@@ -118,7 +118,7 @@ Note that this visualization isn't a core part of the YOLO algorithm itself for 
 
 Another way to visualize YOLO's output is to plot the bounding boxes that it outputs. Doing that results in a visualization like this:  
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/anchor_map.png" style="width:200px;height:200;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/anchor_map.png" style="width:200px;height:200;">
 <caption><center> <u> **Figure 6** </u>: Each cell gives you 5 boxes. In total, the model predicts: 19x19x5 = 1805 boxes just by looking once at the image (one forward pass through the network)! Different colors denote different classes. <br> </center></caption>
 
 In the figure above, we plotted only boxes that the model had assigned a high probability to, but this is still too many boxes. You'd like to filter the algorithm's output down to a much smaller number of detected objects. To do so, you'll use non-max suppression. Specifically, you'll carry out these steps: 
@@ -238,12 +238,12 @@ with tf.Session() as test_a:
 
 Even after filtering by thresholding over the classes scores, you still end up a lot of overlapping boxes. A second filter for selecting the right boxes is called non-maximum suppression (NMS). 
 
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/non-max-suppression.png" style="width:500px;height:400;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/non-max-suppression.png" style="width:500px;height:400;">
 <caption><center> <u> **Figure 7** </u>: In this example, the model has predicted 3 cars, but it's actually 3 predictions of the same car. Running non-max suppression (NMS) will select only the most accurate (highest probabiliy) one of the 3 boxes. <br> </center></caption>
 
 
 Non-max suppression uses the very important function called **"Intersection over Union"**, or IoU.
-<img src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/iou.png" style="width:500px;height:400;">
+<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/iou.png" style="width:500px;height:400;">
 <caption><center> <u> **Figure 8** </u>: Definition of "Intersection over Union". <br> </center></caption>
 
 **Exercise**: Implement iou(). Some hints:
@@ -822,7 +822,7 @@ out_scores, out_boxes, out_classes = predict(sess, "test.jpg")
     
 
 
-![png](http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/images/output_47_2.png)
+![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/images/output_47_2.png)
 
 
 **Expected Output**:
@@ -847,7 +847,7 @@ The model you've just run is actually able to detect 80 different classes listed
 If you were to run your session in a for loop over all your images. Here's what you would get:
 
 <center>
-<video width="400" height="200" src="http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/pred_video_compressed2.mp4" type="video/mp4" controls>
+<video width="400" height="200" src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/nb_images/pred_video_compressed2.mp4" type="video/mp4" controls>
 </video>
 </center>
 
@@ -893,5 +893,5 @@ out_scores, out_boxes, out_classes = predict(sess, "test_3.jpg");
     
 
 
-![png](http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/images/output_53_2.png)
+![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week3/images/output_53_2.png)
 

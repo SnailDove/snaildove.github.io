@@ -3,13 +3,17 @@ title: summary of learning Deep Learning Specialization
 mathjax: true
 mathjax2: true
 categories: english, 中文
-tags: [machine learning, deep learning]
+tags: [deep learning]
 date: 2018-06-28
 commets: true
 copyright: true
 toc: true
 top: true
 ---
+
+## content table
+
+[TOC]
 
 ## English
 
@@ -46,6 +50,6 @@ Tip: if you are familiar with Chinese, you can read the content as following.
 - 5th course: [summary_of_nlp-sequence-models](/2018/06/06/summary_of_nlp-sequence-models/)
 
 此专项课程的中文目录如下:
-![summary_of_Deep_Learniing_Specialization](http://p8o3egtyk.bkt.clouddn.com/gitpage/deeplearning.ai/summary_of_Deep_Learning_Specialization.png)
+![summary_of_Deep_Learniing_Specialization](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/summary_of_Deep_Learning_Specialization.png)
 
 如果需要详细视频内容和课程ppt，请参考[网易云课堂：吴恩达给你的人工智能第一课](https://mooc.study.163.com/smartSpec/detail/1001319001.htm)， 但是网易并没有提供完成作业的平台，完成作业还需要到 [Coursera](https://www.coursera.org/specializations/deep-learning)。
