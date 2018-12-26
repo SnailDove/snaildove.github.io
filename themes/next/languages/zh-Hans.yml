@@ -20,6 +20,7 @@ menu:
 sidebar:
   overview: 站点概览
   toc: 文章目录
+  Tag Cloud: 标签云
 
 post:
   created: 创建于
@@ -31,8 +32,8 @@ post:
   untitled: 未命名
   toc_empty: 此文章未包含目录
   visitors: 访问人数
-  hits: 阅读次数
-  totalhits: 总访问量
+  hits: 阅读量
+  totalhits: 本站访问量
   wordcount: 全文字数
   min2read: 阅读时长
   totalcount: 全站文章总字数
