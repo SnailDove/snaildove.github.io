@@ -11,10 +11,6 @@ toc: true
 top: true
 ---
 
-## content table
-
-[TOC]
-
 ## English
 
 This is my summary of learning [Deep Learning Specialization](https://www.coursera.org/specializations/deep-learning) on Coursera, which consists of 5 courses as following:
@@ -24,7 +20,7 @@ This is my summary of learning [Deep Learning Specialization](https://www.course
 - 4th course: [Convolutional Neural Networks](https://www.coursera.org/learn/convolutional-neural-networks)
 - 5th course: [Sequence Models](https://www.coursera.org/learn/nlp-sequence-models)
 
-And, my summaries of them are here:
+And, here are my summaries of them:
 
 - 1st course: [summary_of_neural-networks-deep-learning](/2018/02/08/summary_of_neural-networks-deep-learning/)
 - 2nd course: [summary_of_Improving-Deep-Neural-Networks](/2018/03/02/summary_of_Improving-Deep-Neural-Networks/)
@@ -32,7 +28,7 @@ And, my summaries of them are here:
 - 4th course: [summary_of_convolutional-neural-networks](/2018/05/04/summary_of_convolutional-neural-networks/)
 - 5th course: [summary_of_nlp-sequence-models](/2018/06/06/summary_of_nlp-sequence-models/)
 
-I spent about 45 days in finishing this Deep learning Specialization, and writing out the personal lecture notes, summaries and assignments, but as the saying goes, "gain new knowledge by reviewing old". Therefore, I will stick at learning more about Deep Learning and renew the content of this specilization.
+I spent about 45 days in finishing this Deep learning Specialization and the personal lecture notes, summaries and assignments, but as the saying goes, "gain new knowledge by reviewing the old". Therefore, I will stick at learning more about Deep Learning and renew the content of this specilization.
 
 if you need more details about this Deep Learning Specilization in English, please refer [deeplearning.ai](https://deeplearning.ai) or [the specialization on Coursera](https://www.coursera.org/specializations/deep-learning).
 
