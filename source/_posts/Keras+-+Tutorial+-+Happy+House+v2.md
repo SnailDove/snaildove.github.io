@@ -59,7 +59,7 @@ from matplotlib.pyplot import imshow
 
 For your next vacation, you decided to spend a week with five of your friends from school. It is a very convenient house with many things to do nearby. But the most important benefit is that everybody has commited to be happy when they are in the house. So anyone wanting to enter the house must prove their current state of happiness.
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/happy-house.jpg" style="width:350px;height:270px;">
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/happy-house.jpg" style="width:350px;height:270px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **the Happy House**</center></caption>
 
 
@@ -67,7 +67,7 @@ As a deep learning expert, to make sure the "Happy" rule is strictly applied, yo
 
 You have gathered pictures of your friends and yourself, taken by the front-door camera. The dataset is labbeled. 
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/house-members.png" style="width:550px;height:250px;">
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/house-members.png" style="width:550px;height:250px;">
 
 Run the following code to normalize the dataset and learn about its shapes.
 
@@ -343,7 +343,7 @@ print(happyModel.predict(x))
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_20_1.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_20_1.png)
 
 
 ## 5 - Other useful functions in Keras (Optional)
@@ -393,6 +393,6 @@ SVG(model_to_dot(happyModel).create(prog='dot', format='svg'))
 
 
 
-![svg](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_23_0.svg)
+![svg](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_23_0.svg)
 
 

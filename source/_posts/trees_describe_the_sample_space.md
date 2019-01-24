@@ -28,13 +28,13 @@ Extending the preceding example, we have a general rule for calculating various 
 -   (b) We record the conditional probabilities associated with the branches of the tree.
 -   (c) We obtain the probability of a leaf by multiplying the probabilities recorded along the corresponding path of the tree. 
 
-![base64_of_Sequential_description_of_the_sample_space_for_the_radar_detection](http://pkaunwk1s.bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png)
+![base64_of_Sequential_description_of_the_sample_space_for_the_radar_detection](http://pltr89sz6.bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png)
 
 ## multiplication rule
 
 In mathematical terms, we are dealing with an event A which occurs if and only if each one of several events $A_1, . . . , A_n$ has occurred, i.e., $A = A_1 ∩ A_2 ∩ · · · ∩ A_n$. The occurrence of $A$ is viewed as an occurrence of $A_1$, followed by the occurrence of $A_2$, then of $A_3$, etc, and it is visualized as a path on the tree with $n$ branches, corresponding to the events $A_1, . . . , A_n$. The probability of $A$ is given by the following rule (see also Fig. 1.9). 
 
-![base64_of_multiplication_rule](http://pkaunwk1s.bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/2.png)
+![base64_of_multiplication_rule](http://pltr89sz6.bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/2.png)
 
 The multiplication rule can be verified by writing
 $$P(\cap^n_{i=1} A_i)=P(A_1)\frac{P(A_1\cap A_2)}{P(A_1)}\frac{P(A_1\cap A_2\cap A_3)}{P(A_1\cap A_2)}\cdots\frac{P(\cap_{i=1}^n A_i)}{P(\cap^{n-1}_{i=1} A_i)}$$,
@@ -43,7 +43,7 @@ and by using the definition of conditional probability to rewrite the right-hand
 
 $$P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\cdots P(A_N|\cap^{n-1}_{i=1} A_i)$$.
 
-![base64_of_visualization_of_multiplication_rule](http://pkaunwk1s.bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/3.png)
+![base64_of_visualization_of_multiplication_rule](http://pltr89sz6.bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/3.png)
 
 **The intersection event $A = A_1∩A_2∩· · ·∩A_n$ is associated with a path on the tree of a sequential description of the experiment. We associate the branches of this path with the events $A_1, . . . , A_n$, and we record next to the branches the corresponding conditional probabilities.**
 

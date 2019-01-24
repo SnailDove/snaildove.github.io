@@ -43,7 +43,7 @@ import matplotlib.pyplot as plt
 ```
 
     Using TensorFlow backend.
-    
+
 
 ## 1 - Translating human readable dates into machine readable dates
 
@@ -67,7 +67,7 @@ dataset, human_vocab, machine_vocab, inv_machine_vocab = load_dataset(m)
 ```
 
     100%|██████████| 10000/10000 [00:01<00:00, 8435.76it/s]
-    
+
 
 
 ```python
@@ -114,7 +114,7 @@ print("Yoh.shape:", Yoh.shape)
     Y.shape: (10000, 10)
     Xoh.shape: (10000, 30, 37)
     Yoh.shape: (10000, 10, 11)
-    
+
 
 You now have:
 - `X`: a processed version of the human readable dates in the training set, where each character is replaced by an index mapped to the character via `human_vocab`. Each date is further padded to $T_x$ values with a special character (< pad >). `X.shape = (m, Tx)`
@@ -145,7 +145,8 @@ print("Target after preprocessing (one-hot):", Yoh[index])
      36 36 36 36 36]
     Target after preprocessing (indices): [ 2 10 10  9  0  1  6  0  1 10]
     
-    Source after preprocessing (one-hot): [[ 0.  0.  0. ...,  0.  0.  0.]
+    Source after preprocessing (one-hot): 
+    [[ 0.  0.  0. ...,  0.  0.  0.]
      [ 1.  0.  0. ...,  0.  0.  0.]
      [ 0.  0.  0. ...,  0.  0.  0.]
      ..., 
@@ -162,7 +163,7 @@ print("Target after preprocessing (one-hot):", Yoh[index])
      [ 1.  0.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
      [ 0.  1.  0.  0.  0.  0.  0.  0.  0.  0.  0.]
      [ 0.  0.  0.  0.  0.  0.  0.  0.  0.  0.  1.]]
-    
+
 
 ## 2 - Neural machine translation with attention
 
@@ -178,12 +179,12 @@ In this part, you will implement the attention mechanism presented in the lectur
 <table>
 <tr>
 <td> 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png"> <br>
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png"> <br>
 </td> 
 </tr>
 <tr>
 <td> 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png"> <br>
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png"> <br>
 </td> 
 </tr>
 </table>
@@ -205,7 +206,7 @@ $$context^{<t>} = \sum_{t' = 0}^{T_x} \alpha^{<t,t'>}a^{<t'>}\tag{1}$$
 {% endraw %} 
 
 Note that we are denoting the attention in this notebook $context^{\langle t \rangle}$. In the lecture videos, the context was denoted $c^{\langle t \rangle}$, but here we are calling it $context^{\langle t \rangle}$ to avoid confusion with the (post-attention) LSTM's internal memory cell variable, which is sometimes also denoted $c^{\langle t \rangle}$. 
-  
+
 **2) `model()`**: Implements the entire model. It first runs the input through a Bi-LSTM to get back $[a^{<1>},a^{<2>}, ..., a^{<T_x>}]$. Then, it calls `one_step_attention()` $T_y$ times (`for` loop). At each iteration of this loop, it gives the computed context vector {% raw %}$c^{<t>}${% endraw %} to the second LSTM, and runs the output of the LSTM through a dense layer with softmax activation to generate a prediction $\hat{y}^{<t>}$. 
 
 
@@ -502,7 +503,7 @@ model.summary()
     Trainable params: 52,960
     Non-trainable params: 0
     ____________________________________________________________________________________________________
-    
+
 
 **Expected Output**:
 
@@ -614,7 +615,7 @@ model.fit([Xoh, s0, c0], outputs, epochs=1, batch_size=100)
 
     Epoch 1/1
     10000/10000 [==============================] - 31s - loss: 22.1424 - dense_3_loss_1: 2.3001 - dense_3_loss_2: 2.2528 - dense_3_loss_3: 2.3607 - dense_3_loss_4: 2.5894 - dense_3_loss_5: 1.6743 - dense_3_loss_6: 1.9239 - dense_3_loss_7: 2.6330 - dense_3_loss_8: 1.5383 - dense_3_loss_9: 2.0970 - dense_3_loss_10: 2.7730 - dense_3_acc_1: 0.0035 - dense_3_acc_2: 0.0309 - dense_3_acc_3: 0.0000e+00 - dense_3_acc_4: 0.0045 - dense_3_acc_5: 0.9581 - dense_3_acc_6: 0.0000e+00 - dense_3_acc_7: 0.0027 - dense_3_acc_8: 0.9599 - dense_3_acc_9: 0.0051 - dense_3_acc_10: 0.0088    
-    
+
 
 
 
@@ -625,7 +626,7 @@ model.fit([Xoh, s0, c0], outputs, epochs=1, batch_size=100)
 
 While training you can see the loss as well as the accuracy on each of the 10 positions of the output. The table below gives you an example of what the accuracies could be if the batch had 2 examples: 
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png" style="width:700;height:200px;"> <br>
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png" style="width:700;height:200px;"> <br>
 <caption><center>Thus, `dense_2_acc_8: 0.89` means that you are predicting the 7th character of the output correctly 89% of the time in the current batch of data. </center></caption>
 
 
@@ -669,7 +670,7 @@ for example in EXAMPLES:
     output: 2001-03-03
     source: 1 March 2001
     output: 2001-03-01
-    
+
 
 You can also change these examples to test with your own examples. The next part will give you a better sense on what the attention mechanism is doing--i.e., what part of the input the network is paying attention to when generating a particular output character. 
 
@@ -679,7 +680,7 @@ Since the problem has a fixed output length of 10, it is also possible to carry 
 
 Consider the task of translating "Saturday 9 May 2018" to "2018-05-09". If we visualize the computed $\alpha^{\langle t, t' \rangle}$ we get this: 
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png" style="width:600;height:300px;"> <br>
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png" style="width:600;height:300px;"> <br>
 <caption><center> **Figure 8**: Full Attention Map</center></caption>
 
 Notice how the output ignores the "Saturday" portion of the input. None of the output timesteps are paying much attention to that portion of the input. We see also that 9 has been translated as 09 and May has been correctly translated into 05, with the output paying attention to the parts of the input it needs to to make the translation. The year mostly requires it to pay attention to the input's "18" in order to generate "2018." 
@@ -840,7 +841,7 @@ model.summary()
     Trainable params: 52,960
     Non-trainable params: 0
     ____________________________________________________________________________________________________
-    
+
 
 Navigate through the output of `model.summary()` above. You can see that the layer named `attention_weights` outputs the `alphas` of shape (m, 30, 1) before `dot_2` computes the context vector for every time step $t = 0, \ldots, T_y-1$. Lets get the activations from this layer.
 
@@ -856,7 +857,7 @@ attention_map = plot_attention_map(model, human_vocab, inv_machine_vocab, "Tuesd
 
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png)
 
 
 On the generated plot you can observe the values of the attention weights for each character of the predicted output. Examine this plot and check that where the network is paying attention makes sense to you.

@@ -41,7 +41,7 @@ train_X, train_Y, test_X, test_Y = load_dataset();
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_1_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_1_0.png)
 
 
 There are some import function：
@@ -432,7 +432,7 @@ predictions_test = predict(test_X, test_Y, parameters);
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_10_1.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_10_1.png)
 
 
     On the train set:
@@ -473,7 +473,7 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_13_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_13_0.png)
 
 
 The model is predicting 0 for every example.
@@ -576,7 +576,7 @@ predictions_test = predict(test_X, test_Y, parameters);
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_18_3.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_18_3.png)
 
 
     On the train set:
@@ -619,7 +619,7 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_21_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_21_0.png)
 
 
 **Observations**:
@@ -726,7 +726,7 @@ predictions_test = predict(test_X, test_Y, parameters);
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_27_1.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_27_1.png)
 
 
     On the train set:
@@ -745,7 +745,7 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_28_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Initialization/output_28_0.png)
 
 
 **Observations**: 
@@ -874,7 +874,7 @@ def load_2D_dataset():
 
 **Problem Statement**: You have just been hired as an AI expert by the French Football Corporation. They would like you to recommend positions where France’s goal keeper should kick the ball so that the French team’s players can then hit it with their head.
 
-![](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/1.png)
+![](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/1.png)
 
 $$\text{Figure 1 : Football field}$$
 $$\text{The goal keeper kicks the ball in the air, the players of each team are fighting to hit the ball with their head}$$
@@ -887,7 +887,7 @@ train_X, train_Y, test_X, test_Y = load_2D_dataset();
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_6_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_6_0.png)
 
 
 Each dot corresponds to a position on the football field where a football player has hit the ball with his/her head after the French goal keeper has shot the ball from the left side of the football field. 
@@ -1004,7 +1004,7 @@ predictions_test = predict(test_X, test_Y, parameters)
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_10_1.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_10_1.png)
 
 
     On the training set:
@@ -1025,7 +1025,7 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_12_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_12_0.png)
 
 
 The non-regularized model is obviously overfitting the training set. **It is fitting the noisy points**! Lets now look at two techniques to reduce overfitting.
@@ -1177,7 +1177,7 @@ predictions_test = predict(test_X, test_Y, parameters);
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_20_1.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_20_1.png)
 
 
     On the train set:
@@ -1200,7 +1200,7 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_22_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_22_0.png)
 
 
 **Observations**: 
@@ -1413,7 +1413,7 @@ predictions_test = predict(test_X, test_Y, parameters);
     
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_31_3.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_31_3.png)
 
 
     On the train set:
@@ -1436,7 +1436,7 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
 ```
 
 
-![png](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_33_0.png)
+![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/Regularization/output_33_0.png)
 
 
 **Note**: 
@@ -1517,7 +1517,7 @@ Consider a 1D linear function $J(θ)=θx$. The model contains only a single real
 
 You will implement code to compute $J(.)$ and its derivative $\frac{∂J}{∂θ}$. You will then use gradient checking to make sure your derivative computation for $J$ is correct.
 
-![](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/GradientChecking/1.png)
+![](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/GradientChecking/1.png)
 $$\text{Figure 1 : 1D linear model}$$
 
 The diagram above shows the key computation steps: First start with $x$, then evaluate the function $J(x)$ (“forward propagation”). Then compute the derivative $\frac{∂J}{∂θ}$ (“backward propagation”).
@@ -1676,7 +1676,7 @@ Now, in the more general case, your cost function $J$ has more than a single 1D 
 
 The following figure describes the forward and backward propagation of your fraud detection model.
 
-![](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/GradientChecking/2.png)
+![](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/GradientChecking/2.png)
 $$\text{Figure 2 : deep neural network} \\ LINEAR -> RELU -> LINEAR -> RELU -> LINEAR -> SIGMOID$$
 
 Let's look at your implementations for forward propagation and backward propagation.
@@ -1785,7 +1785,7 @@ $$\frac{\partial J}{\partial \theta} = \lim_{\varepsilon \to 0} \frac{J(\theta +
 However, $θ$ is not a scalar anymore. It is a dictionary called “`parameters`”. We implemented a function “`dictionary_to_vector()`” for you. It converts the “`parameters`” dictionary into a vector called “`values`”, obtained by reshaping all parameters `(W1, b1, W2, b2, W3, b3)` into vectors and concatenating them.
 
 The inverse function is “`vector_to_dictionary`” which outputs back the “`parameters`” dictionary.
-![Figure 2 : `dictionary_to_vector()` and `vector_to_dictionary()`](http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/GradientChecking/3.png)
+![Figure 2 : `dictionary_to_vector()` and `vector_to_dictionary()`](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week1/GradientChecking/3.png)
 
 $$\text{Figure 2 : dictionary_to_vector() and vector_to_dictionary()} \\ \text{ You will need these functions in gradient_check_n()}$$
 

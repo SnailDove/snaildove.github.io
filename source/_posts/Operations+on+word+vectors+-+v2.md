@@ -60,7 +60,7 @@ $$\text{CosineSimilarity(u, v)} = \frac {u . v} {||u||_2 ||v||_2} = cos(\theta)Â
 
 where $u.v$ is the dot product (or inner product) of two vectors, $||u||_2$ is the norm (or length) of the vector $u$, and $\theta$ is the angle between $u$ and $v$. This similarity depends on the angle between $u$ and $v$. If $u$ and $v$ are very similar, their cosine similarity will be close to 1; if they are dissimilar, the cosine similarity will take a smaller value. 
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png" style="width:800px;height:250px;">
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png" style="width:800px;height:250px;">
 <caption><center> **Figure 1**: The cosine of the angle between two vectors is a measure of how similar they are</center></caption>
 
 **Exercise**: Implement the function `cosine_similarity()` to evaluate similarity between word vectors.
@@ -366,7 +366,7 @@ The figure below should help you visualize what neutralizing does. If you're usi
 
 Even though $g_{\perp}$ is 49 dimensional, given the limitations of what we can draw on a screen, we illustrate it using a 1 dimensional axis below. 
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png" style="width:800px;height:300px;">
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png" style="width:800px;height:300px;">
 <caption><center> **Figure 2**: The word vector for "receptionist" represented before and after applying the neutralize operation. </center></caption>
 
 **Exercise**: Implement `neutralize()` to remove the bias of words such as "receptionist" or "scientist". Given an input embedding $e$, you can use the following formulas to compute $e^{debiased}$: 
@@ -453,7 +453,7 @@ Next, lets see how debiasing can also be applied to word pairs such as "actress"
 
 The key idea behind equalization is to make sure that a particular pair of words are equi-distant from the 49-dimensional $g_\perp$. The equalization step also ensures that the two equalized steps are now the same distance from $e_{receptionist}^{debiased}$, or from any other work that has been neutralized. In pictures, this is how equalization works: 
 
-<img src="http://pkaunwk1s.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png" style="width:800px;height:400px;">
+<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png" style="width:800px;height:400px;">
 
 
 The derivation of the linear algebra to do this is a bit more complex. (See Bolukbasi et al., 2016 for details.) But the key equations are: 

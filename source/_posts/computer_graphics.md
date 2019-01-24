@@ -23,32 +23,32 @@ toc: true
 
 ## 平移translation
 
-![translation_isn't_a_linear_transformation](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/1.png)
+![translation_isn't_a_linear_transformation](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/1.png)
 
-![homogeneous_coordinate_and_embedding](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/2.png)
+![homogeneous_coordinate_and_embedding](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/2.png)
 
 ## 伸缩rescaling
 
-![rescaling](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/3.png)
+![rescaling](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/3.png)
 
 ## 旋转rotation
 
 ### 3个特殊情形
 
-![special_cases_of_rotation_on_3D](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/4.png)
+![special_cases_of_rotation_on_3D](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/4.png)
 
 ### 一般情形
 
-![a_general_case_of_rotation_on_3D](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/5.png)
+![a_general_case_of_rotation_on_3D](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/5.png)
 
 ### 旋转的性质
 
-![properties_of_rotation](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/6.png)
+![properties_of_rotation](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/6.png)
 
 ## 投影projection
 
-![projection_on_3D](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/7.png)
+![projection_on_3D](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/7.png)
 
 ## 反射
 
-![refection_of_imags](http://pkaunwk1s.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/8.png)
+![refection_of_imags](http://pltr89sz6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-11/8.png)
