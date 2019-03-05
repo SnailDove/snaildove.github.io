@@ -15,11 +15,11 @@ This personal note is written after studying the opening course on [the coursera
 
 Consider the problem of predicting $y$ from $x ∈ R$. The leftmost figure below shows the result of fitting a $y = θ_0+θ_1x$ to a dataset. We see that the data doesn’t really lie on straight line, and so the fit is not very good.
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/1.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/1.png)
 
 Instead, if we had added an extra feature $x_2$ , and fit $y=θ_0+θ_1x+θ_2x^2$ , then we obtain a slightly better fit to the data (See middle figure). Naively, it might seem that the more features we add, the better. However, there is also a danger in adding too many features: The rightmost figure is the result of fitting a $5^{th}$ order polynomial $y=\sum_{j=0}^{5}\theta_jx^j$ . We see that even though the fitted curve passes through the data perfectly, we would not expect this to be a very good predictor of, say, housing prices (y) for different living areas(x). Without formally defining what these terms mean, we’ll say the figure on the left shows an instance of  **underfitting** —in which the data clearly shows structure not captured by the model—and the figure on the right is an example of **overfitting **. 
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/2.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/2.png)
 
 1. **Underfitting, or high bias**, *is when the form of our hypothesis function h maps poorly to the trend of the data. It is usually caused by a function that is too simple or uses too few features.*
 2. At the other extreme, **overfitting, or high variance**, *is caused by a hypothesis function that fits the available data but does not generalize well to predict new data. It is usually caused by a complicated function that creates a lot of unnecessary curves and angles unrelated to the data.* 
@@ -56,7 +56,7 @@ min_\theta\ \dfrac{1}{2m}\sum_{i=1}^m (h_\theta(x^{(i)}) - y^{(i)})^2 + 1000\cdo
 $$
 We've added two extra terms at the end to inflate the cost of $θ_3$ and $θ_4$. Now, in order for the cost function to get close to zero, we will have to reduce the values of $θ_3$ and $θ_4$ to near zero. This will in turn greatly reduce the values of $θ_3x_3$ and $θ_4x_4$ in our hypothesis function. As a result, we see that the new hypothesis (depicted by the pink curve) looks like a quadratic function but fits the data better due to the extra small terms $θ_3x_3$ and $θ_4x_4$.
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/3.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/3.png)
 
 We could also regularize all of our theta parameters in a single summation as:
 $$
@@ -66,7 +66,7 @@ The λ, or lambda, is the  **regularization parameter** . It determines how much
 
 Using the above cost function with the extra summation, we can smooth the output of our hypothesis function to reduce overfitting. If lambda is chosen to be too large, it may smooth out the function too much and cause underfitting. Hence, what would happen if λ=0 or is too small ?
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/4.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/4.png)
 
 ## Regularized Linear Regression
 
@@ -105,7 +105,7 @@ Recall that **if m < n, then $X^TX$ is non-invertible. However, when we add the 
 
 We can regularize logistic regression in a similar way that we regularize linear regression. As a result, we can avoid overfitting. The following image shows how the regularized function, displayed by the pink line, is less likely to overfit than the non-regularized function represented by the blue line:
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/5.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/5.png)
 
 ### Cost Function 
 
@@ -119,7 +119,7 @@ J(\theta) = - \frac{1}{m} \sum_{i=1}^m \large[ y^{(i)}\ \log (h_\theta (x^{(i)})
 $$
 The second sum, $∑_n^{j=1}θ^2_j$ **means to explicitly exclude** the bias term, $θ_0$. I.e. the θ vector is indexed from 0 to n (holding n+1 values, $θ_0$ through $θ_n$), and this sum explicitly skips $θ_0$, by running from 1 to n, skipping 0. Thus, when computing the equation, we should continuously update the two following equations:
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/6.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/6.png)
 
 ```python
 import numpy as np;
@@ -138,7 +138,7 @@ def costReg(theta, X, y, learningRate):
 
 Let's talk about how to get regularized linear regression to work using the more advanced optimization methods. And just to remind you for those methods what we needed to do was to define the function that's called the cost function, that takes us input the parameter vector theta and once again in the equations we've been writing here we used 0 index vectors. So we had theta 0 up to theta N. But because Octave indexes the vectors starting from 1. Theta 0 is written in Octave as theta 1. Theta 1 is written in Octave as theta 2, and so on down to theta N plus 1. And what we needed to do was provide a function. Let's provide a function called cost function that we would then pass in to what we have, what we saw earlier. We will use the `fminunc` and then you know at cost function, and so on, right. But the `fminunc` was function minimization unconstrained in Octave and this will work with `fminunc` was what will take the cost function and minimize it for us. So the two main things that the cost function needed to return were first J-val. And for that, we need to write code to compute the `costfunction` J of theta. 
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/07/7.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/07/7.png)
 
 Now, when we're using regularized logistic regression, of course the `costfunction` J of theta changes and, in particular, now a cost function needs to include this additional regularization term at the end as well. So, when you compute j of theta be sure to include that term at the end. 
 

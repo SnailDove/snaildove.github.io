@@ -49,7 +49,7 @@ import tensorflow as tf
 Neural Style Transfer (NST) is one of the most fun techniques in deep learning. As seen below, it merges two images, namely, a "content" image (C) and a "style" image (S), to create a "generated" image (G). The generated image G combines the "content" of the image C with the "style" of image S. 
 
 In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:750px;height:200px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:750px;height:200px;">
 
 Let's see how you can do this. 
 
@@ -111,7 +111,7 @@ imshow(content_image)
 
 
 
-![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png)
+![png](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png)
 
 
 The content image (C) shows the Louvre museum's pyramid surrounded by old Paris buildings, against a sunny sky with a few clouds.
@@ -128,7 +128,7 @@ $$J_{content}(C,G) =  \frac{1}{4 \times n_H \times n_W \times n_C}\sum _{ \text{
 
 Here, $n_H, n_W$ and $n_C$ are the height, width and number of channels of the hidden layer you have chosen, and appear in a normalization term in the cost. For clarity, note that $a^{(C)}$ and $a^{(G)}$ are the volumes corresponding to a hidden layer's activations. In order to compute the cost $J_{content}(C,G)$, it might also be convenient to unroll these 3D volumes into a 2D matrix, as shown below. (Technically this unrolling step isn't needed to compute $J_{content}$, but it will be good practice for when you do need to carry out a similar operation later for computing the style const $J_{style}$.)
 
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png" style="width:800px;height:400px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png" style="width:800px;height:400px;">
 
 **Exercise:** Compute the "content cost" using TensorFlow. 
 
@@ -229,7 +229,7 @@ imshow(style_image)
 
 
 
-![png](http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png)
+![png](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png)
 
 
 This painting was painted in the style of *[impressionism](https://en.wikipedia.org/wiki/Impressionism)*.
@@ -244,7 +244,7 @@ Note that there is an unfortunate collision in the variable names used here. We 
 
 In NST, you can compute the Style matrix by multiplying the "unrolled" filter matrix with their transpose:
 
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png" style="width:900px;height:300px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png" style="width:900px;height:300px;">
 
 The result is a matrix of dimension $(n_C,n_C)$ where $n_C$ is the number of filters. The value $G_{ij}$ measures how similar the activations of filter $i$ are to the activations of filter $j$. 
 
@@ -1044,20 +1044,20 @@ You're done! After running this, in the upper bar of the notebook click on "File
 
 You should see something the image presented below on the right:
 
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:800px;height:300px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:800px;height:300px;">
 
 We didn't want you to wait too long to see an initial result, and so had set the hyperparameters accordingly. To get the best looking results, running the optimization algorithm longer (and perhaps with a smaller learning rate) might work better. After completing and submitting this assignment, we encourage you to come back and play more with this notebook, and see if you can generate even better looking images. 
 
 Here are few other examples:
 
 - The beautiful ruins of the ancient city of Persepolis (Iran) with the style of Van Gogh (The Starry Night)
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png" style="width:750px;height:300px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png" style="width:750px;height:300px;">
 
 - The tomb of Cyrus the great in Pasargadae with the style of a Ceramic Kashi from Ispahan.
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png" style="width:750px;height:300px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png" style="width:750px;height:300px;">
 
 - A scientific study of a turbulent fluid with the style of a abstract blue fluid painting.
-<img src="http://pltr89sz6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png" style="width:750px;height:300px;">
+<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png" style="width:750px;height:300px;">
 
 ## 5 - Test with your own image (Optional/Ungraded)
 

@@ -13,7 +13,7 @@ mathjax2: true
 This personal note is written after studying the opening course on [the coursera website](https://www.coursera.org), [Machine Learning by Andrew NG](https://www.coursera.org/learn/machine-learning/home/welcome). And images, audios of this note all comes from the opening course. 
 
 # 01_cost-function-and-backpropagation
-![img](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/1.png)
+![img](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/1.png)
 
 ## Cost Function
 Let's first define a few variables that we will need to use: 
@@ -52,7 +52,7 @@ $$
 $$
 To do so, we use the following algorithm:
 
-![backpropagation_algorithm](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/2.png)
+![backpropagation_algorithm](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/2.png)
 
 **Back propagation Algorithm**   
 
@@ -65,7 +65,7 @@ Set $\Delta^{(l)}_{i,j}$ := 0 for all (l,i,j), (hence you end up having a matrix
 1. Set $a^{(1)} := x^{(t)}$
 2. Perform forward propagation to compute $a^{(l)}$ for l=2,3,…,L   
 
-![forward_propagation](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/3.png)
+![forward_propagation](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/3.png)
 3.  Using $y^{(t)}$, compute $\delta^{(L)} = a^{(L)} - y^{(t)}$ 
 
 Where L is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our "error values" for the last layer are simply the differences of our actual results in the last layer and the correct outputs in y. To get the delta values of the layers before the last layer, we can use an equation that steps us back from right to left : 
@@ -102,7 +102,7 @@ $$\delta_j^{(l)} = \dfrac{\partial}{\partial z_j^{(l)}} cost(t)$$
 
 Recall that our derivative is the slope of a line tangent to the cost function, so the steeper the slope the more incorrect we are. Let us consider the following neural network below and see how we could calculate some $\delta_j^{(l)}$: 
 
- ![backward propagation intuition1](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/4.png)
+ ![backward propagation intuition1](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/4.png)
 
 In the image above, to calculate $\delta_2^{(2)}$, we multiply the weights $\Theta_{12}^{(2)}$ and $\Theta_{22}^{(2)}$ by their respective $\delta$ values found to the right of each edge. So we get $\delta_2^{(2)}$= $\Theta_{12}^{(2)}$*$\delta_1^{(3)}$+$\Theta_{22}^{(2)}$*$\delta_2^{(3)}$. To calculate every single possible $\delta_j^{(l)}$, we could start from the right of our diagram. We can think of our edges as our $\Theta_{ij}$. Going from right to left, to calculate the value of $\delta_j^{(l)}$, you can just take the over all sum of each weight times the $\delta$ it is coming from. Hence, another example would be $\delta_2^{(3)}$=$\Theta_{12}^{(3)}$*$\delta_1^{(4)}$.
 
@@ -131,7 +131,7 @@ Theta3 = reshape(thetaVector(221:231),1,11)
 
 To summarize:
 
-![neural_network_learning_theta](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/5.png)
+![neural_network_learning_theta](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/5.png)
 
 ## Gradient Checking
 
@@ -166,7 +166,7 @@ Once you have verified once that your backpropagation algorithm is correct, you 
 
 Initializing all theta weights to zero does not work with neural networks. When we backpropagate, all nodes will update to the same value repeatedly. Instead we can randomly initialize our weights for our ΘΘ matrices using the following method:
 
-![random_initialization_on_nn](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/6.png)
+![random_initialization_on_nn](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/6.png)
 
 Hence, we initialize each $Θ^{(l)}_{ij}$ to a random value between $[−ϵ,ϵ]$ .  Using the above formula guarantees that we get the desired bound. The same procedure applies to all the $Θ's$. Below is some working code you could use to experiment.
 
@@ -210,7 +210,7 @@ for i = 1:m,
 
 The following image gives us an intuition of what is happening as we are implementing our neural network:
 
-![](http://pltr89sz6.bkt.clouddn.com/gitpage/ml-andrew-ng/09/7.png)
+![](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/09/7.png)
 
 Ideally, you want $h_Θ(x^{(i)}) ≈ y(i)$ . This will minimize our cost function. However, keep in mind that $J(Θ)$ is not convex and thus we can end up in a local minimum instead.
 
