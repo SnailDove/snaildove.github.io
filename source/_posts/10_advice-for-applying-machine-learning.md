@@ -102,13 +102,13 @@ In this section we examine the relationship between the degree of the polynomial
 - We need to distinguish whether **bias** or **variance** is the problem contributing to bad predictions.   
 - High bias is underfitting and high variance is overfitting. Ideally, we need to find a golden mean between these two.   
 
-![img](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png)
+![img](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png)
 
 The training error will tend to **decrease** as we increase the degree d of the polynomial. 
 
 At the same time, the cross validation error will tend to **decrease** as we increase d up to a point, and then it will **increase** as d is increased, forming a convex curve. 
 
-![high_bias_and_high_variance](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/2.png)
+![high_bias_and_high_variance](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/2.png)
 
 
 
@@ -118,19 +118,19 @@ At the same time, the cross validation error will tend to **decrease** as we inc
 
 The is summarized in the figure below: 
 
-![img](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/3.png)
+![img](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/3.png)
 
 ## Regularization and Bias/Variance
 
 **Note:**    [The regularization term below and through out the video should be $\frac \lambda {2m} \sum _{j=1}^n \theta_j ^2$ and     **NOT**    $\frac \lambda {2m} \sum _{j=1}^m \theta_j ^2$]  
 
-![3_kinds_of_Linear_regression_with_regularization](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/4.png)
+![3_kinds_of_Linear_regression_with_regularization](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/4.png)
 
-![img](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/5.png)
+![img](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/5.png)
 
 In the figure above, we see that as $\lambda$ increases, our fit becomes more rigid. On the other hand, as $\lambda$ approaches 0, we tend to over overfit the data. So how do we choose our parameter $\lambda$ to get it 'just right' ? In order to choose the model and the regularization term $λ$ , we need to: 
 
-![img](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/6.png)
+![img](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/6.png)
 
 1.  Create a list of lambdas (i.e.$ λ∈\{0,0.01,0.02,0.04,0.08,0.16,0.32,0.64,1.28,2.56,5.12,10.24\}$);   
 2.  Create a set of models with different degrees or any other variants.   
@@ -156,7 +156,7 @@ The error value will plateau out after a certain m, or training set size.
 
 If a learning algorithm is suffering from **high bias**, getting more training data will not **(by itself)** help much.
 
-![high_bias_on_training_size](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/7.png)
+![high_bias_on_training_size](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/7.png)
 
 **Experiencing high variance:**
 
@@ -167,7 +167,7 @@ If a learning algorithm is suffering from **high bias**, getting more training d
 
 If a learning algorithm is suffering from **high variance**, getting more training data is likely to help.
 
-![high_variance_on_training_size](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/8.png)
+![high_variance_on_training_size](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/8.png)
 
 ## Deciding What to Do Next Revisited
 
@@ -195,7 +195,7 @@ If a learning algorithm is suffering from **high variance**, getting more traini
 - A neural network with fewer parameters is **prone to underfitting**. It is also **computationally cheaper**. 
 - A large neural network with more parameters is **prone to overfitting**. It is also **computationally expensive**. In this case you can use regularization (increase λ) to address the overfitting.   
 
-![Neural_networks_and_overfitting](http://pne0wr4lu.bkt.clouddn.com/gitpage/ml-andrew-ng/10/9.png)
+![Neural_networks_and_overfitting](http://pt8q6wt5q.bkt.clouddn.com/gitpage/ml-andrew-ng/10/9.png)
 
 Using a single hidden layer is a good starting default. You can train your neural network on a number of hidden layers using your cross validation set. You can then select the one that performs best. 
 

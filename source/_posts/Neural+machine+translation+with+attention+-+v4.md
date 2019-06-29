@@ -179,12 +179,12 @@ In this part, you will implement the attention mechanism presented in the lectur
 <table>
 <tr>
 <td> 
-<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png"> <br>
+<img src="http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png"> <br>
 </td> 
 </tr>
 <tr>
 <td> 
-<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png"> <br>
+<img src="http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png"> <br>
 </td> 
 </tr>
 </table>
@@ -626,7 +626,7 @@ model.fit([Xoh, s0, c0], outputs, epochs=1, batch_size=100)
 
 While training you can see the loss as well as the accuracy on each of the 10 positions of the output. The table below gives you an example of what the accuracies could be if the batch had 2 examples: 
 
-<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png" style="width:700;height:200px;"> <br>
+<img src="http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png" style="width:700;height:200px;"> <br>
 <caption><center>Thus, `dense_2_acc_8: 0.89` means that you are predicting the 7th character of the output correctly 89% of the time in the current batch of data. </center></caption>
 
 
@@ -680,7 +680,7 @@ Since the problem has a fixed output length of 10, it is also possible to carry 
 
 Consider the task of translating "Saturday 9 May 2018" to "2018-05-09". If we visualize the computed $\alpha^{\langle t, t' \rangle}$ we get this: 
 
-<img src="http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png" style="width:600;height:300px;"> <br>
+<img src="http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png" style="width:600;height:300px;"> <br>
 <caption><center> **Figure 8**: Full Attention Map</center></caption>
 
 Notice how the output ignores the "Saturday" portion of the input. None of the output timesteps are paying much attention to that portion of the input. We see also that 9 has been translated as 09 and May has been correctly translated into 05, with the output paying attention to the parts of the input it needs to to make the translation. The year mostly requires it to pay attention to the input's "18" in order to generate "2018." 
@@ -857,7 +857,7 @@ attention_map = plot_attention_map(model, human_vocab, inv_machine_vocab, "Tuesd
 
 
 
-![png](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png)
+![png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png)
 
 
 On the generated plot you can observe the values of the attention weights for each character of the predicted output. Examine this plot and check that where the network is paying attention makes sense to you.

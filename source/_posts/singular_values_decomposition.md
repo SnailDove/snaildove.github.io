@@ -33,17 +33,17 @@ top: 7
 对角矩阵是我们最喜欢的一类矩阵，对能够相似于对角阵的矩阵能方便地计算其幂和指数，对不能相似于对角阵的方阵。上节课我们讨论了如何求出其尽可能简单的相似标准形及Jordan标准形以上讨论的都是方阵。那么对m乘n的矩阵我们如何来对它进行对角化呢？
 
 线性代数中最重要的一类矩阵分解即奇异值分解，从而回答以上的问题。**对角矩阵是我们最喜欢的一类矩阵，因为给定一个对角阵立即就可以得到它的特征值，行列式，幂和指数函数等等。对角矩阵的运算跟我们熟悉的数的运算有很多相似之处，而一个n阶的矩阵相似于对角阵当且仅当它存在着n个线性无关的特征向量。** 
-![preface_SVD](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/1.png) 
+![preface_SVD](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/1.png) 
 特别地，实对称矩阵一定会正交相似于对角阵，也就是说给你一个实对称矩阵，一定存在着正交矩阵$Q$把它的列向量记成$v_1$到$v_n$，它能够满足$Q^TAQ$等于$\lambda$，$\lambda$是一个对角阵，它的对角元是$A$的特征值，那么其中$Q$的列向量$v_i$，它是矩阵$A$的属于特征值，$\lambda_i$的特征向量，也就是满足$Av_i$等于$\lambda_iv_i$。我们现在有个问题是说，如果对于$m \times n$的一个矩阵，我们如何来"对角化"它。那么也就是说在什么意义上，我们能够尽可能地。把$m \times n$的一个矩形的阵向对角阵靠拢，今天我们来讨论矩阵的奇异值分解它是线性代数应用中，最重要的一类矩阵分解。
 
 ## $AA^T$与$A^TA$的特性
 
 ### $AA^T$与$A^TA$的特征值 
-![1st_property_of_AAT](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/2.png) 
+![1st_property_of_AAT](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/2.png) 
 ### $AA^T$与$A^TA$非0特征值集合 
-![2nd_property_of_AAT](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/3.png) 
+![2nd_property_of_AAT](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/3.png) 
 ### $A^TA$与$AA^T$的特征向量 
-![orthonormal_eigenvectors_of_AAT](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/4.png)
+![orthonormal_eigenvectors_of_AAT](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/4.png)
 
 令$u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) $，则 $AA^Tu_i=A(A^T\frac{Av_i}{\sigma_i})=A\frac{A^TAv_i}{\sigma_i}=A\frac{\sigma_i^2v_i}{\sigma_i}={\sigma_i}^2{Av_i \over \sigma_i}={\sigma_i}^2u_i$，得出：$AA^Tu_i={\sigma_i}^2u_i$。又因为：${u_i}^T{u_j}=\frac{(Av_i)^T}{\sigma_i}{Av_j \over \sigma_j}={v_i^T(A^TAv_j) \over \sigma_i\sigma_j}=\frac{\sigma_j^2{v_i}^Tv_j}{\sigma_i\sigma_j}={\sigma_j\over \sigma_i}v_i^Tv_j\rightarrow u_i^Tu_j=\begin{cases}0, & i\ne j\\ 1, & i=j\end{cases}$故：$\{u_i|1\le i \le r\}$ 是$AA^T$的单位正交特征向量。
 
@@ -57,15 +57,15 @@ $(1)u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) \rightarrow Av_i=\sigma_iu
 
 向量形式：$A=\sum_{i=1}^r \sigma_i u_i{v_i}^T$
 
-![get_svd_from_AAT](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/5.png)
+![get_svd_from_AAT](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/5.png)
 
 ## SVD形式
 
-![formula_svd](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/6.png)
+![formula_svd](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/6.png)
 
 ## 例题
 
-![example_svd](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/7.png)
+![example_svd](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/7.png)
 
 求$u_3$两种方法：
 
@@ -75,23 +75,23 @@ $(1)u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) \rightarrow Av_i=\sigma_iu
 
 ## svd几何意义
 
-![example_geometry_svd](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/8.png) 
-![geometry_svd](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/9.png)
+![example_geometry_svd](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/8.png) 
+![geometry_svd](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/9.png)
 
 ## svd应用
 
 ### svd与矩阵的四个基本子空间
 
-![4_subspaces_svd](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/10.png)
+![4_subspaces_svd](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/10.png)
 
 ### svd与图像压缩
 
-![img_compression_by_svd](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/11.png)
+![img_compression_by_svd](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/11.png)
 
 ### 奇异值与特征值关系
 
-![singular_values_and_eigenvalues](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/12.png)
+![singular_values_and_eigenvalues](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/12.png)
 
 ### 奇异值与奇异矩阵
 
-![singular_values](http://pne0wr4lu.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/13.png)
+![singular_values](http://pt8q6wt5q.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/13.png)

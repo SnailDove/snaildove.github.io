@@ -17,13 +17,13 @@ This is my personal note at the third week after studying the course [neural-net
 
 welcome back in this week's you learn to implement a neural network before diving into the technical details I wanted in this video to give you a quick overview of what you'll be seeing in this week's videos so if you don't follow all the details in this video don't worry about it we'll delve in the technical details in the next few videos but for now let's give a quick overview of how you implement in your network. 
 
-![what's a Neural Network](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/1.png)
+![what's a Neural Network](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/1.png)
 
 ### 02_neural-network-representation
 
 You see me draw a few pictures of neural networks. In this video, we'll talk about exactly what those pictures means. In other words, exactly what those neural networks that we've been drawing represent. And we'll start with focusing on the case of neural networks with what was called a single hidden layer. Here's a picture of a neural network. Let's give different parts of
 these pictures some names.
-![2 layer NN](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/2.png)
+![2 layer NN](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/2.png)
 
 **note**:
 
@@ -39,17 +39,17 @@ these pictures some names.
 In the last video you saw what a single hidden layer neural network looks like in this video let's go through the details of exactly how this neural network computers outputs what you see is that is like logistic regression the repeat of all the times.
 
 
-![2 layer NN](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/3.png)
+![2 layer NN](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/3.png)
 
-![vectorization 2 layer NN](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/4.png)
+![vectorization 2 layer NN](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/4.png)
 
-![vectorization 2 layer NN](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/5.png)
+![vectorization 2 layer NN](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/5.png)
 
 ### 04_vectorizing-across-multiple-examples
 
 In the last video, you saw how to compute the prediction on a neural network, given a single training example. In this video, you see how to vectorize across multiple training examples. And the outcome will be quite similar to what you saw for logistic regression. Whereby stacking up different training examples in different columns of the matrix, you'd be able to take the equations you had from the previous video. And with very little modification, change them to make the neural network compute the outputs on all the examples on pretty much all at the same time. So let's see the details on how to do that. 
 
-![vectorization 2 layer NN](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/6.png)
+![vectorization 2 layer NN](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/6.png)
 
 **note** : the row and column indices of the matrix $A, Z$ respectively correspond to the sequence numbers of the train examples and the nodes(units) in layers. And, the row and column indices of the matrix $X$ separately correspond to the sequence numbers of the train examples and the features of a example. Finally,  the row and column indices of the matrix $W$ separately correspond to the sequence numbers of the output units and the input units in the layer.
 
@@ -58,14 +58,14 @@ In the last video, you saw how to compute the prediction on a neural network, gi
 In the previous video, we saw how with your training examples stacked up horizontally in the matrix $X$, you can derive a vectorized implementation for propagation through your neural network. Let's give a bit more justification for why the equations we wrote down is a correct implementation of vectorizing across multiple examples.
 
 So let's go through part of the propagation calculation for the few examples.
-![](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/7.png)
-![](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/8.png)
+![](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/7.png)
+![](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/8.png)
 
 ### 06_activation-functions
 
 When you boost a neural network, one of the choices you get to make is what activation functions use independent layers as well as at the output unit of your neural network so far we've just been using the sigmoid activation function but sometimes other choices can work much better let's take a look at some of the options.
 
-![](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/9.png)
+![](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/9.png)
 
 In the forward propagation steps for the neural network we have these two steps where we use the sigmoid function here so that sigmoid is called an **activation function**, so in the more general case we can have a different function G of z, $g(z)$, where G could be a nonlinear function that may not be the sigmoid function.       
 
@@ -86,7 +86,7 @@ One of the themes we'll see in deep learning is that you often have a lot of dif
 
 Why does your nerual network need a nonlinear activation function turns out that for your new network to compute interesting functions you do need to take a nonlinear activation function unless you want.
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/10.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/10.png)
 
 No matter how many layers your neural network has always doing is just computing a linear activation function so you might as well not have any hidden layers some of the cases that briefly mentioned it turns out that if you have a linear activation function here and a sigmoid function here(on output layer) then this model is no more expressive than standard logistic regression without any hidden layer so I won't bother to prove that but you could try to do so if you want but the take-home is that a linear hidden layer is more or less useless because **the composition of two linear functions is itself a linear function**.
 
@@ -99,13 +99,13 @@ so I hope that gives you a sense of why having a nonlinear activation function i
 
 When you implement back-propagation for your neural network you need to really compute the slope or the derivative of the activation functions so let's take a look at our choices of activation functions and how you can compute the slope of these functions.
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/11.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/11.png)
 
 Sometimes instead of writing this thing $\frac{dg(z)}{dz}$, the shorthand for the derivative is G prime of Z, $g'(z)$ . so G prime of Z in calculus the the little dash on top is called **prime** but so G prime of Z is a shorthand for the in calculus for the derivative of the function of G with respect to the input variable Z and then in a new network we have $a = g(z)$,  right equals this then this formula also simplifies to $a(1-a)$. 
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/12.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/12.png)
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/13.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/13.png)
 
 ### 09_gradient-descent-for-neural-networks
 
@@ -113,7 +113,7 @@ All right I think that's be an exciting video in this video you see how to imple
 
 
 In logistic regression, what we want to do is to modify the parameters, W and B, in order to reduce this loss.
-![](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/02_neural-networks-basics/15.png)
+![](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/02_neural-networks-basics/15.png)
 
 $$da = \frac{\partial{L}}{\partial{a}} =\frac{\partial \left\{ {-(ylog(a)+(1-y)log(1-a))} \right\} }{\partial{a}} = -\frac{y}{a} + \frac{1-y}{1-a} $$
 
@@ -131,23 +131,23 @@ $$w_2 := w_2 - \alpha dw_2$$
 
 $$b := b - \alpha db$$
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/14.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/14.png)
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/15.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/15.png)
 
 
 ### 11_random-initialization
 
 When you change your neural network, it's important to initialize the weights randomly. For logistic regression, it was okay to initialize the weights to zero. But for a neural network of initialize the weights to parameters to all zero and then applied gradient descent, it won't work. Let's see why.
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/16.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/16.png)
 
 
 So you have here two input features, so n0=2, and two hidden units, so n1=2. And so the matrix associated with the hidden layer, w 1, is going to be two-by-two. Let's say that you initialize it to all 0s, so 0 0 0 0, two-by-two matrix. And let's say B1 is also equal to 0 0. It turns out initializing the bias terms b to 0 is actually okay, but initializing w to all 0s is a problem. So the problem with this formalization is that for any example you give it, you'll have that a1,1 and a1,2, will be equal, right? So this activation and this activation will be the same, because both of these hidden units are computing exactly the same function. And then, when you compute backpropagation, it turns out that dz11 and dz12 will also be the same colored by symmetry, right? Both of these hidden unit will initialize the same way. Technically, for what I'm saying, I'm assuming that the outgoing weights or also identical. So that's w2 is equal to 0 0. But if you initialize the neural network this way, then this hidden unit and this hidden unit are completely identical. Sometimes you say they're completely symmetric, which just means that they're completing exactly the same function. And by kind of a proof by induction, it turns out that after every single iteration of training your two hidden units are still computing exactly the same function. Since [INAUDIBLE] show that dw will be a matrix that looks like this. Where every row takes on the same value. So we perform a weight update. So when you perform a weight update, w1 gets updated as w1- alpha times dw. You find that w1, after every iteration, will have the first row equal to the second row. So it's possible to construct a proof by induction that if you initialize all the ways, all the values of w to 0, then because both hidden units start off computing the same function. And both hidden the units have the same influence on the output unit, then after one iteration, that same statement is still true, the two hidden units are still symmetric. And therefore, by induction, after two iterations, three iterations and so on, no matter how long you train your neural network, both hidden units are still computing exactly the same function. And so in this case, there's really no point to having more than one hidden unit. Because they are all computing the same thing. And of course, for larger neural networks, let's say of three features and maybe a very large number of hidden units, a similar argument works to show that with a neural network like this. [INAUDIBLE] drawing all the edges, if you initialize the weights to zero, then all of your hidden units are symmetric. And no matter how long you're upgrading the center, all continue to compute exactly the same function. So that's not helpful, because you want the different hidden units to compute different functions. 
 
 The solution to this is to initialize your parameters randomly. So here's what you do.
 
-![why-do-you-need-non-linear-activation-functions](http://pne0wr4lu.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/17.png)
+![why-do-you-need-non-linear-activation-functions](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/03_shallow-neural-networks/17.png)
 
 You can set w1 = np.random.randn. This generates a gaussian random variable (2,2). And then usually, you multiply this by very small number, such as 0.01. So you initialize it to very small random values. And then b, **it turns out that b does not have the symmetry problem, what's called the symmetry breaking problem**. So it's okay to initialize b to just zeros. Because so long as w is initialized randomly, you start off with the different hidden units computing different things. And so you no longer have this symmetry breaking problem. And then similarly, for w2, you're going to initialize that randomly. And b2, you can initialize that to 0. **So you might be wondering, where did the constant come from and why is it 0.01? Why not put the number 100 or 1000? Turns out that we usually prefer to initialize the weights to very small random values. Because if you are using a tanh or sigmoid activation function, or the other sigmoid, even just at the output layer. If the weights are too large, then when you compute the activation values, remember that z[1]=w1 x + b. And then a1 is the activation function applied to z1. So if w is very big, z will be very, or at least some values of z will be either very large or very small. And so in that case, you're more likely to end up at these fat parts of the tanh function or the sigmoid function, where the slope or the gradient is very small. Meaning that gradient descent will be very slow. So learning was very slow. So just a recap, if w is too large, you're more likely to end up even at the very start of training, with very large values of z. Which causes your tanh or your sigmoid activation function to be saturated, thus slowing down learning. If you don't have any sigmoid or tanh activation functions throughout your neural network, this is less of an issue. But if you're doing binary classification, and your output unit is a sigmoid function, then you just don't want the initial parameters to be too large. So that's why multiplying by 0.01 would be something reasonable to try, or any other small number**. And same for w2, right? This can be random.random. I guess this would be 1 by 2 in this example, times 0.01. Missing an s there. So finally, it turns out that sometimes they can be better constants than 0.01. When you're training a neural network with just one hidden layer, it is a relatively shallow neural network, without too many hidden layers. Set it to 0.01 will probably work okay. But when you're training a very very deep neural network, then you might want to pick a different constant than 0.01. And in next week's material, we'll talk a little bit about how and when you might want to choose a different constant than 0.01. But either way, it will usually end up being a relatively small number. So that's it for this week's videos. You now know how to set up a neural network of a hidden layer, initialize the parameters, make predictions using. As well as compute derivatives andimplement gradient descent, using backprop. 
 

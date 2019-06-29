@@ -17,7 +17,7 @@ toc: true
 
 $$p_X(k)=\cases{\frac{1}{b-a+1}, & if k=a, a+1, ... ,b\\0, &  otherwise}$$
 
-![mean_and_variance_of_the_discrete_uniform_random_variable.png](http://pne0wr4lu.bkt.clouddn.com/gitpage/introduction-to-probability/mean_and_variance_of_uniform_random_variable/1.png)
+![mean_and_variance_of_the_discrete_uniform_random_variable.png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/introduction-to-probability/mean_and_variance_of_uniform_random_variable/1.png)
 
 其中$a,b$ 是两个整数，作为随机变量的值域的两个端点，$a<b$。由于它的概率函数相对于(a+b)/2 是对称的，所以其均值为：
 
