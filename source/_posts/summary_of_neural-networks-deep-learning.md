@@ -2,7 +2,7 @@
 title: summary of neural-networks-deep-learning
 mathjax: true
 mathjax2: true
-categories: english
+categories: English
 tags: [neural-networks-deep-learning, deep learning]
 date: 2018-02-08
 commets: true

@@ -167,4 +167,4 @@ int main()
 	return 0;
 }
 ```
-![img](http://pt8q6wt5q.bkt.clouddn.com/gitpage/dynamic-programming/1.png)
+![img](http://pwmpcnhis.bkt.clouddn.com/gitpage/dynamic-programming/1.png)

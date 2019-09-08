@@ -2,7 +2,7 @@
 title: summary of Structuring Machine Learning Projects
 date: 2018-04-03
 copyright: true
-categories: english
+categories: English
 tags: [Structuring Machine Learning Projects, deep learning]
 mathjax: true
 mathjax2: true

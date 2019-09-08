@@ -2,7 +2,7 @@
 title: logistic-regression-with-a-neural-network-mindset
 date: 2018-02-05
 copyright: true
-categories: english
+categories: English
 tags: [neural-networks-deep-learning, deep learning]
 mathjax: true
 mathjax2: true
@@ -24,7 +24,7 @@ Numpy is the main package for scientific computing in Python. It is maintained b
 **Reminder**: 
 $sigmoid(x)=\frac{1}{1+e^{-x}}$ is sometimes also known as the logistic function. It is a non-linear function used not only in Machine Learning (Logistic Regression), but also in Deep Learning.
 
-![sigmoid function](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/1.png)
+![sigmoid function](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/1.png)
 
 To refer to a function belonging to a specific package you could call it using `package_name.function()`. Run the code below to see an example with `math.exp()`.
 
@@ -192,7 +192,7 @@ Two common numpy functions used in deep learning are `np.shape` and `np.reshape(
 - `X.reshape()` is used to reshape X into some other dimension.
 
 For example, in computer science, an image is represented by a 3D array of shape (length,height,depth=3). However, when you read an image as the input of an algorithm you convert it to a vector of `shape (length∗height∗3,1)`. In other words, you “unroll”, or reshape, the 3D array into a 1D vector.
-![](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/2.png)
+![](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/2.png)
 
 **Exercise**: Implement `image2vector(`) that takes an input of shape(length, height, 3) and returns a vector of `shape(length * height * 3, 1)`. For example, if you would like to reshape an array v of shape (a, b, c) into a vector of shape (a*b,c) you would do:
 ```python
@@ -703,7 +703,7 @@ print("y = " + str(train_set_y[:, index]) + ", it's a '" + classes[np.squeeze(tr
     
 
 
-![png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_58_1.png)
+![png](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_58_1.png)
 
 
 Many software bugs in deep learning come from having matrix/vector dimensions that don’t fit. If you can keep your matrix/vector dimensions straight you will go a long way toward eliminating many bugs.
@@ -799,7 +799,7 @@ It’s time to design a simple algorithm to distinguish cat images from non-cat 
 
 You will build a Logistic Regression, using a Neural Network mindset. **The following Figure explains why Logistic Regression is actually a very simple Neural Network!**
 
-![](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/3.png)
+![](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/3.png)
 
 Mathematical expression of the algorithm:
 
@@ -1257,7 +1257,7 @@ print ("y = " + str(test_set_y[0, index]) + ", you predicted that it is a \"" + 
     
 
 
-![png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_93_1.png)
+![png](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_93_1.png)
 
 
 Let’s also plot the cost function and the gradients.
@@ -1274,7 +1274,7 @@ plt.show();
 ```
 
 
-![png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_95_0.png)
+![png](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_95_0.png)
 
 
 **Interpretation**: 
@@ -1332,7 +1332,7 @@ plt.show();
     
 
 
-![png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_98_1.png)
+![png](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_98_1.png)
 
 
 **Interpretation**: 
@@ -1372,7 +1372,7 @@ print("y = " + str(np.squeeze(my_predicted_image)) + ", your algorithm predicts 
     
 
 
-![png](http://pt8q6wt5q.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_101_2.png)
+![png](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week1_week2/output_101_2.png)
 
 
 **What to remember from this assignment**: 

@@ -2,7 +2,7 @@
 title: positive definite and least squares
 mathjax: true
 mathjax2: true
-categories: english
+categories: English
 date: 2017-08-01 22:16:00
 tags: [linear_algebra]
 toc: true

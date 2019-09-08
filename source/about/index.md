@@ -10,8 +10,6 @@ comments: false
 
 **Email** : 2657656431@qq.com
 
-### links:
 
-1.  This blog's theme  comes from [next](https://github.com/iissnan/hexo-theme-next)
 
 

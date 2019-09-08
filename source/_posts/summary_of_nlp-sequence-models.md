@@ -2,7 +2,7 @@
 title: summary of nlp sequence models
 mathjax: true
 mathjax2: true
-categories: english
+categories: English
 tags: [nlp-sequence-models, deep learning]
 date: 2018-06-06
 commets: true

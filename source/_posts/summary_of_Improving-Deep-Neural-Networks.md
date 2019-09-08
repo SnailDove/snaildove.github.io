@@ -2,7 +2,7 @@
 title: summary of Improving-Deep-Neural-Networks
 date: 2018-03-02
 copyright: true
-categories: english
+categories: English
 tags: [Improving Deep Neural Networks, deep learning]
 mathjax: true
 mathjax2: true

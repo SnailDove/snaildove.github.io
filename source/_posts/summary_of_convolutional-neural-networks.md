@@ -2,7 +2,7 @@
 title: summary of convolutional neural networks
 date: 2018-05-04
 copyright: true
-categories: english
+categories: English
 tags: [convolutional-neural-networks, deep learning]
 mathjax: true
 mathjax2: true
