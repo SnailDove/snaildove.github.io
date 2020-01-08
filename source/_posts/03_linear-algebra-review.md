@@ -153,8 +153,8 @@ v = [1; 1; 1]
 Av = A * v
 ```
 
-![matrix_vector_multiplication](http://pwmpcnhis.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/matrix_vector_multiplication.png)
-![example_of_matrix_vector_multiplication](http://pwmpcnhis.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/example_of_matrix_vector_multiplication.png)
+![matrix_vector_multiplication](http://q3rrj5fj6.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/matrix_vector_multiplication.png)
+![example_of_matrix_vector_multiplication](http://q3rrj5fj6.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/example_of_matrix_vector_multiplication.png)
 
 
 
@@ -188,9 +188,9 @@ mult_AB = A*B
 % Make sure you understand why we got that result
 ```
 
-![matrix_matrix_multiplication](http://pwmpcnhis.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/matrix_matrix_multiplication.png)
+![matrix_matrix_multiplication](http://q3rrj5fj6.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/matrix_matrix_multiplication.png)
 
-![example_of_matrix_matrix_multiplication](http://pwmpcnhis.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/example_of_matrix_matrix_multiplication.png)
+![example_of_matrix_matrix_multiplication](http://q3rrj5fj6.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/03/example_of_matrix_matrix_multiplication.png)
 
 ## Matrix Multiplication Properties
 

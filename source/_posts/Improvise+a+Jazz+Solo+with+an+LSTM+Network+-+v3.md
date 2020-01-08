@@ -53,7 +53,7 @@ You would like to create a jazz music piece specially for a friend's birthday. H
 
 You will train a network to generate novel jazz solos in a style representative of a body of performed work.
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/jazz.jpg" style="width:450;height:300px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/jazz.jpg" style="width:450;height:300px;">
 
 
 ### 1.1 - Dataset
@@ -67,7 +67,7 @@ IPython.display.Audio('./data/30s_seq.mp3')
 
 
                 <audio controls="controls" >
-                    <source src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/data/30s_seq.mp3" type="audio/mpeg" />
+                    <source src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/data/30s_seq.mp3" type="audio/mpeg" />
                     Your browser does not support the audio element.
                 </audio>
               
@@ -109,10 +109,10 @@ You have just loaded the following:
 
 Here is the architecture of the model we will use. This is similar to the Dinosaurus model you had used in the previous notebook, except that in you will be implementing it in Keras. The architecture is as follows: 
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/music_generation.png" style="width:600;height:400px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/music_generation.png" style="width:600;height:400px;">
 
 <!--
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/djmodel.png" style="width:600;height:400px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/djmodel.png" style="width:600;height:400px;">
 <br>
 <caption><center> **Figure 1**: LSTM model. $X = (x^{\langle 1 \rangle}, x^{\langle 2 \rangle}, ..., x^{\langle T_x \rangle})$ is a window of size $T_x$ scanned over the musical corpus. Each $x^{\langle t \rangle}$ is an index corresponding to a value (ex: "A,0.250,< m2,P-4 >") while $\hat{y}$ is the prediction for the next value  </center></caption>
 !--> 
@@ -480,7 +480,7 @@ You now have a trained model which has learned the patterns of the jazz soloist.
 
 #### 3.1 - Predicting & Sampling
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/music_gen.png" style="width:600;height:400px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/images/music_gen.png" style="width:600;height:400px;">
 
 At each step of sampling, you will take as input the activation `a` and cell state `c` from the previous state of the LSTM, forward propagate by one step, and get a new output activation as well as cell state. The new activation `a` can then be used to generate the output, using `densor` as before. 
 
@@ -698,7 +698,7 @@ IPython.display.Audio('./data/30s_trained_model.mp3')
 
 
                 <audio controls="controls" >
-y                    <source src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/data/30s_trained_model.mp3" type="audio/mpeg" />
+y                    <source src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/Jazz_improvisation_with_LSTM/data/30s_trained_model.mp3" type="audio/mpeg" />
                     Your browser does not support the audio element.
                 </audio>
               

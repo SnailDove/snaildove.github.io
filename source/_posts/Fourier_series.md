@@ -13,7 +13,7 @@ comments: true
 
 ## 引言
 
-![preface](http://pwmpcnhis.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/1.png)
+![preface](http://q3rrj5fj6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/1.png)
 
 ## 傅里叶级数Fourier series定义
 
@@ -22,20 +22,20 @@ comments: true
 设$f(x)$是周期为$2\pi$的有限个分段（[piecewise](https://en.wikipedia.org/wiki/Piecewise)）的连续函数（ continuous function）（即在$[\pi,-\pi]$中只有有限个点不连续，且不连续点的左右极限存在），那么它的傅里叶级数是 $F={a_0\over 2}+\sum\limits_{k=1}^{\infty}(\ a_kcos(kx)+b_ksin(kx)\ ), a_k={1\over \pi}\int_{-\pi}^{\pi}f(x)cos(kx)dx, b_k={1\over \pi}\int_{-\pi}^{\pi}f(x)sin(kx)dx,k=0,1,\ldots$，这个级数又称为**傅里叶级数的实形式**。
 
 $f(x)$举例如下的$(1)$，而 $(2)$ 在周期内的不连续点处无极限。
-![example_of_2_kinds_of_piecewise_function](http://pwmpcnhis.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/2.png)
+![example_of_2_kinds_of_piecewise_function](http://q3rrj5fj6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/2.png)
 
 ### 定义2
 
 $f(x)$如上，它的**傅里叶级数的复形式**是$F=\sum\limits_{k=-\infty}^{+\infty}c_ke^{ikx}, c_k={1\over 2\pi}\int_{-\pi}^{\pi}f(x)e^{-ikx}dx$. 推导如下：
 
 在定义1中，使用欧拉公式：$e^{ix}=cosx+isinx\Rightarrow cosx={e^{ix}+e^{-ix}\over 2},\ sinx={e^{ix}-e^{-ix}\over 2i}$ ，定义1中的傅里叶级数变成$F={a_0\over 2}+\sum\limits_{k=1}^{\infty}[{a_k\over 2}(e^{ikx}+e^{-ikx})-{ib_k\over 2}(e^{ikx}-e^{-ikx})]={a_0\over 2}+\sum\limits_{k=1}^{\infty}({a_k-ib_k\over 2}e^{ikx}+{a_k+ib_k\over 2}e^{-ikx}).$ 其中
-$a_k-ib_k={1\over 2\pi}\int_{-\pi}^{\pi}f(x)(e^{ikx}+e^{-ikx})dx-{i\over 2\pi}\int_{-\pi}^{\pi}f(x)\frac{e^{ikx}-e^{-ikx}}{i}dx ={1\over \pi}\int_{-\pi}^{\pi}e^{-ikx}dx,\ a_k+ib_k={1\over \pi}\int_{-\pi}^{\pi}e^{ikx}dx​$  , 令$c_k={a_k-ib_k\over 2}={1\over 2\pi}\int_{-\pi}^{\pi}f(x)e^{-ikx}dx,k=1,2,\ldots\quad c_{-k}={a_k+ib_k\over 2}={1\over 2\pi}\int_{-\pi}^{\pi}f(x)e^{ikx}dx,k=1,2,\ldots​$ 这样就得到定义2。注意：正如泰勒级数，这里并没有断言$f(x)​$等于它的傅里叶级数。
+$a_k-ib_k={1\over 2\pi}\int_{-\pi}^{\pi}f(x)(e^{ikx}+e^{-ikx})dx-{i\over 2\pi}\int_{-\pi}^{\pi}f(x)\frac{e^{ikx}-e^{-ikx}}{i}dx ={1\over \pi}\int_{-\pi}^{\pi}e^{-ikx}dx,\ a_k+ib_k={1\over \pi}\int_{-\pi}^{\pi}e^{ikx}dx$  , 令$c_k={a_k-ib_k\over 2}={1\over 2\pi}\int_{-\pi}^{\pi}f(x)e^{-ikx}dx,k=1,2,\ldots\quad c_{-k}={a_k+ib_k\over 2}={1\over 2\pi}\int_{-\pi}^{\pi}f(x)e^{ikx}dx,k=1,2,\ldots$ 这样就得到定义2。注意：正如泰勒级数，这里并没有断言$f(x)$等于它的傅里叶级数。
 
 ### 定理
 
 设$f(x)$是周期为$2\pi$的周期函数，$f(x)$和$f'(x)$均在$[-\pi, \pi]$上是分段连续的，则$f(x)$的傅里叶级数收敛，且在任意连续点$x=a$等于$f(a)$，在不连续点$x=a$等于${1\over 2}[lim_{x\rightarrow a^{+}}f(x)+lim_{x\rightarrow a^{-}}f(x)]$。 
 
-![one_law_of_Fourier_series](http://pwmpcnhis.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/3.png)
+![one_law_of_Fourier_series](http://q3rrj5fj6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/3.png)
 
 ## 内积空间inner product space
 
@@ -57,7 +57,7 @@ $a_k-ib_k={1\over 2\pi}\int_{-\pi}^{\pi}f(x)(e^{ikx}+e^{-ikx})dx-{i\over 2\pi}\i
 
 ### 标准正交系orthonormal system
 
-![orthonormal system](http://pwmpcnhis.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/4.png)
+![orthonormal system](http://q3rrj5fj6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/4.png)
 总结：若f(x)在区间$[a,b]$存在傅里叶级数，那么f(x)的傅里叶级数是f(x)在标准正交系
 $\{\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}}sinx, \frac{1}{\sqrt{\pi}}cosx, \frac{1}{\sqrt{\pi}}sin2x, \frac{1}{\sqrt{\pi}}cos2x, \ldots\}$下的投影。
 
@@ -65,11 +65,11 @@ $\{\frac{1}{\sqrt{2\pi}}, \frac{1}{\sqrt{\pi}}sinx, \frac{1}{\sqrt{\pi}}cosx, \f
 
 对傅里叶级数的实数形式$F={a_0\over 2}+\sum\limits_{k=1}^{\infty}(\ a_kcos(kx)+b_ksin(kx)\ ), a_k={1\over \pi}\int_{-\pi}^{\pi}f(x)cos(kx)dx, b_k={1\over \pi}\int_{-\pi}^{\pi}f(x)sin(kx)dx,k=0,1,\ldots$进行变量代换，令 $x={\pi\over L}t, k=n$ 得：$ dx={\pi\over L}dt,\ t=\cases{L, x=\pi\\ -L, x=-\pi}\Rightarrow f(t)={a_0\over 2}+\sum\limits_{n=1}^{\infty}[a_ncos({n\pi t\over L})+b_nsin({n\pi t\over L})],\ a_n={1\over L}\int_{-L}^{L}f(t)cos({n\pi t\over L})dt, \\b_n={1\over L}\int_{-L}^{L}f(t)sin({n\pi t\over L})dt, n=0,1,\ldots$，对应的复数形式为： 
 
-![Fourier-series_of_periodic_function](http://pwmpcnhis.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/5.png)
+![Fourier-series_of_periodic_function](http://q3rrj5fj6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/5.png)
 
 ### 投影
 
-![application_of_projection_on_Fourier-series](http://pwmpcnhis.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/6.png)
+![application_of_projection_on_Fourier-series](http://q3rrj5fj6.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-10/6.png)
 注：$e^{ikx}=cos(kx)+isin(kx)\rightarrow (e^{ikx},e^{ikx})=2L, L$为半周期的绝对值，另外根据复函数的向量空间的内积定义为：$(f,g)=\int_{a}^{b}f(x)\overline{g(x)}dx \rightarrow (f(x),e^{ikx})$在周期 $[-\pi,\pi]$ 下为 $\int_{-\pi}^{\pi}f(x)e^{-iks}dx$ 。
 
 ## 关于傅里叶变换的注记

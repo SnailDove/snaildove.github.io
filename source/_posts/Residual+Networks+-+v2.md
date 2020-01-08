@@ -63,7 +63,7 @@ The main benefit of a very deep network is that it can represent very complex fu
 
 During training, you might therefore see the magnitude (or norm) of the gradient for the earlier layers descrease to zero very rapidly as training proceeds: 
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png" style="width:450px;height:220px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png" style="width:450px;height:220px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **Vanishing gradient** <br> The speed of learning decreases very rapidly for the early layers as the network trains </center></caption>
 
 You are now going to solve this problem by building a Residual Network!
@@ -72,7 +72,7 @@ You are now going to solve this problem by building a Residual Network!
 
 In ResNets, a "shortcut" or a "skip connection" allows the gradient to be directly backpropagated to earlier layers:  
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png" style="width:650px;height:200px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png" style="width:650px;height:200px;">
 <caption><center> <u> <font color='purple'> **Figure 2** </u><font color='purple'>  : A ResNet block showing a **skip-connection** <br> </center></caption>
 
 The image on the left shows the "main path" through the network. The image on the right adds a shortcut to the main path. By stacking these ResNet blocks on top of each other, you can form a very deep network. 
@@ -85,14 +85,14 @@ Two main types of blocks are used in a ResNet, depending mainly on whether the i
 
 The identity block is the standard block used in ResNets, and corresponds to the case where the input activation (say $a^{[l]}$) has the same dimension as the output activation (say $a^{[l+2]}$). To flesh out the different steps of what happens in a ResNet's identity block, here is an alternative diagram showing the individual steps:
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png" style="width:650px;height:150px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png" style="width:650px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 3** </u><font color='purple'>  : **Identity block.** Skip connection "skips over" 2 layers. </center></caption>
 
 The upper path is the "shortcut path." The lower path is the "main path." In this diagram, we have also made explicit the CONV2D and ReLU steps in each layer. To speed up training we have also added a BatchNorm step. Don't worry about this being complicated to implement--you'll see that BatchNorm is just one line of code in Keras! 
 
 In this exercise, you'll actually implement a slightly more powerful version of this identity block, in which the skip connection "skips over" 3 hidden layers rather than 2 layers. It looks like this: 
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png" style="width:650px;height:150px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png" style="width:650px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 4** </u><font color='purple'>  : **Identity block.** Skip connection "skips over" 3 layers.</center></caption>
 
 Here're the individual steps.
@@ -210,7 +210,7 @@ with tf.Session() as test:
 
 You've implemented the ResNet identity block. Next, the ResNet "convolutional block" is the other type of block. You can use this type of block when the input and output dimensions don't match up. The difference with the identity block is that there is a CONV2D layer in the shortcut path: 
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png" style="width:650px;height:150px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png" style="width:650px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 4** </u><font color='purple'>  : **Convolutional block** </center></caption>
 
 The CONV2D layer in the shortcut path is used to resize the input $x$ to a different dimension, so that the dimensions match up in the final addition needed to add the shortcut value back to the main path. (This plays a similar role as the matrix $W_s$ discussed in lecture.) For example, to reduce the activation dimensions's height and width by a factor of 2, you can use a 1x1 convolution with a stride of 2. The CONV2D layer on the shortcut path does not use any non-linear activation function. Its main role is to just apply a (learned) linear function that reduces the dimension of the input, so that the dimensions match up for the later addition step. 
@@ -341,7 +341,7 @@ with tf.Session() as test:
 
 You now have the necessary blocks to build a very deep ResNet. The following figure describes in detail the architecture of this neural network. "ID BLOCK" in the diagram stands for "Identity block," and "ID BLOCK x3" means you should stack 3 identity blocks together.
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png" style="width:850px;height:150px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png" style="width:850px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 5** </u><font color='purple'>  : **ResNet-50 model** </center></caption>
 
 The details of this ResNet-50 model are:
@@ -470,7 +470,7 @@ The model is now ready to be trained. The only thing you need is a dataset.
 
 Let's load the SIGNS Dataset.
 
-<img src="http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png" style="width:450px;height:250px;">
+<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png" style="width:450px;height:250px;">
 <caption><center> <u> <font color='purple'> **Figure 6** </u><font color='purple'>  : **SIGNS dataset** </center></caption>
 
 
@@ -627,7 +627,7 @@ print(model.predict(x))
     
 
 
-![png](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png)
+![png](http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png)
 
 
 You can also print a summary of your model by running the following code.
@@ -1027,7 +1027,7 @@ SVG(model_to_dot(model).create(prog='dot', format='svg'))
 
 
 
-![svg](http://pwmpcnhis.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg)
+![svg](http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg)
 
 
 
