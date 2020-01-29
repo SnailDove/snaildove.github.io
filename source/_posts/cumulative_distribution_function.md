@@ -25,7 +25,7 @@ $$
 
 下图分别给出不同的离散随机变量和连续随机变量的 CDF 的一些说明。从这些图像以及 CDF 的定义，可以得到 CDF 的某些性质。
 
-![Figure_3.6_CDFs_of_some_discrete_variables.png](http://q3rrj5fj6.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png)
+![Figure_3.6_CDFs_of_some_discrete_variables.png](http://q4vftizgw.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png)
 
 上图这些离散随机变量的 CDF ，通过随机变量的概率质量函数（PMF）可求得相应的分布函数：
 $$
@@ -33,7 +33,7 @@ F_X(x)=P(X\le x)=\sum\limits_{k\le x}p_{X}(k)
 $$
 这个函数是一个阶梯函数，在具有正概率的那些点上具有跳跃。在跳跃点上， $F_X(x)$ 取较大的那个值，即 $F_X(x)$ 保持右连续。
 
-![Figure_3.7_CDFs_of_some_continuous_random_variables.png](http://q3rrj5fj6.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png)
+![Figure_3.7_CDFs_of_some_continuous_random_variables.png](http://q4vftizgw.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png)
 
 上图的这些连续随机变量的 $CDF$ 。通过随机变量的概率密度函数（PDF）可求得相应的分布函数：
 $$
@@ -217,6 +217,6 @@ $$
 F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots
 $$
 现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。
-![Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png](http://q3rrj5fj6.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png)
+![Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png](http://q4vftizgw.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png)
 
 几何随机变量和指数随机变量的分布函数之间的关系。图中离散分布函数为 $X\delta$ 的分布函数，$X$ 是参数为 $p=1-e^{-\lambda x}$ 的几何随机变量。当 $\delta\rightarrow 0$ 时，$X\delta$ 的分布函数趋于指数分布函数 $1-e^{-\lambda x}$ 。

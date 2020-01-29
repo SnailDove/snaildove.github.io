@@ -61,7 +61,7 @@ $$
 
 The following image compares gradient descent with one variable to gradient descent with multiple variables:
 
-![gradient_descent_with_multiple_variables](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png)
+![gradient_descent_with_multiple_variables](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png)
 
 ## Gradient Descent in Practice I - Feature Scaling
 
@@ -69,7 +69,7 @@ The following image compares gradient descent with one variable to gradient desc
 
 We can speed up gradient descent by having each of our input values in roughly the same range. This is **because $θ​$ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.**
 
-![why_feature_scale](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/why_feature_scale.png)
+![why_feature_scale](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/why_feature_scale.png)
 
 The way to prevent this is to modify the ranges of our input variables so that they are all roughly the same. Ideally:
 $$
@@ -100,11 +100,11 @@ For example, if $x_i$ represents housing prices with a range of 100 to 2000  and
 
 **Automatic convergence test.** Declare convergence if $J(θ)$ decreases by less than E in one iteration, where E is some small value such as $10^{−3}$. However in practice it's difficult to choose this threshold value.
 
-![making_sure_gradient_descent_is_working_correctly](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/making_sure_gradient_descent_is_working_correctly.png)
+![making_sure_gradient_descent_is_working_correctly](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/making_sure_gradient_descent_is_working_correctly.png)
 
 It has been proven that if learning rate $α$ is sufficiently small, then $J(θ)$ will decrease on every iteration.
 
-![2_making_sure_gradient_descent_is_working_correctly](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/2_making_sure_gradient_descent_is_working_correctly.png)
+![2_making_sure_gradient_descent_is_working_correctly](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/2_making_sure_gradient_descent_is_working_correctly.png)
 
 To summarize: 
 
@@ -131,7 +131,7 @@ One important thing to keep in mind is, if you choose your features this way the
 
 eg. if $x_1$ has range 1 - 1000 then range of $x_1^2$ becomes 1 - 1000000 and that of $x_1^3$ becomes 1 - 1000000000
 
-![example_of_polynomial_regression](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/example_of_polynomial_regression.png)
+![example_of_polynomial_regression](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/example_of_polynomial_regression.png)
 
 ## Normal Equation
 
@@ -141,9 +141,9 @@ Gradient descent gives one way of minimizing $J$ . Let’s discuss a second way 
 $$
 \theta = (X^T X)^{-1}X^T y
 $$
-![example_of_normal_equation](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png)
+![example_of_normal_equation](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png)
 
-![construction_of_normal_equation](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png)
+![construction_of_normal_equation](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png)
 
 There is  **no need** to do feature scaling with the normal equation. 
 
@@ -169,5 +169,5 @@ When implementing the normal equation in octave we want to use the `pinv` functi
 
 Solutions to the above problems include deleting a feature that is linearly dependent with another or deleting one or more features when there are too many features.
 
-![solution_of_normal_equation_with_non-invertible_X^TX](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/04/solution_of_normal_equation_with_non-invertible_X%5ETX.png)
+![solution_of_normal_equation_with_non-invertible_X^TX](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/04/solution_of_normal_equation_with_non-invertible_X%5ETX.png)
 

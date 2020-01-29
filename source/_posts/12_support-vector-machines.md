@@ -23,36 +23,36 @@ But, there's one more algorithm that is very powerful and is very widely used bo
 
 **In order to describe the support vector machine, I'm actually going to start with logistic regression, and show how we can modify it a bit, and get what is essentially the support vector machine.** So in logistic regression, we have our familiar form of the hypothesis there and the sigmoid activation function shown on the right. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/1.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/1.png)
 
 And in order to explain some of the math, I'm going to use z to denote theta transpose axiom. Now let's think about what we would like logistic regression to do. If we have an example with y equals one and by this I mean an example in either the training set or the test set or the cross-validation set, but when y is equal to one then we're sort of hoping that h of x will be close to one. Right, we're hoping to correctly classify that example. And what having x subscript 1, what that means is that theta transpose x must be must larger than 0. So there's greater than, greater than sign that means much, much greater than 0. And that's because it is z, the theta of transpose x is when z is much bigger than 0 is far to the right of the sphere. That the outputs of logistic progression becomes close to one. Conversely, if we have an example where y is equal to zero, then what we're hoping for is that the hypothesis will output a value close to zero. And that corresponds to theta transpose x of z being much less than zero because that corresponds to a hypothesis of putting a value close to zero. 
 
 If you look at the cost function of logistic regression, what you'll find is that each example (x,y) contributes a term like this to the overall cost function, right? So for the overall cost function, we will also have a sum over all the chain examples and the 1 over m term, that this expression here, that's the term that a single
 training example contributes to the overall objective function so we can just rush them. Now if I take the definition for the fall of my hypothesis and plug it in over here, then what I get is that each training example contributes this term, ignoring the one over M but it contributes that term to my overall cost function for logistic regression. Now let's consider two cases of when y is equal to one and when y is equal to zero. In the first case, let's suppose that y is equal to 1. In that case, only this first term in the objective matters, because this one minus y term would be equal to zero if y is equal to one. So when y is equal to one, when in our example x comma y, when y is equal to 1 what we get is this term.. Minus log one over one, plus E to the negative Z where as similar to the last line I'm using Z to denote data transposed X and of course in a cost I should have this minus line that we just had if Y is equal to one so that's equal to one I just simplify in a way in the expression that I have written down here. And if we plot this function as a function of z, what you find is that you get this curve shown on the lower left of the slide. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/2.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/2.png)
 
 And thus, we also see that when z is equal to large, that is, when theta transpose x is large, that corresponds to a value of z that gives us a fairly small value, a very, very small contribution to the consumption. And this kinda explains why, when logistic regression sees a positive example, with y=1, it tries to set theta transport x to be very large because that corresponds to this term, in the cross function, being small. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/3.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/3.png)
 
 Now, to fill the support vector machine, here's what we're going to do. We're gonna take this cross function, this minus log 1 over 1 plus e to negative z, and modify it a little bit. Let me take this point 1 over here, and let me draw the cross functions you're going to use. The new pass functions can be flat from here on out, and then we draw something that grows as a straight line, similar to logistic regression. But this is going to be a straight line at this portion. So the curve that I just drew in magenta, and the curve I just drew purple and magenta, so if **it's pretty close approximation to the cross function used by logistic regression. Except it is now made up of two line segments, there's this flat portion on the right, and then there's this straight line portion on the left**. And don't worry too much about the slope of the straight line portion. It doesn't matter that much. But that's the new cost function we're going to use for when y is equal to one, and you can imagine it should do something pretty similar to logistic regression. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/4.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/4.png)
 
 But turns out, that this will give the support vector machine computational advantages and give us, later on, an easier optimization problem that would be easier for software to solve. We just talked about the case of y equals one. The other case is if y is equal to zero. In that case, if you look at the cost, then only the second term will apply because the first term goes away, right? If y is equal to zero, then you have a zero here, so you're left only with the second term of the expression above. And so the cost of an example, or the contribution of the cost function, is going to be given by this term over here. And if you plot that as a function of z, to have pure z on the horizontal axis, you end up with this one. And for the support vector machine, once again, we're going to replace this blue line with something similar and at the same time we replace it with a new cost, this flat out here, this 0 out here. And that then grows as a straight line, like so. 
 
 **So let me give these two functions names. This function on the left below I'm going to call cost subscript 1 of z $cost_1(z)$, and this function of the right I'm gonna call cost subscript 0 of z $cost_0(z)$. And the subscript just refers to the cost corresponding to when y is equal to 1, versus when y Is equal to zero.** 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/5.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/5.png)
 
 Armed with these definitions, we're now ready to build a support vector machine. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/6.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/6.png)
 
 Here's the cost function, j of theta, that we have for logistic regression. In case this equation looks a bit unfamiliar, it's because previously we had a minus sign outside, but here what I did was I instead moved the minus signs inside these expressions, so it just makes it look a little different. For the support vector machine what we're going to do is essentially take this and replace this with cost1 of z, that is cost1 of theta transpose x. And we're going to take this and replace it with cost0 of z, that is cost0 of theta transpose x. Where the cost one function is what we had on the previous slide that looks like this. And the cost zero function, again what we had on the previous slide, and it looks like this. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/7.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/7.png)
 
 So what we have for the support vector machine is a minimization problem of one over M, the sum of Y I times cost one, theta transpose X I, plus one minus Y I times cause zero of theta transpose X I, and then plus my usual regularization parameter. Like so. 
 
@@ -60,11 +60,11 @@ Now, by convention, for the support of vector machine, we're actually write thin
 
 Here's what I mean, to give you an example, suppose I had a minimization problem  $min_u(u-5)^2+1$. Well, the minimum of this happens to be $u=5$. Now if I were to take this objective function and multiply it by 10. So here my minimization problem is min over U, 10 U minus five squared plus 10 ( $min_u10[(u-5)^2+1]$ ). Well the value of U that minimizes this is still U equals five right? So multiply something that you're minimizing over, by some constant, 10 in this case, it does not change the value of U that gives us, that minimizes this function. So the same way, what I've done is by crossing out the M is all I'm doing is multiplying my objective function by some constant M and it doesn't change the value of theta. That achieves the minimum. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/8.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/8.png)
 
 The second bit of notational change, which is just, again, the more standard convention when using SVMs instead of logistic regression, is the following. So for logistic regression, we add two terms to the objective function. The first is this term, which is the cost that comes from the training set and the second is this row, which is the regularization term. And what we had was we had a, we control the trade-off between these by saying, what we want is A plus, and then my regularization parameter lambda. And then times some other term B, where I guess I'm using your A to denote this first term, and I'm using B to denote the second term, maybe without the lambda. And instead of prioritizing this as A plus lambda B, and so what we did was by setting different values for this regularization parameter lambda, we could trade off the relative weight between how much we wanted the training set well, that is, minimizing A, versus how much we care about keeping the values of the parameter small, so that will be, the parameter is B for the support vector machine, just by convention, we're going to use a different parameter. So instead of using lambda here to control the relative waiting between the first and second terms. We're instead going to use a different parameter which by convention is called C and is set to minimize $C \times a + B$. So for logistic regression, if we set a very large value of lambda, that means you will give B a very high weight. Here is that if we set C to be a very small value, then that responds to giving B a much larger rate than C, than A. So this is just a different way of controlling the trade off, it's just a different way of prioritizing how much we care about optimizing the first term, versus how much we care about optimizing the second term. And if you want you can think of this as the parameter C playing a role similar to 1 over lambda. And it's not that it's two equations or these two expressions will be equal. This equals 1 over lambda, that's not the case. **It's rather that if C is equal to 1 over lambda, then these two optimization objectives should give you the same value, the same optimal value for theta.** so we just filling that in I'm gonna cross out lambda here and write in the constant C there. So that gives us our overall optimization objective function for the support vector machine. And if you minimize that function, then what you have is the parameters learned by the SVM. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/9.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/9.png)
 
 **Finally unlike logistic regression, the support vector machine doesn't output the probability is that what we have is we have this cost function, that we minimize to get the parameter's data, and what a support vector machine does is it just makes a prediction of y being equal to one or zero, directly. So the hypothesis will predict one if theta transpose x is greater or equal to zero, and it will predict zero otherwise and so having learned the parameters theta, this is the form of the hypothesis for the support vector machine. So that was a mathematical definition of what a support vector machine does. **
 
@@ -83,13 +83,13 @@ $$\begin{align*}J(\theta) & = \frac{1}{m}\sum_{i=1}^m -y^{(i)} \log(h_\theta(x^{
 
 To make a support vector machine, we will modify the first term of the cost function $-\log(h_{\theta}(x)) = -\log\Big(\dfrac{1}{1 + e^{-\theta^Tx}}\Big)$ so that when $θ^Tx$ (from now on, we shall refer to this as z) is **greater than** 1, it outputs 0. Furthermore, for values of z **less than** 1, we shall use a straight decreasing line instead of the sigmoid curve.(In the literature, this is called a hinge loss ( https://en.wikipedia.org/wiki/Hinge_loss) function.) 
 
-![](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/10.png)
+![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/10.png)
 
 
 
 Similarly, we modify the second term of the cost function $$-\log(1 - h_{\theta(x)}) = -\log\Big(1 - \dfrac{1}{1 + e^{-\theta^Tx}}\Big)$$ so that when z is less than -1, it outputs 0. We also modify it so that for values of z greater than -1, we use a straight increasing line instead of the sigmoid curve. 
 
-![logistic_2_of_summary_of_svm_objective](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/11.png)
+![logistic_2_of_summary_of_svm_objective](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/11.png)
 
 
 
@@ -117,23 +117,23 @@ Sometimes people talk about support vector machines, as large margin classifiers
 
 Here's my cost function for the support vector machine where here on the left I've plotted my cost 1 of z function that I used for positive examples and on the right I've  plotted my zero of 'Z' function, where I have 'Z' here on the horizontal axis. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/12.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/12.png)
 
 Now, let's think about what it takes to make these cost functions small. If you have a positive example, so if y is equal to 1, then cost 1 of Z is zero only when Z is greater than or equal to 1. So in other words, if you have a positive example, we really want theta transpose x to be greater than or equal to 1 and conversely if y is equal to zero, look this cost zero of z function, then it's only in this region where z is less than equal to 1 we have the cost is zero as z is equals to zero, and this is an interesting property of the support vector machine right, which is that, if you have a positive example so if y is equal to one, then all we really need is that theta transpose x is greater than equal to zero.And that would mean that we classify correctly because if theta transpose x is greater than zero our hypothesis will predict zero. And similarly, if you have a negative example, then really all you want is that theta transpose x is less than zero and that will make sure we got the example right. **But the support vector machine wants a bit more than that. It says, you know, don't just barely get the example right. So then don't just have it just a little bit bigger than zero. What i really want is for this to be quite a lot bigger than zero say maybe bit greater or equal to one and I want this to be much less than zero. Maybe I want it less than or equal to -1. And so this builds in an extra safety factor or safety margin factor into the support vector machine.** 
 
 Logistic regression does something similar too of course, but let's see what happens or let's see what the consequences of this are, in the context of the support vector machine. Concretely, what I'd like to do next is consider a case case where we set this constant C to be a very large value, so let's imagine we set C to a very large value, may be a hundred thousand, some huge number. Let's see what the support vector machine will do. **If C is very, very large, then when minimizing this optimization objective, we're going to be highly motivated to choose a value, so that this first term is equal to zero.** So let's try to understand the optimization problem in the context of, what would it take to make this first term in the objective equal to zero, because you know, maybe we'll set C to some huge constant, and this will hope, this should give us additional intuition about what sort of hypotheses a support vector machine learns. So we saw already that **whenever you have a training example with a label of y=1 if you want to make that first term zero, what you need is is to find a value of theta so that theta transpose $x^{(i)}$ is greater than or equal to 1. And similarly, whenever we have an example, with label zero, in order to make sure that the cost, cost zero of Z,  in order to make sure that cost is zero we need that theta transpose $x^{(i)}$ is less than or equal to -1.** 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/13.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/13.png)
 
 So, if we think of our optimization problem as now, really choosing parameters and show that this first term is equal to zero, what we're left with is the following optimization problem. We're going to minimize that first term zero, so C times zero, because we're going to choose parameters so that's equal to zero, plus one half and then you know that second term and this first term is 'C' times zero, so let's just cross that out because I know that's going to be zero. And this will be subject to the constraint that theta transpose $x^{(i)}$ is greater than or equal to one, if $y^{(i)}$ Is equal to one and theta transpose $x^{(i)}$ is less than or equal to minus one whenever you have a negative example and it turns out that when you solve this optimization problem, when you minimize this as a function of the parameters theta you get a very interesting decision boundary. 
 $$
 \min_\limits{\theta}C\sum_\limits{i=1}^{m}\left[y^{(i)}{\cos}t_{1}\left(\theta^{T}x^{(i)}\right)+\left(1-y^{(i)}\right){\cos}t\left(\theta^{T}x^{(i)}\right)\right]+\frac{1}{2}\sum_\limits{i=1}^{n}\theta^{2}_{j}
 $$
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/14.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/14.png)
 
 Concretely, if you look at a data set like this with positive and negative examples,  this data is linearly separable and by that, I mean that there exists, you know, a straight line, although there is many a different straight lines, they can separate the positive and negative examples perfectly. For example, here is one green decision boundary that separates the positive and negative examples, but somehow that doesn't look like a very natural one, right? 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/41.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/41.png)
 
 Or by drawing an even worse one, you know here's another magenta decision boundary that separates the positive and negative examples but just barely. But neither of those seem like particularly good choices. The Support Vector Machines will instead choose this decision boundary, which I'm drawing in black. And that seems like a much better decision boundary than either of the ones that I drew in magenta or in green. The black line seems like a more robust separator, it does a better job of separating the positive and negative examples. And mathematically, what that does is, this black decision boundary has a larger distance. That distance is called the margin, when I draw up this two extra blue lines, we see that the black decision boundary has some larger minimum distance from any of my training examples, whereas the magenta and the green lines they come awfully close to the training examples. and then that seems to do a less a good job separating the positive and negative classes than my black line. And so this distance is called the margin of the support vector machine and this gives the SVM a certain robustness, because it tries to separate the data with as a large margin as possible. So the support vector machine is sometimes also called a large margin classifier and this is actually a consequence of the optimization problem we wrote down on the previous slide. 
 
@@ -146,11 +146,11 @@ $$
 
 I want to say one last thing about large margin classifiers in this intuition, so we wrote out this large margin classification setting in the case of when C, that regularization concept, was very large, I think I set that to a hundred thousand or something. So given a dataset like this, maybe we'll choose that decision boundary that separate the positive and negative examples on large margin.  (personal note : In order to minimize the cost function as possible as the classifier, SVM , can, it need to choose a proper $\theta$ to make the left term equal to 0 when C is a pretty large constant)
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/15.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/15.png)
 
 Now, the SVM is actually slightly more sophisticated than this large margin view might suggest. And in particular, if all you're doing is use a large margin classifier then your learning algorithms can be sensitive to outliers, so lets just add an extra positive example like that shown on the screen. If he had one example then it seems as if to separate data with a large margin, maybe I'll end up learning a decision boundary like that, right? that is the magenta line and it's really not clear that based on the single outlier based on a single example and it's really not clear that it's actually a good idea to change my decision boundary from the black one over to the magenta one. **So, if C, if the regularization parameter C were very large, then this is actually what SVM will do, it will change the decision boundary from the black to the magenta one but if C were reasonably small if you were to use the C, not too large then you still end up with this black decision boundary.**  
 
-![Large_margin_classifier_in_presence_of_outlier](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/16.png)
+![Large_margin_classifier_in_presence_of_outlier](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/16.png)
 
 
 
@@ -180,31 +180,31 @@ Increasing and decreasing C is similar to respectively decreasing and increasing
 
 In this video, I'd like to tell you a bit about the math behind large margin classification. This video is optional, so please feel free to skip it. It may also give you better intuition about how the optimization problem of the support vex machine, how that leads to large margin classifiers. In order to get started, let me first remind you of a couple of properties of what vector inner products look like. 
 
-![](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/17.png)
+![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/17.png)
 
 Let's say I have two vectors U and V, that look like this. So both two dimensional vectors. Then let's see what U transpose V looks like. And U transpose V is also called the inner products between the vectors U and V. Use a two dimensional vector, so I can on plot it on this figure. So let's say that's the vector U. And what I mean by that is if on the horizontal axis that value takes whatever value U1 is and on the vertical axis the height of that is whatever U2 is the second component of the vector U. Now, one quantity that will be nice to have is the norm of the vector U. So, these are, you know, double bars on the left and right that denotes the norm or length of U. So this just means; really the euclidean length of the vector U. And this is Pythagoras theorem is just equal to U1 squared plus U2 squared square root, right? And this is the length of the vector U. That's a real number. Just say you know, what is the length of this, what is the length of this vector down here. What is the length of this arrow that I just drew, is the normal view? Now let's go back and look at the vector V because we want to compute the inner product. So V will be some other vector with, you know, some value V1, V2. And so, the vector V will look like that, towards V like so. Now let's go back and look at how to compute the inner product between U and V. Here's how you can do it. Let me take the vector V and project it down onto the vector U. So I'm going to take a orthogonal projection or a 90 degree projection, and project it down onto U like so. And what I'm going to do measure length of this red line that I just drew here. So, I'm going to call the length of that red line P. So, P is the length or is the magnitude of the projection of the vector V onto the vector U. Let me just write that down. So, P is the length of the projection of the vector V onto the vector U. And it is possible to show that unit product U transpose V, that this is going to be equal to P  times the norm or the length of the vector U. So, this is one way to compute the inner product. And if you actually do the geometry figure out what P is and figure out what the norm of U is. This should give you the same way, the same answer as the other way of computing unit product. Right. Which is if you take U transpose V then U transposes this U1 U2, its a one by two matrix, 1 times V. And so this should actually give you U1, V1 plus U2, V2. And so the theorem of linear algebra that these two formulas give you the same answer. And by the way, U transpose V is also equal to V transpose U. So if you were to do the same process in reverse, instead of projecting V onto U, you could project U onto V. Then, you know, do the same process, but with the rows of U and V reversed. And you would actually, you should actually get the same number whatever that number is. And just to clarify what's going on in this equation the norm of U is a real number and P is also a real number. And so U transpose V is the regular multiplication as two real numbers of the length of P times the normal view. 
-![](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/18.png)
+![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/18.png)
 Just one last detail, which is if you look at the norm of P, P is actually signed so to the right. And it can either be positive or negative. So let me say what I mean by that, if U is a vector that looks like this and V is a vector that looks like this. So if the angle between U and V is greater than ninety degrees. Then if I project V onto U, what I get is a projection it looks like this and so that length P. And in this case, I will still have that U transpose V is equal to P times the norm of U. Except in this example P will be negative. So, you know, in inner products if the angle between U and V is less than ninety degrees, then P is the positive length for that red line whereas if the angle of this angle of here is greater than 90 degrees then P here will be negative of the length of the super line of that little line segment right over there. So the inner product between two vectors can also be negative if the angle between them is greater than 90 degrees. So that's how vector inner products work. We're going to use these properties of vector inner product to try to understand the support vector machine optimization objective over there. 
-![](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/19.png)
+![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/19.png)
 Here is the optimization objective for the support vector machine that we worked out earlier. Just for the purpose of this slide I am going to make one simplification or once just to make the objective easy to analyze and what I'm going to do is ignore the indeceptrums.
-![](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/20.png)
+![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/20.png)
 So, we'll just ignore theta 0 and set that to be equal to 0. To make things easier to plot, I'm also going to set N the number of features to be equal to 2. So, we have only 2 features, X1 and X2. Now, let's look at the objective function. The optimization objective of the SVM. What we have only two features. When N is equal to 2. This can be written, one half of theta one squared plus theta two squared. Because we only have two parameters, theta one and theta two. What I'm going to do is rewrite this a bit. I'm going to write this as one half of theta one squared plus theta two squared and the square root squared. And the reason I can do that, is because for any number, you know, W, right, the square roots of W and then squared, that's just equal to W. So square roots and squared should give you the same thing. What you may notice is that this term inside is that's equal to the norm or the length of the vector theta and what I mean by that is that if we write out the vector theta like this, as you know theta one, theta two. Then this term that I've just underlined in red, that's exactly the length, or the norm, of the vector theta. We are calling the definition of the norm of the vector that we have on the previous line. And in fact this is actually equal to the length of the vector theta, whether you write it as theta zero, theta 1, theta 2. That is, if theta zero is equal to zero, as I assume here. Or just the length of theta 1, theta 2; but for this line I am going to ignore theta 0. So let me just, you know, treat theta as this, let me just write theta, the normal theta as this theta 1, theta 2 only, but the math works out either way, whether we include theta zero here or not. So it's not going to matter for the rest of our derivation. And so finally this means that my optimization objective is equal to one half of the norm of theta squared. **Support vector machine is doing in the optimization objective is it's minimizing the squared norm of the square length of the parameter vector theta.** 
 
 Now what I'd like to do is look at these terms, theta transpose X and understand better what they're doing. So given the parameter vector theta and given and example x, what is this is equal to? And on the previous slide, we figured out what U transpose V looks like, with different vectors U and V. And so we're going to take those definitions, you know, with theta and X(i) playing the roles of U and V. And let's see what that picture looks like. So, let's say I plot. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/21.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/21.png)
 
 Let's say I look at just a single training example. Let's say I have a positive example the drawing was across there and let's say that is my example X(i), what that really means is plotted on the horizontal axis some value X(i) 1 and on the vertical axis X(i) 2. That's how I plot my training examples. And although we haven't been really thinking of this as a vector, what this really is, this is a vector from the origin from 0, 0 out to the location of this training example. And now let's say we have a parameter vector and I'm going to plot that as vector, as well. What I mean by that is if I plot theta 1 here and theta 2 there so what is the inner product theta transpose X(i). While using our earlier method, the way we compute that is we take my example and project it onto my parameter vector theta. And then I'm going to look at the length of this segment that I'm coloring in, in red. And I'm going to call that P superscript I to denote that this is a projection of the i-th training example onto the parameter vector theta. And so what we have is that theta transpose X(i) is equal to following what we have on the previous slide, this is going to be equal to P times the length of the norm of the vector theta. And this is of course also equal to theta 1 x1 plus theta 2 x2. So each of these is, you know, an equally valid way of computing the inner product between theta and X(i). Okay. So where does this leave us? **What this means is that, this constrains that theta transpose X(i) be greater than or equal to one or less than minus one. What this means is that it can replace the use of constraints that P(i) times X be greater than or equal to one. Because theta transpose X(i) is equal to P(i) times the norm of theta. **
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/22.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/22.png)
 
 So writing that into our optimization objective. This is what we get where I have, instead of theta transpose X(i), I now have this P(i) times the norm of theta. And just to remind you we worked out earlier too that this optimization objective can be written as one half times the norm of theta squared. So, now let's consider the training example that we have at the bottom and for now, continuing to use the simplification that theta 0 is equal to 0. Let's see what decision boundary the support vector machine will choose. Here's one option, let's say the support vector machine were to choose this decision boundary. This is not a very good choice because it has very small margins. This decision boundary comes very close to the training examples. Let's see why the support vector machine will not do this. For this choice of parameters it's possible to show that the parameter vector theta is actually at 90 degrees to the decision boundary. And so, that green decision boundary corresponds to a parameter vector theta that points in that direction. And by the way, the simplification that theta 0 equals 0 that just means that the decision boundary must pass through the origin, (0,0) over there. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/23.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/23.png)
 
 So now, let's look at what this implies for the optimization objective. Let's say that this example here. Let's say that's my first example, you know, X1. If we look at the projection of this example onto my parameters theta. That's the projection. And so that little red line segment. That is equal to P1. And that is going to be pretty small, right. And similarly, if this example here, if this happens to be X2, that's my second example. Then, if I look at the projection of this this example onto theta. You know. Then, let me draw this one in magenta. This little magenta line segment, that's going to be P2. That's the projection of the second example onto my, onto the direction of my parameter vector theta which goes like this. And so, this little projection line segment is getting pretty small. P2 will actually be a negative number, right so P2 is in the opposite direction. This vector has greater than 90 degree angle with my parameter vector theta, it's going to be less than 0. **And so what we're finding is that these terms P(i) are going to be pretty small numbers. So if we look at the optimization objective and see, well, for positive examples we need P(i) times the norm of theta to be bigger than either one. But if P(i) over here, if P1 over here is pretty small, that means that we need the norm of theta to be pretty large, right? If P1 of theta is small and we want P1 you know times in all of theta to be bigger than either one, well the only way for that to be true for the profit that these two numbers to be large if P1 is small, as we said we want the norm of theta to be large. And similarly for our negative example, we need P2 times the norm of theta to be less than or equal to minus one. And we saw in this example already that P2 is going pretty small negative number, and so the only way for that to happen as well is for the norm of theta to be large, but what we are doing in the optimization objective is we are trying to find a setting of parameters where the norm of theta is small, and so you know, so this doesn't seem like such a good direction for the parameter vector and theta.**
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/24.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/24.png)
 
 In contrast, just look at a different decision boundary. Here, let's say, this SVM chooses that decision boundary. Now the is going to be very different. If that is the decision boundary, here is the corresponding direction for theta. So, with the direction boundary you know, that vertical line that corresponds to it is possible to show using linear algebra that the way to get that green decision boundary is have the vector of theta be at 90 degrees to it, and now if you look at the projection of your data onto the vector x, lets say its before this example is my example of x1. So when I project this on to x, or onto theta, what I find is that this is P1. That length there is P1. The other example, that example is and I do the same projection and what I find is that this length here is a P2 really that is going to be less than 0. And you notice that now P1 and P2, these lengths of the projections are going to be much bigger, and **so if we still need to enforce these constraints that P1 of the norm of theta is phase number one because P1 is so much bigger now. The normal can be smaller. And so, what this means is that by choosing the decision boundary shown on the right instead of on the left, the SVM can make the norm of the parameters theta much smaller. So, if we can make the norm of theta smaller and therefore make the squared norm of theta smaller, which is why the SVM would choose this hypothesis on the right instead. And this is how the SVM gives rise to this large margin certification effect.** 
 
@@ -212,7 +212,7 @@ Mainly, if you look at this green line, if you look at this green hypothesis we 
 
 **that's the SVM can end up with a smaller value for the norm of theta which is what it is trying to do in the objective. And this is why this machine ends up with enlarge margin classifiers because it's trying to maximize the norm of these P1 which is the distance from the training examples to the decision boundary.**
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/25.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/25.png)
 
 Finally, we did this whole derivation using this simplification that the parameter theta 0 must be equal to 0. The effect of that as I mentioned briefly, is that if theta 0 is equal to 0 what that means is that we are entertaining decision boundaries that pass through the origins of decision boundaries pass through the origin like that, if you allow theta zero to be non 0 then what that means is that you entertain the decision boundaries that did not cross through the origin, like that one I just drew. And I'm not going to do the full derivation that. It turns out that this same large margin proof works in pretty much in exactly the same way. And there's a generalization of this argument that we just went through them long ago through that shows that even when theta 0 is non 0, what the SVM is trying to do when you have this optimization objective. Which again corresponds to the case of when C is very large. But it is possible to show that, you know, when theta is not equal to 0 this support vector machine is still finding is really trying to find the large margin separator that between the positive and negative examples. So that explains how this support vector machine is a large margin classifier. In the next video we will start to talk about how to take some of these SVM ideas and start to apply them to build a complex nonlinear classifiers.
 
@@ -246,7 +246,7 @@ If $\Theta_0 =0$, then all our decision boundaries will intersect (0,0). If $\Th
 
 In this video, I'd like to start adapting support vector machines in order to develop complex nonlinear classifiers. The main technique for doing that is something called kernels. Let's see what this kernels are and how to use them.
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/26.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/26.png)
 
 If you have a training set that looks like this, and you want to find a nonlinear decision boundary to distinguish the positive and negative examples, maybe a decision boundary that looks like that. One way to do so is to come up with a set of complex polynomial features, right? So, set of features that looks like this, so that you end up with a hypothesis X that predicts 1 if you know that theta 0 and plus theta 1 X1 plus dot dot dot all those polynomial features is greater than 0, and predict 0, otherwise.
 $$
@@ -262,18 +262,18 @@ $$
 $$
 we seen previously that coming up with these high order polynomials is one way to come up with lots more features, **the question is, is there a different choice of features or is there better sort of features than this high order polynomials because you know it's not clear that this high order polynomial is what we want, and what we talked about computer vision talk about when the input is an image with lots of pixels. We also saw how using high order polynomials becomes very computationally expensive because there are a lot of these higher order polynomial terms. So, is there a different or a better choice of the features that we can use to plug into this sort of hypothesis form.**
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/27.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/27.png)
 
 So, here is one idea for how to define new features f1, f2, f3. On this line I am going to define only three new features, but for real problems we can get to define a much larger number. But here's what I'm going to do in this phase of features X1, X2, and I'm going to leave X0 out of this, the interceptor X0, but in this phase X1 X2, I'm going to just, you know, manually pick a few points, and then call these points l1, we are going to pick a different point, let's call that l2 and let's pick the third one and call this one l3, and for now let's just say that I'm going to choose these three points manually. I'm going to call these three points **landmarks**, so line landmark one, two, three. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/28.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/28.png)
 
 
 
 **What I'm going to do is define my new features as follows, given an example X, let me define my first feature f1 to be some measure of the similarity between my training example X and my first landmark and this specific formula that I'm going to use to measure similarity is going to  be this $f_i = similarity(x^{(1)}, l^{(1)}) = e^{(-\frac{||x^{(1)}-l^{(1)}||^2}{2δ^2})}$.** So, depending on whether or not you watched the previous optional video, this notation, you know, this is the length of the vector W (=$x^{(1)}-l^{(1)}$). And so, this thing here, this $||x-l^{(1)}||^2$, this is actually just the **euclidean distance squared**, is the euclidean distance between the point x and the landmark l1. We will see more about this later. But that's my first feature, and my second feature f2 is going to be, you know, similarity function that measures how similar X is to l2 and the game is going to be defined as the following function. This is E to the minus of the square of the euclidean distance between X and the second landmark, that is what the enumerator is and then divided by 2 sigma squared and similarly f3 is, you know, similarity between X and l3, which is equal to, again, similar formula. And what this similarity function is, the mathematical term for this, is that this is going to be a kernel function. And the specific kernel I'm using here, this is actually called a Gaussian kernel. And so this formula, this particular choice of similarity function is called a **Gaussian kernel**. 
 
 But the way the terminology goes is that, you know, in the abstract these different similarity functions are called **kernels** and we can have different similarity functions and the specific example I'm giving here is called the Gaussian kernel. We'll see other examples of other kernels. But for now just think of these as similarity functions. And so, instead of writing similarity between X and l, sometimes we also write this a kernel denoted you know, lower case k between x and one of my landmarks all right. **So let's see what this kernel actually do and why these sorts of similarity functions, why these expressions might make sense.** 
-![](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/29.png)
+![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/29.png)
 
 
 
@@ -281,11 +281,11 @@ So let's take my first landmark. My landmark l1, which is one of those points I 
 
 Each of these landmarks. On the previous line, I drew three landmarks, l1, l2, l3. **Each of these landmarks, defines a new feature f1, f2 and f3. That is, given the the training example X, we can now compute three new features: f1, f2, and f3, given, you know, the three landmarks that I wrote just now.** 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/30.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/30.png)
 
 But first, let's look at this exponentiation function, let's look at this similarity function and plot in some figures and just, you know, understand better what this really looks like. For this example, let's say I have two features X1 and X2. And let's say my first landmark, l1 is at a location, $\begin{bmatrix}3\\5\end{bmatrix}$. So and let's say I set sigma squared equals one for now. If I plot what this feature looks like, what I get is this figure. So the vertical axis, the height of the surface is the value of f1 and down here on the horizontal axis are, if I have some training example, and there is x1 and there is x2. Given a certain training example, the training example here which shows the value of x1 and x2 at a height above the surface, shows the corresponding value of f1 and down below this is the same figure I had showed, using a quantifiable plot, with x1 on horizontal axis, x2 on horizontal axis and so, this figure on the bottom is just a contour plot of the 3D surface. You notice that when X is equal to 3 5 exactly, then we the f1 takes on the value 1, because that's at the maximum and X moves away as X goes further away then this feature takes on values that are close to 0. And so, this is really a feature, f1 measures, you know, how close X is to the first landmark and if varies between 0 and one depending on how close X is to the first landmark l1. Now the other was due on this slide is show the effects of varying this parameter sigma squared. So, sigma squared is the parameter of the Gaussian kernel and as you vary it, you get slightly different effects. Let's set sigma squared to be equal to 0.5 and see what we get. We set sigma square to 0.5, what you find is that the kernel looks similar, except for the width of the bump becomes narrower. The contours shrink a bit too. So if sigma squared equals to 0.5 then as you start from X equals $\begin{bmatrix}3\\5\end{bmatrix}$ and as you move away, then the feature f1 falls to zero much more rapidly and conversely, if you has increase since where three in that case and as I move away from, you know l. So this point here is really l, right, that's l1 is at location $\begin{bmatrix}3\\5\end{bmatrix}$,  right. So it's shown up here. And if sigma squared is large, then as you move away from l1, the value of the feature falls away much more slowly. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/31.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/31.png)
 
 So, given this definition of the features, let's see what source of hypothesis we can learn. Given the training example X, we are going to compute these features f1, f2, f3 and a hypothesis is going to predict one when theta 0 plus theta 1 f1 plus theta 2 f2, and so on is greater than or equal to 0. For this particular example, let's say that I've already found a learning algorithm and let's say that, you know, somehow I ended up with these values of the parameter. So if theta 0 equals minus 0.5, theta 1 equals 1, theta 2 equals 1, and theta 3 equals 0 And what I want to do is consider what happens if we have a training example that takes has location at ***this magenta dot***, right where I just drew this dot over here. So let's say I have a training example X, what would my hypothesis predict? Well, If I look at this formula. Because my training example X is close to l1, we have that f1 is going to be close to 1 the because my training example X is far from l2 and l3 I have that, you know, f2 would be close to 0 and f3 will be close to 0. So, if I look at that formula, I have theta 0 plus theta 1 times 1 plus theta 2 times some value. Not exactly 0, but let's say close to 0. Then plus theta 3 times something close to 0. And this is going to be equal to plugging in these values now. So, that gives minus 0.5 plus 1 times 1 which is 1, and so on. Which is equal to 0.5 which is greater than or equal to 0. So, at this point, we're going to predict Y equals 1, because that's greater than or equal to zero. 
 $$
@@ -326,13 +326,13 @@ In the last video, I talked about the process of picking a few landmarks. You kn
 
 Where do we get l1, l2, l3 from? And it seems, also, that for complex learning problems, maybe we want a lot more landmarks than just three of them that we might choose by hand. So in practice this is how the landmarks are chosen which is that given the machine learning problem. We have some data set of some some positive and negative examples. So, this is the idea here which is that we're gonna take the examples and for every training example that we have, we are just going to call it. We're just going to put landmarks as exactly the same locations as the training examples. So if I have one training example if that is x1, well then I'm going to choose this is my first landmark to be at exactly the same location as my first training example. And if I have a different training example x2. Well we're going to set the second landmark to be the location of my second training example. 
 
-![choosing_the_landmarks](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/32.png)
+![choosing_the_landmarks](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/32.png)
 
 
 
 On the figure on the right, I used red and blue dots just as illustration, the color of this figure, the color of the dots on the figure on the right is not significant. But what I'm going to end up with using this method is I'm going to end up with m landmarks of l1, l2 down to l(m) if I have m training examples with one landmark per location of my per location of each of my training examples. And this is nice because it is saying that my features are basically going to measure how close an example is to one of the things I saw in my training set. So, just to write this outline a little more concretely, given m training examples, I'm going to choose the the location of my landmarks to be exactly near the locations of my m training examples. 
 
-![img](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/33.png)
+![img](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/33.png)
 
 When you are given example x, and in this example x can be something in the training set, it can be something in the cross validation set, or it can be something in the test set. Given an example x we are going to compute, you know, these features as so f1, f2, and so on. Where l1 is actually equal to x1 and so on. And these then give me a feature vector. So let me write f as the feature vector. I'm going to take these f1, f2 and so on, and just group them into feature vector. Take those down to fm. And, you know, just by convention. If we want, we can add an extra feature f0, which is always equal to 1. So this plays a role similar to what we had previously. For x0, which was our interceptor. So, for example, if we have a training example x(i), y(i), the features we would compute for this training example will be as follows: given x(i), we will then map it to, you know, f1(i). Which is the similarity. I'm going to abbreviate as SIM instead of writing out the whole word similarity, right? And f2(i) equals the similarity between x(i) and l2, and so on, down to fm(i) equals the similarity between x(i) and l(m). And somewhere in the middle. Somewhere in this list, you know, at the i-th component, I will actually have one feature component which is f subscript i(i), which is going to be the similarity between x and l(i). **Where l(i) is equal to x(i), and so you know f(i) is just going to be the similarity between x and itself.** And if you're using the Gaussian kernel this is actually e to the minus 0 over 2 sigma squared and so, this will be equal to 1 and that's okay. So one of my features for this training example is going to be equal to 1. And then similar to what I have above. I can take all of these m features and group them into a feature vector. So instead of representing my example, using, you know, x(i) which is this what R(n) plus one dimensional vector. Depending on whether you can set terms, is either R(n) or R(n) plus 1. We can now instead represent my training example using this feature vector f. I am going to write this f superscript i.  Which is going to be taking all of these things and stacking them into a vector. So, $f_1^{(i)}$ down to $f_m^{(i)}$ and if you want and well, usually we'll also add this $f_0^{(i)}$ , where $f_0^{(i)}$ is equal to 1.
 
@@ -349,7 +349,7 @@ And one last detail is because this optimization problem we really have n equals
 
 ### SVM thetas
 
-![SVM_with_Kernels](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/34.png)
+![SVM_with_Kernels](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/34.png)
 
 
 
@@ -365,7 +365,7 @@ I will say more about that in the next video, but you really don't need to know 
 
 **But one other thing that is worth knowing about is when you're applying a support vector machine, how do you choose the parameters of the support vector machine?** 
 
-![SVM_regularization_parameters](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/35.png)
+![SVM_regularization_parameters](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/35.png)
 
 
 
@@ -421,7 +421,7 @@ The support vector machine algorithm poses a particular optimization problem. Bu
 
 Even though you shouldn't be writing your own SVM optimization software, there are a few things you need to do, though. 
 
-![Use_SVM_software_package](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/36.png)
+![Use_SVM_software_package](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/36.png)
 
 
 
@@ -437,7 +437,7 @@ I'll say more towards the end of the video, a little bit more about when you mig
 
 So if you're using an octave or MATLAB implementation of an SVM, it may ask you to provide a function to compute a particular feature of the kernel. So this is really computing f subscript i for one particular value of i, where f here is just a single real number, so maybe I should move this better written f(i), but what you need to do is to write a kernel function that takes this input, you know, a training example or a test example whatever it takes in some vector X and takes as input one of the landmarks and but only I've come down X1 and X2 here, because the landmarks are really training examples as well. 
 
-![gaussian_kernel](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/37.png)
+![gaussian_kernel](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/37.png)
 
 
 
@@ -449,7 +449,7 @@ When you try a support vector machines chances are by far the two most common ke
 
 ## Other choices of kernel
 
-![other_choices_of_kernel](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/38.png)
+![other_choices_of_kernel](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/38.png)
 
 
 
@@ -463,7 +463,7 @@ I think I might have use the chi-square kernel, may be once in my life and the h
 
 ### Multi-class classification 
 
-![Multi-class_classification](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/39.png)
+![Multi-class_classification](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/39.png)
 
 
 
@@ -471,7 +471,7 @@ So just two last details I want to talk about in this video. One in multiclass c
 
 ### logistic regression vs. SVMs
 
-![logistic_regression_VS_svms](http://q3rrj5fj6.bkt.clouddn.com/gitpage/ml-andrew-ng/12/40.png)
+![logistic_regression_VS_svms](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/12/40.png)
 
 
 

@@ -20,7 +20,7 @@ Welcome to Dinosaurus Island! 65 million years ago, dinosaurs existed, and in th
 
 <table>
 <td>
-<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg" style="width:250;height:300px;">
+<img src="http://q4vftizgw.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg" style="width:250;height:300px;">
 
 </td>
 
@@ -86,7 +86,7 @@ Your model will have the following structure:
     - Using the gradients, update your parameter with the gradient descent update rule.
 - Return the learned parameters 
     
-<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/rnn.png" style="width:450;height:300px;">
+<img src="http://q4vftizgw.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/rnn.png" style="width:450;height:300px;">
 <caption><center> **Figure 1**: Recurrent Neural Network, similar to what you had built in the previous notebook "Building a RNN - Step by Step".  </center></caption>
 
 At each time-step, the RNN tries to predict what is the next character given the previous characters. The dataset $X = (x^{\langle 1 \rangle}, x^{\langle 2 \rangle}, ..., x^{\langle T_x \rangle})$ is a list of characters in the training set, while $Y = (y^{\langle 1 \rangle}, y^{\langle 2 \rangle}, ..., y^{\langle T_x \rangle})$ is such that at every time-step $t$, we have $y^{\langle t \rangle} = x^{\langle t+1 \rangle}$. 
@@ -105,7 +105,7 @@ In this section you will implement the `clip` function that you will call inside
 
 In the exercise below, you will implement a function `clip` that takes in a dictionary of gradients and returns a clipped version of gradients if needed. There are different ways to clip gradients; we will use a simple element-wise clipping procedure, in which every element of the gradient vector is clipped to lie between some range [-N, N]. More generally, you will provide a `maxValue` (say 10). In this example, if any component of the gradient vector is greater than 10, it would be set to 10; and if any component of the gradient vector is less than -10, it would be set to -10. If it is between -10 and 10, it is left alone. 
 
-<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/clip.png" style="width:400;height:150px;">
+<img src="http://q4vftizgw.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/clip.png" style="width:400;height:150px;">
 <caption><center> **Figure 2**: Visualization of gradient descent with and without gradient clipping, in a case where the network is running into slight "exploding gradient" problems. </center></caption>
 
 **Exercise**: Implement the function below to return the clipped gradients of your dictionary `gradients`. Your function takes in a maximum threshold and returns the clipped versions of your gradients. You can check out this [hint](https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html) for examples of how to clip in numpy. You will need to use the argument `out = ...`.
@@ -215,7 +215,7 @@ print("gradients[\"dby\"][1] =", gradients["dby"][1])
 
 Now assume that your model is trained. You would like to generate new text (characters). The process of generation is explained in the picture below:
 
-<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dinos3.png" style="width:500;height:300px;">
+<img src="http://q4vftizgw.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dinos3.png" style="width:500;height:300px;">
 <caption><center> **Figure 3**: In this picture, we assume the model is already trained. We pass in $x^{\langle 1\rangle} = \vec{0}$ at the first time step, and have the network then sample one character at a time. </center></caption>
 
 **Exercise**: Implement the `sample` function below to sample characters. You need to carry out 4 steps:
@@ -853,7 +853,7 @@ If your model generates some non-cool names, don't blame the model entirely--not
 
 This assignment had used a relatively small dataset, so that you could train an RNN quickly on a CPU. Training a model of the english language requires a much bigger dataset, and usually needs much more computation, and could run for many hours on GPUs. We ran our dinosaur name for quite some time, and so far our favoriate name is the great, undefeatable, and fierce: Mangosaurus!
 
-<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/mangosaurus.jpeg" style="width:250;height:300px;">
+<img src="http://q4vftizgw.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/mangosaurus.jpeg" style="width:250;height:300px;">
 
 ## 4 - Writing like Shakespeare
 
@@ -862,7 +862,7 @@ The rest of this notebook is optional and is not graded, but we hope you'll do i
 A similar (but more complicated) task is to generate Shakespeare poems. Instead of learning from a dataset of Dinosaur names you can use a collection of Shakespearian poems. Using LSTM cells, you can learn longer term dependencies that span many characters in the text--e.g., where a character appearing somewhere a sequence can influence what should be a different character much much later in ths sequence. These long term dependencies were less important with dinosaur names, since the names were quite short. 
 
 
-<img src="http://q3rrj5fj6.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/shakespeare.jpg" style="width:500;height:400px;">
+<img src="http://q4vftizgw.bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/shakespeare.jpg" style="width:500;height:400px;">
 <caption><center> Let's become poets! </center></caption>
 
 We have implemented a Shakespeare poem generator with Keras. Run the following cell to load the required packages and models. This may take a few minutes. 
