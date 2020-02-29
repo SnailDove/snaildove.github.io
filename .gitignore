@@ -8,6 +8,7 @@ public/
 _config.yml
 themes/next/_config.yml
 source/_drafts
+imgs/
 *.md
 substitute_bucket.sh
 

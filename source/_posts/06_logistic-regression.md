@@ -13,10 +13,10 @@ This personal note is written after studying the opening course on [the coursera
 
 ## Classification
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/1.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/1.png)
 To attempt classification, one method is to use linear regression and map all predictions greater than 0.5 as a 1 and all less than 0.5 as a 0. However, this method doesn't work well because classification is not actually a linear function. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/2.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/2.png)
 
 The classification problem is just like the regression problem, except that the values we now want to predict take on only a small number of discrete values. For now, we will focus on the **binary classification problem** in which $y$ can take on only two values, 0 and 1. (Most of what we say here will also generalize to the multiple-class case.) For instance, if we are trying to build a spam classifier for email, then $x^{(i)}$ may be some features of a piece of email, and $y$ may be 1 if it is a piece of spam mail, and 0 otherwise. Hence, $y∈\{0,1\}$ . 0 is also called the negative class, and 1 the positive class, and they are sometimes also denoted by the symbols “-” and “+” . Given $x^{(i)}$, the corresponding $y^{(i)}$ is also called the label for the training example.
 
@@ -38,7 +38,7 @@ def sigmoid(z):
 
 The following image shows us what the sigmoid function looks like:
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/3.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/3.png)
 
 **The function $g(z)$ , shown here, maps any real number to the $(0, 1)$ interval, making it useful for transforming an arbitrary-valued function into a function better suited for classification**. 
 
@@ -69,23 +69,23 @@ $$
 $$
 In this case, our decision boundary is a straight vertical line placed on the graph where $x_1=5$ , and everything to the left of that denotes $y = 1$ , while everything to the right denotes $y = 0$ . 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/4.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/4.png)
 
 Again, the input to the sigmoid function g(z) (e.g. $θ^TX$ ) doesn't need to be linear, and could be a function that describes a circle (e.g.  $z=θ_0+θ_1x^2_1+θ_2x^2_2$ ) or any shape to fit our data.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/5.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/5.png)
 
 ## Cost Function
 
 We cannot use the same cost function that we use for linear regression because the Logistic Function will cause the output to be wavy, causing many local optima. In other words, it will not be a convex function. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/6.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/6.png)
 
 Instead, our cost function for logistic regression looks like:
 $$
 {% raw %}\begin{align*}& J(\theta) = \dfrac{1}{m} \sum_{i=1}^m \mathrm{Cost}(h_\theta(x^{(i)}),y^{(i)}) \newline & \mathrm{Cost}(h_\theta(x),y) = -\log(h_\theta(x)) \; & \text{if y = 1} \newline & \mathrm{Cost}(h_\theta(x),y) = -\log(1-h_\theta(x)) \; & \text{if y = 0}\end{align*}{% endraw %}
 $$
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/7.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/7.png)
 $$
 {% raw %}\begin{align*}& \mathrm{Cost}(h_\theta(x),y) = 0 \text{ if } h_\theta(x) = y \\ & \mathrm{Cost}(h_\theta(x),y) \rightarrow \infty \text{ if } y = 0 \; \mathrm{and} \; h_\theta(x) \rightarrow 1 \\ & \mathrm{Cost}(h_\theta(x),y) \rightarrow \infty \text{ if } y = 1 \; \mathrm{and} \; h_\theta(x) \rightarrow 0 \\ \end{align*}{% endraw %}
 $$
@@ -183,7 +183,7 @@ $$
 
 **"Conjugate gradient", "BFGS", and "L-BFGS"** *are more sophisticated, faster ways to optimize $θ$ that can be used instead of gradient descent. We suggest that you should not write these more sophisticated algorithms yourself (unless you are an expert in numerical computing) but use the libraries instead, as they're already tested and highly optimized. Octave provides them.*
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/8.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/8.png)
 
 These algorithms actually do more sophisticated things than just pick a good learning rate, and so they often end up converging much faster than gradient descent. These algorithms actually do more sophisticated things than just pick a good learning rate, and so they often end up converging much faster than gradient descent, but detailed discussion of exactly what they do is beyond the scope of this course. **In fact, I actually used to have used these algorithms for a long time, like maybe over a decade, quite frequently, and it was only, you know, a few years ago that I actually figured out for myself the details of what conjugate gradient, BFGS and O-BFGS do. So it is actually entirely possible to use these algorithms successfully and apply to lots of different learning problems without actually understanding the inter-loop of what these algorithms do.** If these algorithms have a disadvantage, I'd say that the main disadvantage is that they're quite a lot more complex than gradient descent. And in particular, you probably should not implement these algorithms - conjugate gradient, L-BGFS, BFGS - yourself unless you're an expert in numerical computing. Instead, just as I wouldn't recommend that you write your own code to compute square roots of numbers or to compute inverses of matrices, for these algorithms also what I would recommend you do is just use a software library. So, you know, to take a square root what all of us do is use some function that someone else has written to compute the square roots of our numbers. And fortunately, Octave and the closely related language MATLAB - we'll be using that - Octave has a very good. Has a pretty reasonable library implementing some of these advanced optimization algorithms. And so if you just use the built-in library, you know, you get pretty good results. I should say that there is a difference between good and bad implementations of these algorithms. And so, if you're using a different language for your machine learning application, if you're using C, C++, Java, and so on, you might want to try out a couple of different libraries to make sure that you find a good library for implementing these algorithms. Because there is a difference in performance between a good implementation of, you know, contour gradient or LPFGS versus less good implementation of contour gradient or LPFGS.
 
@@ -210,7 +210,7 @@ We give to the function **"fminunc()"** our cost function, our initial vector of
 
 ## Example 
 
-![1st_example_of_costFunction_and_fminunc_in_octave](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/1st_example_of_costFunction_and_fminunc_in_octave.png)
+![1st_example_of_costFunction_and_fminunc_in_octave](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/1st_example_of_costFunction_and_fminunc_in_octave.png)
 
 Having implemented this cost function, you would, you can then call the advanced optimization function called the **'fminunc' - it stands for function minimization unconstrained in Octave** -and the way you call this is as follows. 
 
@@ -237,7 +237,7 @@ initialTheta=zeros(2,1);
 
 This is the notation for setting my parameters on my options, for my optimization algorithm. And if I hit enter this will run the optimization algorithm. And it returns pretty quickly. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/10.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/10.png)
 
 This funny formatting that's because my line, you know, my code wrapped around. So, this funny thing is just because my command line had wrapped around. But what this says is that numerically renders, you know, think of it as gradient descent on steroids, they found the optimal value of a theta is theta 1 equals 5, theta 2 equals 5, exactly as we're hoping for. **The `functionValue` at the optimum is essentially 10-to -the-minus-30-power. So that's essentially zero, which is also what we're hoping for** . And the `exitFlag` is 1, and this shows what the convergence status of this. And if you want you can do help `fminunc` to read the documentation for how to interpret the exit flag. But **the `exitFlag` let's you verify whether or not this algorithm thing has converged**. So that's how you run these algorithms in Octave. 
 
@@ -245,7 +245,7 @@ I should mention, by the way, that for the Octave implementation, this value of 
 
 So, that's how we optimize our trial example of this simple quick driving cost function. However, we apply this to let's just say progression. In logistic regression we have a parameter vector theta, and I'm going to use a mix of octave notation and sort of math notation. But I hope this explanation will be clear, but our parameter vector theta comprises these parameters theta 0 through theta n because octave indexes, vectors using indexing from 1, you know, theta 0 is actually written theta 1 in octave, theta 1 is gonna be written. So, if theta 2 in octave and that's gonna be a written theta n+1, right? And that's because Octave indexes is vectors starting from index of 1 and so the index of 0. **So what we need to do then is write a cost function that captures the cost function for logistic regression. Concretely, the cost function needs to return `jVal`, which is, you know, `jVal` as you need some codes to compute J of theta and we also need to give it the gradient.** 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/11.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/11.png)
 
 So, gradient 1 is going to be some code to compute the partial derivative in respect to theta 0, the next partial derivative respect to theta 1 and so on. Once again, this is gradient 1, gradient 2 and so on, rather than gradient 0, gradient 1 because octave indexes is vectors starting from one rather than from zero. But **the main concept I hope you take away from this slide is, that what you need to do, is write a function that returns the cost function and returns the gradient.** And so in order to apply this to logistic regression or even to linear regression, if you want to use these optimization algorithms for linear regression. What you need to do is plug in the appropriate code to compute these things over here. So, now you know how to use these advanced optimization algorithms.
 
@@ -259,7 +259,7 @@ $$
 $$
 Since y = {0,1...n}, we divide our problem into n+1 (+1 because the index starts at 0) binary classification problems; in each one, we predict the probability that 'y' is a member of one of our classes.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/12.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/06/12.png)
 
 **To summarize:**   
 

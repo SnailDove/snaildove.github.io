@@ -193,7 +193,7 @@ toc: true
 
 ## [分数](http://zh.wikipedia.org/wiki/%E5%88%86%E6%95%B0)、[矩阵](http://zh.wikipedia.org/wiki/%E7%9F%A9%E9%98%B5)和多行列式
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/latex/fraction_matrices_determinant.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/latex/fraction_matrices_determinant.png)
 
 ## 上标、下标及[积分](http://zh.wikipedia.org/wiki/%E7%A7%AF%E5%88%86)等
 
@@ -408,7 +408,7 @@ toc: true
 | 好看了 | \left( \frac{1}{2} \right) | ![\left ( \frac{1}{2} \right )](http://upload.wikimedia.org/wikipedia/zh/math/2/8/b/28bcd5b82ce0e92b25e8a0b4bd5be215.png) |
 
 您可以使用 `\left` 和 `\right` 来显示不同的括号：
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/latex/variants_of_braces.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/latex/variants_of_braces.png)
 
 备注：
 

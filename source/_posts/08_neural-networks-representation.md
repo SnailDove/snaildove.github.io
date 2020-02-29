@@ -18,7 +18,7 @@ This personal note is written after studying the opening course on [the coursera
 
 In order to motivate the discussion of neural networks, let me start by showing you a few examples of machine learning problems  where we need to learn complex non-linear hypotheses. Consider a supervised learning classification problem where you have a training set like this. If you want to apply logistic regression to this problem, one thing you could do is apply logistic regression with a lot of nonlinear features like that. So here, g as usual is the sigmoid function, and we can include lots of polynomial terms like these.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/1.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/1.png)
 
 And, if you include enough polynomial terms then,  you know, maybe you can get a hypotheses that separates the positive and negative examples.This particular method works well when you have only, say,  two features - x1 and x2 because you can then include all those polynomial terms of x1 and x2. 
 
@@ -27,7 +27,7 @@ And, if you include enough polynomial terms then,  you know, maybe you can get a
 But for many interesting machine learning problems would have a lot more features than just two. We've been talking for a while about housing prediction, and suppose you have a housing classification problem rather than a regression problem, like maybe if you have different features of a house, and you want
 to predict what are the odds that your house will be sold within the next six months, so that will be a classification problem. And as we saw we can come up with quite a lot of features, maybe a hundred different features of different houses. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/2.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/2.png)
 
 For a problem like this, if you were to include all the quadratic terms, all of these, even all of the quadratic that is the second or the polynomial terms, there would be a lot of them. There would be terms like x1 squared, x1x2, x1x3, you know, x1x4 up to x1x100 and then you have x2 squared, x2x3 and so on. And if you include just the second order terms, that is, the terms that are a product of, you know,  two of these terms, x1 times x1 and so on, then, for the case of n equals 100, you end up with about five thousand features. And, asymptotically, the number of quadratic features grows roughly as order n squared, where n is the number of the original features, like x1 through x100 that we had. And its actually closer to n squared over two.  So including all the quadratic features doesn't seem like it's maybe a good idea, because that is a lot of features and you might up overfitting the training set, and it can also be computationally expensive, you know, to be working with that many features. One thing you could do is include only a subset of these, so if you include only the features x1 squared, x2 squared, x3 squared, up to maybe x100 squared, then the number of features is much smaller. Here you have only 100 such  quadratic features, but this is not enough features and certainly won't let you fit the data set like that on the upper left. In fact, if you include only these quadratic features together with the original x1, and so on, up to x100 features, then you can actually fit very interesting hypotheses. So, you can fit things like, you know, access a line of the ellipses like these, but you certainly cannot fit a more complex data set like that shown here. So 5000 features seems like a lot, if you were to  include the cubic, or third order known of each others, the x1, x2, x3. You know, x1 squared, x2, x10 and x11, x17 and so on. You can imagine there are gonna be a lot of these features.
 
@@ -37,21 +37,21 @@ In fact, they are going to be order and cube such features and if any is 100 you
 
 **For many machine learning problems, n will be pretty large**.  Here's an example. Let's consider the problem of computer vision. And suppose you want to use machine learning to train a classifier to examine an image and tell us whether or not the image is a car. Many people wonder why computer vision could be difficult. I mean when you and I look at this picture it is so obvious what this is. You wonder how is it that a learning algorithm could possibly fail to know what this picture is.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/3.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/3.png)
 
 To understand why computer vision is hard let's zoom into a small part of the image like that area where the little red rectangle is. It turns out that where you and I see a car, the computer sees that. What it sees is this matrix, or this grid, of pixel intensity values that tells us the brightness of each pixel in the image.So the computer vision problem is to look at this matrix of pixel intensity values, and tell us that these numbers represent the door handle of a car. Concretely, when we use machine learning to build a car detector, what we do is we come up with a label training set, with, let's say, a few label examples of cars and a few label examples of things that are not cars, then we give our training set to the learning algorithm trained a classifier and then, you know, we may test it and show the new image and ask, "What is this new thing?". And hopefully it will recognize that that is a car.
 
 To understand why we need nonlinear hypotheses, let's take a look at some of the images of cars and maybe non-cars that we might feed to our learning algorithm. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/4.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/4.png)
 
 Let's pick a couple of pixel locations in our images, so that's pixel one location and pixel two location, and let's plot this car, you know, at the location, at a certain point, depending on the intensities of pixel one and pixel two. And let's do this with a few other images. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/5.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/5.png)
 
 So let's take a different example of  the car and you know, look at the same two pixel locations and that image has a different intensity for pixel one and a different intensity for pixel two. So, it ends up at a different location on the figure. And then let's plot some negative examples as well. That's a non-car, that's a non-car. And if we do this for more and more examples using the pluses(+) to denote cars and minuses(-) to denote non-cars, what we'll find is that the cars and non-cars end up lying in different regions of the space, and what we need therefore is some sort of non-linear hypotheses to try to separate out the two classes. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/6.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/6.png)
 
 What is the dimension of the feature space? Suppose we were to use just 50 by 50 pixel images. Now that suppose our images were pretty small ones, just 50 pixels on the side. Then we would have 2500 pixels, and so the dimension of our feature size will be N equals 2500 where our feature vector x is a list of all the pixel testings, you know,  the pixel brightness of pixel one, the brightness of pixel two, and so on down to the pixel brightness of the last pixel where, you know, in a typical  computer representation, each of these may be values between say 0 to 255 if it gives us the grayscale value. So we have n equals 2500, and that's if we were using grayscale images. If we were using RGB images with separate red, green and blue values, we would have n equals 7500. So, if we were to try to learn a nonlinear hypothesis by including all the quadratic features, that is all the terms of the form, you know, $X_i$ times $X_j$, while with the 2500 pixels we would end up with a total of three million features. And that's just too large to be reasonable; the computation would be very expensive to find and to represent all of these three million features per training example. 
 
@@ -69,11 +69,11 @@ Neural Networks came to be very widely used throughout the 1980's and 1990's and
 
 So, when you think about mimicking the brain while one of the human brain does tell me same things, right? The brain can learn to see process images than to hear, learn to process our sense of touch. We can, you know, learn to do math, learn to do calculus, and the brain does so many different and amazing things. It seems like if you want to mimic the brain it seems like you have to write lots of different pieces of software to mimic all of these different fascinating, amazing things that the brain tell us, but does is this fascinating hypothesis that the way the brain does all of these different things is not worth like a thousand different programs, but instead, the way the brain does it is worth just a single learning algorithm. This is just a hypothesis but let me share with you some of the evidence for this.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/7.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/7.png)
 
 This part of the brain, that little red part of the brain, is your auditory cortex and the way you're understanding my voice now is your ear is taking the sound signal and routing the sound signal to your auditory cortex and that's what's allowing you to understand my words. Neuroscientists have done the following fascinating experiments where you cut the wire from the ears to the auditory cortex and you re-wire, in this case an animal's brain, so that the signal from the eyes to the optic nerve eventually gets routed to the auditory cortex. If you do this it turns out, the auditory cortex will learn to see. And this is in every single sense of the word see as we know it. So, if you do this to the animals, the animals can perform visual discrimination task and as they can look at images and make appropriate decisions based on the images and they're doing it with that piece of brain tissue. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/8.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/8.png)
 
 Here's another example. That red piece of brain tissue is your somatosensory cortex. That's how you process your sense of touch. If you do a similar re-wiring process then the somatosensory cortex will learn to see. Because of this and other similar experiments, these are called neuro-rewiring experiments. There's this sense that if the same piece of physical brain tissue can process sight or sound or touch then maybe there is one learning algorithm that can process sight or sound or touch. And instead of needing to implement a thousand different programs or a thousand different algorithms to do, you know, the thousand wonderful things that the brain does, maybe what we need to do is figure out some approximation or to whatever the brain's learning algorithm is and implement that and that the brain learned by itself how to process these different types of data. To a surprisingly large extent, it seems as if we can plug in almost any sensor to almost any part of the brain and so, within the reason, the brain will learn to deal with it.
 
@@ -81,19 +81,19 @@ Here's another example. That red piece of brain tissue is your somatosensory cor
 
 Here are a few more examples. On the upper left is an example of learning to see with your tongue. The way it works is--this is actually a system called BrainPort undergoing FDA trials now to help blind people see--but the way it works is, you strap a grayscale camera to your forehead, facing forward, that takes the low resolution grayscale image of what's in front of you and you then run a wire to an array of electrodes that you place on your tongue so that each pixel gets mapped to a location on your tongue where maybe a high voltage corresponds to a dark pixel and a low voltage corresponds to a bright pixel and, even as it does today, with this sort of system you and I will be able to learn to see, you know, in tens of minutes with our tongues.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/9.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/9.png)
 
 Here's a second example of human echo location or human sonar. So there are two ways you can do this. You can either snap your fingers, or click your tongue. I can't do that very well. But there are blind people today that are actually being trained in schools to do this and learn to interpret the pattern of sounds bouncing off your environment - that's sonar. So, if after you search on YouTube, there are actually videos of this amazing kid who tragically because of cancer had his eyeballs removed, so this is a kid with no eyeballs. But by snapping his fingers, he can walk around and never hit anything. He can ride a skateboard. He can shoot a basketball into a hoop and this is a kid with no eyeballs.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/10.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/10.png)
 
 Third example is the Haptic Belt where if you have a strap around your waist, ring up buzzers and always have the northmost one buzzing. You can give a human a direction sense similar to maybe how birds can, you know, sense where north is.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/11.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/11.png)
 
 And, some of the bizarre example, but if you plug a third eye into a frog, the frog will learn to use that eye as well. 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/12.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/12.png)
 
 **So, it's pretty amazing to what extent is as if you can plug in almost any sensor to the brain and the brain's learning algorithm will just figure out how to learn from that data and deal with that data. And there's a sense that if we can figure out what the brain's learning algorithm is, and, you know, implement it or implement some approximation to that algorithm on a computer, maybe that would be our best shot at, you know, making real progress towards the AI, the artificial intelligence dream of someday building truly intelligent machines.** Now, of course, I'm not teaching Neural Networks, you know, just because they might give us a window into this far-off AI dream, even though I'm personally, that's one of the things that I personally work on in my research life. But the main reason I'm teaching Neural Networks in this class is because it's actually a very effective state of the art technique for modern day machine learning applications. So, in the next few videos, we'll start diving into the technical details of Neural Networks so that you can apply them to modern-day machine learning applications and get them to work well on problems. But for me, you know, one of the reasons the excite me  is that maybe they give us this window into what we might do if we're also thinking of what algorithms might someday be able to learn in a manner similar to humankind.
 
@@ -103,12 +103,12 @@ And, some of the bizarre example, but if you plug a third eye into a frog, the f
 
 Let's examine how we will represent a hypothesis function using neural networks. At a very simple level, neurons are basically computational units that take inputs (**dendrites**) as electrical inputs (called "spikes") that are channeled to outputs (**axons**).
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/13.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/13.png)
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/14.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/14.png)
 
 In our model, our dendrites are like the input features $x_1⋯x_n​$, and the output is the result of our hypothesis function. In this model our $x_0​$ input node is sometimes called the "**bias unit**". It is always equal to 1. In neural networks, we use the same logistic function as in classification,  $\frac{1}{1+e^{−θ^Tx}}​$, yet we sometimes call it a sigmoid (logistic) **activation** function. In this situation, our "theta" parameters are sometimes called "weights". 
-![Neuron-model_Logistic-unit](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/15.png)
+![Neuron-model_Logistic-unit](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/15.png)
 
 Visually, a simplistic representation looks like:
 $$
@@ -116,7 +116,7 @@ $$
 $$
 Our input nodes (layer 1), also known as the "**input layer**", go into another node (layer 2), which finally outputs the hypothesis function, known as the "**output layer**". We can have intermediate layers of nodes between the input and output layers called the "**hidden layers**". 
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/16.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/16.png)
 
 
 
@@ -136,7 +136,7 @@ This is saying that we compute our activation nodes by using a $3×4​$ matrix 
 
 Each layer gets its own matrix of weights, $Θ^{(j)}$. The dimensions of these matrices of weights is determined as follows: If network has $s_j$ units in layer j and $s_{j+1}$ units in layer j+1, then $Θ^{(j)}$ will be of dimension $s_{j+1}×(s_j+1)$.If network has $s_j$ units in layer $j$ and $s_{j+1}$ units in layer j+1, then $Θ^(j)$ will be of dimension $s_{j+1}×(s_j+1)$. ***The +1 comes from the addition in $Θ^{(j)}$ of the "bias nodes," $x_0$ and $Θ^{(j)}_0$. In other words the output nodes will not include the bias nodes while the inputs will.***  The following image summarizes our model representation:
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/17.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/17.png)
 
 Example: If layer 1 has 2 input nodes and layer 2 has 4 activation nodes. Dimension of $Θ^{(1)}$ is going to be $4×3$ where $s_j=2$ and $s_j+1=4$ so $s_{j+1}×(sj+1)=4×3$ .
 
@@ -176,13 +176,13 @@ We get this final $z$ vector by multiplying the next theta matrix after $Θ^{(j�
 $$
 h_\Theta(x) = a^{(j+1)} = g(z^{(j+1)})
 $$
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/18.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/18.png)
 
 Notice that in this **last step**, between layer j and layer j+1, we are doing **exactly the same thing** as we did in logistic regression. Adding all these intermediate layers in neural networks allows us to more elegantly produce interesting and more complex non-linear hypotheses.
 
 #### Neural network learning its own features
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/19.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/19.png)
 
 let's say I cover up the left path of this picture for now. If you look at what's left in this picture. This looks a lot like logistic regression where what we're doing is we're using that note, that's just the logistic regression unit and we're using that to make a prediction h of x. And concretely, what the hypotheses is outputting is h of x is going to be equal to g which is my sigmoid activation function times theta 0 times a0 is equal to 1 plus theta 1 plus theta 2 times a2 plus theta 3 times a3 whether values a1, a2, a3 are those given by these three given units. Now, to be actually consistent to my early notation.
 
@@ -194,7 +194,7 @@ I realized this example is described as a somewhat high level and so I'm not sur
 
 You can have neural networks with other types of diagrams as well, and the way that neural networks are connected, that's called the architecture. So the term architecture refers to how the different neurons are connected to each other. This is an example of a different neural network architecture and once again you may be able to get this intuition of how the second layer, here we have three heading units that are computing some complex function maybe of the input layer, and then the third layer can take the second layer's features and compute even more complex features in layer three so that by the time you get to the output layer, layer four, you can have even more complex features of what you are able to compute in layer three and so get very interesting nonlinear hypotheses. By the way, in a network like this, layer one, this is called an input layer. Layer four is still our output layer, and this network has two hidden layers.
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/20.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/20.png)
 
 So anything that's not an input layer or an output layer is called a hidden layer. So, hopefully from this video you've gotten a sense of how the feed forward propagation step in a neural network works where you start from the activations of the input layer and forward propagate that to the first hidden layer, then the second hidden layer, and then finally the output layer. And you also saw how we can vectorize that computation. In the next, I realized that some of the intuitions in this video of how, you know, other certain layers are computing complex features of the early layers. I realized some of that intuition may be still slightly abstract and kind of a high level. And so what I would like to do in the two videos is work through a detailed example of how a neural network can be used to compute nonlinear functions of the input and hope that will give you a good sense of the sorts of complex nonlinear hypotheses we can get out of Neural Networks.
 
@@ -218,13 +218,13 @@ This will cause the output of our hypothesis to only be positive if both x1 and 
 $$
 {% raw %}\begin{align*}& h_\Theta(x) = g(-30 + 20x_1 + 20x_2) \\ \\ & x_1 = 0 \ \ and \ \ x_2 = 0 \ \ then \ \ g(-30) \approx 0 \\ & x_1 = 0 \ \ and \ \ x_2 = 1 \ \ then \ \ g(-10) \approx 0 \\ & x_1 = 1 \ \ and \ \ x_2 = 0 \ \ then \ \ g(-10) \approx 0 \\ & x_1 = 1 \ \ and \ \ x_2 = 1 \ \ then \ \ g(10) \approx 1\end{align*}{% endraw %}
 $$
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/21.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/21.png)
 
 So we have constructed one of the fundamental operations in computers by using a small neural network rather than using an actual AND gate. 
 
 Neural networks can also be used to simulate all the other logical gates. The following is an example of the logical operator 'OR', meaning either x1 is true or x2 is true, or both:
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/22.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/22.png)
 
 ### Examples and Intuitions II
 
@@ -250,13 +250,13 @@ $$
 $$
 And there we have the XNOR operator using a hidden layer with two nodes! The following summarizes the above algorithm:
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/23.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/23.png)
 
 ### Multiclass Classification
 
 To classify data into multiple classes, we let our hypothesis function return a vector of values. Say we wanted to classify our data into one of four categories. We will use the following example to see how this classification is done. This algorithm takes as input an image and classifies it accordingly:
 
-![](http://q4vftizgw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/24.png)
+![](http://q6gm8fomw.bkt.clouddn.com/gitpage/ml-andrew-ng/08/24.png)
 
 We can define our set of resulting classes as y:
 $$

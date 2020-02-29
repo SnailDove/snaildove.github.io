@@ -13,53 +13,53 @@ toc: true
 ### 简介
 
 #### 欧姆定律Ohm's law的向量形式
-![matrix_of_Ohm's_law.png](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/1.png)
+![matrix_of_Ohm's_law.png](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/1.png)
 
 ### 图与矩阵
 
-![directed_graphs.png](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/2.png)
-![circute_graph](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/3.png)
+![directed_graphs.png](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/2.png)
+![circute_graph](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/3.png)
 
 #### 关联矩阵incidence matrix
 
-![incidence_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/4.png)
+![incidence_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/4.png)
 
 #### 邻接矩阵adjacency matrix
 
-![adjacency_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/5.png)
+![adjacency_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/5.png)
 
 #### 拉普拉斯矩阵laplacian matrix
 
-![laplacian_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/6.png)
+![laplacian_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/6.png)
 
 **注： 半正定证明与刚度矩阵类似**
 
 ### 网络和加权Laplacian矩阵
 
-![network](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/7.png)
+![network](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/7.png)
 
 #### 电路相关的物理定律
 
-![typical_circuit_laws](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/8.png)
+![typical_circuit_laws](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/8.png)
 
 #### 例子
 ##### 不接外部源
 
-![1st_example_of_circuit_network_and_laplacian_matrix_without_external_sources](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/9.png)
+![1st_example_of_circuit_network_and_laplacian_matrix_without_external_sources](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/9.png)
 
 #### 接外部源
 
-![2nd_example_of_circuit_network_and_laplacian_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/10.png)
+![2nd_example_of_circuit_network_and_laplacian_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/10.png)
 
 #### 带权$K=A^TCA$
 
-![K=ATCA_with_weights](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/11.png)
+![K=ATCA_with_weights](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/11.png)
 
 ### 关联矩阵的四个基本子空间
 
 #### N(A)
 
-![N(A)_of_incidence_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/12.png)
+![N(A)_of_incidence_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/12.png)
 
 #### C(A)
 
@@ -83,11 +83,11 @@ toc: true
 
 #### $C(A^T)$
 
-![C(A^T)_of_incidence_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/13.png)
+![C(A^T)_of_incidence_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/13.png)
 
 #### 总结
 
-![summary_of_4_subspaces_of_incidence_matrix](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/14.png)
+![summary_of_4_subspaces_of_incidence_matrix](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/14.png)
 
 -   $N(A_{m\times n})$零空间 $Au=0$ ，$N(A)=c{(1,1,\,...\,,1)^T}_{n\times 1}$ ；物理意义：各点电势相等，电势差为0。
 -   $C(A_{m\times n})$列空间 $Au=e$(上文用的是x, b)，$A$ 中任意$n-1$ 列构成了$C(A)$ 的一组基；物理意义每个极小回路电势守恒，每个极小回路构成的极大回路电势依然守恒，诠释了KVL定律。
@@ -97,13 +97,13 @@ toc: true
 #### 注计
 ##### N(B)=C(A)
 
-![N(B)=C(A)](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/15.png)
+![N(B)=C(A)](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/15.png)
 
 **B的零空间中的任何一个向量，它都要属于A的列空间**，$A$的列空间中的每一个向量的特点，比如说$A$乘上一个$x_1$到$x_n$，$x_1$到$x_n$是$n$个顶点的电势。$A$乘上这个向量得到的是各个边上的电势差，那么相应的$x_j-x_k$就是$j$和$k$两个顶点上的电势差，顶点连线，$j$和$k$连线的边上的电势差。**那么我们要想说明，N(B)中的向量属于C(A)那么我们只要说明任何一个向量属于B的零空间，它最后都能写成这样一种形式，就可以了**。那么设$e$属于$N(B)$，那么我们可以取定这个连通图的一个极大树子图，然后在这个极大树子图$T$上取一个顶点作为基点，那么任意的另外一个顶点$K$跟这个基点之间它们连线的路在$T$上只有一条这样的路，因为$T$是一个树，它不可能有回路，所以在$T$中有唯一的一条连接K到基点的路。**定义K的电势：在这条路上各边的电势之和，各边的电势之和**，我们这个$e_1$到$e_m$呢，我们可以刻画各个边上的电势，那么我们可以看到$e$属于$N(B)$我们实际上可以检查出任意边上的电势差实际上是$e_j$等$u_k$减$u_1$，那么其中的这个$k$呢为j的起点，$l$为$j$的终点，最后我们就可以得到$e=-Au$，所以$e$就属于$C(A)$就是这个地方呢，我们要使用$e$属于$N(B)$，我们才能检查出：任意边上的这个电势差等于$u_k$减$u_l$，就是要满足科尔霍夫电压定律。
 
 #### 欧拉公式Euler's formula
 
-![Euler's_formula_of_2_dimensions](http://q4vftizgw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/16.png)
+![Euler's_formula_of_2_dimensions](http://q6gm8fomw.bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/16.png)
 
 对于$B_{x \times m}\Rightarrow C(B^T)+dim(N(B))=r_B+dim(N(B))=m\Rightarrow m-r_B=dim(N(B))=dim(C(A))=n-1$
 

@@ -15,16 +15,6 @@
     {% endif %}
   <script src="{{ pace_js_uri }}"></script>
   <link href="{{ pace_css_uri }}" rel="stylesheet">
-  <script>
-    (function(){
-        if('{{ page.password }}'){
-            if (prompt('please input password') !== '{{ page.password }}'){
-                alert('false password！');
-                history.back();
-            }
-        }
-    })();
-  </script>
 {% endif %}
 
 
