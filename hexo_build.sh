@@ -44,3 +44,19 @@ busuanzi: true
 
 #step9: 标签云安装
 cnpm install hexo-tag-cloud@^2.0.* --save
+
+
+#step10: 安装文章加密
+cnpm install --save hexo-blog-encrypt
+
+#去掉 主题目录下: /next/layout/_partials/head.swig文件中第一个{% endif %}前的:
+# <script>
+    # (function(){
+        # if('{{ page.password }}'){
+            # if (prompt('please input password') !== '{{ page.password }}'){
+                # alert('false password！');
+                # history.back();
+            # }
+        # }
+    # })();
+# </script>
