@@ -165,7 +165,7 @@ To build your neural network, you will be implementing several “helper functio
     - Stack [LINEAR->RELU] backward L-1 times and add [LINEAR->SIGMOID] backward in a new L_model_backward function
 - Finally update the parameters.
 
-![](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/1.png)
+![](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/1.png)
 
 **Note** that for every forward function, there is a corresponding backward function. That is why at every step of your forward module you will be storing some values in a cache. The cached values are useful for computing gradients. In the backpropagation module you will then use the cache to calculate the gradients. This assignment will show you exactly how to carry out each of these steps.
 
@@ -508,7 +508,7 @@ def linear_activation_forward_test_case():
 
 For even more convenience when implementing the L-layer Neural Net, you will need a function that replicates the previous one (`linear_activation_forward` with RELU) L−1 times, then follows that with one `linear_activation_forward` with SIGMOID.
 
-![](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/2.png)
+![](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/2.png)
 
 **Exercise**: Implement the forward propagation of the above model.
 
@@ -653,7 +653,7 @@ Just like with forward propagation, you will implement helper functions for back
 
 **Reminder**: 
 
-![](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/3.png)
+![](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/3.png)
 
 **Figure 3** : Forward and Backward propagation for LINEAR->RELU->LINEAR->SIGMOID 
 
@@ -674,7 +674,7 @@ Now, similar to forward propagation, you are going to build the backward propaga
 For layer l, the linear part is: $Z^{[l]} = W^{[l]} A^{[l-1]} + b^{[l]}$, (followed by an activation).
 Suppose you have already calculated the derivative $dZ^{[l]} = \frac{\partial \mathcal{L} }{\partial Z^{[l]}}$. You want to get $(dW^{[l]}, db^{[l]} dA^{[l-1]})$.
 
-![](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/4.png)
+![](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/4.png)
 
 The three outputs $(dW^{[l]}, db^{[l]}, dA^{[l]})$, are computed using the input $dZ^{[l]}$. Here are the formulas you need: 
 $$dW^{[l]} = \frac{\partial \mathcal{L} }{\partial W^{[l]}} = \frac{1}{m} dZ^{[l]} A^{[l-1] T} \tag{5}$$
@@ -858,7 +858,7 @@ def linear_activation_backward_test_case():
 ### 6.3 L-Model Backward
 Now you will implement the backward function for the whole network. Recall that when you implemented the `L_model_forward function`, at each iteration, you stored a cache which contains **(X,W,b, and z)**. In the back propagation module, you will use those variables to compute the gradients. Therefore, in the `L_model_backward` function, you will iterate through all the hidden layers backward, starting from layer L. On each step, you will use the cached values for layer l to backpropagate through layer l. Figure 5 below shows the backward pass.
 
-![](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/5.png)
+![](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/5.png)
 
 **Initializing backpropagation**: 
 
@@ -1144,7 +1144,7 @@ print ("y = " + str(train_y[0,index]) + ". It's a " + classes[train_y[0,index]].
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_51_1.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_51_1.png)
 
 
 
@@ -1174,7 +1174,7 @@ print ("test_y shape: " + str(test_y.shape));
 
 As usual, you reshape and standardize the images before feeding them to the network. The code is given in the cell below.
 
-![Figure 1: Image to vector conversion](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/6.png)
+![Figure 1: Image to vector conversion](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/6.png)
 
 
 ```python
@@ -1208,7 +1208,7 @@ You will then compare the performance of these models, and also try out differen
 Let’s look at the two architectures.
 
 ### 3.1 2-layer neural network
-![Figure 2: 2-layer neural network](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/7.png)
+![Figure 2: 2-layer neural network](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/7.png)
 The model can be summarized as: **INPUT -> LINEAR -> RELU -> LINEAR -> SIGMOID -> OUTPUT**
 
 Detailed Architecture of figure 2: 
@@ -1221,7 +1221,7 @@ Detailed Architecture of figure 2:
 
 ### 3.2 L-layer deep neural network
 It is hard to represent an L-layer deep neural network with the above representation. However, here is a simplified network representation:
-![Figure 3: L-layer neural network](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/8.png)
+![Figure 3: L-layer neural network](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/8.png)
 The model can be summarized as: **[LINEAR -> RELU] × (L-1) -> LINEAR -> SIGMOID**
 
 Detailed Architecture of figure 3: 
@@ -1404,7 +1404,7 @@ parameters = two_layer_model(train_x, train_y, layers_dims = (n_x, n_h, n_y), nu
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_59_1.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_59_1.png)
 
 
 Good thing you built a vectorized implementation! Otherwise it might have taken 10 times longer to train this.
@@ -1595,7 +1595,7 @@ parameters = L_layer_model(train_x, train_y, layers_dims, num_iterations = 2500,
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_67_1.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_67_1.png)
 
 
 
@@ -1629,7 +1629,7 @@ print_mislabeled_images(classes, test_x, test_y, pred_test);
 ```
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_71_0.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_71_0.png)
 
 
 A few type of images the model tends to do poorly on include: 
@@ -1669,5 +1669,5 @@ print ("y = " + str(np.squeeze(my_predicted_image)) + ", your L-layer model pred
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_73_2.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/neural-networks-deep-learning/programming_assignments/week4/output_73_2.png)
 

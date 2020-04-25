@@ -71,7 +71,7 @@ np.set_printoptions(threshold=np.nan)
 
 In Face Verification, you're given two images and you have to tell if they are of the same person. The simplest way to do this is to compare the two images pixel-by-pixel. If the distance between the raw images are less than a chosen threshold, it may be the same person! 
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/pixel_comparison.png" style="width:380px;height:150px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/pixel_comparison.png" style="width:380px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u></center></caption>
 
 Of course, this algorithm performs really poorly, since the pixel values change dramatically due to variations in lighting, orientation of the person's face, even minor changes in head position, and so on. 
@@ -115,7 +115,7 @@ Total Params: 3743280
 
 By using a 128-neuron fully connected layer as its last layer, the model ensures that the output is an encoding vector of size 128. You then use the encodings the compare two face images as follows:
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/distance_kiank.png" style="width:680px;height:250px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/distance_kiank.png" style="width:680px;height:250px;">
 <caption><center> <u> <font color='purple'> **Figure 2**: <br> </u> <font color='purple'> By computing a distance between two encodings and thresholding, you can determine if the two pictures represent the same person</center></caption>
 
 So, an encoding is a good one if: 
@@ -124,7 +124,7 @@ So, an encoding is a good one if:
 
 The triplet loss function formalizes this, and tries to "push" the encodings of two images of the same person (Anchor and Positive) closer together, while "pulling" the encodings of two images of different persons (Anchor, Negative) further apart. 
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/triplet_comparison.png" style="width:280px;height:150px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/triplet_comparison.png" style="width:280px;height:150px;">
 <br>
 <caption><center> <u> <font color='purple'> **Figure 3**: <br> </u> <font color='purple'> In the next part, we will call the pictures from left to right: Anchor (A), Positive (P), Negative (N)  </center></caption>
 
@@ -134,7 +134,7 @@ The triplet loss function formalizes this, and tries to "push" the encodings of 
 
 For an image $x$, we denote its encoding $f(x)$, where $f$ is the function computed by the neural network.
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/f_x.png" style="width:380px;height:150px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/f_x.png" style="width:380px;height:150px;">
 
 <!--
 We will also add a normalization step at the end of our model so that $\mid \mid f(x) \mid \mid_2 = 1$ (means the vector of encoding should be of norm 1).
@@ -252,7 +252,7 @@ load_weights_from_FaceNet(FRmodel)
 
 Here're some examples of distances between the encodings between three individuals:
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/distance_matrix.png" style="width:380px;height:200px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/distance_matrix.png" style="width:380px;height:200px;">
 <br>
 <caption><center> <u> <font color='purple'> **Figure 4**:</u> <br>  <font color='purple'> Example of distance outputs between three individuals' encodings</center></caption>
 
@@ -338,9 +338,9 @@ def verify(image_path, identity, database, model):
     return dist, door_open
 ```
 
-Younes is trying to enter the Happy House and the camera takes a picture of him ("http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_0.jpg"). Let's run your verification algorithm on this picture:
+Younes is trying to enter the Happy House and the camera takes a picture of him ("http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_0.jpg"). Let's run your verification algorithm on this picture:
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_0.jpg" style="width:100px;height:100px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_0.jpg" style="width:100px;height:100px;">
 
 
 ```python
@@ -368,7 +368,7 @@ verify("images/camera_0.jpg", "younes", database, FRmodel)
 </table>
 
 Benoit, who broke the aquarium last weekend, has been banned from the house and removed from the database. He stole Kian's ID card and came back to the house to try to present himself as Kian. The front-door camera took a picture of Benoit ("images/camera_2.jpg). Let's run the verification algorithm to check if benoit can enter.
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_2.jpg" style="width:100px;height:100px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_2.jpg" style="width:100px;height:100px;">
 
 
 ```python
@@ -460,7 +460,7 @@ def who_is_it(image_path, database, model):
     return min_dist, identity
 ```
 
-Younes is at the front-door and the camera takes a picture of him ("http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_0.jpg"). Let's see if your who_it_is() algorithm identifies Younes. 
+Younes is at the front-door and the camera takes a picture of him ("http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Face%2520Recognition%2520for%2520the%2520Happy%2520House/images/camera_0.jpg"). Let's see if your who_it_is() algorithm identifies Younes. 
 
 
 ```python

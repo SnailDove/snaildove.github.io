@@ -19,7 +19,7 @@ This personal note is written after studying the coursera opening course, [Machi
 To describe the **supervised learning problem** slightly more formally, **our goal is, given a training set, to learn a function h : X → Y so that h(x) is a “good” predictor for the corresponding value of y**. For historical reasons, this function h is called a hypothesis. Seen pictorially, the process is therefore like this: 
 
 
-![model_representation](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/model_representation.png)
+![model_representation](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/model_representation.png)
 
 When the target variable that we’re trying to predict is continuous, such as in our housing example, we call the learning problem a regression problem.When y can take on only a small number of discrete values (such as if, given the living area, we wanted to predict if a dwelling is a house or an apartment, say), we call it a classification problem.
 
@@ -32,7 +32,7 @@ $ J(θ_0,θ_1)={1\over2m}\sum\limits_{i=1}^m (\hat{y}_i−y_i)^2=\frac{1}{2m}\su
 To break it apart, it is ${1\over 2}\bar{x}$ where $\bar{x}$ is the mean of the squares of $h_{θ(xi)}−y_i$ , or the difference between the predicted value and the actual value. 
 
 This function is otherwise called the "Squared error function", or "Mean squared error". The mean is halved $({1\over 2})$ as a convenience for the computation of the gradient descent, as the derivative term of the square function will cancel out the $({1\over 2})$ term. The following image summarizes what the cost function does: 
-![introduction_cost_function](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/introduction_cost_function.png)
+![introduction_cost_function](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/introduction_cost_function.png)
 
 ##  Cost Function - Intuition I
 
@@ -40,15 +40,15 @@ This function is otherwise called the "Squared error function", or "Mean squared
 
 Our objective is to get the best possible line. The best possible line will be such so that the average squared vertical distances of the scattered points from the line will be the least. Ideally, the line should pass through all the points of our training data set. In such a case, the value of $J(θ_0,θ_1)$ will be $0$. The following example shows the ideal situation where we have a cost function of $0$.
 
-![cost_function_intuition_1](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_1.png)
+![cost_function_intuition_1](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_1.png)
 
 ​When $θ_1=1$, we get a slope of 1 which goes through every single data point in our model. Conversely, when $θ_1=0.5$, we see the vertical distance from our fit to the data points increase.                          
 
-![cost_function_intuition_2](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2.png)
+![cost_function_intuition_2](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2.png)
 
 This increases our cost function to $0.58​$. Plotting several other points yields to the following graph: 
 
-![cost_function_intuition_3](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_3.png)
+![cost_function_intuition_3](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_3.png)
 
 Thus as a goal, we should try to minimize the cost function. In this case, $θ_1=1$ is our global minimum.
 
@@ -56,15 +56,15 @@ Thus as a goal, we should try to minimize the cost function. In this case, $θ_1
 
  A contour plot is a graph that contains many contour lines. A contour line of a two variable function has a constant value at all points of the same line. An example of such a graph is the one to the right below.
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-1.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-1.png)
 
 Taking any color and going along the 'circle', one would expect to get the same value of the cost function. For example, the three green points found on the green line above have the same value for $J(θ_0,θ_1)$ and as a result, they are found along the same line. The circled x displays the value of the cost function for the graph on the left when $θ_0 = 800$ and $θ_1= -0.15$ . Taking another $h(x)$ and plotting its contour plot, one gets the following graphs:
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-2.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-2.png)
 
 When $θ_0 = 360$ and $θ_1 = 0$, the value of $J(θ_0,θ_1)$ in the contour plot gets closer to the center thus reducing the cost function error. Now giving our hypothesis function a slightly positive slope results in a better fit of the data.
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-3.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-3.png)
 
 The graph above minimizes the cost function as much as possible and consequently, the result of $\theta_1$ and $\theta_0$ tend to be around $0.12$ and $250$ respectively. Plotting those values on our graph to the right seems to put our point in the center of the inner most 'circle'.
 
@@ -76,7 +76,7 @@ Imagine that we graph our hypothesis function based on its fields $θ_0$ and $θ
 
 We put $θ_0$ on the x axis and $θ_1$ on the y axis, with the cost function on the vertical z axis. The points on our graph will be the result of the cost function using our hypothesis with those specific theta parameters. The graph below depicts such a setup.
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/gradient_descent.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/gradient_descent.png)
 
 We will know that we have succeeded when our cost function is at the very bottom of the pits in our graph, i.e. when its value is the minimum.  The red arrows show the minimum points in the graph. 
 
@@ -92,11 +92,11 @@ repeat until convergence:
 
 where $j=0,1$ represents the feature index number. 
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/Gradient_Descent_Algorithm.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/Gradient_Descent_Algorithm.png)
 
 At each iteration $j$ , one should simultaneously update the parameters $θ_1,θ_2,...,θ_n$. Updating a specific parameter prior to calculating another one on the $j^{(th)}$ iteration would yield to a wrong implementation.
 
-![ ](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/Gradient_Descent_code.png)
+![ ](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/Gradient_Descent_code.png)
 
 # Gradient Descent Intuition
 
@@ -108,11 +108,11 @@ $$
 $$
 Regardless of the slope's sign for $\frac{d}{d\theta_1} J(\theta_1)$, eventually converges to its minimum value. **The following graph shows that when the slope is negative, the value of $θ_1$ increases and when it is positive, the value of $θ_1$ decreases.**
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-4.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/cost_function_intuition_2-4.png)
 
 On a side note, we should adjust our parameter $α$ to ensure that the gradient descent algorithm converges in a reasonable time. **Failure to converge or too much time to obtain the minimum value imply that our step size is wrong.**
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/effect_of_too_large-or-small_gradient.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/effect_of_too_large-or-small_gradient.png)
 
 ### How does gradient descent converge with a fixed step size α?
 
@@ -120,10 +120,10 @@ The intuition behind the convergence is that $\frac{d}{d\theta_1} J(\theta_1)$ ,
 $$
 \theta_1:=\theta_1-\alpha * 0
 $$
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/gradient_descent_at_a_fixed_learning_rate.png)
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/gradient_descent_at_a_local_optima.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/gradient_descent_at_a_fixed_learning_rate.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/gradient_descent_at_a_local_optima.png)
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/a_example_of_gradient_descent.gif)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/a_example_of_gradient_descent.gif)
 
  
 
@@ -157,7 +157,7 @@ The point of all this is that if we start with a guess for our hypothesis and th
 
 So, this is simply gradient descent on the original cost function J. This method looks at every example in the entire training set on every step, and is called  **batch gradient descent** . Note that, while gradient descent can be susceptible to local minima in general, the optimization problem we have posed here for linear regression has only one global, and no other local, optima; thus gradient descent always converges (assuming the learning rate α is not too large) to the global minimum. Indeed, J is a convex quadratic function.Here is an example of gradient descent as it is run to minimize a quadratic function.
 
-![](http://q6gm8fomw.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/batch_gradient_descent.png)
+![](http://q83p23d9i.bkt.clouddn.com/snaildove.github.io/ml-andrew-ng/02/batch_gradient_descent.png)
 
 The ellipses shown above are the contours of a quadratic function. Also shown is the trajectory taken by gradient descent, which was initialized at $(48,30)$. The $x$’s in the figure (joined by straight lines) mark the successive values of $θ$ that gradient descent went through as it converged to its minimum.
 

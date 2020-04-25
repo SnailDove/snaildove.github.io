@@ -15,7 +15,7 @@ toc: true
 
 $$f_x(x)=\cases{\frac{1}{3}, & if $0 \le x \le 1$, \\ \frac{2}{3}, & if $ 1 < x \le 2$, \\0, & if otherwise}$$
 
-![Figure3.14_Piecewise_constant_PDF_for_Example3.17.png](http://q6gm8fomw.bkt.clouddn.com/gitpage/introduction-to-probability/mean_and_variance_of_a_piecewise-constant_PDF/2.png)
+![Figure3.14_Piecewise_constant_PDF_for_Example3.17.png](http://q83p23d9i.bkt.clouddn.com/gitpage/introduction-to-probability/mean_and_variance_of_a_piecewise-constant_PDF/2.png)
 
 考虑事件：
 

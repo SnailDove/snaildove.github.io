@@ -48,15 +48,15 @@ $$\frac{\nabla f(x, y)}{|\nabla f(x, y)|}$$
 
 ### 方向导数
 
-![《高等数学》（下册），同济版](http://q6gm8fomw.bkt.clouddn.com/gitpages/Calculus_and_Differential/directional_derivative.png)
+![《高等数学》（下册），同济版](http://q83p23d9i.bkt.clouddn.com/gitpages/Calculus_and_Differential/directional_derivative.png)
 
 ### 空间直角坐标系
 
-![《高等数学》（下册），同济版](http://q6gm8fomw.bkt.clouddn.com/gitpages/Calculus_and_Differential/rectangular_coordinate_system.png)
+![《高等数学》（下册），同济版](http://q83p23d9i.bkt.clouddn.com/gitpages/Calculus_and_Differential/rectangular_coordinate_system.png)
 
 ### 梯度
 
-![《高等数学》（下册），同济版](http://q6gm8fomw.bkt.clouddn.com/gitpages/Calculus_and_Differential/nabla.png)
+![《高等数学》（下册），同济版](http://q83p23d9i.bkt.clouddn.com/gitpages/Calculus_and_Differential/nabla.png)
 
 ## 点到（超）平面的距离
 
@@ -64,12 +64,12 @@ $$\frac{\nabla f(x, y)}{|\nabla f(x, y)|}$$
 
 ### 平面方程
 
-![《高等数学》（下册），同济版](http://q6gm8fomw.bkt.clouddn.com/gitpages/Calculus_and_Differential/plane_equation.png)
+![《高等数学》（下册），同济版](http://q83p23d9i.bkt.clouddn.com/gitpages/Calculus_and_Differential/plane_equation.png)
 
 ### 平面外一点到平面的距离
 为防止大家忘记向量的点积（数量积），先复习数量积，在求解 平面外一点到平面的距离会用到。
 
-![《高等数学》（下册），同济版](http://q6gm8fomw.bkt.clouddn.com/gitpages/Calculus_and_Differential/the-distance_from_the-point-outside-a-plane_to_the-plane.png)
+![《高等数学》（下册），同济版](http://q83p23d9i.bkt.clouddn.com/gitpages/Calculus_and_Differential/the-distance_from_the-point-outside-a-plane_to_the-plane.png)
 
 ## 泰勒公式
 

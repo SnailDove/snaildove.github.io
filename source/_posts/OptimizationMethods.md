@@ -21,7 +21,7 @@ Until now, you’ve always used Gradient Descent to update the parameters and mi
 
 Gradient descent goes “downhill” on a cost function $J$. Think of it as trying to do this:
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/1.png" style="width:600px;height:400px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/1.png" style="width:600px;height:400px;">
 <caption><center> <u> **Figure 1** </u>: ** : Minimizing the cost is like finding the lowest point in a hilly landscape()**<br> At each step of the training, you update your parameters following a certain direction to try to get to the lowest possible point.</center></caption>
 
 
@@ -149,7 +149,7 @@ for i in range(0, num_iterations):
 
 In Stochastic Gradient Descent, you use only 1 training example before updating the gradients. When the training set is large, SGD can be faster. But the parameters will “oscillate” toward the minimum rather than converge smoothly. Here is an illustration of this:
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/2.png" >
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/2.png" >
 <caption>
     <center> 
         <u> 
@@ -171,7 +171,7 @@ In Stochastic Gradient Descent, you use only 1 training example before updating 
 
 In practice, you’ll often get faster results if you do not use neither the whole training set, nor only one training example, to perform each update. Mini-batch gradient descent uses an intermediate number of examples for each step. With mini-batch gradient descent, you loop over the mini-batches instead of looping over individual training examples.
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/3.png" >
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/3.png" >
 <caption>
     <center> 
         <u> 
@@ -197,13 +197,13 @@ Let’s learn how to build mini-batches from the training set $(X, Y)$.
 There are two steps: 
 - **Shuffle**: Create a shuffled version of the training set $(X, Y)$ as shown below. Each column of $X$ and $Y$ represents a training example. Note that the random shuffling is done synchronously between $X$ and $Y$. Such that after the shuffling the ith column of $X$ is the example corresponding to the ith label in $Y$. The shuffling step ensures that examples will be split randomly into different mini-batches.
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/4.png" style="width:600px;height:400px;">
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/4.png" style="width:600px;height:400px;">
 
 
 
 - **Partition**: Partition the shuffled $(X, Y)$ into mini-batches of size `mini_batch_size` (here 64). Note that the number of training examples is not always divisible by `mini_batch_size`. The last mini batch might be smaller, but you don’t need to worry about this. When the final mini-batch is smaller than the full `mini_batch_size`, it will look like this:
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/5.png" >
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/5.png" >
 
 
 **Exercise**: Implement `random_mini_batches`. We coded the shuffling part for you. To help you with the partitioning step, we give you the following code that selects the indexes for the 1st and 2nd mini-batches:
@@ -306,7 +306,7 @@ Because mini-batch gradient descent makes a parameter update after seeing just a
 
 Momentum takes into account the past gradients to smooth out the update. We will store the ‘direction’ of the previous gradients in the variable $v$. Formally, this will be the exponentially weighted average of the gradient on previous steps. You can also think of $v$ as the “velocity” of a ball rolling downhill, building up speed (and momentum) according to the direction of the gradient/slope of the hill.
 
-<img src="http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/6.png" >
+<img src="http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/images/6.png" >
 <caption>
     <center> 
         <u> 
@@ -799,7 +799,7 @@ train_X, train_Y = load_dataset()
 ```
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_21_0.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_21_0.png)
 
 
 We have already implemented a 3-layer neural network. You will train it with: 
@@ -930,14 +930,14 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_25_1.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_25_1.png)
 
 
     Accuracy: 0.7966666666666666
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_25_3.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_25_3.png)
 
 
 ### 5.2 Mini-batch gradient descent with momentum
@@ -973,14 +973,14 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_27_1.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_27_1.png)
 
 
     Accuracy: 0.7966666666666666
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_27_3.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_27_3.png)
 
 
 ### 5.3 Mini-batch with Adam mode
@@ -1016,14 +1016,14 @@ plot_decision_boundary(lambda x: predict_dec(parameters, x.T), train_X, train_Y)
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_29_1.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_29_1.png)
 
 
     Accuracy: 0.94
     
 
 
-![png](http://q6gm8fomw.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_29_3.png)
+![png](http://q83p23d9i.bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week2/output_29_3.png)
 
 
 ### 5.4 Summary
