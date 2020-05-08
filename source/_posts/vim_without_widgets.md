@@ -418,16 +418,16 @@ Vim 保存文件时也会将文件保存为这种字符编码方式 (不管是�
 
 ## 个人的配置
 
-本人**无插件使用**过程中的配置很短，写在vim的配置文件.vimrc里， 配置是使用**vim script**进行配置的，它有自己的一套语法，详细请点击[vim Script](https://www.w3cschool.cn/vim/nckx1pu0.html)
+本人**无插件使用**过程中的配置很短，写在vim的配置文件 ~/.vimrc 里， 配置是使用**vim script**进行配置的，它有自己的一套语法，详细请点击[vim Script](https://www.w3cschool.cn/vim/nckx1pu0.html)
 
 ```vim
-set number;display number
-set mouse=a; setting smart mouse
-set hlsearch ;high light search
-set tabstop=4 ; setting tab width 4 letters
-set shiftwidth=4; setting new line incident width
-set noexpandtab; tab doesn't expand to space
-;set list ;display manipulator, example： \n \t \r ......
+set number       "display number
+set mouse=a      "setting smart mouse
+set hlsearch     "high light search
+set tabstop=4    "setting tab width 4 letters
+set shiftwidth=4 "setting new line incident width
+set noexpandtab  "tab doesn't expand to space
+"set list ;display manipulator, example： \n \t \r ......
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,cp936
 set fileencoding=gb2312
@@ -542,7 +542,7 @@ dp              同 ":diffput"，但没有范围。注意 不适用于可视模�
 宏的使用非常强大，前往[vim 中，宏的使用](http://blog.sina.com.cn/s/blog_69e5d8400102w1z1.html)
 
 ## 完整版命令
-本文只提供个人使用过程中积累的高频场景，完整版请点击[此处](http://q83p23d9i.bkt.clouddn.com/gitpage/vim/vim_command.png)，或查阅 vim manual
+本文只提供个人使用过程中积累的高频场景，完整版请点击[此处](http://q9kvrafcq.bkt.clouddn.com/gitpage/vim/vim_command.png)，或查阅 vim manual
 
 ## 玩游戏来熟能生巧
 
