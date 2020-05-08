@@ -1,0 +1,1877 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hadoop YARN,Distributed System,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
+<meta name="keywords" content="Hadoop YARN,Distributed System">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hadoop YARN Federation">
+<meta property="og:url" content="https://snaildove.github.io/2019/05/14/HadoopYARNFederation/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_architecture.png">
+<meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/amrmproxy_architecture.png">
+<meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_sequence_diagram.png">
+<meta property="og:updated_time" content="2020-05-01T16:04:50.885Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Hadoop YARN Federation">
+<meta name="twitter:description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
+<meta name="twitter:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_architecture.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2019/05/14/HadoopYARNFederation/">
+
+
+
+
+
+  <title>Hadoop YARN Federation | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2019/05/14/HadoopYARNFederation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Hadoop YARN Federation</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-05-14T00:00:00+08:00">
+                2019-05-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English-中文/" itemprop="url" rel="index">
+                    <span itemprop="name">English,中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  8,873
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  42
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。</p>
+<p>YARN Federation 思想源自：HDFS Federation，官方文档<a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/Federation.html" target="_blank" rel="noopener">介绍</a>，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。</p>
+<h2 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h2><p>YARN is known to scale to thousands of nodes. The scalability of <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html" target="_blank" rel="noopener">YARN</a> is determined by the Resource Manager, and is proportional to number of nodes, active applications, active containers, and frequency of heartbeat (of both nodes and applications). Lowering heartbeat can provide scalability increase, but <u>is detrimental to</u> utilization (see old Hadoop 1.x experience). This document described a <u>federation-based</u> approach to scale a single YARN cluster to tens of thousands of nodes, by federating multiple YARN sub-clusters. The proposed approach is to divide a large (10-100k nodes) cluster into smaller units called sub-clusters, each with its own YARN RM and compute nodes. The federation system will <u>stitch</u> these sub-clusters <u>together</u> and make them appear as one large YARN cluster to the applications. The applications running in this federated environment will see a single massive YARN cluster and will be able to schedule tasks on any node of the federated cluster. <u>Under the hood</u>, the federation system will <u>negotiate with</u> sub-clusters resource managers and provide resources to the application. The goal is to allow an individual job to “span” sub-clusters <u>seamlessly</u>.</p>
+<p><strong>YARN 可以伸缩到数千个节点。 YARN 的可伸缩性由资源管理器决定，与节点数量、活动的应用程序、活动的容器和心跳频率（节点和应用程序）成正比。降低心跳可以提高可伸缩性，但<u>不利于</u>利用率（请参阅旧的Hadoop1.x体验）</strong>。本文描述了一种<u>基于联邦（federation）</u>的方法，通过将多个 YARN 子集群结成（federate）联邦，将单个 YARN 集群扩展到数万个节点。该方法将一个大的（10-100K节点）集群划分为更小的子集群单元，<strong>每个子集群都有自己的 YARN RM 和计算节点。联邦系统（federation system）将这些子集群结合（stitch）在一起，使它们成为应用程序中的一个大型 YARN 集群。在这个联合环境中运行的应用程序将看到一个单个巨大的 YARN 集群，并且能够在联邦集群的任何节点上调度任务。<u>在幕后</u>，联邦系统将与子集群资源管理器<u>协商</u>，并向应用程序提供资源。目标是允许单个作业<u>无缝地</u>“跨越”子集群</strong>。</p>
+<p>This design is structurally scalable, as we bound the number of nodes each RM is responsible for, and appropriate policies, will try to ensure that the majority of applications will reside within a single sub-cluster, thus the number of applications each RM will see is also <u>bounded</u>. This means we could almost <u>linearly scale</u>, by simply adding sub-clusters (as very little coordination is needed across them). This architecture can provide very tight enforcement of scheduling invariants within each sub-cluster (simply inherits from YARN), while continuous rebalancing across subcluster will enforce (less strictly) that these properties are also respected at a global level (e.g., if a sub-cluster loses a large number of nodes, we could re-map queues to other sub-clusters to ensure users running on the impaired sub-cluster are not unfairly affected).</p>
+<p>这种设计在结构上是可伸缩的，因为我们<strong>限制了了每个 RM 负责的节点的数量</strong>，并且适当的策略将尝试确保大多数应用程序将驻留在单个子集群中，因此每个 RM 将看到的应用程序的数量也是<u>有界的</u>。这意味着我们可以通过简单地添加子集群（因为在它们之间几乎不需要协调）来<u>线性扩展</u>。这种体系结构可以在每个子集群中提供对调度不变量进行非常严格执行（简单地继承自 YARN），而跨子集群的连续重新平衡将强制（不太严格）在全局级别上也遵守这些属性（例如，如果子集群丢失了大量的节点，我们可以将队列重新映射到其他子集群，以确保在受损子集群上运行的用户不会受到不公平的影响）。</p>
+<p>Federation is designed as a “layer” <u>atop</u> of existing YARN codebase, with limited changes in the core YARN mechanisms.</p>
+<p>联邦被设计为现有 YARN 代码库的顶“层”，核心 YARN 机制的变化有限。</p>
+<p>Assumptions:</p>
+<ul>
+<li><p>We assume reasonably good connectivity across sub-clusters (e.g., we are not looking to federate across DC yet, though future investigations of this are not excluded).</p>
+<p>  我们假设子集群之间具有相当好的连通性（例如，我们还不希望在整个DC之间建立联邦，尽管未来对此的调查并未排除在外）。</p>
+</li>
+<li><p>We rely on HDFS federation (or equivalently scalable DFS solutions) to take care of scalability of the store side.</p>
+<p>  我们<strong>依赖 HDFS 联邦（或同等可扩展的 HDFS 解决方案）来处理存储端的可扩展性</strong>。</p>
+</li>
+</ul>
+<h2 id="Architecture"><a href="#Architecture" class="headerlink" title="Architecture"></a>Architecture</h2><p>OSS YARN has been known to scale up to about few thousand nodes. The proposed architecture <u>leverages the notion of</u> federating a number of such smaller YARN clusters, referred to as sub-clusters, into a larger federated YARN cluster comprising of tens of thousands of nodes. The applications running in this federated environment see a unified large YARN cluster and will be able to schedule tasks on any nodes in the cluster. Under the hood, the federation system will negotiate with sub-clusters RMs and provide resources to the application. The logical architecture in Figure 1 shows the main components that comprise the federated cluster, which are described below.</p>
+<p>据了解，OSS YARN 可以扩展到大约几千个节点。所提出的架构利用了一些较小的 YARN 集群（称为子集群）联合成由数万个节点组成的较大的联邦 YARN 集群的概念。<strong>在这个联邦环境中运行的应用程序可以看到一个统一的大型 YARN 集群，并且能够在集群中的任何节点上调度任务。在这种情况下，联邦系统将与子集群的 RMs 进行协商，并为应用程序提供资源。</strong>图1中的逻辑架构显示了组成联邦集群的主要组件，如下所述。</p>
+<p><img src="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_architecture.png" alt></p>
+<h3 id="YARN-Sub-cluster"><a href="#YARN-Sub-cluster" class="headerlink" title="YARN Sub-cluster"></a><font color="#A5DF00">YARN Sub-cluster</font></h3><p>A sub-cluster is a YARN cluster with up to few thousands nodes. The exact size of the sub-cluster will be determined considering <u>ease of deployment/maintenance, alignment with network or availability zones and general best practices</u>.</p>
+<p>子集群是一个具有数千个节点的 YARN 集群。考虑到易于部署或维护、与网络或区域可用性以及通用最佳实践，将确定子集群的准确大小。</p>
+<p>The sub-cluster YARN RM will run with work-preserving high-availability turned-on, i.e., we should be able to tolerate YARN RM, NM failures with minimal disruption. If the entire sub-cluster is compromised, external mechanisms will ensure that jobs are resubmitted in a separate sub-cluster (this could eventually be included in the federation design).</p>
+<p><strong>子集群 YARN RM 将在保持高可用性的情况下运行，即，我们应该能够承受 YARN RM、NM故障，且受损最小。如果整个子集群受到破坏，外部机制将确保在不同的子集群中重新提交作业（这可能最终包括在联邦集群设计中）</strong>。</p>
+<p>Sub-cluster is also the scalability unit in a federated environment. We can <u>scale out</u> the federated environment by adding one or more sub-clusters.</p>
+<p><strong>子集群也是联邦环境中的可伸缩性单元。我们可以通过添加一个或多个子集群来扩展联邦环境。</strong></p>
+<p>Note: by design each sub-cluster is a fully functional YARN RM, and its contribution to the federation can be set to be only a fraction of its overall capacity, i.e. a sub-cluster can <u>have a “partial” commitment to</u> the federation, while retaining the ability to give out part of its capacity in a completely local way.</p>
+<p>注：根据设计，每个子集群都是一个功能齐全的 YARN RM，其对联邦的贡献可以设置为其总容量的一小部分，即子集群可以对联邦“部分”承诺，同时保留了部分容量完全给本地运行的的能力。</p>
+<h3 id="Router"><a href="#Router" class="headerlink" title="Router"></a><font color="#A5DF00">Router</font></h3><p>YARN applications are submitted to one of the Routers, which in turn applies a routing policy (obtained from the Policy Store), queries the State Store for the sub-cluster URL and redirects the application submission request to <u>the appropriate sub-cluster RM</u>. We call the sub-cluster where the job is started the “home sub-cluster”, and we call “secondary sub-clusters” all other sub-cluster a job is <u>spanning on</u>. The Router exposes the ApplicationClientProtocol to the outside world, transparently hiding the presence of multiple RMs. To achieve this the Router also persists the mapping between the application and its home sub-cluster into the State Store. This allows Routers to be soft-state while supporting user requests cheaply, as any Router can recover this application to home sub-cluster mapping and direct requests to the right RM without broadcasting them. For <u>performance caching and session stickiness</u> might be advisable. The state of the federation (including applications and nodes) is exposed through the Web UI.</p>
+<p>YARN 应用程序被提交到其中一个路由器（Router），该路由器依次应用路由策略（从 Policy Store 中获得），查询 Policy Store 得到子集群 URL，并将应用程序提交的请求重定向到相应的子集群 RM。我们将启动作业的子集群称为“home sub-cluster”，并将作业所<u>跨越</u>的所有其他子集群称为“secondary sub-cluster”。路由器向外界公开ApplicationClientProtocol，透明（transparently ）地隐藏多个 RMs 的存在。为了实现这一点，路由器（Router）还将应用程序与其 home sub-cluster 之间的映射一直保存到  State Store 中。这允许路由器处于软状态（soft-state），同时以较低的成本支持用户请求，因为任何路由器都可以将此应用程序恢复到 home sub-cluster 映射，并将请求直接发送到正确的 RM，而无需广播它们。对于<u>性能缓存（performance caching）和会话粘性（session stickiness）</u>可能是明智的。联邦状态（包括应用程序和节点）通过Web UI公开。</p>
+<h3 id="AMRMProxy"><a href="#AMRMProxy" class="headerlink" title="AMRMProxy"></a><font color="#A5DF00">AMRMProxy</font></h3><p>The AMRMProxy is a key component to allow the application to scale and run across sub-clusters. The AMRMProxy runs on all the NM machines and acts as a proxy to the YARN RM for the AMs by implementing the ApplicationMasterProtocol. Applications will not be allowed to communicate with the sub-cluster RMs directly. They are forced by the system to connect only to the AMRMProxy endpoint, which would provide transparent access to multiple YARN RMs ( by <u>dynamically routing/splitting/merging the communications</u> ). At any one time, a job can span across one home sub-cluster and multiple secondary sub-clusters, but the policies operating in the AMRMProxy try to limit <u>the footprint of</u> each job to minimize overhead on the scheduling infrastructure (more in section on scalability/load). The interceptor <u>chain architecture of</u> the ARMMProxy is showing in figure.</p>
+<p>AMRMProxy  是允许应用程序在子集群之间扩展和运行的关键组件。AMRMProxy  运行在所有 NM 机器上，通过实现 ApplicationMasterProtocol 作为 AMs 的 YARN RM的代理。不允许应用程序直接与子集群 RMs 通信。它们被系统强制只连接到 AMRMProxy  端点，这将提供对多个 YARN RMs 的透明（transparently）访问（通过<u>动态路由/拆分/合并通信</u>）。在任何时候，一个作业都可以跨越一个 home sub-cluster 和多个 secondary sub-clusters，但是 AMRMProxy 中运行的策略试图限制每个作业的<u>占用空间</u>，以最小化在负责调度的基础结构（scheduling infrastructure）上的开销（更多内容请参见可伸缩性/负载部分）。AMRMProxy 的拦截器链结构如图所示。</p>
+<p><img src="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/amrmproxy_architecture.png" alt></p>
+<p>Role of AMRMProxy</p>
+<ol>
+<li><p>Protect the sub-cluster YARN RMs from misbehaving AMs. The AMRMProxy can prevent DDOS attacks by throttling/killing AMs that are asking too many resources.</p>
+<p> 保护 sub-cluster YARN RMs 不受不良 AMs 的影响。AMRMProxy  可以通过限制/杀死请求过多资源的 AMs 来防止DDO攻击。</p>
+</li>
+<li><p>Mask the multiple YARN RMs in the cluster, and can transparently allow the AM to span across sub-clusters. All container allocations are done by the YARN RM framework that consists of the AMRMProxy fronting the home and other sub-cluster RMs.</p>
+<p> 遮掩集群中的多个 YARN RMs ，并透明地（transparently）允许 AM 跨越子群。所有的容器分配都是通过YARN RM 框架完成的，该框架由 home sub-cluster  RM 和 other sub-cluster RMs 的 AMRMProxy 组成。</p>
+</li>
+<li><p><u>Intercepts all the requests</u>, thus it can enforce application <u>quotas</u>, which would not be enforceable by sub-cluster RM (as each only see a fraction of the AM requests).</p>
+<p> <u>截取所有请求</u>，因此它可以强制应用程序<u>配额</u>，而子集群RM将无法强制应用程序配额（因为每个请求只看到AM请求的一部分）。</p>
+</li>
+<li><p>The AMRMProxy can enforce <u>load-balancing / overflow policies</u>.</p>
+<p> AMRMProxy 可以强制执行负载平衡/溢出策略。</p>
+</li>
+</ol>
+<h3 id="Global-Policy-Generator"><a href="#Global-Policy-Generator" class="headerlink" title="Global Policy Generator"></a><font color="#A5DF00">Global Policy Generator</font></h3><p>Global Policy Generator overlooks the entire federation and ensures that the system is configured and tuned properly all the time. A key design point is that the cluster availability does not depends on an always-on GPG. The GPG operates continuously but <u>out-of-band</u> from all cluster operations, and provide us with a unique vantage point, that allows to enforce <u>global invariants</u>, affect load balancing, trigger draining of sub-clusters that will undergo maintenance, etc. More precisely the GPG will update user capacity allocation-to-subcluster mappings, and more rarely change the policies that run in Routers, AMRMProxy (and possible RMs).</p>
+<p><strong>全局策略生成器（Global Policy Generator: GPG）整体把控（overlook）整个联邦系统，并确保系统始终正确配置和调优。</strong>一个关键的设计点是集群的可用性并不依赖于一个始终在线的 GPG。<strong>GPG连续运行，但在所有集群的操作都是<a href="https://baike.baidu.com/item/out-of-band/15801641?fr=aladdin" target="_blank" rel="noopener">out-of-band</a></strong>，并为我们提供了一个独特的优势点，允许强制执行全局不变量、影响负载平衡、触发以下动作：排除要进行维护的子集群等。更准确地说，GPG将更新：用户与分配给子集群的容量之间的映射关系，并且很少更改在路由器、AMRMProxy （以及可能的 RMs）中运行的策略。</p>
+<p>In case the GPG is not-available, cluster operations will continue as of the last time the GPG published policies, and while a long-term unavailability might mean some of the desirable properties of balance, optimal cluster utilization and global invariants might <u>drift away</u>, compute and access to data will not be compromised.</p>
+<p>如果 GPG 不可用，则集群操作将按照在 GPG 上次发布的策略继续进行，而长期不可用可能意味着平衡、最佳集群利用率和全局不变量的某些理想属性可能会<u>偏移</u>，计算以及访问数据不会被妥协。</p>
+<p>NOTE: In the current implementation the GPG is a manual tuning process, simply exposed via a CLI (YARN-3657).<br><strong>注意：在当前的实现中，GPG 是一个手动调优过程，只需通过 CLI（yarn-3657）公开即可。</strong></p>
+<p>This part of the federation system is part of future work in <a href="https://issues.apache.org/jira/browse/YARN-5597" target="_blank" rel="noopener">YARN-5597</a>.<br><strong>联邦系统的这一部分是 <a href="https://issues.apache.org/jira/browse/YARN-5597" target="_blank" rel="noopener">YARN-5597</a> 未来工作的一部分。</strong></p>
+<h3 id="Federation-State-Store"><a href="#Federation-State-Store" class="headerlink" title="Federation State-Store"></a><font color="#A5DF00">Federation State-Store</font></h3><p>The Federation State defines the additional state that needs to be maintained to <u>loosely couple</u> multiple individual sub-clusters into a single large federated cluster. This includes the following information:</p>
+<p>联邦状态（ Federation State）定义了需要维护的额外状态，以便将多个子集群<u>松散地耦合</u>到单个大型联邦集群中。这包括以下信息：</p>
+<h4 id="1-Sub-cluster-Membership"><a href="#1-Sub-cluster-Membership" class="headerlink" title="1. Sub-cluster Membership"></a><font color="#01A9DB">1. Sub-cluster Membership</font></h4><p>The member YARN RMs continuously heartbeat to the state store to keep alive and publish their current capability/load information. This information is used by the Global Policy Generator (GPG) to make proper <u>policy decisions</u>. Also this information can be used by routers to select the best home sub-cluster. This mechanism allows us to dynamically grow/shrink the “cluster fleet” by adding or removing sub-clusters. This also allows for easy maintenance of each sub-cluster. This is new functionality that needs to be added to the YARN RM but the mechanisms are well understood as it’s similar to individual YARN RM HA.</p>
+<p>成员 YARN RMs 发出连续心跳到 State Store来保持激活状态并发布其当前能力值（capability）/负载信息（load information）。全局策略生成器（GPG）使用此信息做出正确的<u>策略决策</u>。路由器也可以利用这些信息来选择最佳的 home sub-cluster。这个机制允许我们通过添加或删除子集群来动态地增长（grow）/收缩（shrink）“集群的机群（cluster fleet）”。这还允许轻松维护每个子集群。这是需要添加到 YARN RM 中的新功能，但机制已被很好地理解，因为它类似于单个 YARN RM HA。</p>
+<h4 id="2-Application’s-Home-Sub-cluster"><a href="#2-Application’s-Home-Sub-cluster" class="headerlink" title="2. Application’s Home Sub-cluster"></a><font color="#01A9DB">2. Application’s Home Sub-cluster</font></h4><p>The sub-cluster on which the Application Master (AM) runs is called the Application’s “home sub-cluster”. The AM is not limited to resources from the home sub-cluster but can also request resources from other sub-clusters, <u>referred to as</u> secondary sub-clusters. The federated environment will be configured and tuned periodically such that when an AM is placed on a sub-cluster, it should be able to find most of the resources on the home sub-cluster. Only in certain cases it should need to ask for resources from other sub-clusters.</p>
+<p>运行 Application Master（AM）的子集群称为应用程序的 “home sub-cluster” 。AM不限于来自 home sub-cluster 的资源，还可以从其他子集群（被称为 secondary sub-clusters）请求资源。联邦环境将定期进行配置和调优，这样当 AM 放置在一个子集群上时，它应该能够找到 home sub-cluster 上的大部分资源。只有在某些情况下，它才需要从其他子集群请求资源。</p>
+<h3 id="Federation-Policy-Store"><a href="#Federation-Policy-Store" class="headerlink" title="Federation Policy Store"></a><font color="#A5DF00">Federation Policy Store</font></h3><p>The federation Policy Store is a logically separate store (while it might <u>be backed by</u> the same physical component), which contains information about how applications and resource requests are routed to different sub-clusters. The current implementation provides several policies, ranging from random/hashing/<u>round robin</u>/priority to more sophisticated ones which account for sub-cluster load, and request locality needs.</p>
+<p>联邦 Policy Store 是一个逻辑上独立的存储（虽然它可能由同一物理组件支持），其中包含如何将应用程序和资源请求路由到不同子群集的信息。当前的实现提供了几个策略，从随机/哈希/<u>循环</u>/优先级到更复杂的策略，这些策略负责子集群负载和请求位置需求。</p>
+<h2 id="Running-Applications-across-Sub-Clusters"><a href="#Running-Applications-across-Sub-Clusters" class="headerlink" title="Running Applications across Sub-Clusters"></a>Running Applications across Sub-Clusters</h2><p>When an application is submitted, the system will determine the most appropriate sub-cluster to run the application, which we call as the application’s home sub-cluster. All the communications from the AM to the RM will be proxied via the AMRMProxy running locally on the AM machine. AMRMProxy exposes the same ApplicationMasterService protocol endpoint as the YARN RM. The AM can request containers using the locality information exposed by the storage layer. In ideal case, the application will be placed on a sub-cluster where all the resources and data required by the application will be available, but if it does need containers on nodes in other sub-clusters, AMRMProxy will negotiate with the RMs of those sub-clusters transparently and provide the resources to the application, thereby enabling the application to view the entire federated environment as one massive YARN cluster. AMRMProxy, Global Policy Generator (GPG) and Router work together to make this happen seamlessly.</p>
+<p>提交应用程序时，系统将确定运行应用程序的最合适的子集群，我们称之为应用程序的 home sub-cluster。从 AM 到 RM 的所有通信都将通过在 AM 机器上运行的 AMRMProxy 进行代理。 AMRMProxy 开放了相同的 ApplicationMasterService 协议端点作为与 YARN RM。AM可以使用存储层公开的位置信息请求容器。理想情况下，应用程序将被放置在子集群上，应用程序所需的所有资源和数据都将可用，但如果它确实需要其他子集群中节点上的容器， AMRMProxy 将透明地与这些子集群的 RMs 协商，并提供资源。源到应用程序，从而使应用程序能够将整个联邦环境视为一个巨大的 YARN 集群。 AMRMProxy 、全局策略生成器（gpg）和路由器协同工作，实现无缝连接。</p>
+<p><img src="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_sequence_diagram.png" alt></p>
+<p>The figure shows a sequence diagram for the following job execution flow:</p>
+<p>该图显示了以下作业执行流程的序列图：</p>
+<ol>
+<li><p>The Router receives an application submission request that is complaint to the YARN Application Client Protocol.</p>
+<p>路由器接收到一个应用程序提交请求，这是对 YARN 应用客户端协议的投诉。</p>
+</li>
+</ol>
+<ol>
+<li><p>The router interrogates a routing table / policy to choose the “ “home RM” ” for the job (the policy configuration is received from the state-store on heartbeat).</p>
+<p>路由器询问路由表/策略以选择作业的“ “home RM” ”（有心跳的时候，策略配置从状态存储 (state-store) 接收）。</p>
+</li>
+<li><p>The router queries the membership state to determine the endpoint of the  “home RM” .</p>
+<p>路由器查询成员身份状态以确定 “home RM” 的端点。</p>
+</li>
+</ol>
+<ol>
+<li><p>The router then redirects the application submission request to the  “home RM” .</p>
+<p>然后，路由器将应用程序提交请求重定向到 “home RM” 。</p>
+</li>
+<li><p>The router updates the application state with the home sub-cluster identifier.</p>
+<p> 路由器使用 home sub-cluster 标识更新应用程序状态。</p>
+</li>
+<li><p>Once the application is submitted to the  “home RM” , the stock YARN flow is triggered, i.e. the application is added to the scheduler queue and its AM started in the home sub-cluster, on the first NodeManager that has available resources. </p>
+<p>一旦应用程序提交到 “home RM” ，库存的 YARN 流就会被触发，即将应用程序添加到调度器队列中，并在home sub-cluster 中具有可用资源的第一个节点管理器（NM）  来启动它的 AM。</p>
+<p>a. During this process, the AM environment is modified by indicating that the address of the AMRMProxy as the YARN RM to talk to. </p>
+<p>a. 在此过程中，通过指出 AMRMProxy 的地址作为要通信的 YARN RM 来修改 AM 环境（变量）。</p>
+<p>b. The security tokens are also modified by the NM when launching the AM, so that the AM can only talk with the AMRMProxy. Any future communication from AM to the YARN RM is mediated by the AMRMProxy.</p>
+<p>b.安全令牌（security tokens）在启动AM时也会被NM修改，因此 AM 只能与 AMRMproxy 通信。从 AM 到 YARN RM 的任何未来通信都由 Amrmproxy 做媒。</p>
+</li>
+<li><p>The AM will then request containers using the locality information exposed by HDFS.<br> 然后，AM 将使用 HDFS 公开的位置信息请求容器。</p>
+</li>
+<li><p>Based on a policy the AMRMProxy can impersonate the AM on other sub-clusters, by submitting an Unmanaged AM, and by forwarding the AM heartbeats to relevant sub-clusters. </p>
+<p>根据策略， AMRMProxy 可以通过提交还未被管理的AM（Unmanaged AM）以及将 AM 心跳转发到相关子群集来扮演其他子群集上的 AM。</p>
+<p>a. Federation supports multiple application attempts with AMRMProxy HA. AM containers will have different attempt id in home sub-cluster, but the same Unmanaged AM in secondaries will be used across attempts.</p>
+<p>a. 联邦支持使用 AMRMProxy  HA 进行多个应用程序尝试。AM 容器 在 home sub-cluster 中具有不同的尝试ID，但在不同的尝试之间将使用secondaries中相同的 UAM (Unmanaged AM)。</p>
+<p>b. When AMRMProxy HA is enabled, UAM token will be stored in Yarn Registry. In the registerApplicationMaster call of each application attempt, AMRMProxy will go fetch existing UAM tokens from registry (if any) and re-attached to the existing UAMs.</p>
+<p>b. 启用 AMRMProxy  HA 后，UAM(Unmanaged AM) 令牌将存储在 YARN 注册表中。在每次应用程序尝试的<code>registerApplicationMaster</code> 调用中， AMRMProxy 将从注册表（如果有）中获取现有的UAM令牌，并重新连接到现有的UAM。</p>
+</li>
+<li><p>The AMRMProxy will use both locality information and a pluggable policy configured in the state-store to decide whether to forward the resource requests received by the AM to the Home RM or to one (or more) Secondary RMs. In Figure 1, we show the case in which the AMRMProxy decides to forward the request to the secondary RM.</p>
+<p> AMRMProxy 将同时使用位置信息和状态存储（state-store）中配置的可插拔策略来决定是将AM接收到的资源请求转发到 Home RM 还是一个（或多个）Secondary RMs。在图1中，我们展示了 AMRMProxy 决定将请求转发到 secondary RM 的情况。</p>
+</li>
+<li><p>The secondary RM will provide the AMRMProxy with valid container tokens to start a new container on some node in its sub-cluster. This mechanism ensures that each sub-cluster uses its own security tokens and avoids <u>the need for</u> a cluster wide shared secret to create tokens. The AMRMProxy forwards the allocation response back to the AM.</p>
+<p>secondary RM 将向 AMRMProxy 提供有效的容器令牌，以便在其子集群中的某个节点上启动新的容器。此机制确保每个子集群使用自己的安全令牌（security tokens），并避免需要集群范围的共享机密来创建令牌。 AMRMProxy 将分配响应转发回 AM。</p>
+</li>
+</ol>
+<ol>
+<li>The AM starts the container on the target NodeManager (on sub-cluster 2) using the standard YARN protocols.<br>AM使用标准 YARN 协议在目标节点管理器（在子集群2）上启动容器。</li>
+</ol>
+<h2 id="Configuration"><a href="#Configuration" class="headerlink" title="Configuration"></a>Configuration</h2><p>To configure the YARN to use the Federation, set the following property in the <code>conf/yarn-site.xml</code>:</p>
+<p>要将 YARN 配置为使用 Federation，请在 <code>conf/yarn-site.xml</code> 中设置以下属性：</p>
+<h3 id="EVERYWHERE"><a href="#EVERYWHERE" class="headerlink" title="EVERYWHERE:"></a><font color="#A5DF00">EVERYWHERE:</font></h3><p>These are common configurations that should appear in the <code>conf/yarn-site.xml</code> at each machine in the federation.</p>
+<p>这些是常见的配置，应该出现在联邦中每台机器的 <code>conf/yarn-site.xml</code> 中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.federation.enabled</code></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Whether federation is enabled or not<br>是否启用联邦机制</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.resourcemanager.cluster-id</code></td>
+<td style="text-align:left"><code>&lt;unique-subcluster-id&gt;</code></td>
+<td style="text-align:left">The unique subcluster identifier for this RM (same as the one used for HA).<br>为这个 RM 使用子集群的标识符（HA模式下，互为备份的 RM 也是同样的配置）</td>
+</tr>
+</tbody>
+</table>
+<h4 id="State-Store"><a href="#State-Store" class="headerlink" title="State-Store:"></a><font color="#01A9DB">State-Store:</font></h4><p>Currently, we support ZooKeeper and SQL based implementations of the state-store.<br>目前，我们支持状态存储的ZooKeeper和基于SQL的实现。</p>
+<p>Note: The State-Store implementation must always be overwritten with one of the below.<br>注意：状态存储实现必须始终被下面的某个覆盖。</p>
+<p>ZooKeeper: one must set the ZooKeeper settings for Hadoop:<br>动物园管理员：必须为Hadoop设置  ZooKeeper：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.class</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.&lt;br /&gt;server.federation.store.&lt;br /&gt;impl.ZookeeperFederationStateStore</code></td>
+<td style="text-align:left">The type of state-store to use.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>hadoop.zk.address</code></td>
+<td style="text-align:left"><code>host:port</code></td>
+<td style="text-align:left">The address for the ZooKeeper ensemble.</td>
+</tr>
+</tbody>
+</table>
+<p>SQL: one must setup the following parameters:</p>
+<p>SQL: 必须设置以下参数：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.class</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.server.federation.store.impl.SQLFederationStateStore</code></td>
+<td style="text-align:left">The type of state-store to use.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.sql.url</code></td>
+<td style="text-align:left"><code>jdbc:mysql://&lt;host&gt;:&lt;port&gt;/FederationStateStore</code></td>
+<td style="text-align:left">For SQLFederationStateStore the name of the DB where the state is stored.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.sql.jdbc-class</code></td>
+<td style="text-align:left"><code>com.mysql.jdbc.jdbc2.optional.MysqlDataSource</code></td>
+<td style="text-align:left">For SQLFederationStateStore the jdbc class to use.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.sql.username</code></td>
+<td style="text-align:left"><code>&lt;dbuser&gt;</code></td>
+<td style="text-align:left">For SQLFederationStateStore the username for the DB connection.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.sql.password</code></td>
+<td style="text-align:left"><code>&lt;dbpass&gt;</code></td>
+<td style="text-align:left">For SQLFederationStateStore the password for the DB connection.</td>
+</tr>
+</tbody>
+</table>
+<p>We provide scripts for MySQL and Microsoft SQL Server.</p>
+<p>我们为MySQL和Microsoft SQL Server提供脚本。</p>
+<p>For MySQL, one must download the latest jar version 5.x from MVN Repository and add it to the CLASSPATH. Then the DB schema is created by executing the following SQL scripts in the database:</p>
+<p>对于MySQL，必须从MVN存储库下载最新的JAR5.x版本，并将其添加到类路径。然后，通过在数据库中执行以下SQL脚本来创建 DB schema：</p>
+<ol>
+<li><code>sbin/FederationStateStore/MySQL/FederationStateStoreDatabase.sql</code></li>
+<li><code>sbin/FederationStateStore/MySQL/FederationStateStoreUser.sql</code></li>
+<li><code>sbin/FederationStateStore/MySQL/FederationStateStoreTables.sql</code></li>
+<li><code>sbin/FederationStateStore/MySQL/FederationStateStoreStoredProcs.sql</code></li>
+</ol>
+<p>In the same directory we provide scripts to drop the Stored Procedures, the Tables, the User and the Database.</p>
+<p>在同一个目录中，我们提供了删除存储过程、表、用户和数据库的脚本。</p>
+<p>Note: the  defines a default user/password for the DB that you are highly encouraged to set this to a proper strong password.</p>
+<p>注意：<code>FederationStateStoreUser.sql</code> 定义了数据库的默认用户/密码，强烈建议您将其设置为正确的强密码。</p>
+<p>For SQL-Server, the process is similar, but the jdbc driver is already included. SQL-Server scripts are located in sbin/FederationStateStore/SQLServer/.</p>
+<p>对于SQL Server，过程类似，但已经包含了JDBC驱动程序。SQL Server脚本位于<code>sbin/federationstatestore/sql server/</code>中。</p>
+<h4 id="Optional"><a href="#Optional" class="headerlink" title=" Optional:"></a><font color="#01A9DB"> Optional:</font></h4><table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.federation.failover.enabled</code></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Whether should retry considering RM failover within each subcluster.<br>考虑到每个子群集中的RM故障转移，是否应重试。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.blacklist-subclusters</code></td>
+<td style="text-align:left"><code>&lt;subcluster-id&gt;</code></td>
+<td style="text-align:left">A list of black-listed sub-clusters, useful to disable a sub-cluster<br>黑名单子群集的列表，用于关闭子集群</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.policy-manager</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.&lt;br /&gt;server.federation.policies.&lt;br /&gt;manager.&lt;br /&gt;WeightedLocalityPolicyManager</code></td>
+<td style="text-align:left">The choice of policy manager determines how Applications and ResourceRequests are routed through the system.<br>策略管理器的选择决定了应用程序和资源请求在系统中的路由方式。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.policy-manager-params</code></td>
+<td style="text-align:left"><code>&lt;binary&gt;</code></td>
+<td style="text-align:left">The payload that configures the policy. In our example a set of weights for router and amrmproxy policies. This is typically generated by serializing a policymanager that has been configured programmatically, or by populating the state-store with the .json serialized form of it.<br>配置策略的有效负载。在我们的示例中，路由器和 AMRMProxy 策略的一组权重。这通常是通过序列化已通过编程方式配置的 PolicyManager 或使用.json序列化形式填充状态存储来生成的。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.subcluster-resolver.class</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.&lt;br /&gt;yarn.server.federation.&lt;br /&gt;resolver.&lt;br /&gt;DefaultSubClusterResolverImpl</code></td>
+<td style="text-align:left">The class used to resolve which subcluster a node belongs to, and which subcluster(s) a rack belongs to.<br>用于解析节点所属的子群集和机架所属的子群集的类。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.machine-list</code></td>
+<td style="text-align:left"><code>node1,subcluster1,rack1\n&lt;br /&gt; node2 , subcluster2, RACK1\n&lt;br /&gt; node3,subcluster3, rack2\n&lt;br /&gt; node4, subcluster3, rack2\n</code></td>
+<td style="text-align:left">a list of Nodes, Sub-clusters, Rack, used by the <code>DefaultSubClusterResolverImpl</code><br>默认子集群使用的节点、子群集、机架列表。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ON-RMs"><a href="#ON-RMs" class="headerlink" title="ON RMs:"></a><font color="#A5DF00">ON RMs:</font></h3><p>These are extra configurations that should appear in the conf/yarn-site.xml at each ResourceManager.<br>这些是额外的配置，应该出现在每个资源管理器的conf/yarn-site.xml中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.resourcemanager.epoch</code></td>
+<td style="text-align:left"><code>&lt;unique-epoch&gt;</code></td>
+<td style="text-align:left">The seed value for the epoch. This is used to guarantee uniqueness of container-IDs generate by different RMs. It must therefore be unique among sub-clusters and well-spaced to allow for failures which increment epoch. Increments of 1000 allow for a large number of sub-clusters and practically ensure near-zero chance of collisions (a clash will only happen if a container is still alive for 1000 restarts of one RM, while the next RM never restarted, and an app requests more containers).<br>epoch的种子值。这是为了保证不同 RMs 生成的容器ID的唯一性。因此，它在子集群中必须是唯一的，并且具有良好的间隔以允许增加epoch出现的失败。增量1000允许大量的子集群，并且实际上可以确保几乎没有发生冲突的机会（只有当容器在1000次重新启动一个 RM 时仍处于活动状态，而下一个 RM 从未重新启动，并且应用程序请求更多容器时，才会发生冲突）。</td>
+</tr>
+</tbody>
+</table>
+<p>Optional:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.federation.state-store.heartbeat-interval-secs</code></td>
+<td style="text-align:left"><code>60</code></td>
+<td style="text-align:left">The rate at which RMs report their membership to the federation to the central state-store.<br>RMs 向中央状态存储报告其联盟成员身份的时间间隔。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ON-ROUTER"><a href="#ON-ROUTER" class="headerlink" title="ON ROUTER:"></a><font color="#A5DF00">ON ROUTER:</font></h3><p>These are extra configurations that should appear in the <code>conf/yarn-site.xml</code> at each Router.<br>这些是额外的配置，应该出现在每个路由器的 <code>conf/yarn-site.xml</code> 中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.router.bind-host</code></td>
+<td style="text-align:left"><code>0.0.0.0</code></td>
+<td style="text-align:left">Host IP to bind the router to. The actual address the server will bind to. If this optional address is set, the RPC and webapp servers will bind to this address and the port specified in <code>yarn.router.*.address</code> respectively. This is most useful for making Router listen to all interfaces by setting to 0.0.0.0.<br>路由器绑定的主机IP。服务器将绑定到的实际地址。如果设置了此可选地址，则 RPC 和 webapp 服务器将分别绑定到此地址和 <code>yarn.router.*.address</code> 中指定的端口。这对于通过设置为0.0.0.0将路由器列表设置为所有接口最有用。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.clientrm.&lt;br /&gt;interceptor-class.pipeline</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.&lt;br /&gt;server.router.clientrm.&lt;br /&gt;FederationClientInterceptor</code></td>
+<td style="text-align:left">A comma-seperated list of interceptor classes to be run at the router when interfacing with the client. The last step of this pipeline must be the Federation Client Interceptor.<br>与客户端接口交互时要在路由器上运行的截断类的逗号分隔列表。此管道的最后一步必须是Federation Client拦截器。</td>
+</tr>
+</tbody>
+</table>
+<p>Optional:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.router.hostname</code></td>
+<td style="text-align:left"><code>0.0.0.0</code></td>
+<td style="text-align:left">Router host name.</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.clientrm.address</code></td>
+<td style="text-align:left"><code>0.0.0.0:8050</code></td>
+<td style="text-align:left">路由主机名</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.webapp.address</code></td>
+<td style="text-align:left"><code>0.0.0.0:8089</code></td>
+<td style="text-align:left">Webapp address at the router.<br>webapp在路由器的地址</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.admin.address</code></td>
+<td style="text-align:left"><code>0.0.0.0:8052</code></td>
+<td style="text-align:left">Admin address at the router.<br>路由器的管理地址</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.webapp.https.address</code></td>
+<td style="text-align:left"><code>0.0.0.0:8091</code></td>
+<td style="text-align:left">Secure webapp address at the router.<br>在路由器上安全的webapp地址</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.submit.retry</code></td>
+<td style="text-align:left"><code>3</code></td>
+<td style="text-align:left">The number of retries in the router before we give up.<br>在放弃之前，在路由器上的尝试次数。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.statestore.max-connections</code></td>
+<td style="text-align:left"><code>10</code></td>
+<td style="text-align:left">This is the maximum number of parallel connections each Router makes to the state-store.<br>每个路由器连接到state-store的最大并发数</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.cache-ttl.secs</code></td>
+<td style="text-align:left"><code>60</code></td>
+<td style="text-align:left">The Router caches informations, and this is the time to leave before the cache is invalidated.<br>路由器缓存信息，这是缓存的有效时间。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.router.webapp.&lt;br /&gt;interceptor-class.pipeline</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.&lt;br /&gt;server.router.webapp.&lt;br /&gt;FederationInterceptorREST</code></td>
+<td style="text-align:left">A comma-seperated list of interceptor classes to be run at the router when interfacing with the client via REST interface. The last step of this pipeline must be the Federation Interceptor REST.<br>当通过 REST 接口与客户机交互时，要在路由器上运行的拦截器类的逗号分隔列表。此管道的最后一步必须是 Federation Interceptor REST 。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="ON-NMs"><a href="#ON-NMs" class="headerlink" title="ON NMs:"></a><font color="#A5DF00">ON NMs:</font></h3><p>These are extra configurations that should appear in the conf/yarn-site.xml at each NodeManager.<br>这些额外的配置应该出现在每个节点管理器的 <code>conf/yarn-site.xml</code> 中。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.nodemanager.&lt;br /&gt;amrmproxy.enabled</code></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Whether or not the AMRMProxy is enabled.<br>是否启用 AMRMProxy</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.nodemanager.amrmproxy.&lt;br /&gt;interceptor-class.pipeline</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.&lt;br /&gt;server.nodemanager.amrmproxy.&lt;br /&gt;FederationInterceptor</code></td>
+<td style="text-align:left">A comma-separated list of interceptors to be run at the amrmproxy. For federation the last step in the pipeline should be the FederationInterceptor.<br>要在 AMRMProxy 上运行的拦截器的逗号分隔列表。对于联邦，管道中的最后一步应该是联合拦截器。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.client.&lt;br /&gt;failover-proxy-provider</code></td>
+<td style="text-align:left"><code>org.apache.hadoop.yarn.&lt;br /&gt;server.federation.failover&lt;br /&gt;.FederationRMFailoverProxyProvider</code></td>
+<td style="text-align:left">The class used to connect to the RMs by looking up the membership information in federation state-store. This must be set if federation is enabled, even if RM HA is not enabled.<br>通过在联邦 state-store 中查找成员身份信息来连接到 RMs的类。如果启用了联邦，即使未启用RM HA，也必须设置此选项。</td>
+</tr>
+</tbody>
+</table>
+<p>Optional:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.nodemanager.amrmproxy.ha.enable</code></td>
+<td style="text-align:left"><code>true</code></td>
+<td style="text-align:left">Whether or not the AMRMProxy HA is enabled for multiple application attempt suppport.<br>是否为多个应用程序尝试支持启用 AMRMProxy HA。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.statestore.max-connections</code></td>
+<td style="text-align:left"><code>1</code></td>
+<td style="text-align:left">The maximum number of parallel connections from each AMRMProxy to the state-store. This value is typically lower than the router one, since we have many AMRMProxy that could burn-through many DB connections quickly.<br>从每个 AMRMProxy 到状态存储的最大并行连接数。这个值通常低于Router在这个属性的值，因为我们有许多 AMRMProxy 可以快速通过许多 DB 连接。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.federation.cache-ttl.secs</code></td>
+<td style="text-align:left"><code>300</code></td>
+<td style="text-align:left">The time to leave for the AMRMProxy cache. Typically larger than at the router, as the number of AMRMProxy is large, and we want to limit the load to the centralized state-store.<br>离开 Amrmproxy 缓存的时间。通常比 Router在这个属性上设置的值要大，因为AMRMProxy 的数量很大，我们希望将负载限制到集中式状态存储。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="Running-a-Sample-Job"><a href="#Running-a-Sample-Job" class="headerlink" title="Running a Sample Job"></a>Running a Sample Job</h2><p>In order to submit jobs to a Federation cluster one must create a seperate set of configs for the client from which jobs will be submitted. In these, the <code>conf/yarn-site.xml</code> should have the following additional configurations:</p>
+<p>为了将作业提交到联邦集群，必须为将从中提交作业的客户端创建一组单独的配置。在这些配置中，<code>conf/yarn-site.xml</code> 应该具有以下附加配置：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Property</th>
+<th style="text-align:left">Example</th>
+<th style="text-align:left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>yarn.resourcemanager.address</code></td>
+<td style="text-align:left"><code>&lt;router_host&gt;:8050</code></td>
+<td style="text-align:left">Redirects jobs launched at the client to the router’s client RM port.<br>将在客户端启动的作业重定向到路由器的客户端 RM 端口。</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>yarn.resourcemanger.scheduler.address</code></td>
+<td style="text-align:left"><code>localhost:8049</code></td>
+<td style="text-align:left">Redirects jobs to the federation AMRMProxy port.<br>将作业重定向到联邦的AMRMProxy 端口</td>
+</tr>
+</tbody>
+</table>
+<p>Any YARN jobs for the cluster can be submitted from the client configurations described above. In order to launch a job through federation, first start up all the clusters involved in the federation as described <a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/ClusterSetup.html" target="_blank" rel="noopener">here</a>. Next, start up the router on the router machine with the following command:</p>
+<p>集群的任何 YARN job 都可以从上面描述的客户机配置提交。为了通过联邦启动一个作业，首先启动联邦中涉及的所有集群，如本文所述。接下来，使用以下命令在路由器计算机上启动路由器：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$HADOOP_HOME</span><span class="regexp">/bin/y</span>arn --daemon start router</span><br></pre></td></tr></table></figure>
+<p>Now with <code>$HADOOP_CONF_DIR</code> pointing to the client configurations folder that is described above, run your job the usual way. The configurations in the client configurations folder described above will direct the job to the router’s client RM port where the router should be listening after being started. Here is an example run of a Pi job on a federation cluster from the client:</p>
+<p>现在，当  <code>$HADOOP_CONF_DIR</code> 指向上面描述的客户端配置文件夹时，以通常的方式运行您的作业。上面描述的客户端配置文件夹中的配置将把作业引导到路由器的客户端 RM 端口，路由器在启动后应该在该端口上进行侦听。下面是从客户端在联邦集群上运行 Pi 作业的示例：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$HADOOP_HOME/bin/yarn jar hadoop-mapreduce-examples<span class="number">-3.0</span><span class="number">.0</span>.jar pi <span class="number">16</span> <span class="number">1000</span></span><br></pre></td></tr></table></figure>
+<p>This job is submitted to the router which as described above, uses a generated policy from the <a href="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/Federation.html#Global_Policy_Generator" target="_blank" rel="noopener">GPG</a> to pick a home RM for the job to which it is submitted.</p>
+<p>此作业将提交给路由器，如上文所述，路由器使用GPG生成的策略为其提交到的作业选择一个 Home RM。</p>
+<p>The output from this particular example job should be something like:</p>
+<p>这个特定示例作业的输出应该类似于：</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:25</span>,055 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>: <span class="selector-tag">Job</span> <span class="selector-tag">job_1499988226739_0001</span> <span class="selector-tag">running</span> <span class="selector-tag">in</span> <span class="selector-tag">uber</span> <span class="selector-tag">mode</span> : <span class="selector-tag">false</span></span><br><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:25</span>,056 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>:  <span class="selector-tag">map</span> 0% <span class="selector-tag">reduce</span> 0%</span><br><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:33</span>,131 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>:  <span class="selector-tag">map</span> 38% <span class="selector-tag">reduce</span> 0%</span><br><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:39</span>,176 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>:  <span class="selector-tag">map</span> 75% <span class="selector-tag">reduce</span> 0%</span><br><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:45</span>,217 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>:  <span class="selector-tag">map</span> 94% <span class="selector-tag">reduce</span> 0%</span><br><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:46</span>,228 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>:  <span class="selector-tag">map</span> 100% <span class="selector-tag">reduce</span> 100%</span><br><span class="line">2017<span class="selector-tag">-07-13</span> 16<span class="selector-pseudo">:29</span><span class="selector-pseudo">:46</span>,235 <span class="selector-tag">INFO</span> <span class="selector-tag">mapreduce</span><span class="selector-class">.Job</span>: <span class="selector-tag">Job</span> <span class="selector-tag">job_1499988226739_0001</span> <span class="selector-tag">completed</span> <span class="selector-tag">successfully</span></span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line">.</span><br><span class="line"><span class="selector-tag">Job</span> <span class="selector-tag">Finished</span> <span class="selector-tag">in</span> 30<span class="selector-class">.586</span> <span class="selector-tag">seconds</span></span><br><span class="line"><span class="selector-tag">Estimated</span> <span class="selector-tag">value</span> <span class="selector-tag">of</span> <span class="selector-tag">Pi</span> <span class="selector-tag">is</span> 3<span class="selector-class">.14250000</span>......</span><br></pre></td></tr></table></figure>
+<p>The state of the job can also be tracked on the Router Web UI at <code>routerhost:8089</code>. Note that no change in the code or recompilation of the input jar was required to use federation. Also, the output of this job is the exact same as it would be when run without federation. Also, in order to get the full benefit of federation, use a large enough number of mappers such that more than one cluster is required. That number happens to be 16 in the case of the above example.</p>
+<p>作业的状态也可以在路由器 Web UI 上的 <code>routerhost:8089</code>上跟踪。注意，使用联邦不需要更改代码或重新编译输入的jar包。此外，此作业的输出与在没有联合的情况下运行时的输出完全相同。此外，为了充分利用联合，请使用足够多的映射器，以便多个集群的需求。在上面的例子中，这个数字恰好是16。</p>
+<h2 id="A-list-of-References"><a href="#A-list-of-References" class="headerlink" title="A list of References"></a>A list of References</h2><ol>
+<li>官方关于 YARN Federation issue: <a href="https://issues.apache.org/jira/browse/YARN-2915" target="_blank" rel="noopener">https://issues.apache.org/jira/browse/YARN-2915</a></li>
+<li><a href="https://blog.csdn.net/androidlushangderen/article/details/78573732" target="_blank" rel="noopener">HDFS基于路由的Federation方案</a></li>
+<li><a href="https://blog.csdn.net/Androidlushangderen/article/details/92853602" target="_blank" rel="noopener">YARN Federation的架构设计</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2019/05/14/HadoopYARNFederation/" title="Hadoop YARN Federation">https://snaildove.github.io/2019/05/14/HadoopYARNFederation/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Hadoop-YARN/" rel="tag"><i class="fa fa-tag"></i> Hadoop YARN</a>
+          
+            <a href="/tags/Distributed-System/" rel="tag"><i class="fa fa-tag"></i> Distributed System</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/03/10/Transformer_learning-resources/" rel="next" title="Transformer论文简记">
+                <i class="fa fa-chevron-left"></i> Transformer论文简记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/02/Chapter20_StreamProcessingFundamentals(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 20 Stream Processing Fundamentals">
+                翻译 Chapter 20 Stream Processing Fundamentals <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="SnailDove">
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学习方法/">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Preface"><span class="nav-text">Preface</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Purpose"><span class="nav-text">Purpose</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Architecture"><span class="nav-text">Architecture</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#YARN-Sub-cluster"><span class="nav-text">YARN Sub-cluster</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Router"><span class="nav-text">Router</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AMRMProxy"><span class="nav-text">AMRMProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Global-Policy-Generator"><span class="nav-text">Global Policy Generator</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Federation-State-Store"><span class="nav-text">Federation State-Store</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#1-Sub-cluster-Membership"><span class="nav-text">1. Sub-cluster Membership</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-Application’s-Home-Sub-cluster"><span class="nav-text">2. Application’s Home Sub-cluster</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Federation-Policy-Store"><span class="nav-text">Federation Policy Store</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-Applications-across-Sub-Clusters"><span class="nav-text">Running Applications across Sub-Clusters</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Configuration"><span class="nav-text">Configuration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#EVERYWHERE"><span class="nav-text">EVERYWHERE:</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#State-Store"><span class="nav-text">State-Store:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Optional"><span class="nav-text"> Optional:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ON-RMs"><span class="nav-text">ON RMs:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ON-ROUTER"><span class="nav-text">ON ROUTER:</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ON-NMs"><span class="nav-text">ON NMs:</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Running-a-Sample-Job"><span class="nav-text">Running a Sample Job</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#A-list-of-References"><span class="nav-text">A list of References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">918.8k</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

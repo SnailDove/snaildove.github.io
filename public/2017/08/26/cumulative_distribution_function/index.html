@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="probability,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   ​分布函数（用记号 CDF">
+<meta name="keywords" content="probability">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经典摘录-[累积]分布函数CDF">
+<meta property="og:url" content="https://snaildove.github.io/2017/08/26/cumulative_distribution_function/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   ​分布函数（用记号 CDF">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png">
+<meta property="og:updated_time" content="2020-05-01T16:04:50.955Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="经典摘录-[累积]分布函数CDF">
+<meta name="twitter:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   ​分布函数（用记号 CDF">
+<meta name="twitter:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2017/08/26/cumulative_distribution_function/">
+
+
+
+
+
+  <title>经典摘录-[累积]分布函数CDF | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2017/08/26/cumulative_distribution_function/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">经典摘录-[累积]分布函数CDF</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-26T20:16:00+08:00">
+                2017-08-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/中文/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  2,946
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>说明：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a></p>
+<h2 id="分布函数"><a href="#分布函数" class="headerlink" title="分布函数"></a>分布函数</h2><p>我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在<strong>希望用一个统一的数学工具去刻画随机变量的取值规律</strong>。  </p>
+<p>​<strong>分布函数</strong>（用记号 CDF 表示简称）就能完成这个任务。 $X$ 的 CDF 是一个 $x$ 的函数，对每一个 $x$ ，$F_X(x)$ 定义为 $P(X\le x)$ 。特别地，当 $X$ 为离散或连续的情况下：<br>$$<br>F_X(x)=P(X\le x)=\cases{\sum\limits_{k\le x}p_X(k), \text{若 $X$ 是离散的}\\\int_{-\infty}^{x}f_X(x)dt, \text{若 $X$ 是连续的 }}<br>$$<br><strong>分布函数又称为累积分布函数（cumulative distribution function）</strong>，累积意味着 $F_X(x)$ 将 $X$ 取值的概率由 $-\infty\rightarrow x$。 </p>
+<p>在一个概率模型中，随机变量可以有不同的类型，可以是离散的，也可以是连续的，甚至可以是既非离散的也非连续的。但不管是什么类型的随机变量，它们有一个共同的特征，即都有一个分布函数，这是因为 $\{X\le x\}$ 是一个随机事件，这些事件的概率形成概率分布。今后，凡是通过 PMF\PDF\CDF刻画事件 $\{X\le x\}$ 概率的，都称为<strong>随机变量 $X$ 的概率律</strong>。因此离散情况下的分布列，连续情况下的概率密度函数以及一般情况下的分布函数都是相应的随机变量的概率律。</p>
+<p>下图分别给出不同的离散随机变量和连续随机变量的 CDF 的一些说明。从这些图像以及 CDF 的定义，可以得到 CDF 的某些性质。</p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png" alt="Figure_3.6_CDFs_of_some_discrete_variables.png"></p>
+<p>上图这些离散随机变量的 CDF ，通过随机变量的概率质量函数（PMF）可求得相应的分布函数：<br>$$<br>F_X(x)=P(X\le x)=\sum\limits_{k\le x}p_{X}(k)<br>$$<br>这个函数是一个阶梯函数，在具有正概率的那些点上具有跳跃。在跳跃点上， $F_X(x)$ 取较大的那个值，即 $F_X(x)$ 保持右连续。</p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png" alt="Figure_3.7_CDFs_of_some_continuous_random_variables.png"></p>
+<p>上图的这些连续随机变量的 $CDF$ 。通过随机变量的概率密度函数（PDF）可求得相应的分布函数：<br>$$<br>F_X(x)=P(X\le x)=\int_{-\infty}^{+\infty}f_X(t)dt<br>$$<br>概率密度函数 $f_X(x)$ 可由 CDF 经求微分得到：<br>$$<br>f_X(x)=\frac{dF_X(x)}{dx}(x)<br>$$<br>对于连续随机变量，CDF 是连续的</p>
+<h2 id="CDF-的性质"><a href="#CDF-的性质" class="headerlink" title="CDF 的性质"></a>CDF 的性质</h2><p>假设 $X$ 的 CDF $F_X(x)$ 是由下式定义的 ：<br>$$<br>F_X(x)=P(X\le x), \forall x<br>$$<br>并且 $F_X(x)$ 具有下列性质：</p>
+<ol>
+<li><p>$F_X(x)$ 是 $x$ 的单调非减函数：若 $x\le y$ ，则 $F_X(x)\le F_X(y)$ 。</p>
+</li>
+<li><p>当 $x\rightarrow -\infty$ 的时候，则 $F_X(x)\rightarrow 0$ ，当 $x\rightarrow +\infty$ ，则 $F_X(x)\rightarrow 1$ 。</p>
+</li>
+<li><p>当 $X$ 是离散随机变量的时候， $F_X(x)$ 为阶梯函数。</p>
+</li>
+<li><p>当 $X$ 是连续随机变量的时候， $F_X(x)$ 为 $x$ 的连续函数。</p>
+</li>
+<li><p>当 $X$ 是离散随机变量并且取整数数值的时候，分布函数和概率质量函数（PMF）可以利用求和或差分互求：<br>$$<br>F_X(k)=\sum\limits_{i=-\infty}^{k}p_X(i)\\<br>p_X(k)=P(X\le k)-P(X\le k-1)=F_X(k)-F_X(k-1)<br>$$<br>其中 $k$ 可以是任意整数。 </p>
+</li>
+<li><p>当 $X$ 是连续随机变量的时候，分布函数与概率密度函数可以利用积分和微分互求：<br>$$<br>F_X(x)=\int_{-\infty}^{x}f_X(t)dt,\quad f_X(x)=\frac{dF_X}{dx}(x)<br>$$<br>(第二个等式只在分布函数可微的那些点上成立)</p>
+</li>
+</ol>
+<p><strong>有时候为了计算随机变量的概率质量函数或概率密度函数，首先计算随机变量的分布函数会更方便些</strong>。在连续随机变量的情况下，将在4.1节系统地介绍用该方法求随机变量的函数的分布。下面是一个离散随机变量的计算例子。</p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="几个随机变量的最大值"><a href="#几个随机变量的最大值" class="headerlink" title="几个随机变量的最大值"></a>几个随机变量的最大值</h3><p>你参加某种测试，按规定三次测试的最高成绩作为你的最后成绩，设 $X=max\{X_1,X_2,X_3\}$ ，其中 $X_1,X_2,X_3$ 是三次测试成绩，$X$ 是你的最后的成绩。假设你的每次测试成绩是 1 分到 10 分之间，并且 $P(X=i)=\frac{1}{10}, i=1,…,10$ 。现在求最终成绩 $X$ 的概率质量函数。</p>
+<p>采用间接方法求分布函数。首先计算 $X$ 的 CDF，然后通过<br>$$<br>p_X(k)=F_X(k)-F_X(k-1), i=1,\ldots,10<br>$$<br>得到 $X$ 的概率质量函数。对于 $F_X(k)$ ，得到：<br>$$<br>\begin{eqnarray}<br>F_X(k) &amp;=&amp; P(X\le k) \\<br>&amp;=&amp; P(X_1\le k, X_2\le k, X_3\le k) \\<br>&amp;=&amp; P(X_1\le k)P(X_2\le k)P(X_3\le k) \\<br>&amp;=&amp; (\frac{k}{10})^3<br>\end{eqnarray}<br>$$<br>此处第三个等式是由事件 $\{X_1\le k\},\{X_2\le k\},\{X_3\le k\}$ 相互独立所致。这样 $X$ 的概率质量函数为：<br>$$<br>p_X(k)=(\frac{k}{10})^3-(\frac{k-1}{10})^3, k=1,\ldots,10<br>$$<br>本例的方法可推广到 $n$ 个随机变量 $X_1,\ldots,X_n$ 的情况。如果对每一个 $x$ ，事件 $\{X_1\le x\},\ldots, \{X_n\le x\}$ 相互独立，则 $X=max\{X_1,\ldots,X_n\}$ 的 CDF 为：<br>$$<br>F(x)=F_{X_1}(x)\cdots F_{X_n}(x)<br>$$<br>利用这个公式，在离散情况下通过差分可得到 $P_X(x)$ ，在连续情况下通过微分可得到 $f_X(x)$ 。</p>
+<h3 id="距离的分布函数和概率密度函数"><a href="#距离的分布函数和概率密度函数" class="headerlink" title="距离的分布函数和概率密度函数"></a>距离的分布函数和概率密度函数</h3><p>习题3.5 ：按照均匀分布律，在一个三角形中随机的选取一个点，设已知三角形的高，求这个点到底边的距离 $X$ 的分布函数和概率密度函数。</p>
+<p>用 $b$ 表示底的长度，$h$ 表示三角形的高度，$A=\frac{bh}{2}$ 表示三角形的面积。随机地在三角形内选取一个点，然后画一条平行于三角形底边的辅助直线，用 $A_x$ 表示由这条辅助线构成的小三角形的面积，那么这个小三角形的高度即 $h-x$ ，它的底边按比例求得：$b\frac{h-x}{h}$ ，因此 $A_x=\frac{b(h-x)^2}{2h}$ 。对于 $x\in [0,h]$ ，得到：<br>$$<br>F_X(x)=P(0&lt; x \le x)=1-P(X&gt;x)=1-\frac{A_x}{A}=1-\frac{\frac{b(h-x)^2}{2h}}{\frac{bh}{2}}=1-(\frac{h-x}{h})^2<br>$$<br>当 $x&lt;0,$ 那么 $F_X(x)=0$ ; 当 $x&gt;h,$ 那么 $F_X(x)=1$ 。</p>
+<p>概率密度函数可以对累积分布函数 CDF 进行求微分得到：<br>$$<br>f_X(x)=\frac{dF_X}{dx}(x)=\cases{\frac{2(h-x)}{h^2}, &amp; 当 $0\le x \le h$\\0, &amp; 其他情况}<br>$$</p>
+<h3 id="等待时间"><a href="#等待时间" class="headerlink" title="等待时间"></a>等待时间</h3><p>习题3.6 ：Jane去银行取款，有1个或0个顾客在她前面，这两种情况是等可能的。已知一个顾客的服务时间是一个指数随机变量，参数为 $\lambda$ 。那么Jane所等待的时间分布函数是？</p>
+<p>用 $X$ 表示等待的时间，用 $Y$ 表示在Jane之前顾客的数量。于是得到：$\forall x &lt;0, F_X(x)=0$ ，其他情况下，根据题意得：<br>$$<br>F_X(x)=P(X\le x)=\frac{1}{2}P(X\le x| Y=0)+\frac{1}{2}P(X\le x|Y=1)<br>$$<br>又因为<br>$$<br>P(X\le x|Y=0)=1,\quad P(X\le x|Y=1)=1-e^{-\lambda x}<br>$$<br>得到<br>$$<br>F_X(x)=\cases{\frac{1}{2}(2-e^{-\lambda x}), &amp; if $x \ge 0$ \\0, &amp; 其他情况}<br>$$<br>注意：这个累积分布函数 CDF 在 $x=0$ 处连续，随机变量 $X$ 既不是离散的也不是连续的。</p>
+<h3 id="投飞标游戏"><a href="#投飞标游戏" class="headerlink" title="投飞标游戏"></a>投飞标游戏</h3><p>Alvin在进行飞镖游戏，飞镖的靶是一块半径为 r 的圆板。记 $X$ 为飞镖的落点到靶心的距离。假设落点在靶板上均匀地分布。</p>
+<p>(a) 求出 $X$ 的概率密度函数、均值和方差。</p>
+<p>$X$ 的累积分布函数比较容易求得：<br>$$<br>F_X(x)=\cases{<br>P(X\le x)=\frac{\pi x^2}{\pi r^2}=(\frac{x}{r})^2, &amp; if $\forall x\in [0,r]$\\<br>0, &amp; if $x &lt; 0$\\<br>1, &amp; if $x&gt;r$<br>}<br>$$<br>通过微分，得到概率密度函数：<br>$$<br>f_X(x)=\cases{<br>\frac{2x}{r^2}, &amp; if $0\le x\le r$\\<br>0, &amp; otherwise<br>}<br>$$<br>进而通过积分得到：<br>$$<br>E[X]=\int_{0}^{r}\frac{2x^2}{r^2}dx=\frac{2r}{3}\\<br>E[X^2]=\int_{0}{r}\frac{2x^3}{r^2}dx=\frac{r^2}{2}\\<br>var(X)=E[X^2]-(E[X])^2=\frac{r^2}{2}-\frac{4r^2}{9}=\frac{r^2}{18}<br>$$<br>(b) 靶上画出了一个半径为 $t$ 的同心圆。若 $X\le t$ ，Alvin的得分为 $S=\frac{1}{X}$ ，其他情况 $S=0$ 。求出 $S$ 的分布函数。 $S$ 是不是连续随机变量？</p>
+<p>由题意得：当且仅当 $X\le t$ ，Alvin 获得一个介于 $[\frac{1}{t}, +\infty)$ 的分数s，其它情况下，他的得分为 0 。因此：<br>$$<br>F_S(s)=\cases{<br>0, \quad \text{if $s&lt;0$}\\<br>P(S\le s)=1-P(X\le t), \quad \text{if $0\le s\le \frac{1}{t}$  (即Alvin击中了内圆之外)} \\<br>P(S\le s)=P(X\le t)P(S\le s|X\le t)+P(X&gt;t)P(S\le s|X&gt;t) \quad \text{if $s &gt; \frac{1}{t}$}<br>}<br>$$<br>根据题意，得到：<br>$$<br>P(X\le t)=\frac{t^2}{r^2},\quad P(X&gt;t)=1-\frac{t^2}{r^2}<br>$$<br>而且因为当 $X&gt;t, S=0$ ， 所以 $P(S\le s|X&gt; t)=1$ 。</p>
+<p>进而得到：<br>$$<br>P(S\le s| X\le t)=P(\frac{1}{X}\le s|X\le t)=P(\frac{1}{s}\le X|X\le t) = \frac{P(\frac{1}{s}\le X \le t)}{P(X\le t)} =\frac{\frac{\pi t^2 -\pi(\frac{1}{s})^2}{\pi r^2}}{\frac{\pi t^2}{\pi r^2}}=1-\frac{1}{s^2t^2}<br>$$<br>最后得到：<br>$$<br>F_S(s)=\cases{<br>    0, &amp; \text{if }s&lt;0 \\<br>    1-\frac{t^2}{r^2}, &amp; \text{if } 0\le s \le \frac{1}{t}\\<br>    1-\frac{1}{s^2r^2} &amp; \text{if } \frac{1}{t}&lt;s<br>}<br>$$<br>因为 $F_S(s)$ 在 $s=0$ 处不连续，所以随机变量 $S$ 不是连续的。</p>
+<h2 id="几何和指数随机变量的分布函数"><a href="#几何和指数随机变量的分布函数" class="headerlink" title="几何和指数随机变量的分布函数"></a>几何和指数随机变量的分布函数</h2><p><strong>由于分布函数对一切随机变量都适用，可以利用它来探索离散和连续随机变量之间的关系</strong>。特别地，此处讨论几何随机变量和指数随机变量之间的关系。</p>
+<p>设 $X$ 是一个几何随机变量，其参数为 $p$ ，即 $X$ 是在伯努利独立试验序列中直到第一次成功所需要的试验次数，而伯努利试验的参数为 $p$ 。这样对于 $k=1,2\cdots,$  得到 $P(X=k)=p(1-p)^{k-1}$ ，而 $X$ 的 CDF 为：<br>$$<br>F_{geo}(n)=\sum\limits_{k=1}^{n}p(1-p)^{k-1}=p\frac{1-(1-p)^n}{1-(1-p)}=1-(1-p)^n,\quad n=1,2,\cdots<br>$$<br>现在设 $X$ 是一个指数随机变量，其参数 $\lambda&gt;0$ 。其 CDF 是<br>$$<br>F_{exp}(x)=P(X\le x)=0,\quad x\le 0\\<br>F_{exp}(x)=\int_{0}^{x}\lambda e^{-\lambda t}dt=-e^{-\lambda t}|^{x}_{0}=1-e^{-\lambda x},\quad x&gt;0<br>$$<br>现在比较两个分布函数，令 $\delta=\frac{-ln(1-p)}{\lambda}\rightarrow \delta\lambda=-ln(1 - p)$ ，这样得到：<br>$$<br>e^{-\lambda\delta}=1-p \quad (*)<br>$$<br>那么，将 $(*)​$ 代入 $F_{geo}(n)​$ 得：$1-(e^{-\lambda\delta})^n=1-e^{-n\lambda\delta}​$ ，而分布函数 $F_{exp}​$ 在 $x=n\delta​$ 处为： $1-e^{-\lambda n\delta}=1-e^{-n\lambda\delta}​$ 是与 $F_{geo}​$ 在 $n​$ 处相等的，$n=1,2,\cdots​$ ，即：<br>$$<br>F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots<br>$$<br>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
+<p>几何随机变量和指数随机变量的分布函数之间的关系。图中离散分布函数为 $X\delta$ 的分布函数，$X$ 是参数为 $p=1-e^{-\lambda x}$ 的几何随机变量。当 $\delta\rightarrow 0$ 时，$X\delta$ 的分布函数趋于指数分布函数 $1-e^{-\lambda x}$ 。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2017/08/26/cumulative_distribution_function/" title="经典摘录-[累积]分布函数CDF">https://snaildove.github.io/2017/08/26/cumulative_distribution_function/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/probability/" rel="tag"><i class="fa fa-tag"></i> probability</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/26/mean_and_variance_of_uniform_random_variable/" rel="next" title="经典摘录-均匀随机变量的均值和方差">
+                <i class="fa fa-chevron-left"></i> 经典摘录-均匀随机变量的均值和方差
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/" rel="prev" title="经典摘录-分段常数概率密度函数的均值和方差">
+                经典摘录-分段常数概率密度函数的均值和方差 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="SnailDove">
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学习方法/">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#分布函数"><span class="nav-text">分布函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDF-的性质"><span class="nav-text">CDF 的性质</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例子"><span class="nav-text">例子</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#几个随机变量的最大值"><span class="nav-text">几个随机变量的最大值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#距离的分布函数和概率密度函数"><span class="nav-text">距离的分布函数和概率密度函数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#等待时间"><span class="nav-text">等待时间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#投飞标游戏"><span class="nav-text">投飞标游戏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#几何和指数随机变量的分布函数"><span class="nav-text">几何和指数随机变量的分布函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">918.8k</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

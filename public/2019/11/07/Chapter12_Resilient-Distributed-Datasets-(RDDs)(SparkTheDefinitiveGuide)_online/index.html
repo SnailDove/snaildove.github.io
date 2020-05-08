@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spark,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="Chapter 12. Resilient Distributed Datasets (RDDs)The previous part of the book covered Spark’s Structured APIs. You should heavily favor these APIs in almost all scenarios. That being said, there ar">
+<meta name="keywords" content="Spark">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译 Chapter 12 Resilient Distributed Datasets (RDDs)">
+<meta property="og:url" content="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="Chapter 12. Resilient Distributed Datasets (RDDs)The previous part of the book covered Spark’s Structured APIs. You should heavily favor these APIs in almost all scenarios. That being said, there ar">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg">
+<meta property="og:updated_time" content="2020-05-01T16:04:50.774Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="翻译 Chapter 12 Resilient Distributed Datasets (RDDs)">
+<meta name="twitter:description" content="Chapter 12. Resilient Distributed Datasets (RDDs)The previous part of the book covered Spark’s Structured APIs. You should heavily favor these APIs in almost all scenarios. That being said, there ar">
+<meta name="twitter:image" content="http://q9kvrafcq.bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/">
+
+
+
+
+
+  <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs) | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-11-07T00:00:00+08:00">
+                2019-11-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  11,776
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  56
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://q9kvrafcq.bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"></p>
+<h1 id="Chapter-12-Resilient-Distributed-Datasets-RDDs"><a href="#Chapter-12-Resilient-Distributed-Datasets-RDDs" class="headerlink" title="Chapter 12. Resilient Distributed Datasets (RDDs)"></a>Chapter 12. Resilient Distributed Datasets (RDDs)</h1><p>The previous part of the book covered Spark’s Structured APIs. You should heavily favor these APIs in almost all scenarios. That being said, there are times when higher-level manipulation will not meet the business or engineering problem you are trying to solve. For those cases, you might need to use Spark’s lower-level APIs, specifically the Resilient Distributed Dataset (RDD), the <code>SparkContext</code>, and distributed shared variables like accumulators and broadcast variables. The chapters that follow in this part cover these APIs and how to use them.</p>
+<p>本书的上一部分介绍了Spark的结构化API。在几乎所有情况下，您都应该大力支持这些API。话虽这么说，有时更高层别的操作无法满足您要解决的业务或工程问题。在这种情况下，您可能需要使用Spark的较底层API，特别是弹性分布式数据集（RDD），<code>SparkContext</code>和分布式共享变量（distributed shared variable），例如累加器（accumulator）和广播变量（broadcast variable）。本部分后面的章节介绍了这些API以及如何使用它们。</p>
+<hr>
+<p></p><p><center><font face="constant-width" color="#c67171" size="3"><strong>WARNING 警告</strong></font></center></p><br>If you are brand new to Spark, this is not the place to start. Start with the Structured APIs, you’ll be more productive more quickly!<p></p>
+<p>如果您是Spark的新手，那么这不是一个开始的地方。 从结构化API开始，您将更快地提高生产力！</p>
+<hr>
+<h2 id="What-Are-the-Low-Level-APIs"><a href="#What-Are-the-Low-Level-APIs" class="headerlink" title="What Are the Low-Level APIs?"></a><font color="#9a161a">What Are the Low-Level APIs?</font></h2><p>There are two sets of low-level APIs: there is one for manipulating distributed data (RDDs), and another for distributing and manipulating distributed shared variables (broadcast variables and accumulators).</p>
+<p>有两组底层API：一组用于处理分布式数据（RDD），另一组用于分发和处理分布式共享变量（广播变量和累加器）。</p>
+<h3 id="When-to-Use-the-Low-Level-APIs"><a href="#When-to-Use-the-Low-Level-APIs" class="headerlink" title="When to Use the Low-Level APIs? "></a><font color="#00000">When to Use the Low-Level APIs? </font></h3><p>You should generally use the lower-level APIs in three situations:</p>
+<p>通常，您应在以下三种情况下使用较底层的API：</p>
+<ul>
+<li><p>You need some functionality that you cannot find in the higher-level APIs; for example, if you need very tight control over physical data placement across the cluster.</p>
+<p> 您需要一些在高层API中找不到的功能。 例如，如果您需要非常严格地控制整个集群中的物理数据放置。</p>
+</li>
+<li><p>You need to maintain some legacy codebase written using RDDs.</p>
+<p>  您需要维护一些使用RDD编写的旧代码库。</p>
+</li>
+<li><p>You need to do some custom shared variable manipulation. We will discuss shared variables more in Chapter 14.</p>
+<p>  您需要执行一些自定义共享变量操作。我们将在第14章中讨论共享变量。</p>
+</li>
+</ul>
+<p>Those are the reasons why you should use these lower-level tools, buts it’s still helpful to understand these tools because all Spark workloads compile down to these fundamental primitives. When you’re calling a DataFrame transformation, it actually just becomes a set of RDD transformations. This understanding can make your task easier as you begin debugging more and more complex workloads.</p>
+<p>这就是为什么您应该使用这些底层工具的原因，但是了解这些工具仍然有帮助，因为所有Spark工作负载均会编译为这些基本原语（fundamental primitives）。当您调用DataFrame转换时，它实际上只是一组RDD转换。当您开始调试越来越复杂的工作负载时，这种理解可以使您的任务更轻松。</p>
+<p>Even if you are an advanced developer hoping to get the most out of Spark, we still recommend focusing on the Structured APIs. However, there are times when you might want to “drop down” to some of the lower-level tools to complete your task. You might need to drop down to these APIs to use some legacy code, implement some custom partitioner, or update and track the value of a variable over the course of a data pipeline’s execution. These tools give you more fine-grained control at the expense of safeguarding you from shooting yourself in the foot.</p>
+<p>即使您是希望充分利用Spark的高级开发人员，我们仍然建议您专注于结构化API。但是，有时您可能需要“下拉”一些较底层的工具来完成任务。您可能需要使用这些API来使用一些旧代码，实现一些自定义分区程序，或者在数据管道执行过程中更新和跟踪变量的值。这些工具可为您提供更细粒度的控制，但以保护您伤害到自己为代价。</p>
+<h3 id="How-to-Use-the-Low-Level-APIs"><a href="#How-to-Use-the-Low-Level-APIs" class="headerlink" title="How to Use the Low-Level APIs?"></a><font color="#00000">How to Use the Low-Level APIs?</font></h3><p>A <code>SparkContext</code> is the entry point for low-level API functionality. You access it through the <code>SparkSession</code>, which is the tool you use to perform computation across a Spark cluster. We discuss this further in Chapter 15 but for now, you simply need to know that you can access a <code>SparkContext</code> via the following call:</p>
+<p><code>SparkContext</code>是底层API功能的入口点。您可以通过 <code>SparkSession</code> 访问它，<code>SparkSession</code> 是用于跨 Spark 集群执行计算的工具。我们将在第15章中对此进行进一步讨论，但是现在，您只需要知道可以通过以下调用访问<code>SparkContext</code> ：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.sparkContext</span><br></pre></td></tr></table></figure>
+<h2 id="About-RDDs"><a href="#About-RDDs" class="headerlink" title="About RDDs"></a><font color="#9a161a">About RDDs</font></h2><p>RDDs were the primary API in the Spark 1.X series and are still available in 2.X, but they are not as commonly used. However, as we’ve pointed out earlier in this book, virtually all Spark code you run, whether DataFrames or Datasets, compiles down to an RDD. The Spark UI, covered in the next part of the book, also describes job execution in terms of RDDs. Therefore, it will behoove you to have at least a basic understanding of what an RDD is and how to use it.</p>
+<p>RDD是Spark 1.X系列中的主要API，并且在2.X中仍然可用，但是并不常用。但是，正如我们在本书前面所指出的那样，您运行的几乎所有Spark代码（无论是DataFrames还是Datasets）都可以编译为RDD。本书下一部分介绍的Spark UI还以RDD来描述作业执行。因此，您应该至少对RDD是什么以及如何使用它有基本的了解。</p>
+<p>In short, an RDD represents an immutable, partitioned collection of records that can be operated on in parallel. Unlike DataFrames though, where each record is a structured row containing fields with a known schema, in RDDs the records are just Java, Scala, or Python objects of the programmer’s choosing.</p>
+<p>简而言之，RDD表示一个不变的，分区的记录集合，可以并行操作。不过，与DataFrames不同的是，每个记录都是一个结构化的行，其中包含具有已知模式的字段，而在RDD中，记录只是程序员选择的Java，Scala或Python对象。</p>
+<p>RDDs give you complete control because every record in an RDD is a just a Java or Python object. You can store anything you want in these objects, in any format you want. This gives you great power, but not without potential issues. Every manipulation and interaction between values must be defined by hand, meaning that you must “reinvent the wheel” for whatever task you are trying to carry out. Also, optimizations are going to require much more manual work, because Spark does not understand the inner structure of your records as it does with the Structured APIs. For instance, Spark’s Structured APIs automatically store data in an optimized, compressed binary format, so to achieve the same space-efficiency and performance, you’d also need to implement this type of format inside your objects and all the low-level operations to compute over it. Likewise, optimizations like reordering filters and aggregations that occur automatically in Spark SQL need to be implemented by hand. For this reason and others, we highly recommend using the Spark Structured APIs when possible.</p>
+<p>RDD提供了完全的控制权，因为RDD中的每条记录都只是一个Java或Python对象。您可以以任何所需的格式将所需的任何内容存储在这些对象中。这将为您提供强大的功能，但并非没有潜在的问题。值之间的每个操作和交互都必须手动定义，这意味着您必须“重新发明轮子”才能完成您要执行的任何任务。而且，优化将需要更多的人工工作，因为Spark无法像使用结构化API那样理解记录的内部结构。例如，Spark的结构化API自动以优化的压缩二进制格式存储数据，因此，要实现相同的空间效率和性能，还需要在对象内部以及所有底层操作中实现这种格式计算它。同样，需要手动执行在Spark SQL中自动进行的优化（例如重新排序过滤器和聚合）。因此，我们强烈建议您尽可能使用Spark结构化API。</p>
+<p>The RDD API is similar to the Dataset, which we saw in the previous part of the book, except that RDDs are not stored in, or manipulated with, the structured data engine. However, it is trivial to convert back and forth between RDDs and Datasets, so you can use both APIs to take advantage of each API’s strengths and weaknesses. We’ll show how to do this throughout this part of the book.</p>
+<p>RDD API 与 Dataset 类似，我们在本书的上半部分中看到了，除了 RDD 不存储在结构化数据引擎中或不使用结构化数据引擎操纵之外。但是，在 RDD 和 Datasets 之间来回转换很简单，因此您可以使用这两个API来利用每个API的优点和缺点。在本书的这一部分中，我们将展示如何执行此操作。</p>
+<h3 id="Types-of-RDDs"><a href="#Types-of-RDDs" class="headerlink" title="Types of RDDs"></a><font color="#00000">Types of RDDs</font></h3><p>If you look through Spark’s API documentation, you will notice that there are lots of subclasses of RDD. For the most part, these are internal representations that the DataFrame API uses to create optimized physical execution plans. As a user, however, you will likely only be creating two types of RDDs: the “generic” RDD type or a key-value RDD that provides additional functions, such as aggregating by key. For your purposes, these will be the only two types of RDDs that matter. Both just represent a collection of objects, but key-value RDDs have special operations as well as a concept of custom partitioning by key.</p>
+<p>查看Spark的API文档时，您会发现RDD有很多子类。在大多数情况下，这些是DataFrame API用于创建优化的物理执行计划的内部表示。但是，作为用户，您可能只会创建两种类型的RDD：<strong>“通用” RDD类型</strong>或提供附加功能（例如，按键聚合）的<strong>键值RDD</strong>。就您的目的而言，这将是仅有的两种重要的RDD类型。两者都仅表示对象的集合，但是键值RDD具有特殊的操作以及按键自定义分区的概念。</p>
+<p>Let’s formally define RDDs. Internally, each RDD is characterized by five main properties :</p>
+<p>让我们正式定义RDD。在内部，每个RDD具有五个主要属性：</p>
+<ol>
+<li>A list of partitions 分区列表</li>
+<li>A function for computing each split  用于计算每个拆分的函数</li>
+<li>A list of dependencies on other RDDs  对其他RDD的依赖关系列表</li>
+<li>Optionally, a <code>Partitioner</code> for key-value RDDs (e.g., to say that the RDD is hash-partitioned) （可选）一个键值RDD的分区程序（例如，说RDD是哈希分区的）</li>
+<li>Optionally, a list of preferred locations on which to compute each split (e.g., block locations for a Hadoop Distributed File System [HDFS] file)  （可选）在其上计算每个拆分的首选位置的列表（例如，Hadoop分布式文件系统[HDFS]文件的块位置）</li>
+</ol>
+<hr>
+<p></p><p><center><font face="constant-width" color="#737373" size="3"><strong>NOTE 注意</strong></font></center></p><br>The <code>Partitioner</code> is probably one of the core reasons why you might want to use RDDs in your code. Specifying your own custom <code>Partitioner</code> can give you significant performance and stability improvements if you use it correctly. This is discussed in more depth in Chapter 13 when we introduce Key–Value Pair RDDs.<p></p>
+<p>分区程序可能是您可能想在代码中使用RDD的核心原因之一。如果正确使用自定义分区程序，则可以显著提高性能和稳定性。当我们介绍键值对RDD时，将在第13章中对此进行更深入的讨论。</p>
+<hr>
+<p>These properties determine all of Spark’s ability to schedule and execute the user program. Different kinds of RDDs implement their own versions of each of the aforementioned properties, allowing you to define new data sources.</p>
+<p>这些属性决定了Spark安排和执行用户程序的全部能力。不同种类的RDD会为每个上述属性实现各自的版本，从而允许您定义新的数据源。</p>
+<p>RDDs follow the exact same Spark programming paradigms that we saw in earlier chapters. They provide transformations, which evaluate lazily, and actions, which evaluate eagerly, to manipulate data in a distributed fashion. These work the same way as transformations and actions on DataFrames and Datasets. However, there is no concept of “rows” in RDDs; individual records are just raw Java/Scala/Python objects, and you manipulate those manually instead of tapping into the repository of functions that you have in the structured APIs.</p>
+<p>RDD遵循我们在前几章中看到的完全相同的Spark编程范例。它们提供了延迟求值（evaluate lazily）的转换和迫切求值（evaluate eagerly）的动作，以分布式方式处理数据。这些工作方式与对DataFrame和Dataset进行转换和操作相同。但是，RDD中没有“行”的概念；单个记录只是原始的 Java/Scala/Python 对象，您可以手动操作它们，而不必进入结构化API中具有的函数存储库。</p>
+<p>The RDD APIs are available in Python as well as Scala and Java. For Scala and Java, the performance is for the most part the same, the large costs incurred in manipulating the raw objects. Python, however, can lose a substantial amount of performance when using RDDs. Running Python RDDs equates to running Python user-defined functions (UDFs) row by row. Just as we saw inChapter 6. We serialize the data to the Python process, operate on it in Python, and then serialize it back to the Java Virtual Machine (JVM). This causes a high overhead for Python RDD manipulations. Even though many people ran production code with them in the past, we recommend building on the Structured APIs in Python and only dropping down to RDDs if absolutely necessary.</p>
+<p>RDD API在Python以及Scala和Java中均可用。对于Scala和Java，性能在很大程度上是相同的，这是操作原始对象所产生的巨大成本。但是，使用RDD时，Python可能会损失大量性能。运行Python RDD等同于逐行运行Python用户定义函数（UDF）。就像在第6章中看到的那样。我们将数据序列化到Python进程，在Python中对其进行操作，然后将其序列化回Java虚拟机（JVM）。这会导致Python RDD操作的开销很大。即使过去有很多人使用生产代码来运行它们，我们还是建议在Python中基于结构化API进行构建，并且仅在绝对必要时才使用RDD。</p>
+<h3 id="When-to-Use-RDDs"><a href="#When-to-Use-RDDs" class="headerlink" title="When to Use RDDs?"></a><font color="#00000">When to Use RDDs?</font></h3><p>In general, you should not manually create RDDs unless you have a very, very specific reason for doing so. They are a much lower-level API that provides a lot of power but also lacks a lot of the optimizations that are available in the Structured APIs. For the vast majority of use cases, DataFrames will be more efficient, more stable, and more expressive than RDDs.</p>
+<p>通常，除非有非常特殊的原因，否则不应手动创建RDD。它们是一个底层的API，它提供了很多功能，但缺乏结构化API中可用的许多优化。在绝大多数用例中，DataFrames将比RDDs更高效，更稳定和更具表现力。 </p>
+<p>The most likely reason for why you’ll want to use RDDs is because you need fine-grained control over the physical distribution of data (custom partitioning of data).</p>
+<p>之所以要使用RDD，最可能的原因是因为您需要对数据的物理分布（数据的自定义分区）进行细粒度的控制。</p>
+<h3 id="Datasets-and-RDDs-of-Case-Classes"><a href="#Datasets-and-RDDs-of-Case-Classes" class="headerlink" title="Datasets and RDDs of Case Classes"></a><font color="#00000">Datasets and RDDs of Case Classes</font></h3><p>We noticed this question on the web and found it to be an interesting one: what is the difference between RDDs of Case Classes and Datasets? The difference is that Datasets can still take advantage of the wealth of functions and optimizations that the Structured APIs have to offer. With Datasets, you do not need to choose between only operating on JVM types or on Spark types, you can choose whatever is either easiest to do or most flexible. You get the both of best worlds.</p>
+<p>我们在网上注意到了这个问题，发现这是一个有趣的问题：案例类和 Datasets 的RDD有什么区别？区别在于，Datasets 仍然可以利用结构化API必须提供的丰富功能和优化。使用 Datasets ，您不需要是仅在JVM类型上的操作或是仅在Spark类型上的操作进行选择，可以选择最容易执行或最灵活的操作。你们两全其美。</p>
+<h2 id="Creating-RDDs"><a href="#Creating-RDDs" class="headerlink" title="Creating RDDs"></a><font color="#9a161a">Creating RDDs</font></h2><p>Now that we discussed some key RDD properties, let’s begin applying them so that you can better understand how to use them.</p>
+<p>现在，我们讨论了一些RDD关键属性，让我们开始应用它们，以便您可以更好地了解如何使用它们。</p>
+<h3 id="Interoperating-Between-DataFrames-Datasets-and-RDDs"><a href="#Interoperating-Between-DataFrames-Datasets-and-RDDs" class="headerlink" title="Interoperating Between DataFrames, Datasets, and RDDs"></a><font color="#00000">Interoperating Between DataFrames, Datasets, and RDDs</font></h3><p>One of the easiest ways to get RDDs is from an existing DataFrame or Dataset. Converting these to an RDD is simple: just use the <code>rdd</code> method on any of these data types. You’ll notice that if you do a conversion from a Dataset[T] to an RDD, you’ll get the appropriate native type T back (remember this applies only to Scala and Java):</p>
+<p>获取RDD的最简单方法之一是从现有的DataFrame或Dataset中获取。将它们转换为RDD很简单：只需对任何这些数据类型使用 <code>rdd</code> 方法。您会注意到，如果您进行了从 Dataset[T] 到 RDD 的转换，则会获得适当的本地类型T（请记住，这仅适用于 Scala 和 Java）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala: converts a Dataset[Long] to RDD[Long]</span></span><br><span class="line">spark.range(<span class="number">500</span>).rdd</span><br></pre></td></tr></table></figure>
+<p>Because Python doesn’t have Datasets—it has only DataFrames—you will get an RDD of type Row:</p>
+<p>由于 Python 没有 Datasets——它只有DataFrames——您将获得Row类型的RDD：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># in <span class="type">Python</span></span><br><span class="line">spark.range(<span class="number">10</span>).rdd</span><br></pre></td></tr></table></figure>
+<p>To operate on this data, you will need to convert this Row object to the correct data type or extract values out of it, as shown in the example that follows. This is now an RDD of type Row:</p>
+<p>要对该数据进行操作，您将需要将该Row对象转换为正确的数据类型或从中提取值，如以下示例所示。现在是Row类型的RDD：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">spark.range(<span class="number">10</span>).toDF().rdd.map(rowObject =&gt; rowObject.getLong(<span class="number">0</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">spark.range(<span class="number">10</span>).toDF(<span class="string">"id"</span>).rdd.map(<span class="keyword">lambda</span> row: row[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<p>You can use the same methodology to create a DataFrame or Dataset from an RDD. All you need to do is call the <code>toDF</code> method on the RDD:</p>
+<p>您可以使用相同的方法从RDD创建DataFrame或Dataset。您需要做的就是在RDD上调用<code>toDF</code>方法：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">spark.range(<span class="number">10</span>).rdd.toDF()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">spark.range(<span class="number">10</span>).rdd.toDF()</span><br></pre></td></tr></table></figure>
+<p>This command creates an RDD of type Row. This row is the internal Catalyst format that Spark uses to represent data in the Structured APIs. This functionality makes it possible for you to jump between the Structured and low-level APIs as it suits your use case. (We talk about this in Chapter 13.)</p>
+<p>该命令创建Row类型的RDD。此行是Spark用来表示Structured API中的数据的内部Catalyst格式。此功能使您可以在适合您的用例的情况下在结构化API和底层API之间进行切换。（我们将在第13章中讨论这一点。）</p>
+<p>The RDD API will feel quite similar to the Dataset API in Chapter 11 because they are extremely similar to each other (RDDs being a lower-level representation of Datasets) that do not have a lot of the convenient functionality and interfaces that the Structured APIs do.</p>
+<p>RDD API与第11章中的Dataset API非常相似，因为它们彼此非常相似（RDD 是 Datasets 的底层表示），并且没有结构化API所具有的许多便利功能和接口。</p>
+<h3 id="From-a-Local-Collection"><a href="#From-a-Local-Collection" class="headerlink" title="From a Local Collection"></a><font color="#00000">From a Local Collection</font></h3><p>To create an RDD from a collection, you will need to use the <code>parallelize</code> method on a <code>SparkContext</code> (within a <code>SparkSession</code>). This turns a single node collection into a parallel collection.</p>
+<p>要从集合创建RDD，您将需要在 <code>SparkContext</code> 上（在 <code>SparkSession</code> 中）使用 <code>parallelize</code> 方法。这会将单个节点集合变成并行集合。</p>
+<p>When creating this parallel collection, you can also explicitly state the number of partitions into which you would like to distribute this array. In this case, we are creating two partitions:</p>
+<p>创建此并行集合时，您还可以明确声明要将此数组分发到的分区数。在这种情况下，我们将创建两个分区：  </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> myCollection = <span class="string">"Spark The Definitive Guide : Big Data Processing Made Simple"</span>.split(<span class="string">" "</span>)</span><br><span class="line"><span class="keyword">val</span> words = spark.sparkContext.parallelize(myCollection, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">myCollection = <span class="string">"Spark The Definitive Guide : Big Data Processing Made Simple"</span>\</span><br><span class="line">.split(<span class="string">" "</span>)</span><br><span class="line">words = spark.sparkContext.parallelize(myCollection, <span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<p>An additional feature is that you can then name this RDD to show up in the Spark UI according to a given name:</p>
+<p>另一个功能是，您可以根据给定的名称将该RDD命名为显示在Spark UI中：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.setName(<span class="string">"myWords"</span>)</span><br><span class="line">words.name <span class="comment">// myWords</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.setName(<span class="string">"myWords"</span>)</span><br><span class="line">words.name() <span class="comment"># myWords</span></span><br></pre></td></tr></table></figure>
+<h3 id="From-Data-Sources"><a href="#From-Data-Sources" class="headerlink" title="From Data Sources"></a><font color="#00000">From Data Sources</font></h3><p>Although you can create RDDs from data sources or text files, it’s often preferable to use the Data Source APIs. RDDs do not have a notion of “Data Source APIs” like DataFrames do; they primarily define their dependency structures and lists of partitions. The Data Source API that we saw in Chapter 9 is almost always a better way to read in data. That being said, you can also read data as RDDs using  <code>sparkContext</code>. For example, let’s read a text file line by line:</p>
+<p>尽管您可以从数据源或文本文件创建RDD，但通常最好使用数据源API。RDD不像DataFrames那样具有“数据源API”的概念。它们主要定义其依赖关系结构和分区列表。我们在第9章中看到的数据源API几乎总是一种读取数据的更好方法。话虽如此，您也可以使用 <code>sparkContext</code> 将数据读取为RDD。例如，让我们逐行阅读一个文本文件：</p>
+ <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.sparkContext.textFile(<span class="string">"/some/path/withTextFiles"</span>)</span><br></pre></td></tr></table></figure>
+<p>This creates an RDD for which each record in the RDD represents a line in that text file or files. Alternatively, you can read in data for which each text file should become a single record. The use case here would be where each file is a file that consists of a large JSON object or some document that you will operate on as an individual:</p>
+<p>这将创建一个RDD，RDD中的每个记录都代表该文本文件中的一行。或者，您可以读取每个文本文件应成为单个记录的数据。这里的用例是，每个文件都是一个由大型JSON对象或您将单独处理的文档组成的文件：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.sparkContext.wholeTextFiles(<span class="string">"/some/path/withTextFiles"</span>)</span><br></pre></td></tr></table></figure>
+<p>In this RDD, the name of the file is the first object and the value of the text file is the second string object.</p>
+<p>在此RDD中，文件名是第一个对象，文本文件的值是第二个字符串对象。</p>
+<h2 id="Manipulating-RDDs"><a href="#Manipulating-RDDs" class="headerlink" title="Manipulating RDDs"></a><font color="#9a161a">Manipulating RDDs</font></h2><p>You manipulate RDDs in much the same way that you manipulate DataFrames. As mentioned, the core difference being that you manipulate raw Java or Scala objects instead of Spark types. There is also a dearth of “helper” methods or functions that you can draw upon to simplify calculations. Rather, you must define each filter, map functions, aggregation, and any other manipulation that you want as a function.</p>
+<p>处理RDD的方式与处理DataFrames的方式几乎相同。如前所述，核心区别在于您可以操纵原始Java或Scala对象而不是Spark类型。缺少用于简化计算的“辅助”方法或函数，您必须定义每个过滤器，映射函数，聚合以及要作为函数进行的任何其他操作。</p>
+<p>To demonstrate some data manipulation, let’s use the simple RDD (words) we created previously to define some more details.</p>
+<p>为了演示一些数据操作，让我们使用之前创建的简单RDD（单词）来定义更多细节。</p>
+<h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a><font color="#9a161a">Transformations</font></h2><p>For the most part, many transformations mirror the functionality that you find in the Structured APIs. Just as you do with DataFrames and Datasets, you specify transformations on one RDD to create another. In doing so, we define an RDD as a dependency to another along with some manipulation of the data contained in that RDD.</p>
+<p>在大多数情况下，许多转换都反映了您在结构化API中找到的功能。就像使用DataFrames和Datasets一样，您可以在一个RDD上指定转换以创建另一个。为此，我们将RDD定义为对另一个的依赖，并对该RDD中包含的数据进行一些操作。</p>
+<h3 id="distinct"><a href="#distinct" class="headerlink" title="distinct"></a><font color="#00000">distinct</font></h3><p>A distinct method call on an RDD removes duplicates from the RDD:</p>
+<p>在RDD上进行不同的方法调用可从RDD中删除重复项：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.distinct().count()</span><br></pre></td></tr></table></figure>
+<p>This gives a result of 10.</p>
+<p>结果为10。</p>
+<h3 id="filter"><a href="#filter" class="headerlink" title="filter"></a><font color="#00000">filter</font></h3><p>Filtering is equivalent to creating a SQL-like where clause. You can look through our records in the RDD and see which ones match some predicate function. This function just needs to return a Boolean type to be used as a filter function. The input should be whatever your given row is. In this next example, we filter the RDD to keep only the words that begin with the letter “S”:</p>
+<p>过滤等效于创建类似SQL的where子句。您可以在RDD中浏览我们的记录，看看哪些与某些谓词函数匹配。该函数只需要返回一个布尔类型即可用作过滤器函数。输入应为您给定的行。在下一个示例中，我们对RDD进行过滤，以仅保留以字母“ S”开头的单词：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">startsWithS</span></span>(individual:<span class="type">String</span>) = &#123;</span><br><span class="line">	individual.startsWith(<span class="string">"S"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">startsWithS</span><span class="params">(individual)</span>:</span></span><br><span class="line"><span class="keyword">return</span> individual.startswith(<span class="string">"S"</span>)</span><br></pre></td></tr></table></figure>
+<p>Now that we defined the function, let’s filter the data. This should feel quite familiar if you read Chapter 11 because we simply use a function that operates record by record in the RDD. The function is defined to work on each record in the RDD individually:</p>
+<p>现在我们定义了函数，让我们过滤数据。如果您阅读第11章，应该会感到非常熟悉，因为我们仅使用了一个函数来操作RDD中的记录。该函数被定义为分别在RDD中的每个记录上工作：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.filter(word =&gt; startsWithS(word)).collect()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.filter(<span class="keyword">lambda</span> word: startsWithS(word)).collect()</span><br></pre></td></tr></table></figure>
+<p>This gives a result of Spark and Simple. We can see, like the Dataset API, that this returns native types. That is because we never coerce our data into type Row, nor do we need to convert the data after collecting it.</p>
+<p>这给出了Spark和Simple的结果。我们可以看到，就像Dataset API一样，这将返回本地类型。那是因为我们从不将数据强制转换为Row类型，也不需要在收集数据后转换数据。</p>
+<h3 id="map"><a href="#map" class="headerlink" title="map"></a><font color="#00000">map</font></h3><p>Mapping is again the same operation that you can read about in Chapter 11. You specify a function that returns the value that you want, given the correct input. You then apply that, record by record. Let’s perform something similar to what we just did. In this example, we’ll map the current word to the word, its starting letter, and whether the word begins with “S.”</p>
+<p>映射同样是您在第11章中可以了解的相同操作。给定正确的输入，您可以指定一个函数，该函数返回所需的值。然后，您将其应用，逐条记录。让我们执行与我们刚做的类似的事情。在此示例中，我们将当前单词映射到该单词，其起始字母以及该单词是否以 “S” 开头。</p>
+<p>Notice in this instance that we define our functions completely inline using the relevant lambda syntax:</p>
+<p>注意在这种情况下，我们使用相关的lambda语法完全内联定义了我们的函数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> words2 = words.map(word =&gt; (word, word(<span class="number">0</span>), word.startsWith(<span class="string">"S"</span>)))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words2 = words.map(<span class="keyword">lambda</span> word: (word, word[<span class="number">0</span>], word.startswith(<span class="string">"S"</span>)))</span><br></pre></td></tr></table></figure>
+<p> You can subsequently filter on this by selecting the relevant Boolean value in a new function:</p>
+<p>随后，您可以通过在新函数中选择相关的布尔值来对此进行过滤：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words2.filter(record =&gt; record._3).take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words2.filter(<span class="keyword">lambda</span> record: record[<span class="number">2</span>]).take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>This returns a tuple of “Spark,” “S,” and “true,” as well as “Simple,” “S,” and “True.”</p>
+<p>这将返回“ Spark”，“ S”和“ true”以及“ Simple”，“ S”和“ True”的元组。</p>
+<h4 id="flatMap"><a href="#flatMap" class="headerlink" title="flatMap"></a><font color="#3399cc">flatMap</font></h4><p>flatMap provides a simple extension of the map function we just looked at. Sometimes, each current row should return multiple rows, instead. For example, you might want to take your set of words and flatMap it into a set of characters. Because each word has multiple characters, you should use flatMap to expand it. flatMap requires that the ouput of the map function be an iterable that can be expanded:</p>
+<p><code>flatMap</code>提供了我们刚刚看过的map函数的简单扩展。有时，每个当前行应该返回多个行。例如，您可能想将一组单词和 <code>flatMap</code> 转换成一组字符。由于每个单词都有多个字符，因此应使用 <code>flatMap</code> 对其进行扩展。<code>flatMap</code> 要求map函数的输出是可迭代的，可以扩展：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.flatMap(word =&gt; word.toSeq).take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.flatMap(<span class="keyword">lambda</span> word: list(word)).take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+<p>This yields S, P, A, R, K.</p>
+<p>这产生S，P，A，R，K。</p>
+<h3 id="sort"><a href="#sort" class="headerlink" title="sort"></a><font color="#00000">sort</font></h3><p>To sort an RDD you must use the <code>sortBy</code> method, and just like any other RDD operation, you do this by specifying a function to extract a value from the objects in your RDDs and then sort based on that. For instance, the following example sorts by word length from longest to shortest:</p>
+<p>要对RDD进行排序，必须使用 <code>sortBy</code> 方法，就像其他任何RDD操作一样，您可以通过指定一个函数来从RDD中的对象中提取值，然后基于该函数进行排序。例如，以下示例按单词长度从最长到最短排序：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.sortBy(word =&gt; word.length() * <span class="number">-1</span>).take(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.sortBy(<span class="keyword">lambda</span> word: len(word) * <span class="number">-1</span>).take(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Random-Splits"><a href="#Random-Splits" class="headerlink" title="Random Splits"></a><font color="#00000">Random Splits</font></h3><p>We can also randomly split an RDD into an Array of RDDs by using the <code>randomSplit</code> method, which accepts an Array of weights and a random seed:</p>
+<p>我们还可以使用 <code>randomSplit</code> 方法将RDD随机分为RDD数组，该方法接受权重数组和随机种子：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> fiftyFiftySplit = words.randomSplit(<span class="type">Array</span>[<span class="type">Double</span>](<span class="number">0.5</span>, <span class="number">0.5</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">fiftyFiftySplit = words.randomSplit([<span class="number">0.5</span>, <span class="number">0.5</span>])</span><br></pre></td></tr></table></figure>
+<p>This returns an array of RDDs that you can manipulate individually.</p>
+<p>这将返回可以单独操作的RDD数组。</p>
+<h2 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a><font color="#9a161a">Actions</font></h2><p>Just as we do with DataFrames and Datasets, we specify actions to kick off our specified transformations. Actions either collect data to the driver or write to an external data source.</p>
+<p>就像处理DataFrames和Datasets一样，我们指定action（动作/算子）来启动我们指定的转换。action（动作/算子）要么将数据收集到驱动程序，要么写入外部数据源。</p>
+<h3 id="reduce"><a href="#reduce" class="headerlink" title="reduce"></a><font color="#000000">reduce</font></h3><p>You can use the reduce method to specify a function to “reduce” an RDD of any kind of value to one value. For instance, given a set of numbers, you can reduce this to its sum by specifying a function that takes as input two values and reduces them into one. If you have experience in functional programming, this should not be a new concept:</p>
+<p>您可以使用reduce方法来指定一个函数，以将任何类型的RDD“reduce”为一个值。例如，给定一组数字，您可以通过指定一个将两个值作为输入并减小为一个的函数来将其减少为总和。如果您具有函数式编程的经验，那么这不是一个新概念：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">spark.sparkContext.parallelize(<span class="number">1</span> to <span class="number">20</span>).reduce(_ + _) <span class="comment">// 210</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">spark.sparkContext.parallelize(range(<span class="number">1</span>, <span class="number">21</span>)).reduce(<span class="keyword">lambda</span> x, y: x + y) <span class="comment"># 210</span></span><br></pre></td></tr></table></figure>
+<p>You can also use this to get something like the longest word in our set of words that we defined a moment ago. The key is just to define the correct function:</p>
+<p>您也可以使用它来获得类似我们刚才定义的单词集中最长的单词。关键只是定义正确的功能：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wordLengthReducer</span></span>(leftWord:<span class="type">String</span>, rightWord:<span class="type">String</span>): <span class="type">String</span> = &#123;</span><br><span class="line">    <span class="keyword">if</span> (leftWord.length &gt; rightWord.length)</span><br><span class="line">        <span class="keyword">return</span> leftWord</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">		<span class="keyword">return</span> rightWord</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">words.reduce(wordLengthReducer)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">wordLengthReducer</span><span class="params">(leftWord, rightWord)</span>:</span></span><br><span class="line">	<span class="keyword">if</span> len(leftWord) &gt; len(rightWord):</span><br><span class="line">		<span class="keyword">return</span> leftWord</span><br><span class="line">	<span class="keyword">else</span>:</span><br><span class="line">		<span class="keyword">return</span> rightWord</span><br><span class="line"></span><br><span class="line">words.reduce(wordLengthReducer)</span><br></pre></td></tr></table></figure>
+<p>This reducer is a good example because you can get one of two outputs. Because the reduce operation on the partitions is not deterministic, you can have either “definitive” or “processing” (both of length 10) as the “left” word. This means that sometimes you can end up with one, whereas other times you end up with the other.</p>
+<p>这个reducer是一个很好的例子，因为您可以获得两个输出之一。由于对分区的reduce操作不是确定性的，因此可以将“definitive”或“processing”（长度均为10）作为“左”字。这意味着有时候您可以以一个结局，而其他时候则以另一个结局。</p>
+<h3 id="count"><a href="#count" class="headerlink" title="count"></a><font color="#00000">count</font></h3><p>This method is fairly self-explanatory. Using it, you could, for example, count the number of rows in the RDD:</p>
+<p>这种方法是不言自明的。使用它，例如，您可以计算RDD中的行数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.count()</span><br></pre></td></tr></table></figure>
+<h4 id="countApprox"><a href="#countApprox" class="headerlink" title="countApprox"></a><font color="#3399cc">countApprox</font></h4><p>Even though the return signature for this type is a bit strange, it’s quite sophisticated. This is an approximation of the count method we just looked at, but it must execute within a timeout (and can return incomplete results if it exceeds the timeout).</p>
+<p>即使此类型的返回签名有些奇怪，也相当复杂。这是我们刚刚看过的count方法的近似值，但是它必须在超时内执行（如果超过超时，则可能返回不完整的结果）。</p>
+<p> The confidence is the probability that the error bounds of the result will contain the true value. That is, if <code>countApprox</code> were called repeatedly with confidence 0.9, we would expect 90% of the results to contain the true count. The confidence must be in the range [0,1], or an exception will be thrown:</p>
+<p>置信度是结果的误差范围包含真实值的概率。也就是说，如果以0.9的置信度重复调用 <code>countApprox</code>，则我们期望90％的结果包含真实计数。置信度必须在[0,1]范围内，否则将引发异常：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> confidence = <span class="number">0.95</span></span><br><span class="line"><span class="keyword">val</span> timeoutMilliseconds = <span class="number">400</span></span><br><span class="line">words.countApprox(timeoutMilliseconds, confidence)</span><br></pre></td></tr></table></figure>
+<h4 id="countApproxDistinct"><a href="#countApproxDistinct" class="headerlink" title="countApproxDistinct"></a><font color="#3399cc">countApproxDistinct</font></h4><p>There are two implementations of this, both based on streamlib’s implementation of “HyperLogLog in Practice: Algorithmic Engineering of a State-of-the-Art Cardinality Estimation Algorithm.” </p>
+<p>此方法有两种实现，均基于 streamlib 的“HyperLogLog in<br>Practice: Algorithmic Engineering of a State-of-the-Art Cardinality Estimation Algorithm” 的实现。</p>
+<p>In the first implementation, the argument we pass into the function is the relative accuracy. Smaller values create counters that require more space. The value must be greater than 0.000017:</p>
+<p>在第一种实现中，我们传递给函数的参数是相对精度。较小的值会创建需要更多空间的计数器。该值必须大于0.000017： </p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.countApproxDistinct(<span class="number">0.05</span>)</span><br></pre></td></tr></table></figure>
+<p>With the other implementation you have a bit more control; you specify the relative accuracy based on two parameters: one for “regular” data and another for a sparse representation.</p>
+<p>使用其他实现，您可以控制更多。您可以根据两个参数指定相对精度：一个用于“常规”数据，另一个用于稀疏表示。</p>
+<p>The two arguments are p and sp where p is precision and sp is sparse precision. The relative accuracy is approximately 1.054 / sqrt(2 ). Setting a nonzero (sp &gt; p) can reduce the memory consumption and increase accuracy when the cardinality is small. Both values are integers:</p>
+<p>两个参数是p和sp，其中p是精度，而sp是稀疏精度。相对精度约为 1.054/sqrt(2) 。当基数较小时，将非零值设置为 (sp&gt; p)可以减少内存消耗并提高准确性。这两个值都是整数：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.countApproxDistinct(<span class="number">4</span>, <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="countByValue"><a href="#countByValue" class="headerlink" title="countByValue"></a><font color="#3399cc">countByValue</font></h4><p>This method counts the number of values in a given RDD. However, it does so by finally loading the result set into the memory of the driver. You should use this method only if the resulting map is expected to be small because the entire thing is loaded into the driver’s memory. Thus, this method makes sense only in a scenario in which either the total number of rows is low or the number of distinct items is low:</p>
+<p>此方法计算给定RDD中值的数量。但是，它是通过将结果集最终加载到驱动程序的内存中来实现的。仅在预期生成的 map较小的情况下才应使用此方法，因为整个 map 都已加载到驱动程序的内存中。因此，此方法仅在行总数少或不同项目数少的情况下才有意义：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.countByValue()</span><br></pre></td></tr></table></figure>
+<h4 id="countByValueApprox"><a href="#countByValueApprox" class="headerlink" title="countByValueApprox"></a><font color="#3399cc">countByValueApprox</font></h4><p>This does the same thing as the previous function, but it does so as an approximation. This must execute within the specified timeout (first parameter) (and can return incomplete results if it exceeds the timeout).</p>
+<p>该功能与先前的功能相同，但仅作为近似值。此操作必须在指定的超时（第一个参数）内执行（如果超过超时，则可能返回不完整的结果）。</p>
+<p>The confidence is the probability that the error bounds of the result will contain the true value. That is, if countApprox were called repeatedly with confidence 0.9, we would expect 90% of the results to contain the true count. The confidence must be in the range [0,1], or an exception will be thrown:</p>
+<p>置信度是结果的误差范围包含真实值的概率。也就是说，如果以0.9的置信度重复调用countApprox，则我们期望90％的结果包含真实计数。置信度必须在[0,1]范围内，否则将引发异常：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.countByValueApprox(<span class="number">1000</span>, <span class="number">0.95</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="first"><a href="#first" class="headerlink" title="first"></a><font color="#00000">first</font></h3><p>The first method returns the first value in the dataset:</p>
+<p>第一个方法返回数据集中的第一个值：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.first()</span><br></pre></td></tr></table></figure>
+<h3 id="max-and-min"><a href="#max-and-min" class="headerlink" title="max and min"></a><font color="#00000">max and min</font></h3><p>max and min return the maximum values and minimum values, respectively:</p>
+<p>max和min分别返回最大值和最小值：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spark.sparkContext.parallelize(<span class="number">1</span> to <span class="number">20</span>).max()</span><br><span class="line">spark.sparkContext.parallelize(<span class="number">1</span> to <span class="number">20</span>).min()</span><br></pre></td></tr></table></figure>
+<h3 id="take"><a href="#take" class="headerlink" title="take"></a><font color="#00000">take</font></h3><p><code>take</code> and its derivative methods take a number of values from your RDD. This works by first scanning one partition and then using the results from that partition to estimate the number of additional partitions needed to satisfy the limit.</p>
+<p><code>take</code>及其派生方法从RDD中获取许多值。该方法是这样工作的：通过首先扫描一个分区，然后使用该分区的结果来估计满足该限制（“限制”指的是方法参数指定的值）所需的其他分区的数量。</p>
+<p>There are many variations on this function, such as <code>takeOrdered</code>, <code>takeSample</code>, and top. You can use <code>takeSample</code> to specify a fixed-size random sample from your RDD. You can specify whether this should be done by using <code>withReplacement</code>, the number of values, as well as the random seed. top is effectively the opposite of <code>takeOrdered</code> in that it selects the top values according to the implicit ordering:</p>
+<p>此函数有很多变体，例如<code>takeOrdered</code>，<code>takeSample</code>和<code>top</code>。您可以使用<code>takeSample</code>从RDD中指定一个固定大小的随机样本。您可以使用<code>withReplacement</code>，值的数量以及随机种子来指定是否应该这样做。<code>top</code> 实际上与<code>takeOrdered</code>相反，它根据隐式顺序选择顶部值：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">words.take(<span class="number">5</span>)</span><br><span class="line">words.takeOrdered(<span class="number">5</span>)</span><br><span class="line">words.top(<span class="number">5</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> withReplacement = <span class="literal">true</span></span><br><span class="line"><span class="keyword">val</span> numberToTake = <span class="number">6</span></span><br><span class="line"><span class="keyword">val</span> randomSeed = <span class="number">100</span>L</span><br><span class="line"></span><br><span class="line">words.takeSample(withReplacement, numberToTake, randomSeed)</span><br></pre></td></tr></table></figure>
+<h2 id="Saving-Files"><a href="#Saving-Files" class="headerlink" title="Saving Files"></a><font color="#9a161a">Saving Files</font></h2><p>Saving files means writing to plain-text files. With RDDs, you cannot actually “save” to a data source in the conventional sense. You must iterate over the partitions in order to save the contents of each partition to some external database. This is a low-level approach that reveals the underlying operation that is being performed in the higher-level APIs. Spark will take each partition, and write that out to the destination.</p>
+<p>保存文件意味着写入纯文本文件。使用RDD，您实际上无法按照传统意义上的“保存”到数据源。您必须遍历分区才能将每个分区的内容保存到某个外部数据库。这是一种低层方法，它揭示了高层API中正在执行的基础操作。Spark将获取每个分区，并将其写出到目标位置。</p>
+<h3 id="saveAsTextFile"><a href="#saveAsTextFile" class="headerlink" title="saveAsTextFile"></a><font color="#00000">saveAsTextFile</font></h3><p>To save to a text file, you just specify a path and optionally a compression codec:</p>
+<p>要保存到文本文件，只需指定路径和压缩编解码器即可：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.saveAsTextFile(<span class="string">"file:/tmp/bookTitle"</span>)</span><br></pre></td></tr></table></figure>
+<p>To set a compression codec, we must import the proper codec from Hadoop. You can find these in the <code>org.apache.hadoop.io.compress</code> library:</p>
+<p>要设置压缩编解码器，我们必须从Hadoop导入正确的编解码器。您可以在 <code>org.apache.hadoop.io.compress</code> 库中找到这些：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.hadoop.io.compress.<span class="type">BZip2Codec</span></span><br><span class="line">words.saveAsTextFile(<span class="string">"file:/tmp/bookTitleCompressed"</span>, classOf[<span class="type">BZip2Codec</span>])</span><br></pre></td></tr></table></figure>
+<h3 id="SequenceFiles"><a href="#SequenceFiles" class="headerlink" title="SequenceFiles"></a><font color="#00000">SequenceFiles</font></h3><p>Spark originally grew out of the Hadoop ecosystem, so it has a fairly tight integration with a variety of Hadoop tools. A <code>sequenceFile</code> is a flat file consisting of binary key–value pairs. It is extensively used in <code>MapReduce</code> as input/output formats.</p>
+<p>Spark最初起源于Hadoop生态系统，因此与各种Hadoop工具紧密集成。<code>sequenceFile</code> 是一个扁平结构的文件（flat file），由二进制键值对组成。它在MapReduce中广泛用作输入/输出格式。</p>
+<blockquote>
+<p><center><strong>译者附</strong></center><br>a flat file : A file consisting of records of a single record type in which there is no embedded structure information that governs relationships between records.</p>
+<p>扁平结构的文件：由单一记录类型的记录组成的文件，其中没有控制记录之间关系的嵌入式结构信息。</p>
+</blockquote>
+<p>Spark can write to <code>sequenceFiles</code> using the <code>saveAsObjectFile</code> method or by explicitly writing key–value pairs, as described in Chapter 13:</p>
+<p>如第13章所述，Spark可以使用 <code>saveAsObjectFile</code> 方法或通过显式编写键值对来写入 <code>sequenceFiles</code>：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.saveAsObjectFile(<span class="string">"/tmp/my/sequenceFilePath"</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="Hadoop-Files"><a href="#Hadoop-Files" class="headerlink" title="Hadoop Files"></a><font color="#00000">Hadoop Files</font></h3><p>There are a variety of different Hadoop file formats to which you can save. These allow you to specify classes, output formats, Hadoop configurations, and compression schemes. (For information on these formats, read Hadoop: The Definitive Guide [O’Reilly, 2015].) These formats are largely irrelevant except if you’re working deeply in the Hadoop ecosystem or with some legacy <code>mapReduce</code> jobs.</p>
+<p>您可以保存多种不同的Hadoop文件格式。这些允许您指定类，输出格式，Hadoop配置和压缩方案。（有关这些格式的信息，请阅读 O’Reilly 2015年出版的《Hadoop权威指南》这些格式在很大程度上无关紧要，除非您正在Hadoop生态系统中深入工作或使用一些旧的 <code>mapReduce</code> 作业。</p>
+<h2 id="Caching"><a href="#Caching" class="headerlink" title="Caching"></a><font color="#9a161a">Caching</font></h2><p>The same principles apply for caching RDDs as for DataFrames and Datasets. You can either cache or persist an RDD. By default, cache and persist only handle data in memory. We can name it if we use the <code>setName</code> function that we referenced previously in this chapter:</p>
+<p>缓存RDD的原理与DataFrame和Dataset的原理相同。您可以缓存或保留RDD。默认情况下，缓存和持久性仅处理内存中的数据。如果使用本章前面引用的<code>setName</code>函数，则可以为它命名：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.cache()</span><br></pre></td></tr></table></figure>
+<p>We can specify a storage level as any of the storage levels in the singleton object: <code>org.apache.spark.storage.StorageLevel</code>, which are combinations of memory only; disk only; and separately, off heap.</p>
+<p>我们可以将存储级别指定为单例对象中的任何存储级别：<code>org.apache.spark.storage.StorageLevel</code>，它们是仅在内存，仅在磁盘以及内存和磁盘的组合存储。</p>
+<p> We can subsequently query for this storage level (we talk about storage levels when we discuss persistence in Chapter 20):</p>
+<p>随后，我们可以查询该存储级别（在第20章中讨论持久性时，我们将讨论存储级别）：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.getStorageLevel</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.getStorageLevel()</span><br></pre></td></tr></table></figure>
+<h2 id="Checkpointing"><a href="#Checkpointing" class="headerlink" title="Checkpointing"></a><font color="#9a161a">Checkpointing</font></h2><p>One feature not available in the DataFrame API is the concept of checkpointing. Checkpointing is the act of saving an RDD to disk so that future references to this RDD point to those intermediate partitions on disk rather than recomputing the RDD from its original source. This is similar to caching except that it’s not stored in memory, only disk. This can be helpful when performing iterative computation, similar to the use cases for caching:</p>
+<p>DataFrame API中不可用的一项功能是检查点的概念。检查点是将RDD保存到磁盘的行为，以便将来对该RDD的引用指向磁盘上的那些中间分区，而不是从其原始源重新计算RDD。除了不存储在内存中，仅存储在磁盘中，这与缓存相似。这在执行迭代计算时可能会有所帮助，类似于缓存的用例：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">spark.sparkContext.setCheckpointDir(<span class="string">"/some/path/for/checkpointing"</span>)</span><br><span class="line">words.checkpoint()</span><br></pre></td></tr></table></figure>
+<p>Now, when we reference this RDD, it will derive from the checkpoint instead of the source data. This can be a helpful optimization.</p>
+<p>现在，当我们引用此RDD时，它将从检查点而不是源数据派生。这可能是有用的优化。</p>
+<h2 id="Pipe-RDDs-to-System-Commands"><a href="#Pipe-RDDs-to-System-Commands" class="headerlink" title="Pipe RDDs to System Commands"></a><font color="#9a161a">Pipe RDDs to System Commands</font></h2><p>The pipe method is probably one of Spark’s more interesting methods. With pipe, you can return an RDD created by piping elements to a forked external process. The resulting RDD is computed by executing the given process once per partition. All elements of each input partition are written to a process’s stdin as lines of input separated by a newline. The resulting partition consists of the process’s <code>stdout</code> output, with each line of <code>stdout</code> resulting in one element of the output partition. A process is invoked even for empty partitions.</p>
+<p>管道方法可能是Spark更有趣的方法之一。使用管道，可以将通过将元素传递到分叉的外部过程来创建的RDD。通过对每个分区执行一次给定的过程来计算得出的RDD。每个输入分区的所有元素都以换行符分隔的形式输入到进程的stdin中。结果分区由进程的 <code>stdout</code> 输出组成，每行 <code>stdout</code>产生输出分区的一个元素。甚至为空分区调用一个进程。</p>
+<p>The print behavior can be customized by providing two functions.</p>
+<p>可以通过提供两个函数来自定义打印行为。</p>
+<p> We can use a simple example and pipe each partition to the command wc. Each row will be passed in as a new line, so if we perform a line count, we will get the number of lines, one per partition:</p>
+<p>我们可以使用一个简单的示例，并将每个分区通过管道传递给命令wc。每行将作为新行传递，因此，如果执行行计数，我们将获得行数，每个分区一个：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.pipe(<span class="string">"wc -l"</span>).collect()</span><br></pre></td></tr></table></figure>
+<p>In this case, we got five lines per partition.</p>
+<p>在这种情况下，每个分区有五行。</p>
+<h3 id="mapPartitions"><a href="#mapPartitions" class="headerlink" title="mapPartitions"></a><font color="#00000">mapPartitions</font></h3><p>The previous command revealed that Spark operates on a per-partition basis when it comes to actually executing code. You also might have noticed earlier that the return signature of a map function on an RDD is actually <code>MapPartitionsRDD</code>. This is because map is just a row-wise alias for <code>mapPartitions</code>, which makes it possible for you to map an individual partition (represented as an iterator). That’s because physically on the cluster we operate on each partition individually (and not a specific row). A simple example creates the value “1” for every partition in our data, and the sum of the following expression will count the number of partitions we have:</p>
+<p>上一条命令显示，Spark在实际执行代码时会按分区运行。您之前可能还已经注意到，RDD上的映射函数的返回签名实际上是 <code>MapPartitionsRDD</code>。这是因为map只是 <code>mapPartitions</code>  的行别名，这使您可以映射单个分区（表示为迭代器）。这是因为从物理上讲，我们在集群上分别对每个分区（而不是特定的行）进行操作。一个简单的示例：为数据中的每个分区创建值“ 1”，以下表达式的总和将计算我们拥有的分区数：</p>
+ <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.mapPartitions(part =&gt; <span class="type">Iterator</span>[<span class="type">Int</span>](<span class="number">1</span>)).sum() <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.mapPartitions(<span class="keyword">lambda</span> part: [<span class="number">1</span>]).sum() <span class="comment"># 2</span></span><br></pre></td></tr></table></figure>
+<p>Naturally, this means that we operate on a per-partition basis and allows us to perform an operation on that entire partition. This is valuable for performing something on an entire subdataset of your RDD. You can gather all values of a partition class or group into one partition and then operate on that entire group using arbitrary functions and controls. An example use case of this would be that you could pipe this through some custom machine learning algorithm and train an individual model for that company’s portion of the dataset. A Facebook engineer has an interesting demonstration of their particular implementation of <u><a style="color:#0879e3" href="https://databricks.com/session/experiences-with-sparks-rdd-apis-for-complex-custom-applications" target="_blank" rel="noopener">the pipe operator</a></u> with a similar use case <u><a style="color:#0879e3" href="https://spark-summit.org/east-2017/events/experiences-with-sparks-rdd-apis-for-complex-custom-applications/" target="_blank" rel="noopener">demonstrated at Spark Summit East 2017</a></u>.</p>
+<p>自然地，这意味着我们在每个分区的基础上进行操作，并允许我们在整个分区上执行操作。这对于在RDD的整个子数据集上执行某些操作非常有用。您可以将一个分区类或组的所有值收集到一个分区中，然后使用任意函数和控制（动作和转换）对该整个组进行操作。一个示例是，您可以通过一些自定义的机器学习算法对此进行处理，并为该公司的数据集部分训练一个单独的模型。一位Facebook工程师通过在Spark Spark East 2017上展示了一个类似的<u><a style="color:#0879e3" href="https://spark-summit.org/east-2017/events/experiences-with-sparks-rdd-apis-for-complex-custom-applications/" target="_blank" rel="noopener">用例</a></u>，有趣地演示了他们对<u><a style="color:#0879e3" href="https://databricks.com/session/experiences-with-sparks-rdd-apis-for-complex-custom-applications" target="_blank" rel="noopener">管道算子</a></u>的特定实现。</p>
+<p>Other functions similar to <code>mapPartitions</code> include <code>mapPartitionsWithIndex</code>. With this you specify a function that accepts an index (within the partition) and an iterator that goes through all items within the partition. The partition index is the partition number in your RDD, which identifies where each record in our dataset sits (and potentially allows you to debug). You might use this to test whether your map functions are behaving correctly:</p>
+<p>其他类似于 <code>mapPartitions</code> 的功能包括 <code>mapPartitionsWithIndex</code>。使用此功能，您可以指定一个接受索引（在分区内）和一个迭代器的函数，该迭代器遍历该分区内的所有项。分区索引是RDD中的分区号，它标识数据集中每个记录的位置（并可能允许您调试）。您可以使用它来测试您的 map 函数是否行为正确：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">indexedFunc</span></span>(partitionIndex:<span class="type">Int</span>, withinPartIterator: <span class="type">Iterator</span>[<span class="type">String</span>]) = &#123;</span><br><span class="line">    withinPartIterator.toList.map(value =&gt; <span class="string">s"Partition: <span class="subst">$partitionIndex</span> =&gt; <span class="subst">$value</span>"</span>).iterator</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">words.mapPartitionsWithIndex(indexedFunc).collect()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">indexedFunc</span><span class="params">(partitionIndex, withinPartIterator)</span>:</span></span><br><span class="line">	<span class="keyword">return</span> [<span class="string">"partition: &#123;&#125; =&gt; &#123;&#125;"</span>.format(partitionIndex, x) <span class="keyword">for</span> x <span class="keyword">in</span> withinPartIterator]</span><br><span class="line">words.mapPartitionsWithIndex(indexedFunc).collect()</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Array[String] = Array(Partition: 0 =&gt; Spark, Partition: 0 =&gt; The, Partition: 0 =&gt; Definitive, Partition: 0 =&gt; Guide, Partition: 0 =&gt; :, Partition: 1 =&gt; Big, Partition: 1 =&gt; Data, Partition: 1 =&gt; Processing, Partition: 1 =&gt; Made, Partition: 1 =&gt; Simple)</span><br></pre></td></tr></table></figure>
+<h3 id="foreachPartition"><a href="#foreachPartition" class="headerlink" title="foreachPartition"></a><font color="#00000">foreachPartition</font></h3><p>Although <code>mapPartitions</code> needs a return value to work properly, this next function does not. <code>foreachPartition</code> simply iterates over all the partitions of the data. The difference is that the function has no return value. This makes it great for doing something with each partition like writing it out to a database. In fact, this is how many data source connectors are written. You can create our own text file source if you want by specifying outputs to the temp directory with a random ID:</p>
+<p>尽管 <code>mapPartitions</code> 需要一个返回值才能正常工作，但是下一个函数不需要。<code>foreachPartition</code> 只是简单地遍历数据的所有分区。区别在于该函数没有返回值。这非常适合对每个分区执行操作，例如将其写到数据库中。实际上，这就是写入的数据源连接器数量。如果需要，可以通过使用随机ID将输出指定到temp目录来创建自己的文本文件源：</p>
+ <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">words.foreachPartition &#123; iter =&gt;</span><br><span class="line">    <span class="keyword">import</span> java.io._</span><br><span class="line">    <span class="keyword">import</span> scala.util.<span class="type">Random</span></span><br><span class="line">    <span class="keyword">val</span> randomFileName = <span class="keyword">new</span> <span class="type">Random</span>().nextInt()</span><br><span class="line">    <span class="keyword">val</span> pw = <span class="keyword">new</span> <span class="type">PrintWriter</span>(<span class="keyword">new</span> <span class="type">File</span>(<span class="string">s"/tmp/random-file-<span class="subst">$&#123;randomFileName&#125;</span>.txt"</span>))</span><br><span class="line">    <span class="keyword">while</span> (iter.hasNext) &#123;</span><br><span class="line">    pw.write(iter.next())</span><br><span class="line">    &#125; </span><br><span class="line">    pw.close()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>You’ll find these two files if you scan your <code>/tmp</code> directory.</p>
+<p>如果您扫描 <code>/tmp</code> 目录，则会找到这两个文件。</p>
+<h3 id="glom"><a href="#glom" class="headerlink" title="glom"></a><font color="#00000">glom</font></h3><p>glom is an interesting function that takes every partition in your dataset and converts them to arrays. This can be useful if you’re going to collect the data to the driver and want to have an array for each partition. However, this can cause serious stability issues because if you have large partitions or a large number of partitions, it’s simple to crash the driver.</p>
+<p>glom是一个有趣的函数，它获取数据集中的每个分区并将其转换为数组。如果您要将数据收集到驱动程序，并希望每个分区都有一个数组，这将很有用。但是，这可能会导致严重的稳定性问题，因为如果您具有较大的分区或大量的分区，则很容易使驱动程序崩溃。</p>
+<p>In the following example, you can see that we get two partitions and each word falls into one partition each:</p>
+<p>在下面的示例中，您可以看到我们得到两个分区，每个单词都落入一个分区：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># in <span class="type">Scala</span></span><br><span class="line">spark.sparkContext.parallelize(<span class="type">Seq</span>(<span class="string">"Hello"</span>, <span class="string">"World"</span>), <span class="number">2</span>).glom().collect()</span><br><span class="line"><span class="comment">// Array(Array(Hello), Array(World))</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">spark.sparkContext.parallelize([<span class="string">"Hello"</span>, <span class="string">"World"</span>], <span class="number">2</span>).glom().collect()</span><br><span class="line"><span class="comment"># [['Hello'], ['World']]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><font color="#9a161a">Conclusion</font></h2><p>In this chapter, you saw the basics of the RDD APIs, including single RDD manipulation. Chapter 13 touches on more advanced RDD concepts, such as joins and key-value RDDs.</p>
+<p>在本章中，您了解了RDD API的基础知识，包括单个RDD操作。第13章介绍了更高层的RDD概念，例如连接接和键值RDD。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/" title="翻译 Chapter 12 Resilient Distributed Datasets (RDDs)">https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 14 Distributed Shared Variables">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 14 Distributed Shared Variables
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 11 Datasets">
+                翻译 Chapter 11 Datasets <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="SnailDove">
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学习方法/">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-12-Resilient-Distributed-Datasets-RDDs"><span class="nav-text">Chapter 12. Resilient Distributed Datasets (RDDs)</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#What-Are-the-Low-Level-APIs"><span class="nav-text">What Are the Low-Level APIs?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#When-to-Use-the-Low-Level-APIs"><span class="nav-text">When to Use the Low-Level APIs? </span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#How-to-Use-the-Low-Level-APIs"><span class="nav-text">How to Use the Low-Level APIs?</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#About-RDDs"><span class="nav-text">About RDDs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Types-of-RDDs"><span class="nav-text">Types of RDDs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#When-to-Use-RDDs"><span class="nav-text">When to Use RDDs?</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Datasets-and-RDDs-of-Case-Classes"><span class="nav-text">Datasets and RDDs of Case Classes</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Creating-RDDs"><span class="nav-text">Creating RDDs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Interoperating-Between-DataFrames-Datasets-and-RDDs"><span class="nav-text">Interoperating Between DataFrames, Datasets, and RDDs</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#From-a-Local-Collection"><span class="nav-text">From a Local Collection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#From-Data-Sources"><span class="nav-text">From Data Sources</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Manipulating-RDDs"><span class="nav-text">Manipulating RDDs</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transformations"><span class="nav-text">Transformations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#distinct"><span class="nav-text">distinct</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#filter"><span class="nav-text">filter</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#map"><span class="nav-text">map</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#flatMap"><span class="nav-text">flatMap</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#sort"><span class="nav-text">sort</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Random-Splits"><span class="nav-text">Random Splits</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Actions"><span class="nav-text">Actions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#reduce"><span class="nav-text">reduce</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#count"><span class="nav-text">count</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#countApprox"><span class="nav-text">countApprox</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#countApproxDistinct"><span class="nav-text">countApproxDistinct</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#countByValue"><span class="nav-text">countByValue</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#countByValueApprox"><span class="nav-text">countByValueApprox</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#first"><span class="nav-text">first</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#max-and-min"><span class="nav-text">max and min</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#take"><span class="nav-text">take</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Saving-Files"><span class="nav-text">Saving Files</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#saveAsTextFile"><span class="nav-text">saveAsTextFile</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SequenceFiles"><span class="nav-text">SequenceFiles</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Hadoop-Files"><span class="nav-text">Hadoop Files</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Caching"><span class="nav-text">Caching</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Checkpointing"><span class="nav-text">Checkpointing</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pipe-RDDs-to-System-Commands"><span class="nav-text">Pipe RDDs to System Commands</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#mapPartitions"><span class="nav-text">mapPartitions</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#foreachPartition"><span class="nav-text">foreachPartition</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#glom"><span class="nav-text">glom</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-text">Conclusion</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">918.8k</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

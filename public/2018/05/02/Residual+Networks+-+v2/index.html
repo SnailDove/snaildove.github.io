@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="deep learning,convolutional-neural-networks,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Residual NetworksWelcome to the">
+<meta name="keywords" content="deep learning,convolutional-neural-networks">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Residual Networks">
+<meta property="og:url" content="https://snaildove.github.io/2018/05/02/Residual+Networks+-+v2/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Residual NetworksWelcome to the">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png">
+<meta property="og:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg">
+<meta property="og:updated_time" content="2020-05-01T16:04:50.931Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Residual Networks">
+<meta name="twitter:description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Residual NetworksWelcome to the">
+<meta name="twitter:image" content="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2018/05/02/Residual+Networks+-+v2/">
+
+
+
+
+
+  <title>Residual Networks | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br>
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2018/05/02/Residual+Networks+-+v2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Residual Networks</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-05-02T00:00:00+08:00">
+                2018-05-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  6,481
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  41
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>These are my personal programming assignments at the 2nd week after studying the course <a href="https://www.coursera.org/learn/convolutional-neural-networks" target="_blank" rel="noopener">convolutional neural networks</a> and the copyright belongs to <a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">deeplearning.ai</a>.</p>
+<h1 id="Residual-Networks"><a href="#Residual-Networks" class="headerlink" title="Residual Networks"></a>Residual Networks</h1><p>Welcome to the second assignment of this week! You will learn how to build very deep convolutional networks, using Residual Networks (ResNets). In theory, very deep networks can represent very complex functions; but in practice, they are hard to train. Residual Networks, introduced by <a href="https://arxiv.org/pdf/1512.03385.pdf" target="_blank" rel="noopener">He et al.</a>, allow you to train much deeper networks than were previously practically feasible.</p>
+<p><strong>In this assignment, you will:</strong></p>
+<ul>
+<li>Implement the basic building blocks of ResNets. </li>
+<li>Put together these building blocks to implement and train a state-of-the-art neural network for image classification. </li>
+</ul>
+<p>This assignment will be done in Keras. </p>
+<p>Before jumping into the problem, let’s run the cell below to load the required packages.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, AveragePooling2D, MaxPooling2D, GlobalMaxPooling2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model, load_model</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> image</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> layer_utils</span><br><span class="line"><span class="keyword">from</span> keras.utils.data_utils <span class="keyword">import</span> get_file</span><br><span class="line"><span class="keyword">from</span> keras.applications.imagenet_utils <span class="keyword">import</span> preprocess_input</span><br><span class="line"><span class="keyword">import</span> pydot</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> SVG</span><br><span class="line"><span class="keyword">from</span> keras.utils.vis_utils <span class="keyword">import</span> model_to_dot</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> plot_model</span><br><span class="line"><span class="keyword">from</span> resnets_utils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> keras.initializers <span class="keyword">import</span> glorot_uniform</span><br><span class="line"><span class="keyword">import</span> scipy.misc</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> imshow</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</span><br><span class="line">K.set_image_data_format(<span class="string">'channels_last'</span>)</span><br><span class="line">K.set_learning_phase(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Using TensorFlow backend.
+</code></pre><h2 id="1-The-problem-of-very-deep-neural-networks"><a href="#1-The-problem-of-very-deep-neural-networks" class="headerlink" title="1 - The problem of very deep neural networks"></a>1 - The problem of very deep neural networks</h2><p>Last week, you built your first convolutional neural network. In recent years, neural networks have become deeper, with state-of-the-art networks going from just a few layers (e.g., AlexNet) to over a hundred layers.</p>
+<p>The main benefit of a very deep network is that it can represent very complex functions. It can also learn features at many different levels of abstraction, from edges (at the lower layers) to very complex features (at the deeper layers). However, using a deeper network doesn’t always help. A huge barrier to training them is vanishing gradients: very deep networks often have a gradient signal that goes to zero quickly, thus making gradient descent unbearably slow. More specifically, during gradient descent, as you backprop from the final layer back to the first layer, you are multiplying by the weight matrix on each step, and thus the gradient can decrease exponentially quickly to zero (or, in rare cases, grow exponentially quickly and “explode” to take very large values). </p>
+<p>During training, you might therefore see the magnitude (or norm) of the gradient for the earlier layers descrease to zero very rapidly as training proceeds: </p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png" style="width:450px;height:220px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 1</strong> </font></u><font color="purple">  : <strong>Vanishing gradient</strong> <br> The speed of learning decreases very rapidly for the early layers as the network trains </font></center></caption>
+
+<p>You are now going to solve this problem by building a Residual Network!</p>
+<h2 id="2-Building-a-Residual-Network"><a href="#2-Building-a-Residual-Network" class="headerlink" title="2 - Building a Residual Network"></a>2 - Building a Residual Network</h2><p>In ResNets, a “shortcut” or a “skip connection” allows the gradient to be directly backpropagated to earlier layers:  </p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png" style="width:650px;height:200px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 2</strong> </font></u><font color="purple">  : A ResNet block showing a <strong>skip-connection</strong> <br> </font></center></caption>
+
+<p>The image on the left shows the “main path” through the network. The image on the right adds a shortcut to the main path. By stacking these ResNet blocks on top of each other, you can form a very deep network. </p>
+<p>We also saw in lecture that having ResNet blocks with the shortcut also makes it very easy for one of the blocks to learn an identity function. This means that you can stack on additional ResNet blocks with little risk of harming training set performance. (There is also some evidence that the ease of learning an identity function–even more than skip connections helping with vanishing gradients–accounts for ResNets’ remarkable performance.)</p>
+<p>Two main types of blocks are used in a ResNet, depending mainly on whether the input/output dimensions are same or different. You are going to implement both of them. </p>
+<h3 id="2-1-The-identity-block"><a href="#2-1-The-identity-block" class="headerlink" title="2.1 - The identity block"></a>2.1 - The identity block</h3><p>The identity block is the standard block used in ResNets, and corresponds to the case where the input activation (say $a^{[l]}$) has the same dimension as the output activation (say $a^{[l+2]}$). To flesh out the different steps of what happens in a ResNet’s identity block, here is an alternative diagram showing the individual steps:</p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png" style="width:650px;height:150px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 3</strong> </font></u><font color="purple">  : <strong>Identity block.</strong> Skip connection “skips over” 2 layers. </font></center></caption>
+
+<p>The upper path is the “shortcut path.” The lower path is the “main path.” In this diagram, we have also made explicit the CONV2D and ReLU steps in each layer. To speed up training we have also added a BatchNorm step. Don’t worry about this being complicated to implement–you’ll see that BatchNorm is just one line of code in Keras! </p>
+<p>In this exercise, you’ll actually implement a slightly more powerful version of this identity block, in which the skip connection “skips over” 3 hidden layers rather than 2 layers. It looks like this: </p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png" style="width:650px;height:150px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 4</strong> </font></u><font color="purple">  : <strong>Identity block.</strong> Skip connection “skips over” 3 layers.</font></center></caption>
+
+<p>Here’re the individual steps.</p>
+<p>First component of main path: </p>
+<ul>
+<li>The first CONV2D has $F_1$ filters of shape (1,1) and a stride of (1,1). Its padding is “valid” and its name should be <code>conv_name_base + &#39;2a&#39;</code>. Use 0 as the seed for the random initialization. </li>
+<li>The first BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;2a&#39;</code>.</li>
+<li>Then apply the ReLU activation function. This has no name and no hyperparameters. </li>
+</ul>
+<p>Second component of main path:</p>
+<ul>
+<li>The second CONV2D has $F_2$ filters of shape $(f,f)$ and a stride of (1,1). Its padding is “same” and its name should be <code>conv_name_base + &#39;2b&#39;</code>. Use 0 as the seed for the random initialization. </li>
+<li>The second BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;2b&#39;</code>.</li>
+<li>Then apply the ReLU activation function. This has no name and no hyperparameters. </li>
+</ul>
+<p>Third component of main path:</p>
+<ul>
+<li>The third CONV2D has $F_3$ filters of shape (1,1) and a stride of (1,1). Its padding is “valid” and its name should be <code>conv_name_base + &#39;2c&#39;</code>. Use 0 as the seed for the random initialization. </li>
+<li>The third BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;2c&#39;</code>. Note that there is no ReLU activation function in this component. </li>
+</ul>
+<p>Final step: </p>
+<ul>
+<li>The shortcut and the input are added together.</li>
+<li>Then apply the ReLU activation function. This has no name and no hyperparameters. </li>
+</ul>
+<p><strong>Exercise</strong>: Implement the ResNet identity block. We have implemented the first component of the main path. Please read over this carefully to make sure you understand what it is doing. You should implement the rest. </p>
+<ul>
+<li>To implement the Conv2D step: <a href="https://keras.io/layers/convolutional/#conv2d" target="_blank" rel="noopener">See reference</a></li>
+<li>To implement BatchNorm: <a href="https://faroit.github.io/keras-docs/1.2.2/layers/normalization/" target="_blank" rel="noopener">See reference</a> (axis: Integer, the axis that should be normalized (typically the channels axis))</li>
+<li>For the activation, use:  <code>Activation(&#39;relu&#39;)(X)</code></li>
+<li>To add the value passed forward by the shortcut: <a href="https://keras.io/layers/merge/#add" target="_blank" rel="noopener">See reference</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: identity_block</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">identity_block</span><span class="params">(X, f, filters, stage, block)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implementation of the identity block as defined in Figure 3</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    X -- input tensor of shape (m, n_H_prev, n_W_prev, n_C_prev)</span></span><br><span class="line"><span class="string">    f -- integer, specifying the shape of the middle CONV's window for the main path</span></span><br><span class="line"><span class="string">    filters -- python list of integers, defining the number of filters in the CONV layers of the main path</span></span><br><span class="line"><span class="string">    stage -- integer, used to name the layers, depending on their position in the network</span></span><br><span class="line"><span class="string">    block -- string/character, used to name the layers, depending on their position in the network</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    X -- output of the identity block, tensor of shape (n_H, n_W, n_C)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># defining name basis</span></span><br><span class="line">    conv_name_base = <span class="string">'res'</span> + str(stage) + block + <span class="string">'_branch'</span></span><br><span class="line">    bn_name_base = <span class="string">'bn'</span> + str(stage) + block + <span class="string">'_branch'</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Retrieve Filters</span></span><br><span class="line">    F1, F2, F3 = filters</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Save the input value. You'll need this later to add back to the main path. </span></span><br><span class="line">    X_shortcut = X</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># First component of main path</span></span><br><span class="line">    X = Conv2D(filters = F1, kernel_size = (<span class="number">1</span>, <span class="number">1</span>), strides = (<span class="number">1</span>,<span class="number">1</span>), padding = <span class="string">'valid'</span>, name = conv_name_base + <span class="string">'2a'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X);</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'2a'</span>)(X);</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Second component of main path (≈3 lines)</span></span><br><span class="line">    X = Conv2D(filters = F2, kernel_size = (f, f), strides = (<span class="number">1</span>,<span class="number">1</span>), padding = <span class="string">'same'</span>, name = conv_name_base + <span class="string">'2b'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X);</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'2b'</span>)(X);</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Third component of main path (≈2 lines)</span></span><br><span class="line">    X = Conv2D(filters = F3, kernel_size = (<span class="number">1</span>, <span class="number">1</span>), strides = (<span class="number">1</span>,<span class="number">1</span>), padding = <span class="string">'valid'</span>, name = conv_name_base + <span class="string">'2c'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X);</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'2c'</span>)(X);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Final step: Add shortcut value to main path, and pass it through a RELU activation (≈2 lines)</span></span><br><span class="line">    X = layers.add([X, X_shortcut]);</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> X</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    np.random.seed(<span class="number">1</span>)</span><br><span class="line">    A_prev = tf.placeholder(<span class="string">"float"</span>, [<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>])</span><br><span class="line">    X = np.random.randn(<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>)</span><br><span class="line">    A = identity_block(A_prev, f = <span class="number">2</span>, filters = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>], stage = <span class="number">1</span>, block = <span class="string">'a'</span>)</span><br><span class="line">    test.run(tf.global_variables_initializer())</span><br><span class="line">    out = test.run([A], feed_dict=&#123;A_prev: X, K.learning_phase(): <span class="number">0</span>&#125;)</span><br><span class="line">    print(<span class="string">"out = "</span> + str(out[<span class="number">0</span>][<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>out = [ 0.94822985  0.          1.16101444  2.747859    0.          1.36677003]
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table><br>    <tr><br>        <td><br>            <strong>out</strong><br>        </td><br>        <td><br>           [ 0.94822985  0.          1.16101444  2.747859    0.          1.36677003]<br>        </td><br>    </tr><br><br></table>
+
+<h2 id="2-2-The-convolutional-block"><a href="#2-2-The-convolutional-block" class="headerlink" title="2.2 - The convolutional block"></a>2.2 - The convolutional block</h2><p>You’ve implemented the ResNet identity block. Next, the ResNet “convolutional block” is the other type of block. You can use this type of block when the input and output dimensions don’t match up. The difference with the identity block is that there is a CONV2D layer in the shortcut path: </p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png" style="width:650px;height:150px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 4</strong> </font></u><font color="purple">  : <strong>Convolutional block</strong> </font></center></caption>
+
+<p>The CONV2D layer in the shortcut path is used to resize the input $x$ to a different dimension, so that the dimensions match up in the final addition needed to add the shortcut value back to the main path. (This plays a similar role as the matrix $W_s$ discussed in lecture.) For example, to reduce the activation dimensions’s height and width by a factor of 2, you can use a 1x1 convolution with a stride of 2. The CONV2D layer on the shortcut path does not use any non-linear activation function. Its main role is to just apply a (learned) linear function that reduces the dimension of the input, so that the dimensions match up for the later addition step. </p>
+<p>The details of the convolutional block are as follows. </p>
+<p>First component of main path:</p>
+<ul>
+<li>The first CONV2D has $F_1$ filters of shape (1,1) and a stride of (s,s). Its padding is “valid” and its name should be <code>conv_name_base + &#39;2a&#39;</code>. </li>
+<li>The first BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;2a&#39;</code>.</li>
+<li>Then apply the ReLU activation function. This has no name and no hyperparameters. </li>
+</ul>
+<p>Second component of main path:</p>
+<ul>
+<li>The second CONV2D has $F_2$ filters of (f,f) and a stride of (1,1). Its padding is “same” and it’s name should be <code>conv_name_base + &#39;2b&#39;</code>.</li>
+<li>The second BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;2b&#39;</code>.</li>
+<li>Then apply the ReLU activation function. This has no name and no hyperparameters. </li>
+</ul>
+<p>Third component of main path:</p>
+<ul>
+<li>The third CONV2D has $F_3$ filters of (1,1) and a stride of (1,1). Its padding is “valid” and it’s name should be <code>conv_name_base + &#39;2c&#39;</code>.</li>
+<li>The third BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;2c&#39;</code>. Note that there is no ReLU activation function in this component. </li>
+</ul>
+<p>Shortcut path:</p>
+<ul>
+<li>The CONV2D has $F_3$ filters of shape (1,1) and a stride of (s,s). Its padding is “valid” and its name should be <code>conv_name_base + &#39;1&#39;</code>.</li>
+<li>The BatchNorm is normalizing the channels axis.  Its name should be <code>bn_name_base + &#39;1&#39;</code>. </li>
+</ul>
+<p>Final step: </p>
+<ul>
+<li>The shortcut and the main path values are added together.</li>
+<li>Then apply the ReLU activation function. This has no name and no hyperparameters. </li>
+</ul>
+<p><strong>Exercise</strong>: Implement the convolutional block. We have implemented the first component of the main path; you should implement the rest. As before, always use 0 as the seed for the random initialization, to ensure consistency with our grader.</p>
+<ul>
+<li><a href="https://keras.io/layers/convolutional/#conv2d" target="_blank" rel="noopener">Conv Hint</a></li>
+<li><a href="https://keras.io/layers/normalization/#batchnormalization" target="_blank" rel="noopener">BatchNorm Hint</a> (axis: Integer, the axis that should be normalized (typically the features axis))</li>
+<li>For the activation, use:  <code>Activation(&#39;relu&#39;)(X)</code></li>
+<li><a href="https://keras.io/layers/merge/#add" target="_blank" rel="noopener">Addition Hint</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: convolutional_block</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">convolutional_block</span><span class="params">(X, f, filters, stage, block, s = <span class="number">2</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implementation of the convolutional block as defined in Figure 4</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    X -- input tensor of shape (m, n_H_prev, n_W_prev, n_C_prev)</span></span><br><span class="line"><span class="string">    f -- integer, specifying the shape of the middle CONV's window for the main path</span></span><br><span class="line"><span class="string">    filters -- python list of integers, defining the number of filters in the CONV layers of the main path</span></span><br><span class="line"><span class="string">    stage -- integer, used to name the layers, depending on their position in the network</span></span><br><span class="line"><span class="string">    block -- string/character, used to name the layers, depending on their position in the network</span></span><br><span class="line"><span class="string">    s -- Integer, specifying the stride to be used</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    X -- output of the convolutional block, tensor of shape (n_H, n_W, n_C)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># defining name basis</span></span><br><span class="line">    conv_name_base = <span class="string">'res'</span> + str(stage) + block + <span class="string">'_branch'</span></span><br><span class="line">    bn_name_base = <span class="string">'bn'</span> + str(stage) + block + <span class="string">'_branch'</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Retrieve Filters</span></span><br><span class="line">    F1, F2, F3 = filters</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Save the input value</span></span><br><span class="line">    X_shortcut = X</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">##### MAIN PATH #####</span></span><br><span class="line">    <span class="comment"># First component of main path </span></span><br><span class="line">    X = Conv2D(F1, (<span class="number">1</span>, <span class="number">1</span>), strides = (s,s), name = conv_name_base + <span class="string">'2a'</span>, padding = <span class="string">'valid'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X)</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'2a'</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Second component of main path (≈3 lines)</span></span><br><span class="line">    X = Conv2D(F2, (f, f), strides = (<span class="number">1</span>,<span class="number">1</span>), name = conv_name_base + <span class="string">'2b'</span>, padding = <span class="string">'same'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X)</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'2b'</span>)(X);</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Third component of main path (≈2 lines)</span></span><br><span class="line">    X = Conv2D(F3, (<span class="number">1</span>, <span class="number">1</span>), strides = (<span class="number">1</span>,<span class="number">1</span>), name = conv_name_base + <span class="string">'2c'</span>, padding = <span class="string">'valid'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X);</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'2c'</span>)(X);</span><br><span class="line"></span><br><span class="line">    <span class="comment">##### SHORTCUT PATH #### (≈2 lines)</span></span><br><span class="line">    X_shortcut = Conv2D(F3, (<span class="number">1</span>, <span class="number">1</span>), strides = (s,s), name = conv_name_base + <span class="string">'1'</span>, padding = <span class="string">'valid'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X_shortcut);</span><br><span class="line">    X_shortcut = BatchNormalization(axis = <span class="number">3</span>, name = bn_name_base + <span class="string">'1'</span>)(X_shortcut);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Final step: Add shortcut value to main path, and pass it through a RELU activation (≈2 lines)</span></span><br><span class="line">    X = layers.add([X, X_shortcut]);</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> X</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    np.random.seed(<span class="number">1</span>)</span><br><span class="line">    A_prev = tf.placeholder(<span class="string">"float"</span>, [<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>])</span><br><span class="line">    X = np.random.randn(<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>)</span><br><span class="line">    A = convolutional_block(A_prev, f = <span class="number">2</span>, filters = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>], stage = <span class="number">1</span>, block = <span class="string">'a'</span>)</span><br><span class="line">    test.run(tf.global_variables_initializer())</span><br><span class="line">    out = test.run([A], feed_dict=&#123;A_prev: X, K.learning_phase(): <span class="number">0</span>&#125;)</span><br><span class="line">    print(<span class="string">"out = "</span> + str(out[<span class="number">0</span>][<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>out = [ 0.09018463  1.23489773  0.46822017  0.0367176   0.          0.65516603]
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table><br>    <tr><br>        <td><br>            <strong>out</strong><br>        </td><br>        <td><br>           [ 0.09018463  1.23489773  0.46822017  0.0367176   0.          0.65516603]<br>        </td><br>    </tr><br><br></table>
+
+<h2 id="3-Building-your-first-ResNet-model-50-layers"><a href="#3-Building-your-first-ResNet-model-50-layers" class="headerlink" title="3 - Building your first ResNet model (50 layers)"></a>3 - Building your first ResNet model (50 layers)</h2><p>You now have the necessary blocks to build a very deep ResNet. The following figure describes in detail the architecture of this neural network. “ID BLOCK” in the diagram stands for “Identity block,” and “ID BLOCK x3” means you should stack 3 identity blocks together.</p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png" style="width:850px;height:150px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 5</strong> </font></u><font color="purple">  : <strong>ResNet-50 model</strong> </font></center></caption>
+
+<p>The details of this ResNet-50 model are:</p>
+<ul>
+<li>Zero-padding pads the input with a pad of (3,3)</li>
+<li>Stage 1:<ul>
+<li>The 2D Convolution has 64 filters of shape (7,7) and uses a stride of (2,2). Its name is “conv1”.</li>
+<li>BatchNorm is applied to the channels axis of the input.</li>
+<li>MaxPooling uses a (3,3) window and a (2,2) stride.</li>
+</ul>
+</li>
+<li>Stage 2:<ul>
+<li>The convolutional block uses three set of filters of size [64,64,256], “f” is 3, “s” is 1 and the block is “a”.</li>
+<li>The 2 identity blocks use three set of filters of size [64,64,256], “f” is 3 and the blocks are “b” and “c”.</li>
+</ul>
+</li>
+<li>Stage 3:<ul>
+<li>The convolutional block uses three set of filters of size [128,128,512], “f” is 3, “s” is 2 and the block is “a”.</li>
+<li>The 3 identity blocks use three set of filters of size [128,128,512], “f” is 3 and the blocks are “b”, “c” and “d”.</li>
+</ul>
+</li>
+<li>Stage 4:<ul>
+<li>The convolutional block uses three set of filters of size [256, 256, 1024], “f” is 3, “s” is 2 and the block is “a”.</li>
+<li>The 5 identity blocks use three set of filters of size [256, 256, 1024], “f” is 3 and the blocks are “b”, “c”, “d”, “e” and “f”.</li>
+</ul>
+</li>
+<li>Stage 5:<ul>
+<li>The convolutional block uses three set of filters of size [512, 512, 2048], “f” is 3, “s” is 2 and the block is “a”.</li>
+<li>The 2 identity blocks use three set of filters of size [512, 512, 2048], “f” is 3 and the blocks are “b” and “c”.</li>
+</ul>
+</li>
+<li>The 2D Average Pooling uses a window of shape (2,2) and its name is “avg_pool”.</li>
+<li>The flatten doesn’t have any hyperparameters or name.</li>
+<li>The Fully Connected (Dense) layer reduces its input to the number of classes using a softmax activation. Its name should be <code>&#39;fc&#39; + str(classes)</code>.</li>
+</ul>
+<p><strong>Exercise</strong>: Implement the ResNet with 50 layers described in the figure above. We have implemented Stages 1 and 2. Please implement the rest. (The syntax for implementing Stages 3-5 should be quite similar to that of Stage 2.) Make sure you follow the naming convention in the text above. </p>
+<p>You’ll need to use this function: </p>
+<ul>
+<li>Average pooling <a href="https://keras.io/layers/pooling/#averagepooling2d" target="_blank" rel="noopener">see reference</a></li>
+</ul>
+<p>Here’re some other functions we used in the code below:</p>
+<ul>
+<li>Conv2D: <a href="https://keras.io/layers/convolutional/#conv2d" target="_blank" rel="noopener">See reference</a></li>
+<li>BatchNorm: <a href="https://keras.io/layers/normalization/#batchnormalization" target="_blank" rel="noopener">See reference</a> (axis: Integer, the axis that should be normalized (typically the features axis))</li>
+<li>Zero padding: <a href="https://keras.io/layers/convolutional/#zeropadding2d" target="_blank" rel="noopener">See reference</a></li>
+<li>Max pooling: <a href="https://keras.io/layers/pooling/#maxpooling2d" target="_blank" rel="noopener">See reference</a></li>
+<li>Fully conected layer: <a href="https://keras.io/layers/core/#dense" target="_blank" rel="noopener">See reference</a></li>
+<li>Addition: <a href="https://keras.io/layers/merge/#add" target="_blank" rel="noopener">See reference</a></li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: ResNet50</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">ResNet50</span><span class="params">(input_shape = <span class="params">(<span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>)</span>, classes = <span class="number">6</span>)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implementation of the popular ResNet50 the following architecture:</span></span><br><span class="line"><span class="string">    CONV2D -&gt; BATCHNORM -&gt; RELU -&gt; MAXPOOL -&gt; CONVBLOCK -&gt; IDBLOCK*2 -&gt; CONVBLOCK -&gt; IDBLOCK*3</span></span><br><span class="line"><span class="string">    -&gt; CONVBLOCK -&gt; IDBLOCK*5 -&gt; CONVBLOCK -&gt; IDBLOCK*2 -&gt; AVGPOOL -&gt; TOPLAYER</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    input_shape -- shape of the images of the dataset</span></span><br><span class="line"><span class="string">    classes -- integer, number of classes</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    model -- a Model() instance in Keras</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Define the input as a tensor with shape input_shape</span></span><br><span class="line">    X_input = Input(input_shape)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Zero-Padding</span></span><br><span class="line">    X = ZeroPadding2D((<span class="number">3</span>, <span class="number">3</span>))(X_input)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Stage 1</span></span><br><span class="line">    X = Conv2D(<span class="number">64</span>, (<span class="number">7</span>, <span class="number">7</span>), strides = (<span class="number">2</span>, <span class="number">2</span>), name = <span class="string">'conv1'</span>, kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X)</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = <span class="string">'bn_conv1'</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X)</span><br><span class="line">    X = MaxPooling2D((<span class="number">3</span>, <span class="number">3</span>), strides=(<span class="number">2</span>, <span class="number">2</span>))(X)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Stage 2</span></span><br><span class="line">    X = convolutional_block(X, f = <span class="number">3</span>, filters = [<span class="number">64</span>, <span class="number">64</span>, <span class="number">256</span>], stage = <span class="number">2</span>, block=<span class="string">'a'</span>, s = <span class="number">1</span>)</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">64</span>, <span class="number">64</span>, <span class="number">256</span>], stage=<span class="number">2</span>, block=<span class="string">'b'</span>)</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">64</span>, <span class="number">64</span>, <span class="number">256</span>], stage=<span class="number">2</span>, block=<span class="string">'c'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># Stage 3 (≈4 lines)</span></span><br><span class="line">    X = convolutional_block(X, f = <span class="number">3</span>, filters = [<span class="number">128</span>, <span class="number">128</span>, <span class="number">512</span>], stage = <span class="number">3</span>, block=<span class="string">'a'</span>, s = <span class="number">2</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">128</span>, <span class="number">128</span>, <span class="number">512</span>], stage=<span class="number">3</span>, block=<span class="string">'b'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">128</span>, <span class="number">128</span>, <span class="number">512</span>], stage=<span class="number">3</span>, block=<span class="string">'c'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">128</span>, <span class="number">128</span>, <span class="number">512</span>], stage=<span class="number">3</span>, block=<span class="string">'d'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Stage 4 (≈6 lines)</span></span><br><span class="line">    X = convolutional_block(X, f = <span class="number">3</span>, filters = [<span class="number">256</span>, <span class="number">256</span>, <span class="number">1024</span>], stage = <span class="number">4</span>, block=<span class="string">'a'</span>, s = <span class="number">2</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">256</span>, <span class="number">256</span>, <span class="number">1024</span>], stage=<span class="number">4</span>, block=<span class="string">'b'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">256</span>, <span class="number">256</span>, <span class="number">1024</span>], stage=<span class="number">4</span>, block=<span class="string">'c'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">256</span>, <span class="number">256</span>, <span class="number">1024</span>], stage=<span class="number">4</span>, block=<span class="string">'d'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">256</span>, <span class="number">256</span>, <span class="number">1024</span>], stage=<span class="number">4</span>, block=<span class="string">'e'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">256</span>, <span class="number">256</span>, <span class="number">1024</span>], stage=<span class="number">4</span>, block=<span class="string">'f'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Stage 5 (≈3 lines)</span></span><br><span class="line">    X = convolutional_block(X, f = <span class="number">3</span>, filters = [<span class="number">512</span>, <span class="number">512</span>, <span class="number">2048</span>], stage = <span class="number">5</span>, block=<span class="string">'a'</span>, s = <span class="number">2</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">512</span>, <span class="number">512</span>, <span class="number">2048</span>], stage=<span class="number">5</span>, block=<span class="string">'b'</span>);</span><br><span class="line">    X = identity_block(X, <span class="number">3</span>, [<span class="number">512</span>, <span class="number">512</span>, <span class="number">2048</span>], stage=<span class="number">5</span>, block=<span class="string">'c'</span>);</span><br><span class="line"></span><br><span class="line">    <span class="comment"># AVGPOOL (≈1 line). Use "X = AveragePooling2D(...)(X)"</span></span><br><span class="line">    X = AveragePooling2D(pool_size = (<span class="number">2</span>, <span class="number">2</span>), name = <span class="string">'avg_pool'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># output layer</span></span><br><span class="line">    X = Flatten()(X)</span><br><span class="line">    X = Dense(classes, activation=<span class="string">'softmax'</span>, name=<span class="string">'fc'</span> + str(classes), kernel_initializer = glorot_uniform(seed=<span class="number">0</span>))(X)</span><br><span class="line">    </span><br><span class="line">    </span><br><span class="line">    <span class="comment"># Create model</span></span><br><span class="line">    model = Model(inputs = X_input, outputs = X, name=<span class="string">'ResNet50'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+<p>Run the following code to build the model’s graph. If your implementation is not correct you will know it by checking your accuracy when running <code>model.fit(...)</code> below.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = ResNet50(input_shape = (<span class="number">64</span>, <span class="number">64</span>, <span class="number">3</span>), classes = <span class="number">6</span>)</span><br></pre></td></tr></table></figure>
+<p>As seen in the Keras Tutorial Notebook, prior training a model, you need to configure the learning process by compiling the model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.compile(optimizer=<span class="string">'adam'</span>, loss=<span class="string">'categorical_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>])</span><br></pre></td></tr></table></figure>
+<p>The model is now ready to be trained. The only thing you need is a dataset.</p>
+<p>Let’s load the SIGNS Dataset.</p>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png" style="width:450px;height:250px;"></p>
+<caption><center> <u> <font color="purple"> <strong>Figure 6</strong> </font></u><font color="purple">  : <strong>SIGNS dataset</strong> </font></center></caption>
+
+
+
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize image vectors</span></span><br><span class="line">X_train = X_train_orig/<span class="number">255.</span></span><br><span class="line">X_test = X_test_orig/<span class="number">255.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Convert training and test labels to one hot matrices</span></span><br><span class="line">Y_train = convert_to_one_hot(Y_train_orig, <span class="number">6</span>).T</span><br><span class="line">Y_test = convert_to_one_hot(Y_test_orig, <span class="number">6</span>).T</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"number of training examples = "</span> + str(X_train.shape[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"number of test examples = "</span> + str(X_test.shape[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"X_train shape: "</span> + str(X_train.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Y_train shape: "</span> + str(Y_train.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"X_test shape: "</span> + str(X_test.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Y_test shape: "</span> + str(Y_test.shape))</span><br></pre></td></tr></table></figure>
+<pre><code>number of training examples = 1080
+number of test examples = 120
+X_train shape: (1080, 64, 64, 3)
+Y_train shape: (1080, 6)
+X_test shape: (120, 64, 64, 3)
+Y_test shape: (120, 6)
+</code></pre><p>Run the following cell to train your model on 2 epochs with a batch size of 32. On a CPU it should take you around 5min per epoch. </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.fit(X_train, Y_train, epochs = <span class="number">2</span>, batch_size = <span class="number">32</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>Epoch 1/2
+1080/1080 [==============================] - 244s - loss: 2.9276 - acc: 0.2657   
+Epoch 2/2
+1080/1080 [==============================] - 245s - loss: 1.9963 - acc: 0.3833   
+
+
+
+
+
+&lt;keras.callbacks.History at 0x7f2b2976ae10&gt;
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table><br>    <tr><br>        <td><br>            <strong> Epoch 1/2</strong><br>        </td><br>        <td><br>           loss: between 1 and 5, acc: between 0.2 and 0.5, although your results can be different from ours.<br>        </td><br>    </tr><br>    <tr><br>        <td><br>            <strong> Epoch 2/2</strong><br>        </td><br>        <td><br>           loss: between 1 and 5, acc: between 0.2 and 0.5, you should see your loss decreasing and the accuracy increasing.<br>        </td><br>    </tr><br><br></table>
+
+<p>Let’s see how this model (trained on only two epochs) performs on the test set.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">preds = model.evaluate(X_test, Y_test)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Loss = "</span> + str(preds[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Test Accuracy = "</span> + str(preds[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>120/120 [==============================] - 9s     
+Loss = 2.66479465167
+Test Accuracy = 0.166666666667
+</code></pre><p><strong>Expected Output</strong>:</p>
+<table><br>    <tr><br>        <td><br>            <strong>Test Accuracy</strong><br>        </td><br>        <td><br>           between 0.16 and 0.25<br>        </td><br>    </tr><br><br></table>
+
+<p>For the purpose of this assignment, we’ve asked you to train the model only for two epochs. You can see that it achieves poor performances. Please go ahead and submit your assignment; to check correctness, the online grader will run your code only for a small number of epochs as well.</p>
+<p>After you have finished this official (graded) part of this assignment, you can also optionally train the ResNet for more iterations, if you want. We get a lot better performance when we train for ~20 epochs, but this will take more than an hour when training on a CPU. </p>
+<p>Using a GPU, we’ve trained our own ResNet50 model’s weights on the SIGNS dataset. You can load and run our trained model on the test set in the cells below. It may take ≈1min to load the model.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = load_model(<span class="string">'ResNet50.h5'</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">preds = model.evaluate(X_test, Y_test)</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Loss = "</span> + str(preds[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Test Accuracy = "</span> + str(preds[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+<pre><code>120/120 [==============================] - 9s     
+Loss = 0.530178320408
+Test Accuracy = 0.866666662693
+</code></pre><p>ResNet50 is a powerful model for image classification when it is trained for an adequate number of iterations. We hope you can use what you’ve learnt and apply it to your own classification problem to perform state-of-the-art accuracy.</p>
+<p>Congratulations on finishing this assignment! You’ve now implemented a state-of-the-art image classification system! </p>
+<h2 id="4-Test-on-your-own-image-Optional-Ungraded"><a href="#4-Test-on-your-own-image-Optional-Ungraded" class="headerlink" title="4 - Test on your own image (Optional/Ungraded)"></a>4 - Test on your own image (Optional/Ungraded)</h2><p>If you wish, you can also take a picture of your own hand and see the output of the model. To do this:</p>
+<pre><code>1. Click on &quot;File&quot; in the upper bar of this notebook, then click &quot;Open&quot; to go on your Coursera Hub.
+2. Add your image to this Jupyter Notebook&apos;s directory, in the &quot;images&quot; folder
+3. Write your image&apos;s name in the following code
+4. Run the code and check if the algorithm is right! 
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">img_path = <span class="string">'images/my_image.jpg'</span></span><br><span class="line">img = image.load_img(img_path, target_size=(<span class="number">64</span>, <span class="number">64</span>))</span><br><span class="line">x = image.img_to_array(img)</span><br><span class="line">x = np.expand_dims(x, axis=<span class="number">0</span>)</span><br><span class="line">x = preprocess_input(x)</span><br><span class="line">print(<span class="string">'Input image shape:'</span>, x.shape)</span><br><span class="line">my_image = scipy.misc.imread(img_path)</span><br><span class="line">imshow(my_image)</span><br><span class="line">print(<span class="string">"class prediction vector [p(0), p(1), p(2), p(3), p(4), p(5)] = "</span>)</span><br><span class="line">print(model.predict(x))</span><br></pre></td></tr></table></figure>
+<pre><code>Input image shape: (1, 64, 64, 3)
+class prediction vector [p(0), p(1), p(2), p(3), p(4), p(5)] = 
+[[ 1.  0.  0.  0.  0.  0.]]
+</code></pre><p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png" alt="png"></p>
+<p>You can also print a summary of your model by running the following code.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
+<pre><code>____________________________________________________________________________________________________
+Layer (type)                     Output Shape          Param #     Connected to                     
+====================================================================================================
+input_1 (InputLayer)             (None, 64, 64, 3)     0                                            
+____________________________________________________________________________________________________
+zero_padding2d_1 (ZeroPadding2D) (None, 70, 70, 3)     0           input_1[0][0]                    
+____________________________________________________________________________________________________
+conv1 (Conv2D)                   (None, 32, 32, 64)    9472        zero_padding2d_1[0][0]           
+____________________________________________________________________________________________________
+bn_conv1 (BatchNormalization)    (None, 32, 32, 64)    256         conv1[0][0]                      
+____________________________________________________________________________________________________
+activation_4 (Activation)        (None, 32, 32, 64)    0           bn_conv1[0][0]                   
+____________________________________________________________________________________________________
+max_pooling2d_1 (MaxPooling2D)   (None, 15, 15, 64)    0           activation_4[0][0]               
+____________________________________________________________________________________________________
+res2a_branch2a (Conv2D)          (None, 15, 15, 64)    4160        max_pooling2d_1[0][0]            
+____________________________________________________________________________________________________
+bn2a_branch2a (BatchNormalizatio (None, 15, 15, 64)    256         res2a_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_5 (Activation)        (None, 15, 15, 64)    0           bn2a_branch2a[0][0]              
+____________________________________________________________________________________________________
+res2a_branch2b (Conv2D)          (None, 15, 15, 64)    36928       activation_5[0][0]               
+____________________________________________________________________________________________________
+bn2a_branch2b (BatchNormalizatio (None, 15, 15, 64)    256         res2a_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_6 (Activation)        (None, 15, 15, 64)    0           bn2a_branch2b[0][0]              
+____________________________________________________________________________________________________
+res2a_branch2c (Conv2D)          (None, 15, 15, 256)   16640       activation_6[0][0]               
+____________________________________________________________________________________________________
+res2a_branch1 (Conv2D)           (None, 15, 15, 256)   16640       max_pooling2d_1[0][0]            
+____________________________________________________________________________________________________
+bn2a_branch2c (BatchNormalizatio (None, 15, 15, 256)   1024        res2a_branch2c[0][0]             
+____________________________________________________________________________________________________
+bn2a_branch1 (BatchNormalization (None, 15, 15, 256)   1024        res2a_branch1[0][0]              
+____________________________________________________________________________________________________
+add_2 (Add)                      (None, 15, 15, 256)   0           bn2a_branch2c[0][0]              
+                                                                   bn2a_branch1[0][0]               
+____________________________________________________________________________________________________
+activation_7 (Activation)        (None, 15, 15, 256)   0           add_2[0][0]                      
+____________________________________________________________________________________________________
+res2b_branch2a (Conv2D)          (None, 15, 15, 64)    16448       activation_7[0][0]               
+____________________________________________________________________________________________________
+bn2b_branch2a (BatchNormalizatio (None, 15, 15, 64)    256         res2b_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_8 (Activation)        (None, 15, 15, 64)    0           bn2b_branch2a[0][0]              
+____________________________________________________________________________________________________
+res2b_branch2b (Conv2D)          (None, 15, 15, 64)    36928       activation_8[0][0]               
+____________________________________________________________________________________________________
+bn2b_branch2b (BatchNormalizatio (None, 15, 15, 64)    256         res2b_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_9 (Activation)        (None, 15, 15, 64)    0           bn2b_branch2b[0][0]              
+____________________________________________________________________________________________________
+res2b_branch2c (Conv2D)          (None, 15, 15, 256)   16640       activation_9[0][0]               
+____________________________________________________________________________________________________
+bn2b_branch2c (BatchNormalizatio (None, 15, 15, 256)   1024        res2b_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_3 (Add)                      (None, 15, 15, 256)   0           bn2b_branch2c[0][0]              
+                                                                   activation_7[0][0]               
+____________________________________________________________________________________________________
+activation_10 (Activation)       (None, 15, 15, 256)   0           add_3[0][0]                      
+____________________________________________________________________________________________________
+res2c_branch2a (Conv2D)          (None, 15, 15, 64)    16448       activation_10[0][0]              
+____________________________________________________________________________________________________
+bn2c_branch2a (BatchNormalizatio (None, 15, 15, 64)    256         res2c_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_11 (Activation)       (None, 15, 15, 64)    0           bn2c_branch2a[0][0]              
+____________________________________________________________________________________________________
+res2c_branch2b (Conv2D)          (None, 15, 15, 64)    36928       activation_11[0][0]              
+____________________________________________________________________________________________________
+bn2c_branch2b (BatchNormalizatio (None, 15, 15, 64)    256         res2c_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_12 (Activation)       (None, 15, 15, 64)    0           bn2c_branch2b[0][0]              
+____________________________________________________________________________________________________
+res2c_branch2c (Conv2D)          (None, 15, 15, 256)   16640       activation_12[0][0]              
+____________________________________________________________________________________________________
+bn2c_branch2c (BatchNormalizatio (None, 15, 15, 256)   1024        res2c_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_4 (Add)                      (None, 15, 15, 256)   0           bn2c_branch2c[0][0]              
+                                                                   activation_10[0][0]              
+____________________________________________________________________________________________________
+activation_13 (Activation)       (None, 15, 15, 256)   0           add_4[0][0]                      
+____________________________________________________________________________________________________
+res3a_branch2a (Conv2D)          (None, 8, 8, 128)     32896       activation_13[0][0]              
+____________________________________________________________________________________________________
+bn3a_branch2a (BatchNormalizatio (None, 8, 8, 128)     512         res3a_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_14 (Activation)       (None, 8, 8, 128)     0           bn3a_branch2a[0][0]              
+____________________________________________________________________________________________________
+res3a_branch2b (Conv2D)          (None, 8, 8, 128)     147584      activation_14[0][0]              
+____________________________________________________________________________________________________
+bn3a_branch2b (BatchNormalizatio (None, 8, 8, 128)     512         res3a_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_15 (Activation)       (None, 8, 8, 128)     0           bn3a_branch2b[0][0]              
+____________________________________________________________________________________________________
+res3a_branch2c (Conv2D)          (None, 8, 8, 512)     66048       activation_15[0][0]              
+____________________________________________________________________________________________________
+res3a_branch1 (Conv2D)           (None, 8, 8, 512)     131584      activation_13[0][0]              
+____________________________________________________________________________________________________
+bn3a_branch2c (BatchNormalizatio (None, 8, 8, 512)     2048        res3a_branch2c[0][0]             
+____________________________________________________________________________________________________
+bn3a_branch1 (BatchNormalization (None, 8, 8, 512)     2048        res3a_branch1[0][0]              
+____________________________________________________________________________________________________
+add_5 (Add)                      (None, 8, 8, 512)     0           bn3a_branch2c[0][0]              
+                                                                   bn3a_branch1[0][0]               
+____________________________________________________________________________________________________
+activation_16 (Activation)       (None, 8, 8, 512)     0           add_5[0][0]                      
+____________________________________________________________________________________________________
+res3b_branch2a (Conv2D)          (None, 8, 8, 128)     65664       activation_16[0][0]              
+____________________________________________________________________________________________________
+bn3b_branch2a (BatchNormalizatio (None, 8, 8, 128)     512         res3b_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_17 (Activation)       (None, 8, 8, 128)     0           bn3b_branch2a[0][0]              
+____________________________________________________________________________________________________
+res3b_branch2b (Conv2D)          (None, 8, 8, 128)     147584      activation_17[0][0]              
+____________________________________________________________________________________________________
+bn3b_branch2b (BatchNormalizatio (None, 8, 8, 128)     512         res3b_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_18 (Activation)       (None, 8, 8, 128)     0           bn3b_branch2b[0][0]              
+____________________________________________________________________________________________________
+res3b_branch2c (Conv2D)          (None, 8, 8, 512)     66048       activation_18[0][0]              
+____________________________________________________________________________________________________
+bn3b_branch2c (BatchNormalizatio (None, 8, 8, 512)     2048        res3b_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_6 (Add)                      (None, 8, 8, 512)     0           bn3b_branch2c[0][0]              
+                                                                   activation_16[0][0]              
+____________________________________________________________________________________________________
+activation_19 (Activation)       (None, 8, 8, 512)     0           add_6[0][0]                      
+____________________________________________________________________________________________________
+res3c_branch2a (Conv2D)          (None, 8, 8, 128)     65664       activation_19[0][0]              
+____________________________________________________________________________________________________
+bn3c_branch2a (BatchNormalizatio (None, 8, 8, 128)     512         res3c_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_20 (Activation)       (None, 8, 8, 128)     0           bn3c_branch2a[0][0]              
+____________________________________________________________________________________________________
+res3c_branch2b (Conv2D)          (None, 8, 8, 128)     147584      activation_20[0][0]              
+____________________________________________________________________________________________________
+bn3c_branch2b (BatchNormalizatio (None, 8, 8, 128)     512         res3c_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_21 (Activation)       (None, 8, 8, 128)     0           bn3c_branch2b[0][0]              
+____________________________________________________________________________________________________
+res3c_branch2c (Conv2D)          (None, 8, 8, 512)     66048       activation_21[0][0]              
+____________________________________________________________________________________________________
+bn3c_branch2c (BatchNormalizatio (None, 8, 8, 512)     2048        res3c_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_7 (Add)                      (None, 8, 8, 512)     0           bn3c_branch2c[0][0]              
+                                                                   activation_19[0][0]              
+____________________________________________________________________________________________________
+activation_22 (Activation)       (None, 8, 8, 512)     0           add_7[0][0]                      
+____________________________________________________________________________________________________
+res3d_branch2a (Conv2D)          (None, 8, 8, 128)     65664       activation_22[0][0]              
+____________________________________________________________________________________________________
+bn3d_branch2a (BatchNormalizatio (None, 8, 8, 128)     512         res3d_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_23 (Activation)       (None, 8, 8, 128)     0           bn3d_branch2a[0][0]              
+____________________________________________________________________________________________________
+res3d_branch2b (Conv2D)          (None, 8, 8, 128)     147584      activation_23[0][0]              
+____________________________________________________________________________________________________
+bn3d_branch2b (BatchNormalizatio (None, 8, 8, 128)     512         res3d_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_24 (Activation)       (None, 8, 8, 128)     0           bn3d_branch2b[0][0]              
+____________________________________________________________________________________________________
+res3d_branch2c (Conv2D)          (None, 8, 8, 512)     66048       activation_24[0][0]              
+____________________________________________________________________________________________________
+bn3d_branch2c (BatchNormalizatio (None, 8, 8, 512)     2048        res3d_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_8 (Add)                      (None, 8, 8, 512)     0           bn3d_branch2c[0][0]              
+                                                                   activation_22[0][0]              
+____________________________________________________________________________________________________
+activation_25 (Activation)       (None, 8, 8, 512)     0           add_8[0][0]                      
+____________________________________________________________________________________________________
+res4a_branch2a (Conv2D)          (None, 4, 4, 256)     131328      activation_25[0][0]              
+____________________________________________________________________________________________________
+bn4a_branch2a (BatchNormalizatio (None, 4, 4, 256)     1024        res4a_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_26 (Activation)       (None, 4, 4, 256)     0           bn4a_branch2a[0][0]              
+____________________________________________________________________________________________________
+res4a_branch2b (Conv2D)          (None, 4, 4, 256)     590080      activation_26[0][0]              
+____________________________________________________________________________________________________
+bn4a_branch2b (BatchNormalizatio (None, 4, 4, 256)     1024        res4a_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_27 (Activation)       (None, 4, 4, 256)     0           bn4a_branch2b[0][0]              
+____________________________________________________________________________________________________
+res4a_branch2c (Conv2D)          (None, 4, 4, 1024)    263168      activation_27[0][0]              
+____________________________________________________________________________________________________
+res4a_branch1 (Conv2D)           (None, 4, 4, 1024)    525312      activation_25[0][0]              
+____________________________________________________________________________________________________
+bn4a_branch2c (BatchNormalizatio (None, 4, 4, 1024)    4096        res4a_branch2c[0][0]             
+____________________________________________________________________________________________________
+bn4a_branch1 (BatchNormalization (None, 4, 4, 1024)    4096        res4a_branch1[0][0]              
+____________________________________________________________________________________________________
+add_9 (Add)                      (None, 4, 4, 1024)    0           bn4a_branch2c[0][0]              
+                                                                   bn4a_branch1[0][0]               
+____________________________________________________________________________________________________
+activation_28 (Activation)       (None, 4, 4, 1024)    0           add_9[0][0]                      
+____________________________________________________________________________________________________
+res4b_branch2a (Conv2D)          (None, 4, 4, 256)     262400      activation_28[0][0]              
+____________________________________________________________________________________________________
+bn4b_branch2a (BatchNormalizatio (None, 4, 4, 256)     1024        res4b_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_29 (Activation)       (None, 4, 4, 256)     0           bn4b_branch2a[0][0]              
+____________________________________________________________________________________________________
+res4b_branch2b (Conv2D)          (None, 4, 4, 256)     590080      activation_29[0][0]              
+____________________________________________________________________________________________________
+bn4b_branch2b (BatchNormalizatio (None, 4, 4, 256)     1024        res4b_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_30 (Activation)       (None, 4, 4, 256)     0           bn4b_branch2b[0][0]              
+____________________________________________________________________________________________________
+res4b_branch2c (Conv2D)          (None, 4, 4, 1024)    263168      activation_30[0][0]              
+____________________________________________________________________________________________________
+bn4b_branch2c (BatchNormalizatio (None, 4, 4, 1024)    4096        res4b_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_10 (Add)                     (None, 4, 4, 1024)    0           bn4b_branch2c[0][0]              
+                                                                   activation_28[0][0]              
+____________________________________________________________________________________________________
+activation_31 (Activation)       (None, 4, 4, 1024)    0           add_10[0][0]                     
+____________________________________________________________________________________________________
+res4c_branch2a (Conv2D)          (None, 4, 4, 256)     262400      activation_31[0][0]              
+____________________________________________________________________________________________________
+bn4c_branch2a (BatchNormalizatio (None, 4, 4, 256)     1024        res4c_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_32 (Activation)       (None, 4, 4, 256)     0           bn4c_branch2a[0][0]              
+____________________________________________________________________________________________________
+res4c_branch2b (Conv2D)          (None, 4, 4, 256)     590080      activation_32[0][0]              
+____________________________________________________________________________________________________
+bn4c_branch2b (BatchNormalizatio (None, 4, 4, 256)     1024        res4c_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_33 (Activation)       (None, 4, 4, 256)     0           bn4c_branch2b[0][0]              
+____________________________________________________________________________________________________
+res4c_branch2c (Conv2D)          (None, 4, 4, 1024)    263168      activation_33[0][0]              
+____________________________________________________________________________________________________
+bn4c_branch2c (BatchNormalizatio (None, 4, 4, 1024)    4096        res4c_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_11 (Add)                     (None, 4, 4, 1024)    0           bn4c_branch2c[0][0]              
+                                                                   activation_31[0][0]              
+____________________________________________________________________________________________________
+activation_34 (Activation)       (None, 4, 4, 1024)    0           add_11[0][0]                     
+____________________________________________________________________________________________________
+res4d_branch2a (Conv2D)          (None, 4, 4, 256)     262400      activation_34[0][0]              
+____________________________________________________________________________________________________
+bn4d_branch2a (BatchNormalizatio (None, 4, 4, 256)     1024        res4d_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_35 (Activation)       (None, 4, 4, 256)     0           bn4d_branch2a[0][0]              
+____________________________________________________________________________________________________
+res4d_branch2b (Conv2D)          (None, 4, 4, 256)     590080      activation_35[0][0]              
+____________________________________________________________________________________________________
+bn4d_branch2b (BatchNormalizatio (None, 4, 4, 256)     1024        res4d_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_36 (Activation)       (None, 4, 4, 256)     0           bn4d_branch2b[0][0]              
+____________________________________________________________________________________________________
+res4d_branch2c (Conv2D)          (None, 4, 4, 1024)    263168      activation_36[0][0]              
+____________________________________________________________________________________________________
+bn4d_branch2c (BatchNormalizatio (None, 4, 4, 1024)    4096        res4d_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_12 (Add)                     (None, 4, 4, 1024)    0           bn4d_branch2c[0][0]              
+                                                                   activation_34[0][0]              
+____________________________________________________________________________________________________
+activation_37 (Activation)       (None, 4, 4, 1024)    0           add_12[0][0]                     
+____________________________________________________________________________________________________
+res4e_branch2a (Conv2D)          (None, 4, 4, 256)     262400      activation_37[0][0]              
+____________________________________________________________________________________________________
+bn4e_branch2a (BatchNormalizatio (None, 4, 4, 256)     1024        res4e_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_38 (Activation)       (None, 4, 4, 256)     0           bn4e_branch2a[0][0]              
+____________________________________________________________________________________________________
+res4e_branch2b (Conv2D)          (None, 4, 4, 256)     590080      activation_38[0][0]              
+____________________________________________________________________________________________________
+bn4e_branch2b (BatchNormalizatio (None, 4, 4, 256)     1024        res4e_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_39 (Activation)       (None, 4, 4, 256)     0           bn4e_branch2b[0][0]              
+____________________________________________________________________________________________________
+res4e_branch2c (Conv2D)          (None, 4, 4, 1024)    263168      activation_39[0][0]              
+____________________________________________________________________________________________________
+bn4e_branch2c (BatchNormalizatio (None, 4, 4, 1024)    4096        res4e_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_13 (Add)                     (None, 4, 4, 1024)    0           bn4e_branch2c[0][0]              
+                                                                   activation_37[0][0]              
+____________________________________________________________________________________________________
+activation_40 (Activation)       (None, 4, 4, 1024)    0           add_13[0][0]                     
+____________________________________________________________________________________________________
+res4f_branch2a (Conv2D)          (None, 4, 4, 256)     262400      activation_40[0][0]              
+____________________________________________________________________________________________________
+bn4f_branch2a (BatchNormalizatio (None, 4, 4, 256)     1024        res4f_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_41 (Activation)       (None, 4, 4, 256)     0           bn4f_branch2a[0][0]              
+____________________________________________________________________________________________________
+res4f_branch2b (Conv2D)          (None, 4, 4, 256)     590080      activation_41[0][0]              
+____________________________________________________________________________________________________
+bn4f_branch2b (BatchNormalizatio (None, 4, 4, 256)     1024        res4f_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_42 (Activation)       (None, 4, 4, 256)     0           bn4f_branch2b[0][0]              
+____________________________________________________________________________________________________
+res4f_branch2c (Conv2D)          (None, 4, 4, 1024)    263168      activation_42[0][0]              
+____________________________________________________________________________________________________
+bn4f_branch2c (BatchNormalizatio (None, 4, 4, 1024)    4096        res4f_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_14 (Add)                     (None, 4, 4, 1024)    0           bn4f_branch2c[0][0]              
+                                                                   activation_40[0][0]              
+____________________________________________________________________________________________________
+activation_43 (Activation)       (None, 4, 4, 1024)    0           add_14[0][0]                     
+____________________________________________________________________________________________________
+res5a_branch2a (Conv2D)          (None, 2, 2, 512)     524800      activation_43[0][0]              
+____________________________________________________________________________________________________
+bn5a_branch2a (BatchNormalizatio (None, 2, 2, 512)     2048        res5a_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_44 (Activation)       (None, 2, 2, 512)     0           bn5a_branch2a[0][0]              
+____________________________________________________________________________________________________
+res5a_branch2b (Conv2D)          (None, 2, 2, 512)     2359808     activation_44[0][0]              
+____________________________________________________________________________________________________
+bn5a_branch2b (BatchNormalizatio (None, 2, 2, 512)     2048        res5a_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_45 (Activation)       (None, 2, 2, 512)     0           bn5a_branch2b[0][0]              
+____________________________________________________________________________________________________
+res5a_branch2c (Conv2D)          (None, 2, 2, 2048)    1050624     activation_45[0][0]              
+____________________________________________________________________________________________________
+res5a_branch1 (Conv2D)           (None, 2, 2, 2048)    2099200     activation_43[0][0]              
+____________________________________________________________________________________________________
+bn5a_branch2c (BatchNormalizatio (None, 2, 2, 2048)    8192        res5a_branch2c[0][0]             
+____________________________________________________________________________________________________
+bn5a_branch1 (BatchNormalization (None, 2, 2, 2048)    8192        res5a_branch1[0][0]              
+____________________________________________________________________________________________________
+add_15 (Add)                     (None, 2, 2, 2048)    0           bn5a_branch2c[0][0]              
+                                                                   bn5a_branch1[0][0]               
+____________________________________________________________________________________________________
+activation_46 (Activation)       (None, 2, 2, 2048)    0           add_15[0][0]                     
+____________________________________________________________________________________________________
+res5b_branch2a (Conv2D)          (None, 2, 2, 512)     1049088     activation_46[0][0]              
+____________________________________________________________________________________________________
+bn5b_branch2a (BatchNormalizatio (None, 2, 2, 512)     2048        res5b_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_47 (Activation)       (None, 2, 2, 512)     0           bn5b_branch2a[0][0]              
+____________________________________________________________________________________________________
+res5b_branch2b (Conv2D)          (None, 2, 2, 512)     2359808     activation_47[0][0]              
+____________________________________________________________________________________________________
+bn5b_branch2b (BatchNormalizatio (None, 2, 2, 512)     2048        res5b_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_48 (Activation)       (None, 2, 2, 512)     0           bn5b_branch2b[0][0]              
+____________________________________________________________________________________________________
+res5b_branch2c (Conv2D)          (None, 2, 2, 2048)    1050624     activation_48[0][0]              
+____________________________________________________________________________________________________
+bn5b_branch2c (BatchNormalizatio (None, 2, 2, 2048)    8192        res5b_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_16 (Add)                     (None, 2, 2, 2048)    0           bn5b_branch2c[0][0]              
+                                                                   activation_46[0][0]              
+____________________________________________________________________________________________________
+activation_49 (Activation)       (None, 2, 2, 2048)    0           add_16[0][0]                     
+____________________________________________________________________________________________________
+res5c_branch2a (Conv2D)          (None, 2, 2, 512)     1049088     activation_49[0][0]              
+____________________________________________________________________________________________________
+bn5c_branch2a (BatchNormalizatio (None, 2, 2, 512)     2048        res5c_branch2a[0][0]             
+____________________________________________________________________________________________________
+activation_50 (Activation)       (None, 2, 2, 512)     0           bn5c_branch2a[0][0]              
+____________________________________________________________________________________________________
+res5c_branch2b (Conv2D)          (None, 2, 2, 512)     2359808     activation_50[0][0]              
+____________________________________________________________________________________________________
+bn5c_branch2b (BatchNormalizatio (None, 2, 2, 512)     2048        res5c_branch2b[0][0]             
+____________________________________________________________________________________________________
+activation_51 (Activation)       (None, 2, 2, 512)     0           bn5c_branch2b[0][0]              
+____________________________________________________________________________________________________
+res5c_branch2c (Conv2D)          (None, 2, 2, 2048)    1050624     activation_51[0][0]              
+____________________________________________________________________________________________________
+bn5c_branch2c (BatchNormalizatio (None, 2, 2, 2048)    8192        res5c_branch2c[0][0]             
+____________________________________________________________________________________________________
+add_17 (Add)                     (None, 2, 2, 2048)    0           bn5c_branch2c[0][0]              
+                                                                   activation_49[0][0]              
+____________________________________________________________________________________________________
+activation_52 (Activation)       (None, 2, 2, 2048)    0           add_17[0][0]                     
+____________________________________________________________________________________________________
+avg_pool (AveragePooling2D)      (None, 1, 1, 2048)    0           activation_52[0][0]              
+____________________________________________________________________________________________________
+flatten_1 (Flatten)              (None, 2048)          0           avg_pool[0][0]                   
+____________________________________________________________________________________________________
+fc6 (Dense)                      (None, 6)             12294       flatten_1[0][0]                  
+====================================================================================================
+Total params: 23,600,006
+Trainable params: 23,546,886
+Non-trainable params: 53,120
+____________________________________________________________________________________________________
+</code></pre><p>Finally, run the code below to visualize your ResNet50. You can also download a .png picture of your model by going to “File -&gt; Open…-&gt; model.png”.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_model(model, to_file=<span class="string">'model.png'</span>)</span><br><span class="line">SVG(model_to_dot(model).create(prog=<span class="string">'dot'</span>, format=<span class="string">'svg'</span>))</span><br></pre></td></tr></table></figure>
+<p><img src="http://q9kvrafcq.bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg" alt="svg"></p>
+<p><font color="blue"><br><strong>What you should remember:</strong></font></p>
+<ul>
+<li>Very deep “plain” networks don’t work in practice because they are hard to train due to vanishing gradients.  </li>
+<li>The skip-connections help to address the Vanishing Gradient problem. They also make it easy for a ResNet block to learn an identity function. </li>
+<li>There are two main type of blocks: The identity block and the convolutional block. </li>
+<li>Very deep Residual Networks are built by stacking these blocks together.</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><p>This notebook presents the ResNet algorithm due to He et al. (2015). The implementation here also took significant inspiration and follows the structure given in the github repository of Francois Chollet: </p>
+<ul>
+<li>Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun - <a href="https://arxiv.org/abs/1512.03385" target="_blank" rel="noopener">Deep Residual Learning for Image Recognition (2015)</a></li>
+<li>Francois Chollet’s github repository: <a href="https://github.com/fchollet/deep-learning-models/blob/master/resnet50.py" target="_blank" rel="noopener">https://github.com/fchollet/deep-learning-models/blob/master/resnet50.py</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay">
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2018/05/02/Residual+Networks+-+v2/" title="Residual Networks">https://snaildove.github.io/2018/05/02/Residual+Networks+-+v2/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/deep-learning/" rel="tag"><i class="fa fa-tag"></i> deep learning</a>
+          
+            <a href="/tags/convolutional-neural-networks/" rel="tag"><i class="fa fa-tag"></i> convolutional-neural-networks</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/05/01/Convolution+model+-+Step+by+Step+-+v2/" rel="next" title="Convolution model Step by Step">
+                <i class="fa fa-chevron-left"></i> Convolution model Step by Step
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/05/02/Keras+-+Tutorial+-+Happy+House+v2/" rel="prev" title="Keras Tutorial Happy House">
+                Keras Tutorial Happy House <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.png" alt="SnailDove">
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">37</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/统计学习方法/">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Note"><span class="nav-text">Note</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#Residual-Networks"><span class="nav-text">Residual Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-The-problem-of-very-deep-neural-networks"><span class="nav-text">1 - The problem of very deep neural networks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-Building-a-Residual-Network"><span class="nav-text">2 - Building a Residual Network</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-The-identity-block"><span class="nav-text">2.1 - The identity block</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-The-convolutional-block"><span class="nav-text">2.2 - The convolutional block</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Building-your-first-ResNet-model-50-layers"><span class="nav-text">3 - Building your first ResNet model (50 layers)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Test-on-your-own-image-Optional-Ungraded"><span class="nav-text">4 - Test on your own image (Optional/Ungraded)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#References"><span class="nav-text">References</span></a></li></ol></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">918.8k</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>
