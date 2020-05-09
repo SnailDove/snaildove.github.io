@@ -8,6 +8,7 @@ node_modules/
 public/
 source/.DS_Store
 source/_drafts/
+source/_post/
 substitute_bucket.sh
 themes/.DS_Store
 themes/next/_config.yml
