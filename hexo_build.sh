@@ -60,3 +60,32 @@ cnpm install --save hexo-blog-encrypt
         # }
     # })();
 # </script>
+
+#step11: 禁止文章复制
+# 在 themes/next/source/js/src/post-details.js 添加以下函数
+
+```javascript
+$(document).ready(function(){
+    $("body").attr("oncontextmenu","return false");
+    $("body").attr("onselectstart","return false");
+    $("body").attr("ondragstart","return false");
+    $("body").attr("onbeforecopy","return false");
+    $("body").attr("oncopy","document.selection.empty()");
+    $("body").attr("onselect","election.empty()");
+})
+```
+
+或者 themes/next/layout/_scripts/pages/post-details.js
+
+```javascript
+<script>
+$(document).ready(function(){
+    $("body").attr("oncontextmenu","return false");
+    $("body").attr("onselectstart","return false");
+    $("body").attr("ondragstart","return false");
+    $("body").attr("onbeforecopy","return false");
+    $("body").attr("oncopy","document.selection.empty()");
+    $("body").attr("onselect","election.empty()");
+})
+</script>
+```

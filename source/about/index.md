@@ -1,15 +1,19 @@
 ---
-title: About me
+title: About me<br/>关于我
 layout: page
 comments: false
 ---
 
-## SnailDove's blog 
+**I'm a software engineer focused on Big data**。
 
-**I'm a software engineer specializing Big data and Machine Learning**
+**Email** : xianqianwan09@gmail.com
 
-**Email** : 2657656431@qq.com
+## 捐助者列表
 
-
-
+| 编号 | 资助者<br/>（为了保护隐私做了一定程度的匿名处理） | 资助金额 |  资助日期  |      捐助名目       |
+| :--: | :-----------------------------------------------: | :------: | :--------: | :-----------------: |
+|  1   |                       梦*梦                       | 6.66 ￥  | 2019.09.08 | Spark权威指南的翻译 |
+|  2   |                        j*g                        |   5 ￥   | 2020.05.13 | Spark权威指南的翻译 |
+|  3   |                        *然                        |   20￥   | 2020.05.26 | Spark权威指南的翻译 |
+|  4   |                        *水                         |  30￥   | 2020.06.09 | Spark权威指南的翻译 |
 

@@ -1,6 +1,6 @@
+
 {% extends '_layout.swig' %}
 {% import '_macro/sidebar.swig' as sidebar_template %}
-
   {% block title %}{#
   #}{% set page_title_suffix = ' | ' + config.title %}{#
 
@@ -27,7 +27,8 @@
       {### PAGE BODY ###}
       {#################}
       <div class="post-body{% if theme.han %} han-init-context{% endif %}{% if page.direction && page.direction.toLowerCase() === 'rtl' %} rtl{% endif %}">
-        {# tagcloud page support #}
+
+        {#  tagcloud page support #}
         {% if page.type === "tags" %}
           <div class="tag-cloud">
             <div class="tag-cloud-title">
@@ -47,7 +48,7 @@
             </div>
           </div>
         {% else %}
-          {{ page.content }}
+	{{  page.content }}
         {% endif %}
       </div>
       {#####################}

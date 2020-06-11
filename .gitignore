@@ -1,4 +1,3 @@
-#
 .DS_Store
 .deploy_git/
 .npmignore
@@ -13,3 +12,4 @@ substitute_bucket.sh
 themes/.DS_Store
 themes/next/_config.yml
 writing_shortcuts.txt
+generating_book.sh
