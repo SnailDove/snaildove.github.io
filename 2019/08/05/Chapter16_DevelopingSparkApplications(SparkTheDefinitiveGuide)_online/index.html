@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Chapter 16 Developing Spark ApplicationsTesting Spark Applications 测试Spark应用程序You now know what it takes to write and run a Spark Application, so let’s move on to a less exciting but still very impo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译 Chapter 16 Developing Spark Applications">
+<meta property="og:url" content="https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="Chapter 16 Developing Spark ApplicationsTesting Spark Applications 测试Spark应用程序You now know what it takes to write and run a Spark Application, so let’s move on to a less exciting but still very impo">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-06T03:08:25.366Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/"/>
+
+
+
+
+
+  <title>翻译 Chapter 16 Developing Spark Applications | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">翻译 Chapter 16 Developing Spark Applications</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-05T00:00:00+08:00">
+                2019-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  10,700
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  50
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/></p>
+<h1 id="Chapter-16-Developing-Spark-Applications"><a href="#Chapter-16-Developing-Spark-Applications" class="headerlink" title="Chapter 16 Developing Spark Applications"></a>Chapter 16 Developing Spark Applications</h1><h2 id="Testing-Spark-Applications-测试Spark应用程序"><a href="#Testing-Spark-Applications-测试Spark应用程序" class="headerlink" title="Testing Spark Applications 测试Spark应用程序"></a><font color="#9a161a" >Testing Spark Applications 测试Spark应用程序</font></h2><p>You now know what it takes to write and run a Spark Application, so let’s move on to a less exciting but still very important topic: testing. Testing Spark Applications relies on a couple of key principles and tactics that you should keep in mind as you’re writing your applications.</p>
+<p>您现在知道编写和运行Spark应用程序需要什么，所以让我们继续讨论一个不太令人兴奋但仍然非常重要的主题：测试。测试Spark应用程序依赖于在编写应用程序时应该记住的几个关键原则和策略。</p>
+<h3 id="Strategic-Principles-战略原则"><a href="#Strategic-Principles-战略原则" class="headerlink" title="Strategic Principles 战略原则"></a><font color="#000000" >Strategic Principles 战略原则</font></h3><p>Testing your data pipelines and Spark Applications is just as important as actually writing them. This is because you want to ensure that they are resilient to future change, in data, logic, and output. In this section, we’ll first discuss what you might want to test in a typical Spark Application, then discuss <em>how</em> to organize your code for easy testing.</p>
+<p>测试数据管道和 Spark 应用程序与实际编写它们一样重要。这是因为您希望确保它们能够适应未来的变化，包括数据，逻辑和输出。在本节中，我们将首先讨论您可能希望在典型的 Spark 应用程序中测试的内容，然后讨论如何组织代码以便于轻松测试。</p>
+<h4 id="Input-data-resilience-输入数据弹性"><a href="#Input-data-resilience-输入数据弹性" class="headerlink" title="Input data resilience 输入数据弹性"></a><font color="#3399cc">Input data resilience 输入数据弹性</font></h4><p>Being resilient to different kinds of input data is something that is quite fundamental to how you write your data pipelines. The data will change because the business needs will change. Therefore your Spark Applications and pipelines should be resilient to at least some degree of change in the input data or otherwise ensure that these failures are handled in a graceful and resilient way. For the most part this means being smart about writing your tests to handle those edge cases of different inputs and making sure that the pager  only goes off when it’s something that is truly important.</p>
+<p>对不同类型的输入数据具有弹性对于编写数据管道非常重要。数据将发生变化，因为业务需求将发生变化。因此，您的Spark应用程序和管道应该能够适应输入数据的至少某种程度的变化，或者确保以优雅和弹性的方式处理这些故障。在大多数情况下，这意味着要聪明地编写测试来处理不同输入的边缘情况（极端情况），并确保报警器仅在真正重要的事情发生时才会发出警报。</p>
+<h4 id="Business-logic-resilience-and-evolution-业务逻辑弹性和演变"><a href="#Business-logic-resilience-and-evolution-业务逻辑弹性和演变" class="headerlink" title="Business logic resilience and evolution 业务逻辑弹性和演变"></a><font color="#3399cc">Business logic resilience and evolution 业务逻辑弹性和演变</font></h4><p>The business logic in your pipelines will likely change as well as the input data. Even more importantly, you want to be sure that what you’re deducing from the raw data is what you actually think that you’re deducing. This means that you’ll need to do robust logical testing with realistic data to ensure that you’re actually getting what you want out of it. One thing to be wary of here is trying to write a bunch of “Spark Unit Tests” that just test Spark’s functionality. You don’t want to be doing that; instead, you want to be testing your business logic and ensuring that the complex business pipeline that you set up is actually doing what you think it should be doing.</p>
+<p>管道中的业务逻辑可能会随输入数据而变化。更重要的是，您希望确保从原始数据中推断出的内容是您实际认为正在推导的内容。这意味着您需要使用真实数据进行强大的逻辑测试，以确保您实际上从中获得了您想要的内容。需要注意的一件事是尝试编写一组只测试Spark功能的“Spark Unit Tests”。你不想这样做;相反，您希望测试业务逻辑并确保您设置的复杂业务管道实际上正在执行您认为应该执行的操作。</p>
+<h4 id="Resilience-in-output-and-atomicity-输出的弹性和原子性"><a href="#Resilience-in-output-and-atomicity-输出的弹性和原子性" class="headerlink" title="Resilience in output and atomicity 输出的弹性和原子性"></a><font color="#3399cc">Resilience in output and atomicity 输出的弹性和原子性</font></h4><p>Assuming that you’re prepared for departures in the structure of input data and that your business logic is well tested, you now want to ensure that your output structure is what you expect. This means you will need to gracefully handle output schema resolution. It’s not often that data is simply dumped in some location, never to be read again—most of your Spark pipelines are probably feeding other Spark pipelines. For this reason you’re going to want to make certain that your downstream consumers understand the “state” of the data—this could mean how frequently it’s updated as well as whether the data is “complete” (e.g., there is no late data) or that there won’t be any last-minute corrections to the data. All of the aforementioned issues are principles that you should be thinking about as you build your data pipelines (actually, regardless of whether you’re using Spark). This strategic thinking is important for laying down the foundation for the system that you would like to build.</p>
+<p>假设您已准备好在输入数据结构中离开，并且您的业务逻辑已经过充分测试，那么您现在需要确保您的输出结构符合您的预期。这意味着您需要优雅地处理输出模式解析。通常不会将数据简单地转储到某个位置，永远不会再次读取——大多数Spark管道可能正在为其他 Spark 管道提供服务。因此，您需要确保下游消费者了解数据的“状态”——这可能意味着更新频率以及数据是否“完整”（例如，没有后期数据）或者不会对数据进行任何最后修正。所有上述问题都是您在构建数据管道时应该考虑的原则（实际上，无论您是否使用Spark）。这种战略思维对于为您希望构建的系统奠定基础非常重要。</p>
+<h3 id="Tactical-Takeaways-战术外卖"><a href="#Tactical-Takeaways-战术外卖" class="headerlink" title="Tactical Takeaways 战术外卖"></a><font color="#000000" >Tactical Takeaways 战术外卖</font></h3><p>Although strategic thinking is important, let’s talk a bit more in detail about some of the tactics that you can actually use to make your application easy to test. The highest value approach is to verify that your business logic is correct by employing proper unit testing and to ensure that you’re resilient to changing input data or have structured it so that schema evolution will not become unwielding  in the future. The decision for how to do this largely falls on you as the developer because it will vary according to your business domain and domain expertise.</p>
+<p>虽然战略思维很重要，但让我们更详细地谈谈您可以实际使用的一些策略，以使您的应用程序易于测试。最有价值的方法是通过采用适当的单元测试来验证您的业务逻辑是否正确，并确保您能够适应不断变化的输入数据，或者对其进行结构化，以便模式演变在未来不会变得无法使用。关于如何做到这一点的决定很大程度上取决于您作为开发人员，因为它将根据您的业务领域和领域专业知识而有所不同。</p>
+<h4 id="Managing-SparkSessions-管理SparkSessions"><a href="#Managing-SparkSessions-管理SparkSessions" class="headerlink" title="Managing SparkSessions 管理SparkSessions"></a><font color="#3399cc">Managing SparkSessions 管理SparkSessions</font></h4><p>Testing your Spark code using a unit test framework like <code>JUnit</code> or <code>ScalaTest</code> is relatively easy because of Spark’s local mode—just create a local mode <code>SparkSession</code> as part of your test harness to run it. However, to make this work well, you should try to perform dependency injection as much as possible when managing SparkSessions in your code. That is, initialize the <code>SparkSession</code> only once and pass it around to relevant functions and classes at runtime in a way that makes it easy to substitute during testing. This makes it much easier to test each individual function with a dummy <code>SparkSession</code> in unit tests.</p>
+<p>使用单元测试框架（如 JUnit 或 ScalaTest ）测试Spark代码相对容易，因为Spark的本地模式——只需创建一个本地模式 SparkSession 作为测试工具的一部分来运行它。但是，为了使这项工作更好，您应该在代码中管理SparkSessions 时尽可能多地执行依赖项注入。也就是说，只将 SparkSession 初始化一次并在运行时将其传递给相关的函数和类，以便在测试期间轻松替换。这使得在单元测试中使用仿真的SparkSession测试每个单独的函数变得更加容易。</p>
+<h4 id="Which-Spark-API-to-Use-使用哪种Spark-API？"><a href="#Which-Spark-API-to-Use-使用哪种Spark-API？" class="headerlink" title="Which Spark API to Use? 使用哪种Spark API？"></a><font color="#3399cc">Which Spark API to Use? 使用哪种Spark API？</font></h4><p>Spark offers several choices of APIs, ranging from SQL to DataFrames and Datasets, and each of these can have different impacts for maintainability   and testability    of your application. To be perfectly honest, the right API depends on your team and its needs: some teams and projects will need the less strict SQL and DataFrame APIs for speed of development, while others will want to use type-safe Datasets or RDDs.</p>
+<p>Spark提供了多种API选择，从 SQL 到 DataFrames 和 Datasets，每种API都会对应用程序的可维护性和可测试性产生不同的影响。说实话，正确的API取决于您的团队及其需求：一些团队和项目需要不太严格的SQL和DataFrame API来提高开发速度，而其他团队和项目则需要使用类型安全的 DataSet 或 RDD 。</p>
+<p>In general, we recommend documenting and testing the input and output types of each function regardless of which API you use. The type-safe API automatically enforces a minimal contract for your function that makes it easy for other code to build on it. If your team prefers to use DataFrames or SQL, then spend some time to document and test what each function returns and what types of inputs it accepts to avoid surprises later, as in any dynamically typed programming language. While the lower-level RDD API is also statically typed, we recommend going into it only if you need low-level features such as partitioning that are not present in Datasets, which should not be very common; the Dataset API allows more performance optimizations and is likely to provide even more of them in the future.</p>
+<p>通常，我们建议记录和测试每个函数的输入和输出类型，无论您使用哪个API。类型安全的API会自动为您的函数强制执行最小的约定（可以理解为：可使用的条款少，灵活度低），以便在其上构建其他代码。如果您的团队更喜欢使用DataFrames或SQL，那么花一些时间来记录和测试每个函数返回的内容以及它接受哪些类型的输入以避免以后出现意外，就像在任何动态类型编程语言中一样。虽然较低阶的RDD API也是静态类型的，但我们建议只有在需要低阶功能（例如数据集中不存在的分区）时才进入它，这应该不常见; DataSet API允许更多性能优化，并且可能在将来提供更多性能优化。</p>
+<p>A similar set of considerations applies to which programming language to use for your application: there certainly is no right answer for every team, but depending on your needs, each language will provide different benefits. We generally recommend using statically typed languages like Scala and Java for larger applications or those where you want to be able to drop into low-level code to fully control performance, but Python and R may be significantly better in other cases—for example, if you need to use some of their other libraries. Spark code should easily be testable in the standard unit testing frameworks in every language. </p>
+<p>一组类似的注意事项适用于您的应用程序使用哪种编程语言：每个团队肯定没有正确的答案，但根据您的需求，每种语言都会提供不同的好处。我们通常建议对大型应用程序使用静态类型语言（如Scala和Java），或者希望能够放入低阶代码以完全控制性能的语言，但在其他情况下，Python和R可能会明显更好——例如，如果你需要使用他们的一些其他库。 Spark代码应该可以在每种语言的标准单元测试框架中轻松测试。</p>
+<h3 id="Connecting-to-Unit-Testing-Frameworks-连接到单元测试框架"><a href="#Connecting-to-Unit-Testing-Frameworks-连接到单元测试框架" class="headerlink" title="Connecting to Unit Testing Frameworks 连接到单元测试框架"></a><font color="#000000" >Connecting to Unit Testing Frameworks 连接到单元测试框架</font></h3><p>To unit test your code, we recommend using the standard frameworks in your langage (e.g., <code>JUnit</code> or <code>ScalaTest</code> ), and setting up your test harnesses to create and clean up a <code>SparkSession</code> for each test. Different frameworks offer different mechanisms to do this, such as “before” and “after” methods. We have included some sample unit testing code in the application templates for this chapter.</p>
+<p>要对代码进行单元测试，我们建议您使用标准框架（例如，<code>JUnit</code> 或 <code>ScalaTest</code>），并设置测试工具来为每个测试创建和清理 <code>SparkSession</code>。不同的框架提供了不同的机制来实现这一点，例如“之前”和“之后”方法。我们在本章的应用程序模板中包含了一些示例单元测试代码。</p>
+<h3 id="Connecting-to-Data-Sources-连接到数据源"><a href="#Connecting-to-Data-Sources-连接到数据源" class="headerlink" title="Connecting to Data Sources 连接到数据源"></a><font color="#000000" >Connecting to Data Sources 连接到数据源</font></h3><p>As much as possible, you should make sure your testing code does not connect to production data sources, so that developers can easily run it in isolation if these data sources change. One easy way to make this happen is to have all your business logic functions take DataFrames or Datasets as input instead of directly connecting to various sources; after all, subsequent code will work the same way no matter what the data source was. If you are using the structured APIs in Spark, another way to make this happen is named tables: you can simply register some dummy datasets (e.g., loaded from small text file or from in-memory objects) as various table names and go from there. </p>
+<p>您应尽可能确保测试代码不会连接到生产数据源，以便开发人员可以在这些数据源发生更改时轻松地单独运行它。实现这一目标的一种简单方法是让所有业务逻辑功能将DataFrames或Datasets作为输入，而不是直接连接到各种源; 毕竟，无论数据源是什么，后续代码都将以相同的方式工作。如果您在Spark中使用结构化API，另一种实现此目的的方法是命名表：您只需将一些仿真数据集（例如，从小文本文件或内存中对象加载）注册为各种表名，然后从那里开始。</p>
+<h2 id="The-Development-Process-开发过程"><a href="#The-Development-Process-开发过程" class="headerlink" title="The Development Process 开发过程"></a><font color="#9a161a" >The Development Process 开发过程</font></h2><p>The development process with Spark Applications is similar to development workflows that you have probably already used. First, you might maintain a scratch space, such as an interactive notebook or some equivalent thereof, and then as you build key components and algorithms, you move them to a more permanent location like a library or package. The notebook experience is one that we often recommend (and are using to write this book) because of its simplicity in experimentation. There are also some tools, such as Databricks, that allow you to run notebooks as production applications as well.</p>
+<p>Spark应用程序的开发过程类似于您可能已经使用过的开发工作流程。首先，您可以维护一个临时空间，例如交互式笔记本或其等效物，然后在构建关键组件和算法时，将它们移动到更永久的位置，如库或包。notebook（与jupter notebook类似）的体验是我们经常推荐的（并且正在用来编写本书），因为它的实验非常简单。还有一些工具，如 Databricks，允许您将笔记本作为生产应用程序运行。</p>
+<p>When running on your local machine, the <font face="constant-width" color="#000000" size=3>spark-shell</font> and its various language-specific implementations are probably the best way to develop applications. For the most part, the shell is for interactive applications, whereas <font face="constant-width" color="#000000" size=3>spark-submit</font> is for production applications on your Spark cluster. You can use the shell to interactively run Spark, just as we showed you at the beginning of this book. This is the mode with which you will run <font face="constant-width" color="#000000" size=3>PySpark</font>, <font face="constant-width" color="#000000" size=3>Spark SQL</font>, and <font face="constant-width" color="#000000" size=3>SparkR</font>. In the bin folder, when you download Spark, you will find the various ways of starting these shells. Simply run <font face="constant-width" color="#000000" size=3>sparkshell</font>(for Scala), <font face="constant-width" color="#000000" size=3>spark-sql</font>, <font face="constant-width" color="#000000" size=3>pyspark</font>, and <font face="constant-width" color="#000000" size=3>sparkR</font>. After you’ve finished your application and created a package or script to run, spark-submit will become your best friend to submit this job to a cluster. </p>
+<p>在本地计算机上运行时，spark-shell 及其各种特定于语言的实现可能是开发应用程序的最佳方式。在大多数情况下，shell用于交互式应用程序，而 spark-submit 用于Spark集群上的生产应用程序。您可以使用shell以交互方式运行Spark，就像我们在本书开头部分向您展示的那样。这是运行 PySpark，Spark SQL 和 SparkR 的模式。在bin文件夹中，当您下载 Spark 时，您将找到启动这些 shell 的各种方法。只需运行 sparkshell（适用于Scala），spark-sql，pyspark 和 sparkR。在您完成应用程序并创建要运行的包或脚本后，spark-submit 将成为您将此作业提交到群集的最佳朋友。</p>
+<h2 id="Launching-Applications-启动应用程序"><a href="#Launching-Applications-启动应用程序" class="headerlink" title="Launching Applications 启动应用程序"></a><font color="#9a161a" >Launching Applications 启动应用程序</font></h2><p>The most common way for running Spark Applications is through <font face="constant-width" color="#000000" size=3>spark-submit</font>. Previously in this chapter, we showed you how to run <font face="constant-width" color="#000000" size=3>spark-submit</font>; you simply specify your options, the application <font face="constant-width" color="#000000" size=3>JAR</font> or script, and the relevant arguments: </p>
+<p>运行Spark应用程序的最常用方法是通过spark-submit。 在本章的前面，我们向您展示了如何运行spark-submit; 您只需指定选项，应用程序 JAR 或脚本以及相关参数：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">./bin/spark-submit \</span><br><span class="line">--class &lt;main-class&gt; \</span><br><span class="line">--master &lt;master-url&gt; \</span><br><span class="line">--deploy-mode &lt;deploy-mode&gt; \</span><br><span class="line">--conf &lt;key&gt;=&lt;value&gt; \</span><br><span class="line">... # other options</span><br><span class="line">&lt;application-jar-or-script&gt; \</span><br><span class="line">[application-arguments]</span><br></pre></td></tr></table></figure>
+<p>You can always specify whether to run in client or cluster mode when you submit a Spark job with </p>
+<font face="constant-width" color="#000000" size=3>spark-submit</font>. However, you should almost always favor running in cluster mode (or in client mode on the cluster itself) to reduce latency between the executors and the driver.<br><br>当您使用 spark-submit 提交 Spark 作业时，您始终可以指定是以客户端还是群集模式运行。 但是，您几乎总是倾向于在群集模式下运行（或在集群本身的客户端模式下）以减少执行程序和驱动程序之间的延迟。<br><br>When submitting applciations, pass a <font face="constant-width" color="#000000" size=3>.py</font> file in the place of a <font face="constant-width" color="#000000" size=3>.jar</font>, and add Python <font face="constant-width" color="#000000" size=3>.zip</font>, <font face="constant-width" color="#000000" size=3>.egg</font>, or <font face="constant-width" color="#000000" size=3>.py</font> to the search path with <font face="constant-width" color="#000000" size=3>–py-files</font>.<br><br>提交 applciations 时，在 .jar 的位置传递 .py 文件，并使用 –py-files 将 Python .zip，.egg 或 .py 添加到搜索路径。<br><br>For reference, Table 16-1 lists all of the available <font face="constant-width" color="#000000" size=3>spark-submit</font> options, including those that are particular to some cluster managers. To enumerate all these options yourself, run <font face="constant-width" color="#000000" size=3>spark-submit</font> with <font face="constant-width" color="#000000" size=3>–help</font>.<br><br>作为参考，表16-1列出了所有可用的 spark-submit 选项，包括某些集群管理器特有的选项。 要自己枚举所有这些选项，请使用 –help 运行 spark-submit。<br><br>Table 16-1. <a href="http://spark.apache.org/docs/latest/submitting-applications.html" target="_blank" rel="noopener">Spark submit help text</a><br><br>| Parameter                    | Description                                                  |<br>| —————————- | ———————————————————— |<br>| –master<br/>MASTER_URL      | spark://host:port, mesos://host:port, yarn, or local<br />Spark 连接的资源管理器 |<br>| –deploymode<br/>DEPLOY_MODE | Whether to launch the driver program locally (“client”) or on one of the worker machines inside the cluster (“cluster”) (Default: client)<br />是在本地（“client”）还是在集群内（“cluster”）的某个工作机器上启动驱动程序（默认值：client） |<br>| –class<br/>CLASS_NAME       | Your application’s main class (for Java / Scala apps).<br />您的应用程序的主类（适用于Java / Scala应用程序）。 |<br>| –name NAME                  | A name of your application.<br />你的应用程序主类。          |<br>| –jars JARS                  | Comma-separated list of local JARs to include on the driver and executor classpaths.<br />以逗号分隔的本地 JAR 列表，包含在驱动程序和执行程序类路径中。 |<br>| –packages                   | search the local Maven repo, then Maven Central and any additional remote repositories given by –<font face="constant-width" color="#000000" size=3>repositories</font>. The format for the coordinates should be <font face="constant-width" color="#000000" size=3>groupId:artifactId:version</font>.<br />搜索本地 Maven 仓库，然后搜索 Maven Central 以及 <code>--repositories</code> 给出的任何其他远程仓库。 坐标的格式应为 <code>groupId:artifactId:version</code>。 |<br>| –exclude-packages           | Comma-separated list of <font face="constant-width" color="#000000" size=3>groupId:artifactId</font>, to exclude while resolving the dependencies provided in –<font face="constant-width" color="#000000" size=3>packages</font> to avoid dependency conflicts.<br />逗号分隔的 <code>groupId:artifactId</code> 列表，在解析 <code>--packages</code> 中提供的依赖项时排除，以避免依赖性冲突。 |<br>| –repositories               | Comma-separated list of additional remote repositories to search for the Maven coordinates given with –<font face="constant-width" color="#000000" size=3>packages</font>.<br />以逗号分隔的其他远程仓库列表，用于搜索 <code>--packages</code> 给出的Maven坐标 |<br>| –py-files<br/>PY_FILES      | Comma-separated list of <em>.zip</em>, <em>.egg</em>, or <em>.py</em> files to place on the <font face="constant-width" color="#000000" size=3>PYTHONPATH</font> for Python apps.<br />以逗号分隔的 .zip，.egg 或 .py 文件列表，放在 Python 应用程序的 PYTHONPATH 上。 |<br>| –files<br/>FILES            | Comma-separated list of files to be placed in the working directory of each executor.<br />以逗号分隔的文件列表，放在每个执行程序的工作目录中。 |<br>| –conf<br/>PROP=VALUE        | Arbitrary Spark configuration property.<br />任意Spark配置属性 |<br>| –<br/>propertiesfile FILE   | Path to a file from which to load extra properties. If not specified, this will look for <font face="constant-width" color="#000000" size=3>conf/spark-defaults.conf</font>.<br />从中加载额外属性的文件的路径。 如果未指定，则会查找 <code>conf/spark-defaults.conf</code>。 |<br>| –driver-memory MEM          | Memory for driver (e.g., 1000M, 2G) (Default: 1024M).<br />驱动器的内存（默认：1024M）。 |<br>| –driver-java-options        | Extra Java options to pass to the driver.<br />传递给驱动器的额外 Java 选项。 |<br>| –driver-library-path        | Extra library path entries to pass to the driver.<br />要传递给驱动程序的额外库路径条目。 |<br>| –driver-class-path          | Extra class path entries to pass to the driver. Note that JARs added with –<font face="constant-width" color="#000000" size=3>jars</font> are automatically included in the classpath.<br />要传递给驱动程序的额外类路径条目。请注意，添加了 <code>--jars</code> 的 JAR 会自动包含在类路径中。 |<br>| –executor-memory MEM        | Memory per executor (e.g., 1000M, 2G) (Default: 1G).<br />每个执行器的内存（例如，1000M，2G）（默认值：1G）。 |<br>| –proxy-user NAME            | User to impersonate when submitting the application. This argument does not work with –<font face="constant-width" color="#000000" size=3>principal</font> / <font face="constant-width" color="#000000" size=3>keytab</font>.<br />用户在提交申请时进行冒充。此参数不适用于 <code>--principal/keytab</code>。 |<br>| –help, -h                   | Show this help message and exit.<br />显示此帮助消息并退出。 |<br>| –verbose, -v                | Print additional debug output.<br />打印其他调试输出。       |<br>| –version                    | Print the version of current Spark.<br />打印当前Spark的版本。 |<br><br><br>There are some deployment-specific configurations as well (see Table 16-2).<br><br>还有一些特定于部署的配置（参见表16-2）。<br><br>| Cluster Managers | Modes   | Conf                        | Description                                                  |<br>| —————- | ——- | ————————— | ———————————————————— |<br>| Standalone       | Cluster | –driver-cores NUM          | Cores for driver (Default: 1)<br />驱动核心（默认值：1）     |<br>| Standalone/Mesos | Cluster | –supervise                 | If given, restarts the driver on failure.<br />如果给定，则在失败时重新启动驱动程序。 |<br>| Standalone/Mesos | Cluster | –kill<br/>SUBMISSION_ID    | If given, kills the driver specified.<br />如果给定，则杀死指定的驱动程序。 |<br>| Standalone/Mesos | Cluster | –status<br/>SUBMISSION_ID  | If given, requests the status of the driver specified.<br />如果给定，请求指定的驱动程序的状态。 |<br>| Standalone/Mesos | Either  | –total-executor-cores NUM  | Total cores for all executors.<br />所有执行器（executor）的核心总数。 |<br>| Standalone/YARN  | Either  | –total-executor-cores NUM1 | Number of cores per executor. (Default: 1 in YARN mode or all available cores on the worker in standalone mode)<br />每个执行器（executor）的核心数。 （默认值：YARN模式下为1或独立模式下工作线程上的所有可用核心） |<br>| YARN             | Either  | –driver-cores NUM          | Number of cores used by the driver, only in cluster mode (Default: 1).<br />驱动程序使用的核心数，仅在集群模式下（默认值：1）。 |<br>| YARN             | Either  | queue QUEUE_NAME            | The YARN queue to submit to (Default: “default”).<br />要提交的YARN队列（默认值：“默认”）。 |<br>| YARN             | Either  | –num-executors NUM         | Number of executors to launch (Default: 2). If dynamic allocation is enabled, the initial number of executors will be at least NUM.<br />要启动的执行程序数（默认值：2）。如果启用了动态分配，则执行程序的初始数量将至少为NUM。 |<br>| YARN             | Either  | –archives<br/>ARCHIVES     | Comma-separated list of archives to be extracted into the working directory of each executor.<br />以逗号分隔的档案列表，提取到每个执行程序的工作目录中。 |<br>| YARN             | Either  | –principal <br/>PRINCIPAL  | Principal to be used to log in to KDC, while running on secure HDFS.<br />Principal 用于在安全 HDFS 上运行时登录 KDC。 |<br>| YARN             | Either  | –keytab<br/>KEYTAB         | The full path to the file that contains the keytab for the principal specified above. This keytab will be copied to the node running the Application Master via the Secure Distributed Cache, for renewing the login tickets and the delegation tokens periodically.<br />包含上面指定的主体的keytab的文件的完整路径。此密钥表将通过安全分布式缓存复制到运行Application Master的节点，以定期更新登录票证和委派令牌。 |<br><br><a href="http://spark.apache.org/docs/latest/submitting-applications.html" target="_blank" rel="noopener">最新的 Spark 应用程序提交帮助文档</a><br><br>### <font color="#000000" >Application Launch Examples</font><br>We already covered some local-mode application examples previously in this chapter, but it’s worth looking at how we use some of the aforementioned options, as well. Spark also includes several examples and demonstration applications in the <em>examples</em> directory that is included when you download Spark. If you’re stuck on how to use certain parameters, simply try them first on your local machine and use the SparkPi class as the main class:<br><br>我们已经介绍了本章前面的一些本地模式应用程序示例，但是值得一看的是我们如何使用上述一些选项。 Spark还包含下载Spark时包含的示例目录中的几个示例和演示应用程序。 如果你坚持使用某些参数，只需先在本地机器上尝试它们，然后使用SparkPi类作为主类：<br><br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./bin/spark-submit \</span><br><span class="line">--<span class="class"><span class="keyword">class</span> <span class="title">org</span>.<span class="title">apache</span>.<span class="title">spark</span>.<span class="title">examples</span>.<span class="title">SparkPi</span> <span class="title">\</span></span></span><br><span class="line"><span class="class"><span class="title">--master</span> <span class="title">spark</span></span>:<span class="comment">//207.184.161.138:7077 \</span></span><br><span class="line">--executor-memory <span class="number">20</span>G \</span><br><span class="line">--total-executor-cores <span class="number">100</span> \</span><br><span class="line">replace/<span class="keyword">with</span>/path/to/examples.jar \</span><br><span class="line"><span class="number">1000</span></span><br></pre></td></tr></table></figure><br><br>The following snippet does the same for Python. You run it from the Spark directory and this will allow you to submit a Python application (all in one script) to the standalone cluster manager. You can also set the same executor limits as in the preceding example:<br><br>以下代码段对Python也是如此。 您可以从Spark目录运行它，这将允许您将Python应用程序（所有在一个脚本中）提交给独立的集群管理器。 您还可以设置与前面示例中相同的执行器（executor）限制：<br><br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">./bin/spark-submit \</span><br><span class="line">--master spark:<span class="comment">//207.184.161.138:7077 \</span></span><br><span class="line">examples/src/main/python/pi.py \</span><br><span class="line"><span class="number">1000</span></span><br></pre></td></tr></table></figure><br><br>You can change this to run in local mode as well by setting the master to <font face="constant-width" color="#000000" size=3>local</font> or <font face="constant-width" color="#000000" size=3>local[<em>]</font> to run on all the cores on your machine. You will also need to change the <font face="constant-width" color="#000000" size=3>/path/to/examples.jar</font> to the relevant Scala and Spark versions you are running.<br><br>您可以将此更改为在本地模式下运行，方法是将主服务器设置为 local  或 local[</em>] 以在计算机上的所有核心上运行。 您还需要将 /path/to/examples.jar 更改为您正在运行的相关Scala和Spark版本。<br><br>## <font color="#9a161a" >Configuring Applications 配置应用程序</font><br>Spark includes a number of different configurations, some of which we covered in Chapter 15. There are many different configurations, depending on what you’re hoping to achieve. This section covers those very details. For the most part, this information is included for reference and is probably worth skimming only, unless you’re looking for something in particular. The majority of configurations fall into the following categories:<br><br>Spark包含许多不同的配置，其中一些我们在第15章中介绍过。根据您希望实现的目标，有许多不同的配置。本节介绍了这些细节。在大多数情况下，这些信息仅供参考，可能仅值得略读，除非您特别寻找某些内容。大多数配置分为以下几类：<br><br>- Application properties 应用属性<br><br>- Runtime environment 运行环境<br><br>- Shuffle behavior 洗牌行为<br><br>- Spark UI<br><br>- Compression and serialization 解压缩<br><br>- Memory management 内存管理<br><br>- Execution behavior 执行行为<br><br>- Networking 网络<br><br>- Scheduling 调度<br><br>- Dynamic allocation 动态分配<br><br>- Security 安全<br><br>- Encryption 加密<br><br>- Spark SQL<br><br>- Spark streaming Spark流<br><br>- SparkR<br><br>Spark provides three locations to configure the system:<br><br>Spark提供三个位置来配置系统：<br><br>- Spark properties control most application parameters and can be set by using a <font face="constant-width" color="#000000" size=3>SparkConf</font> object Spark<br><br>    属性控制大多数应用程序参数，可以使用 SparkConf 对象进行设置<br><br>- Java system properties<br><br>    Java系统属性<br><br>- Hardcoded configuration files<br><br>    硬编码配置文件<br><br>There are several templates that you can use, which you can find in the <code>/conf</code> directory available in the root of the Spark home folder. You can set these properties as hardcoded variables in your applications or by specifying them at runtime. You can use environment variables to set per-machine settings, such as the IP address, through the <code>conf/spark-env.sh</code> script on each node. Lastly, you can configure logging through <font face="constant-width" color="#000000" size=3>log4j.properties</font>.<br><br>您可以使用几个模板，您可以在Spark主文件夹的根目录中的 <code>/conf</code> 目录中找到这些模板。您可以在应用程序中将这些属性设置为硬编码变量，也可以在运行时指定它们。您可以使用环境变量通过每个节点上的 <code>conf/spark-env.sh</code> 脚本设置每台计算机设置，例如IP地址。最后，您可以通过 log4j.properties 配置日志记录。<br><br>### <font color="#000000">The SparkConf</font><br>The <font face="constant-width" color="#000000" size=3>SparkConf</font> manages all of our application configurations. You create one via the import statement, as shown in the example that follows. After you create it, the <font face="constant-width" color="#000000" size=3>SparkConf</font> is immutable  for that specific Spark Application:<br><br>SparkConf 管理我们的所有应用程序配置。您可以通过 import 语句创建一个，如下面的示例所示。创建它之后，SparkConf 对于特定的Spark应用程序是不可变的：<br><br><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.<span class="type">SparkConf</span></span><br><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(<span class="string">"local[2]"</span>).setAppName(<span class="string">"DefinitiveGuide"</span>)</span><br><span class="line">.set(<span class="string">"some.conf"</span>, <span class="string">"to.some.value"</span>)</span><br></pre></td></tr></table></figure><br><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark <span class="keyword">import</span> SparkConf</span><br><span class="line">conf = SparkConf().setMaster(<span class="string">"local[2]"</span>).setAppName(<span class="string">"DefinitiveGuide"</span>)\</span><br><span class="line">.set(<span class="string">"some.conf"</span>, <span class="string">"to.some.value"</span>)</span><br></pre></td></tr></table></figure><br><br>You use the <font face="constant-width" color="#000000" size=3>SparkConf</font> to configure individual Spark Applications with Spark properties. These Spark properties control how the Spark Application runs and how the cluster is configured. The example that follows configures the local cluster to have two threads and specifies the application name that shows up in the Spark UI.<br><br>您可以使用 SparkConf 使用 Spark 属性配置各个 Spark 应用程序。这些 Spark 属性控制 Spark 应用程序的运行方式以及集群的配置方式。以下示例将本地集群配置为具有两个线程，并指定在 Spark UI 中显示的应用程序名称。<br><br>You can configure these at runtime, as you saw previously in this chapter through command-line arguments. This is helpful when starting a Spark Shell that will automatically include a basic Spark Application for you; for instance:<br><br>您可以在运行时配置它们，如本章前面通过命令行参数所见。这在启动Spark Shell时非常有用，它将自动包含一个基本的Spark应用程序；例如：<br><br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./bin/spark-submit --name "DefinitiveGuide" --master local[4] ...</span><br></pre></td></tr></table></figure><br><br>Of note is that when setting time duration-based properties, you should use the following format:<br><br>值得注意的是，在设置基于持续时间的属性时，您应该使用以下格式：<br><br>- 25ms (milliseconds 毫秒)<br>- 5s (seconds 秒)<br>- 10m or 10min (minutes 分钟)<br>- 3h (hours 小时)<br>- 5d (days 天)<br>- 1y (years 年)<br><br>### <font color="#000000" >Application Properties 应用属性</font>
+
+<p>Application properties are those that you set either from spark-submit or when you create your Spark Application. They define basic application metadata as well as some execution characteristics. Table 16-3 presents a list of current application properties. </p>
+<p>应用程序属性是您通过 spark-submit 或创建 Spark 应用程序时设置的属性。它们定义了基本的应用程序元数据以及一些执行特性。表 16-3 列出了当前的应用程序属性。</p>
+<p>Table 16-3. <a href="http://spark.apache.org/docs/latest/configuration.html#application-properties" target="_blank" rel="noopener">Application properties</a></p>
+<table>
+<thead>
+<tr>
+<th>Property name <br />属性名</th>
+<th>Default<br />默认值</th>
+<th>Meaning 意思</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>spark.app.name</td>
+<td>(none)</td>
+<td>The name of your application. This will appear in the UI and in log data.<br />您的应用程序的名称。 这将显示在UI和日志数据中。</td>
+</tr>
+<tr>
+<td>spark.driver.cores</td>
+<td>1</td>
+<td>Number of cores to use for the driver process, only in cluster mode.<br />仅在集群模式下用于驱动程序进程的核心数。</td>
+</tr>
+<tr>
+<td>spark.driver.maxResultSize</td>
+<td>1g</td>
+<td>Limit of total size of serialized results of all partitions for each Spark action (e.g., collect). Should be at least 1M, or 0 for unlimited. Jobs will be aborted if the total size exceeds this limit. Having a high limit can cause OutOfMemoryErrors in the driver (depends on spark.driver.memory and memory overhead of objects in JVM). Setting a proper limit can protect the driver from OutOfMemoryErrors.<br />每个Spark操作的所有分区的序列化结果的总大小限制（例如，collect）。 应至少为1M，或0为无限制。 如果总大小超过此限制，则将中止作业。 具有上限可能会导致驱动程序中的OutOfMemoryErrors（取决于spark.driver.memory和JVM中对象的内存开销）。 设置适当的限制可以保护驱动程序免受OutOfMemoryErrors的影响。</td>
+</tr>
+<tr>
+<td>spark.driver.memory</td>
+<td>1g</td>
+<td>Amount of memory to use for the driver process, where SparkContext is initialized. (e.g. 1g, 2g). Note: in client mode, this must not be set through the SparkConf directly in your application, because the driver JVM has already started at that point. Instead, set this through the –driver-memory command-line option or in your default properties file.<br />用于初始化 SparkContext 的驱动程序进程的内存量。 （例如1g，2g）。 注意：在客户端模式下，不能直接在应用程序中通过 SparkConf 设置，因为驱动程序JVM已在此时启动。 而是通过–driver-memory命令行选项或在默认属性文件中设置它。</td>
+</tr>
+<tr>
+<td>spark.executor.memory</td>
+<td>1g</td>
+<td>Amount of memory to use per executor process (e.g., 2g, 8g).<br />每个执行程序进程使用的内存量（例如，2g，8g）。</td>
+</tr>
+<tr>
+<td>spark.extraListeners</td>
+<td>(none)</td>
+<td>A comma-separated list of classes that implement SparkListener; when initializing SparkContext, instances of these classes will be created and registered with Spark’s listener bus. If a class has a single-argument constructor that accepts a SparkConf, that constructor will be called; otherwise, a zero-argument constructor will be called. If no valid constructor can be found, the SparkContext creation will fail with an exception.<br />以逗号分隔的实现SparkListener的类列表; 在初始化SparkContext时，将创建这些类的实例并使用Spark的侦听器总线进行注册。 如果一个类有一个接受SparkConf的单参数构造函数，那么将调用该构造函数; 否则，将调用零参数构造函数。 如果找不到有效的构造函数，SparkContext创建将失败并出现异常。</td>
+</tr>
+<tr>
+<td>spark.logConf</td>
+<td>(false)</td>
+<td>Logs the effective SparkConf as INFO when a SparkContext is started.<br />启动 SparkContext 时，将有效的 SparkConf 记录为INFO。</td>
+</tr>
+<tr>
+<td>spark.master</td>
+<td>(none)</td>
+<td>The cluster manager to connect to. See the list of allowed master URLs.<br />要连接的集群管理器。 请参阅允许的主URL列表。</td>
+</tr>
+<tr>
+<td>spark.submit.deployMode</td>
+<td>(none)</td>
+<td>The deploy mode of the Spark driver program, either “client” or “cluster,” which means to launch driver program locally (“client”) or remotely (“cluster”) on one of the nodes inside the cluster.<br />Spark驱动程序的部署模式，“客户端”或“集群”，这意味着在集群内的一个节点上本地（“客户端”）或远程（“集群”）启动驱动程序。</td>
+</tr>
+<tr>
+<td>spark.log.callerContext</td>
+<td>(none)</td>
+<td>Application information that will be written into Yarn RM log/HDFS audit log when running on Yarn/HDFS. Its length depends on the Hadoop configuration hadoop.caller.context.max.size. It should be concise, and typically can have up to 50 characters.<br />在 Yarn/HDFS 上运行时将写入Yarn RM log / HDFS 审核日志的应用程序信息。 它的长度取决于Hadoop配置hadoop.caller.context.max.size。 它应该简洁，通常最多可包含50个字符。</td>
+</tr>
+<tr>
+<td>spark.driver.supervise</td>
+<td>(false)</td>
+<td>If true, restarts the driver automatically if it fails with a non-zero exit status. Only has effect in Spark standalone mode or Mesos cluster deploy mode.<br />如果为true，则在失败且退出状态为非零时自动重新启动驱动程序。 仅在Spark独立模式或Mesos集群部署模式下有效。</td>
+</tr>
+</tbody>
+</table>
+<p>You can ensure that you’ve correctly set these values by checking the application’s web UI on port 4040 of the driver on the “Environment” tab. Only values explicitly specified through sparkdefaults.conf, SparkConf, or the command line will appear. For all other configuration properties, you can assume the default value is used.</p>
+<p>您可以通过在“环境”选项卡上检查驱动程序的端口4040上的应用程序的Web UI来确保您正确设置了这些值。仅显示那些通过 sparkdefaults.conf，SparkConf或命令行显式指定的值。对于所有其他配置属性，您可以假设使用默认值。</p>
+<h3 id="Runtime-Properties-运行时属性"><a href="#Runtime-Properties-运行时属性" class="headerlink" title="Runtime Properties 运行时属性"></a><font color="#000000" >Runtime Properties 运行时属性</font></h3><p>Although less common, there are times when you might also need to configure the runtime environment of your application. Due to space limitations, we cannot include the entire configuration set here. Refer to the relevant table on <a href="https://bit.ly/2FlsX2i" target="_blank" rel="noopener">the Runtime Environment</a> in <a href="https://bit.ly/1qnQ26w" target="_blank" rel="noopener">the Spark documentation</a>. These properties allow you to configure extra classpaths and python paths for both drivers and executors, Python worker configurations, as well as miscellaneous  logging properties.</p>
+<p>虽然不太常见，但有时您可能还需要配置应用程序的运行时环境。由于篇幅限制，我们无法在此处包含整个配置集。请参阅<a href="https://bit.ly/1qnQ26w" target="_blank" rel="noopener">Spark文档</a>中的 <a href="https://bit.ly/1qnQ26w" target="_blank" rel="noopener">Runtime Environment</a> 上的相关表。这些属性允许您对驱动程序（driver）和执行器（excutor），Python工作程序进行配置以及各种日志记录属性配置额外的类路径和python路径。</p>
+<h3 id="Execution-Properties-执行属性"><a href="#Execution-Properties-执行属性" class="headerlink" title="Execution Properties 执行属性"></a><font color="#000000" >Execution Properties 执行属性</font></h3><p>These configurations are some of the most relevant for you to configure because they give you finer-grained control on actual execution. Due to space limitations, we cannot include the entire configuration set here. Refer to the relevant table on <a href="http://spark.apache.org/docs/latest/configuration.html#execution-behavior" target="_blank" rel="noopener">Execution Behavior</a> in <a href="http://spark.apache.org/docs/latest/index.html" target="_blank" rel="noopener">the Spark documentation</a>. The most common configurations to change are <font face="constant-width" color="#000000" size=3>spark.executor.cores</font> (to control the number of available cores) and <font face="constant-width" color="#000000" size=3>spark.files.maxPartitionBytes</font> (maximum partition size when reading files).</p>
+<p>这些配置与您配置最相关，因为它们可以为您提供对实际执行的精细控制。由于篇幅限制，我们无法在此处包含整个配置集。请参阅<a href="http://spark.apache.org/docs/latest/index.html" target="_blank" rel="noopener">Spark文档</a>中的<a href="http://spark.apache.org/docs/latest/configuration.html#execution-behavior" target="_blank" rel="noopener">执行行为相关表</a>。要更改的最常见配置是 spark.executor.cores（用于控制可用内核的数量）和 spark.files.maxPartitionBytes（读取文件时的最大分区大小）。</p>
+<h3 id="Configuring-Memory-Management-配置内存管理"><a href="#Configuring-Memory-Management-配置内存管理" class="headerlink" title="Configuring Memory Management 配置内存管理"></a><font color="#000000" >Configuring Memory Management 配置内存管理</font></h3><p>There are times when you might need to manually manage the memory options to try and optimize your applications. Many of these are not particularly relevant for end users because they involve a lot of legacy concepts or fine-grained controls that were obviated in Spark 2.X because of automatic memory management. Due to space limitations, we cannot include the entire configuration set here. Refer to the relevant table on <a href="http://spark.apache.org/docs/latest/configuration.html#memory-management" target="_blank" rel="noopener">Memory Management</a> in <a href="http://spark.apache.org/docs/latest/index.html" target="_blank" rel="noopener">the Spark documentation</a>.</p>
+<p>有时您可能需要手动管理内存选项以尝试和优化您的应用程序。 其中许多与最终用户并不特别相关，因为它们涉及很多遗留概念或由于自动内存管理而在Spark 2.X中避免的细粒度控制。 由于篇幅限制，我们无法在此处包含整个配置集。 请参阅<a href="http://spark.apache.org/docs/latest/index.html" target="_blank" rel="noopener">Spark文档</a>中的<a href="http://spark.apache.org/docs/latest/configuration.html#memory-management" target="_blank" rel="noopener">内存管理相关表</a>。</p>
+<h3 id="Configuring-Shuffle-Behavior-配置洗牌行为"><a href="#Configuring-Shuffle-Behavior-配置洗牌行为" class="headerlink" title="Configuring Shuffle Behavior 配置洗牌行为"></a><font color="#000000" >Configuring Shuffle Behavior 配置洗牌行为</font></h3><p>We’ve emphasized how shuffles can be a bottleneck in Spark jobs because of their high communication overhead. Therefore there are a number of low-level configurations for controlling shuffle behavior. Due to space limitations, we cannot include the entire configuration set here. Refer to the relevant table on <a href="http://spark.apache.org/docs/latest/configuration.html#shuffle-behavior" target="_blank" rel="noopener">Shuffle Behavior</a> in <a href="http://spark.apache.org/docs/latest/index.html" target="_blank" rel="noopener">the Spark documentation</a>.</p>
+<p>我们已经强调了洗牌如何成为Spark工作的瓶颈，因为它们的通信开销很高。因此，存在许多用于控制洗牌行为的低阶配置。由于篇幅限制，我们无法在此处包含整个配置集。请参阅<a href="http://spark.apache.org/docs/latest/index.html" target="_blank" rel="noopener">Spark文档</a>中有关<a href="http://spark.apache.org/docs/latest/configuration.html#shuffle-behavior" target="_blank" rel="noopener">洗牌行为的相关表</a>。</p>
+<h3 id="Environmental-Variables-环境变量"><a href="#Environmental-Variables-环境变量" class="headerlink" title="Environmental Variables 环境变量"></a><font color="#000000" >Environmental Variables 环境变量</font></h3><p>You can configure certain Spark settings through environment variables, which are read from the <em>conf/spark-env.sh</em> script in the directory where Spark is installed (or <em>conf/spark-env.cmd</em> on Windows). In Standalone and Mesos modes, this file can give machine-specific information such as hostnames. It is also sourced when running local Spark Applications or submission scripts. Note that <em>conf/spark-env.sh</em> does not exist by default when Spark is installed. However, you can copy <em>conf/spark-env.sh.template</em> to create it. Be sure to make the copy executable. </p>
+<p>您可以通过环境变量配置某些Spark设置，这些环境变量是从安装Spark的目录中的 conf/spark-env.sh 脚本（或Windows上的 conf/spark-env.cmd）中读取的。 在Standalone和Mesos模式下，此文件可以提供特定于机器的信息，例如主机名。 它还在运行本地Spark应用程序或提交脚本时获取。 请注意，安装Spark时默认情况下不存在conf/spark-env.sh。 但是，您可以复制 conf/spark-env.sh.template 来创建它。 务必使副本可执行。</p>
+<p>The following variables can be set in spark-env.sh:</p>
+<p>可以在spark-env.sh中设置以下变量：</p>
+<font face="constant-width" color="#000000" size=3>JAVA_HOME</font>
+
+<p>​    Location where Java is installed (if it’s not on your default PATH).<br>​    安装Java的位置（如果它不在您的默认PATH上）。</p>
+<font face="constant-width" color="#000000" size=3>PYSPARK_PYTHON</font>
+
+<p>​    Python binary executable to use for PySpark in both driver and workers (default is python2.7 if available; otherwise, python). Property spark.pyspark.python takes precedence if it is set.<br>​    在驱动程序和工作程序中用于 PySpark 的 Python 二进制可执行文件（如果可用，默认为 python2.7; 否则为python）。 如果设置了属性 spark.pyspark.python，则优先级。</p>
+<font face="constant-width" color="#000000" size=3>PYSPARK_DRIVER_PYTHON</font>
+
+<p>​    Python binary executable to use for PySpark in driver only (default is PYSPARK_PYTHON). Property spark.pyspark.driver.python takes precedence if it is set.<br>​    Python二进制可执行文件仅用于驱动程序中的PySpark（默认为PYSPARK_PYTHON）。 如果设置了属性spark.pyspark.driver.python，则优先级。</p>
+<font face="constant-width" color="#000000" size=3>SPARKR_DRIVER_R</font>
+
+<p>​    R binary executable to use for SparkR shell (default is R). Property spark.r.shell.command takes precedence if it is set.<br>​    用于SparkR shell的R二进制可执行文件（默认为R）。 如果设置了属性spark.r.shell.command优先。</p>
+<font face="constant-width" color="#000000" size=3>SPARK_LOCAL_IP</font>
+
+<p>​    IP address of the machine to which to bind.<br>​    要绑定的计算机的IP地址。</p>
+<font face="constant-width" color="#000000" size=3>SPARK_PUBLIC_DNS</font>
+
+<p>​    Hostname your Spark program will advertise to other machines.<br>​    您的Spark程序的主机名将通告给其他计算机。</p>
+<p>In addition to the variables ust listed, there are also options for setting up the Spark standalone cluster scripts, such as number of cores to use on each machine and maximum memory. Because spark-env.sh is a shell script, you can set some of these programmatically; for example, you might compute SPARK_LOCAL_IP by looking up the IP of a specific network interface.</p>
+<p>除了列出的变量之外，还有用于设置Spark独立集群脚本的选项，例如每台计算机上使用的核心数和最大内存。因为spark-env.sh是一个shell脚本，你可以通过编程方式设置其中一些;例如，您可以通过查找特定网络接口的IP来计算SPARK_LOCAL_IP。</p>
+<hr>
+<p><center><font face="constant-width" color="#737373" size=4><strong>NOTE 注意</strong><font></center><br>When running Spark on YARN in cluster mode, you need to set environment variables by using the <code>spark.yarn.appMasterEnv.[EnvironmentVariableName]</code> property in your <code>conf/spark-defaults.conf</code> file. Environment variables that are set in spark-env.sh will not be reflected in the YARN Application Master process in cluster mode. See the YARN-related Spark Properties for more information.</p>
+<p>在集群模式下在 YARN 上运行Spark时，需要使用 <code>conf/spark-defaults.conf</code> 文件中的<code>spark.yarn.appMasterEnv.[EnvironmentVariableName]</code> 属性设置环境变量。在 <code>spark-env.sh</code> 中设置的环境变量不会在集群模式下反映在 YARN Application Master 进程中。有关更多信息，请参阅与 YARN 相关的 Spark属性。</p>
+<hr>
+<h3 id="Job-Scheduling-Within-an-Application-应用程序内的作业调度"><a href="#Job-Scheduling-Within-an-Application-应用程序内的作业调度" class="headerlink" title="Job Scheduling Within an Application 应用程序内的作业调度"></a><font color="#000000" >Job Scheduling Within an Application 应用程序内的作业调度</font></h3><p>Within a given Spark Application, multiple parallel jobs can run simultaneously if they were submitted from separate threads. By job, in this section, we mean a Spark action and any tasks that need to run to evaluate that action. Spark’s scheduler is fully thread-safe and supports this use case to enable applications that serve multiple requests (e.g., queries for multiple users). By default, Spark’s scheduler runs jobs in <font face="constant-width" color="#000000" size=4>FIFO</font> fashion. If the jobs at the head of the queue don’t need to use the entire cluster, later jobs can begin to run right away, but if the jobs at the head of the queue are large, later jobs might be delayed significantly.</p>
+<p>在给定的 Spark 应用程序中，如果从不同的的线程提交多个并行作业，则它们可以同时运行。按照作业，在本节中，我们指的是 Spark 操作以及需要运行以评估该操作的任何任务。 Spark 的调度程序是完全线程安全的，并支持此用户案例以支持提供多个请求的应用程序（例如，为多个用户进行查询）。默认情况下，Spark 的调度程序以<font face="constant-width" color="#000000" size=4>FIFO</font>方式运行作业。如果队列头部的作业不需要使用整个集群，则以后的作业可以立即开始运行，但如果队列头部的作业很大，则后续作业可能会显着延迟。</p>
+<p>It is also possible to configure fair sharing between jobs. Under fair sharing, Spark assigns tasks between jobs in a round-robin fashion so that all jobs get a roughly equal share of cluster resources. This means that short jobs submitted while a long job is running can begin receiving resources right away and still achieve good response times without waiting for the long job to finish. This mode is best for multiuser settings.</p>
+<p>也可以在作业之间配置公平共享。在公平共享下，Spark以循环方式在作业之间分配任务，以便所有作业获得大致相等的集群资源份额。这意味着当长期运行的工作正在执行时所提交的短期工作可以立即开始接收资源，并且仍然可以实现良好的响应时间，而无需等待长时间的工作完成。此模式最适合多用户设置。</p>
+<p>To enable the fair scheduler, set the <code>spark.scheduler.mode</code> property to <font face="constant-width" color="#000000" size=4>FAIR</font> when configuring a <font face="constant-width" color="#000000" size=3>SparkContext</font>.</p>
+<p>要启用公平调度器，请在配置 SparkContext 时将 spark.scheduler.mode 属性设置为 <font face="constant-width" color="#000000" size=4>FAIR</font>。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> conf = <span class="keyword">new</span> <span class="type">SparkConf</span>().setMaster(...).setAppName(...)</span><br><span class="line">conf.set(<span class="string">"spark.scheduler.mode"</span>, <span class="string">"FAIR"</span>)</span><br><span class="line"><span class="keyword">val</span> sc = <span class="keyword">new</span> <span class="type">SparkContext</span>(conf)</span><br></pre></td></tr></table></figure>
+<p>The fair scheduler also supports grouping jobs into pools, and setting different scheduling options, or weights, for each pool. This can be useful to create a high-priority pool for more important jobs or to group the jobs of each user together and give users equal shares  regardless of how many concurrent jobs they have instead of giving jobs equal shares. This approach is modeled after the Hadoop Fair Scheduler.</p>
+<p>公平调度器还支持将作业分组到池中，并为每个池设置不同的调度选项或权重。这对于为更重要的作业创建高优先级池或将每个用户的作业组合在一起并为用户提供相同的份额非常有用，无论他们有多少并发作业而不是给予作业相等的份额。此方法模拟Hadoop Fair Scheduler。</p>
+<p>Without any intervention, newly submitted jobs go into a default pool, but jobs pools can be set by adding the <font face="constant-width" color="#000000" size=3>spark.scheduler.pool</font> local property to the SparkContext in the thread that’s submitting them. This is done as follows (assuming sc is your SparkContext )： </p>
+<p>在没有任何干预的情况下，新提交的作业将进入默认池，但可以通过将 <code>spark.scheduler.pool</code> 本地属性添加到提交它们的线程中的 SparkContext 来设置作业池。这是完成如下（假设sc是你的 SparkContext )：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sc.setLocalProperty(<span class="string">"spark.scheduler.pool"</span>, <span class="string">"pool1"</span>)</span><br></pre></td></tr></table></figure>
+<p>After setting this local property, all jobs submitted within this thread will use this pool name. The setting is per-thread to make it easy to have a thread run multiple jobs on behalf of the same user. If you’d like to clear the pool that a thread is associated with, set it to null.</p>
+<p>设置此本地属性后，此线程中提交的所有作业都将使用此池名称。该设置是每个线程，以便让线程代表同一个用户运行多个作业变得容易。如果要清除与线程关联的池，请将其设置为null。</p>
+<h2 id="Conclusion-结论"><a href="#Conclusion-结论" class="headerlink" title="Conclusion 结论"></a><font color="#9a161a" >Conclusion 结论</font></h2><p>This chapter covered a lot about Spark Applications; we learned how to write, test, run, and configure them in all of Spark’s languages. In Chapter 17, we talk about deploying and the cluster management options you have when it comes to running Spark Applications. </p>
+<p>本章介绍了 Spark 应用程序；我们学习了如何使用Spark的所有语言编写，测试，运行和配置它们。在第17章中，我们将讨论在运行 Spark 应用程序时的部署和集群管理选项。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/" title="翻译 Chapter 16 Developing Spark Applications">https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194451-EZ6WBL6/" rel="next" title="翻译 Chapter 16 Developing Spark Applications">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 16 Developing Spark Applications
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/05/Chapter15_HowSparkRuns-on-a-Cluster(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 15 How Spark Runs on a Cluster">
+                翻译 Chapter 15 How Spark Runs on a Cluster <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Chapter-16-Developing-Spark-Applications"><span class="nav-text">Chapter 16 Developing Spark Applications</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Testing-Spark-Applications-测试Spark应用程序"><span class="nav-text">Testing Spark Applications 测试Spark应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Strategic-Principles-战略原则"><span class="nav-text">Strategic Principles 战略原则</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-data-resilience-输入数据弹性"><span class="nav-text">Input data resilience 输入数据弹性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Business-logic-resilience-and-evolution-业务逻辑弹性和演变"><span class="nav-text">Business logic resilience and evolution 业务逻辑弹性和演变</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Resilience-in-output-and-atomicity-输出的弹性和原子性"><span class="nav-text">Resilience in output and atomicity 输出的弹性和原子性</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tactical-Takeaways-战术外卖"><span class="nav-text">Tactical Takeaways 战术外卖</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Managing-SparkSessions-管理SparkSessions"><span class="nav-text">Managing SparkSessions 管理SparkSessions</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Which-Spark-API-to-Use-使用哪种Spark-API？"><span class="nav-text">Which Spark API to Use? 使用哪种Spark API？</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connecting-to-Unit-Testing-Frameworks-连接到单元测试框架"><span class="nav-text">Connecting to Unit Testing Frameworks 连接到单元测试框架</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Connecting-to-Data-Sources-连接到数据源"><span class="nav-text">Connecting to Data Sources 连接到数据源</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#The-Development-Process-开发过程"><span class="nav-text">The Development Process 开发过程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Launching-Applications-启动应用程序"><span class="nav-text">Launching Applications 启动应用程序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Runtime-Properties-运行时属性"><span class="nav-text">Runtime Properties 运行时属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Execution-Properties-执行属性"><span class="nav-text">Execution Properties 执行属性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-Memory-Management-配置内存管理"><span class="nav-text">Configuring Memory Management 配置内存管理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Configuring-Shuffle-Behavior-配置洗牌行为"><span class="nav-text">Configuring Shuffle Behavior 配置洗牌行为</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Environmental-Variables-环境变量"><span class="nav-text">Environmental Variables 环境变量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Job-Scheduling-Within-an-Application-应用程序内的作业调度"><span class="nav-text">Job Scheduling Within an Application 应用程序内的作业调度</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-结论"><span class="nav-text">Conclusion 结论</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

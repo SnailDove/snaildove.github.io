@@ -1,0 +1,2270 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： 《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT ，陈天奇 的 XGBoost (eXtreme Gra">
+<meta property="og:type" content="article">
+<meta property="og:title" content="XGBoost原理和底层实现剖析">
+<meta property="og:url" content="https://snaildove.github.io/2018/10/02/get-started-XGBoost.sync-conflict-20201110-195135-EZ6WBL6/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="前言在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： 《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT ，陈天奇 的 XGBoost (eXtreme Gra">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541689140248.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541668145422.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541668716212.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541682271201.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541682906367.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541683067491.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541692867258.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541700947093.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541701316727.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541701662020.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541753658541.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541756389096.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541781900967.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541870733911.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541781827106.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541873737581.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541783628978.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541862763402.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/Matrix_CSR.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541875753533.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541876055067.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541876128716.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541876848274.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541846850051.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541270621305.png">
+<meta property="article:published_time" content="2018-10-01T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-01T10:21:22.077Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="Machine Learning">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541689140248.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2018/10/02/get-started-XGBoost.sync-conflict-20201110-195135-EZ6WBL6/"/>
+
+
+
+
+
+  <title>XGBoost原理和底层实现剖析 | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2018/10/02/get-started-XGBoost.sync-conflict-20201110-195135-EZ6WBL6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">XGBoost原理和底层实现剖析</h1>
+        
+
+        <div class="post-meta">
+		  
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>sticky</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-10-02T00:00:00+08:00">
+                2018-10-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  14,165
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  61
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： <a href="https://snaildove.github.io/2018/10/01/8.Booting-Methods_LiHang-Statistical-Learning-Methods/">《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT</a> ，<a href="https://homes.cs.washington.edu/~tqchen/" target="_blank" rel="noopener">陈天奇</a> 的 <a href="https://xgboost.ai/" target="_blank" rel="noopener">XGBoost</a> (eXtreme Gradient Boosting)  和 微软的 lightGBM 是 GBDT 算法模型的实现，非常巧妙，是比赛的<strong>屠龙之器</strong>，算法不仅仅是数学，还涉及系统设计和工程优化。以下引用陈天奇 <a href="https://arxiv.org/pdf/1603.02754" target="_blank" rel="noopener">XGBoost论文</a> 的一段话：</p>
+<blockquote>
+<p>Among the 29 challenge winning solutions 3 published at Kaggle’s blog during 2015, 17 solutions used XGBoost. Among these solutions, eight solely used XGBoost to train the model, while most others combined XGBoost with neural nets in ensembles. For comparison, the second most popular method, deep neural nets, was used in 11 solutions. The success of the system was also witnessed in KDDCup 2015, where XGBoost was used by every winning team in the top-10. Moreover, the winning teams reported that ensemble methods outperform a well-configured XGBoost by only a small amount [1]. </p>
+</blockquote>
+<p>正文分成以下几个部分</p>
+<ol>
+<li>快速了解：来自陈天奇的ppt</li>
+<li>XGBoost的设计精髓：来自陈天奇的关于XGBoost的论文</li>
+<li>参数详解：结合原理+XGBoost官网API的翻译</li>
+</ol>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="XGBoost"><a href="#XGBoost" class="headerlink" title="XGBoost"></a>XGBoost</h2><h3 id="快速了解"><a href="#快速了解" class="headerlink" title="快速了解"></a>快速了解</h3><p>这部分内容基本上是对陈天奇幻灯片：<a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf" target="_blank" rel="noopener">官网幻灯片</a> </p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541689140248.png" alt="1541689140248"></p>
+<h4 id="outlook-幻灯片大纲"><a href="#outlook-幻灯片大纲" class="headerlink" title="outlook 幻灯片大纲"></a>outlook 幻灯片大纲</h4><p>• 监督学习的主要概念的回顾<br>• 回归树和集成模型 (What are we Learning)<br>• 梯度提升 (How do we Learn)<br>• 总结 </p>
+<h4 id="Review-of-key-concepts-of-supervised-learning-监督学习的关键概念的回顾"><a href="#Review-of-key-concepts-of-supervised-learning-监督学习的关键概念的回顾" class="headerlink" title="Review of key concepts of supervised learning 监督学习的关键概念的回顾"></a>Review of key concepts of supervised learning 监督学习的关键概念的回顾</h4><p><strong>概念</strong></p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$R^d$</td>
+<td>特征维度为d的数据集</td>
+</tr>
+<tr>
+<td>$x_i∈R^d$</td>
+<td>第i个样本</td>
+</tr>
+<tr>
+<td>$w_j$</td>
+<td>第j个特征的权重</td>
+</tr>
+<tr>
+<td>$\hat{y}_i$</td>
+<td>$x_i$ 的预测值</td>
+</tr>
+<tr>
+<td>$y_i$</td>
+<td>第i个训练集的对应的标签</td>
+</tr>
+<tr>
+<td>$\Theta$</td>
+<td>特征权重的集合</td>
+</tr>
+</tbody>
+</table>
+<p><strong>模型</strong></p>
+<p>基本上相关的所有模型都是在下面这个线性式子上发展起来的<br>$$<br>\hat y_i = \sum_{j = 0}^{d} w_j x_{ij}<br>$$<br>上式中 $x_0=1$，就是引入了一个偏差量，或者说加入了一个常数项。由该式子可以得到一些模型：</p>
+<ul>
+<li><p>线性模型，最后的得分就是 $\hat{y}_i$ 。</p>
+</li>
+<li><p><strong>logistic模型</strong>，最后的得分是sigmoid函数 $\frac{1}{1+e^{−\hat{y}_i}}$ 。然后设置阀值，转为正负实例。</p>
+</li>
+<li>其余的大部分也是基于 $\hat{y}_i$ 做了一些运算得到最后的分数</li>
+</ul>
+<p><strong>参数</strong></p>
+<p>  参数就是 $\Theta={w_j|j=1,…,d}$ ，这也正是我们所需要通过训练得出的。</p>
+<p><strong>训练时的目标函数</strong></p>
+<p>  训练时通用的目标函数如下：<br>$$<br>Obj(\Theta)=L(\Theta)+Ω(\Theta)<br>$$<br>在上式中 $L(\Theta)$ 代表的是训练误差，表示该模型对于训练集的匹配程度。$Ω(\Theta)$ 代表的是正则项，表明的是模型的复杂度。</p>
+<p>训练误差可以用 $L = \sum_{i = 1}^n l(y_i, \hat y_i)$ 来表示，一般有方差和logistic误差。</p>
+<ul>
+<li>方差: $l(y_i,\hat y_i) = (y_i - \hat y_i)^2$</li>
+<li>logstic误差: $l(y_i, \hat y_i) =  y_i ln(1 + e^{- \hat y_i}) + (1 - y_i)ln(1 + e^{\hat y_i})$</li>
+</ul>
+<p>正则项按照Andrew NG的话来说，就是避免过拟合的。为什么能起到这个作用呢？正是因为它反应的是模型复杂度。模型复杂度，也就是我们的假设的复杂度，按照奥卡姆剃刀的原则，假设越简单越好。所以我们需要这一项来控制。</p>
+<ul>
+<li>L2 范数: $Ω(w)=λ||w||_2$</li>
+<li>L1 范数(lasso): $Ω(w)=λ||w||_1$</li>
+</ul>
+<p>常见的优化函数有有岭回归，logstic回归和Lasso，具体的式子如下​：</p>
+<ul>
+<li>岭回归，这是最常见的一种，由线性模型，方差和L2范数构成。具体式子为 $\sum\limits^n_{i=1}(y_i−w^Tx_i)^2+λ||w||_2$</li>
+<li>logstic回归，这也是常见的一种，主要是用于二分类问题，比如爱还是不爱之类的。由线性模型，logistic 误差和L2范数构成。具体式子为 $\sum\limits^n_{i=1} [y_iln(1+e^{−w^Tx_i})+(1−y_i)ln(1+e^{w^Tx_i})]+λ||w||_2$</li>
+<li>lasso比较少见，它是由线性模型，方差和L1范数构成的。具体式子为 $\sum\limits_{i = 1}^n (y_i - w^T x_i)^2 + \lambda \vert \vert w \vert \vert     _1$</li>
+</ul>
+<p>我们的目标的就是让 $Obj(\Theta)$ 最小。那么由上述分析可见，这时必须让 $L(\Theta$ ) 和 $Ω(\Theta)$ 都比较小。而我们训练模型的时候，要在 bias 和 variance 中间找平衡点。bias 由 $L(\Theta)$  控制，variance 由 $Ω(\Theta)$ 控制。欠拟合，那么 $L(\Theta)$ 和 $Ω(\Theta)$ 都会比较大，过拟合的话 $Ω(\Theta)$ 会比较大，因为模型的扩展性不强，或者说稳定性不好。</p>
+<h4 id="回归树和集成模型-What-are-we-Learning"><a href="#回归树和集成模型-What-are-we-Learning" class="headerlink" title="回归树和集成模型 (What are we Learning)"></a>回归树和集成模型 (What are we Learning)</h4><p><strong>Regression Tree (CART)</strong></p>
+<p>回归树，也叫做分类与回归树，我认为就是一个叶子节点具有权重的二叉决策树。它具有以下两点特征</p>
+<ul>
+<li><p>决策规则与决策树的一样。</p>
+</li>
+<li><p>每个叶子节点上都包含了一个权重，也有人叫做分数。</p>
+<p>  下图就是一个回归树的示例：</p>
+</li>
+</ul>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541668145422.png" alt="1541668145422"></p>
+<p><strong>回归树的集成模型</strong> </p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541668716212.png" alt="1541668716212">回归</p>
+<p>小男孩落在第一棵树的最左叶子和第二棵树的最左叶子，所以它的得分就是这两片叶子的权重之和，其余也同理。</p>
+<p>树有以下四个优点：</p>
+<ol>
+<li>使用范围广，像GBM，随机森林等。(PS: 据陈天奇大神的统计，至少有超过半数的竞赛优胜者的解决方案都是用回归树的变种)</li>
+<li>对于输入范围不敏感，所以并不需要对输入归一化</li>
+<li>能学习特征之间更高级别的相互关系</li>
+<li>很容易对其扩展</li>
+</ol>
+<h5 id="模型和参数"><a href="#模型和参数" class="headerlink" title="模型和参数"></a>模型和参数</h5><p>  假设我们有 $K$ 棵树，那么<br>$$<br>\hat y_i = \sum_{k = 1}^K f_k(x_i),\ \ f_k \in \cal F<br>$$<br>上式中 $\cal F$ 表示的是回归森林中的所有函数空间。$f_k(x_i)$ 表示的就是第 $i$ 个样本在第 $k$ 棵树中落在的叶子的权重。那么现在我们需要求的参数就是每棵树的结构和每片叶子的权重，或者简单的来说就是求 $f_k$ 。那么为了和上一节所说的通用结构统一，可以设<br>$$<br>\Theta = \lbrace f_1,f_2,f_3, \cdots ,f_k \rbrace<br>$$</p>
+<h5 id="在单一变量上学习一棵树"><a href="#在单一变量上学习一棵树" class="headerlink" title="在单一变量上学习一棵树"></a>在单一变量上学习一棵树</h5><ul>
+<li>定义一个目标对象，优化它。</li>
+<li>例如：<ul>
+<li>考虑这样一个问题：在输入只有时间（t）的回归树</li>
+<li>我想预测在时间是t的时候，我是否喜欢浪漫风格的音乐？</li>
+</ul>
+</li>
+</ul>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541682271201.png" alt="1541682271201"></p>
+<p>  可见分段函数的分割点就是回归树的非叶子节点，分段函数每一段的高度就是回归树叶子的权重。那么就可以直观地看到欠拟合和过拟合曲线所对应的回归树的结构。根据我们上一节的讨论，$Ω(f)$ 表示模型复杂度，那么在这里就对应着分段函数的琐碎程度。$L(f)$ 表示的就是函数曲线和训练集的匹配程度。</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541682906367.png" alt="1541682906367"></p>
+<h5 id="学习阶跃函数"><a href="#学习阶跃函数" class="headerlink" title="学习阶跃函数"></a>学习阶跃函数</h5><p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541683067491.png" alt="1541683067491"></p>
+<p>第二幅图：太多的分割点，$\Omega(f)$ 即模型复杂度很高；第三幅图：错误的分割点，$L(f)$ 即损失函数很高。第四幅图：在模型复杂度和损失函数之间取得很好的平衡。</p>
+<p><strong>综上所述</strong></p>
+<p>模型：假设我们有k棵树，那么模型的表达式 $\hat{y}<em>i = \sum\limits</em>{k=1}^{K}f_k(x_i), f_k\in \cal{F}$  </p>
+<p>目标函数：$Obj =\underbrace{\sum_{i=1}^{n}l(y_i, \hat{y_i})}<em>{训练误差}   +\underbrace{\sum</em>{k=1}^{K}\Omega(f_k)}_{树的复杂度}$</p>
+<p>定义树的复杂度几种方式</p>
+<ul>
+<li>树的节点数或深度</li>
+<li>树叶子节点的L2范式</li>
+<li>…（后面会介绍有更多的细节）</li>
+</ul>
+<h5 id="目标函数-vs-启发式"><a href="#目标函数-vs-启发式" class="headerlink" title="目标函数 vs 启发式"></a>目标函数 vs 启发式</h5><p>当你讨论决策树，它通常是启发式的</p>
+<ul>
+<li>按信息增益</li>
+<li>对树剪枝</li>
+<li>最大深度</li>
+<li>对叶子节点进行平滑</li>
+</ul>
+<p>大多数启发式可以很好地映射到目标函数</p>
+<ul>
+<li>信息增益 -&gt; 训练误差</li>
+<li>剪枝 -&gt; 按照树节点的数目定义的正则化项</li>
+<li>最大深度 -&gt; 限制函数空间</li>
+<li>对叶子值进行平滑操作 -&gt; 叶子权重的L2正则化项 </li>
+</ul>
+<h5 id="回归树不仅仅用于回归"><a href="#回归树不仅仅用于回归" class="headerlink" title="回归树不仅仅用于回归"></a>回归树不仅仅用于回归</h5><ol>
+<li><p>回归树的集成模型定义了你如何创建预测的分数，它能够用于</p>
+<ul>
+<li>分类，回归，排序 …</li>
+<li>…</li>
+</ul>
+</li>
+<li><p>回归树的功能取决于你怎么定义目标函数</p>
+</li>
+<li>目前为止我们已经学习过<ul>
+<li>使用方差损失（Square Loss） $l(y_i, \hat{y_i})=(y_i-\hat{y}_i)$ ，这样就产生了普通的梯度提升机（common gradient boosted machine）</li>
+<li>使用逻辑损失（Logistic loss）$l(y, \hat{y}_i)=y_i\ln(1+e^{-\hat{y}_i}) + (1-y_i)\ln(1+e^{\hat{y}_i})$ ，这样就产生了逻辑梯度提升（LogitBoost）。</li>
+</ul>
+</li>
+</ol>
+<h4 id="梯度提升Gradient-Boosting-How-do-we-Learn"><a href="#梯度提升Gradient-Boosting-How-do-we-Learn" class="headerlink" title="梯度提升Gradient Boosting (How do we Learn)"></a>梯度提升Gradient Boosting (How do we Learn)</h4><p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541692867258.png" alt="1541692867258"></p>
+<h5 id="那怎么学习？"><a href="#那怎么学习？" class="headerlink" title="那怎么学习？"></a>那怎么学习？</h5><ul>
+<li>目标对象：$\sum_{i=1}^{n}l(y_i,\hat{y_i})  + \sum_k\Omega(f_k), f_k \in \cal{F}$</li>
+<li>我们不能用像SGD（随机梯度下降）这样的方法去找到 f，因为他们是树而不是仅仅是数值向量。</li>
+<li>解决方案：加法训练 Additive Training（提升方法boosting）<ul>
+<li>从常量方法开始，每一次（轮）添加一个新的方法</li>
+</ul>
+</li>
+</ul>
+<p>这个算法的思想很简单，一棵树一棵树地往上加，一直到 $K$ 棵树停止。过程可以用下式表达：<br>$$<br>\begin{align}<br>\hat y_i^{(0)} &amp;= 0 \<br>\hat y_i^{(1)} &amp;= f_1(x_i) = \hat y_i^{(0)} + f_1(x_i) \<br>\hat y_i^{(2)} &amp;= f_1(x_i) + f_2(x_i) = \hat y_i^{(1)} + f_2(x_i) \<br>&amp; \cdots \<br>\hat y_i^{(t)} &amp;= \sum_{k = 1}^t f_k(x_i) = \hat y_i^{(t - 1)} + f_t(x_i)<br>\end{align}<br>$$</p>
+<h5 id="加法训练"><a href="#加法训练" class="headerlink" title="加法训练"></a>加法训练</h5><ul>
+<li><p>我们如何决定什么样的 $f$ 加到模型中？</p>
+<ul>
+<li>优化目标</li>
+</ul>
+</li>
+<li><p>在 $t$ 轮的预测是：$\hat y_i^{(t)} = \hat y_i^{(t - 1)} + f_t(x_i) $ 加号右边这一项就是我们在 t 轮需要决定的东西</p>
+<p>  $$<br>  \begin{align} Obj^{(t)} &amp;= \sum_{i = 1}^n l(y_i, \hat y_i^{(t)}) + \sum_{i = 1}^t \Omega (f_i) \ &amp;= \sum_{i = 1}^n l(y_i, \hat y_i^{(t - 1)} + f_t(x_i)) +  \Omega (f_t) + constant \end{align}<br>  $$</p>
+</li>
+<li><p>考虑平方误差<br>  $$<br>  \begin{align}<br>  Obj^{(t)} &amp;= \sum_{i=1}^{n} \left {y_i-(\hat{y}^{(t-1)}_i)+f_t(x_i)\right }^2 +\Omega(f_t)+const \<br>  &amp;= \sum_{i=1}^{n} \left {2(\hat{y}^{(t-1)}_i-y_i)+f_t(x_i)^2\right } +\Omega(f_t)+const \<br>  \end{align}<br>  $$<br>  $(\hat{y}^{(t-1)}_i-y_i)$ 称为残差。</p>
+</li>
+</ul>
+<h5 id="损失函数的泰勒展开"><a href="#损失函数的泰勒展开" class="headerlink" title="损失函数的泰勒展开"></a>损失函数的泰勒展开</h5><p>可由<a href="https://zh.wikipedia.org/zh-hans/%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F" target="_blank" rel="noopener">泰勒公式</a>得到下式<br>$$<br>f(x + \Delta x) \approx f(x) +f^{\prime}(x) \Delta x + \frac 1 2 f^{\prime \prime}(x) \Delta x^2<br>$$<br>那么现在可以把 $y^{(t)}_i$看成上式中的 $f(x+Δx)$ ，$y^{(t−1)}_i$ 就是 $f(x)$ ，$f_t(x_i)$ 为 $Δx$ 。然后设 $g_i$ 代表 $f′(x)$ ，也就是 $g_i = {\partial}_{\hat y^{(t - 1)}} \ l(y_i, \hat y^{(t - 1)})$  用 $h_i$ 代表 $f′′(x)$， 于是 $h_i = {\partial}_{\hat y^{(t - 1)}}^2 \  l(y_i, \hat y^{(t - 1)})$ 于是现在目标函数就为下式:<br>$$<br>\begin{align}<br>Obj^{(t)} &amp;\approx \sum_{i = 1}^n [l(y_i, \hat y_i^{(t - 1)}) + g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) + constant \<br>&amp;= \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) + [\sum_{i = 1}^n l(y_i, \hat y_i^{(t - 1)}) + constant]<br>\end{align}<br>$$<br>可以用平方误差的例子进行泰勒展开看看结果是否一致，很明显，上式中后面那项 $[\sum_{i = 1}^n l(y_i, \hat y_i^{(t - 1)}) + constant]$ 对于该目标函数我们求最优值点的时候并无影响，所以，现在有了<strong>新的优化目标</strong><br>$$<br>Obj^{(t)} \approx \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t)<br>$$</p>
+<h5 id="这么苦逼图啥？"><a href="#这么苦逼图啥？" class="headerlink" title="这么苦逼图啥？"></a>这么苦逼图啥？</h5><p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541700947093.png" alt="1541700947093"></p>
+<h5 id="改进树的定义-Refine-the-definition-of-tree"><a href="#改进树的定义-Refine-the-definition-of-tree" class="headerlink" title="改进树的定义 Refine the definition of tree"></a>改进树的定义 Refine the definition of tree</h5><p>上一节讨论了 $f_t(x)$ 的物理意义，现在我们对其进行数学公式化。设 $w∈R^T$ ， $w$ 为树叶的权重序列，$q:R^d \rightarrow \lbrace 1,2, \cdots ,T \rbrace$ ，$q$ 为树的结构。那么 $q(x)$ 表示的就是样本 $x$ 所落在树叶的位置。可以用下图形象地表示</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541701316727.png" alt="1541701316727"></p>
+<p>现在对训练误差部分的定义已经完成。那么对模型的复杂度应该怎么定义呢？</p>
+<h5 id="定义树的复杂度-Define-Complexity-of-a-Tree"><a href="#定义树的复杂度-Define-Complexity-of-a-Tree" class="headerlink" title="定义树的复杂度 Define Complexity of a Tree"></a>定义树的复杂度 Define Complexity of a Tree</h5><p>树的深度？最小叶子权重？叶子个数？叶子权重的平滑程度？等等有许多选项都可以描述该模型的复杂度。为了方便，现在用叶子的个数和叶子权重的平滑程度来描述模型的复杂度。可以得到下式：<br>$$<br>\Omega(f_t) = \gamma T + \frac 1 2 \lambda \sum_{j = 1}^T w_j^2<br>$$<br>说明：上式中前一项用叶子的个数乘以一个收缩系数，后一项用L2范数来表示叶子权重的平滑程度。</p>
+<p>下图就是计算复杂度的一个示例：</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541701662020.png" alt="1541701662020"></p>
+<h5 id="修改目标函数-Revisit-the-Objectives"><a href="#修改目标函数-Revisit-the-Objectives" class="headerlink" title="修改目标函数 Revisit the Objectives"></a>修改目标函数 Revisit the Objectives</h5><p>最后再增加一个定义，用 $I_j$ 来表示第 $j$ 个叶子里的样本集合。也就是上图中，第 $j$ 个圈，就用 $I_j$ 来表示。<br>$$<br>I_j = \lbrace i|q(x_i) = j \rbrace<br>$$<br>好了，最后把优化函数重新按照每个叶子组合,并舍弃常数项：<br>$$<br>\begin{align}<br>Obj^{(t)} &amp;\approx \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) \<br>          &amp;= \sum_{i = 1}^n [ g_i w_{q(x_i)} + \frac 1 2 h_i w_{q(x)}^2] + \gamma T + \frac 1 2 \lambda \sum_{j = 1}^T w_j^2 \<br>          &amp;= \sum_{j = 1}^T [(\sum_{i \in I_j } g_i)w_j + \frac 1 2 (\sum_{i \in I_j}h_i + \lambda)w_j^2] + \gamma T<br>\end{align}<br>$$</p>
+<p>这是 $T$ 个独立的二次函数的和。</p>
+<h5 id="结构分-The-Structure-Score"><a href="#结构分-The-Structure-Score" class="headerlink" title="结构分 The Structure Score"></a>结构分 The Structure Score</h5><p>初中时所学的二次函数的最小值可以推广到矩阵函数里<br>$$<br>\mathop{\min_x}{Gx+ \frac 1 2 Hx^2} = - \frac 1 2 \frac {G^2} H, \quad H \gt 0 \<br>\mathop{\arg\min_x}{Gx+\frac{1}{2}Hx^2} = -\frac{G}{H}，H \ge 0<br>$$<br>设 $G_j = \sum_{i \in I_j } g_i,\ H_j = \sum_{i \in I_j}h_i$ ，那么<br>$$<br>\begin{align}<br>Obj^{(t)} &amp;= \sum_{j = 1}^T [(\sum_{i \in I_j } g_i)w_j + \frac 1 2 (\sum_{i \in I_j}h_i + \lambda)w_j^2] + \gamma T \<br>          &amp;= \sum_{j = 1}^T [G_j w_j + \frac 1 2 (H_j + \lambda)w_j^2] + \gamma T<br>\end{align}<br>$$<br>因此，若假设我们的树的结构已经固定，就是 $q(x)$ 已经固定，那么<br>$$<br>\begin{align}<br>W_j^* &amp;= - \frac {G_j}{H_j + \lambda} \<br>Obj &amp;= - \frac 1 2 \sum_{j = 1}^T \frac {G_j^2}{H_j + \lambda} + \gamma T<br>\end{align}<br>$$<br><strong>例子</strong></p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541753658541.png" alt="1541753658541"></p>
+<h5 id="用于单棵树的搜索算法-Searching-Algorithm-for-Single-Tree"><a href="#用于单棵树的搜索算法-Searching-Algorithm-for-Single-Tree" class="headerlink" title="用于单棵树的搜索算法 Searching Algorithm for Single Tree"></a>用于单棵树的搜索算法 Searching Algorithm for Single Tree</h5><p>现在只要知道树的结构，就能得到一个该结构下的最好分数。可是树的结构应该怎么确定呢？</p>
+<ul>
+<li><p>枚举可能的树结构 q</p>
+</li>
+<li><p>使用分数公式来计算 q 的结构分：</p>
+<p>  $Obj = -\frac{1}{2} \sum\limits_{j=1}^{T}\frac{G_j^2}{H_j+\lambda} + \gamma T$</p>
+</li>
+<li><p>找到最好的树结构，然后使用优化的叶子权重：</p>
+<p>  $w^*_j=-\frac{G_j}{H_j+\lambda}$</p>
+</li>
+<li><p>但是这可能有无限多个可能的树结构</p>
+</li>
+</ul>
+<h5 id="树的贪婪学习-Greedy-Learning-of-the-Tree"><a href="#树的贪婪学习-Greedy-Learning-of-the-Tree" class="headerlink" title="树的贪婪学习 Greedy Learning of the Tree"></a>树的贪婪学习 Greedy Learning of the Tree</h5><ul>
+<li><p>从深度为 0 的树开始</p>
+</li>
+<li><p>对树的每个叶子节点，试着添加一个分裂点。添加这个分裂点后目标函数（即损失函数）的值变化<br>  $$<br>  \begin{align}<br>  Obj_{split} &amp;= - \frac{1}{2}[\underbrace{\frac{G_L^2}{H_L+\lambda}}_{左孩子节点分数} + \underbrace {\frac{G^2_R}{H_R+\lambda}}<em>{右孩子节点分数}] + \gamma T</em>{split} \<br>  Obj_{unsplit} &amp;=  - \frac{1}{2}\underbrace{\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}}<em>{分裂前的分数} + \gamma T</em>{unsplit} \<br>  Gain &amp;= Obj_{unsplit} - Obj_{split} \<br>  &amp;= \frac 1 2 [\frac {G_L^2}{H_L + \lambda} + \frac {G_R^2}{H_R + \lambda} - \frac {(G_L + G_R)^2}{H_L + H_R + \lambda}] - \gamma(T_{split} - T_{unsplit})<br>  \end{align}<br>  $$</p>
+</li>
+<li><p>剩下的问题：我们如何找到最好的分裂点？</p>
+</li>
+</ul>
+<h5 id="最好分裂点的查找-Efficient-Finding-of-the-Best-Split"><a href="#最好分裂点的查找-Efficient-Finding-of-the-Best-Split" class="headerlink" title="最好分裂点的查找 Efficient Finding of the Best Split"></a>最好分裂点的查找 Efficient Finding of the Best Split</h5><ul>
+<li><p>当分裂规则是 $x_j&lt;a$ 时，树的增益是 ?  假设 $x_j$ 是年龄</p>
+<p>  <img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541756389096.png" alt="1541756389096"></p>
+</li>
+<li><p>我们所需要就是上图的两边 $g$ 和 $h$ 的和，然后计算<br>  $$<br>  Gain = \frac{G_L^2}{H_L+\lambda} + \frac{G_L^2}{H_R+\lambda} - \frac{(G_L+G_R)^2}{H_L+H_R+\lambda} - \gamma<br>  $$</p>
+</li>
+<li><p>在一个特征上，从左至右对已经排序的实例进行线性扫描能够决定哪个是最好的分裂点。</p>
+</li>
+</ul>
+<h5 id="分裂点查找算法-An-Algorithm-for-Split-Finding"><a href="#分裂点查找算法-An-Algorithm-for-Split-Finding" class="headerlink" title="分裂点查找算法 An Algorithm for Split Finding"></a>分裂点查找算法 An Algorithm for Split Finding</h5><ul>
+<li>对于每个节点，枚举所有的特征<ul>
+<li>对于每个特征，根据特征值对实例（样本）进行排序</li>
+<li>在这个特征上，使用线性扫描决定哪个是最好的分裂点</li>
+<li>在所有特征上采用最好分裂点的方案</li>
+</ul>
+</li>
+<li>深度为 $K$ 的生长树的时间复杂度<ul>
+<li>$O(K\ d\ n\log n)$ ：每一层需要 $O(n\ \log n)$ 时间去排序，且需要在 $d$ 个特征上排序，我们需要在 $K$ 层进行这些排序。（<font color="blue">补充</font>：$O(n)$ 时间计算当前特征的最佳分裂点，即最后实际上 $O(d\ K\ (n\log n +n)$）</li>
+<li>这些可以进一步优化（例如：使用近似算法和缓存已经排序的特征）</li>
+<li>能够拓展到非常大的数据集</li>
+</ul>
+</li>
+</ul>
+<h5 id="类变量（categorical-variables）"><a href="#类变量（categorical-variables）" class="headerlink" title="类变量（categorical variables）"></a>类变量（categorical variables）</h5><ul>
+<li><p>有一些树处理分开处理类变量和连续值的变量</p>
+<ul>
+<li>xgboost可以简单地使用之前推导的分数公式去计算基于类变量的分裂分数</li>
+</ul>
+</li>
+<li><p>实际上，没有必要分开处理类变量</p>
+<ul>
+<li><p>我们可以使用独热编码（one-hot encoding）将类变量编码成数值向量。分配一个维度为类数量的向量。<br>  $$<br>  z_j=\cases{1,\quad &amp;\text{if $x$ is in category $j$}\ 0,\quad &amp;otherwise}<br>  $$</p>
+</li>
+<li><p>如果有很多类变量，这个数值向量将是稀疏的，xgboost学习算法被设计成偏爱处理稀疏数据。</p>
+</li>
+</ul>
+</li>
+<li><p><font color="blue">补充</font>：对某个节点的分割时，是需要按某特征的值排序，那么对于无序的类别变量，就需要进行one-hot化。否则，举个例子：假设某特征有1，2，3三种变量，进行比较时，就会只比较左子树为1, 2或者右子树为2, 3，或者不分割，哪个更好，但是左子树为 1,3 的分割的这种情况就会忘记考虑。因为 $Gain$ 于特征的值范围是无关的，它采用的是已经生成的树的结构与权重来计算的。所以不需要对特征进行归一化处理。</p>
+</li>
+</ul>
+<h5 id="剪枝和正则化-Pruning-and-Regularization"><a href="#剪枝和正则化-Pruning-and-Regularization" class="headerlink" title="剪枝和正则化 Pruning and Regularization"></a>剪枝和正则化 Pruning and Regularization</h5><ul>
+<li><p>回忆一下增益公式：</p>
+<ul>
+<li><p>$Gain=\underbrace{\frac{G^2_L}{H_L+\lambda} + \frac{G^2_R}{H_R+\lambda} - \frac{(G_L+G_R)^2}{H_L+H_R+\lambda}}<em>{训练损失的减少量} - \underbrace{\gamma}</em>{正则项}$</p>
+</li>
+<li><p>当训练损失减少量小于正则项的时候，分裂后的增益就变成负的。</p>
+</li>
+<li>在树的简化度（simplicity）和预测性能（predictiveness）的权衡（trade-off）</li>
+</ul>
+</li>
+<li><p>提早终止（Pre-stopping）</p>
+<ul>
+<li>如果最好的分裂产生的增益计算出来是负的，那么停止分裂。</li>
+<li>但是（当前的）一个分裂可能对未来的分裂有益。</li>
+</ul>
+</li>
+<li><p>后剪枝 （Post-Prunning）</p>
+<ul>
+<li>生长一棵树到最大深度，再递归地剪枝所有具有负增益的叶子分裂节点。</li>
+</ul>
+</li>
+</ul>
+<h5 id="回顾提升树算法-Recap-Boosted-Tree-Algorithm"><a href="#回顾提升树算法-Recap-Boosted-Tree-Algorithm" class="headerlink" title="回顾提升树算法 Recap: Boosted Tree Algorithm"></a>回顾提升树算法 Recap: Boosted Tree Algorithm</h5><ul>
+<li><p>每一轮添加一棵树</p>
+</li>
+<li><p>每一轮开始的时候，计算 $g_i=\partial_{\hat{y}_i^{(t-1)}}l(y_i,\hat{y}^{(t-1)}), h_i=\partial_{\hat{y}^{(t-1)}}l(y_i, \hat{y}^{(t-1)})$</p>
+</li>
+<li><p>使用统计学知识（统计所有分裂点信息：一节梯度和二阶梯度），用贪婪的方式生长一棵树 $f_t(x)$  ：<br>  $$<br>  Obj = -\frac{1}{2}\sum\limits_{j=1}^{T}\frac{G_j^2}{H_j+\lambda} + \gamma T<br>  $$</p>
+</li>
+<li><p>添加 $f_t(x)$ 到模型 $\hat{y}_i^{(t)}=\hat{y}_i^{(t-1)} + f_t(x_i)$</p>
+<ul>
+<li>通常，我们这么做令 $\hat{y}_i^{(t)}=\hat{y}_i^{(t-1)} + \epsilon f_t(x_i)$</li>
+<li>$\epsilon$ 称为步伐大小（step-size）或者缩放（shrinkage），通常设置为大约 0.1</li>
+<li>这意味着在每一步我们做完全优化，是为了给未来的轮次保留机会（去进一步优化），这样做有助于防止过拟合。</li>
+</ul>
+</li>
+</ul>
+<p>—————————————————————<font color="brown">幻灯片内容结束</font>———————————————————————-</p>
+<h3 id="XGBoost-系统设计的精髓"><a href="#XGBoost-系统设计的精髓" class="headerlink" title="XGBoost 系统设计的精髓"></a>XGBoost 系统设计的精髓</h3><p>这部分内容主要来自陈天奇的论文 <a href="https://arxiv.org/pdf/1603.02754" target="_blank" rel="noopener">XGBoost: A Scalable Tree Boosting System</a> </p>
+<h4 id="缩放和列抽样-shrinkage-and-column-subsampling"><a href="#缩放和列抽样-shrinkage-and-column-subsampling" class="headerlink" title="缩放和列抽样 shrinkage and column subsampling"></a>缩放和列抽样 shrinkage and column subsampling</h4><p>随机森林中的用法和目的一样，用来防止过拟合，主要参考论文2.3节</p>
+<ul>
+<li>这个xgboost与现代的gbdt一样，都有shrinkage参数 （最原始的gbdt没有这个参数）类似于梯度下降算法中的学习速率，在每一步tree boosting之后增加了一个参数 $\eta$（被加入树的权重），通过这种方式来减小每棵树的影响力，给后面的树提供空间去优化模型。</li>
+<li>column subsampling 列（特征）抽样，这个经常用在随机森林，不过据XGBoost的使用者反馈，列抽样防止过拟合的效果比传统的行抽样还好（xgboost也提供行抽样的参数供用户使用），并且有利于后面提到的并行化处理算法。</li>
+</ul>
+<h4 id="查找分裂点的近似算法-Approximate-Algorithm"><a href="#查找分裂点的近似算法-Approximate-Algorithm" class="headerlink" title="查找分裂点的近似算法 Approximate Algorithm"></a>查找分裂点的近似算法 Approximate Algorithm</h4><p>主要参考论文3.2节</p>
+<p>当数据量十分庞大，以致于不能全部放入内存时，精确的贪婪算法就不可能很有效率，通样的问题也出现在分布式的数据集中，为了高效的梯度提升算法，在这两种背景下，近似的算法被提出使用，算法的伪代码如下图所示</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541781900967.png" alt="1541781900967"></p>
+<p>概括一下：枚举所有特征，根据特征，比如是第 $k$ 个特征的分布的分位数来决定出 $l$ 个候选切分点 $S_k = {s_{k1},s_{k2},\cdots s_{kl}}$ ，然后根据这些候选切分点把相应的样本映射到对应的<strong>桶</strong>中，对每个桶的 $G,H$ 进行累加。最后在候选切分点集合上贪心查找，和Exact Greedy Algorithm类似。  </p>
+<p><strong>特征分布的分位数的理解</strong></p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541870733911.png" alt="weapon大神的《 GBDT算法原理与系统设计简介》"></p>
+<p>此图来自知乎weapon大神的《 GBDT算法原理与系统设计简介》</p>
+<p>论文给出近似算法的2种变体，主要是根据候选点的来源不同区分：</p>
+<ol>
+<li>在<strong>建树之前预先将数据进行全局（global）分桶</strong>，需要设置更小的分位数间隔，这里用 ϵ 表示，3分位的分位数间隔就是 $1/3$，产生更多的桶，特征分裂查找基于候选点多，计算较慢，但只需在全局执行一次，全局分桶多次使用。 </li>
+<li><strong>每次分裂重新局部（local）分桶</strong>，可以设置较大的 $ϵ$ ，产生更少的桶，每次特征分裂查找基于较少的候选点，计算速度快，但是需要每次节点分裂后重新执行，论文中说该方案<strong>更适合树深的场景</strong>。 </li>
+</ol>
+<p>论文给出Higgs案例下，方案1全局分桶设置 $ϵ=0.05$ 与精确算法效果差不多，方案2局部分桶设置 $ϵ=0.3$ 与精确算法仅稍差点，方案1全局分桶设置 $ϵ=0.3$ 则效果极差，如下图：</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541781827106.png" alt="1541781827106"></p>
+<p>由此可见，局部选择的近似算法的确比全局选择的近似算法优秀的多，所得出的结果和贪婪算法几乎不相上下。</p>
+<p>最后很重的是：使用哪种方案，xgboost用户可以自由选择。</p>
+<blockquote>
+<p>Notably, <strong>it is also possible to directly construct <a href="http://www.cs.cornell.edu/~kilian/papers/fr819-tyreeA.pdf" target="_blank" rel="noopener">approximate histograms of gradient statistics</a></strong>. Our system efficiently supports exact greedy for the single machine setting, as well as approximate algorithm with both local and global proposal methods for all settings. Users can <strong>freely</strong> choose between the methods according to their needs. </p>
+</blockquote>
+<p>这里直方图算法，常用于GPU的内存优化算法，leetcode上也有人总结出来：<a href="https://www.cnblogs.com/felixfang/p/3676193.html" target="_blank" rel="noopener">LeetCode Largest Rectangle in Histogram O(n) 解法详析， Maximal Rectangle</a></p>
+<h4 id="带权的分位方案-Weighted-Quantile-Sketch"><a href="#带权的分位方案-Weighted-Quantile-Sketch" class="headerlink" title="带权的分位方案 Weighted Quantile Sketch"></a>带权的分位方案 Weighted Quantile Sketch</h4><p>主要参考论文3.3节</p>
+<p>在近似的分裂点查找算法中，一个步骤就是提出候选分裂点，通常情况下，一个特征的分位数使候选分裂点均匀地分布在数据集上，就像前文举的关于特征分位数的例子。</p>
+<p>考虑 $\cal{D}<em>k = \lbrace (x</em>{1k},h_1), (x_{2k},h_2), (x_{3k},h_3), \cdot \cdot \cdot , (x_{nk},h_n)\rbrace$ 代表每个样本的第 $k$ 个特征和其对应的二阶梯度所组成的集合。那么我们现在就能用分位数来定义下面的这个排序函数 $r_k:\Bbb R \rightarrow [0,1]$<br>$$<br>r_k(z) = \frac 1 {\sum_{(x,h) \in \cal{D}<em>k}h} \sum</em>{(x,h)\in \cal{D}<em>k,x \lt z} h<br>$$<br>上式表示的就是该特征的值小于 $z$ 的样本所占总样本的比例。于是我们就能用下面这个不等式来寻找分裂候选点$\lbrace s</em>{k1},s_{k2},s_{k3}, \cdots, s_{kl} \rbrace$<br>$$<br>|r_k(s_{k,j}) - r_k(s_{k, j+1})| \lt \epsilon,\ s_{k1}=\underset{i}{min}\ x_{ik},s_{kl}=\underset{i}{max}\ x_{ik}<br>$$<br>上式中 $\epsilon$ 的作用：控制让相邻两个候选分裂点相差不超过某个值 $\epsilon$ ，那么 $1/\epsilon$ 的整数值就代表几分位，举例 $\epsilon=1/3$ ，那么就是三分位，即有 $3-1$ 个候选分裂点。数学上，从最小值开始，每次增加 $ϵ∗(\underset{i}\max x_{ik}−\underset{i}\min x_{ik})$ 作为分裂候选点。然后在这些分裂候选点中选择一个最大分数作为最后的分裂点，而且每个数据点的权重是  $h_i$ ，原因如下：<br>$$<br>\begin{align}<br>Obj^{(t)} &amp;\approx \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) \<br>&amp;=\sum_{i=1}^N\frac{1}{2}h_i\left(2\frac{g_i}{h_i}f_t({\bf x_i}) + f_t^2({\bf x_i})\right) + \Omega(f_t) \<br>&amp;=\sum_{i=1}^N \frac{1}{2}h_i\left(\frac{g_i^2}{h_i^2} +2\frac{g_i}{h_i}f_t({\bf x_i}) + f_t^2({\bf x_i})\right) + \Omega(f_t) - \frac{g_i^2}{2h_i} \<br>&amp;=\sum_{i=1}^N \frac{1}{2}{\color{green}h_i}\left( f_t({\bf x_i}) – ({\color{green}- \frac{g_i}{h_i}})\right)^2 + \Omega(f_t) - \frac{g_i^2}{2h_i} \<br>&amp;=\sum_{i=1}^N \frac{1}{2}{\color{green}h_i}\left( f_t({\bf x_i}) – ({\color{green}- \frac{g_i}{h_i}})\right)^2 + \Omega(f_t) - constant<br>\end{align}<br>$$<br><strong>说明</strong>：这部分论文原文推导有些错误，国外问答网站 <a href="https://datascience.stackexchange.com/a/11017/62341" target="_blank" rel="noopener">stack exchange</a> 给出很明确的答复， 上式可以视为标签为 $-\frac{g_i}{h_i}$ 且权重为 $h_i$ 的平方误差，此时视 $\frac{g_i^2}{2h_i}$ 常数 （因为是来自上一轮的梯度和二阶梯度）。</p>
+<p>现在应该明白 Weighted Quantile Sketch 带权的分位方案的由来，下面举个例子：</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541873737581.png" alt="1541873737581"></p>
+<p>即要切分为3个，总和为1.8，因此第1个在0.6处，第2个在1.2处。此图来自知乎weapon大神的《 GBDT算法原理与系统设计简介》</p>
+<h4 id="注意稀疏问题的分裂点查找-Sparsity-aware-Split-Finding"><a href="#注意稀疏问题的分裂点查找-Sparsity-aware-Split-Finding" class="headerlink" title="注意稀疏问题的分裂点查找 Sparsity-aware Split Finding"></a>注意稀疏问题的分裂点查找 Sparsity-aware Split Finding</h4><p>主要参考论文3.4节</p>
+<p>对于数据缺失数据、one-hot编码等造成的特征稀疏现象，作者在论文中提出可以处理稀疏特征的分裂算法，主要是对稀疏特征值缺失的样本学习出默认节点分裂方向： </p>
+<ol>
+<li>默认miss value进右子树，对non-missing value的样本在左子树的统计值 $G_L$ 与 $H_L$，右子树为 $G-G_L$ 与$H−H_L$，其中包含miss的样本，统计这种方案（默认miss value进右子树）的分数。 </li>
+<li>默认miss value进左子树，对non-missing value的样本在右子树的统计值 $G_R$ 与 $H_R$，左子树为 $G-G_R$ 与$H−H_R$ ，其中包含miss的样本，统计这种方案（默认miss value进左子树）的分数。 </li>
+<li>选择分数（即增益）比较大的方案。</li>
+</ol>
+<p>这样最后求出增益最大的特征值以及 miss value 的分裂方向，作者在论文中提出基于稀疏分裂算法： （<font color="red">修正：</font>下文 “Input: d feature dimension”  这里 “d” 应该改为 “m”）</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541783628978.png" alt="1541783628978"></p>
+<p>使用了该方法，相当于比传统方法多遍历了一次，但是它只在非缺失值的样本上进行迭代，因此其复杂度与非缺失值的样本成线性关系。在 Allstate-10k 数据集上，比传统方法快了50倍：</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541862763402.png" alt="1541862763402"></p>
+<h4 id="旨在并行学习的列块结构-Column-Block-for-Parallel-Learning"><a href="#旨在并行学习的列块结构-Column-Block-for-Parallel-Learning" class="headerlink" title="旨在并行学习的列块结构 Column Block for Parallel Learning"></a>旨在并行学习的列块结构 Column Block for Parallel Learning</h4><p>主要参考论文4.1节</p>
+<p><strong>CSR vs CSC </strong></p>
+<p>稀疏矩阵的压缩存储形式，比较常见的其中两种：压缩的稀疏行（Compressed Sparse Row）和 压缩的稀疏列（Compressed Sparse Column）</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/Matrix_CSR.png" alt="1541862763402"></p>
+<p>CSR结构包含非0数据块values，行偏移offsets，列下标indices。offsets数组大小为（总行数目+1），CSR 是对稠密矩阵的压缩，实际上直接访问稠密矩阵元素 $(i,j)$ 并不高效，毕竟损失部分信息，访问过程如下：</p>
+<ol>
+<li>根据行 $i$ 得到偏移区间开始位置 <code>offsets[i]</code>与区间结束位置 <code>offsets[i+1]-1</code>，得到 $i$ 行数据块 <code>values[offsets[i]..(offsets[i+1]-1)]</code>， 与非0的列下表<code>indices[offsets[i]..(offsets[i+1]-1)]</code></li>
+<li>在列下标数据块中二分查找 $j$，找不到则返回0，否则找到下标值 $k$，返回 <code>values[offsets[i]+k]</code></li>
+</ol>
+<p><strong>从访问单个元素来说，相比坐标系的存储结构，那么从 $O(1)$ 时间复杂度升到 $O(\log N)$, N 为该行非稀疏数据项个数。但是如果要遍历访问整行非0数据，则无需访问indices数组，时间复杂度反而更低，因为少了大量的稀疏为0的数据访问。</strong> </p>
+<p>CSC 与 CSR 变量结构上并无差别，只是变量意义不同</p>
+<ol>
+<li>values仍然为矩阵的非0数据块</li>
+<li>offsets为列偏移，即特征id对应数组</li>
+<li>indices为行下标，对应样本id数组</li>
+</ol>
+<p>XBGoost使用CSC 主要用于对特征的全局预排序。预先将 CSR 数据转化为无序的 CSC 数据，遍历每个特征，并对每个特征 $i$ 进行排序：<code>sort(&amp;values[offsets[i]], &amp;values[offsets[i+1]-1])</code>。全局特征排序后，后期节点分裂可以复用全局排序信息，而不需要重新排序。</p>
+<p>矩阵的存储形式，参考此文：<a href="https://www.cnblogs.com/xbinworld/p/4273506.html" target="_blank" rel="noopener">稀疏矩阵存储格式总结+存储效率对比:COO,CSR,DIA,ELL,HYB</a></p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541875753533.png" alt="1541875753533"></p>
+<p><strong>采取这种存储结构的好处</strong></p>
+<p>未完待续。。。。。</p>
+<h4 id="关注缓存的存取-Cache-aware-Access"><a href="#关注缓存的存取-Cache-aware-Access" class="headerlink" title="关注缓存的存取 Cache-aware Access"></a>关注缓存的存取 Cache-aware Access</h4><p>使用Block结构的一个缺点是取梯度的时候，是通过索引来获取的，而这些梯度的获取顺序是按照特征的大小顺序的。这将导致<strong>非连续</strong>的内存访问，可能使得CPU cache缓存命中率低，从而影响算法效率。</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541876055067.png" alt="1541876055067">  </p>
+<p>因此，对于exact greedy算法中, 使用<strong>缓存预取</strong>。具体来说，对每个线程分配一个连续的buffer，读取梯度信息并存入Buffer中（这样就实现了非连续到连续的转化），然后再统计梯度信息。该方式在训练样本数大的时候特别有用，见下图：</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541876128716.png" alt="1541876128716"></p>
+<p>在近似算法中，对块的大小进行了合理的设置。定义Block的大小为Block中最多的样本数。设置合适的大小是很重要的，设置过大则容易导致命中率低，过小则容易导致并行化效率不高。经过实验，发现 $2^{16}$ 比较好，那么上文提到CSC存储结构的 indices 数组（存储的行下表）的元素占用的字节数就是 16/8 = 2 。</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541876848274.png" alt="1541876848274"></p>
+<h4 id="核外块的计算-Blocks-for-Out-of-core-Computation"><a href="#核外块的计算-Blocks-for-Out-of-core-Computation" class="headerlink" title="核外块的计算 Blocks for Out-of-core Computation"></a>核外块的计算 Blocks for Out-of-core Computation</h4><p>XGBoost 中提出 Out-of-core Computation优化，解决了在硬盘上读取数据耗时过长，吞吐量不足</p>
+<ul>
+<li>多线程对<strong>数据分块压缩</strong> Block Compression 存储在硬盘上，再将数据传输到内存，最后再用独立的线程解压缩，<strong>核心思想</strong>：将磁盘的读取消耗转换为解压缩所消耗的计算资源。</li>
+<li>分布式数据库系统的常见设计：Block Sharding 将数据分片到多块硬盘上，每块硬盘分配一个预取线程，将数据fetche到in-memory buffer中。训练线程交替读取多块缓存的同时，计算任务也在运转，提升了硬盘总体的吞吐量。</li>
+</ul>
+<p>注：这部分内容属于外存算法<a href="https://en.wikipedia.org/wiki/External_memory_algorithm" target="_blank" rel="noopener">External_memory_algorithm</a></p>
+<h3 id="XGBoost-对-GBDT-实现的不同之处"><a href="#XGBoost-对-GBDT-实现的不同之处" class="headerlink" title="XGBoost 对 GBDT 实现的不同之处"></a>XGBoost 对 GBDT 实现的不同之处</h3><p>这部分内容主要参考了知乎上的一个问答 <a href="https://www.zhihu.com/question/41354392" target="_blank" rel="noopener">机器学习算法中 GBDT 和 XGBOOST 的区别有哪些？ - 知乎</a> 根据他们的总结和我自己对论文的理解和补充。</p>
+<ol>
+<li><p>传统GBDT以CART作为基分类器，xgboost支持<strong>多种基础分类器</strong>。比如，线性分类器，这个时候xgboost相当于带 L1 和 L2正则化项 的逻辑斯蒂回归（分类问题）或者线性回归（回归问题）。 </p>
+<p> 可以通过booster [default=gbtree] 设置参数，详细参照官网</p>
+<ul>
+<li>gbtree: <strong>tree-based models</strong></li>
+<li>gblinear: <strong>linear models</strong> </li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/tutorials/dart.html" target="_blank" rel="noopener">DART: Dropouts meet Multiple Additive Regression Trees</a> <strong>dropout</strong> 在深度学习里面也经常使用，需要注意的是无论深度学习还是机器学习：使用droput训练出来的模型，预测的时候要使dropout失效。</li>
+</ul>
+</li>
+<li><p>传统GBDT在优化时只用到一阶导数信息，xgboost则对损失函数函数进行了<strong>二阶泰勒展开</strong>，同时用到了一阶和二阶导数，这样相对会精确地代表损失函数的值。顺便提一下，xgboost工具支持自定义代价函数，只要函数可一阶和二阶求导，详细参照官网API。 </p>
+</li>
+<li><p>并行处理，相比GBM有了速度的飞跃</p>
+<ul>
+<li>借助 OpenMP ，自动利用单机CPU的多核进行并行计算</li>
+<li>支持GPU加速</li>
+<li>支持分布式 </li>
+</ul>
+</li>
+<li><p>剪枝</p>
+<ul>
+<li>当新增分裂带来负增益时，GBM会停止分裂（贪心策略，非全局的剪枝）</li>
+<li>XGBoost一直分裂到指定的最大深度(max_depth)，然后回过头来剪枝（事后，进行全局剪枝） </li>
+</ul>
+</li>
+<li><p>xgboost在代价函数里加入了<strong>显示的正则项</strong>，用于控制模型的复杂度。正则项里包含了树的叶子节点个数、每个叶子节点上输出的score的L2模的平方和，防止过拟合，这也是xgboost优于传统GBDT的一个特性。正则化的两个部分，都是为了防止过拟合，剪枝是都有的，叶子结点输出L2平滑是新增的。</p>
+</li>
+<li><p>Built-in Cross-Validation <strong>内置交叉验证</strong> </p>
+<blockquote>
+<p>XGBoost allows user to run a cross-validation at each iteration of the boosting process and thus it is easy to get the exact optimum number of boosting iterations in a single run. </p>
+<p>This is unlike GBM where we have to run a grid-search and only a limited values can be tested.</p>
+</blockquote>
+</li>
+</ol>
+<ul>
+<li>XGBoost允许在每一轮boosting迭代中使用交叉验证，这样可以方便地获得最优boosting迭代次数</li>
+<li>GBM使用网格搜索，只能检测有限个值 </li>
+</ul>
+<ol start="7">
+<li><p>continue on Existing Model <strong>可以保存模型下次接着训练，方便在线学习</strong></p>
+<blockquote>
+<p>User can start training an XGBoost model from its last iteration of previous run. This can be of significant advantage in certain specific applications. </p>
+<p>GBM implementation of sklearn <strong>also</strong> has this feature so they are even on this point.</p>
+</blockquote>
+</li>
+<li><p>High Flexibility <strong>可定制损失函数，只要这个损失函数2阶可导</strong></p>
+<blockquote>
+<p>XGBoost allow users to define custom optimization objectives and evaluation criteria.  This adds a whole new dimension to the model and there is no limit to what we can do.</p>
+</blockquote>
+</li>
+<li><p>提供多语言接口</p>
+<ul>
+<li>命令行（Command Line Interface， CLI）</li>
+<li>C++/Python（可以和scikit-learn结合）/R（可以和caret包结合）/Julia/JAVA和JVM语言（如Scala、 Hadoop平台等） </li>
+</ul>
+</li>
+<li><p>xgboost工具支持并行，执行速度确实比其他Gradient Boosting实现快</p>
+<ul>
+<li><p>模型性能：在<strong>结构化数据集</strong>上，在分类／回归/排序预测建模上表现突出，相比之下，神经网络尤其擅长非结构化的数据集（比如：图片，语音） </p>
+</li>
+<li><p>注意xgboost不同于随机森林中的并行粒度是：tree，xgboost与其他提升方法（比如GBDT）一样，也是一次迭代完才能进行下一次迭代的（第t次迭代的代价函数里包含了前面t-1次迭代的预测值）。xgboost的并行是在特征粒度上的。</p>
+</li>
+</ul>
+</li>
+</ol>
+<p>我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），xgboost在训练之前，预先对数据进行了排序，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。这个block结构也使得并行成为了可能，在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行。</p>
+<p><strong>总体来说，这部分内容需要学习很多，特别是涉及到分布式地并发优化和资源调度算法，这就不仅仅是数学模型的问题了，还涉及到系统设计，程序运行性能的优化，本人实在是才疏学浅，这部分内容理解尚浅，进一步学习还需要其他论文和看XGBoost源码，有些优化的地方也不是作者首创，表示从附录的论文中得以学习集成到XGBoost中，真的是集万千之大作，作者不愧是上海交大ACM班出身</strong>。大神的访谈：<a href="https://cosx.org/2015/06/interview-of-tianqi/" target="_blank" rel="noopener">https://cosx.org/2015/06/interview-of-tianqi/</a></p>
+<h4 id="优化的角度"><a href="#优化的角度" class="headerlink" title="优化的角度"></a>优化的角度</h4><p><a href="https://www.zhihu.com/question/41354392/answer/157538270" target="_blank" rel="noopener">马琳同学的回答</a> 非常棒，真是让我感受到了：<font color="blue">横看成岭侧成峰</font><br><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541846850051.png" alt=""></p>
+<h3 id="高可用的xgboost"><a href="#高可用的xgboost" class="headerlink" title="高可用的xgboost"></a>高可用的xgboost</h3><p>由于xgboost发展平稳成熟，现在已经非常易用，下图来自<a href="https://xgboost.ai" target="_blank" rel="noopener">官网</a></p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541270621305.png" alt="1541270621305"></p>
+<h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3><p>来自<a href="https://xgboost.readthedocs.io/en/latest/get_started.html" target="_blank" rel="noopener">官网</a>，其他复杂的demo，参看github的demo目录</p>
+<p> <strong>Python</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="comment"># read in data</span></span><br><span class="line">dtrain = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.train'</span>)</span><br><span class="line">dtest = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.test'</span>)</span><br><span class="line"><span class="comment"># specify parameters via map</span></span><br><span class="line">param = &#123;<span class="string">'max_depth'</span>:<span class="number">2</span>, <span class="string">'eta'</span>:<span class="number">1</span>, <span class="string">'silent'</span>:<span class="number">1</span>, <span class="string">'objective'</span>:<span class="string">'binary:logistic'</span> &#125;</span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest)</span><br></pre></td></tr></table></figure>
+<p>在jupter notebook中运行结果</p>
+<h4 id="树形提升器"><a href="#树形提升器" class="headerlink" title="树形提升器"></a>树形提升器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="comment"># read in data</span></span><br><span class="line">dtrain = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.train'</span>)</span><br><span class="line">dtest = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.test'</span>)</span><br></pre></td></tr></table></figure>
+<pre><code>[18:22:42] 6513x127 matrix with 143286 entries loaded from demo/data/agaricus.txt.train
+[18:22:42] 1611x127 matrix with 35442 entries loaded from demo/data/agaricus.txt.test
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># specify parameters via map</span></span><br><span class="line">param = &#123;<span class="string">'max_depth'</span>:<span class="number">3</span>, <span class="string">'eta'</span>:<span class="number">1</span>, <span class="string">'silent'</span>: <span class="number">0</span>, <span class="string">'objective'</span>:<span class="string">'binary:logistic'</span> &#125;</span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br></pre></td></tr></table></figure>
+<pre><code>[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 12 extra nodes, 0 pruned nodes, max_depth=3
+[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 10 extra nodes, 0 pruned nodes, max_depth=3
+</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest)</span><br><span class="line">print(preds)</span><br><span class="line">print(bst.eval(dtest))</span><br></pre></td></tr></table></figure>
+<pre><code>[0.10828121 0.85500014 0.10828121 ... 0.95467216 0.04156424 0.95467216]
+[0]    eval-error:0.000000
+</code></pre><h4 id="DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees"><a href="#DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees" class="headerlink" title="DART提升器 Dropouts meet Multiple Additive Regression Trees"></a>DART提升器 Dropouts meet Multiple Additive Regression Trees</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">param = &#123;<span class="string">'booster'</span>: <span class="string">'dart'</span>,</span><br><span class="line">         <span class="string">'max_depth'</span>: <span class="number">4</span>, </span><br><span class="line">         <span class="string">'eta'</span>: <span class="number">0.001</span>,</span><br><span class="line">         <span class="string">'objective'</span>: <span class="string">'binary:logistic'</span>, </span><br><span class="line">         <span class="string">'silent'</span>: <span class="number">0</span>,</span><br><span class="line">         <span class="string">'sample_type'</span>: <span class="string">'uniform'</span>,</span><br><span class="line">         <span class="string">'normalize_type'</span>: <span class="string">'tree'</span>,</span><br><span class="line">         <span class="string">'rate_drop'</span>: <span class="number">0.5</span>,</span><br><span class="line">         <span class="string">'skip_drop'</span>: <span class="number">0.0</span>&#125;</span><br><span class="line"><span class="comment">#Command Line Parameters: 提升的轮次数</span></span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br></pre></td></tr></table></figure>
+<figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 18 extra nodes, 0 pruned nodes, max_depth=4</span><br><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\gbm\gbtree.cc:494: drop 0 trees, weight = 1</span><br><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 18 extra nodes, 0 pruned nodes, max_depth=4</span><br><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\gbm\gbtree.cc:494: drop 1 trees, weight = 0.999001</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest, ntree_limit=num_round)</span><br><span class="line">print(preds)</span><br><span class="line">print(bst.eval(dtest))</span><br></pre></td></tr></table></figure>
+<pre><code>[0.4990105 0.5009742 0.4990105 ... 0.5009742 0.4990054 0.5009742]
+[0]    eval-error:0.007449
+</code></pre><h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><p><a href="https://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">官网</a>，<strong>看懂参数的前提是把前文数学公式和理论看懂</strong>，这部分内容主要是对官网的翻译。</p>
+<p>运行XGBoost之前，我们必须设置3种类型的参数：通用参数（general parameters），提升器参数（booster paramter），任务参数（task parameter）。</p>
+<ol>
+<li>通用参数：与我们所使用的提升器（通常是树型提升器或者线性提升器）的提升算法相关。</li>
+<li>提升器参数：取决于你所选择的哪种提升器</li>
+<li>学习任务的参数：这些参数决定了学习的方案（learning scenario）。例如：在排名任务场景下，回归任务可能使用不同的参数。</li>
+<li>命令行参数：与 XGBoost 的命令行接口（CLI）版本的行为相关。</li>
+</ol>
+<blockquote>
+<p><strong>Note</strong></p>
+<p>Parameters in R package</p>
+<p>In R-package, you can use <code>.</code> (dot) to replace underscore(与underline同义) in the parameters, for example, you can use <code>max.depth</code> to indicate <code>max_depth</code>. The underscore parameters are also valid in R.</p>
+</blockquote>
+<ul>
+<li>General Parameters<ul>
+<li><a href="https://xgboost.readthedocs.io/en/latest/parameter.html#parameters-for-tree-booster" target="_blank" rel="noopener">Parameters for Tree Booster</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/parameter.html#additional-parameters-for-dart-booster-booster-dart" target="_blank" rel="noopener">Additional parameters for Dart Booster (<code>booster=dart</code>)</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/parameter.html#parameters-for-linear-booster-booster-gblinear" target="_blank" rel="noopener">Parameters for Linear Booster (<code>booster=gblinear</code>)</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/parameter.html#parameters-for-tweedie-regression-objective-reg-tweedie" target="_blank" rel="noopener">Parameters for Tweedie Regression (<code>objective=reg:tweedie</code>)</a></li>
+</ul>
+</li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/parameter.html#learning-task-parameters" target="_blank" rel="noopener">Learning Task Parameters</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/latest/parameter.html#command-line-parameters" target="_blank" rel="noopener">Command Line Parameters</a></li>
+</ul>
+<h3 id="通用参数-general-parameters"><a href="#通用参数-general-parameters" class="headerlink" title="通用参数 general parameters"></a>通用参数 general parameters</h3><ol>
+<li><p><code>booster</code> [default=gbtree] 设定基础提升器的参数</p>
+<p> Which booster to use. Can be <code>gbtree</code>, <code>gblinear</code> or <code>dart</code>; <code>gbtree</code> and <code>dart</code> use tree based models while <code>gblinear</code> uses linear functions.</p>
+</li>
+<li><p><code>silent</code> [default=0]: 设置成1则没有运行信息的输出，最好是设置为0. </p>
+</li>
+<li><p><code>nthread</code> [default to maximum number of threads available if not set]：线程数</p>
+</li>
+<li><p><code>disable_default_eval_metric</code> [default=0]<br> Flag to disable default metric. Set to &gt;0 to disable. ，使默认的模型评估器失效的标识</p>
+</li>
+<li><p><code>num_pbuffer</code> [set automatically by XGBoost, <strong>no need to be set by user</strong>]<br> Size of prediction buffer, normally set to number of training instances. The buffers are used to save the prediction results of last boosting step.</p>
+</li>
+<li><p><code>num_feature</code> [set automatically by XGBoost, <strong>no need to be set by user</strong>]<br> Feature dimension used in boosting, set to maximum dimension of the feature</p>
+</li>
+</ol>
+<h3 id="提升器参数-Booster-parameters"><a href="#提升器参数-Booster-parameters" class="headerlink" title="提升器参数 Booster parameters"></a>提升器参数 Booster parameters</h3><h4 id="树提升器参数-Parameters-for-Tree-Booster"><a href="#树提升器参数-Parameters-for-Tree-Booster" class="headerlink" title="树提升器参数 Parameters for Tree Booster"></a>树提升器参数 Parameters for Tree Booster</h4><ol>
+<li><p><code>eta</code> [default=0.3], range $[0, 1]$</p>
+<p> shrinkage参数，用于更新叶子节点权重时，乘以该系数，避免步长过大。参数值越大，越可能无法收敛。把学习率 eta 设置的小一些，小学习率可以使得后面的学习更加仔细。 </p>
+</li>
+<li><p><code>gamma</code> [default=0 alias: <code>min_split_loss</code>] , range $[0, \infty]$</p>
+<p> 功能与<code>min_split_loss</code> 一样，（alias是“别名，又名”的意思，联想linux命令：alias就非常容易理解，即给相应的命令起了新的名字，引用同一个程序，功能是一样的），损失函数减少的最小量。</p>
+</li>
+<li><p><code>max_depth</code> [default=6], range $[0, \infty]$</p>
+<p> 每颗树的最大深度，树高越深，越容易过拟合。 </p>
+</li>
+<li><p><code>min_child_weight</code> [default=1], range: $[0, \infty]$</p>
+<p> 这个参数默认是 1，是每个叶子里面loss函数二阶导（ hessian）的和至少是多少，对正负样本不均衡时的 0-1 分类而言，假设 h 在 0.01 附近，min_child_weight 为 1 意味着叶子节点中最少需要包含 100 个样本。这个参数非常影响结果，控制叶子节点中二阶导的和的最小值，该参数值越小，越容易 overfitting。 </p>
+</li>
+<li><p><code>max_delta_step</code> [default=0] , range: $[0, \infty]$ </p>
+<p> <strong>Maximum delta step we allow each leaf output to be</strong>. If the value is set to 0, it means there is no constraint. If it is set to a positive value, it can help making the update step more conservative. <strong>Usually this parameter is not needed, but it might help in logistic regression when class is extremely imbalanced. Set it to value of 1-10 might help control the update</strong>.</p>
+<p> 这参数限制每棵树权重改变的最大步长。如果这个参数的值为0，那就意味着没有约束。如果它被赋予了某个正值，那么它会让这个算法更加保守。通常，这个参数不需要设置。但是当各类别的样本十分不平衡时，它对逻辑回归是很有帮助的。这个参数一般用不到，但是你可以挖掘出来它更多的用处。</p>
+</li>
+<li><p><code>subsample</code> [default=1], range: $[0, 1]$ </p>
+<p> 训练实例的抽样率，较低的值使得算法更加保守，防止过拟合，但是太小的值也会造成欠拟合。如果设置0.5，那就意味着随机树的生长之前，随机抽取训练数据的50%做样本。 </p>
+</li>
+<li><p><code>colsample_bytree</code> [default=1], range: $[0, 1]$ </p>
+<p> 在构建每棵树的时候，特征（这里说是列，因为样本是按行存储的，那么列就是相应的特征）的采样率，用的特征进行列采样. </p>
+</li>
+<li><p><code>colsample_bytree</code> 表示的是每次分割节点时，抽取特征的比例。</p>
+</li>
+<li><p><code>lambda</code> [default=1, alias: <code>reg_lambda</code>] </p>
+<p> 作用于权重值的 L2 正则化项参数，参数越大，模型越不容易过拟合。 </p>
+</li>
+<li><p><code>alpha</code> [default=0, alias: <code>reg_alpha</code>]</p>
+<p>作用于权重值的 L1 正则项参数，参数值越大，模型越不容易过拟合。 </p>
+</li>
+<li><p><code>tree_method</code> string [default=<code>auto</code>]</p>
+<ul>
+<li><p>用来设定树的构建算法，欲知详情请看陈天奇论文中的引用资料： <a href="http://arxiv.org/abs/1603.02754" target="_blank" rel="noopener">reference paper</a>.</p>
+<p>  The tree construction algorithm used in XGBoost. See description in the <a href="http://arxiv.org/abs/1603.02754" target="_blank" rel="noopener">reference paper</a>.</p>
+</li>
+<li><p>分布式和外存版本仅仅支持 <code>tree_method=approx</code>  </p>
+<p>  Distributed and external memory version only support <code>tree_method=approx</code>.</p>
+</li>
+<li><p>选项：<code>auto</code>, <code>exact</code>, <code>approx</code>, <code>hist</code>, <code>gpu_exact</code>, <code>gpu_hist</code>, <code>auto</code></p>
+<p>  Choices: <code>auto</code>,<code>exact</code>,<code>approx</code>,<code>hist</code>,<code>gpu_exact</code>,<code>gpu_hist</code>,<code>auto</code></p>
+<ul>
+<li><p><code>auto</code>: Use heuristic to choose the fastest method. 启发式地选择快速算法<br>  ​    - For small to medium dataset, exact greedy (<code>exact</code>) will be used. 中小数据量采用精确的贪婪搜索算法（指代前文说的树的生长过程中，节点分裂算法，所以很好理解）<br>  ​    - For very large dataset, approximate algorithm (<code>approx</code>) will be chosen. 非常大的数据集，近似算法将被选用。<br>  ​    - Because old behavior is always use exact greedy in single machine, user will get a message when approximate algorithm is chosen to notify this choice. 因为旧的行为总是使用精确的贪婪算法，所以在近似算法被选用的时候，用户会收到一个通知消息，告诉用户近似算法被选用。</p>
+<ul>
+<li><p><code>exact</code>: Exact greedy algorithm. 精确地贪婪算法</p>
+</li>
+<li><p><code>approx</code>: Approximate greedy algorithm using quantile sketch and gradient histogram. 近似算法采用分位方案和梯度直方图方案。</p>
+</li>
+<li><p><code>hist</code>: Fast histogram optimized approximate greedy algorithm. It uses some performance improvements such as bins caching. 优化过的近似贪婪算法的快速算法，这个快速算法采用一些性能改善（的策略），例如桶的缓存（这里桶指的是直方图算法中所用的特征数据划分成不同的桶，欲知详情，查看陈天奇论文以及论文的引用资料）</p>
+</li>
+<li><p><code>gpu_exact</code>: GPU implementation of <code>exact</code> algorithm.</p>
+</li>
+<li><p><code>gpu_hist</code>: GPU implementation of <code>hist</code> algorithm.</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>sketch_eps</code> [default=0.03], range: (0, 1) 全称：sketch epsilon 即 分位算法中的 $\epsilon$ 参数</p>
+</li>
+</ol>
+<ul>
+<li>Only used for <code>tree_method=approx</code>. 仅仅用于近似算法</li>
+<li>This roughly translates into <code>O(1 / sketch_eps)</code> number of bins. Compared to directly select number of bins, this comes with theoretical guarantee with sketch accuracy. 大致理解为桶数的倒数值。与直接给出桶数相比，这个与带权分位草案（Weighted Quantitle Sketch）能够保证理论上一致</li>
+<li><strong>Usually user does not have to tune this</strong>. But consider setting to a lower number for more accurate enumeration of split candidates. 通常情况下，不需要用户调试这个参数，但是考虑到设置一个更低的值能够枚举更精确的分割候选点。</li>
+</ul>
+<ol start="13">
+<li><p><code>scale_pos_weight</code>  [default=1] 正标签的权重缩放值</p>
+<ul>
+<li><p>Control the balance of positive and negative weights, useful for unbalanced classes. A typical value to consider: <code>sum(negative instances) / sum(positive instances)</code>. 控制样本正负标签的平衡，对于标签不平衡的样本有用，一个经典的值是：训练样本中具有负标签的实例数量/训练样本中正标签的实例数量。（举例：-1:2000个 +1:8000个，那么训练过程中每个正标签实例权重只有负标签实例的25%）</p>
+<p>  See <a href="https://xgboost.readthedocs.io/en/latest/tutorials/param_tuning.html" target="_blank" rel="noopener">Parameters Tuning</a> for more discussion. Also, see Higgs Kaggle competition demo for examples: <a href="https://github.com/dmlc/xgboost/blob/master/demo/kaggle-higgs/higgs-train.R" target="_blank" rel="noopener">R</a>, <a href="https://github.com/dmlc/xgboost/blob/master/demo/kaggle-higgs/higgs-numpy.py" target="_blank" rel="noopener">py1</a>, <a href="https://github.com/dmlc/xgboost/blob/master/demo/kaggle-higgs/higgs-cv.py" target="_blank" rel="noopener">py2</a>, <a href="https://github.com/dmlc/xgboost/blob/master/demo/guide-python/cross_validation.py" target="_blank" rel="noopener">py3</a>.</p>
+</li>
+</ul>
+</li>
+<li><p><code>updater</code> [default=<code>grow_colmaker,prune</code>] 逗号分割的字符串定义树的生成器和剪枝，注意这些生成器已经模块化，只要指定名字即可。</p>
+<ul>
+<li>A comma separated string defining the sequence of tree updaters to run, providing a modular way to construct and to modify the trees. <strong>This is an advanced parameter that is usually set automatically, depending on some other parameters.</strong> However, it could be also set explicitly by a user. The following updater plugins exist:<ul>
+<li><code>grow_colmaker</code>: non-distributed column-based construction of trees.  单机版本下的基于列数据生长树，这里distributed tree 是xgboost有两种策略：单机版non-distributed和distributed分布式版本，比如单机版用的是精确贪婪的方式寻找分割数据点，分布式版本在采用的是近似直方图算法）</li>
+<li><code>distcol</code>: distributed tree construction with column-based data splitting mode. 用基于列数据的分割模式来构建一个树（即：生长一棵树），且树是按照分布式版本的算法构建的。</li>
+<li><code>grow_histmaker</code>: distributed tree construction with row-based data splitting based on global proposal of histogram counting. 基于全局数据的直方图统计信息，并按照行分割的方式地进行树的生长。</li>
+<li><code>grow_local_histmaker</code>: based on local histogram counting. 基于局部数据（当前节点，非整棵树）的直方图统计</li>
+<li><code>grow_skmaker</code>: uses the approximate sketching algorithm. 使用近似草案算法。</li>
+<li><code>sync</code>: synchronizes trees in all distributed nodes. 在分布式地所有节点中同步树（的信息）</li>
+<li><code>refresh</code>: refreshes tree’s statistics and/or leaf values based on the current data. Note that no random subsampling of data rows is performed.  刷新树的统计信息或者基于当前数据的叶子节点的值，注意：没有进行数据行的随机子抽样。</li>
+<li><code>prune</code>: prunes the splits where loss &lt; min_split_loss (or $\gamma$).  在当前节点小于被定义的最小分割损失时，那么进行剪枝。</li>
+</ul>
+</li>
+<li>In a distributed setting, the implicit updater sequence value would be adjusted to <code>grow_histmaker,prune</code>.在分布式环境下，这个参数值被显示地调整为<code>grow_histmaker,prune</code></li>
+</ul>
+</li>
+<li><p><code>refresh_leaf</code> [default=1]</p>
+<ul>
+<li>This is a parameter of the <code>refresh</code> updater plugin. When this flag is 1, tree leafs as well as tree nodes’ stats are updated. When it is 0, only node stats are updated. 用来标记是否刷新叶子节点信息的标识。当这个标志位为0时，只有节点的统计信息被更新。                                                        </li>
+</ul>
+</li>
+<li><p><code>process_type</code>  [default=<code>default</code>]</p>
+<ul>
+<li>A type of boosting process to run.</li>
+<li>Choices:<code>default</code>,<code>update</code><ul>
+<li><code>default</code>: The normal boosting process which creates new trees.</li>
+<li><code>update</code>: Starts from an existing model and only updates its trees. In each boosting iteration, a tree from the initial model is taken, a specified sequence of updater plugins is run for that tree, and a modified tree is added to the new model. The new model would have either the same or smaller number of trees, depending on the number of boosting iteratons performed. Currently, the following built-in updater plugins could be meaningfully used with this process type: <code>refresh</code>, <code>prune</code>. With <code>process_type=update</code>, one cannot use updater plugins that create new trees.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>grow_policy</code> [default=<code>depthwise</code>] 树的生长策略，基于深度或者基于最高损失变化</p>
+<ul>
+<li>Controls a way new nodes are added to the tree.</li>
+<li>Currently supported only if <code>tree_method</code> is set to <code>hist</code>.</li>
+<li>Choices:<code>depthwise</code>, <code>lossguide</code><ul>
+<li><code>depthwise</code>: split at nodes closest to the root. 按照离根节点最近的节点进行分裂</li>
+<li><code>lossguide</code>: split at nodes with highest loss change.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>max_leaves</code> [default=0] 叶子节点的最大数目，只有当参数<code></code>grow_policy=lossguide`才相关（起作用）</p>
+<ul>
+<li>Maximum number of nodes to be added. Only relevant when <code>grow_policy=lossguide</code> is set.</li>
+</ul>
+</li>
+<li><p><code>max_bin</code>, [default=256] 桶的最大数目</p>
+<ul>
+<li>Only used if <code>tree_method</code> is set to <code>hist</code>.只有参数 <code>tree_method=hist</code> 时，这个参数才被使用。</li>
+<li>Maximum number of discrete bins to bucket continuous features. 用来控制将连续特征离散化为多个直方图的直方图数目。</li>
+<li>Increasing this number improves the optimality of splits at the cost of higher computation time. 增加此值提高了拆分的最优性, 但是是以更多的计算时间为代价的。</li>
+</ul>
+</li>
+<li><p><code>predictor</code> , [default=<code>cpu_predictor</code>]  设定预测器算法的参数</p>
+<ul>
+<li>The type of predictor algorithm to use. Provides the same results but allows the use of GPU or CPU.<ul>
+<li><code>cpu_predictor</code>: Multicore CPU prediction algorithm. 多核cpu预测器算法</li>
+<li><code>gpu_predictor</code>: Prediction using GPU. Default when <code>tree_method</code> is <code>gpu_exact</code> or <code>gpu_hist</code>. GPU预测器算法，当参数 <code>tree_method</code> = <code>gpu_exact</code> or <code>gpu_hist</code> 时，预测器算法默认采用 <code>gpu_predictor</code> 。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ol>
+<h4 id="Additional-parameters-for-Dart-Booster-booster-dart"><a href="#Additional-parameters-for-Dart-Booster-booster-dart" class="headerlink" title="Additional parameters for Dart Booster (booster=dart)"></a>Additional parameters for Dart Booster (<code>booster=dart</code>)</h4><p>此部分可参考：<a href="http://proceedings.mlr.press/v38/korlakaivinayak15.pdf" target="_blank" rel="noopener">原始论文</a> 和 <a href="https://xgboost.readthedocs.io/en/latest/tutorials/dart.html" target="_blank" rel="noopener">DART介绍</a></p>
+<blockquote>
+<p>Note  在测试集上预测的时候，必须通过参数 <code>ntree_limits</code> 要关闭掉dropout功能</p>
+<p>Using <code>predict()</code> with DART booster</p>
+<p>If the booster object is DART type, <code>predict()</code> will perform dropouts, i.e. only some of the trees will be evaluated. This will produce incorrect results if <code>data</code> is not the training data. To obtain correct results on test sets, set <code>ntree_limit</code> to a nonzero value, e.g.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;preds = bst.predict(dtest, ntree_limit=num_round)</span><br></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li><code>sample_type</code>  [default=<code>uniform</code>] 设定抽样算法的类型<ul>
+<li>Type of sampling algorithm.<ul>
+<li><code>uniform</code>: dropped trees are selected uniformly. 所有的树被统一处理，指的是权重一样，同样的几率被选为辍学树（被选为辍学的树，即不参与训练的学习过程）</li>
+<li><code>weighted</code>: dropped trees are selected in proportion to weight. 选择辍学树的时候是正比于权重。</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>normalize_type</code> [default=<code>tree</code>] 归一化（又名：标准化）算法的的类型，这个地方是与深度学习中的dropout不太一样。</p>
+<ul>
+<li>Type of normalization algorithm.<ul>
+<li><code>tree</code>: new trees have the same weight of each of dropped trees. 新树拥有跟每一颗辍学树一样的权重<ul>
+<li>Weight of new trees are <code>1 / (k + learning_rate)</code>.</li>
+<li>Dropped trees are scaled by a factor of <code>k / (k + learning_rate)</code>.</li>
+</ul>
+</li>
+<li><code>forest</code>: new trees have the same weight of sum of dropped trees (forest).新树的权重等于所有辍学树的权重总和<ul>
+<li>Weight of new trees are <code>1 / (1 + learning_rate)</code>.</li>
+<li>Dropped trees are scaled by a factor of <code>1 / (1 + learning_rate)</code>.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>rate_drop</code> [default=0.0], range: [0.0, 1.0] 辍学率，与深度学习中的一样意思</p>
+<ul>
+<li>Dropout rate (a fraction of previous trees to drop during the dropout).</li>
+</ul>
+</li>
+<li><p><code>one_drop</code> [default=0] 设置是否在选择辍学的过程中，至少一棵树被选为辍学树。</p>
+<ul>
+<li>When this flag is enabled, at least one tree is always dropped during the dropout (allows Binomial-plus-one or epsilon-dropout from the original DART paper).</li>
+</ul>
+</li>
+<li><p><code>skip_drop</code> [default=0.0], range: [0.0, 1.0] 在提升迭代的过程中，跳过辍学过程的概率，即不执行dropout功能的概率</p>
+<ul>
+<li>Probability of skipping the dropout procedure during a boosting iteration.<ul>
+<li>If a dropout is skipped, new trees are added in the same manner as <code>gbtree</code>.</li>
+<li>Note that non-zero <code>skip_drop</code> has higher priority than <code>rate_drop</code> or <code>one_drop</code>. 注意到非0值得skip_drop参数比rate_drop和one_drop参数拥有更高的优先级。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="学习任务的参数-Learning-Task-Parameters"><a href="#学习任务的参数-Learning-Task-Parameters" class="headerlink" title="学习任务的参数 Learning Task Parameters"></a>学习任务的参数 Learning Task Parameters</h4><p>Specify the learning task and the corresponding learning objective. The objective options are below:</p>
+<ul>
+<li><p><code>objective</code>[default=reg:linear] 这个参数定义需要被最小化的损失函数</p>
+<ul>
+<li><p><code>reg:linear</code>: linear regression</p>
+</li>
+<li><p><code>reg:logistic</code>: logistic regression</p>
+</li>
+<li><p><code>binary:logistic</code>: logistic regression for binary classification, <strong>output probability</strong></p>
+</li>
+<li><p><code>binary:logitraw</code>: logistic regression for binary classification, <strong>output score</strong> before logistic transformation</p>
+</li>
+<li><p><code>binary:hinge</code>: <strong>hinge loss</strong> for binary classification. This makes predictions of 0 or 1, rather than producing probabilities. 2分类的链式损失</p>
+</li>
+<li><p><code>gpu:reg:linear</code>, <code>gpu:reg:logistic</code>, <code>gpu:binary:logistic</code>, <code>gpu:binary:logitraw</code>: versions of the corresponding objective functions evaluated on the GPU; note that like the GPU histogram algorithm, they can only be used when the entire training session uses the same dataset</p>
+</li>
+<li><p><code>count:poisson</code><br>  –poisson regression for count data, <strong>output mean of poisson distribution</strong></p>
+<ul>
+<li><code>max_delta_step</code> is set to 0.7 by default in poisson regression (used to safeguard optimization)</li>
+</ul>
+</li>
+<li><p><code>survival:cox</code>: <strong>Cox regression</strong> for right censored survival time data (negative values are considered right censored). Note that predictions are returned on the hazard ratio scale (i.e., as HR = exp(marginal_prediction) in the proportional hazard function <code>h(t) = h0(t) * HR</code>). 比例风险回归模型(proportional hazards model，简称Cox模型)” 这块不太懂</p>
+</li>
+<li><p><code>multi:softmax</code>: set XGBoost to do multiclass classification using the softmax objective, you also need to set num_class(number of classes) 多分类输出one-hot向量</p>
+</li>
+<li><p><code>multi:softprob</code>: same as softmax, but output a vector of <code>ndata * nclass</code>, which can be further reshaped to <code>ndata * nclass</code> matrix. The result contains predicted probability of each data point belonging to each class.  多分类输出各个类的概率向量</p>
+</li>
+<li><p><code>rank:pairwise</code>: Use <strong>LambdaMART</strong> to perform pairwise ranking where the pairwise loss is minimized</p>
+</li>
+<li><p><code>rank:ndcg</code>: Use LambdaMART to perform list-wise ranking where <a href="http://en.wikipedia.org/wiki/NDCG" target="_blank" rel="noopener">Normalized Discounted Cumulative Gain (NDCG)</a> is maximized</p>
+</li>
+<li><p><code>rank:map</code>: Use LambdaMART to perform list-wise ranking where <a href="http://en.wikipedia.org/wiki/Mean_average_precision#Mean_average_precision" target="_blank" rel="noopener">Mean Average Precision (MAP)</a> is maximized</p>
+</li>
+<li><p><code>reg:gamma</code>: <strong>gamma regression with log-link</strong>. Output is a mean of gamma distribution. It might be useful, e.g., for modeling insurance claims severity, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Gamma_distribution#Applications" target="_blank" rel="noopener">gamma-distributed</a>.</p>
+</li>
+<li><p><code>reg:tweedie</code>: <strong>Tweedie regression with log-link</strong>. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Tweedie_distribution#Applications" target="_blank" rel="noopener">Tweedie-distributed</a>.</p>
+</li>
+</ul>
+</li>
+<li><p><code>base_score</code> [default=0.5]</p>
+<ul>
+<li>The <strong>initial prediction score of all instances</strong>, global bias</li>
+<li>For sufficient number of iterations, changing this value will not have too much effect.</li>
+</ul>
+</li>
+<li><p><code>eval_metric</code> [default according to objective]  对于有效数据的度量方法</p>
+<ul>
+<li>Evaluation metrics for validation data, a default metric will be assigned according to objective (rmse for regression, and error for classification, mean average precision for ranking) </li>
+<li>User can add multiple evaluation metrics. Python users: remember to pass the metrics in as list of parameters pairs instead of map, so that latter <code>eval_metric</code> won’t override previous one</li>
+<li>The choices are listed below:<ul>
+<li><code>rmse</code>: <a href="http://en.wikipedia.org/wiki/Root_mean_square_error" target="_blank" rel="noopener">root mean square error</a> 均方根误差</li>
+<li><code>mae</code>: <a href="https://en.wikipedia.org/wiki/Mean_absolute_error" target="_blank" rel="noopener">mean absolute error</a> 平均绝对误差</li>
+<li><code>logloss</code>: <a href="http://en.wikipedia.org/wiki/Log-likelihood" target="_blank" rel="noopener">negative log-likelihood</a> 负对数似然函数值</li>
+<li><code>error</code>: Binary classification error rate. It is calculated as <code>#(wrong cases)/#(all cases)</code>. For the predictions, the evaluation will regard the instances with prediction value larger than 0.5 as positive instances, and the others as negative instances. 二分类错误率(阈值为0.5)</li>
+<li><code>error@t</code>: a different than 0.5 binary classification threshold value could be specified by providing a numerical value through ‘t’指定2分类误差率的阈值t</li>
+<li><code>merror</code>: Multiclass classification error rate. It is calculated as <code>#(wrong cases)/#(all cases)</code>. 多分类错误率</li>
+<li><code>mlogloss</code>: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html" target="_blank" rel="noopener">Multiclass logloss</a>. 多分类的负对数似然函数值</li>
+<li><code>auc</code>: <a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_curve" target="_blank" rel="noopener">Area under the curve</a> 曲线下面积</li>
+<li><code>aucpr</code>: <a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="noopener">Area under the PR curve</a>  准确率和召回率曲线下的面积</li>
+<li><code>ndcg</code>: <a href="http://en.wikipedia.org/wiki/NDCG" target="_blank" rel="noopener">Normalized Discounted Cumulative Gain</a></li>
+<li><code>map</code>: <a href="http://en.wikipedia.org/wiki/Mean_average_precision#Mean_average_precision" target="_blank" rel="noopener">Mean Average Precision</a> 主集合的平均准确率(MAP)是每个主题的平均准确率的平均值</li>
+<li><code>ndcg@n</code>, <code>map@n</code>: ‘n’ can be assigned as an integer to cut off the top positions in the lists for evaluation.</li>
+<li><code>ndcg-</code>, <code>map-</code>, <code>ndcg@n-</code>, <code>map@n-</code>: In XGBoost, NDCG and MAP will evaluate the score of a list without any positive samples as 1. By adding “-” in the evaluation metric XGBoost will evaluate these score as 0 to be consistent under some conditions.</li>
+<li><code>poisson-nloglik</code>: negative log-likelihood for Poisson regression</li>
+<li><code>gamma-nloglik</code>: negative log-likelihood for gamma regression</li>
+<li><code>cox-nloglik</code>: negative partial log-likelihood for Cox proportional hazards regression</li>
+<li><code>gamma-deviance</code>: residual deviance for gamma regression</li>
+<li><code>tweedie-nloglik</code>: negative log-likelihood for Tweedie regression (at a specified value of the <code>tweedie_variance_power</code> parameter)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><code>seed</code> [default=0] 随机数的种子</p>
+<ul>
+<li>Random number seed. 设置它可以复现随机数据的结果，也可以用于调整参数</li>
+</ul>
+</li>
+</ul>
+<h4 id="命令行参数-Command-Line-Parameters"><a href="#命令行参数-Command-Line-Parameters" class="headerlink" title="命令行参数 Command Line Parameters"></a>命令行参数 Command Line Parameters</h4><p><strong>The following parameters are only used in the console version of XGBoost</strong></p>
+<ul>
+<li><code>num_round</code><ul>
+<li>The number of rounds for boosting</li>
+</ul>
+</li>
+<li><code>data</code><ul>
+<li>The path of training data</li>
+</ul>
+</li>
+<li><code>test:data</code><ul>
+<li>The path of test data to do prediction</li>
+</ul>
+</li>
+<li><code>save_period</code> [default=0]<ul>
+<li>The period to save the model. Setting <code>save_period=10</code> means that for every 10 rounds XGBoost will save the model. Setting it to 0 means not saving any model during the training.</li>
+</ul>
+</li>
+<li><code>task</code> [default=<code>train</code>] options:<code>train</code>,<code>pred</code>,<code>eval</code>,<code>dump</code><ul>
+<li><code>train</code>: training using data</li>
+<li><code>pred</code>: making prediction for test:data</li>
+<li><code>eval</code>: for evaluating statistics specified by <code>eval[name]=filename</code></li>
+<li><code>dump</code>: <strong>for dump the learned model into text format</strong></li>
+</ul>
+</li>
+<li><code>model_in</code> [default=NULL]<ul>
+<li>Path to input model, needed for <code>test</code>, <code>eval</code>, <code>dump</code> tasks. <strong>If it is specified in training, XGBoost will continue training from the input model.</strong></li>
+</ul>
+</li>
+<li><code>model_out</code> [default=NULL]<ul>
+<li><strong>Path to output model after training finishes.</strong> If not specified, XGBoost will output files with such names as <code>0003.model</code> where <code>0003</code> is number of boosting rounds.</li>
+</ul>
+</li>
+<li><code>model_dir</code> [default=<code>models/</code>]<ul>
+<li><strong>The output directory of the saved models during training</strong></li>
+</ul>
+</li>
+<li><code>fmap</code><ul>
+<li><strong>Feature map, used for dumping model</strong></li>
+</ul>
+</li>
+<li><code>dump_format</code> [default=<code>text</code>] options:<code>text</code>, <code>json</code><ul>
+<li>Format of model dump file</li>
+</ul>
+</li>
+<li><code>name_dump</code> [default=<code>dump.txt</code>]<ul>
+<li>Name of model dump file</li>
+</ul>
+</li>
+<li><code>name_pred</code> [default=<code>pred.txt</code>]<ul>
+<li>Name of prediction file, used in pred mode</li>
+</ul>
+</li>
+<li><code>pred_margin</code> [default=0]<ul>
+<li>Predict margin instead of transformed probability<br><a href="https://xgboost.readthedocs.io/en/release_0.81/gpu/index.html" target="_blank" rel="noopener">XGBoost GPU Support</a><br><a href="https://xgboost.readthedocs.io/en/release_0.81/python/index.html" target="_blank" rel="noopener">XGBoost Python Package</a></li>
+</ul>
+</li>
+</ul>
+<h3 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h3><ol>
+<li><p><a href="https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuning-xgboost-with-codes-python/" target="_blank" rel="noopener">Complete Guide to Parameter Tuning in XGBoost (with codes in Python)</a>  主要</p>
+</li>
+<li><p><a href="https://www.cnblogs.com/infaraway/p/7890558.html" target="_blank" rel="noopener">https://www.cnblogs.com/infaraway/p/7890558.html</a></p>
+</li>
+</ol>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ol>
+<li>陈天奇的论文 <a href="https://arxiv.org/pdf/1603.02754" target="_blank" rel="noopener">XGBoost: A Scalable Tree Boosting System</a></li>
+<li>陈天奇的演讲视频 <a href="https://www.youtube.com/watch?v=Vly8xGnNiWs&amp;list=PLSz28ynAy1RohdgsPfC4l4t3lHu863PGx&amp;index=3&amp;t=1786s" target="_blank" rel="noopener">XGBoost A Scalable Tree Boosting System June 02, 2016 </a> <a href="https://speakerdeck.com/datasciencela/tianqi-chen-xgboost-overview-and-latest-news-la-meetup-talk" target="_blank" rel="noopener">演讲幻灯片 </a>和  <a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf" target="_blank" rel="noopener">官网幻灯片</a> </li>
+<li><a href="https://xgboost.ai/" target="_blank" rel="noopener">XGBoost 官网</a></li>
+<li>XGBoost的源代码贡献者之一的 <a href="https://www.youtube.com/watch?v=ufHo8vbk6g4" target="_blank" rel="noopener">演讲</a></li>
+<li><a href="https://www.zhihu.com/question/41354392" target="_blank" rel="noopener">机器学习算法中 GBDT 和 XGBOOST 的区别有哪些？ - 知乎</a></li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2018/10/02/get-started-XGBoost.sync-conflict-20201110-195135-EZ6WBL6/" title="XGBoost原理和底层实现剖析">https://snaildove.github.io/2018/10/02/get-started-XGBoost.sync-conflict-20201110-195135-EZ6WBL6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Learning/" rel="tag"><i class="fa fa-tag"></i> Machine Learning</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/02/get-started-XGBoost/" rel="next" title="XGBoost原理和底层实现剖析">
+                <i class="fa fa-chevron-left"></i> XGBoost原理和底层实现剖析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/18/get_started_feature-engineering.sync-conflict-20201110-195039-EZ6WBL6/" rel="prev" title="从特征工程到XGBoost参数调优">
+                从特征工程到XGBoost参数调优 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost"><span class="nav-text">XGBoost</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快速了解"><span class="nav-text">快速了解</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#outlook-幻灯片大纲"><span class="nav-text">outlook 幻灯片大纲</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Review-of-key-concepts-of-supervised-learning-监督学习的关键概念的回顾"><span class="nav-text">Review of key concepts of supervised learning 监督学习的关键概念的回顾</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#回归树和集成模型-What-are-we-Learning"><span class="nav-text">回归树和集成模型 (What are we Learning)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#模型和参数"><span class="nav-text">模型和参数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#在单一变量上学习一棵树"><span class="nav-text">在单一变量上学习一棵树</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#学习阶跃函数"><span class="nav-text">学习阶跃函数</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#目标函数-vs-启发式"><span class="nav-text">目标函数 vs 启发式</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回归树不仅仅用于回归"><span class="nav-text">回归树不仅仅用于回归</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#梯度提升Gradient-Boosting-How-do-we-Learn"><span class="nav-text">梯度提升Gradient Boosting (How do we Learn)</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#那怎么学习？"><span class="nav-text">那怎么学习？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#加法训练"><span class="nav-text">加法训练</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#损失函数的泰勒展开"><span class="nav-text">损失函数的泰勒展开</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#这么苦逼图啥？"><span class="nav-text">这么苦逼图啥？</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#改进树的定义-Refine-the-definition-of-tree"><span class="nav-text">改进树的定义 Refine the definition of tree</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定义树的复杂度-Define-Complexity-of-a-Tree"><span class="nav-text">定义树的复杂度 Define Complexity of a Tree</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#修改目标函数-Revisit-the-Objectives"><span class="nav-text">修改目标函数 Revisit the Objectives</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#结构分-The-Structure-Score"><span class="nav-text">结构分 The Structure Score</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#用于单棵树的搜索算法-Searching-Algorithm-for-Single-Tree"><span class="nav-text">用于单棵树的搜索算法 Searching Algorithm for Single Tree</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#树的贪婪学习-Greedy-Learning-of-the-Tree"><span class="nav-text">树的贪婪学习 Greedy Learning of the Tree</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#最好分裂点的查找-Efficient-Finding-of-the-Best-Split"><span class="nav-text">最好分裂点的查找 Efficient Finding of the Best Split</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#分裂点查找算法-An-Algorithm-for-Split-Finding"><span class="nav-text">分裂点查找算法 An Algorithm for Split Finding</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#类变量（categorical-variables）"><span class="nav-text">类变量（categorical variables）</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#剪枝和正则化-Pruning-and-Regularization"><span class="nav-text">剪枝和正则化 Pruning and Regularization</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#回顾提升树算法-Recap-Boosted-Tree-Algorithm"><span class="nav-text">回顾提升树算法 Recap: Boosted Tree Algorithm</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost-系统设计的精髓"><span class="nav-text">XGBoost 系统设计的精髓</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#缩放和列抽样-shrinkage-and-column-subsampling"><span class="nav-text">缩放和列抽样 shrinkage and column subsampling</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#查找分裂点的近似算法-Approximate-Algorithm"><span class="nav-text">查找分裂点的近似算法 Approximate Algorithm</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#带权的分位方案-Weighted-Quantile-Sketch"><span class="nav-text">带权的分位方案 Weighted Quantile Sketch</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意稀疏问题的分裂点查找-Sparsity-aware-Split-Finding"><span class="nav-text">注意稀疏问题的分裂点查找 Sparsity-aware Split Finding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#旨在并行学习的列块结构-Column-Block-for-Parallel-Learning"><span class="nav-text">旨在并行学习的列块结构 Column Block for Parallel Learning</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关注缓存的存取-Cache-aware-Access"><span class="nav-text">关注缓存的存取 Cache-aware Access</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#核外块的计算-Blocks-for-Out-of-core-Computation"><span class="nav-text">核外块的计算 Blocks for Out-of-core Computation</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost-对-GBDT-实现的不同之处"><span class="nav-text">XGBoost 对 GBDT 实现的不同之处</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#优化的角度"><span class="nav-text">优化的角度</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#高可用的xgboost"><span class="nav-text">高可用的xgboost</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#hello-world"><span class="nav-text">hello world</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#树形提升器"><span class="nav-text">树形提升器</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees"><span class="nav-text">DART提升器 Dropouts meet Multiple Additive Regression Trees</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数详解"><span class="nav-text">参数详解</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用参数-general-parameters"><span class="nav-text">通用参数 general parameters</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#提升器参数-Booster-parameters"><span class="nav-text">提升器参数 Booster parameters</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#树提升器参数-Parameters-for-Tree-Booster"><span class="nav-text">树提升器参数 Parameters for Tree Booster</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Additional-parameters-for-Dart-Booster-booster-dart"><span class="nav-text">Additional parameters for Dart Booster (booster&#x3D;dart)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#学习任务的参数-Learning-Task-Parameters"><span class="nav-text">学习任务的参数 Learning Task Parameters</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#命令行参数-Command-Line-Parameters"><span class="nav-text">命令行参数 Command Line Parameters</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#调参"><span class="nav-text">调参</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-text">引用</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

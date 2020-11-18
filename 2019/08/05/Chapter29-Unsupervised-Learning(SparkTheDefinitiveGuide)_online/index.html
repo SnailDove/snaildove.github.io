@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Spark," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="Chapter 29 Unsupervised Learning 译者：https:&#x2F;&#x2F;snaildove.github.ioThis chapter will cover the details of Spark’s available tools for unsupervised learning, focusing specifically on clustering. Unsuperv">
+<meta property="og:type" content="article">
+<meta property="og:title" content="翻译 Chapter 29 Unsupervised Learning">
+<meta property="og:url" content="https://snaildove.github.io/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="Chapter 29 Unsupervised Learning 译者：https:&#x2F;&#x2F;snaildove.github.ioThis chapter will cover the details of Spark’s available tools for unsupervised learning, focusing specifically on clustering. Unsuperv">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-06T03:08:25.438Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="Spark">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online/"/>
+
+
+
+
+
+  <title>翻译 Chapter 29 Unsupervised Learning | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">翻译 Chapter 29 Unsupervised Learning</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-05T00:00:00+08:00">
+                2019-08-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/English/" itemprop="url" rel="index">
+                    <span itemprop="name">English</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  6,372
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  30
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/></p>
+<p><h1 align="center">Chapter 29 Unsupervised Learning</h1></p>
+<p><center><strong>译者</strong>：<u><a style="color:#0879e3" href="https://snaildove.github.io">https://snaildove.github.io</a></u></center><br>This chapter will cover the details of Spark’s available tools for unsupervised learning, focusing specifically on clustering. Unsupervised learning is, generally speaking, used less often than supervised learning because it’s usually harder to apply and measure success (from an end-result perspective). These challenges can become exacerbated at scale. For instance, clustering in high dimensional space can create odd clusters simply because of the properties of high-dimensional spaces, something referred to as <em>the curse of dimensionality</em> . The curse of dimensionality describes the fact that as a feature space expands in dimensionality, it becomes increasingly sparse. This means that the data needed to fill this space for statistically meaningful results increases rapidly with any increase in dimensionality. Additionally, with high dimensions comes more noise in the data. This, in turn, may cause your model to hone in on noise instead of the true factors causing a particular result or grouping. Therefore in the model scalability table, we include computational limits, as well as a set of statistical recommendations. These are heuristics and should be helpful guides, not requirements.</p>
+<p>本章将详细介绍Spark的可用于无监督学习的工具，重点是集群。一般来说，无监督学习的使用频率比有监督学习的频率要低，因为无监督学习通常很难应用和衡量成功（从最终结果的角度来看）。这些挑战可能会在规模上加剧。例如，高维空间中的聚类可以仅仅由于高维空间的特性（称为维数的诅咒）而创建奇数簇。维度的诅咒描述了一个事实，即随着特征空间维度的扩展，它变得越来越稀疏。这意味着，填充该空间以获取具有统计意义的结果所需的数据会随着维度的增加而迅速增加。此外，尺寸越大，数据中的噪声越多。反过来，这可能会导致模型陷入噪音，而不是导致特定结果或分组的真实因素。因此，在模型可伸缩性表中，我们包括计算限制以及一组统计建议。这些是试探法，应该是有用的指南，而不是要求。</p>
+<p>At its core, <em>unsupervised learning</em> is trying to discover patterns or derive a concise representation of the underlying structure of a given dataset.</p>
+<p>本质上，无监督学习试图发现模式或派生给定数据集的基础结构的简洁表示。</p>
+<h2 id="Use-Cases-用户案例"><a href="#Use-Cases-用户案例" class="headerlink" title="Use Cases 用户案例"></a><font color="#9a161a">Use Cases 用户案例</font></h2><p>Here are some potential use cases. At its core, these patterns might reveal topics, anomalies, or groupings in our data that may not have been obvious beforehand:</p>
+<p>这里是一些潜在的用例。从根本上讲，这些模式可能会揭示我们数据中可能事先不明显的主题，异常或分组：</p>
+<p>Finding anomalies in data 在数据中找异常值</p>
+<p>If the majority of values in a dataset cluster into a larger group with several small groups on the outside, those groups might warrant further investigation.<br>如果数据集中的大多数值聚集到一个较大的组中，外部又有几个小组，则这些组可能需要进一步调查。</p>
+<p>Topic modeling 主题模型</p>
+<p>By looking at large bodies of text, it is possible to find topics that exist across those different documents.</p>
+<p>通过查看大量的正文，可以找到这些不同文档中存在的主题。</p>
+<h2 id="Model-Scalability-模型的伸缩性"><a href="#Model-Scalability-模型的伸缩性" class="headerlink" title="Model Scalability 模型的伸缩性"></a><font color="#9a161a">Model Scalability 模型的伸缩性</font></h2><p>Just like with our other models, it’s important to mention the basic model scalability requirements along with statistical recommendations.</p>
+<p>与其他模型一样，重要的是要提及基本模型可扩展性要求以及统计建议。</p>
+<p>Table 29-1. Clustering model scalability reference 集群模型可伸缩性参考</p>
+<table>
+<thead>
+<tr>
+<th>Model</th>
+<th>Statistical recommendation</th>
+<th>Computation limits</th>
+<th>Training examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>k-means</td>
+<td>50 to 100</td>
+<td>maximum Features x clusters &lt; 10 million<br />最大特征群小于1000,0000万</td>
+<td>No limit</td>
+</tr>
+<tr>
+<td>Bisecting k-means</td>
+<td>50 to 100</td>
+<td>maximum Features x clusters &lt; 10 million<br />最大特征群小于1000,0000万</td>
+<td>No limit</td>
+</tr>
+<tr>
+<td>GMM</td>
+<td>50 to 100</td>
+<td>maximum Features x clusters &lt; 10 million<br />最大特征群小于1000,0000万</td>
+<td>No limit</td>
+</tr>
+<tr>
+<td>LDA</td>
+<td>An interpretable number<br />可解释的数字</td>
+<td>1,000s of topics<br />千数理级的主题</td>
+<td>No limit</td>
+</tr>
+</tbody>
+</table>
+<p>Let’s get started by loading some example numerical data:</p>
+<p>让我们从加载一些示例数字数据开始：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.feature.<span class="type">VectorAssembler</span></span><br><span class="line"><span class="keyword">val</span> va = <span class="keyword">new</span> <span class="type">VectorAssembler</span>()</span><br><span class="line">.setInputCols(<span class="type">Array</span>(<span class="string">"Quantity"</span>, <span class="string">"UnitPrice"</span>))</span><br><span class="line">.setOutputCol(<span class="string">"features"</span>)</span><br><span class="line"><span class="keyword">val</span> sales = va.transform(spark.read.format(<span class="string">"csv"</span>)</span><br><span class="line">.option(<span class="string">"header"</span>, <span class="string">"true"</span>)</span><br><span class="line">.option(<span class="string">"inferSchema"</span>, <span class="string">"true"</span>)</span><br><span class="line">.load(<span class="string">"/data/retail-data/by-day/*.csv"</span>)</span><br><span class="line">.limit(<span class="number">50</span>)</span><br><span class="line">.coalesce(<span class="number">1</span>)</span><br><span class="line">.where(<span class="string">"Description IS NOT NULL"</span>))</span><br><span class="line">sales.cache()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.ml.feature <span class="keyword">import</span> VectorAssembler</span><br><span class="line">va = VectorAssembler()\</span><br><span class="line">.setInputCols([<span class="string">"Quantity"</span>, <span class="string">"UnitPrice"</span>])\</span><br><span class="line">.setOutputCol(<span class="string">"features"</span>)</span><br><span class="line">sales = va.transform(spark.read.format(<span class="string">"csv"</span>)</span><br><span class="line">.option(<span class="string">"header"</span>, <span class="string">"true"</span>)</span><br><span class="line">.option(<span class="string">"inferSchema"</span>, <span class="string">"true"</span>)</span><br><span class="line">.load(<span class="string">"/data/retail-data/by-day/*.csv"</span>)</span><br><span class="line">.limit(<span class="number">50</span>)</span><br><span class="line">.coalesce(<span class="number">1</span>)</span><br><span class="line">.where(<span class="string">"Description IS NOT NULL"</span>))</span><br><span class="line">sales.cache()</span><br></pre></td></tr></table></figure>
+<h2 id="k-means-K均值"><a href="#k-means-K均值" class="headerlink" title="k-means K均值"></a><font color="#9a161a">k-means K均值</font></h2><p>-<em>means</em> is one of the most popular clustering algorithms. In this algorithm, a user-specified number of clusters () are randomly assigned to different points in the dataset. The unassigned points are then “assigned” to a cluster based on their proximity (measured in Euclidean distance) to the previously assigned point. Once this assignment happens, the center of this cluster (called the <em>centroid</em>) is computed, and the process repeats. All points are assigned to a particular centroid, and a new centroid is computed. We repeat this process for a finite number of iterations or until convergence (i.e., when our centroid locations stop changing). This does not, however, mean that our clusters are always sensical. For instance, a given “logical” cluster of data might be split right down the middle simply because of the starting points of two distinct clusters. Thus, it is often a good idea to perform multiple runs of -means starting with different initializations.</p>
+<p>-means是最流行的聚类算法之一。在此算法中，将用户指定数量的聚类（）随机分配给数据集中的不同点。然后根据未分配点与先前分配点的接近度（以欧几里德距离测量）将它们“分配”到聚类。一旦发生这种分配，就会计算出该簇的中心（称为质心），然后重复该过程。将所有点分配给特定的质心，并计算一个新的质心。我们将这个过程重复进行有限的迭代或直到收敛为止（即，当我们的质心位置停止更改时）。但是，这并不意味着我们的集群总是明智的。例如，一个给定的“逻辑”数据集群可能仅由于两个不同集群的起点而在中间被拆分。因此，从不同的初始化开始执行多次-means通常是一个好主意。</p>
+<p>Choosing the right value for is an extremely important aspect of using this algorithm successfully, as well as a hard task. There’s no real prescription for the number of clusters you need, so you’ll likely have to experiment with different values and consider what you would like the end result to be. For more information on -means, see <u><a style="color:#0879e3" href="http://faculty.marshall.usc.edu/gareth-james/" target="_blank" rel="noopener">ISL 10.3</a></u> and <u><a style="color:#0879e3" href="https://web.stanford.edu/~hastie/ElemStatLearn//" target="_blank" rel="noopener">ESL 14.3</a></u>.</p>
+<p>选择正确的值是成功使用此算法极为重要的方面，也是一项艰巨的任务。对于所需的群集数量并没有真正的规定，因此您可能必须尝试使用不同的值并考虑最终结果是什么。有关-means的更多信息，请参见 <u><a style="color:#0879e3" href="http://faculty.marshall.usc.edu/gareth-james/" target="_blank" rel="noopener">ISL 10.3</a></u> 和 <u><a style="color:#0879e3" href="https://web.stanford.edu/~hastie/ElemStatLearn//" target="_blank" rel="noopener">ESL 14.3</a></u>。</p>
+<h3 id="Model-Hyperparameters-模型的超参数"><a href="#Model-Hyperparameters-模型的超参数" class="headerlink" title="Model Hyperparameters  模型的超参数"></a><font color="#00000">Model Hyperparameters  模型的超参数</font></h3><p>These are configurations that we specify to determine the basic structure of the model: </p>
+<p>我们指定了以下这些配置来确定模型的基本结构：</p>
+<p>This is the number of clusters that you would like to end up with.</p>
+<p>这是您最终希望使用的集群数量。</p>
+<h3 id="Training-Parameters-训练参数"><a href="#Training-Parameters-训练参数" class="headerlink" title="Training Parameters 训练参数"></a><font color="#00000">Training Parameters 训练参数</font></h3><p><p><font face="constant-width" color="#000000" size=3>initMode</font></p><br>The initialization mode is the algorithm that determines the starting locations of the centroids. The supported options are random and <u><a style="color:#0879e3" href="http://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf" target="_blank" rel="noopener">-means||</a></u> (the default). The latter is a parallelized variant of the <u><a style="color:#0879e3" href="http://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf" target="_blank" rel="noopener">-means||</a></u> method. While the details are not within the scope of this book, the thinking behind the latter method is that rather than simply choosing random initialization locations, the algorithm chooses cluster centers that are already well spread out to generate a better clustering.</p>
+<p>初始化模式是确定质心起始位置的算法。支持的选项是random和 <u><a style="color:#0879e3" href="http://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf" target="_blank" rel="noopener">-means||</a></u>。（默认）。后者是 <u><a style="color:#0879e3" href="http://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf" target="_blank" rel="noopener">-means||</a></u> 的并行变体。方法。尽管细节不在本书的讨论范围之内，但后一种方法的思想是，该算法不仅选择随机初始化位置，还选择分布良好的聚类中心，以生成更好的聚类。</p>
+<p><p><font face="constant-width" color="#000000" size=3>initSteps</font></p><br>The number of steps for <u><a style="color:#0879e3" href="http://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf" target="_blank" rel="noopener">-means||</a></u> initialization mode. Must be greater than 0. (The default value is 2.)</p>
+<p><u><a style="color:#0879e3" href="http://theory.stanford.edu/~sergei/papers/kMeansPP-soda.pdf" target="_blank" rel="noopener">-means||</a></u> 的步骤数初始化模式。必须大于0。（默认值为2。）</p>
+<p><p><font face="constant-width" color="#000000" size=3>maxIter</font></p><br>Total number of iterations over the data before stopping. Changing this probably won’t change your results a ton, so don’t make this the first parameter you look to adjust. The default is 20.</p>
+<p>停止之前，数据上的迭代总数。更改此设置可能不会使您的结果大为改变，因此请不要将其设为您要调整的第一个参数。默认值为20。</p>
+<p><p><font face="constant-width" color="#000000" size=3>tol</font></p>
+<p>Specifies a threshold by which changes in centroids show that we optimized our model enough, and can stop iterating early, before <code>maxIter</code> iterations. The default value is 0.0001. </p>
+<p>指定一个阈值，通过该阈值质心的变化可以表明我们已经充分优化了模型，并且可以在<code>maxIter</code>迭代之前尽早停止迭代。默认值为0.0001。</p>
+<p>This algorithm is generally robust to these parameters, and the main trade-off is that running more initialization steps and iterations may lead to a better clustering at the expense of longer training time:</p>
+<p>该算法通常对这些参数具有鲁棒性，并且主要的权衡是，运行更多的初始化步骤和迭代可能会导致更好的聚类，但需要更长的训练时间：</p>
+<h3 id="Example"><a href="#Example" class="headerlink" title="Example"></a><font color="#00000">Example</font></h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.clustering.<span class="type">KMeans</span></span><br><span class="line"><span class="keyword">val</span> km = <span class="keyword">new</span> <span class="type">KMeans</span>().setK(<span class="number">5</span>)</span><br><span class="line">println(km.explainParams())</span><br><span class="line"><span class="keyword">val</span> kmModel = km.fit(sales)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.ml.clustering <span class="keyword">import</span> KMeans</span><br><span class="line">km = KMeans().setK(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span> km.explainParams()</span><br><span class="line">kmModel = km.fit(sales)</span><br></pre></td></tr></table></figure>
+<h3 id="k-means-Metrics-Summary-k-means衡量指标简述"><a href="#k-means-Metrics-Summary-k-means衡量指标简述" class="headerlink" title="k-means Metrics Summary k-means衡量指标简述"></a><font color="#00000">k-means Metrics Summary k-means衡量指标简述</font></h3><p>-means includes a summary class that we can use to evaluate our model. This class provides some common measures for -means success (whether these apply to your problem set is another question). The -means summary includes information about the clusters created, as well as their relative sizes (number of examples).</p>
+<p>-means包括一个摘要类，可用于评估模型。此类提供了一些用于-means成功的常用措施（这些措施是否适用于您的问题集是另一个问题）。-means摘要包括有关创建的集群及其相对大小（示例数）的信息。</p>
+<p>We can also compute the <em>within set sum of squared errors</em>, which can help measure how close our values are from each cluster centroid, using <code>computeCost</code>. The implicit goal in -means is that we want to minimize the within set sum of squared error, subject to the given number of clusters:</p>
+<p>我们还可以计算出平方误差的集合内总和，这可以使用<code>computeCost</code>帮助测量值与每个聚类质心的接近程度。-means中的隐式目标是，在给定数量的簇的情况下，我们希望最小化平方误差的设置和之内：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> summary = kmModel.summary</span><br><span class="line">summary.clusterSizes <span class="comment">// number of points</span></span><br><span class="line">kmModel.computeCost(sales)</span><br><span class="line">println(<span class="string">"Cluster Centers: "</span>)</span><br><span class="line">kmModel.clusterCenters.foreach(println)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">summary = kmModel.summary</span><br><span class="line"><span class="keyword">print</span> summary.clusterSizes <span class="comment"># number of points</span></span><br><span class="line">kmModel.computeCost(sales)</span><br><span class="line">centers = kmModel.clusterCenters()</span><br><span class="line">print(<span class="string">"Cluster Centers: "</span>)</span><br><span class="line"><span class="keyword">for</span> center <span class="keyword">in</span> centers:</span><br><span class="line">print(center)</span><br></pre></td></tr></table></figure>
+<h2 id="Bisecting-k-means二等分K均值"><a href="#Bisecting-k-means二等分K均值" class="headerlink" title="Bisecting k-means二等分K均值"></a><font color="#9a161a">Bisecting k-means二等分K均值</font></h2><p>Bisecting -means is a variant of -means. The core difference is that instead of clustering points by starting “bottom-up” and assigning a bunch of different groups in the data, this is a top-down clustering method. This means that it will start by creating a single group and then splitting that groupinto smaller groups in order to end up with the number of clusters specified by the user. This is usually a faster method than -means and will yield different results.</p>
+<p>均分-means是-means的变体。核心区别在于，这是一种通过自上而下的聚类方法，而不是通过“自下而上”开始并在数据中分配一堆不同的组来聚类点。这意味着它将首先创建一个组，然后将该组分成较小的组，以得到用户指定的群集数。这通常是比-means更快的方法，并且会产生不同的结果。</p>
+<h3 id="Model-Hyperparameters-模型参数"><a href="#Model-Hyperparameters-模型参数" class="headerlink" title="Model Hyperparameters 模型参数"></a><font color="#00000">Model Hyperparameters 模型参数</font></h3><p>These are configurations that we specify to determine the basic structure of the model:  </p>
+<p>我们指定了以下这些配置来确定模型的基本结构：</p>
+<p>​    This is the number of clusters that you would like to end up with</p>
+<p>​    这是您最终希望使用的集群数量</p>
+<h3 id="Training-Parameters-训练参数-1"><a href="#Training-Parameters-训练参数-1" class="headerlink" title="Training Parameters 训练参数"></a><font color="#00000">Training Parameters 训练参数</font></h3><p><p><font face="constant-width" color="#000000" size=3>minDivisibleClusterSize</font></p><br>The minimum number of points (if greater than or equal to 1.0) or the minimum proportion of points (if less than 1.0) of a divisible cluster. The default is 1.0, meaning that there must be at least one point in each cluster.</p>
+<p>可整类的最小点数（如果大于或等于1.0）或最小比例点（如果小于1.0）。默认值为1.0，这意味着每个群集中至少必须有一个点。</p>
+<p><p><font face="constant-width" color="#000000" size=3>maxIter</font></p><br>Total number of iterations over the data before stopping. Changing this probably won’t change your results a ton, so don’t make this the first parameter you look to adjust. The default is 20.</p>
+<p>停止之前，数据上的迭代总数。更改此设置可能不会使您的结果大为改变，因此请不要将其设为您要调整的第一个参数。默认值为20。</p>
+<p>Most of the parameters in this model should be tuned in order to find the best result. There’s no rule that applies to all datasets.</p>
+<p>该模型中的大多数参数都应进行调整以找到最佳结果。没有适用于所有数据集的规则。</p>
+<h3 id="Example-1"><a href="#Example-1" class="headerlink" title="Example"></a><font color="#00000">Example</font></h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.clustering.<span class="type">BisectingKMeans</span></span><br><span class="line"><span class="keyword">val</span> bkm = <span class="keyword">new</span> <span class="type">BisectingKMeans</span>().setK(<span class="number">5</span>).setMaxIter(<span class="number">5</span>)</span><br><span class="line">println(bkm.explainParams())</span><br><span class="line"><span class="keyword">val</span> bkmModel = bkm.fit(sales)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.ml.clustering <span class="keyword">import</span> BisectingKMeans</span><br><span class="line">bkm = BisectingKMeans().setK(<span class="number">5</span>).setMaxIter(<span class="number">5</span>)</span><br><span class="line">bkmModel = bkm.fit(sales)</span><br></pre></td></tr></table></figure>
+<h3 id="Bisecting-k-means-Summary-二等分k-means简述"><a href="#Bisecting-k-means-Summary-二等分k-means简述" class="headerlink" title="Bisecting k-means Summary 二等分k-means简述"></a><font color="#00000">Bisecting k-means Summary 二等分k-means简述</font></h3><p>Bisecting -means includes a summary class that we can use to evaluate our model, that is largely the same as the -means summary. This includes information about the clusters created, as well as their relative sizes (number of examples):</p>
+<p>二等分-means包括一个摘要类，我们可以使用该类来评估我们的模型，该类与-means摘要大致相同。这包括有关创建的集群及其相对大小（示例数）的信息：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> summary = bkmModel.summary</span><br><span class="line">summary.clusterSizes <span class="comment">// number of pointskmModel.computeCost(sales)</span></span><br><span class="line">println(<span class="string">"Cluster Centers: "</span>)</span><br><span class="line">kmModel.clusterCenters.foreach(println)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">summary = bkmModel.summary</span><br><span class="line"><span class="keyword">print</span> summary.clusterSizes <span class="comment"># number of points</span></span><br><span class="line">kmModel.computeCost(sales)</span><br><span class="line">centers = kmModel.clusterCenters()</span><br><span class="line">print(<span class="string">"Cluster Centers: "</span>)</span><br><span class="line"><span class="keyword">for</span> center <span class="keyword">in</span> centers:</span><br><span class="line">print(center)</span><br></pre></td></tr></table></figure>
+<h2 id="Gaussian-Mixture-Models"><a href="#Gaussian-Mixture-Models" class="headerlink" title="Gaussian Mixture Models"></a><font color="#9a161a">Gaussian Mixture Models</font></h2><p>Gaussian mixture models (GMM) are another popular clustering algorithm that makes different assumptions than bisecting -means or -means do. Those algorithms try to group data by reducing the sum of squared distances from the center of the cluster. Gaussian mixture models, on the other hand, assume that each cluster produces data based upon random draws from a Gaussian distribution. This means that clusters of data should be less likely to have data at the edge of the cluster (reflected in the Guassian distribution) and much higher probability of having data in the center. Each Gaussian cluster can be of arbitrary size with its own mean and standard deviation (and hence a possibly different, ellipsoid shape). There are still user-specified clusters that will be created during training.</p>
+<p>高斯混合模型（GMM）是另一种流行的聚类算法，与将-means或-means分为两等分相比，它做出了不同的假设。这些算法尝试通过减少距群集中心的平方距离之和来对数据进行分组。另一方面，高斯混合模型假设每个聚类基于来自高斯分布的随机抽取生成数据。这意味着数据集群在集群边缘的数据（在高斯分布中反映）的可能性应该较小，而在中心拥有数据的可能性则更高。每个高斯聚类可以具有任意大小，具有自己的均值和标准差（因此可能是不同的椭圆形）。在培训期间仍将创建用户指定的群集。 </p>
+<p>A simplified way of thinking about Gaussian mixture models is that they’re like a soft version of means. -means creates very rigid clusters—each point is only within one cluster. GMMs allow for a more nuanced cluster associated with probabilities, instead of rigid boundaries.</p>
+<p>考虑高斯混合模型的一种简化方法是，它们就像均值的软版本。-means创建非常严格的群集-每个点仅在一个群集内。GMM允许与概率相关的更细微的簇，而不是严格的边界。</p>
+<p>For more information, see <u><a style="color:#0879e3" href="http://faculty.marshall.usc.edu/gareth-james/" target="_blank" rel="noopener">ISL</a></u> 14.3. </p>
+<p>更多信息，请查看 <u><a style="color:#0879e3" href="http://faculty.marshall.usc.edu/gareth-james/" target="_blank" rel="noopener">ISL</a></u> 14.3.</p>
+<h3 id="Model-Hyperparameters-模型参数-1"><a href="#Model-Hyperparameters-模型参数-1" class="headerlink" title="Model Hyperparameters 模型参数"></a><font color="#00000">Model Hyperparameters 模型参数</font></h3><p>These are configurations that we specify to determine the basic structure of the model:</p>
+<p>我们指定这些配置来确定模型的基本结构： </p>
+<p>​    This is the number of clusters that you would like to end up with.</p>
+<p>​    这是您最终希望使用的集群数量。</p>
+<h3 id="Training-Parameters-训练参数-2"><a href="#Training-Parameters-训练参数-2" class="headerlink" title="Training Parameters 训练参数"></a><font color="#00000">Training Parameters 训练参数</font></h3><p><p><font face="constant-width" color="#000000" size=3>maxIter</font></p><br>Total number of iterations over the data before stopping. Changing this probably won’t change your results a ton, so don’t make this the first parameter you look to adjust. The default is 100.<br>停止之前，数据上的迭代总数。更改此设置可能不会使您的结果大为改变，因此请不要将其设为您要调整的第一个参数。默认值为100。</p>
+<p><p><font face="constant-width" color="#000000" size=3>tol</font></p><br>This value simply helps us specify a threshold by which changes in parameters show that we optimized our weights enough. A smaller value can lead to higher accuracy at the cost of performing more iterations (although never more than <code>maxIter</code>).     The default value is 0.01.<br>该值只是简单地帮助我们指定一个阈值，通过该阈值参数的变化表明我们已经充分优化了权重。较小的值可以以执行更    多迭代为代价提高精度（尽管绝不超过<code>maxIter</code>）。默认值为0.01。</p>
+<p>As with our -means model, these training parameters are less likely to have an impact than the number of clusters, .</p>
+<p>与我们的-means模型一样，这些训练参数产生影响的可能性要小于聚类的数量。</p>
+<h3 id="Example-2"><a href="#Example-2" class="headerlink" title="Example"></a><font color="#00000">Example</font></h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.clustering.<span class="type">GaussianMixture</span></span><br><span class="line"><span class="keyword">val</span> gmm = <span class="keyword">new</span> <span class="type">GaussianMixture</span>().setK(<span class="number">5</span>)</span><br><span class="line">println(gmm.explainParams())</span><br><span class="line"><span class="keyword">val</span> model = gmm.fit(sales)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.ml.clustering <span class="keyword">import</span> GaussianMixture</span><br><span class="line">gmm = GaussianMixture().setK(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span> gmm.explainParams()</span><br><span class="line">model = gmm.fit(sales)</span><br></pre></td></tr></table></figure>
+<h3 id="Gaussian-Mixture-Model-Summary-高斯混合模型简述"><a href="#Gaussian-Mixture-Model-Summary-高斯混合模型简述" class="headerlink" title="Gaussian Mixture Model Summary 高斯混合模型简述"></a><font color="#00000">Gaussian Mixture Model Summary 高斯混合模型简述</font></h3><p>Like our other clustering algorithms, Gaussian mixture models include a summary class to help with model evaluation. This includes information about the clusters created, like the weights, the means, and the covariance of the Gaussian mixture, which can help us learn more about the underlying structure inside of our data:</p>
+<p>与我们的其他聚类算法一样，高斯混合模型包括摘要类，以帮助模型评估。这包括有关创建的聚类的信息，例如权重，均值和高斯混合的协方差，这些信息可以帮助我们进一步了解数据内部的基础结构：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> summary = model.summary</span><br><span class="line">model.weights</span><br><span class="line">model.gaussiansDF.show()</span><br><span class="line">summary.cluster.show()</span><br><span class="line">summary.clusterSizes</span><br><span class="line">summary.probability.show()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">summary = model.summary</span><br><span class="line"><span class="keyword">print</span> model.weights</span><br><span class="line">model.gaussiansDF.show()</span><br><span class="line">summary.cluster.show()</span><br><span class="line">summary.clusterSizes</span><br><span class="line">summary.probability.show()</span><br></pre></td></tr></table></figure>
+<h2 id="Latent-Dirichlet-Allocation-隐式狄利克雷分布"><a href="#Latent-Dirichlet-Allocation-隐式狄利克雷分布" class="headerlink" title="Latent Dirichlet Allocation 隐式狄利克雷分布"></a><font color="#9a161a">Latent Dirichlet Allocation 隐式狄利克雷分布</font></h2><p><em>Latent Dirichlet Allocation</em> (LDA) is a hierarchical clustering model typically used to perform topic modelling on text documents. LDA tries to extract high-level topics from a series of documents and keywords associated with those topics. It then interprets each document as having a variable number of contributions from multiple input topics. There are two implementations that you can use: online LDA and expectation maximization. In general, online LDA will work better when there are more examples, and the expectation maximization optimizer will work better when there is a larger input vocabulary. This method is also capable of scaling to hundreds or thousands of topics.</p>
+<p>潜在狄利克雷分配（LDA）是一种层次结构的聚类模型，通常用于对文本文档执行主题建模。LDA尝试从一系列与这些主题相关的文档和关键字中提取高级主题。然后，它将每个文档解释为具有来自多个输入主题的不同数量的文稿。您可以使用两种实现：在线LDA和期望最大化。通常，当有更多示例时，在线LDA会更好地工作；而在输入词汇量更大的情况下，期望最大化优化器也将更好地工作。此方法还可以扩展到数百或数千个主题。</p>
+<p>To input our text data into LDA, we’re going to have to convert it into a numeric format. You can use the <code>CountVectorizer</code> to achieve this. </p>
+<p>要将文本数据输入到LDA中，我们必须将其转换为数字格式。您可以使用<code>CountVectorizer</code>来实现。</p>
+<h3 id="Model-Hyperparameters-模型参数-2"><a href="#Model-Hyperparameters-模型参数-2" class="headerlink" title="Model Hyperparameters 模型参数"></a><font color="#00000">Model Hyperparameters 模型参数</font></h3><p>These are configurations that we specify to determine the basic structure of the model:</p>
+<p>我们指定这些配置来确定模型的基本结构：</p>
+<p>​    The total number of topics to infer from the data. The default is 10 and must be a positive number.</p>
+<p>​    从数据推断出的主题总数。默认值为10，并且必须为正数。</p>
+<p><p><font face="constant-width" color="#000000" size=3>docConcentration</font></p><br>Concentration parameter (commonly named “alpha”) for the prior placed on documents’ distributions over topics (“theta”). This is the parameter to a Dirichlet distribution, where larger values mean more smoothing (more regularization).<br>优先级的浓度参数（通常称为“ alpha”）放在文档的主题分布（“ theta”）上。这是Dirichlet分布的参数，其中较大的值表示更平滑（更规则化）。</p>
+<p>If not set by the user, then docConcentration is set automatically. If set to singleton vector [alpha], then alpha is replicated to a vector of length k in fitting. Otherwise, the docConcentration vector must be length .<br>如果用户未设置，则将自动设置docConcentration。如果设置为单例向量α，则将α复制到拟合中长度为k的向量。否则，docConcentration向量必须为length。</p>
+<p>如果用户未设置，则将自动设置docConcentration。如果设置为单例向量α，则将α复制到拟合中长度为k的向量。否则，docConcentration向量必须为length。</p>
+<p><p><font face="constant-width" color="#000000" size=3>topicConcentration</font></p><br>The concentration parameter (commonly named “beta” or “eta”) for the prior placed on a topic’s distributions over terms. This is the parameter to a symmetric Dirichlet distribution. If not set by the user, then topicConcentration is set automatically.<br>优先事项的浓度参数（通常称为“ beta”或“ eta”），位于主题的各个术语的分布中。这是对称Dirichlet分布的参数。如果用户未设置，则topicConcentration会自动设置。</p>
+<h3 id="Training-Parameters-训练参数-3"><a href="#Training-Parameters-训练参数-3" class="headerlink" title="Training Parameters 训练参数"></a><font color="#00000">Training Parameters 训练参数</font></h3><p><p><font face="constant-width" color="#000000" size=3>maxIter</font></p><br>Total number of iterations over the data before stopping. Changing this probably won’t change your results a ton, so don’t make this the first parameter you look to adjust. The default is 20.<br>停止之前，数据上的迭代总数。更改此设置可能不会使您的结果大为改变，因此请不要将其设为您要调整的第一个参数。默认值为20。</p>
+<p><p><font face="constant-width" color="#000000" size=3>optimizer</font></p><br>This determines whether to use EM or online training optimization to determine the LDA model. The default is online.<br>这确定是使用EM还是在线培训优化来确定LDA模型。默认为在线。</p>
+<p><p><font face="constant-width" color="#000000" size=3>learningDecay</font></p><br>Learning rate, set as an exponential decay rate. This should be between (0.5, 1.0] to guarantee asymptotic convergence. The default is 0.51 and only applies to the online optimizer.<br>学习率，设置为指数衰减率。此值应介于（0.5，1.0]之间以确保渐近收敛。默认值为0.51，仅适用于在线优化器。</p>
+<p><p><font face="constant-width" color="#000000" size=3>learningOffset</font></p><br>A (positive) learning parameter that downweights early iterations. Larger values make early iterations count less. The default is 1,024.0 and only applies to the online optimizer.<br>一个（正）学习参数，可以减轻早期迭代的负担。较大的值使早期迭代的计数减少。默认值为1,024.0，仅适用于在线优化器。</p>
+<p><p><font face="constant-width" color="#000000" size=3>optimizeDocConcentration</font></p><br>Indicates whether the docConcentration (Dirichlet parameter for document-topic distribution) will be optimized during training. The default is true but only applies to the online optimizer.</p>
+<p>指示在培训期间是否将优化docConcentration（用于文档主题分发的Dirichlet参数）。默认值为true，但仅适用于在线优化器。</p>
+<p><p><font face="constant-width" color="#000000" size=3>subsamplingRate</font></p><br>The fraction of the corpus to be sampled and used in each iteration of mini-batch gradient descent, in range (0, 1]. The default is 0.5 and only applies to the online optimizer.<br>在小批量梯度下降的每次迭代中要采样和使用的语料库分数，范围为（0，1]。默认值为0.5，仅适用于在线优化器。</p>
+<p><p><font face="constant-width" color="#000000" size=3>seed</font></p><br>This model also supports specifying a random seed for reproducibility.<br>该模型还支持指定可重复性的随机种子。</p>
+<p><p><font face="constant-width" color="#000000" size=3>checkpointInterval</font></p><br>This is the same checkpoint feature that we saw in Chapter 26.</p>
+<p>这是我们在第26章中看到的相同的检查点功能。</p>
+<h3 id="Prediction-Parameters-预测参数"><a href="#Prediction-Parameters-预测参数" class="headerlink" title="Prediction Parameters 预测参数"></a><font color="#00000">Prediction Parameters 预测参数</font></h3><p><p><font face="constant-width" color="#000000" size=3>topicDistributionCol</font></p><br>The column that will hold the output of the topic mixture distribution for each document.<br>该列将保存每个文档的主题混合分布的输出。</p>
+<h3 id="Example-3"><a href="#Example-3" class="headerlink" title="Example"></a><font color="#00000">Example</font></h3><figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.feature.&#123;<span class="type">Tokenizer</span>, <span class="type">CountVectorizer</span>&#125;</span><br><span class="line"><span class="keyword">val</span> tkn = <span class="keyword">new</span> <span class="type">Tokenizer</span>().setInputCol(<span class="string">"Description"</span>).setOutputCol(<span class="string">"DescOut"</span>)</span><br><span class="line"><span class="keyword">val</span> tokenized = tkn.transform(sales.drop(<span class="string">"features"</span>))</span><br><span class="line"><span class="keyword">val</span> cv = <span class="keyword">new</span> <span class="type">CountVectorizer</span>()</span><br><span class="line">.setInputCol(<span class="string">"DescOut"</span>)</span><br><span class="line">.setOutputCol(<span class="string">"features"</span>)</span><br><span class="line">.setVocabSize(<span class="number">500</span>)</span><br><span class="line">.setMinTF(<span class="number">0</span>)</span><br><span class="line">.setMinDF(<span class="number">0</span>)</span><br><span class="line">.setBinary(<span class="literal">true</span>)</span><br><span class="line"><span class="keyword">val</span> cvFitted = cv.fit(tokenized)</span><br><span class="line"><span class="keyword">val</span> prepped = cvFitted.transform(tokenized)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.ml.feature <span class="keyword">import</span> Tokenizer, CountVectorizer</span><br><span class="line">tkn = Tokenizer().setInputCol(<span class="string">"Description"</span>).setOutputCol(<span class="string">"DescOut"</span>)tokenized = tkn.transform(sales.drop(<span class="string">"features"</span>))</span><br><span class="line">cv = CountVectorizer()\</span><br><span class="line">.setInputCol(<span class="string">"DescOut"</span>)\</span><br><span class="line">.setOutputCol(<span class="string">"features"</span>)\</span><br><span class="line">.setVocabSize(<span class="number">500</span>)\</span><br><span class="line">.setMinTF(<span class="number">0</span>)\</span><br><span class="line">.setMinDF(<span class="number">0</span>)\</span><br><span class="line">.setBinary(<span class="literal">True</span>)</span><br><span class="line">cvFitted = cv.fit(tokenized)</span><br><span class="line">prepped = cvFitted.transform(tokenized)</span><br></pre></td></tr></table></figure>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.clustering.<span class="type">LDA</span></span><br><span class="line"><span class="keyword">val</span> lda = <span class="keyword">new</span> <span class="type">LDA</span>().setK(<span class="number">10</span>).setMaxIter(<span class="number">5</span>)</span><br><span class="line">println(lda.explainParams())</span><br><span class="line"><span class="keyword">val</span> model = lda.fit(prepped)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="keyword">from</span> pyspark.ml.clustering <span class="keyword">import</span> LDA</span><br><span class="line">lda = LDA().setK(<span class="number">10</span>).setMaxIter(<span class="number">5</span>)</span><br><span class="line"><span class="keyword">print</span> lda.explainParams()</span><br><span class="line">model = lda.fit(prepped)</span><br></pre></td></tr></table></figure>
+<p>After we train the model, you will see some of the top topics. This will return the term indices, and we’ll have to look these up using the <code>CountVectorizerModel</code> that we trained in order to find out the true words. For instance, when we trained on the data our top 3 topics were hot, home, and brown after looking them up in our vocabulary:</p>
+<p>训练模型后，您将看到一些热门话题。这将返回术语索引，我们必须使用我们训练的<code>CountVectorizerModel</code>来查找这些索引，以便找出真实的单词。例如，当我们对数据进行培训时，在我们的词汇表中查找它们之后，我们的前3个主题是热门，家和棕色：</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">model.describeTopics(<span class="number">3</span>).show()</span><br><span class="line">cvFitted.vocabulary</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">model.describeTopics(<span class="number">3</span>).show()</span><br><span class="line">cvFitted.vocabulary</span><br></pre></td></tr></table></figure>
+<p>These methods result in detailed information about the vocabulary used as well as the emphasis on particular terms. These can be helpful for better understanding the underlying topics. Due to space constraints, we can’t show this output. Using similar APIs, we can get some more technical measures like the log likelihood and perplexity. The goal of these tools is to help you optimize the number of topics, based on your data. When using perplexity in your success criteria, you should apply these metrics to a holdout set to reduce the overall perplexity of the model. Another option is to optimize to increase the log likelihood value on the holdout set. We can calculate each of these by passing a dataset into the following functions: <code>model.logLikelihood</code> and <code>model.logPerplexity</code>.</p>
+<p>这些方法可提供有关所用词汇的详细信息以及对特定术语的强调。这些有助于更好地理解基础主题。由于篇幅所限，我们无法显示此输出。使用类似的API，我们可以获得更多技术指标，例如对数可能性和困惑度。这些工具的目的是帮助您根据数据优化主题数。在成功标准中使用困惑度时，应将这些指标应用于保留集，以减少模型的总体困惑度。另一个选择是优化以增加保留集上的对数似然值。我们可以通过将数据集传递给以下函数来计算每个参数：<code>model.logLikelihood</code>和<code>model.logPerplexity</code>。</p>
+<h2 id="Conclusion-总结"><a href="#Conclusion-总结" class="headerlink" title="Conclusion 总结"></a><font color="#9a161a">Conclusion 总结</font></h2><p>This chapter covered the most popular algorithms that Spark includes for unsupervised learning. The next chapter will bring us out of MLlib and talk about some of the advanced analytics ecosystem that has grown outside of Spark. </p>
+<p>本章介绍了Spark包含的用于无监督学习的最受欢迎的算法。下一章将使我们脱离MLlib，并讨论一些Spark以外的高级分析生态系统。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online/" title="翻译 Chapter 29 Unsupervised Learning">https://snaildove.github.io/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Spark/" rel="tag"><i class="fa fa-tag"></i> Spark</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194511-EZ6WBL6/" rel="next" title="翻译 Chapter 29 Unsupervised Learning">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 29 Unsupervised Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194451-EZ6WBL6/" rel="prev" title="翻译 Chapter 16 Developing Spark Applications">
+                翻译 Chapter 16 Developing Spark Applications <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#"><span class="nav-text">Chapter 29 Unsupervised Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Use-Cases-用户案例"><span class="nav-text">Use Cases 用户案例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Model-Scalability-模型的伸缩性"><span class="nav-text">Model Scalability 模型的伸缩性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#k-means-K均值"><span class="nav-text">k-means K均值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Hyperparameters-模型的超参数"><span class="nav-text">Model Hyperparameters  模型的超参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Parameters-训练参数"><span class="nav-text">Training Parameters 训练参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#k-means-Metrics-Summary-k-means衡量指标简述"><span class="nav-text">k-means Metrics Summary k-means衡量指标简述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bisecting-k-means二等分K均值"><span class="nav-text">Bisecting k-means二等分K均值</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Hyperparameters-模型参数"><span class="nav-text">Model Hyperparameters 模型参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Parameters-训练参数-1"><span class="nav-text">Training Parameters 训练参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-1"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bisecting-k-means-Summary-二等分k-means简述"><span class="nav-text">Bisecting k-means Summary 二等分k-means简述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Gaussian-Mixture-Models"><span class="nav-text">Gaussian Mixture Models</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Hyperparameters-模型参数-1"><span class="nav-text">Model Hyperparameters 模型参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Parameters-训练参数-2"><span class="nav-text">Training Parameters 训练参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-2"><span class="nav-text">Example</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Gaussian-Mixture-Model-Summary-高斯混合模型简述"><span class="nav-text">Gaussian Mixture Model Summary 高斯混合模型简述</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Latent-Dirichlet-Allocation-隐式狄利克雷分布"><span class="nav-text">Latent Dirichlet Allocation 隐式狄利克雷分布</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Model-Hyperparameters-模型参数-2"><span class="nav-text">Model Hyperparameters 模型参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Training-Parameters-训练参数-3"><span class="nav-text">Training Parameters 训练参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Prediction-Parameters-预测参数"><span class="nav-text">Prediction Parameters 预测参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Example-3"><span class="nav-text">Example</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion-总结"><span class="nav-text">Conclusion 总结</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

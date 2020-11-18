@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Machine Learning.feature engineering,XGBoost," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言本文陈述脉络：理论结合kaggle上一个具体的比赛。 正文数据科学的一般流程 指南 特征工程 评价指标 XGBoost参数调优 XGBoost并行处理   特征工程结合以下案例分析： Two Sigma Connect: Rental Listing Inquiries 任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度标签： interest_level，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从特征工程到XGBoost参数调优">
+<meta property="og:url" content="https://snaildove.github.io/2018/12/18/get_started_feature-engineering.sync-conflict-20201110-195039-EZ6WBL6/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="前言本文陈述脉络：理论结合kaggle上一个具体的比赛。 正文数据科学的一般流程 指南 特征工程 评价指标 XGBoost参数调优 XGBoost并行处理   特征工程结合以下案例分析： Two Sigma Connect: Rental Listing Inquiries 任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度标签： interest_level，">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548322618454.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331998361.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331822211.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331724663.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548330721971.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331676891.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548332212260.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548332336363.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607142536.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607271453.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607383824.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607476814.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548608348576.png">
+<meta property="article:published_time" content="2018-12-17T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-01T10:21:22.080Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="Machine Learning.feature engineering">
+<meta property="article:tag" content="XGBoost">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548322618454.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2018/12/18/get_started_feature-engineering.sync-conflict-20201110-195039-EZ6WBL6/"/>
+
+
+
+
+
+  <title>从特征工程到XGBoost参数调优 | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2018/12/18/get_started_feature-engineering.sync-conflict-20201110-195039-EZ6WBL6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从特征工程到XGBoost参数调优</h1>
+        
+
+        <div class="post-meta">
+		  
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>sticky</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-12-18T00:00:00+08:00">
+                2018-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  7,330
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  32
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文陈述脉络：理论结合kaggle上一个具体的比赛。</p>
+<h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="数据科学的一般流程"><a href="#数据科学的一般流程" class="headerlink" title="数据科学的一般流程"></a>数据科学的一般流程</h2><p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548322618454.png" alt="1548322618454"></p>
+<h2 id="指南"><a href="#指南" class="headerlink" title="指南"></a>指南</h2><ul>
+<li>特征工程</li>
+<li>评价指标</li>
+<li>XGBoost参数调优</li>
+<li>XGBoost并行处理 </li>
+</ul>
+<h2 id="特征工程"><a href="#特征工程" class="headerlink" title="特征工程"></a>特征工程</h2><p>结合以下案例分析：</p>
+<p><a href="https://www.kaggle.com/c/two-sigma-connect-rental-listing-inquiries" target="_blank" rel="noopener">Two Sigma Connect: Rental Listing Inquiries</a></p>
+<p>任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度<br>标签： interest_level，该listing被咨询的次数</p>
+<p>选择这个案例是因为<strong>小而精</strong>，虽然只有14维特征，但是基本上都涉及<strong>各种类型特征</strong>。</p>
+<ol>
+<li>有三个取值：: ‘high’, ‘medium’, ‘low’，是一个多类分类任务</li>
+<li>Listing内容有：<ul>
+<li>浴室和卧室的数目bathrooms， bedrooms</li>
+<li>地理位置（ longitude 、 latitude ）</li>
+<li>地址： display_address、 street_address</li>
+<li>building_id、 listing_id、 manager_id</li>
+<li>Created：创建日期</li>
+<li>Description：更多描述信息</li>
+<li>features: 公寓的一些特征描述</li>
+<li>photos: a list of photo links</li>
+<li>价格：price </li>
+</ul>
+</li>
+</ol>
+<h3 id="数据分析方法"><a href="#数据分析方法" class="headerlink" title="数据分析方法"></a>数据分析方法</h3><p>对数据进行探索性的分析的工具包：pandas、 matplotlib／seaborn</p>
+<ol>
+<li><p>读取训练数据，取少量样本进行观测，并查看数据规模和数据类型</p>
+<ul>
+<li>标签、特征意义、特征类型等</li>
+</ul>
+</li>
+<li><p>分析每列特征的分布</p>
+<ul>
+<li><p>直方图</p>
+</li>
+<li><p>包括标签列（对分类问题，可看出类别样本是否均衡）</p>
+</li>
+<li><p>检测奇异点（outliers）</p>
+</li>
+<li><p>分析每两列特征之间的相关性<br>  – 特征与特征之间信息是否冗余<br>  – 特征与标签是否线性相关</p>
+</li>
+</ul>
+</li>
+</ol>
+<h3 id="histogram-直方图"><a href="#histogram-直方图" class="headerlink" title="histogram 直方图"></a>histogram 直方图</h3><ol>
+<li><p>直方图：每个取值在数据集中出现的次数，可视为概率函<br> 数（PDF）的估计（seaborn可视化工具比较简单）</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import seaborn as sns</span><br><span class="line">%matplotlib inline（ seaborn 是基于matplotlib 的）</span><br><span class="line">sns.distplot(train.price.values, bins&#x3D;50, kde&#x3D;True)</span><br></pre></td></tr></table></figure></li>
+<li><p>核密度估计</p>
+<ul>
+<li>Kernel Density Estimation, KDE</li>
+<li>对直方图的加窗平滑 </li>
+</ul>
+</li>
+</ol>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331998361.png" alt="1548331998361"></p>
+<p><strong>在分类任务中，我们关心不同类别的特征分布</strong></p>
+<p><strong>violinplot</strong> 提供不同类别条件下特征更多的分部信息 核密度估计（KDE） 三个4分位数（quartile）：1/4, 1/2, 3/4 1.5倍四分数间距（nterquartile range, IQR） IQR ：第三四分位数和第一分位数的区别（即Q1~Q3的差距），表示变量的分散情况，播放差更稳健的统计量</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">order = [<span class="string">'low'</span>, <span class="string">'medium'</span>, <span class="string">'high'</span>]</span><br><span class="line">sns.violinplot(x=<span class="string">'interest_level'</span>, y=<span class="string">'price'</span>, data=train, order = order)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331822211.png" alt="1548331822211"></p>
+<h3 id="outliers-奇异点"><a href="#outliers-奇异点" class="headerlink" title="outliers 奇异点"></a>outliers 奇异点</h3><p>奇异点：或称离群点，指远离大多数样本的样本点。通常认为这些点是噪声，对模型有坏影响</p>
+<ol>
+<li><p>可以通过直方图或散点图发现奇异点</p>
+<ul>
+<li>直方图的尾巴</li>
+<li><p>散点图上孤立的点</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">6</span>))</span><br><span class="line">plt.scatter(range(train_df.shape[<span class="number">0</span>]), train_df.price.values, color = color[<span class="number">6</span>])</span><br><span class="line">plt.xlabel(<span class="string">'the number of train data'</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">plt.ylabel(<span class="string">'price'</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331724663.png" alt="1548331724663"></p>
+</li>
+</ul>
+</li>
+<li><p>可以通过只保留某些分位数内的点去掉奇异点</p>
+<ul>
+<li>如0.5%-99.5%，或&gt;99%</li>
+</ul>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ulimit = np.percentile(train.price.values, <span class="number">99</span>)</span><br><span class="line">train[<span class="string">'price'</span>].loc[train[<span class="string">'price'</span>]&gt;ulimit] = ulimit</span><br></pre></td></tr></table></figure>
+<h3 id="correlation-相关性"><a href="#correlation-相关性" class="headerlink" title="correlation 相关性"></a>correlation 相关性</h3><ul>
+<li><p>相关性可以通过计算相关系数或打印散点图来发现</p>
+<p>  <img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548330721971.png" alt="1548330721971"></p>
+</li>
+<li><p>相关系数：两个随机变量x,y之间的<strong>线性</strong>相关程度，<strong>不线性相关并不代表不相关</strong>，可能高阶相关，如 $y=x^2$</p>
+<ol>
+<li><p>$r = \frac{\sum_{i=1}^{n}(x_i-\bar{x})(y_i-\bar{y})}{\sqrt{\sum_{i=0}^{n}}(x_i-\bar{x})^2\sum_{i=0}^{n}(y_i-\bar{y})^2}, -1\le r \le 1$</p>
+</li>
+<li><p>通常 $|r| &gt; 0.5$ ，认为两者相关性比较强</p>
+</li>
+<li><p>$r\cases{=0, &amp;\text{完全线性不相关}\ &gt;0, &amp;\text{正相关}\ &lt;0, &amp;\text{负相关}}$</p>
+</li>
+</ol>
+</li>
+<li><p>相关性只能是数值型特征之间相关性</p>
+<ul>
+<li><p>我们希望特征与标签强相关，分类直方图可以从某种程度上看出特征与标签的相关性：不同类别的直方图差异大</p>
+  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">order = [<span class="string">'low'</span>, <span class="string">'medium'</span>, <span class="string">'high'</span>]</span><br><span class="line">sns.stripplot(train_df.interest_level, train_df.price.values, jitter=<span class="literal">True</span>, order=order)</span><br><span class="line">plt.title(<span class="string">"Price VS Interest Level"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p>  <img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331676891.png" alt="1548331676891"></p>
+</li>
+<li><p>特征与特征之间强相关的话意味着信息冗余</p>
+<ol>
+<li><p>可以两个特征可以只保留一个特征</p>
+</li>
+<li><p>或采用主成分分析（PCA）等降维</p>
+ <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contFeaturelist = []</span><br><span class="line">contFeaturelist.append(<span class="string">'bathrooms'</span>)</span><br><span class="line">contFeaturelist.append(<span class="string">'bedrooms'</span>)</span><br><span class="line">contFeaturelist.append(<span class="string">'price'</span>)</span><br><span class="line"></span><br><span class="line">correlationMatrix = train_df[contFeaturelist].corr().abs()</span><br><span class="line">plt.subplots()</span><br><span class="line">sns.heatmap(correlationMatrix, annot=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Mask unimportant features</span></span><br><span class="line">sns.heatmap(correlationMatrix, mask=correlationMatrix &lt; <span class="number">1</span>, cbar = <span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p> <img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548332212260.png" alt="1548332212260"></p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h3><p>XGBoost 模型内部将所有的问题都建模成一个回归预测问题，输入特征只能是数值型。如果给定的数据是不同的类型，必须先将数据变成数值型。 </p>
+<h3 id="类别型特征（-categorical-features）"><a href="#类别型特征（-categorical-features）" class="headerlink" title="类别型特征（ categorical features）"></a>类别型特征（ categorical features）</h3><ul>
+<li><p><strong>LabelEncoder</strong>： 对不连续的数字或者文本进行编号</p>
+<ol>
+<li>可用在对字符串型的标签编码（测试结果需进行反变换）</li>
+<li>编号默认有序数关系</li>
+<li>存储量小</li>
+</ol>
+</li>
+<li><p>如不希望有序数关系： <strong>OneHotEncoder</strong>：将类别型整数输入从 1 维 K 维的稀疏编码（K 种类别）</p>
+<ol>
+<li>对XGBoost，OneHotEncoder不是必须，因为XGBoost对特征进行排序从而进行分裂建树；如果用OneHotEncoder得到稀疏编码，XGBoost建树过程中对稀疏特征处理速度块</li>
+<li>输入必须是数值型数据（对字符串输入，先调用LabelEncoder变成数字，再用OneHotEncoder ）</li>
+<li>存储要求高 </li>
+</ol>
+</li>
+<li><strong>低基数（low-cardinality ）</strong>类别型特征： OneHotEncoder <ol>
+<li>1维到K维， K为该特征不同的取值数目 </li>
+<li>通常在K &lt;10的情况下采用 </li>
+</ol>
+</li>
+<li><strong>高基数（high-cardinality）</strong>类别型特征：通常有成百上千个不同的取值，可先降维，如：邮政编码、街道名称…<ol>
+<li>聚类（Clustering）： 1 维 到 K维，K为聚类的类别数</li>
+<li>主成分分析（principle component analysis, PCA）：但对大矩阵操作费资源</li>
+<li>均值编码：在贝叶斯的架构下，利用标签变量，有监督地确定最适合特定特征的编码方式。均值编码详细参考：<ul>
+<li><a href="http://helios.mm.di.uoa.gr/~rouvas/ssi/sigkdd/sigkdd.vol3.1/barreca.pdf" target="_blank" rel="noopener">Mean Encoding: A Preprocessing Scheme for High-Cardinality Categorical Features </a> </li>
+<li><a href="https://zhuanlan.zhihu.com/p/26308272" target="_blank" rel="noopener">平均数编码：针对高基数定性特征（类别特征）的数据预处理/特征工程</a></li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="日期型特征"><a href="#日期型特征" class="headerlink" title="日期型特征"></a>日期型特征</h3><ol>
+<li>日期特征：年月日</li>
+<li>时间特征：小时分秒</li>
+<li>时间段：早中晚</li>
+<li>星期，工作日／周末 </li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Date'</span>] = pd.to_datetime(train_test[<span class="string">'created'</span>])</span><br><span class="line">train_test[<span class="string">'Year'</span>] = train_test[<span class="string">'Date'</span>].dt.year</span><br><span class="line">train_test[<span class="string">'Month'</span>] = train_test[<span class="string">'Date'</span>].dt.month</span><br><span class="line">train_test[<span class="string">'Day'</span>] = train_test[<span class="string">'Date'</span>].dt.day</span><br><span class="line">train_test[<span class="string">'Wday'</span>] = train_test[<span class="string">'Date'</span>].dt.dayofweek</span><br><span class="line">train_test[<span class="string">'Yday'</span>] = train_test[<span class="string">'Date'</span>].dt.dayofyear</span><br><span class="line">train_test[<span class="string">'hour'</span>] = train_test[<span class="string">'Date'</span>].dt.hour</span><br><span class="line"> </span><br><span class="line">train_test = train_test.drop([<span class="string">'Date'</span>, <span class="string">'created'</span>], axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="文本型特征"><a href="#文本型特征" class="headerlink" title="文本型特征"></a>文本型特征</h3><ul>
+<li>可用词云（wordcloud）可视化<ul>
+<li>文本词频统计函数，自动统计词的个数，以字典形式内部存储，在显示的时候词频大的词的字体更大 </li>
+</ul>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wordcloud for street address</span></span><br><span class="line">plt.figure()</span><br><span class="line">wordcloud = WordCloud(background_color=<span class="string">'white'</span>, width=<span class="number">600</span>, height=<span class="number">300</span>, max_font_size=<span class="number">50</span>, max_words=<span class="number">40</span>)</span><br><span class="line">wordcloud.generate(text_street)</span><br><span class="line">wordcloud.recolor(random_state=<span class="number">0</span>)</span><br><span class="line">plt.imshow(wordcloud)</span><br><span class="line">plt.title(<span class="string">"Wordcloud for street address"</span>, fontsize=<span class="number">30</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548332336363.png" alt="1548332336363"></p>
+<ul>
+<li><p>TF-IDF</p>
+<ol>
+<li><p>通俗易懂原理参考：廖雪峰老师的TF-IDF，概率解释参考：CoolShell 陈皓的 TF-IDF</p>
+</li>
+<li><p>实战参考官网和<a href="https://www.jianshu.com/p/c7e2771eccaa" target="_blank" rel="noopener">使用sklearn提取文本的tfidf特征</a></p>
+</li>
+</ol>
+</li>
+</ul>
+<p>下面是个例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"></span><br><span class="line">X_train = [<span class="string">'This is the first document.'</span>, <span class="string">'This is the second document.'</span>]</span><br><span class="line">X_test = [<span class="string">'This is the third document.'</span>]</span><br><span class="line">vectorizer = TfidfVectorizer()</span><br><span class="line"><span class="comment"># 用X_train数据来fit</span></span><br><span class="line">vectorizer.fit(X_train)</span><br><span class="line"><span class="comment"># 得到tfidf的矩阵</span></span><br><span class="line">tfidf_train = vectorizer.transform(X_train)</span><br><span class="line">tfidf_test = vectorizer.transform(X_test)</span><br><span class="line"></span><br><span class="line">tfidf_train.toarray()</span><br></pre></td></tr></table></figure></p>
+<h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p><code>from sklearn.preprocessing import …</code></p>
+<ol>
+<li>数据标准化</li>
+<li>数据归一化</li>
+<li>数据二值化</li>
+<li>数据缺失</li>
+</ol>
+<p>XGBoost对数据预处理要求少，以上操作都不是必须</p>
+<h3 id="特征工程小结"><a href="#特征工程小结" class="headerlink" title="特征工程小结"></a>特征工程小结</h3><ul>
+<li>如果知道数据的物理意义（领域专家），可能可以设计更多特征<ul>
+<li>如Higgs Boson任务中有几维特征是物理学家设计的，还有些有高能物理<br>  研究经验的竞赛者设计了其他一些特征</li>
+<li>如房屋租赁任务中，利用常识可设计出一些特征，例子：租金/卧室数目=单价</li>
+</ul>
+</li>
+<li>如果不是领域专家，一些通用的规则：<ul>
+<li>字符串型特征：Label编码</li>
+<li>时间特征：年月日、时间段（早中晚）…</li>
+<li>数值型特征：加减乘除，多项式，log, exp</li>
+<li>低基数类别特征：one-hot编码</li>
+<li>高基数类别特征：先降维，再one-hot编码；均值编码 </li>
+</ul>
+</li>
+<li><strong>非结构化特征</strong><ul>
+<li>文本</li>
+<li>语音</li>
+<li>图像／视频</li>
+<li>fMRI</li>
+<li>…</li>
+</ul>
+</li>
+<li><strong>利用领域知识设计特征</strong><ul>
+<li>如曾经流行的图像目标检测特征HOG…</li>
+</ul>
+</li>
+<li><strong>利用深度学习从数据中学习特征表示</strong><ul>
+<li>采用end-to-end方式一起学习特征和分类／回归／排序</li>
+<li>学习好特征可以送入XGBoost学习器 </li>
+</ul>
+</li>
+</ul>
+<h3 id="信息泄漏"><a href="#信息泄漏" class="headerlink" title="信息泄漏"></a>信息泄漏</h3><p>训练数据特征不应该包含标签的信息<br>– 如Rent Listing Inquries任务中图片压缩文件里文件夹的创造时间：加入这个特征后，模型普遍能提高0.01的public LB分数</p>
+<h2 id="特征工程案例实践"><a href="#特征工程案例实践" class="headerlink" title="特征工程案例实践"></a>特征工程案例实践</h2><p>这是我的 jupyter notebook: <a href="https://nbviewer.jupyter.org/github/SnailDove/github-blog/blob/master/4_FE_RentListingInqueries.ipynb" target="_blank" rel="noopener">Rent Listing Inquries</a></p>
+<h2 id="评价指标"><a href="#评价指标" class="headerlink" title="评价指标"></a>评价指标</h2><h3 id="回归问题的评价指标"><a href="#回归问题的评价指标" class="headerlink" title="回归问题的评价指标"></a>回归问题的评价指标</h3><p>损失函数可以作为评价指标，以下约定俗成： $\hat{y_i}$ 是预测值，$y$ 是标签值</p>
+<ol>
+<li><p>L1: mean absolute error (MAE)  </p>
+<p>  $MAE = \frac{1}{N}\sum_{i=0}^{N}|\hat{y_i}-y_i|$</p>
+</li>
+<li><p>L2: Root Mean Squared Error(RMSE)</p>
+<p> $RMSE = \sqrt{\frac{1}{N}\sum_{i=0}^{N}|\hat{y_i}-y_i|}$</p>
+</li>
+<li><p>Root Mean Sqared Logarithmic Error (RMSLE)</p>
+<ul>
+<li>$RMLSE = \sqrt{\frac{1}{N}\sum_{i=0}^{N} \big( \log(\hat{y_i}+1) - \log(y_i+1) \big) ^2}$</li>
+<li><a href="https://www.kaggle.com/wiki/RootMeanSquaredLogarithmicError" target="_blank" rel="noopener">https://www.kaggle.com/wiki/RootMeanSquaredLogarithmicError</a></li>
+<li>当不想在给预测值与真值差距施加很大惩罚时，采用RMSLE</li>
+</ul>
+</li>
+</ol>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607142536.png" alt="1548607142536"></p>
+<h3 id="分类任务的评价指标"><a href="#分类任务的评价指标" class="headerlink" title="分类任务的评价指标"></a>分类任务的评价指标</h3><p>同样地，损失函数可以作为评价指标</p>
+<ol>
+<li><p>logistic/负log似然损失</p>
+<p> $\text{logloss}= -{1\over N}\sum_{i=0}^{N}\sum_{j=0}^{M}y_{ij}\log{P_{ij}}$，M是类别数，$y_{ij}$ 为二值函数，当 i 个样本是第 j 类时 $y_{ij}=1$ ，否则取 $0$ ；$p_{ij}$ 为模型预测的第 i 个样本为第 j 类的概率。当 $M=2$ 时， $\text{logloss} = -{1\over N}\sum_{i=0}^{N}\big(y_i\log p_i + (1-y_i)\log(1-p_i)\big)$ ，$y_i$ 为第 i 个样本类别，$p_i$ 为模型预测的第 i 个样本为第 1 类的概率。</p>
+</li>
+<li><p>0-1损失对应的Mean Consequential Error (MCME) </p>
+<p> $\text{MCE}=-\frac{1}{N}\sum\limits_{\hat{y_i}\ne y_i}1$ </p>
+</li>
+</ol>
+<h3 id="两类分类任务中更多评价指标"><a href="#两类分类任务中更多评价指标" class="headerlink" title="两类分类任务中更多评价指标"></a>两类分类任务中更多评价指标</h3><ol>
+<li>ROC／AUC</li>
+<li>PR曲线</li>
+<li>MAP@n </li>
+</ol>
+<ul>
+<li><p>0-1损失：假设两种错误的代价相等<br>  ​    False Positive （FP） &amp; False Negative（FN）</p>
+</li>
+<li><p>有些任务中可能某一类错误的代价更大</p>
+<ul>
+<li>如蘑菇分类中将毒蘑菇误分为可食用代价更大</li>
+<li>因此单独列出每种错误的比例：混淆矩阵</li>
+</ul>
+</li>
+<li><p>混淆矩阵（confusion matrix）</p>
+<ul>
+<li><p>真正的正值（true positives）</p>
+</li>
+<li><p>假的正值（false positives）</p>
+</li>
+<li><p>真正的负值（true negatives）</p>
+</li>
+<li><p>假的负值（false negatives ） </p>
+</li>
+</ul>
+</li>
+<li><p>SciKit-Learn实现了多类分类任务的混淆矩阵</p>
+<p>  <code>sklearn.metrics.confusion_matrix(y_true, y_pred, labels=None, sample_weight=None)</code></p>
+<ol>
+<li>y_true： N个样本的标签真值</li>
+<li>y_pred： N个样本的预测标签值</li>
+<li>labels：C个类别在矩阵的索引顺序，缺省为y_true或y_pred类别出现的顺序</li>
+<li>sample_weight： N个样本的权重 </li>
+</ol>
+</li>
+</ul>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607271453.png" alt="1548607271453"></p>
+<h4 id="Receiver-Operating-Characteristic-ROC"><a href="#Receiver-Operating-Characteristic-ROC" class="headerlink" title="Receiver Operating Characteristic (ROC)"></a>Receiver Operating Characteristic (ROC)</h4><p>上面我们讨论给定阈值 $τ$ 的TPR和FPR</p>
+<ul>
+<li><p>如果不是只考虑一个阈值，而是在一些列阈值上运行检测器，并画出TPR和FPR为阈值 $τ$ 的隐式函数，得到ROC曲线在此处键入公式。 </p>
+<p>  <img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607383824.png" alt="1548607383824"></p>
+</li>
+</ul>
+<h4 id="PR曲线"><a href="#PR曲线" class="headerlink" title="PR曲线"></a>PR曲线</h4><p>Precision and Recall (PR曲线)：用于<strong>稀有事件检测</strong>，如目标检测、信息检索</p>
+<ul>
+<li><p>负样本非常多，因此  FPR = FP /N_ 很小，比较 TPR 和 FPR 不是很有用的信息 （ROC曲线中只有左边很小一部分有意义） $\rightarrow$ 只讨论正的样本</p>
+</li>
+<li><p>Precision（精度，查准率，正确 率）：以信息检索为例，对于一个查询，返回了一系列的文档，正确率指的是返回结果中相关文档占的比例 </p>
+<ul>
+<li>$\text{precision}= TP /\hat{N}_+$ 预测结果真正为正的比例 </li>
+</ul>
+</li>
+<li><p>Recall（召回率，查全率）：返回结果中相关文档占所有相关文档的比例</p>
+<ul>
+<li>$\text{Recall}=TP/N_+$  被正确预测到正样本的比例</li>
+</ul>
+</li>
+<li><p>Precision and Recall (PR曲线) </p>
+<ul>
+<li><p>阈值变化时的P 和R ，只考虑了返回结果中相关文档的个数，没有考虑文档之间的序。</p>
+<ul>
+<li>对一个搜索引擎或推荐系统而言，返回的结果必然是有序的，而且越相关的文档排的越靠前越好，于是有了 AP 的概念。</li>
+<li>AP: Average Precision，对不同召回率点上的正确率进行平均。</li>
+</ul>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548607476814.png" alt="1548607476814"></p>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="Average-Precision"><a href="#Average-Precision" class="headerlink" title="Average Precision"></a>Average Precision</h4><p>Precision只考虑了返回结果中相关文档的个数，没有考虑文档之间的序。</p>
+<ul>
+<li>对一个搜索引擎或推荐系统而言，返回的结果必然是有序的，而且越相关的文档排的越靠前越好，于是有了AP的概念。</li>
+<li>AP: Average Precision，对不同召回率点上的正确率进行平均<ul>
+<li>$AP = \int_{0}^{1}p(k)dr = \sum_{k=0}^{n}p(k)\Delta r(k)$</li>
+<li>即 PR 曲线下的面积（Recall: AUC 为 ROC 下的面积）</li>
+<li>其中 k 为返回文档中序位，n 为返回文档的数目，$p(k)$ 为列表中k截至点的precision，$\Delta r(k)$ 表示从 $k-1$ 到 $k$ 召回率的变化</li>
+</ul>
+</li>
+<li>上述离散求和表示等价于 $AP=\sum_{k=0}^{n}p(k)rel(k)/\text{相关文档的数目}$ ，其中 $rel(k)$ 为示性函数，即第 $k$ 个位置为相关文档则取1，否则取0。 </li>
+<li>计算每个位置上的 precision，如果该位置的文档是不相关的则该位置 precision=0，然后对所有的位置的precision 再做 average 。</li>
+</ul>
+<h3 id="MAP-Mean-Average-Precision"><a href="#MAP-Mean-Average-Precision" class="headerlink" title="MAP: Mean Average Precision"></a>MAP: Mean Average Precision</h3><ul>
+<li>$MAP = (\sum_{q=0}^{Q}AP(q)/(Q))$ ，其中 $Q$ 为查询的数目，$n$ 为文档数目。</li>
+</ul>
+<h3 id="MAP-K-（MAPK）"><a href="#MAP-K-（MAPK）" class="headerlink" title="MAP@K （MAPK）"></a>MAP@K （MAPK）</h3><ul>
+<li><p>在现代web信息检索中，recall其实已经没有意义，因为相关文档有成千上万个，很少有人会关心所有文档</p>
+</li>
+<li><p>Precision@K：在第K个位置上的Precision</p>
+<p>  对于搜索引擎，考虑到大部分作者只关注前一、两页的结果，所以Precision @10， Precision @20对大规模搜索引擎非常有效 </p>
+</li>
+<li><p>MAP@K：多个查询Precision@K的平均 </p>
+</li>
+</ul>
+<h3 id="F1-分数-调和平均"><a href="#F1-分数-调和平均" class="headerlink" title="F1 分数/调和平均"></a>F1 分数/调和平均</h3><ul>
+<li>亦被称为F1 score, balanced F-score or F-measure</li>
+<li>Precision 和 Recall 加权平均： $F1=\frac{2<em>(\text{Precision </em> Recall)}}{(\text{Precision + Recall)}}$<ul>
+<li>最好为1，最差为0</li>
+<li>多类：每类的F1平均值 </li>
+</ul>
+</li>
+</ul>
+<h3 id="Scikit-Learn-Scoring"><a href="#Scikit-Learn-Scoring" class="headerlink" title="Scikit-Learn: Scoring"></a>Scikit-Learn: Scoring</h3><ul>
+<li><p>用交叉验证（cross_val_score和GridSearchCV）评价模型性能时，用scoring参数定义评价指标。</p>
+</li>
+<li><p>评价指标是越高越好，因此用一些损失函数当评价指标时，需要再加负号，如neg_log_loss，neg_mean_squared_error</p>
+</li>
+<li><p>详见sklearn文档：<a href="http://scikit-learn.org/stable/modules/model_evaluation.html" target="_blank" rel="noopener">http://scikit-learn.org/stable/modules/model_evaluation.html</a></p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Scoring</th>
+<th>Function</th>
+<th>Comment</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Classification</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>‘accuracy’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score" target="_blank" rel="noopener"><code>metrics.accuracy_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘balanced_accuracy’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score" target="_blank" rel="noopener"><code>metrics.balanced_accuracy_score</code></a></td>
+<td>for binary targets</td>
+</tr>
+<tr>
+<td>‘average_precision’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html#sklearn.metrics.average_precision_score" target="_blank" rel="noopener"><code>metrics.average_precision_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘brier_score_loss’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html#sklearn.metrics.brier_score_loss" target="_blank" rel="noopener"><code>metrics.brier_score_loss</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘f1’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" target="_blank" rel="noopener"><code>metrics.f1_score</code></a></td>
+<td>for binary targets</td>
+</tr>
+<tr>
+<td>‘f1_micro’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" target="_blank" rel="noopener"><code>metrics.f1_score</code></a></td>
+<td>micro-averaged</td>
+</tr>
+<tr>
+<td>‘f1_macro’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" target="_blank" rel="noopener"><code>metrics.f1_score</code></a></td>
+<td>macro-averaged</td>
+</tr>
+<tr>
+<td>‘f1_weighted’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" target="_blank" rel="noopener"><code>metrics.f1_score</code></a></td>
+<td>weighted average</td>
+</tr>
+<tr>
+<td>‘f1_samples’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" target="_blank" rel="noopener"><code>metrics.f1_score</code></a></td>
+<td>by multilabel sample</td>
+</tr>
+<tr>
+<td>‘neg_log_loss’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html#sklearn.metrics.log_loss" target="_blank" rel="noopener"><code>metrics.log_loss</code></a></td>
+<td>requires <code>predict_proba</code> support</td>
+</tr>
+<tr>
+<td>‘precision’ etc.</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" target="_blank" rel="noopener"><code>metrics.precision_score</code></a></td>
+<td>suffixes apply as with ‘f1’</td>
+</tr>
+<tr>
+<td>‘recall’ etc.</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" target="_blank" rel="noopener"><code>metrics.recall_score</code></a></td>
+<td>suffixes apply as with ‘f1’</td>
+</tr>
+<tr>
+<td>‘roc_auc’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html#sklearn.metrics.roc_auc_score" target="_blank" rel="noopener"><code>metrics.roc_auc_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Clustering</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>‘adjusted_mutual_info_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.adjusted_mutual_info_score.html#sklearn.metrics.adjusted_mutual_info_score" target="_blank" rel="noopener"><code>metrics.adjusted_mutual_info_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘adjusted_rand_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.adjusted_rand_score.html#sklearn.metrics.adjusted_rand_score" target="_blank" rel="noopener"><code>metrics.adjusted_rand_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘completeness_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.completeness_score.html#sklearn.metrics.completeness_score" target="_blank" rel="noopener"><code>metrics.completeness_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘fowlkes_mallows_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.fowlkes_mallows_score.html#sklearn.metrics.fowlkes_mallows_score" target="_blank" rel="noopener"><code>metrics.fowlkes_mallows_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘homogeneity_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.homogeneity_score.html#sklearn.metrics.homogeneity_score" target="_blank" rel="noopener"><code>metrics.homogeneity_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘mutual_info_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mutual_info_score.html#sklearn.metrics.mutual_info_score" target="_blank" rel="noopener"><code>metrics.mutual_info_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘normalized_mutual_info_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.normalized_mutual_info_score.html#sklearn.metrics.normalized_mutual_info_score" target="_blank" rel="noopener"><code>metrics.normalized_mutual_info_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘v_measure_score’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.v_measure_score.html#sklearn.metrics.v_measure_score" target="_blank" rel="noopener"><code>metrics.v_measure_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>Regression</strong></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>‘explained_variance’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score" target="_blank" rel="noopener"><code>metrics.explained_variance_score</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘neg_mean_absolute_error’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html#sklearn.metrics.mean_absolute_error" target="_blank" rel="noopener"><code>metrics.mean_absolute_error</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘neg_mean_squared_error’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error" target="_blank" rel="noopener"><code>metrics.mean_squared_error</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘neg_mean_squared_log_error’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_log_error.html#sklearn.metrics.mean_squared_log_error" target="_blank" rel="noopener"><code>metrics.mean_squared_log_error</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘neg_median_absolute_error’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error" target="_blank" rel="noopener"><code>metrics.median_absolute_error</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td>‘r2’</td>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score" target="_blank" rel="noopener"><code>metrics.r2_score</code></a></td>
+</tr>
+</tbody>
+</table>
+<h3 id="SciKit-Learn：sklearn-metrics"><a href="#SciKit-Learn：sklearn-metrics" class="headerlink" title="SciKit-Learn：sklearn.metrics"></a>SciKit-Learn：sklearn.metrics</h3><ul>
+<li>metrics模块还提供为其他目的而实现的预测误差评估函数<br>  分类任务的评估函数如表所示，其他任务评估函数请见：<a href="http://scikitlearn.org/stable/modules/classes.html#module-sklearn.metrics" target="_blank" rel="noopener">http://scikitlearn.org/stable/modules/classes.html#module-sklearn.metrics</a> </li>
+</ul>
+<h4 id="Classification-metrics"><a href="#Classification-metrics" class="headerlink" title="Classification metrics"></a>Classification metrics</h4><p>See the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#classification-metrics" target="_blank" rel="noopener">Classification metrics</a> section of the user guide for further details.</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.accuracy_score.html#sklearn.metrics.accuracy_score" target="_blank" rel="noopener"><code>metrics.accuracy_score</code></a>(y_true, y_pred[, …])</th>
+<th>Accuracy classification score.</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html#sklearn.metrics.auc" target="_blank" rel="noopener"><code>metrics.auc</code></a>(x, y[, reorder])</td>
+<td>Compute Area Under the Curve (AUC) using the trapezoidal rule</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.average_precision_score.html#sklearn.metrics.average_precision_score" target="_blank" rel="noopener"><code>metrics.average_precision_score</code></a>(y_true, y_score)</td>
+<td>Compute average precision (AP) from prediction scores</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.balanced_accuracy_score.html#sklearn.metrics.balanced_accuracy_score" target="_blank" rel="noopener"><code>metrics.balanced_accuracy_score</code></a>(y_true, y_pred)</td>
+<td>Compute the balanced accuracy</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.brier_score_loss.html#sklearn.metrics.brier_score_loss" target="_blank" rel="noopener"><code>metrics.brier_score_loss</code></a>(y_true, y_prob[, …])</td>
+<td>Compute the Brier score.</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.classification_report.html#sklearn.metrics.classification_report" target="_blank" rel="noopener"><code>metrics.classification_report</code></a>(y_true, y_pred)</td>
+<td>Build a text report showing the main classification metrics</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.cohen_kappa_score.html#sklearn.metrics.cohen_kappa_score" target="_blank" rel="noopener"><code>metrics.cohen_kappa_score</code></a>(y1, y2[, labels, …])</td>
+<td>Cohen’s kappa: a statistic that measures inter-annotator agreement.</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.confusion_matrix.html#sklearn.metrics.confusion_matrix" target="_blank" rel="noopener"><code>metrics.confusion_matrix</code></a>(y_true, y_pred[, …])</td>
+<td>Compute confusion matrix to evaluate the accuracy of a classification</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.f1_score.html#sklearn.metrics.f1_score" target="_blank" rel="noopener"><code>metrics.f1_score</code></a>(y_true, y_pred[, labels, …])</td>
+<td>Compute the F1 score, also known as balanced F-score or F-measure</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.fbeta_score.html#sklearn.metrics.fbeta_score" target="_blank" rel="noopener"><code>metrics.fbeta_score</code></a>(y_true, y_pred, beta[, …])</td>
+<td>Compute the F-beta score</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.hamming_loss.html#sklearn.metrics.hamming_loss" target="_blank" rel="noopener"><code>metrics.hamming_loss</code></a>(y_true, y_pred[, …])</td>
+<td>Compute the average Hamming loss.</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.hinge_loss.html#sklearn.metrics.hinge_loss" target="_blank" rel="noopener"><code>metrics.hinge_loss</code></a>(y_true, pred_decision[, …])</td>
+<td>Average hinge loss (non-regularized)</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.jaccard_similarity_score.html#sklearn.metrics.jaccard_similarity_score" target="_blank" rel="noopener"><code>metrics.jaccard_similarity_score</code></a>(y_true, y_pred)</td>
+<td>Jaccard similarity coefficient score</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html#sklearn.metrics.log_loss" target="_blank" rel="noopener"><code>metrics.log_loss</code></a>(y_true, y_pred[, eps, …])</td>
+<td>Log loss, aka logistic loss or cross-entropy loss.</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.matthews_corrcoef.html#sklearn.metrics.matthews_corrcoef" target="_blank" rel="noopener"><code>metrics.matthews_corrcoef</code></a>(y_true, y_pred[, …])</td>
+<td>Compute the Matthews correlation coefficient (MCC)</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_curve.html#sklearn.metrics.precision_recall_curve" target="_blank" rel="noopener"><code>metrics.precision_recall_curve</code></a>(y_true, …)</td>
+<td>Compute precision-recall pairs for different probability thresholds</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_recall_fscore_support.html#sklearn.metrics.precision_recall_fscore_support" target="_blank" rel="noopener"><code>metrics.precision_recall_fscore_support</code></a>(…)</td>
+<td>Compute precision, recall, F-measure and support for each class</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.precision_score.html#sklearn.metrics.precision_score" target="_blank" rel="noopener"><code>metrics.precision_score</code></a>(y_true, y_pred[, …])</td>
+<td>Compute the precision</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.recall_score.html#sklearn.metrics.recall_score" target="_blank" rel="noopener"><code>metrics.recall_score</code></a>(y_true, y_pred[, …])</td>
+<td>Compute the recall</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_auc_score.html#sklearn.metrics.roc_auc_score" target="_blank" rel="noopener"><code>metrics.roc_auc_score</code></a>(y_true, y_score[, …])</td>
+<td>Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC) from prediction scores.</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.roc_curve.html#sklearn.metrics.roc_curve" target="_blank" rel="noopener"><code>metrics.roc_curve</code></a>(y_true, y_score[, …])</td>
+<td>Compute Receiver operating characteristic (ROC)</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.zero_one_loss.html#sklearn.metrics.zero_one_loss" target="_blank" rel="noopener"><code>metrics.zero_one_loss</code></a>(y_true, y_pred[, …])</td>
+<td>Zero-one classification loss.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Regression-metrics"><a href="#Regression-metrics" class="headerlink" title="Regression metrics"></a>Regression metrics</h4><p>See the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics" target="_blank" rel="noopener">Regression metrics</a> section of the user guide for further details.</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.explained_variance_score.html#sklearn.metrics.explained_variance_score" target="_blank" rel="noopener"><code>metrics.explained_variance_score</code></a>(y_true, y_pred)</th>
+<th>Explained variance regression score function</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html#sklearn.metrics.mean_absolute_error" target="_blank" rel="noopener"><code>metrics.mean_absolute_error</code></a>(y_true, y_pred)</td>
+<td>Mean absolute error regression loss</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_error.html#sklearn.metrics.mean_squared_error" target="_blank" rel="noopener"><code>metrics.mean_squared_error</code></a>(y_true, y_pred[, …])</td>
+<td>Mean squared error regression loss</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_squared_log_error.html#sklearn.metrics.mean_squared_log_error" target="_blank" rel="noopener"><code>metrics.mean_squared_log_error</code></a>(y_true, y_pred)</td>
+<td>Mean squared logarithmic error regression loss</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.median_absolute_error.html#sklearn.metrics.median_absolute_error" target="_blank" rel="noopener"><code>metrics.median_absolute_error</code></a>(y_true, y_pred)</td>
+<td>Median absolute error regression loss</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score" target="_blank" rel="noopener"><code>metrics.r2_score</code></a>(y_true, y_pred[, …])</td>
+<td>R^2 (coefficient of determination) regression score function.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="Multilabel-ranking-metrics"><a href="#Multilabel-ranking-metrics" class="headerlink" title="Multilabel ranking metrics"></a>Multilabel ranking metrics</h4><p>See the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank" rel="noopener">Multilabel ranking metrics</a> section of the user guide for further details.</p>
+<table>
+<thead>
+<tr>
+<th><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.coverage_error.html#sklearn.metrics.coverage_error" target="_blank" rel="noopener"><code>metrics.coverage_error</code></a>(y_true, y_score[, …])</th>
+<th>Coverage error measure</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.label_ranking_average_precision_score.html#sklearn.metrics.label_ranking_average_precision_score" target="_blank" rel="noopener"><code>metrics.label_ranking_average_precision_score</code></a>(…)</td>
+<td>Compute ranking-based average precision</td>
+</tr>
+<tr>
+<td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.label_ranking_loss.html#sklearn.metrics.label_ranking_loss" target="_blank" rel="noopener"><code>metrics.label_ranking_loss</code></a>(y_true, y_score)</td>
+<td>Compute Ranking loss measure</td>
+</tr>
+</tbody>
+</table>
+<p><strong><font color="red">XGBoost 原理部分参考：</font></strong> <a href="/2018/10/02/get-started-XGBoost/">XGBoost第一课</a></p>
+<h2 id="XGBoost支持的目标函数"><a href="#XGBoost支持的目标函数" class="headerlink" title="XGBoost支持的目标函数"></a>XGBoost支持的目标函数</h2><p>objective参数，这个参数在 XGBoost 里面属于任务参数（Learning Task Parameters）</p>
+<p> [default=reg:linear]</p>
+<ul>
+<li><code>reg:linear</code>: linear regression</li>
+<li><code>reg:logistic</code>: logistic regression</li>
+<li><code>binary:logistic</code>: logistic regression for binary classification, output probability</li>
+<li><code>binary:logitraw</code>: logistic regression for binary classification, output score before logistic transformation</li>
+<li><code>binary:hinge</code>: hinge loss for binary classification. This makes predictions of 0 or 1, rather than producing probabilities.</li>
+<li><code>count:poisson</code> –poisson regression for count data, output mean of poisson distribution 计数问题的poisson回归，输出结果为poisson分布。 <ul>
+<li><code>max_delta_step</code> is set to 0.7 by default in poisson regression (used to safeguard optimization)</li>
+</ul>
+</li>
+<li><code>survival:cox</code>: Cox regression for right censored survival time data (negative values are considered right censored). Note that predictions are returned on the hazard ratio scale (i.e., as HR = exp(marginal_prediction) in the proportional hazard function <code>h(t) = h0(t) * HR</code>).</li>
+<li><code>multi:softmax</code>: set XGBoost to do multiclass classification using the softmax objective, you also need to set num_class(number of classes) 让XGBoost采用softmax目标函数处理多分类问题 </li>
+<li><code>multi:softprob</code>: same as softmax, but output a vector of <code>ndata * nclass</code>, which can be further reshaped to <code>ndata * nclass</code> matrix. The result contains predicted probability of each data point belonging to each class. 和softmax一样，但是输出的是ndata * nclass的向量，可以将该向量<br>  reshape成ndata行nclass列的矩阵。没行数据表示样本所属于每个类别的概率。 </li>
+<li><code>rank:pairwise</code>: Use LambdaMART to perform pairwise ranking where the pairwise loss is minimized</li>
+<li><code>rank:ndcg</code>: Use LambdaMART to perform list-wise ranking where <a href="http://en.wikipedia.org/wiki/NDCG" target="_blank" rel="noopener">Normalized Discounted Cumulative Gain (NDCG)</a> is maximized</li>
+<li><code>rank:map</code>: Use LambdaMART to perform list-wise ranking where <a href="http://en.wikipedia.org/wiki/Mean_average_precision#Mean_average_precision" target="_blank" rel="noopener">Mean Average Precision (MAP)</a> is maximized</li>
+<li><code>reg:gamma</code>: gamma regression with log-link. Output is a mean of gamma distribution. It might be useful, e.g., for modeling insurance claims severity, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Gamma_distribution#Applications" target="_blank" rel="noopener">gamma-distributed</a>.</li>
+<li><code>reg:tweedie</code>: Tweedie regression with log-link. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Tweedie_distribution#Applications" target="_blank" rel="noopener">Tweedie-distributed</a>.</li>
+</ul>
+<h2 id="XGBoost自定义目标函数"><a href="#XGBoost自定义目标函数" class="headerlink" title="XGBoost自定义目标函数"></a>XGBoost自定义目标函数</h2><ul>
+<li>在GBDT训练过程，当每步训练得到一棵树，要调用目标函数得到其梯度作为下一棵树拟合的目标</li>
+<li><p>XGBoost在调用obj函数时会传入两个参数：preds和dtrain</p>
+<ul>
+<li><p>preds为当前模型完成训练时，所有训练数据的预测值</p>
+</li>
+<li><p>dtrain为训练集，可以通过dtrain.get_label()获取训练样本的label</p>
+</li>
+<li><p>同时XGBoost规定目标函数需返回当前preds基于训练label的一阶和二阶梯度</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>例子</strong></p>
+<p>参考官网：<a href="https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py" target="_blank" rel="noopener">https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#user define objective function, given prediction, return gradient and second order gradient</span></span><br><span class="line"><span class="comment">#this is log likelihood loss</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logregobj</span><span class="params">(preds, dtrain)</span>:</span> <span class="comment">#自定义损失函数</span></span><br><span class="line">    labels = dtrain.get_label()</span><br><span class="line">    preds = <span class="number">1.0</span> / (<span class="number">1.0</span> + np.exp(-preds))</span><br><span class="line">    grad = preds - labels <span class="comment">#梯度</span></span><br><span class="line">    hess = preds * (<span class="number">1.0</span>-preds) <span class="comment">#2阶导数</span></span><br><span class="line">    <span class="keyword">return</span> grad, hess</span><br></pre></td></tr></table></figure>
+<p>调用的时候：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure></p>
+<h2 id="XGBoost支持的评价函数"><a href="#XGBoost支持的评价函数" class="headerlink" title="XGBoost支持的评价函数"></a>XGBoost支持的评价函数</h2><p><code>eval_metric</code>参数，这个参数在 XGBoost 里面属于任务参数（Learning Task Parameters）</p>
+<p> [default according to objective]</p>
+<ul>
+<li>Evaluation metrics for validation data, a default metric will be assigned according to objective (rmse for regression, and error for classification, mean average precision for ranking)</li>
+<li>User can add multiple evaluation metrics. Python users: remember to pass the metrics in as list of parameters pairs instead of map, so that latter <code>eval_metric</code> won’t override previous one</li>
+<li>The choices are listed below:<ul>
+<li><code>rmse</code>: <a href="http://en.wikipedia.org/wiki/Root_mean_square_error" target="_blank" rel="noopener">root mean square error</a></li>
+<li><code>mae</code>: <a href="https://en.wikipedia.org/wiki/Mean_absolute_error" target="_blank" rel="noopener">mean absolute error</a></li>
+<li><code>logloss</code>: <a href="http://en.wikipedia.org/wiki/Log-likelihood" target="_blank" rel="noopener">negative log-likelihood</a></li>
+<li><code>error</code>: Binary classification error rate. It is calculated as <code>#(wrong cases)/#(all cases)</code>. For the predictions, the evaluation will regard the instances with prediction value larger than 0.5 as positive instances, and the others as negative instances.</li>
+<li><code>error@t</code>: a different than 0.5 binary classification threshold value could be specified by providing a numerical value through ‘t’.</li>
+<li><code>merror</code>: Multiclass classification error rate. It is calculated as <code>#(wrong cases)/#(all cases)</code>.</li>
+<li><code>mlogloss</code>: <a href="http://scikit-learn.org/stable/modules/generated/sklearn.metrics.log_loss.html" target="_blank" rel="noopener">Multiclass logloss</a>.</li>
+<li><code>auc</code>: <a href="http://en.wikipedia.org/wiki/Receiver_operating_characteristic#Area_under_curve" target="_blank" rel="noopener">Area under the curve</a></li>
+<li><code>aucpr</code>: <a href="https://en.wikipedia.org/wiki/Precision_and_recall" target="_blank" rel="noopener">Area under the PR curve</a></li>
+<li><code>ndcg</code>: <a href="http://en.wikipedia.org/wiki/NDCG" target="_blank" rel="noopener">Normalized Discounted Cumulative Gain</a></li>
+<li><code>map</code>: <a href="http://en.wikipedia.org/wiki/Mean_average_precision#Mean_average_precision" target="_blank" rel="noopener">Mean Average Precision</a></li>
+<li><code>ndcg@n</code>, <code>map@n</code>: ‘n’ can be assigned as an integer to cut off the top positions in the lists for evaluation.</li>
+<li><code>ndcg-</code>, <code>map-</code>, <code>ndcg@n-</code>, <code>map@n-</code>: In XGBoost, NDCG and MAP will evaluate the score of a list without any positive samples as 1. By adding “-” in the evaluation metric XGBoost will evaluate these score as 0 to be consistent under some conditions.</li>
+<li><code>poisson-nloglik</code>: negative log-likelihood for Poisson regression</li>
+<li><code>gamma-nloglik</code>: negative log-likelihood for gamma regression</li>
+<li><code>cox-nloglik</code>: negative partial log-likelihood for Cox proportional hazards regression</li>
+<li><code>gamma-deviance</code>: residual deviance for gamma regression</li>
+<li><code>tweedie-nloglik</code>: negative log-likelihood for Tweedie regression (at a specified value of the <code>tweedie_variance_power</code> parameter)</li>
+</ul>
+</li>
+</ul>
+<h2 id="XGBoost自定义评价函数"><a href="#XGBoost自定义评价函数" class="headerlink" title="XGBoost自定义评价函数"></a>XGBoost自定义评价函数</h2><p>例子参考官网：<a href="https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py" target="_blank" rel="noopener">https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># user defined evaluation function, return a pair metric_name, result</span></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> when you do customized loss function, the default prediction value is margin</span></span><br><span class="line"><span class="comment"># this may make builtin evaluation metric not function properly</span></span><br><span class="line"><span class="comment"># for example, we are doing logistic loss, the prediction is score before logistic transformation</span></span><br><span class="line"><span class="comment"># the builtin evaluation error assumes input is after logistic transformation</span></span><br><span class="line"><span class="comment"># Take this in mind when you use the customization, and maybe you need write customized evaluation function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evalerror</span><span class="params">(preds, dtrain)</span>:</span></span><br><span class="line">    labels = dtrain.get_label()</span><br><span class="line">    <span class="comment"># return a pair metric_name, result. The metric name must not contain a colon (:) or a space</span></span><br><span class="line">    <span class="comment"># since preds are margin(before logistic transformation, cutoff at 0)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'my-error'</span>, float(sum(labels != (preds &gt; <span class="number">0.0</span>))) / len(labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure>
+<p>调用的时候：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure>
+<h2 id="XGBoost参数调优"><a href="#XGBoost参数调优" class="headerlink" title="XGBoost参数调优"></a>XGBoost参数调优</h2><h3 id="XGBoost参数列表"><a href="#XGBoost参数列表" class="headerlink" title="XGBoost参数列表"></a>XGBoost参数列表</h3><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>max_depth</strong></td>
+<td>树的最大深度。树越深通常模型越复杂，更容易过拟合。</td>
+</tr>
+<tr>
+<td><strong>learning_rate</strong></td>
+<td>学习率或收缩因子。学习率和迭代次数／弱分类器数目n_estimators相关。 缺省：0.1</td>
+</tr>
+<tr>
+<td><strong>n_estimators</strong></td>
+<td>弱分类器数目. 缺省:100</td>
+</tr>
+<tr>
+<td>slient</td>
+<td>参数值为1时，静默模式开启，不输出任何信息</td>
+</tr>
+<tr>
+<td>objective</td>
+<td>待优化的目标函数，常用值有： binary:logistic 二分类的逻辑回归，返回预测的概率 multi:softmax 使用softmax的多分类器，返回预测的类别(不是概率)。 multi:softprob 和 multi:softmax参数一样，但是返回的是每个数据属于各个类别的概率。支持用户自定义目标函数</td>
+</tr>
+<tr>
+<td>nthread</td>
+<td>用来进行多线程控制。 如果你希望使用CPU全部的核，那就不用缺省值-1，算法会自动检测它。</td>
+</tr>
+<tr>
+<td>booster</td>
+<td>选择每次迭代的模型，有两种选择： gbtree：基于树的模型，为缺省值。 gbliner：线性模型</td>
+</tr>
+<tr>
+<td><strong>gamma</strong></td>
+<td>节点分裂所需的最小损失函数下降值</td>
+</tr>
+<tr>
+<td><strong>min_child_weight</strong></td>
+<td>叶子结点需要的最小样本权重（hessian）和</td>
+</tr>
+<tr>
+<td>max_delta_step</td>
+<td>允许的树的最大权重</td>
+</tr>
+<tr>
+<td><strong>subsample</strong></td>
+<td>构造每棵树的所用样本比例（样本采样比例），同GBM</td>
+</tr>
+<tr>
+<td><strong>colsample_bytree</strong></td>
+<td>构造每棵树的所用特征比例</td>
+</tr>
+<tr>
+<td><strong>colsample_bylevel</strong></td>
+<td>树在每层每个分裂的所用特征比例</td>
+</tr>
+<tr>
+<td><strong>reg_alpha</strong></td>
+<td>L1/L0正则的惩罚系数</td>
+</tr>
+<tr>
+<td><strong>reg_lambda</strong></td>
+<td>L2正则的惩罚系数</td>
+</tr>
+<tr>
+<td>scale_pos_weight</td>
+<td>正负样本的平衡</td>
+</tr>
+<tr>
+<td>base_score</td>
+<td>每个样本的初始估计，全局偏差</td>
+</tr>
+<tr>
+<td>random_state</td>
+<td>随机种子</td>
+</tr>
+<tr>
+<td>seed</td>
+<td>随机种子</td>
+</tr>
+<tr>
+<td>missing</td>
+<td>当数据缺失时的填补值。缺省为np.nan</td>
+</tr>
+<tr>
+<td>kwargs</td>
+<td>XGBoost Booster的Keyword参数</td>
+</tr>
+</tbody>
+</table>
+<h3 id="参数类别"><a href="#参数类别" class="headerlink" title="参数类别"></a>参数类别</h3><ol>
+<li>通用参数：这部分参数通常我们不需要调整，默认值就好</li>
+<li>学习目标参数：与任务有关，定下来后通常也不需要调整</li>
+<li>booster参数：弱学习器相关参数，需要仔细调整，会影响模型性能 </li>
+</ol>
+<h3 id="通用参数"><a href="#通用参数" class="headerlink" title="通用参数"></a>通用参数</h3><ul>
+<li><p>booster：弱学习器类型</p>
+<ul>
+<li>可选gbtree（树模型）或gbliner（线性模型） 或 dart （参考我的另一篇博文： <a href="/2018/10/02/get-started-XGBoost/">XGBoost第一课</a>）</li>
+<li>默认为gbtree（树模型为非线性模型，能处理更复杂的任务）</li>
+</ul>
+</li>
+<li><p>silent：是否开启静默模式</p>
+<ul>
+<li>1：静默模式开启，不输出任何信息</li>
+<li>默认值为0：输出一些中间信息，以助于我们了解模型的状态</li>
+</ul>
+</li>
+<li><p>nthread：线程数</p>
+<ul>
+<li>默认值为-1，表示使用系统所有CPU核 </li>
+</ul>
+</li>
+</ul>
+<h3 id="学习目标参数"><a href="#学习目标参数" class="headerlink" title="学习目标参数"></a>学习目标参数</h3><ul>
+<li>objective: 损失函数<ul>
+<li>支持分类／回归／排</li>
+</ul>
+</li>
+<li>eval_metric：评价函数</li>
+<li>seed：随机数的种子<ul>
+<li>默认为0</li>
+<li>设置seed可复现随机数据的结果，也可以用于调整参数 </li>
+</ul>
+</li>
+</ul>
+<h3 id="booster参数"><a href="#booster参数" class="headerlink" title="booster参数"></a>booster参数</h3><p>弱学习器的参数，尽管有两种booster可供选择，这里只介绍gbtree</p>
+<ol>
+<li><p>learning_rate : 收缩步长 vs. n_estimators：树的数目</p>
+<ul>
+<li><p>较小的学习率通常意味着更多弱分学习器</p>
+</li>
+<li><p>通常建议学习率较小（ $\eta &lt; 0.1$ ）弱学习器数目n_estimators大 </p>
+<p>   $f_m(x_i)=f_{m-1}(x_i)+\eta\beta_m WeakLearner_m(x_i) $</p>
+</li>
+<li>可以设置较小的学习率，然后用交叉验证确定n_estimators</li>
+</ul>
+</li>
+<li><p>行（subsample）列（colsample_bytree、colsample_bylevel）下采样比例</p>
+<ul>
+<li>默认值均为1，即不进行下采样，使用所有数据</li>
+<li>随机下采样通常比用全部数据的确定性过程效果更好，速度更快</li>
+<li>建议值：0.3 - 0.8</li>
+</ul>
+</li>
+<li><p>树的最大深度： max_depth </p>
+<ul>
+<li>max_depth越大，模型越复杂，会学到更具体更局部的样本 </li>
+<li>需要使用交叉验证进行调优，默认值为6，建议3-10 </li>
+</ul>
+</li>
+<li><p>min_child_weight ：孩子节点中最小的样本权重和 </p>
+<ul>
+<li>如果一个叶子节点的样本权重和小于min_child_weight则分裂过程<br>  结束 </li>
+</ul>
+</li>
+</ol>
+<h3 id="Kaggle竞赛优胜者的建议"><a href="#Kaggle竞赛优胜者的建议" class="headerlink" title="Kaggle竞赛优胜者的建议"></a>Kaggle竞赛优胜者的建议</h3><ul>
+<li><p>Tong He（XGBoost R语言版本开发者）： 三个最重要的参数为：树的数目、树的深度和学习率。建议参数调整策略为： </p>
+<ol>
+<li><p>采用默认参数配置试试 </p>
+</li>
+<li><p>如果系统过拟合了，降低学习率 </p>
+</li>
+<li><p>如果系统欠拟合，加大学习率 </p>
+<p> <strong>油管上作者视频</strong>：<a href="https://www.youtube.com/watch?v=ufHo8vbk6g4" target="_blank" rel="noopener">Kaggle Winning Solution Xgboost Algorithm - Learn from Its Author, Tong He</a></p>
+</li>
+</ol>
+</li>
+<li><p>Owen Zhang （常使用XGBoost）建议： </p>
+<ol>
+<li><p>n_estimators和learning_rate：固定n_estimators为100（数目不大，因为树的深度较大，每棵树比较复杂），然后调整learning_rate </p>
+</li>
+<li><p>树的深度max_depth：从6开始，然后逐步加大 </p>
+</li>
+<li><p>$\text{min_child_weight}={1\over\sqrt{\text{rare_events}}}$ ，其中 rare_events 为稀有事件的数目</p>
+</li>
+<li><p>列采样  ${\text{colsample_bytree}\over \text{colsample_bylevel}}$ ：在 $[0.3,0.5]$ 之间进行网格搜索</p>
+</li>
+<li><p>行采样subsample：固定为1 </p>
+</li>
+<li><p>gamma: 固定为0.0 </p>
+<p> <strong>油管上大神的视频</strong>：<a href="https://www.youtube.com/watch?v=LgLcfZjNF44" target="_blank" rel="noopener">Learn Kaggle techniques from Kaggle #1, Owen Zhang</a></p>
+</li>
+</ol>
+</li>
+</ul>
+<h3 id="参数调优的一般方法"><a href="#参数调优的一般方法" class="headerlink" title="参数调优的一般方法"></a>参数调优的一般方法</h3><ol>
+<li>选择较高的<strong>学习率(learning rate)</strong>，并选择对应于此学习率的理想的<strong>树数量</strong><ul>
+<li>学习率以工具包默认值为0.1。</li>
+<li>XGBoost直接引用函数“cv”可以在每一次迭代中使用交叉验证，并返回理想的树数量（因为交叉验证很慢，所以可以import两种XGBoost：直接引用xgboost（用“cv”函数调整树的数目）和XGBClassifier —xgboost的sklearn包（用GridSearchCV调整其他参数 ）。</li>
+</ul>
+</li>
+<li>对于给定的学习率和树数量，进行<strong>树参数调优</strong>(max_depth,<br> min_child_weight, gamma, subsample, colsample_bytree, colsample_bylevel)</li>
+<li>xgboost的<strong>正则化参数</strong>(lambda, alpha)的调优</li>
+<li>降低学习率，确定理想参数</li>
+</ol>
+<h3 id="XGBoost参数调优案例分析"><a href="#XGBoost参数调优案例分析" class="headerlink" title="XGBoost参数调优案例分析"></a>XGBoost参数调优案例分析</h3><ul>
+<li>竞赛官网：<a href="https://www.kaggle.com/c/otto-group-productclassification-challenge" target="_blank" rel="noopener">Otto Group Product Classification Challenge </a> 是关于电商商品分类的案例，其中</li>
+</ul>
+<ol>
+<li>Target：共9个商品类别</li>
+<li>93个特征：整数型特征 </li>
+</ol>
+<p>详细请看我的jupyter notebook: <a href=""></a></p>
+<ul>
+<li>kaggle Titanic 案例</li>
+</ul>
+<p>详细请看我的jupyter notebook: <a href=""></a></p>
+<h2 id="XGBoost并行处理"><a href="#XGBoost并行处理" class="headerlink" title="XGBoost并行处理"></a>XGBoost并行处理</h2><h3 id="XGBoost工程实现"><a href="#XGBoost工程实现" class="headerlink" title="XGBoost工程实现"></a>XGBoost工程实现</h3><ol>
+<li><p>XGBoost用C++实现，显示地采用OpenMP API做并行处理</p>
+<ul>
+<li><p>建单棵树时并行（Random Forest在建不同树时并行，但Boosting增加树是一个串行操作）</p>
+</li>
+<li><p>XGBoost的scikit-learn接口中的参数 nthread 可指定线程数</p>
+<ul>
+<li>-1 表示使用系统所有的核资源</li>
+<li>model = XGBClassifier(nthread=-1) </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>在准备建树数据时高效（近似建树、稀疏、 Cache、数据分块）</li>
+<li><p>交叉验证也支持并行（由scikit-learn 提供支持） </p>
+<ul>
+<li><p>scikit-learn 支持的k折交叉验证也支持多线程</p>
+<ul>
+<li>cross_val_score() 函数中的参数：n_ jobs = -1 表示使用系统所有的CPU核</li>
+<li>results = cross_val_score(model, X, label_encoded_y, cv=kfold,<br>  scoring= ’neg_log_loss’ , n_jobs=-1, verbose=1) </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>并行处理的三种配置<ul>
+<li>交叉验证并行，XGBoost建树不并行</li>
+<li>交叉验证不并行，XGBoost建树并行</li>
+<li>交叉验证并行，XGBoost建树并行</li>
+</ul>
+</li>
+<li>Otto数据集上的10折交叉验证实验结果：<ul>
+<li>Single Thread XGBoost, Parallel Thread CV: 359.854589</li>
+<li>Parallel Thread XGBoost, Single Thread CV: 330.498101</li>
+<li>Parallel Thread XGBoost and CV: 313.382301，并行 XGBoost 比并行交叉验证好，两者都并行更好 </li>
+</ul>
+</li>
+</ol>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>查看</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># evaluate the effect of the number of threads</span></span><br><span class="line"> results = []</span><br><span class="line"> num_threads = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"> <span class="keyword">for</span> n <span class="keyword">in</span> num_threads:</span><br><span class="line">	start = time.time()</span><br><span class="line">	model = XGBClassifier(nthread=n)</span><br><span class="line">	model.fit(X_train, y_train)</span><br><span class="line">	elapsed = time.time() - start</span><br><span class="line">	print(n, elapsed)</span><br><span class="line">	results.append(elapsed)</span><br></pre></td></tr></table></figure>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548608348576.png" alt="1548608348576"></p>
+<h2 id="XGBoost总结"><a href="#XGBoost总结" class="headerlink" title="XGBoost总结"></a>XGBoost总结</h2><ul>
+<li><p>XGBoost是一个用于监督学习的非参数模型</p>
+<ul>
+<li>目标函数（损失函数、正则项）</li>
+<li>参数（树的每个分支分裂特征及阈值）</li>
+<li>优化：梯度下降</li>
+<li>参数优化<ul>
+<li>决定模型复杂度的重要参数：learning_rate, n_estimators,<br>  max_depth, min_child_weight, gamma, reg_alpha, reg_lamba</li>
+<li>随机采样参数也影响模型的推广性： subsample, colsample_bytree, colsample_bylevel</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>其他未涉及的部分</p>
+<ul>
+<li>分布式XGBoost<ul>
+<li>AWS</li>
+<li>YARN Cluster</li>
+<li>…</li>
+</ul>
+</li>
+<li>GPU加速</li>
+<li>并行计算与内存优化的细节<ul>
+<li>主要关注XGBoost的对外接口</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>XGBoost资源</p>
+<ul>
+<li>XGBoost官方文档：<a href="https://xgboost.readthedocs.io/en/latest/" target="_blank" rel="noopener">https://xgboost.readthedocs.io/en/latest/</a><ul>
+<li>Python API：<a href="http://xgboost.readthedocs.io/en/latest/python/python_api.html" target="_blank" rel="noopener">http://xgboost.readthedocs.io/en/latest/python/python_api.html</a></li>
+</ul>
+</li>
+<li>Github： <a href="https://github.com/dmlc/xgboost" target="_blank" rel="noopener">https://github.com/dmlc/xgboost</a><ul>
+<li>很多有用的资源：<a href="https://github.com/dmlc/xgboost/blob/master/demo/README.md" target="_blank" rel="noopener">https://github.com/dmlc/xgboost/blob/master/demo/README.md</a></li>
+<li>GPU加速：<a href="https://github.com/dmlc/xgboost/blob/master/plugin/updater_gpu/README.md" target="_blank" rel="noopener">https://github.com/dmlc/xgboost/blob/master/plugin/updater_gpu/README.md</a></li>
+</ul>
+</li>
+<li>XGBoost原理：XGBoost: A Scalable Tree Boosting System<ul>
+<li><a href="https://arxiv.org/abs/1603.02754" target="_blank" rel="noopener">https://arxiv.org/abs/1603.02754</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="其他资源"><a href="#其他资源" class="headerlink" title="其他资源"></a>其他资源</h3><ul>
+<li>XGBoost参数调优：<ul>
+<li><a href="https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuningxgboost-with-codes-python/" target="_blank" rel="noopener">https://www.analyticsvidhya.com/blog/2016/03/complete-guide-parameter-tuningxgboost-with-codes-python/</a></li>
+<li>中文版：<a href="http://blog.csdn.net/u010657489/article/details/51952785" target="_blank" rel="noopener">http://blog.csdn.net/u010657489/article/details/51952785</a></li>
+</ul>
+</li>
+<li>Owen Zhang, Winning Data Science Competitions<ul>
+<li><a href="https://www.slideshare.net/OwenZhang2/tips-for-data-sciencecompetitions?from_action=save" target="_blank" rel="noopener">https://www.slideshare.net/OwenZhang2/tips-for-data-sciencecompetitions?from_action=save</a></li>
+</ul>
+</li>
+<li>XGBoost User Group：<ul>
+<li><a href="https://groups.google.com/forum/#!forum/xgboost-user/" target="_blank" rel="noopener">https://groups.google.com/forum/#!forum/xgboost-user/</a> </li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2018/12/18/get_started_feature-engineering.sync-conflict-20201110-195039-EZ6WBL6/" title="从特征工程到XGBoost参数调优">https://snaildove.github.io/2018/12/18/get_started_feature-engineering.sync-conflict-20201110-195039-EZ6WBL6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Machine-Learning-feature-engineering/" rel="tag"><i class="fa fa-tag"></i> Machine Learning.feature engineering</a>
+          
+            <a href="/tags/XGBoost/" rel="tag"><i class="fa fa-tag"></i> XGBoost</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/10/02/get-started-XGBoost.sync-conflict-20201110-195135-EZ6WBL6/" rel="next" title="XGBoost原理和底层实现剖析">
+                <i class="fa fa-chevron-left"></i> XGBoost原理和底层实现剖析
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/12/18/get_started_feature-engineering/" rel="prev" title="从特征工程到XGBoost参数调优">
+                从特征工程到XGBoost参数调优 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#数据科学的一般流程"><span class="nav-text">数据科学的一般流程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#指南"><span class="nav-text">指南</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征工程"><span class="nav-text">特征工程</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#数据分析方法"><span class="nav-text">数据分析方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#histogram-直方图"><span class="nav-text">histogram 直方图</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#outliers-奇异点"><span class="nav-text">outliers 奇异点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#correlation-相关性"><span class="nav-text">correlation 相关性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据类型"><span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类别型特征（-categorical-features）"><span class="nav-text">类别型特征（ categorical features）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日期型特征"><span class="nav-text">日期型特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文本型特征"><span class="nav-text">文本型特征</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据预处理"><span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#特征工程小结"><span class="nav-text">特征工程小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#信息泄漏"><span class="nav-text">信息泄漏</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征工程案例实践"><span class="nav-text">特征工程案例实践</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#评价指标"><span class="nav-text">评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#回归问题的评价指标"><span class="nav-text">回归问题的评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分类任务的评价指标"><span class="nav-text">分类任务的评价指标</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两类分类任务中更多评价指标"><span class="nav-text">两类分类任务中更多评价指标</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Receiver-Operating-Characteristic-ROC"><span class="nav-text">Receiver Operating Characteristic (ROC)</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PR曲线"><span class="nav-text">PR曲线</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Average-Precision"><span class="nav-text">Average Precision</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAP-Mean-Average-Precision"><span class="nav-text">MAP: Mean Average Precision</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#MAP-K-（MAPK）"><span class="nav-text">MAP@K （MAPK）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F1-分数-调和平均"><span class="nav-text">F1 分数&#x2F;调和平均</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Scikit-Learn-Scoring"><span class="nav-text">Scikit-Learn: Scoring</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SciKit-Learn：sklearn-metrics"><span class="nav-text">SciKit-Learn：sklearn.metrics</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Classification-metrics"><span class="nav-text">Classification metrics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Regression-metrics"><span class="nav-text">Regression metrics</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Multilabel-ranking-metrics"><span class="nav-text">Multilabel ranking metrics</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost支持的目标函数"><span class="nav-text">XGBoost支持的目标函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost自定义目标函数"><span class="nav-text">XGBoost自定义目标函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost支持的评价函数"><span class="nav-text">XGBoost支持的评价函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost自定义评价函数"><span class="nav-text">XGBoost自定义评价函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost参数调优"><span class="nav-text">XGBoost参数调优</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost参数列表"><span class="nav-text">XGBoost参数列表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数类别"><span class="nav-text">参数类别</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通用参数"><span class="nav-text">通用参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#学习目标参数"><span class="nav-text">学习目标参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#booster参数"><span class="nav-text">booster参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kaggle竞赛优胜者的建议"><span class="nav-text">Kaggle竞赛优胜者的建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参数调优的一般方法"><span class="nav-text">参数调优的一般方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost参数调优案例分析"><span class="nav-text">XGBoost参数调优案例分析</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost并行处理"><span class="nav-text">XGBoost并行处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#XGBoost工程实现"><span class="nav-text">XGBoost工程实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#例子"><span class="nav-text">例子</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#XGBoost总结"><span class="nav-text">XGBoost总结</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#其他资源"><span class="nav-text">其他资源</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

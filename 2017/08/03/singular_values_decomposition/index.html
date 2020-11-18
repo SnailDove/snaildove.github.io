@@ -1,0 +1,1454 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="linear_algebra," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="前言笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，本文将每一步推导都详细列出来了。 清华大学线性代数2公开课笔记总结 第1讲：正定矩阵第2讲：相似矩阵第3讲：奇异值分解第4讲：线性变换1第5讲：线性变换2第6讲：伪逆第7讲：工程中的矩阵第8讲：图与网络第9讲：Markov矩阵和正矩阵第10讲：Fourier级数第11讲：计算机图像第12讲：复数与复矩阵 正文对角矩阵是我们最喜欢的一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition">
+<meta property="og:url" content="https://snaildove.github.io/2017/08/03/singular_values_decomposition/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="前言笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，本文将每一步推导都详细列出来了。 清华大学线性代数2公开课笔记总结 第1讲：正定矩阵第2讲：相似矩阵第3讲：奇异值分解第4讲：线性变换1第5讲：线性变换2第6讲：伪逆第7讲：工程中的矩阵第8讲：图与网络第9讲：Markov矩阵和正矩阵第10讲：Fourier级数第11讲：计算机图像第12讲：复数与复矩阵 正文对角矩阵是我们最喜欢的一">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/1.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/2.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/3.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/4.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/5.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/6.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/7.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/8.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/9.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/10.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/11.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/12.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/13.png">
+<meta property="article:published_time" content="2017-08-03T12:16:00.000Z">
+<meta property="article:modified_time" content="2020-11-06T03:08:25.644Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="linear_algebra">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2017/08/03/singular_values_decomposition/"/>
+
+
+
+
+
+  <title>Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2017/08/03/singular_values_decomposition/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition</h1>
+        
+
+        <div class="post-meta">
+		  
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>sticky</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-03T20:16:00+08:00">
+                2017-08-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  1,117
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  5
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，<strong>本文将每一步推导都详细列出来了</strong>。</p>
+<p><strong>清华大学线性代数2公开课笔记总结</strong></p>
+<p>第1讲：<a href="https://snaildove.github.io/2017/08/01/positive_definite_matrix/">正定矩阵</a><br>第2讲：<a href="">相似矩阵</a><br>第3讲：<a href="https://snaildove.github.io/2017/08/03/singular_values_decomposition/">奇异值分解</a><br>第4讲：<a href="https://snaildove.github.io/2017/08/04/linear_transformation_1st_part/">线性变换1</a><br>第5讲：<a href="https://snaildove.github.io/2017/08/05/linear_transformation_2nd_part/">线性变换2</a><br>第6讲：<a href="https://snaildove.github.io/2017/08/06/pseudo_inverse/">伪逆</a><br>第7讲：<a href="https://snaildove.github.io/2017/08/07/engineering_matrices/">工程中的矩阵</a><br>第8讲：<a href="https://snaildove.github.io/2017/08/08/graph_and_network/">图与网络</a><br>第9讲：<a href="https://snaildove.github.io/2017/08/06/Markov_matrix/">Markov矩阵和正矩阵</a><br>第10讲：<a href="https://snaildove.github.io/2017/08/02/Fourier_series/">Fourier级数</a><br>第11讲：<a href="https://snaildove.github.io/2017/08/11/computer_graphics/">计算机图像</a><br>第12讲：<a href="https://snaildove.github.io/2017/08/12/complex_and_complex_matrix/">复数与复矩阵</a></p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>对角矩阵是我们最喜欢的一类矩阵，对能够相似于对角阵的矩阵能方便地计算其幂和指数，对不能相似于对角阵的方阵。上节课我们讨论了如何求出其尽可能简单的相似标准形及Jordan标准形以上讨论的都是方阵。那么对m乘n的矩阵我们如何来对它进行对角化呢？</p>
+<p>线性代数中最重要的一类矩阵分解即奇异值分解，从而回答以上的问题。<strong>对角矩阵是我们最喜欢的一类矩阵，因为给定一个对角阵立即就可以得到它的特征值，行列式，幂和指数函数等等。对角矩阵的运算跟我们熟悉的数的运算有很多相似之处，而一个n阶的矩阵相似于对角阵当且仅当它存在着n个线性无关的特征向量。</strong><br><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/1.png" alt="preface_SVD"><br>特别地，实对称矩阵一定会正交相似于对角阵，也就是说给你一个实对称矩阵，一定存在着正交矩阵$Q$把它的列向量记成$v_1$到$v_n$，它能够满足$Q^TAQ$等于$\lambda$，$\lambda$是一个对角阵，它的对角元是$A$的特征值，那么其中$Q$的列向量$v_i$，它是矩阵$A$的属于特征值，$\lambda_i$的特征向量，也就是满足$Av_i$等于$\lambda_iv_i$。我们现在有个问题是说，如果对于$m \times n$的一个矩阵，我们如何来”对角化”它。那么也就是说在什么意义上，我们能够尽可能地。把$m \times n$的一个矩形的阵向对角阵靠拢，今天我们来讨论矩阵的奇异值分解它是线性代数应用中，最重要的一类矩阵分解。</p>
+<h2 id="AA-T-与-A-TA-的特性"><a href="#AA-T-与-A-TA-的特性" class="headerlink" title="$AA^T$与$A^TA$的特性"></a>$AA^T$与$A^TA$的特性</h2><h3 id="AA-T-与-A-TA-的特征值"><a href="#AA-T-与-A-TA-的特征值" class="headerlink" title="$AA^T$与$A^TA$的特征值"></a>$AA^T$与$A^TA$的特征值</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/2.png" alt="1st_property_of_AAT"> </p>
+<h3 id="AA-T-与-A-TA-非0特征值集合"><a href="#AA-T-与-A-TA-非0特征值集合" class="headerlink" title="$AA^T$与$A^TA$非0特征值集合"></a>$AA^T$与$A^TA$非0特征值集合</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/3.png" alt="2nd_property_of_AAT"> </p>
+<h3 id="A-TA-与-AA-T-的特征向量"><a href="#A-TA-与-AA-T-的特征向量" class="headerlink" title="$A^TA$与$AA^T$的特征向量"></a>$A^TA$与$AA^T$的特征向量</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/4.png" alt="orthonormal_eigenvectors_of_AAT"></p>
+<p>令$u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) $，则 $AA^Tu_i=A(A^T\frac{Av_i}{\sigma_i})=A\frac{A^TAv_i}{\sigma_i}=A\frac{\sigma_i^2v_i}{\sigma_i}={\sigma_i}^2{Av_i \over \sigma_i}={\sigma_i}^2u_i$，得出：$AA^Tu_i={\sigma_i}^2u_i$。又因为：${u_i}^T{u_j}=\frac{(Av_i)^T}{\sigma_i}{Av_j \over \sigma_j}={v_i^T(A^TAv_j) \over \sigma_i\sigma_j}=\frac{\sigma_j^2{v_i}^Tv_j}{\sigma_i\sigma_j}={\sigma_j\over \sigma_i}v_i^Tv_j\rightarrow u_i^Tu_j=\begin{cases}0, &amp; i\ne j\ 1, &amp; i=j\end{cases}$故：${u_i|1\le i \le r}$ 是$AA^T$的单位正交特征向量。</p>
+<p>根据假设（$v_1,\,…\,,v_n$是$A^TA$的单位交基，$\sigma_1^2,\,…\,,\sigma_n^2$是$AA^T$的特征值）得：$A^TAv_i=\sigma_i^2v_i(1\le i\le r) \rightarrow v_i^TA^TAv_i=v_i^T\sigma_i^2v_i=\sigma_i^2v_i^Tv_i \rightarrow ||Av_i||^2=\sigma_i^2 \rightarrow|Av_i|=\sigma_i$</p>
+<h3 id="从-AA-T-得出SVD"><a href="#从-AA-T-得出SVD" class="headerlink" title="从$AA^T$得出SVD"></a>从$AA^T$得出SVD</h3><p>$(1)u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) \rightarrow Av_i=\sigma_iu_i\ (2)A^TAv_i={\sigma_i}^2v_i, (i\le i \le r)\rightarrow A^T{Av_i\over \sigma_i}=\sigma_iv_i\rightarrow A^Tu_i=\sigma_iv_i$</p>
+<p>由上式子得：$U$是$A$列空间的一组单位正交基，$V$是$A^T$的列空间的一组单位正交基。$\sigma_i$是$Av_i$的长度，计$\begin{pmatrix}\sigma_1&amp;&amp;&amp;&amp;\&amp;.&amp;&amp;&amp;\&amp;&amp;.&amp;&amp;\&amp;&amp;&amp;.&amp;\&amp;&amp;&amp;&amp;\sigma_r\end{pmatrix}$为$\Sigma$，得：$A_{m\times n}V_{n\times r}=U_{m\times r}\Sigma_{r\times r}\rightarrow A_{m\times n}=U_{m\times r}\Sigma_{r\times r} {V^{-1}}<em>{r\times n}\=U</em>{m\times r}\Sigma_{r\times r} {V^{T}}_{r\times n}$</p>
+<p>向量形式：$A=\sum_{i=1}^r \sigma_i u_i{v_i}^T$</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/5.png" alt="get_svd_from_AAT"></p>
+<h2 id="SVD形式"><a href="#SVD形式" class="headerlink" title="SVD形式"></a>SVD形式</h2><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/6.png" alt="formula_svd"></p>
+<h2 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h2><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/7.png" alt="example_svd"></p>
+<p>求$u_3$两种方法：</p>
+<p>方法1：$AA^Tu_3=\begin{pmatrix}1&amp;0\0&amp;1\1&amp;-1\end{pmatrix}\begin{pmatrix}1&amp;0&amp;1\0&amp;1&amp;-1\end{pmatrix}u_3=\begin{pmatrix}1&amp;0&amp;1\0&amp;1&amp;-1\1&amp;-1&amp;2\end{pmatrix}u_3=0u_3\rightarrow u_3={1\over\sqrt{3}}\begin{pmatrix}1\ -1\ -1\end{pmatrix}$</p>
+<p>方法2：$u_j:=\begin{pmatrix}x\y\z\end{pmatrix}, \sum_{i=1}^{r=3}u_iu_j=0 (i\ne j), ||u_j||^2=1\rightarrow u_{j=3}={1\over\sqrt{3}}\begin{pmatrix}1\ -1\ -1\end{pmatrix}$</p>
+<h2 id="svd几何意义"><a href="#svd几何意义" class="headerlink" title="svd几何意义"></a>svd几何意义</h2><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/8.png" alt="example_geometry_svd"><br><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/9.png" alt="geometry_svd"></p>
+<h2 id="svd应用"><a href="#svd应用" class="headerlink" title="svd应用"></a>svd应用</h2><h3 id="svd与矩阵的四个基本子空间"><a href="#svd与矩阵的四个基本子空间" class="headerlink" title="svd与矩阵的四个基本子空间"></a>svd与矩阵的四个基本子空间</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/10.png" alt="4_subspaces_svd"></p>
+<h3 id="svd与图像压缩"><a href="#svd与图像压缩" class="headerlink" title="svd与图像压缩"></a>svd与图像压缩</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/11.png" alt="img_compression_by_svd"></p>
+<h3 id="奇异值与特征值关系"><a href="#奇异值与特征值关系" class="headerlink" title="奇异值与特征值关系"></a>奇异值与特征值关系</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/12.png" alt="singular_values_and_eigenvalues"></p>
+<h3 id="奇异值与奇异矩阵"><a href="#奇异值与奇异矩阵" class="headerlink" title="奇异值与奇异矩阵"></a>奇异值与奇异矩阵</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/13.png" alt="singular_values"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2017/08/03/singular_values_decomposition/" title="Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition">https://snaildove.github.io/2017/08/03/singular_values_decomposition/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/linear-algebra/" rel="tag"><i class="fa fa-tag"></i> linear_algebra</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/03/singular_values_decomposition.sync-conflict-20201110-205134-EZ6WBL6/" rel="next" title="Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition">
+                <i class="fa fa-chevron-left"></i> Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/04/linear_transformation_1st_part.sync-conflict-20201110-195440-EZ6WBL6/" rel="prev" title="Tsinghua linear-algebra-2 4th-lecture linear-transformation-1st-part">
+                Tsinghua linear-algebra-2 4th-lecture linear-transformation-1st-part <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#正文"><span class="nav-text">正文</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AA-T-与-A-TA-的特性"><span class="nav-text">$AA^T$与$A^TA$的特性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#AA-T-与-A-TA-的特征值"><span class="nav-text">$AA^T$与$A^TA$的特征值</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#AA-T-与-A-TA-非0特征值集合"><span class="nav-text">$AA^T$与$A^TA$非0特征值集合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#A-TA-与-AA-T-的特征向量"><span class="nav-text">$A^TA$与$AA^T$的特征向量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从-AA-T-得出SVD"><span class="nav-text">从$AA^T$得出SVD</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SVD形式"><span class="nav-text">SVD形式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#例题"><span class="nav-text">例题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#svd几何意义"><span class="nav-text">svd几何意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#svd应用"><span class="nav-text">svd应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#svd与矩阵的四个基本子空间"><span class="nav-text">svd与矩阵的四个基本子空间</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#svd与图像压缩"><span class="nav-text">svd与图像压缩</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奇异值与特征值关系"><span class="nav-text">奇异值与特征值关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#奇异值与奇异矩阵"><span class="nav-text">奇异值与奇异矩阵</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

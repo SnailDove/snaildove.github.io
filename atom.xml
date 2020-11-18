@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>SnailDove&#39;s blog</title>
+  
+  <subtitle>蜗牛哥博客</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="https://snaildove.github.io/"/>
+  <updated>2020-10-01T10:21:22.144Z</updated>
+  <id>https://snaildove.github.io/</id>
+  
+  <author>
+    <name>SnailDove</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>《Spark权威指南》的翻译综述</title>
+    <link href="https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-193815-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-193815-EZ6WBL6/</id>
+    <published>2020-02-09T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:22.144Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《Spark权威指南》的翻译综述</title>
+    <link href="https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</id>
+    <published>2020-02-09T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.664Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Paper Google Bigtable 翻译与总结</title>
+    <link href="https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online/"/>
+    <id>https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online/</id>
+    <published>2019-12-30T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.529Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+      <category term="distributed system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    
+      <category term="papers" scheme="https://snaildove.github.io/tags/papers/"/>
+    
+      <category term="google" scheme="https://snaildove.github.io/tags/google/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Paper Google Bigtable 翻译与总结</title>
+    <link href="https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online.sync-conflict-20201110-193815-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online.sync-conflict-20201110-193815-EZ6WBL6/</id>
+    <published>2019-12-30T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:22.038Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+      <category term="distributed system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    
+      <category term="papers" scheme="https://snaildove.github.io/tags/papers/"/>
+    
+      <category term="google" scheme="https://snaildove.github.io/tags/google/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CAP定理图示与Raft各种场景演示</title>
+    <link href="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/"/>
+    <id>https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/</id>
+    <published>2019-12-10T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.552Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。&lt;/p&gt;
+&lt;h2 id=&quot;CAP-定理&quot;&gt;&lt;a href=&quot;#CAP-定理&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+      <category term="distributed-system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>CAP定理图示与Raft各种场景演示</title>
+    <link href="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB.sync-conflict-20201110-194732-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB.sync-conflict-20201110-194732-EZ6WBL6/</id>
+    <published>2019-12-10T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:22.057Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。&lt;/p&gt;
+&lt;h2 id=&quot;CAP-定理&quot;&gt;&lt;a href=&quot;#CAP-定理&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+      <category term="distributed-system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>HyperLogLog估计算法模拟</title>
+    <link href="https://snaildove.github.io/2019/11/14/HyperLogLog/"/>
+    <id>https://snaildove.github.io/2019/11/14/HyperLogLog/</id>
+    <published>2019-11-13T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.490Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;h2 id=&quot;巨人的肩膀&quot;&gt;&lt;a href=&quot;#巨人的肩膀&quot; class=&quot;headerlink&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+      <category term="Redis" scheme="https://snaildove.github.io/tags/Redis/"/>
+    
+      <category term="distributed compute" scheme="https://snaildove.github.io/tags/distributed-compute/"/>
+    
+      <category term="Big Data" scheme="https://snaildove.github.io/tags/Big-Data/"/>
+    
+      <category term="Estimate" scheme="https://snaildove.github.io/tags/Estimate/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 11 Datasets</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.338Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.344Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 11 Datasets</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194319-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194319-EZ6WBL6/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.911Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 14 Distributed Shared Variables</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.354Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 13 Advanced RDDs</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.349Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 14 Distributed Shared Variables</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194755-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194755-EZ6WBL6/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.922Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194922-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194922-EZ6WBL6/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.917Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 13 Advanced RDDs</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194420-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194420-EZ6WBL6/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.920Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 3 A Tour of Spark’s Toolset</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.441Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 3 A Tour of Spark’s Toolset</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-195208-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-195208-EZ6WBL6/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.970Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 10. Spark SQL</title>
+    <link href="https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-10-19T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.333Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 10. Spark SQL</title>
+    <link href="https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194441-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194441-EZ6WBL6/</id>
+    <published>2019-10-19T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.906Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 9 Data Sources</title>
+    <link href="https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194809-EZ6WBL6/"/>
+    <id>https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online.sync-conflict-20201110-194809-EZ6WBL6/</id>
+    <published>2019-10-19T16:00:00.000Z</published>
+    <updated>2020-10-01T10:21:21.989Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qhimw3wxz.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+</feed>

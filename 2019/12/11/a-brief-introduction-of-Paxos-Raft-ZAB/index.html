@@ -1,0 +1,1689 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="distributed-system," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。 CAP 定理根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在2000 年的分布式原理研讨会上提出计算（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（Seth Gilbert ) 和 南希·林奇">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CAP定理图示与Raft各种场景演示">
+<meta property="og:url" content="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。 CAP 定理根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在2000 年的分布式原理研讨会上提出计算（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（Seth Gilbert ) 和 南希·林奇">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://stph.scenari-community.org/bdd/nos1/res/cap-theorem_1.png">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap1.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap2.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap3.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap4.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap5.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap6.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap7.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap8.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap9.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap10.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap11.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap12.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap13.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap14.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap15.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap16.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap17.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap18.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap19.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap20.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap21.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap22.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap23.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap24.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap25.svg">
+<meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap26.svg">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573824877788.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573827965034.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573898788730.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElection.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionDetails.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderRe-election.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionSplit.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication-uncommited.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/NetworkPartitionRecovery.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientUnkown.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientSuccess.gif">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientFailue.gif">
+<meta property="article:published_time" content="2019-12-10T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-11-06T03:08:25.552Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="distributed-system">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://stph.scenari-community.org/bdd/nos1/res/cap-theorem_1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/"/>
+
+
+
+
+
+  <title>CAP定理图示与Raft各种场景演示 | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">CAP定理图示与Raft各种场景演示</h1>
+        
+
+        <div class="post-meta">
+		  
+            <i class="fa fa-thumb-tack"></i>
+            <font color=7D26CD>sticky</font>
+            <span class="post-meta-divider">|</span>
+          
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-11T00:00:00+08:00">
+                2019-12-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  5,597
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  22
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p>本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。</p>
+<h2 id="CAP-定理"><a href="#CAP-定理" class="headerlink" title="CAP 定理"></a>CAP 定理</h2><p>根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/Symposium_on_Principles_of_Distributed_Computing)作为[猜想](https://en.wikipedia.org/wiki/Conjecture" target="_blank" rel="noopener">2000 年的分布式原理研讨会上</a>提出<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/Symposium_on_Principles_of_Distributed_Computing" target="_blank" rel="noopener">计算</a>（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（<a style="color:#0879e3" href="https://en.wikipedia.org/w/index.php?title=Seth_Gilbert&action=edit&redlink=1" target="_blank" rel="noopener">Seth Gilbert</a> ) 和 南希·林奇（<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/Nancy_Lynch" target="_blank" rel="noopener">Nancy Lynch</a>）发表了布鲁尔猜想的正式证明，使之成为一个<a style="color:#0879e3" href="http://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">定理</a>。</p>
+<p><img src="https://stph.scenari-community.org/bdd/nos1/res/cap-theorem_1.png" alt="11122" style="zoom:65%;" /></p>
+<p><a style="color:#0879e3" href="http://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">CAP定理</a>指出分布式计算机系统不可能同时提供以下三个保证（来自<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener"> wiki : CAP Theorum</a>）：</p>
+<ul>
+<li><p><strong>Consistency</strong>: Every read receives the most recent write or an error</p>
+<p>  一致性：每次读取都会收到最新的写入或错误</p>
+</li>
+<li><p><strong>Availability</strong>: Every request receives a (non-error) response, without the guarantee that it contains the most recent write</p>
+<p>  可用性：每个请求都会收到一个（非错误）响应，但不能保证它包含最新的写入</p>
+</li>
+<li><p><strong>Partition tolerance</strong>: The system continues to operate despite an arbitrary number of messages being dropped (or delayed) by the network between nodes</p>
+<p>  分区容错：尽管节点之间的网络丢弃（或延迟）了任意数量的消息，但系统仍继续运行</p>
+</li>
+</ul>
+<p>CAP定理证明详细查看：<a style="color:#0879e3" href="http://lpd.epfl.ch/sgilbert/pubs/BrewersConjecture-SigAct.pdf" target="_blank" rel="noopener">Gilbert和Lynch的论文</a>，以下翻译自<a style="color:#0879e3" href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="noopener">图解CAP定理</a>：</p>
+<h4 id="分布式系统"><a href="#分布式系统" class="headerlink" title="分布式系统"></a>分布式系统</h4><p>让我们考虑一个非常简单的分布式系统。我们的系统由两个服务器 $G_1$ 和 $G_2$ 组成。这两个服务器都跟踪相同的变量 $v_0$，其初始值为 $v_0$。$G_1$ 和 $G_2$ 可以相互通信，也可以与外部客户端通信。这是我们的系统的布局。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap1.svg" alt="img"></p>
+<p>客户端可以请求从任何服务器进行写入和读取。服务器收到请求后，将执行所需的任何计算，然后响应客户端。例如，这是写的样子。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap2.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap3.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap4.svg" alt="img"></p>
+<p>这就是读取的情况。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap5.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap6.svg" alt="img"></p>
+<p>现在我们已经建立了系统，接下来让我们回顾一下对于系统一致性，可用性和分区容错性意味着什么。</p>
+<h4 id="一致性"><a href="#一致性" class="headerlink" title="一致性"></a>一致性</h4><blockquote>
+<p>在写操作完成之后开始的任何读操作必须返回该值，或者以后的写操作的结果 —— Gilbert，Lynch</p>
+</blockquote>
+<p>在一致的系统中，客户端将值写入任何服务器并获得响应后，它希望从其读取的任何服务器取回该值（或更新的值）。</p>
+<p>这是一个<strong>不一致的</strong>系统的示例。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap7.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap8.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap9.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap10.svg" alt="img"><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap11.svg" alt="img"></p>
+<p>我们的客户端写 $v_1$ 至 $G_1$ 和  $G_1$ 确认，但是当它从 $G_2$ 读取时 $G_2$，它将获取旧的数据：$v_0$。</p>
+<p>另一方面，这是一个<strong>一致的</strong>系统的示例。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap12.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap13.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap14.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap15.svg" alt="img"><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap16.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap17.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap18.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap19.svg" alt="img"></p>
+<p>在这个系统中，在向客户端发送确认之前 $G_1$ 将其值复制到 $G_2$ 。因此，当客户端从 $G_2$读取 ，它获取 $v$ 的最新值： $v_1$ 。</p>
+<h4 id="可用性"><a href="#可用性" class="headerlink" title="可用性"></a>可用性</h4><blockquote>
+<p>系统中非故障节点收到的每个请求都必须得到响应 —— Gilbert，Lynch</p>
+</blockquote>
+<p>在可用的系统中，如果我们的客户端向服务器发送请求并且服务器没有崩溃，则服务器最终必须响应客户端。不允许服务器忽略客户端的请求。</p>
+<h4 id="分区容错性"><a href="#分区容错性" class="headerlink" title="分区容错性"></a>分区容错性</h4><blockquote>
+<p>网络将被允许任意丢失从一个节点发送到另一节点的许多消息  —— Gilbert，Lynch</p>
+</blockquote>
+<p>这意味着 $G_1$ 和 $G_2$ 互相发送的任何消息能被删除。如果所有消息都被丢弃，那么我们的系统将如下所示（注：初始值为 $v_0$ ）。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap20.svg" alt="img"></p>
+<p>为了达到分区容错性，我们的系统必须能够在任意网络分区下正常运行。</p>
+<h4 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h4><p>现在我们已经了解了一致性，可用性和分区容错性的概念，我们可以证明一个系统不能同时拥有这三个。</p>
+<p>对于这个矛盾，假设确实存在一个一致，可用且分区容错的系统。我们要做的第一件事是对系统进行分区。看起来像这样。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap21.svg" alt="img"></p>
+<p>接下来，我们有客户端要求 $v_1$ 写入 $G_1$。由于我们的系统可用，因此 $G_1$ 必须响应。由于网络是分区的，因此 $G_1$ 无法将其数据复制到 $G_2$。Gilbert 和 Lynch 将此执行阶段称为 $\alpha_1$。</p>
+<blockquote>
+<p><center><strong>译者附</strong></center><br>原文：”Since the network is partitioned, however, $G_1$ cannot replicate its data to $G_2$.”</p>
+<p>网络<strong>被</strong>分区，比如：中美海底电缆火山喷发断掉了，淘宝电缆被施工方不小心挖掉了，这时候，对于前者美国的所有服务器和中国的所有服务器都是对外可用的，国家内的服务器节点都是互通的，但是中美之间的服务器是不通的，虽然开始阶段所有各个服务器节点都是互通的，那么这时候就发生了<strong>网络分区</strong>。对于后者，国内的情况也同理，各个大区之间也有可能发生网络分区，举例：华东，华北，华南，西北，西南等等。</p>
+</blockquote>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap22.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap23.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap24.svg" alt="img"></p>
+<p>接下来，我们让客户端向 $G_2$ 发出读取请求。同样，由于我们的系统可用，因此 $G_2$ 必须响应。由于网络是分区的，因此 $G_2$ 无法从 $G_1$ 更新其值。返回 $v_0$。Gilbert 和 Lynch 将此执行阶段称为 $\alpha_2$。</p>
+<p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap25.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap26.svg" alt="img"></p>
+<p>客户端已经将 $v_1$ 写至 $G_1$ 之后，$G_2$ 返回 $v_0$ 给客户端。这是不一致的。</p>
+<p>我们假设存在一个一致的，可用的，分区容错的系统，但是我们只是展示了存在任何此类系统执行的情况，其中该系统的行为不一致。因此，不存在这样的系统。</p>
+<blockquote>
+<p><center><strong>译者附</strong></center><br>由于发生了网络分区，此时只能在可用性和一致性之间做一个取舍，比如上文提到的海底电缆断掉，那么为了一致性，停掉中国或者美国服务器节点提供的对外服务，这时候可能所有原本请求国内的服务器节点都得转向去请求美国的服务器节点，但是这时候就降低了可用性，比如：请求的延迟。那么另外一种情况，保持中美服务器节点继续对外服务，那么可用性没有变化，但是就破坏了一致性，因为网络分区以后中美内部服务器节点行为不一致，这样给系统留下的影响（数据，及其间接衍生物：比如算法迭代更新等）是不一样的。</p>
+</blockquote>
+<h2 id="什么是一致性"><a href="#什么是一致性" class="headerlink" title="什么是一致性"></a>什么是一致性</h2><ul>
+<li><p>弱一致性</p>
+<ul>
+<li><p>最终一致性（无法实时获取最新更新的数据，但是一段时间过后，数据是一致的）</p>
+<ol>
+<li><p>DNS(Domain Name System)</p>
+<p> <img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573824877788.png" alt="1572487" style="zoom:80%;" /></p>
+</li>
+<li><p>Gossip(Cassandra的通信协议) </p>
+</li>
+<li><p>优先保证AP（Availability, Partition tolerance）的 CouchDB，Cassandra，DynamoDB，Riak</p>
+</li>
+</ol>
+</li>
+</ul>
+</li>
+<li><p>强一致性</p>
+<ul>
+<li>同步</li>
+<li>Paxos</li>
+<li>Raft（multi-paxos）</li>
+<li>ZAB（multi-paxos） </li>
+</ul>
+</li>
+</ul>
+<h2 id="定义问题"><a href="#定义问题" class="headerlink" title="定义问题"></a>定义问题</h2><ul>
+<li>数据不能存在单个节点上，防止单点故障。</li>
+<li>分布式系统对fault tolerance的一般解决方案是state machine replication。</li>
+<li>本文主题是 state machine replication的共识（consensus）算法。paxos其实是一个共识算法。</li>
+<li>系统的最终一致性，不仅需要达成共识，还会取决于客户端（client）的行为，后文将详细说明。</li>
+</ul>
+<h3 id="一致性模拟"><a href="#一致性模拟" class="headerlink" title="一致性模拟"></a>一致性模拟</h3><h2 id="强一致性算法"><a href="#强一致性算法" class="headerlink" title="强一致性算法"></a>强一致性算法</h2><h3 id="主从同步复制"><a href="#主从同步复制" class="headerlink" title="主从同步复制"></a>主从同步复制</h3><ol>
+<li>只有主节点（master）接受客户端（client）请求。</li>
+<li>由主节点复制日志到多个从节点（slave）。</li>
+<li>主节点（master）等待直到所有从节点（slave）返回成功，才能向客户端返回写成功。</li>
+</ol>
+<p><strong>缺点</strong>：</p>
+<p>任意一个节点失败（master或者某一个slave阻塞）都将导致整个集群不可用，虽然保证了强一致性（Strong Consistency），但是却大大降低了可用性（Weak Availability）。</p>
+<h3 id="多数派"><a href="#多数派" class="headerlink" title="多数派"></a>多数派</h3><p>每次写都保证写入大于 N/2 个节点，每次读都保证大于 N/2 个节点中读，总共 N 个节点。</p>
+<p>主要是为了解决主从同步复制中“所有”节点都得处于正常运转。<strong>缺点</strong>：在并发环境下，无法保证系统正确性，顺序非常重要。例如以下场景：</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573827965034.png" alt="1573827965034"></p>
+<h3 id="Paxos"><a href="#Paxos" class="headerlink" title="Paxos"></a>Paxos</h3><p>Paxos算法是 Lesile Lamport（Latex发明者）提出的一种基于消息传递的分布式一致性算法，于1998年在《The Part-Time Parliament》论文中首次公开，使其获得2013年图灵奖。</p>
+<p>最初的描述使用希腊的一个小岛Paxos作为比喻，描述了Paxos小岛中通过决议的流程，并以此命名这个算法，但是这个描述理解起来比较有挑战性。</p>
+<p>为描述Paxos算法，Lamport虚拟了一个叫做Paxos的希腊小岛，这个小岛按照议会民主制的政治模式制定法律，但是没有人愿意将自己的全部时间精力放在这种事上。所以无论是议员，议长或者传递纸条的服务员都不能承诺别人需要时一定会出现，也无法承诺批准决议或者传递消息的时间。</p>
+<h3 id="Basic-Paxos"><a href="#Basic-Paxos" class="headerlink" title="Basic Paxos"></a>Basic Paxos</h3><h4 id="角色介绍（roles）"><a href="#角色介绍（roles）" class="headerlink" title="角色介绍（roles）"></a><font color="#3399cc">角色介绍（roles）</font></h4><ul>
+<li>client：系统外部角色，请求发起者。像<strong>民众</strong>。</li>
+<li>proposer：<strong>接受client请求，向集群提出提案</strong>（proposal）。并在冲突发生时，起到冲突调节的作用。像议员，替民众提出提案。</li>
+<li>acceptor (voter)：<strong>提案的投票和接收者</strong>，只有在达到法定人数（Quorum，一般即为 majority 多数派）时，提案者提出的提案才会最终被接受。像国会。</li>
+<li>learner：提议接收者，backup，备份，对集群一致性没什么影响。像<strong>记录员</strong>。</li>
+</ul>
+<h4 id="2阶段（phases）的步骤"><a href="#2阶段（phases）的步骤" class="headerlink" title="2阶段（phases）的步骤"></a><font color="#3399cc">2阶段（phases）的步骤</font></h4><p>在这个部分先大致过一遍流程，细节后文说明，形象化描述先把流程走通。</p>
+<ol>
+<li><p>Phase 1a: Prepare</p>
+<p> proposer 提出一个提案，编号为N，此 N 大于这个proposer之前提出的提案编号。向所有 acceptor 请求接受。</p>
+</li>
+<li><p>Phase 1b: Promise</p>
+<p> 如果 N 大于acceptor之前接受的任何提案编号则接受，否则认为此提案是已经提出过的旧提案，直接拒绝。如果 promise 阶段达到了 quorum（法定人数），proposer 这一步成功否则失败。</p>
+</li>
+<li><p>Phase 2a: Accept</p>
+<p> promise 阶段成功以后，proposer 进一步发出accept请求，此请求包含提案编号 （N），以及提案内容（V）。</p>
+</li>
+<li><p>Phase 2b: Accepted</p>
+<p> 如果此acceptor在此期间没有收到任何编号大于 N 的提案否则忽略，且接受的acceptor达到法定人数，则接受此提案内容。因此在这个阶段，编号N的提案也可能失效。</p>
+</li>
+</ol>
+<p>所以由以上可知：跟现实生活中不太一样的地方在于acceptor（voter）不在乎提案内容，在乎提案编号。</p>
+<h4 id="图示流程"><a href="#图示流程" class="headerlink" title="图示流程"></a><font color="#3399cc">图示流程</font></h4><p><strong>Basic Paxos when an Acceptor fails</strong></p>
+<p>在下图中，有1个client，1个proposer，3个acceptor（即法定人数为3）和2个 learner（由2条垂直线表示）。该图表示第一轮成功的情况（即网络中没有进程失败）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer      Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(1,&#123;Va,Vb,Vc&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(1,V)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(1,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+<p>这里 V 是最后的 {Va, Vb, Vc}.</p>
+<p><strong>Basic Paxos when an Acceptor fails</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer      Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |         |          |  |  !       |  |  !! FAIL !!</span><br><span class="line">   |         |&lt;---------X--X          |  |  Promise(1,&#123;Va, Vb, null&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|          |  |  Accept!(1,V)</span><br><span class="line">   |         |&lt;---------X--X---------&gt;|-&gt;|  Accepted(1,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |          |  |</span><br></pre></td></tr></table></figure>
+<p><strong>Basic Paxos when a Proposer fails</strong></p>
+<p>在这种情况下，proposer 在提出值之后但在达成协议之前失败。具体来说，它在Accept消息的中间失败，因此只有一个Acceptor接收到该值。此时由新的proposer（即图中的 NEW LEADER，选举出来的，怎么选举看后面详细分析）。请注意，在这种情况下有2轮（轮从上到下垂直进行）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Client  Proposer        Acceptor     Learner</span><br><span class="line">   |      |             |  |  |       |  |</span><br><span class="line">   X-----&gt;|             |  |  |       |  |  Request</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Promise(1,&#123;Va, Vb, Vc&#125;)</span><br><span class="line">   |      |             |  |  |       |  |</span><br><span class="line">   |      |             |  |  |       |  |  !! Leader fails during broadcast !!</span><br><span class="line">   |      X------------&gt;|  |  |       |  |  Accept!(1,V)</span><br><span class="line">   |      !             |  |  |       |  |</span><br><span class="line">   |         |          |  |  |       |  |  !! NEW LEADER !!</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(2,&#123;V, null, null&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(2,V)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(2,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+<p>新的提案人重新提出此前失败的提案，但是此时提案编号已经增大。</p>
+<p><strong>Basic Paxos when a redundant learner fails</strong></p>
+<p>在以下情况下，（冗余的）学习者之一失败，但是Basic Paxos协议仍然成功。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Client Proposer         Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(1,&#123;Va,Vb,Vc&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(1,V)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(1,V)</span><br><span class="line">   |         |          |  |  |       |  !  !! FAIL !!</span><br><span class="line">   |&lt;---------------------------------X     Response</span><br><span class="line">   |         |          |  |  |       |</span><br></pre></td></tr></table></figure>
+<p><strong>Basic Paxos when multiple Proposers conflict</strong></p>
+<p>潜在问题：多个proposer竞争地提出各自提案，比如一个proposer，假设叫 Mike，提出提案的时候，正在处理第二个阶段却被另一个叫 Tom 的 proposer，打断（即这个提案失效了），因为 Tom 提出更大提案编号的提案，然后被打断的 Mike 重新提出提案，这时刚好也打断了 Tom 提出的提案，而这时候 Tom 的提案刚好也进行到了第二阶段，然后循环反复。这个现象称为：活锁（liveness）或 dueling（竞争）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Client  Proposer       Acceptor     Learner</span><br><span class="line">   |      |             |  |  |       |  |</span><br><span class="line">   X-----&gt;|             |  |  |       |  |  Request</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Promise(1,&#123;null,null,null&#125;)</span><br><span class="line">   |      !             |  |  |       |  |  !! LEADER FAILS</span><br><span class="line">   |         |          |  |  |       |  |  !! NEW LEADER (knows last number was 1)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(2,&#123;null,null,null&#125;)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER recovers</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER tries 2, denied</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Nack(2)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER tries 3</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(3)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Promise(3,&#123;null,null,null&#125;)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! NEW LEADER proposes, denied</span><br><span class="line">   |      |  X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(2,Va)</span><br><span class="line">   |      |  |&lt;---------X--X--X       |  |  Nack(3)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! NEW LEADER tries 4</span><br><span class="line">   |      |  X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(4)</span><br><span class="line">   |      |  |&lt;---------X--X--X       |  |  Promise(4,&#123;null,null,null&#125;)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER proposes, denied</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Accept!(3,Vb)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Nack(4)</span><br><span class="line">   |      |  |          |  |  |       |  |  ... and so on ...</span><br></pre></td></tr></table></figure>
+<h3 id="Multi-Paxos"><a href="#Multi-Paxos" class="headerlink" title="Multi Paxos"></a>Multi Paxos</h3><p>Basic Paxos 除了活锁（liveness），还有2轮RPC效率低下且难以实现的问题。</p>
+<h4 id="Leader"><a href="#Leader" class="headerlink" title="Leader"></a><font color="#3399cc">Leader</font></h4><p>这是新的概念，是“<strong>唯一</strong>”的proposer，所有请求都要经过此 leader。</p>
+<p><strong>Multi-Paxos without failures</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer      Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  | --- First Request ---</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(N)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(N,I,&#123;Va,Vb,Vc&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(N,I,V)   where V &#x3D; last of (Va, Vb, Vc)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(N,I,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+<ul>
+<li>N 表示竞选出来的第 N 任 leader，</li>
+<li>I 表示第 I 个提案</li>
+</ul>
+<p>在这种情况下，新的提案过来，由于使用相同的且唯一的 leader，因此Basic Paxos中包含“Prepare”和“Promise”子阶段的阶段一都可以被跳过。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer       Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |  --- Following Requests ---</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(N,I+1,W)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(N,I+1,W)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+<p>其实Basic Paxos中 prepare 和 promise 阶段可以认为是多个proposer在申请相应编号的提案权，所以会出现活锁（liveness），而在 Multi-Paxos 中由于只有唯一的被竞选出来的leader有提案权，所以就可以省去了阶段一。</p>
+<p><strong>角色精简的 Multi-Paxos </strong></p>
+<p>Multi-Paxos的常见部署包括将 proposer，acceptor 和  learner 的角色精简为为“server”。因此，最后只有“client”和“server”。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client      Servers</span><br><span class="line">   |         |  |  | --- First Request ---</span><br><span class="line">   X--------&gt;|  |  |  Request</span><br><span class="line">   |         X-&gt;|-&gt;|  Prepare(N)</span><br><span class="line">   |         |&lt;-X--X  Promise(N, I, &#123;Va, Vb&#125;)</span><br><span class="line">   |         X-&gt;|-&gt;|  Accept!(N, I, Vn)</span><br><span class="line">   |         X&lt;&gt;X&lt;&gt;X  Accepted(N, I)</span><br><span class="line">   |&lt;--------X  |  |  Response</span><br><span class="line">   |         |  |  |</span><br></pre></td></tr></table></figure>
+<p><strong>角色精简且 leader 稳定的 Multi-Paxos</strong></p>
+<p>因此后面来的提案，就可以简化流程了。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Client      Servers</span><br><span class="line">   X--------&gt;|  |  |  Request</span><br><span class="line">   |         X-&gt;|-&gt;|  Accept!(N,I+1,W)</span><br><span class="line">   |         X&lt;&gt;X&lt;&gt;X  Accepted(N,I+1)</span><br><span class="line">   |&lt;--------X  |  |  Response</span><br><span class="line">   |         |  |  |</span><br></pre></td></tr></table></figure>
+<p>这时候，可以明显看出，只要 leader 稳定，没有经常竞选 leader，那么服务器之间的请求（RPC：远程过程调用）减少了，相应效率也提高了。</p>
+<h3 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h3><h4 id="3个子问题"><a href="#3个子问题" class="headerlink" title="3个子问题"></a><font color="#3399cc">3个子问题</font></h4><ol>
+<li>Leader election</li>
+<li>Log Replication</li>
+<li>Safety</li>
+</ol>
+<h4 id="重新定义角色"><a href="#重新定义角色" class="headerlink" title="重新定义角色"></a><font color="#3399cc">重新定义角色</font></h4><p>任意一个节点可以在不同时期扮演一下三个角色中的一个，因此这里的角色理解可以为状态（state）：</p>
+<ol>
+<li>Leader</li>
+<li>Follower</li>
+<li>Candidate</li>
+</ol>
+<h4 id="原理的动画解释"><a href="#原理的动画解释" class="headerlink" title="原理的动画解释"></a><font color="#3399cc">原理的动画解释</font></h4><p>初始时，集群中所有节点，都是 follower 状态。</p>
+<p>如果 follower 没有收到 leader 的来信，那么他们可以成为 candidate，怎么成为candidate后文会说明。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573898788730.png" style="zoom:68%;" /></p>
+<p><strong>说明：</strong></p>
+<ol>
+<li>term：表示任期，表示节点处在第几任的leader管辖下）</li>
+<li>Vote Count : 投票计数。 </li>
+</ol>
+<p>然后，candidate 从其他节点请求投票，其他节点会用投票进行回复。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElection.gif" alt="1" style="zoom:68%;" /></p>
+<p>如果 candidate 从多数（majority）节点中获得选票，它将成为 leader。这个过程称为<strong>领导人选举（Leader election）</strong>。下面是这个过程的细节：</p>
+<p><strong>在Raft中，有两个超时设置可控制选举</strong>。首先是<u>选举超时（election timeout）</u>。选举超时是指 follower 成为 candidate 之前所等待的时间。选举超时被随机分配在150毫秒至300毫秒之间。选举超时后，follower 将成为 candidate，开始新的选举任期（term），对其进行投票（ballot），然后将“请求投票”消息发送给其他节点。如果接收节点在此期限内尚未投票，则它将为 candidate 投票，节点将重置其选举超时。一旦 candidate  获得多数票（majority），便成为 leader。leader 开始向其 follower 发送“添加条目”消息。这些消息将按<u>心跳超时（heartbeat timeout）</u>指定的时间间隔发送，然后 follower 响应每个追加条目消息。此选举任期将持续到 follower 停止接收心跳并成为 candidate 为止。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionDetails.gif" alt="1" style="zoom:68%;" /></p>
+<p>让我们停止 leader 并观察再次选举，节点B现在是第2届的 leader。需要多数表决才能保证每个任期只能选举一名leader。如果两个节点同时成为 candidate，则“可能”会发生投票表决的分裂。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderRe-election.gif" alt="1" style="zoom:68%;"/></p>
+<p>让我们看一个<strong>投票表决的分裂</strong>的例子。两个节点都开始以相同的任期进行选举，并且每个节点都已经选举超时，并且先获得一个follower。现在，每个 candidate 都有2票，并且在这个任期中将无法获得更多选票。<strong>节点将等待新的选举，然后重试。</strong>节点A在第5届中获得了多数选票，因此成为 leader。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionSplit.gif" alt="1" style="zoom:68%;"/></p>
+<p>系统的所有更改现在都通过领导者。每次更改都将添加为节点日志中的条目。该日志条目当前未提交（uncommitted），因此不会更新节点的值。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication-uncommited.gif" alt="1" style="zoom:68%;"/></p>
+<p>要提交条目，节点首先将其复制到 follower 节点上， 然后 leader 等待，直到大多数（majority）节点都写入了条目，在这期间leader不断发送给follower心跳包，一方面确定集群中各节点是否存活，另一方面也可以知道follower是否写入了条目；现在，该条目已提交到 leader 节点上，并且节点状态为“ 5”；leader 节点然后通知 follower 节点该条目已提交（commited）；现在，集群已就系统状态达成共识（consensus），然后最后再响应给客户端表示成功。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication.gif" alt="1" style="zoom:68%;" /></p>
+<p>此过程称为<strong>日志复制（Log Replication）</strong>。</p>
+<p><strong>面对网络分区</strong>，日志甚至可以保持一致。让我们添加一个分区以将A＆B与C，D＆E分开。由于有了这个分区，我们现在拥有两个术语不同的 leader。让我们添加另一个客户端，并尝试更新两个 leader。一个客户端将尝试将节点B的值设置为“ 3”。节点B无法复制为多数，因此其日志条目保持未提交状态。另一个客户端将尝试将节点E的值设置为“ 8”。这将成功，因为它可以复制到大多数。现在，让我们修复网络分区。节点B将看到更高的任期（term）并退出。节点A和B都将回滚其未提交的条目并匹配新 leader 的日志。现在，我们的日志在整个集群中是一致的。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/NetworkPartitionRecovery.gif" alt="" style="zoom:68%;" /></p>
+<p>这里验证上文 CAP定理中的保证了强一致性和分区容忍，但是分区时，底下两个节点形成的集群(即一个分区)不是多数派(quorum)不具备可用性，但是整个集群依然可用。但是因为 “SET 3” 被删除了，没有写到集群中，所以并没有完全正确虽然保证了一致性。此处跟前文我注明的”译者附””一致：网络分区下，只能选择C A中的一者，这里实验选择了一致性，牺牲了B节点作为另外一个leader的可用性，即降低了可用性：所有客户端只能通过节点成功完成服务。</p>
+<h4 id="场景测试"><a href="#场景测试" class="headerlink" title="场景测试"></a><font color="#3399cc">场景测试</font></h4><p>由以上可知保证一致性并不能代表完全正确。接下来又一个例子将会说明，并到 <a href="https://raft.github.io/" target="_blank" rel="noopener">https://raft.github.io/</a> 网站进行验证。</p>
+<p>假设集群共有5个节点，Client 写请求，leader向follower同步日志，此时急集群中有3个节点失败，2个结点存活，对于客户端得到结果有3种情况。</p>
+<ol>
+<li>unknown（Timeout）</li>
+</ol>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientUnkown.gif" alt="" style="zoom:68%;" /></p>
+<ol start="2">
+<li><p>（超时后）成功</p>
+<p> client 发送给 S5 的请求刚开始，由于只有2个节点存活，因此S4，S5的第二条日志只是虚线（表示未提交），client 此时并不知道，是否请求成功。随后其他节点相继恢复服务，同步了S5的日志，最终client第二条日志写入成功。</p>
+</li>
+</ol>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientSuccess.gif" alt="" style="zoom:68%;" /></p>
+<ol start="3">
+<li><p>（超时后）失败</p>
+<p> client 发送给 S4 的请求刚开始，由于只有2个节点存活，因此S4，S5的索引为2的日志（即第二条内容为2的日志）只是虚线（表示未提交），client 此时并不知道，是否请求成功。此时如果S4，S5停止服务，但是S1，S2，S3恢复服务并且S3为leader，有client向S3发送了另一条请求，而后S4，S5恢复服务，那么此时将抹掉S4，S5的第二条日志。索引为2的日志内容统一为：4，即依然保证集群一致性。</p>
+<p> <img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientFailue.gif" alt="" style="zoom:68%;" /></p>
+</li>
+</ol>
+<p>对于client请求响应是unkown（Timeout），客户端可以跟集群配合来增强可用性，比如：重试机制，但同时带来了副作用——可能重复写入（在超时后成功却重试了）。</p>
+<h3 id="ZAB"><a href="#ZAB" class="headerlink" title="ZAB"></a>ZAB</h3><p>基本上与raft一样。不同点在于名词叫法上不同：ZAB将某一个leader的周期称为 epoch 而不是 term，实现上的不同：raft日志是连续的，心跳方向为leader-&gt;follower，而ZAB相反。</p>
+<h2 id="相关项目实现"><a href="#相关项目实现" class="headerlink" title="相关项目实现"></a>相关项目实现</h2><ol>
+<li><p>Zookeeper（ZAB的实现）</p>
+</li>
+<li><p>etcd（raft的实现）</p>
+</li>
+</ol>
+<h2 id="巨人的肩膀"><a href="#巨人的肩膀" class="headerlink" title="巨人的肩膀"></a>巨人的肩膀</h2><ol>
+<li><u><a style="color:#0879e3" href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">wiki CAP theorem</a></u></li>
+<li><u><a style="color:#0879e3" href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="noopener">an_illustrated_proof_of_the_cap_theorem</a></u></li>
+<li><u><a style="color:#0879e3" href="https://teddyma.gitbooks.io/learncassandra/content/about/the_cap_theorem.html" target="_blank" rel="noopener">The CAP Theorem | Learn Cassandra</a></u></li>
+<li><u><a style="color:#0879e3" href="http://lpd.epfl.ch/sgilbert/pubs/BrewersConjecture-SigAct.pdf" target="_blank" rel="noopener">Gilbert and Lynch’s specification and proof of the CAP Theorem</a></u></li>
+<li><u><a style="color:#0879e3" href="https://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft : Understandable Distributed Consensus</a></u></li>
+<li><p><u><a style="color:#0879e3" href="https://raft.github.io/" target="_blank" rel="noopener">https://raft.github.io/</a></u></p>
+</li>
+<li><p><a href="https://www.youtube.com/watch?v=BhosKsE8up8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=BhosKsE8up8</a> </p>
+</li>
+</ol>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/" title="CAP定理图示与Raft各种场景演示">https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/distributed-system/" rel="tag"><i class="fa fa-tag"></i> distributed-system</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB.sync-conflict-20201110-194732-EZ6WBL6/" rel="next" title="CAP定理图示与Raft各种场景演示">
+                <i class="fa fa-chevron-left"></i> CAP定理图示与Raft各种场景演示
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online.sync-conflict-20201110-193815-EZ6WBL6/" rel="prev" title="Paper Google Bigtable 翻译与总结">
+                Paper Google Bigtable 翻译与总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#CAP-定理"><span class="nav-text">CAP 定理</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分布式系统"><span class="nav-text">分布式系统</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一致性"><span class="nav-text">一致性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#可用性"><span class="nav-text">可用性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分区容错性"><span class="nav-text">分区容错性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#证明"><span class="nav-text">证明</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么是一致性"><span class="nav-text">什么是一致性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#定义问题"><span class="nav-text">定义问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性模拟"><span class="nav-text">一致性模拟</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#强一致性算法"><span class="nav-text">强一致性算法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#主从同步复制"><span class="nav-text">主从同步复制</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多数派"><span class="nav-text">多数派</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Paxos"><span class="nav-text">Paxos</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Paxos"><span class="nav-text">Basic Paxos</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#角色介绍（roles）"><span class="nav-text">角色介绍（roles）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2阶段（phases）的步骤"><span class="nav-text">2阶段（phases）的步骤</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#图示流程"><span class="nav-text">图示流程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Multi-Paxos"><span class="nav-text">Multi Paxos</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Leader"><span class="nav-text">Leader</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Raft"><span class="nav-text">Raft</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#3个子问题"><span class="nav-text">3个子问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#重新定义角色"><span class="nav-text">重新定义角色</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#原理的动画解释"><span class="nav-text">原理的动画解释</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#场景测试"><span class="nav-text">场景测试</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ZAB"><span class="nav-text">ZAB</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关项目实现"><span class="nav-text">相关项目实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#巨人的肩膀"><span class="nav-text">巨人的肩膀</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

@@ -1,0 +1,1491 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Information Theory," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="本文会随着工作学习持续不定期更新 自信息1在信息论中，自信息（英语：self-information），由克劳德·香农提出，是与概率空间中的单一事件或离散随机变量的值相关的信息量的量度。它用信息的单位表示，例如 bit、nat或是hart，使用哪个单位取决于在计算中使用的对数的底。自信息的期望值就是信息论中的熵)，它反映了随机变量采样时的平均不确定程度。 由定义，当信息被拥有它的实体传递给接收它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Information Theory in Machine Learning">
+<meta property="og:url" content="https://snaildove.github.io/2018/03/28/Information_Theory.sync-conflict-20201110-195524-EZ6WBL6/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="本文会随着工作学习持续不定期更新 自信息1在信息论中，自信息（英语：self-information），由克劳德·香农提出，是与概率空间中的单一事件或离散随机变量的值相关的信息量的量度。它用信息的单位表示，例如 bit、nat或是hart，使用哪个单位取决于在计算中使用的对数的底。自信息的期望值就是信息论中的熵)，它反映了随机变量采样时的平均不确定程度。 由定义，当信息被拥有它的实体传递给接收它">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/274722c35d47831844370de1d84367d6454c4964">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/3d16944a4dca14289025fdf821cd7b06a12efea2">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/c8dcb2fb5f00e3711c19a911677d1b77a9a98c76">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/923ed53f8261763c67a088c20230edcef546958f">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/25eed90aee3296309aa14d6abf8c3f1dc62c0323">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/fb594603cfa40c04d95fdfed024d72337d9a57aa">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/ad96d27b76b011b9cb7c41665e3e25edf04b3515">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/67841ec4b4f7e6ab658842ef2f53add46a2debbd">
+<meta property="og:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/f995e60d396ef16491b788a068d1e4cc54ba8fa5">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/Information_Theory/2-1_table.png">
+<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/Information_Theory/2-1_figure.png">
+<meta property="article:published_time" content="2018-03-27T16:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-01T10:21:22.013Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="Information Theory">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://wikimedia.org/api/rest_v1/media/math/render/svg/274722c35d47831844370de1d84367d6454c4964">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2018/03/28/Information_Theory.sync-conflict-20201110-195524-EZ6WBL6/"/>
+
+
+
+
+
+  <title>Information Theory in Machine Learning | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2018/03/28/Information_Theory.sync-conflict-20201110-195524-EZ6WBL6/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Information Theory in Machine Learning</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-03-28T00:00:00+08:00">
+                2018-03-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  4,559
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  20
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><strong>本文会随着工作学习持续不定期更新</strong></p>
+<h2 id="自信息1"><a href="#自信息1" class="headerlink" title="自信息1"></a>自信息<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup></h2><p>在<a href="https://zh.wikipedia.org/wiki/%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">信息论</a>中，<strong>自信息</strong>（英语：self-information），由<a href="https://zh.wikipedia.org/wiki/%E5%85%8B%E5%8B%9E%E5%BE%B7%C2%B7%E5%A4%8F%E8%BE%B2" target="_blank" rel="noopener">克劳德·香农</a>提出，是与概率空间中的单一事件或离散随机变量的值相关的信息量的量度。它用信息的单位表示，例如 <a href="https://zh.wikipedia.org/wiki/%E4%BD%8D%E5%85%83" target="_blank" rel="noopener">bit</a>、<a href="https://zh.wikipedia.org/wiki/%E7%BA%B3%E7%89%B9" target="_blank" rel="noopener">nat</a>或是hart，使用哪个单位取决于在计算中使用的对数的底。<strong>自信息</strong>的期望值就是信息论中的<a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">熵</a>)，它反映了随机变量采样时的平均不确定程度。</p>
+<p>由定义，当信息被拥有它的实体传递给接收它的实体时，仅当接收实体不知道信息的先验知识时信息才得到传递。如果接收实体事先知道了消息的内容，这条消息所传递的信息量就是0。只有当接收实体对消息对先验知识少于100%时，消息才真正传递信息。</p>
+<p>因此，一个随机产生的事件 $\omega _{n}$ 所包含的自信息数量，只与事件发生的机率相关。事件发生的机率越低，在事件真的发生时，接收到的信息中，包含的自信息越大。</p>
+<p>$$<br>{I} (\omega _{n})=f({P} (\omega _{n}))<br>$$</p>
+<p>如果 $P{(\omega _{n})=1}$ ，那么 $I(\omega _{n})=0$。如果 $P (\omega _{n})&lt;1$ ，那么 $I (\omega _{n})&gt;0$ 。</p>
+<p>此外，根据定义，自信息的量度是非负的而且是可加的。如果事件 $C$ 是两个<a href="https://zh.wikipedia.org/wiki/%E7%B5%B1%E8%A8%88%E7%8D%A8%E7%AB%8B%E6%80%A7" target="_blank" rel="noopener">独立</a>事件 $A$ 和 $B$ 的<strong>交集</strong>，那么宣告 $C$ 发生的信息量就等于分别宣告事件 $A$ 和事件的信息量的 $B$ <strong>和</strong>：</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/274722c35d47831844370de1d84367d6454c4964" alt="{\displaystyle \operatorname {I} (C)=\operatorname {I} (A\cap B)=\operatorname {I} (A)+\operatorname {I} (B)}"></p>
+<p>因为  $A$ 和  $B$ 是独立事件，所以 $C$ 的概率为</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/3d16944a4dca14289025fdf821cd7b06a12efea2" alt="{\displaystyle \operatorname {P} (C)=\operatorname {P} (A\cap B)=\operatorname {P} (A)\cdot \operatorname {P} (B)}"></p>
+<p>应用函数 $f(\cdot )$ 会得到</p>
+<p> <img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/c8dcb2fb5f00e3711c19a911677d1b77a9a98c76" alt="{\displaystyle {\begin{aligned}\operatorname {I} (C)&amp;=\operatorname {I} (A)+\operatorname {I} (B)\\f(\operatorname {P} (C))&amp;=f(\operatorname {P} (A))+f(\operatorname {P} (B))\\&amp;=f{\big (}\operatorname {P} (A)\cdot \operatorname {P} (B){\big )}\\\end{aligned}}}"></p>
+<p>所以函数 $f(\cdot )$ 有性质</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/923ed53f8261763c67a088c20230edcef546958f" alt="{\displaystyle f(x\cdot y)=f(x)+f(y)}"></p>
+<p>而对数函数正好有这个性质，不同的底的对数函数之间的区别只差一个常数</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/25eed90aee3296309aa14d6abf8c3f1dc62c0323" alt="{\displaystyle f(x)=K\log(x)}"></p>
+<p>由于事件的概率总是在0和1之间，而信息量必须是非负的，所以 $K&lt;0$ 。考虑到这些性质，假设事件 $\omega _{n}$ 发生的机率是  $P(\omega _{n})$ ，自信息 $I(\omega _{n})$ 的定义就是:</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/fb594603cfa40c04d95fdfed024d72337d9a57aa" alt=""></p>
+<p>事件 $\omega _{n}$ 的概率越小, 它发生后的自信息量越大。</p>
+<p>此定义符合上述条件。在上面的定义中，没有指定的对数的基底：如果以 2 为底，单位是<a href="https://zh.wikipedia.org/wiki/%E4%BD%8D%E5%85%83" target="_blank" rel="noopener">bit</a>。当使用以 e 为底的对数时，单位将是 nat。对于基底为 10 的对数，单位是 hart。</p>
+<p><strong>信息量的大小不同于信息作用的大小，这不是同一概念。信息量只表明不确定性的减少程度，至于对接收者来说，所获得的信息可能事关重大，也可能无足轻重，这是信息作用的大小</strong>。</p>
+<h2 id="信息熵2"><a href="#信息熵2" class="headerlink" title="信息熵2"></a>信息熵<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup></h2><h3 id="熵的计算"><a href="#熵的计算" class="headerlink" title="熵的计算"></a>熵的计算</h3><p>如果有一枚理想的硬币，其出现正面和反面的机会相等，则抛硬币事件的熵等于其能够达到的最大值。我们无法知道下一个硬币抛掷的结果是什么，因此每一次抛硬币都是不可预测的。因此，使用一枚正常硬币进行若干次抛掷，这个事件的熵是一<a href="https://zh.wikipedia.org/wiki/%E4%BD%8D%E5%85%83" target="_blank" rel="noopener">比特</a>，因为结果不外乎两个——正面或者反面，可以表示为<code>0, 1</code>编码，而且两个结果彼此之间相互独立。若进行<code>n</code>次<a href="https://zh.wikipedia.org/wiki/%E7%B5%B1%E8%A8%88%E7%8D%A8%E7%AB%8B%E6%80%A7" target="_blank" rel="noopener">独立实验</a>，则熵为<code>n</code>，因为可以用长度为<code>n</code>的<a href="https://zh.wikipedia.org/w/index.php?title=%E6%AF%94%E7%89%B9%E6%B5%81&amp;action=edit&amp;redlink=1" target="_blank" rel="noopener">比特流</a>表示。<a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA" target="_blank" rel="noopener">[1]</a>#cite_note-crypto-1)但是如果一枚硬币的两面完全相同，那个这个系列抛硬币事件的熵等于零，因为结果能被准确预测。现实世界里，我们收集到的数据的熵介于上面两种情况之间。</p>
+<p>另一个稍微复杂的例子是假设一个<a href="https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F" target="_blank" rel="noopener">随机变量</a><code>X</code>，取三种可能值 $\begin{matrix}x_{1},x_{2},x_{3}\end{matrix}$，概率分别为 $\begin{matrix}{\frac  {1}{2}},{\frac  {1}{4}},{\frac  {1}{4}}\end{matrix}$，那么编码平均比特长度是：$\begin{matrix}{\frac  {1}{2}}\times 1+{\frac  {1}{4}}\times 2+{\frac  {1}{4}}\times 2={\frac  {3}{2}}\end{matrix}$。其熵为3/2。</p>
+<p>因此熵实际是对随机变量的比特量和顺次发生概率相乘再总和的<a href="https://zh.wikipedia.org/wiki/%E6%95%B0%E5%AD%A6%E6%9C%9F%E6%9C%9B" target="_blank" rel="noopener">数学期望</a>。</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>依据Boltzmann’s H-theorem，香农把<a href="https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA%E5%8F%98%E9%87%8F" target="_blank" rel="noopener">随机变量</a><em>X</em>的熵值 Η（希腊字母<a href="https://zh.wikipedia.org/wiki/Eta" target="_blank" rel="noopener">Eta</a>）定义如下，其值域为${x_1, \ldots,  x_n}$ ：</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/ad96d27b76b011b9cb7c41665e3e25edf04b3515" alt=""></p>
+<p>其中，P为<em>X</em>的<a href="https://zh.wikipedia.org/wiki/%E6%A9%9F%E7%8E%87%E8%B3%AA%E9%87%8F%E5%87%BD%E6%95%B8" target="_blank" rel="noopener">概率质量函数</a>（probability mass function），E为<a href="https://zh.wikipedia.org/wiki/%E6%9C%9F%E6%9C%9B" target="_blank" rel="noopener">期望</a>函数，而I(<em>X</em>)是<em>X</em>的信息量（又称为<a href="https://zh.wikipedia.org/wiki/%E8%B3%87%E8%A8%8A%E6%9C%AC%E9%AB%94" target="_blank" rel="noopener">自信息</a>）。I(<em>X</em>)本身是个随机变数。</p>
+<p>当取自有限的样本时，熵的公式可以表示为：</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/67841ec4b4f7e6ab658842ef2f53add46a2debbd" alt=""></p>
+<p>在这里<em>b</em>是<a href="https://zh.wikipedia.org/wiki/%E5%B0%8D%E6%95%B8" target="_blank" rel="noopener">对数</a>所使用的<a href="https://zh.wikipedia.org/wiki/%E5%BA%95%E6%95%B0_(%E5%AF%B9%E6%95%B0" target="_blank" rel="noopener">底</a>)，通常是2,自然常数<a href="https://zh.wikipedia.org/wiki/E_(%E6%95%B0%E5%AD%A6%E5%B8%B8%E6%95%B0" target="_blank" rel="noopener">e</a>)，或是10。当<em>b</em> = 2，熵的单位是<a href="https://zh.wikipedia.org/wiki/%E4%BD%8D%E5%85%83" target="_blank" rel="noopener">bit</a>；当<em>b</em> = e，熵的单位是<a href="https://zh.wikipedia.org/wiki/%E5%A5%88%E7%89%B9_(%E5%8D%95%E4%BD%8D" target="_blank" rel="noopener">nat</a>)；而当<em>b</em> = 10,熵的单位是Hart。</p>
+<p><img src="https://wikimedia.org/api/rest_v1/media/math/render/svg/f995e60d396ef16491b788a068d1e4cc54ba8fa5" alt=""></p>
+<p>$p_i$ = 0时，对于一些 i 值，对应的被加数 $0 log_b 0$ 的值将会是0，这与<a href="https://zh.wikipedia.org/wiki/%E5%87%BD%E6%95%B8%E6%A5%B5%E9%99%90" target="_blank" rel="noopener">极限</a>一致。</p>
+<h2 id="信息论3"><a href="#信息论3" class="headerlink" title="信息论3"></a>信息论<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup></h2><h3 id="2-2-1-熵"><a href="#2-2-1-熵" class="headerlink" title="2.2.1 熵"></a>2.2.1 熵</h3><p> <strong>熵（entropy）</strong> 是信息论的基本概念。如果X是一个离散型随机变量， 取值空间为R， 其概率分布为p（x） ＝P（X＝x） ， x∈R。 那么， X的熵H（X） 定义为式（2-22） ：</p>
+<p>$$<br>H(X)=-\sum\limits_{x\in \mathbf{R}}\mathcal{p(x)log_{2}p(x)} \tag{2-22}<br>$$</p>
+<p>其中， 约定0log0＝0。 H（X） 可以写为H（p） 。 由于在公式（2-22） 中对数以2为底， 该公式定义的熵的单位为二进制位（比特） 。 通常将 $\mathcal{log_2p(x)}$ 简写成 $\mathcal{log\ p(x)}$ 。</p>
+<p>熵又称为<strong>自信息（self-information）</strong> ， 可以视为<u>描述一个随机变量的不确定性的数量</u> 。 它表示信源X每发一个符号（不论发什么符号） 所提供的平均信息量［姜丹， 2001］ 。 一个随机变量的熵越大， 它的不确定性越大， 那么， 正确估计其值的可能性就越小。 越不确定的随机变量越需要大的信息量用以确定其值。</p>
+<p>例2-3 假设a, b, c, d, e, f 6个字符在某一简单的语言中随机出现，每个字符出现的概率分别为： 1/8， 1/4， 1/8， 1/4， 1/8和1/8。 那么， 每个字符的熵为</p>
+<p>$$<br>\begin{align}<br>H(P) &amp;= \sum\limits_{x\in{a,b,c,d,e,f}}P(x)log P(x) \<br>&amp;= - \left[ 4\times\frac{1}{8}+2\times\frac{1}{4}log\frac{1}{4} \right] \<br>&amp;= 2\frac{1}{2}<br>\end{align}<br>$$</p>
+<p>这个结果表明， 我们可以设计一种编码， 传输一个字符平均只需要2.5个比特：</p>
+
+$$
+\text{字符：  a   b     c   d    e      f} \\ \text{编码：100 00 101 01 110 111}
+$$
+
+<p>在只掌握关于未知分布的部分知识的情况下， 符合已知知识的概率分布可能有多个， 但使熵值最大的概率分布最真实地反映了事件的分布情况， 因为熵定义了随机变量的不确定性， 当熵最大时， 随机变量最不确定， 最难准确地预测其行为。 也就是说， 在已知部分知识的前提下，关于未知分布最合理的推断应该是符合已知知识最不确定或最大随机的推断。 最大熵概念被广泛地应用于自然语言处理中， 通常的做法是， 根据已知样本设计特征函数， 假设存在 $k$ 个特征函数 $f_i(i＝1,2, \ldots, k)$ ，它们都在建模过程中对输出有影响， 那么， 所建立的模型应满足所有这些特征的约束， 即所建立的模型p应该属于这k个特征函数约束下所产生的所有模型的集合C。 使熵H（p） 值最大的模型用来推断某种语言现象存在的可能性， 或者作为进行某种处理操作的可靠性依据， 即：</p>
+<p>$$<br>\hat{p}=\underset{p\in C}{\arg max}H(p)<br>$$</p>
+<h3 id="2-2-2-联合熵和条件熵"><a href="#2-2-2-联合熵和条件熵" class="headerlink" title="2.2.2 联合熵和条件熵"></a>2.2.2 联合熵和条件熵</h3><p>如果X， Y是一对离散型随机变量X， Y～p（x, y） ， X， Y的<strong>联合熵（joint entropy）</strong> H（X， Y） 定义为</p>
+<p>$$<br>H(X,Y) = -\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x, y)log\ p(x) \tag{2-23}<br>$$</p>
+<p>联合熵实际上就是<u>描述一对随机变量平均所需要的信息量</u>。给定随机变量X的情况下， 随机变量Y的<strong>条件熵（conditional entropy）</strong> 由式（2-24） 定义：</p>
+<p>$$<br>\begin{align}<br>H(Y|X) &amp;= \sum\limits_{x\in X}p(x)H(Y|X = x) \<br>&amp;= \sum\limits_{x\in X}p(x) \left[ -\sum\limits_{y\in Y} p(y|x)log\ p(y|x) \right] \<br>&amp;= -\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)log\ p(y|x) \tag{2-24}<br>\end{align}<br>$$</p>
+<p>将式（2-23） 中的联合概率log p(x, y) 展开，<br>$$<br>\begin{align}<br>H(X, Y) &amp;= -\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x, y)\mathrm{log}[p(x)p(y|x)] \<br>&amp;= -\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x, y)\mathrm{log}[p(x) + p(y|x)] \<br>&amp;= -\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x, y)\mathrm{log}\ p(x) - \sum\limits_{x\in X}\sum\limits_{y\in Y}p(x, y)\mathrm{log}\ p(y|x) \<br>&amp;= -\sum\limits_{x\in X}p(x)\mathrm{log}\ p(x) - \sum\limits_{x\in X}\sum\limits_{y\in Y}p(x, y)\mathrm{log}\ p(y|x) \<br>&amp;= H(X) + H(Y|X) \tag{2-25}<br>\end{align}<br>$$<br>可得我们称式（2-25） 为<strong>熵的连锁规则（chain rule for entropy）</strong> 。 推广到一般情况， 有<br>$$<br>H(X_1, X_2, \ldots, Xn) ＝ H(X_1) ＋ H(X_2|X_1) + \ldots + H(X_n|X_1, \cdots, X_{n-1})<br>$$</p>
+<p>例2-4 假设某一种语言的字符有元音和辅音两类， 其中， 元音随机变量V＝{a, i, u}， 辅音随机变量C＝{p, t, k}。 如果该语言的所有单词都由辅音-元音（consonant-vowel, C-V） 音节序列组成， 其联合概率分布P（C， V） 如表2-1所示。</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/Information_Theory/2-1_table.png" alt=""></p>
+<p>根据表2-1中的联合概率， 我们不难算出p， t， k， a， i， u这6个字符的边缘概率分别为： 1/8， 3/4， 1/8， 1/2， 1/4， 1/4。 但需要注意的是， 这些边缘概率是基于音节的， 每个字符的概率是其基于音节的边缘概率的1/2， 因此， p， t， k， a， i， u 6个字符中的每个字符的概率值实际上为： 1/16， 3/8， 1/16， 1/4， 1/8， 1/8。<br>现在来求联合熵。 计算联合熵的方法有多种， 以下采用的是连锁规则方法。<br>$$<br>\begin{align}<br>H(C) &amp;= -\sum\limits_{c=p,t,k}p(c)log\ p(c) = -2\times\frac{1}{8}\times log\ \frac{1}{8}-\frac{3}{4}\times log\ \frac{3}{4}\<br>&amp;= \frac{9}{4} - \frac{3}{4}log\ 3\approx 1.061 (\text{比特})<br>\end{align}<br>$$<br>根据表2-1给出的联合概率和边缘概率， 容易计算出条件概率。 例如，<br>$$<br>\begin{align}<br>p(\mathrm{a|p}) =&amp; \frac{p(\mathrm{p,a})}{p(\mathrm{p})} = \frac{1}{16}\times\frac{8}{1}=\frac{1}{2} \<br>p(\mathrm{i|p}) =&amp; \frac{p(\mathrm{p,i})}{p(\mathrm{p})} = \frac{1}{16}\times\frac{8}{1}=\frac{1}{2} \<br>p(\mathrm{u|p}) =&amp; \frac{p(\mathrm{p,u})}{p(\mathrm{p})} = 0<br>\end{align}<br>$$<br>为了简化起见， 我们将条件熵 $\sum\limits_{c=p,t,k}H(V|c) = - \sum\limits_{c=p,t,k}p(V|c)\mathrm{log_2}p(V|c)$ 记为  $H(\frac{1}{2}, \frac{1}{2}, 0)$ 。 其他的情况类似。 因此， 我们得到如下条件熵：<br>$$<br>\begin{align}<br>H(V|C) &amp;= \sum\limits_{c=p,t,k}P(C=c)H(V|C=c) \<br>&amp;= \frac{1}{8}H(\frac{1}{2}, \frac{1}{2}, 0) + \frac{3}{4}H(\frac{1}{2}, \frac{1}{4}, \frac{1}{4}) + \frac{1}{8}H(\frac{1}{2}, 0, \frac{1}{2}) \<br>&amp;= \frac{11}{8} = 1.375(\text{比特})<br>\end{align}<br>$$<br>因此，<br>$$<br>\begin{align}<br>H(C, V) &amp;= H(C) + H(V|C) \<br>&amp;= \frac{9}{4} - \frac{3}{4}log3 + \frac{11}{8} \approx 2.44(\text{比特})<br>\end{align}<br>$$<br>一般地， 对于一条长度为n的信息， 每一个字符或字的熵为<br>$$<br>H_{rate}=\frac{1}{n}H(X_{1n}) = -\frac{1}{n}\sum\limits_{x_{1n}}p(x_{1n})\mathrm{log}\,p(x_{1n}) \tag{2-26}<br>$$<br>这个数值称为<strong>熵率（entropy rate）</strong> 。 其中， 变量 $X_{1n}$ 表示随机变量序列 $(X_1, X_2, \ldots, X_n),  x_{1n}＝(x_1, x_2, \ldots, x_n)$ 。 以后我们采用类似的符号标记。</p>
+<p>如果假定一种语言是由一系列符号组成的随机过程， $L＝(X_i)$ ，例如， 某报纸的一批语料， 那么， 我们可以定义这种语言L的熵作为其随机过程的熵率， 即<br>$$<br>H_{rate}(L) = \lim_{n\rightarrow\infty}{1\over n}H(X_1, X_2, \cdots, X_n) \tag{2-27}<br>$$<br>我们之所以把语言L的熵率看作语言样本熵率的极限， 因为理论上样本可以无限长。</p>
+<h3 id="2-2-3-互信息"><a href="#2-2-3-互信息" class="headerlink" title="2.2.3 互信息"></a>2.2.3 互信息</h3><p>根据熵的连锁规则， 有<br>$$<br>H(X, Y) ＝H(X) ＋H(Y|X) ＝H(Y) ＋H(X|Y)<br>$$<br>因此，<br>$$<br>H(X) - H(X|Y) ＝H(Y) - H(Y|X)<br>$$<br>这个差叫做X和Y的<strong>互信息（mutual information, MI）</strong> ， 记作I（X； Y） 。或者定义为： 如果（X， Y） ～p（x, y） ， 则X， Y之间的互信息 I（X；Y） ＝H（X）- H（X|Y） 。</p>
+<p><u>I(X; Y) 反映的是在知道了Y的值以后X的不确定性的减少量。 可以理解为Y的值透露了多少关于X的信息量</u>。互信息和熵之间的关系可以用图2-1表示。</p>
+<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpages/Information_Theory/2-1_figure.png" alt=""></p>
+<p>如果将定义中的H（X） 和H（X|Y） 展开， 可得<br>$$<br>\begin{align}<br>I(X;Y) &amp;= H(X)-H(X|Y) \<br>&amp;= H(X) + H(Y) - H(X,Y) \<br>&amp;= \sum\limits_{x}p(x)\mathrm{log}\frac{1}{p(x)} + \sum\limits_{y}\mathrm{log}\frac{1}{p(y)} + \sum\limits_{x,y}p(x,y)\mathrm{log}\,p(x,y) \<br>&amp;= \sum\limits_{x, y}p(x,y)\mathrm{log}\frac{p(x,y)}{p(x)p(y)} \tag{2-28}<br>\end{align}<br>$$</p>
+<p>由于H（X|X） ＝0， 因此，<br>$$<br>H(X) ＝H(X) -H(X|X) ＝I(X;X)<br>$$<br>这一方面<u>说明了为什么熵又称为自信息， 另一方面说明了两个完全相互依赖的变量之间的互信息并不是一个常量， 而是取决于它们的熵</u>。</p>
+<p>实际上， <u>互信息体现了两变量之间的依赖程度： 如果  $I(X; Y) \gg 0$ ， 表明X和Y是高度相关的； 如果 $I(X; Y) = 0$ ， 表明X和Y是相互独立的； 如果 $I(X; Y) \ll 0$ ， 表明Y的出现不但未使X的不确定性减小， 反而增大了 X的不确定性， 常是不利的</u> 。 平均互信息量是非负的。同样， 我们可以推导出<strong>条件互信息和互信息的连锁规则</strong>：<br>$$<br>I(X;Y|Z) = I((X;Y)|Z) = H(X|Z) - H(X|Y,Z) \tag{2-29}<br>$$</p>
+<p>$$<br>\begin{align}<br>I(X_{1n};Y) &amp;= I(X_1,Y) + \cdots + I(X_n;Y|X_1, \cdots , X_{n-1}) \<br>&amp;= \sum\limits_{i=1}I(X_i;Y|X_1,\cdots,X_{i-1}) \tag{2-30}<br>\end{align}<br>$$</p>
+<p>互信息在词汇聚类（word clustering） 、 汉语自动分词、 词义消歧等问题的研究中具有重要用途。</p>
+<h3 id="2-2-4-相对熵"><a href="#2-2-4-相对熵" class="headerlink" title="2.2.4 相对熵"></a>2.2.4 相对熵</h3><p><strong>相对熵（relative entropy）</strong> 又称<strong>Kullback-Leibler差异（KullbackLeibler divergence）</strong> ， 或简称<strong>KL距离</strong>， 是<u>衡量相同事件空间里两个概率分布相对差距的测度</u>。 两个概率分布p（x） 和q（x） 的相对熵定义为<br>$$<br>D(p|q) = \sum\limits_{x\in X}p(x)log\frac{p(x)}{q(x)} \tag{2-31}<br>$$<br>该定义中约定 $0\mathrm{log}(0/q) ＝0, p\mathrm{log}(p/0) ＝\infty$ 。 表示成期望值为<br>$$<br>D(p|q) = E_p\left(\mathrm{log}\frac{p(x)}{q(x)}\right) \tag{2-32}<br>$$<br>显然， <u>当两个随机分布完全相同时， 即p＝q， 其相对熵为0。 当两个随机分布的差别增加时， 其相对熵期望值也增大</u>。</p>
+<p>互信息实际上就是衡量一个联合分布与独立性差距多大的测度：<br>$$<br>I(X;Y)=D(p(x,y)|p(x)p(y)) \tag{2-33}<br>$$<br>证明：<br>$$<br>\begin{align}<br>I(X,Y)&amp;=H(X)-H(X|Y) \<br>&amp;=-\sum\limits_{x\in X}p(x)\mathrm{log}\,p(x)+\sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)\mathrm{log}\,p(x|y) \<br>&amp;= \sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)\mathrm{log}\frac{p(x|y)}{p(x)} \<br>&amp;= \sum\limits_{x\in X}\sum\limits_{y\in Y}p(x,y)\mathrm{log}\frac{p(x,y)}{p(x)p(y)} \<br>&amp;= D(p(x,y)|p(x)p(y))<br>\end{align}<br>$$<br>同样， 我们也可以推导出条件相对熵和相对熵的连锁规则：<br>$$<br>D(p(y|x)|q(y|x)) =\sum\limits_{x}p(x)\sum\limits_{y}p(y|x)\mathrm{log}\frac{p(y|x)}{q(y|x)} \tag{2-34}<br>$$</p>
+<p>$$<br>D(p(x,y)|q(x,y))=D(p(x)|q(x))+D(p(y|x)|q(y|x)) \tag{2-35}<br>$$</p>
+<h3 id="2-2-5-交叉熵"><a href="#2-2-5-交叉熵" class="headerlink" title="2.2.5 交叉熵"></a>2.2.5 交叉熵</h3><p>根据前面熵的定义， 知道熵是一个不确定性的测度， 也就是说， 我们对于某件事情知道得越多， 那么， 熵就越小， 因而对于试验的结果我们越不感到意外。 <u>交叉熵的概念就是用来衡量估计模型与真实概率分布之间差异情况的</u>。如果一个随机变量X～p（x） ， q（x） 为用于近似p（x） 的概率分布， 那么， 随机变量X和模型q之间的<strong>交叉熵（cross entropy）</strong> 定义为<br>$$<br>\begin{align}<br>H(X,q) &amp;= H(X)+D(p|q) \<br>&amp;=-\sum\limits_{x}p(x)\mathrm{log}q(x) \<br>&amp;= E_p\left(\mathrm{log}\frac{1}{q(x)}\right) \tag{2-36}<br>\end{align}<br>$$<br>由此， 可以定义语言 $L＝(X_i) \sim p(x)$ 与其模型q的交叉熵为<br>$$<br>H(L,q)=-\lim_{n\rightarrow \infty}\frac{1}{n}\sum\limits_{x_1^n}\mathrm{x_1^n} \tag{2-37}<br>$$<br>其中， $X_1^n＝x_1, x_2, \ldots , x_n$ ，为 L 的语句， $p(X_1^n)$ 为 L 中 $X_1^n$ 的概率，$q(X_1^n)$ 为模型 q 对 $X_1^n$ 的概率估计。 至此， 仍然无法计算这个语言的交叉熵， 因为我们并不知道真实概率 $p(X_1^n)$ ， 不过可以假设这种语言是“理想”的， 即n趋于无穷大时， 其全部“单词”的概率和为1。 也就是说， 根据信息论的定理： 假定语言L是稳态（stationary） 遍历的（ergodic） 随机过程， L与其模型q的交叉熵计算公式就变为<br>$$<br>H(L,q)=-\lim_{n\rightarrow\infty}\frac{1}{n}\mathrm{log}q(x_1^n) \tag{2-38}<br>$$<br>由此， 可以根据模型q和一个含有大量数据的L的样本来计算交叉熵。 在设计模型q时， 目的是使交叉熵最小， 从而使模型最接近真实的概率分布p（x） 。 一般地， 在n足够大时我们近似地采用如下计算方法：<br>$$<br>H(L, q) \approx -\frac{1}{n}\mathrm{log}q(x_1^n) \tag{2-39}<br>$$<br><u>交叉熵与模型在测试语料中分配给每个单词的平均概率所表达的含义正好相反， 模型的交叉熵越小， 模型的表现越好。</u></p>
+<h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style:none; padding-left: 0;"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">1.</span><span style="display: inline-block; vertical-align: top;"><a href="https://zh.wikipedia.org/wiki/%E8%87%AA%E4%BF%A1%E6%81%AF" target="_blank" rel="noopener">wkipedia 自信息</a></span><a href="#fnref:1" rev="footnote"> ↩</a></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">2.</span><span style="display: inline-block; vertical-align: top;"><a href="https://zh.wikipedia.org/wiki/%E7%86%B5_(%E4%BF%A1%E6%81%AF%E8%AE%BA)" target="_blank" rel="noopener">wikipedia 信息熵</a></span><a href="#fnref:2" rev="footnote"> ↩</a></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px;">3.</span><span style="display: inline-block; vertical-align: top;"><a href="https://book.douban.com/subject/25746399/" target="_blank" rel="noopener">统计自然语言处理，第2版，宗庆成</a></span><a href="#fnref:3" rev="footnote"> ↩</a></li></ol></div></div>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2018/03/28/Information_Theory.sync-conflict-20201110-195524-EZ6WBL6/" title="Information Theory in Machine Learning">https://snaildove.github.io/2018/03/28/Information_Theory.sync-conflict-20201110-195524-EZ6WBL6/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Information-Theory/" rel="tag"><i class="fa fa-tag"></i> Information Theory</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/28/Information_Theory/" rel="next" title="Information Theory in Machine Learning">
+                <i class="fa fa-chevron-left"></i> Information Theory in Machine Learning
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2018/04/01/01_ml-strategy-1.sync-conflict-20201110-195217-EZ6WBL6/" rel="prev" title="01_ml-strategy-1">
+                01_ml-strategy-1 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#自信息1"><span class="nav-text">自信息1</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息熵2"><span class="nav-text">信息熵2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#熵的计算"><span class="nav-text">熵的计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#定义"><span class="nav-text">定义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#信息论3"><span class="nav-text">信息论3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-1-熵"><span class="nav-text">2.2.1 熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-2-联合熵和条件熵"><span class="nav-text">2.2.2 联合熵和条件熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-3-互信息"><span class="nav-text">2.2.3 互信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-4-相对熵"><span class="nav-text">2.2.4 相对熵</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-5-交叉熵"><span class="nav-text">2.2.5 交叉熵</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#引用"><span class="nav-text">引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>

@@ -1,0 +1,1997 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="en">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-flash.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="probability," />
+
+
+
+
+  
+
+
+  <link rel="alternate" href="/atom.xml" title="SnailDove's blog" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\m">
+<meta property="og:type" content="article">
+<meta property="og:title" content="经典摘录-正态随机变量">
+<meta property="og:url" content="https://snaildove.github.io/2017/08/27/normal_random_variables/index.html">
+<meta property="og:site_name" content="SnailDove&#39;s blog">
+<meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\m">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png">
+<meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png">
+<meta property="article:published_time" content="2017-08-27T12:16:00.000Z">
+<meta property="article:modified_time" content="2020-11-06T03:08:25.623Z">
+<meta property="article:author" content="SnailDove">
+<meta property="article:tag" content="probability">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":5,"b2t":false,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideLeftIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://snaildove.github.io/2017/08/27/normal_random_variables/"/>
+
+
+
+
+
+  <title>经典摘录-正态随机变量 | SnailDove's blog</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?9385c404e3043551a2c60f0d9b0b3113";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">SnailDove's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">蜗牛哥博客</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            Archives
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-sitemap">
+          <a href="/sitemap.xml%20" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-sitemap"></i> <br />
+            
+            Sitemap
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="Searching..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2017/08/27/normal_random_variables/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="SnailDove">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="SnailDove's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">经典摘录-正态随机变量</h1>
+        
+
+        <div class="post-meta">
+		  
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-08-27T20:16:00+08:00">
+                2017-08-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E4%B8%AD%E6%96%87/" itemprop="url" rel="index">
+                    <span itemprop="name">中文</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-eye"></i>
+                  <span class="post-meta-item-text">Hits</span>
+              <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article</span>
+                
+                <span title="Words count in article">
+                  2,354
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  11
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <script src="/assets/js/APlayer.min.js"> </script><p><strong>说明</strong>：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a> 3.3 normal random variables</p>
+<h2 id="正态随机变量"><a href="#正态随机变量" class="headerlink" title="正态随机变量"></a>正态随机变量</h2><p>如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。<br>$$<br>f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}<br>$$<br>其中 $u$ 和 $\sigma$ 是密度函数的两个参数，$\sigma$ 还必须是正数。可以证明，$f_X(x)$ 满足下面的概率密度函数的归一化条件（见本章关于定理的习题）：<br>$$<br>\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx=1<br>$$<br>下图是正态分布的密度函数和分布函数 $(\mu=1 \text{ 和 } \sigma^2=1)$ 。</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png" alt="A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1"></p>
+<p>由图可以看出，正态随机变量的概率密度函数是相对于均值 $\mu$ 对称的钟形曲线。当 $x$ 离开 $\mu$ 的时候，概率密度函数的表达式中的项 $e^{\frac{-(x-\mu)^2}{2\sigma^2}}$ 很快地下降。在图中，概率密度函数在区间 $[-1,3]$ 之外非常接近 $0$ 。</p>
+<p>正态随机变量的均值和方差可由下列式子给出：<br>$$<br>E[X]=\mu,\quad var(X)=\sigma^2<br>$$<br>由于 $X$ 的概率密度函数相对于 $\mu$ 对称，其均值只能是 $\mu$ 。至于方差的公式，一句定义得：<br>$$<br>var(X)=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}(x-\mu)^2e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx<br>$$<br>将公式中的积分作积分变量替换 $y=\frac{(x-\mu)}{\sigma}$ 以及分布积分得到：<br>$$<br>\begin{eqnarray}<br>var(X) &amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}y^2e^{-\frac{y^2}{2}}dy \<br>&amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}(-ye^{-\frac{y^2}{2}})|^{+\infty}<em>{-\infty}+\frac{\sigma^2}{\sqrt{2\pi}}\int</em>{-\infty}^{+\infty}e^{\frac{y^2}{2}}dy \<br>&amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy \<br>&amp;=&amp; \sigma^2<br>\end{eqnarray}<br>$$<br>上面最后的等式，是由于<br>$$<br>\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy=1<br>$$<br>这个公式正好是当 $\mu=0$ 和 $\sigma^2=1$ 的时候的正态随机变量的概率密度函数的归一化条件，在本章习题第14题得以证明，截图如下：</p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png" alt="the_normal_PDF_satisfies_the_normalization_property"></p>
+<p>正态随机变量具有若干重要的性质。下面的性质尤其重要，并且将在 第四章 Further Topics<br>on Random Variables 的第一节加以证明。</p>
+<h3 id="随机变量的正态性在线性变换之下保持不变"><a href="#随机变量的正态性在线性变换之下保持不变" class="headerlink" title="随机变量的正态性在线性变换之下保持不变"></a>随机变量的正态性在线性变换之下保持不变</h3><p>设 $X$ 是正态随机变量，其均值为 $\mu$ ，方差为 $\sigma^2$ 。若 $a\ne 0$ 和 $b$ 为两个常数，则随机变量<br>$$<br>Y=aX+b<br>$$<br>仍然是正态随机变量，其均值和方差由下式定义给出：<br>$$<br>E[Y]=a\mu+b,\quad var(Y)=a^2\sigma^2<br>$$</p>
+<h2 id="标准正态随机变量"><a href="#标准正态随机变量" class="headerlink" title="标准正态随机变量"></a>标准正态随机变量</h2><p>设正态随机变量 $Y$ 的期望为 $0$ ，方差为 $1$，则 $Y$ 称为标准正态随机变量。以 $\Phi$ 记为它的 CDF ：<br>$$<br>\Phi(y)=P(Y\le y)=P(Y&lt; y)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{y}e^{\frac{-t^2}{2}}dt<br>$$<br>通常将它的值列成一个表——标准正态累积分布表（见下表：），这是计算有关正态随机变量的概率的重要的工具。标准正态表的每一项提供了 $\Phi(y)=P(Y\le y)$ 的数值，这里 $Y$ 是一个正态随机变量，这个表中 $y\in [0,4.09]$ 。怎么使用这个表呢？举例，为了查找 $\Phi(1.71)$ 的值，查看关于 $1.7$ 所在的行和 $0.01$ 所在的列，得到 $\Phi(1.71)=0.95637$ 。</p>
+<p>注意到下表只列出当 $y &gt; 0， \Phi(y) $ 的值，可以利用标准正态随机变量的概率密度函数的对称性，可将 $y &lt; 0$ 时 $\Phi(y)$ 的值推导出来。例如：<br>$$<br>\begin{eqnarray}<br>\Phi(-0.5) &amp;=&amp; P(Y\le -0.5)=P(Y\ge 0.5)=1-P(Y &lt; 0.5) \<br>&amp;=&amp; 1- \Phi(0.5) = 1-0.69146=0.30854<br>\end{eqnarray}<br>$$<br>可推广<br>$$<br>\forall\ y&gt;0, \Phi(-y)=1-\Phi(y)<br>$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">y</th>
+<th style="text-align:center">+0.00</th>
+<th style="text-align:center">+0.01</th>
+<th style="text-align:center">+0.02</th>
+<th style="text-align:center">+0.03</th>
+<th style="text-align:center">+0.04</th>
+<th style="text-align:center">+0.05</th>
+<th style="text-align:center">+0.06</th>
+<th style="text-align:center">+0.07</th>
+<th>+0.08</th>
+<th>+0.09</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">0.0</td>
+<td style="text-align:center">0.50000</td>
+<td style="text-align:center">0.50399</td>
+<td style="text-align:center">0.50798</td>
+<td style="text-align:center">0.51197</td>
+<td style="text-align:center">0.51595</td>
+<td style="text-align:center">0.51994</td>
+<td style="text-align:center">0.52392</td>
+<td style="text-align:center">0.52790</td>
+<td>0.53188</td>
+<td>0.53586</td>
+</tr>
+<tr>
+<td style="text-align:center">0.1</td>
+<td style="text-align:center">0.53983</td>
+<td style="text-align:center">0.54380</td>
+<td style="text-align:center">0.54776</td>
+<td style="text-align:center">0.55172</td>
+<td style="text-align:center">0.55567</td>
+<td style="text-align:center">0.55966</td>
+<td style="text-align:center">0.56360</td>
+<td style="text-align:center">0.56749</td>
+<td>0.57142</td>
+<td>0.57535</td>
+</tr>
+<tr>
+<td style="text-align:center">0.2</td>
+<td style="text-align:center">0.57926</td>
+<td style="text-align:center">0.58317</td>
+<td style="text-align:center">0.58706</td>
+<td style="text-align:center">0.59095</td>
+<td style="text-align:center">0.59483</td>
+<td style="text-align:center">0.59871</td>
+<td style="text-align:center">0.60257</td>
+<td style="text-align:center">0.60642</td>
+<td>0.61026</td>
+<td>0.61409</td>
+</tr>
+<tr>
+<td style="text-align:center">0.3</td>
+<td style="text-align:center">0.61791</td>
+<td style="text-align:center">0.62172</td>
+<td style="text-align:center">0.62552</td>
+<td style="text-align:center">0.62930</td>
+<td style="text-align:center">0.63307</td>
+<td style="text-align:center">0.63683</td>
+<td style="text-align:center">0.64058</td>
+<td style="text-align:center">0.64431</td>
+<td>0.64803</td>
+<td>0.65173</td>
+</tr>
+<tr>
+<td style="text-align:center">0.4</td>
+<td style="text-align:center">0.65542</td>
+<td style="text-align:center">0.65910</td>
+<td style="text-align:center">0.66276</td>
+<td style="text-align:center">0.66640</td>
+<td style="text-align:center">0.67003</td>
+<td style="text-align:center">0.67364</td>
+<td style="text-align:center">0.67724</td>
+<td style="text-align:center">0.68082</td>
+<td>0.68439</td>
+<td>0.68793</td>
+</tr>
+<tr>
+<td style="text-align:center">0.5</td>
+<td style="text-align:center">0.69146</td>
+<td style="text-align:center">0.69497</td>
+<td style="text-align:center">0.69847</td>
+<td style="text-align:center">0.70194</td>
+<td style="text-align:center">0.70540</td>
+<td style="text-align:center">0.70884</td>
+<td style="text-align:center">0.71226</td>
+<td style="text-align:center">0.71566</td>
+<td>0.71904</td>
+<td>0.72240</td>
+</tr>
+<tr>
+<td style="text-align:center">0.6</td>
+<td style="text-align:center">0.72575</td>
+<td style="text-align:center">0.72907</td>
+<td style="text-align:center">0.73237</td>
+<td style="text-align:center">0.73565</td>
+<td style="text-align:center">0.73891</td>
+<td style="text-align:center">0.74215</td>
+<td style="text-align:center">0.74537</td>
+<td style="text-align:center">0.74857</td>
+<td>0.75175</td>
+<td>0.75490</td>
+</tr>
+<tr>
+<td style="text-align:center">0.7</td>
+<td style="text-align:center">0.75804</td>
+<td style="text-align:center">0.76115</td>
+<td style="text-align:center">0.76424</td>
+<td style="text-align:center">0.76730</td>
+<td style="text-align:center">0.77035</td>
+<td style="text-align:center">0.77337</td>
+<td style="text-align:center">0.77637</td>
+<td style="text-align:center">0.77935</td>
+<td>0.78230</td>
+<td>0.78524</td>
+</tr>
+<tr>
+<td style="text-align:center">0.8</td>
+<td style="text-align:center">0.78814</td>
+<td style="text-align:center">0.79103</td>
+<td style="text-align:center">0.79389</td>
+<td style="text-align:center">0.79673</td>
+<td style="text-align:center">0.79955</td>
+<td style="text-align:center">0.80234</td>
+<td style="text-align:center">0.80511</td>
+<td style="text-align:center">0.80785</td>
+<td>0.81057</td>
+<td>0.81327</td>
+</tr>
+<tr>
+<td style="text-align:center">0.9</td>
+<td style="text-align:center">0.81594</td>
+<td style="text-align:center">0.81859</td>
+<td style="text-align:center">0.82121</td>
+<td style="text-align:center">0.82381</td>
+<td style="text-align:center">0.82639</td>
+<td style="text-align:center">0.82894</td>
+<td style="text-align:center">0.83147</td>
+<td style="text-align:center">0.83398</td>
+<td>0.83646</td>
+<td>0.83891</td>
+</tr>
+<tr>
+<td style="text-align:center">1.0</td>
+<td style="text-align:center">0.84134</td>
+<td style="text-align:center">0.84375</td>
+<td style="text-align:center">0.84614</td>
+<td style="text-align:center">0.84849</td>
+<td style="text-align:center">0.85083</td>
+<td style="text-align:center">0.85314</td>
+<td style="text-align:center">0.85543</td>
+<td style="text-align:center">0.85769</td>
+<td>0.85993</td>
+<td>0.86214</td>
+</tr>
+<tr>
+<td style="text-align:center">1.1</td>
+<td style="text-align:center">0.86433</td>
+<td style="text-align:center">0.86650</td>
+<td style="text-align:center">0.86864</td>
+<td style="text-align:center">0.87076</td>
+<td style="text-align:center">0.87286</td>
+<td style="text-align:center">0.87493</td>
+<td style="text-align:center">0.87698</td>
+<td style="text-align:center">0.87900</td>
+<td>0.88100</td>
+<td>0.88298</td>
+</tr>
+<tr>
+<td style="text-align:center">1.2</td>
+<td style="text-align:center">0.88493</td>
+<td style="text-align:center">0.88686</td>
+<td style="text-align:center">0.88877</td>
+<td style="text-align:center">0.89065</td>
+<td style="text-align:center">0.89251</td>
+<td style="text-align:center">0.89435</td>
+<td style="text-align:center">0.89617</td>
+<td style="text-align:center">0.89796</td>
+<td>0.89973</td>
+<td>0.90147</td>
+</tr>
+<tr>
+<td style="text-align:center">1.3</td>
+<td style="text-align:center">0.90320</td>
+<td style="text-align:center">0.90490</td>
+<td style="text-align:center">0.90658</td>
+<td style="text-align:center">0.90824</td>
+<td style="text-align:center">0.90988</td>
+<td style="text-align:center">0.91149</td>
+<td style="text-align:center">0.91308</td>
+<td style="text-align:center">0.91466</td>
+<td>0.91621</td>
+<td>0.91774</td>
+</tr>
+<tr>
+<td style="text-align:center">1.4</td>
+<td style="text-align:center">0.91924</td>
+<td style="text-align:center">0.92073</td>
+<td style="text-align:center">0.92220</td>
+<td style="text-align:center">0.92364</td>
+<td style="text-align:center">0.92507</td>
+<td style="text-align:center">0.92647</td>
+<td style="text-align:center">0.92785</td>
+<td style="text-align:center">0.92922</td>
+<td>0.93056</td>
+<td>0.93189</td>
+</tr>
+<tr>
+<td style="text-align:center">1.5</td>
+<td style="text-align:center">0.93319</td>
+<td style="text-align:center">0.93448</td>
+<td style="text-align:center">0.93574</td>
+<td style="text-align:center">0.93699</td>
+<td style="text-align:center">0.93822</td>
+<td style="text-align:center">0.93943</td>
+<td style="text-align:center">0.94062</td>
+<td style="text-align:center">0.94179</td>
+<td>0.94295</td>
+<td>0.94408</td>
+</tr>
+<tr>
+<td style="text-align:center">1.6</td>
+<td style="text-align:center">0.94520</td>
+<td style="text-align:center">0.94630</td>
+<td style="text-align:center">0.94738</td>
+<td style="text-align:center">0.94845</td>
+<td style="text-align:center">0.94950</td>
+<td style="text-align:center">0.95053</td>
+<td style="text-align:center">0.95154</td>
+<td style="text-align:center">0.95254</td>
+<td>0.95352</td>
+<td>0.95449</td>
+</tr>
+<tr>
+<td style="text-align:center">1.7</td>
+<td style="text-align:center">0.95543</td>
+<td style="text-align:center">0.95637</td>
+<td style="text-align:center">0.95728</td>
+<td style="text-align:center">0.95818</td>
+<td style="text-align:center">0.95907</td>
+<td style="text-align:center">0.95994</td>
+<td style="text-align:center">0.96080</td>
+<td style="text-align:center">0.96164</td>
+<td>0.96246</td>
+<td>0.96327</td>
+</tr>
+<tr>
+<td style="text-align:center">1.8</td>
+<td style="text-align:center">0.96407</td>
+<td style="text-align:center">0.96485</td>
+<td style="text-align:center">0.96562</td>
+<td style="text-align:center">0.96638</td>
+<td style="text-align:center">0.96712</td>
+<td style="text-align:center">0.96784</td>
+<td style="text-align:center">0.96856</td>
+<td style="text-align:center">0.96926</td>
+<td>0.96995</td>
+<td>0.97062</td>
+</tr>
+<tr>
+<td style="text-align:center">1.9</td>
+<td style="text-align:center">0.97128</td>
+<td style="text-align:center">0.97193</td>
+<td style="text-align:center">0.97257</td>
+<td style="text-align:center">0.97320</td>
+<td style="text-align:center">0.97381</td>
+<td style="text-align:center">0.97441</td>
+<td style="text-align:center">0.97500</td>
+<td style="text-align:center">0.97558</td>
+<td>0.97615</td>
+<td>0.97670</td>
+</tr>
+<tr>
+<td style="text-align:center">2.0</td>
+<td style="text-align:center">0.97725</td>
+<td style="text-align:center">0.97778</td>
+<td style="text-align:center">0.97831</td>
+<td style="text-align:center">0.97882</td>
+<td style="text-align:center">0.97932</td>
+<td style="text-align:center">0.97982</td>
+<td style="text-align:center">0.98030</td>
+<td style="text-align:center">0.98077</td>
+<td>0.98124</td>
+<td>0.98169</td>
+</tr>
+<tr>
+<td style="text-align:center">2.1</td>
+<td style="text-align:center">0.98214</td>
+<td style="text-align:center">0.98257</td>
+<td style="text-align:center">0.98300</td>
+<td style="text-align:center">0.98341</td>
+<td style="text-align:center">0.98382</td>
+<td style="text-align:center">0.98422</td>
+<td style="text-align:center">0.98461</td>
+<td style="text-align:center">0.98500</td>
+<td>0.98537</td>
+<td>0.98574</td>
+</tr>
+<tr>
+<td style="text-align:center">2.2</td>
+<td style="text-align:center">0.98610</td>
+<td style="text-align:center">0.98645</td>
+<td style="text-align:center">0.98679</td>
+<td style="text-align:center">0.98713</td>
+<td style="text-align:center">0.98745</td>
+<td style="text-align:center">0.98778</td>
+<td style="text-align:center">0.98809</td>
+<td style="text-align:center">0.98840</td>
+<td>0.98870</td>
+<td>0.98899</td>
+</tr>
+<tr>
+<td style="text-align:center">2.3</td>
+<td style="text-align:center">0.98928</td>
+<td style="text-align:center">0.98956</td>
+<td style="text-align:center">0.98983</td>
+<td style="text-align:center">0.99010</td>
+<td style="text-align:center">0.99036</td>
+<td style="text-align:center">0.99061</td>
+<td style="text-align:center">0.99086</td>
+<td style="text-align:center">0.99111</td>
+<td>0.99134</td>
+<td>0.99158</td>
+</tr>
+<tr>
+<td style="text-align:center">2.4</td>
+<td style="text-align:center">0.99180</td>
+<td style="text-align:center">0.99202</td>
+<td style="text-align:center">0.99224</td>
+<td style="text-align:center">0.99245</td>
+<td style="text-align:center">0.99266</td>
+<td style="text-align:center">0.99286</td>
+<td style="text-align:center">0.99305</td>
+<td style="text-align:center">0.99324</td>
+<td>0.99343</td>
+<td>0.99361</td>
+</tr>
+<tr>
+<td style="text-align:center">2.5</td>
+<td style="text-align:center">0.99379</td>
+<td style="text-align:center">0.99396</td>
+<td style="text-align:center">0.99413</td>
+<td style="text-align:center">0.99430</td>
+<td style="text-align:center">0.99446</td>
+<td style="text-align:center">0.99461</td>
+<td style="text-align:center">0.99477</td>
+<td style="text-align:center">0.99492</td>
+<td>0.99506</td>
+<td>0.99520</td>
+</tr>
+<tr>
+<td style="text-align:center">2.6</td>
+<td style="text-align:center">0.99534</td>
+<td style="text-align:center">0.99547</td>
+<td style="text-align:center">0.99560</td>
+<td style="text-align:center">0.99573</td>
+<td style="text-align:center">0.99585</td>
+<td style="text-align:center">0.99598</td>
+<td style="text-align:center">0.99609</td>
+<td style="text-align:center">0.99621</td>
+<td>0.99632</td>
+<td>0.99643</td>
+</tr>
+<tr>
+<td style="text-align:center">2.7</td>
+<td style="text-align:center">0.99653</td>
+<td style="text-align:center">0.99664</td>
+<td style="text-align:center">0.99674</td>
+<td style="text-align:center">0.99683</td>
+<td style="text-align:center">0.99693</td>
+<td style="text-align:center">0.99702</td>
+<td style="text-align:center">0.99711</td>
+<td style="text-align:center">0.99720</td>
+<td>0.99728</td>
+<td>0.99736</td>
+</tr>
+<tr>
+<td style="text-align:center">2.8</td>
+<td style="text-align:center">0.99744</td>
+<td style="text-align:center">0.99752</td>
+<td style="text-align:center">0.99760</td>
+<td style="text-align:center">0.99767</td>
+<td style="text-align:center">0.99774</td>
+<td style="text-align:center">0.99781</td>
+<td style="text-align:center">0.99788</td>
+<td style="text-align:center">0.99795</td>
+<td>0.99801</td>
+<td>0.99807</td>
+</tr>
+<tr>
+<td style="text-align:center">2.9</td>
+<td style="text-align:center">0.99813</td>
+<td style="text-align:center">0.99819</td>
+<td style="text-align:center">0.99825</td>
+<td style="text-align:center">0.99831</td>
+<td style="text-align:center">0.99836</td>
+<td style="text-align:center">0.99841</td>
+<td style="text-align:center">0.99846</td>
+<td style="text-align:center">0.99851</td>
+<td>0.99856</td>
+<td>0.99861</td>
+</tr>
+<tr>
+<td style="text-align:center">3.0</td>
+<td style="text-align:center">0.99865</td>
+<td style="text-align:center">0.99869</td>
+<td style="text-align:center">0.99874</td>
+<td style="text-align:center">0.99878</td>
+<td style="text-align:center">0.99882</td>
+<td style="text-align:center">0.99886</td>
+<td style="text-align:center">0.99889</td>
+<td style="text-align:center">0.99893</td>
+<td>0.99896</td>
+<td>0.99900</td>
+</tr>
+<tr>
+<td style="text-align:center">3.1</td>
+<td style="text-align:center">0.99903</td>
+<td style="text-align:center">0.99906</td>
+<td style="text-align:center">0.99910</td>
+<td style="text-align:center">0.99913</td>
+<td style="text-align:center">0.99916</td>
+<td style="text-align:center">0.99918</td>
+<td style="text-align:center">0.99921</td>
+<td style="text-align:center">0.99924</td>
+<td>0.99926</td>
+<td>0.99929</td>
+</tr>
+<tr>
+<td style="text-align:center">3.2</td>
+<td style="text-align:center">0.99931</td>
+<td style="text-align:center">0.99934</td>
+<td style="text-align:center">0.99936</td>
+<td style="text-align:center">0.99938</td>
+<td style="text-align:center">0.99940</td>
+<td style="text-align:center">0.99942</td>
+<td style="text-align:center">0.99944</td>
+<td style="text-align:center">0.99946</td>
+<td>0.99948</td>
+<td>0.99950</td>
+</tr>
+<tr>
+<td style="text-align:center">3.3</td>
+<td style="text-align:center">0.99952</td>
+<td style="text-align:center">0.99953</td>
+<td style="text-align:center">0.99955</td>
+<td style="text-align:center">0.99957</td>
+<td style="text-align:center">0.99958</td>
+<td style="text-align:center">0.99960</td>
+<td style="text-align:center">0.99961</td>
+<td style="text-align:center">0.99962</td>
+<td>0.99964</td>
+<td>0.99965</td>
+</tr>
+<tr>
+<td style="text-align:center">3.4</td>
+<td style="text-align:center">0.99966</td>
+<td style="text-align:center">0.99968</td>
+<td style="text-align:center">0.99969</td>
+<td style="text-align:center">0.99970</td>
+<td style="text-align:center">0.99971</td>
+<td style="text-align:center">0.99972</td>
+<td style="text-align:center">0.99973</td>
+<td style="text-align:center">0.99974</td>
+<td>0.99975</td>
+<td>0.99976</td>
+</tr>
+<tr>
+<td style="text-align:center">3.5</td>
+<td style="text-align:center">0.99977</td>
+<td style="text-align:center">0.99978</td>
+<td style="text-align:center">0.99978</td>
+<td style="text-align:center">0.99979</td>
+<td style="text-align:center">0.99980</td>
+<td style="text-align:center">0.99981</td>
+<td style="text-align:center">0.99981</td>
+<td style="text-align:center">0.99982</td>
+<td>0.99983</td>
+<td>0.99983</td>
+</tr>
+<tr>
+<td style="text-align:center">3.6</td>
+<td style="text-align:center">0.99984</td>
+<td style="text-align:center">0.99985</td>
+<td style="text-align:center">0.99985</td>
+<td style="text-align:center">0.99986</td>
+<td style="text-align:center">0.99986</td>
+<td style="text-align:center">0.99987</td>
+<td style="text-align:center">0.99987</td>
+<td style="text-align:center">0.99988</td>
+<td>0.99988</td>
+<td>0.99989</td>
+</tr>
+<tr>
+<td style="text-align:center">3.7</td>
+<td style="text-align:center">0.99989</td>
+<td style="text-align:center">0.99990</td>
+<td style="text-align:center">0.99990</td>
+<td style="text-align:center">0.99990</td>
+<td style="text-align:center">0.99991</td>
+<td style="text-align:center">0.99991</td>
+<td style="text-align:center">0.99992</td>
+<td style="text-align:center">0.99992</td>
+<td>0.99992</td>
+<td>0.99992</td>
+</tr>
+<tr>
+<td style="text-align:center">3.8</td>
+<td style="text-align:center">0.99993</td>
+<td style="text-align:center">0.99993</td>
+<td style="text-align:center">0.99993</td>
+<td style="text-align:center">0.99994</td>
+<td style="text-align:center">0.99994</td>
+<td style="text-align:center">0.99994</td>
+<td style="text-align:center">0.99994</td>
+<td style="text-align:center">0.99995</td>
+<td>0.99995</td>
+<td>0.99995</td>
+</tr>
+<tr>
+<td style="text-align:center">3.9</td>
+<td style="text-align:center">0.99995</td>
+<td style="text-align:center">0.99995</td>
+<td style="text-align:center">0.99996</td>
+<td style="text-align:center">0.99996</td>
+<td style="text-align:center">0.99996</td>
+<td style="text-align:center">0.99996</td>
+<td style="text-align:center">0.99996</td>
+<td style="text-align:center">0.99996</td>
+<td>0.99997</td>
+<td>0.99997</td>
+</tr>
+<tr>
+<td style="text-align:center">4.0</td>
+<td style="text-align:center">0.99997</td>
+<td style="text-align:center">0.99997</td>
+<td style="text-align:center">0.99997</td>
+<td style="text-align:center">0.99997</td>
+<td style="text-align:center">0.99997</td>
+<td style="text-align:center">0.99997</td>
+<td style="text-align:center">0.99998</td>
+<td style="text-align:center">0.99998</td>
+<td>0.99998</td>
+<td>0.99998</td>
+</tr>
+</tbody>
+</table>
+<p>现在用 $X$ 表示一个均值为 $\mu$ 和方差为 $\sigma^2$ 的正态随机变量。通过定义一个新的随机变量 $Y$ 来(“standardize”)标准化 $X$ ：<br>$$<br>Y=\frac{X-\mu}{\sigma}<br>$$<br>因为 $Y$ 是 $X$ 的线性函数，所以 $Y$ 也是正态随机变量。而且<br>$$<br>E[Y]=\frac{E[X]-u}{\sigma}=0,\quad var(Y)=\frac{var(X)}{\sigma^2}=1<br>$$<br>因此，$Y$ 是一个标准正态随机变量。这个事实可以让我们用 $Y$ 重新定义 $X$ 所表示的事件，然后使用标准正态表去计算。</p>
+<h4 id="使用正态分布表的例子"><a href="#使用正态分布表的例子" class="headerlink" title="使用正态分布表的例子"></a>使用正态分布表的例子</h4><p>某地区的年度降雪量是一个正态随机变量，期望为 $\mu=60$ 英寸，标准差为 $\sigma=20$ 。本年度降雪量至少为 $80$ 英寸的概率有多大？</p>
+<p>记 $X$ 为年降雪量，令<br>$$<br>Y=\frac{X-\mu}{\sigma}=\frac{X-60}{20}<br>$$<br>显然 $Y$ 是标准正态随机变量。<br>$$<br>P(X\ge 80)=P(\frac{X-60}{20} \ge \frac{80-60}{20})=P(Y\ge \frac{80-60}{20})=P(Y\ge 1)=1-\Phi(1)<br>$$<br>其中 $\Phi$ 为标准正态累积分布函数。通过查询上表得到：$\Phi(1)=0.84134$ ，因此<br>$$<br>P(X\ge 80)=1-\Phi(1)=0.15866<br>$$<br>推广这个例子中的方法，得到如下：</p>
+<h3 id="正态随机变量的累积分布函数计算"><a href="#正态随机变量的累积分布函数计算" class="headerlink" title="正态随机变量的累积分布函数计算"></a>正态随机变量的累积分布函数计算</h3><p>对于均值为 $\mu$ 方差为 $\sigma^2$ 的正态随机变量 $X$ ，使用一下步骤：</p>
+<ol>
+<li><p>标准化 $X$ ：先减去 $\mu$ 再除以 $\sigma$ 来获取标准随机变量 $Y$ 。</p>
+</li>
+<li><p>从标准正态表中读取累积分布函数值：<br>$$<br>P(X\le x)=P(\frac{X-\mu}{\sigma}\le \frac{x-\mu}{\sigma})=P(Y\le \frac{x-\mu}{\sigma})=\Phi(\frac{x-\mu}{\sigma})<br>$$<br>正态随机变量经常使用在信号处理和通信工程中去对噪音和信号失真进行建模。</p>
+</li>
+</ol>
+<h4 id="例3-8-信号侦测"><a href="#例3-8-信号侦测" class="headerlink" title="例3.8 信号侦测"></a>例3.8 信号侦测</h4><p>二进制信息用信号 $s$ 传输，这个信息要么是 $-1$ 和 $+1$ 。信号在信道传输过程中会伴随一些噪声，噪声满足均值为 $\mu=0$ ，方差为 $\sigma^2$ 的正态分布。接收器会接收到混有噪音的信号 ，如果接收到的值为小于 $0$ ，那么就认为信号为 $-1$ ，如果接收到的值为大于 $0$ ，那么就认为接收到的信号为 $+1$ 。问这种判断方法的误差有多大？</p>
+<p>误差只有出现在下面两种情况：</p>
+<ol>
+<li>实际被传输的信号为 $-1$，但是噪声变量 $N$ 值至少是 $1$ ，因此 $s+N=-1+N \ge 0$ 。 </li>
+<li>实际被传输的信号为 $+1$，但是噪声变量 $N$ 值小于 $-1$ 。因此 $s+N=1+N &lt;0$ 。</li>
+</ol>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png" alt="Figure_3.11_The_signal_detection"></p>
+<p>因此这种判断方法在情况1下出现误差的概率为：<br>$$<br>\begin{eqnarray}<br>P(N\ge 1) &amp;=&amp; 1-P(N &lt; 1) = 1 - P(N&lt;1)=1-P(\frac{N-\mu}{\sigma}&lt;\frac{1-\mu}{\sigma}) \<br>&amp;=&amp; 1- \Phi(\frac{1-\mu}{\sigma}) \<br>&amp;=&amp; 1-\Phi(\frac{1}{\sigma})<br>\end{eqnarray}<br>$$<br>在第2种情况下出现误差的概率根据正态分布的对称性得到与前一种情况一样。$\Phi(\frac{1}{\sigma})$ 能够从正态分布表得到。例如对于 $\sigma=1$ ，$\Phi(\frac{1}{\sigma})=\Phi(1)=0.84134$ ，所以出现误差的概率为 $0.15864$ 。</p>
+<p>正态随机变量扮演一个重要的角色在各种广泛的概率模型中，其原因是在物理、工程和统计中，正态随机变量能够很好地模拟许多独立因素的叠加效应。数学上，关键事实是大量独立同分布的随机变量（不必为正态）的和的分布近似地服从正态分布，而这个事实与各个和项的具体的分布无关的。这个事实就是著名的中心极限定理，这个将在本书第五章详细说明。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div><font color="#087ae4">如果本文对您有帮助，欢迎点击下方的Donate按钮打赏来支持我的免费分享，已经在“关于我”的页面中列出打赏者！</font></div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>Donate</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/WeChatImage_ReceiveMoney_Code.jpg" alt="SnailDove WeChat Pay"/>
+        <p>WeChat Pay</p>
+      </div>
+    
+
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    SnailDove
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="https://snaildove.github.io/2017/08/27/normal_random_variables/" title="经典摘录-正态随机变量">https://snaildove.github.io/2017/08/27/normal_random_variables/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/probability/" rel="tag"><i class="fa fa-tag"></i> probability</a>
+          
+        </div>
+      
+
+      
+      
+        <div class="post-widgets">
+        
+
+        
+
+        
+          
+          <div id="needsharebutton-postbottom">
+            <span class="btn">
+              <i class="fa fa-share-alt" aria-hidden="true"></i>
+            </span>
+          </div>
+        
+        </div>
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/27/normal_random_variables.sync-conflict-20201110-194023-EZ6WBL6/" rel="next" title="经典摘录-正态随机变量">
+                <i class="fa fa-chevron-left"></i> 经典摘录-正态随机变量
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF.sync-conflict-20201110-194207-EZ6WBL6/" rel="prev" title="经典摘录-分段常数概率密度函数的均值和方差">
+                经典摘录-分段常数概率密度函数的均值和方差 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMjg4NC85NDQ1"></div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="SnailDove" />
+            
+              <p class="site-author-name" itemprop="name">SnailDove</p>
+              <p class="site-description motion-element" itemprop="description">keep enthusiasm</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/%20%7C%7C%20archive">
+              
+                  <span class="site-state-item-count">262</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-name">categories</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">36</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+            
+			<script type="text/javascript" charset="utf-8" src="/js/tagcloud.js"></script>
+			<script type="text/javascript" charset="utf-8" src="/js/tagcanvas.js"></script>
+			<div class="widget-wrap">
+				<h4 class="widget-title">Tag Cloud</h4>
+					<div id="myCanvasContainer" class="widget tagcloud">
+					<canvas width="250" height="250" id="resCanvas" style="width=100%">
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">53</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">58</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">77</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">15</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">8</span></li></ul>
+					</canvas>
+				</div>
+			</div>
+			
+          </nav>
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:ruitongbao@yeah.net" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/brt10" target="_blank" title="Weibo">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>Weibo</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-06sc-linear-algebra-fall-2011/" title="Linear Algebra on MIT" target="_blank">Linear Algebra on MIT</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://ocw.mit.edu/courses/mathematics/18-05-introduction-to-probability-and-statistics-spring-2014/" title="Probability-and-statistics on MIT" target="_blank">Probability-and-statistics on MIT</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#正态随机变量"><span class="nav-text">正态随机变量</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#随机变量的正态性在线性变换之下保持不变"><span class="nav-text">随机变量的正态性在线性变换之下保持不变</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#标准正态随机变量"><span class="nav-text">标准正态随机变量</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#使用正态分布表的例子"><span class="nav-text">使用正态分布表的例子</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正态随机变量的累积分布函数计算"><span class="nav-text">正态随机变量的累积分布函数计算</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#例3-8-信号侦测"><span class="nav-text">例3.8 信号侦测</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">SnailDove</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count</span>
+    
+    <span title="Site words total count">1.8m</span>
+  
+</div>
+
+
+
+<!-- 
+注释掉底部hexo主题提示:强有力
+
+
+  <div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Pisces</a> v5.1.4</div>
+
+
+
+
+-->
+
+        
+<div class="busuanzi-count">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="post-meta-item-text">Visitors</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+	  <span class="post-meta-item-text">Total hits</span>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+    <script type="text/javascript">
+      (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+        if (typeof LivereTower === 'function') { return; }
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+        e.parentNode.insertBefore(j, e);
+      })(document, 'script');
+    </script>
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+  
+  
+  <link rel="stylesheet" href="/lib/needsharebutton/needsharebutton.css">
+
+  
+  
+  <script src="/lib/needsharebutton/needsharebutton.js"></script>
+
+  <script>
+    
+      pbOptions = {};
+      
+          pbOptions.iconStyle = "box";
+      
+          pbOptions.boxForm = "horizontal";
+      
+          pbOptions.position = "bottomCenter";
+      
+          pbOptions.networks = "Weibo,Wechat,Douban,QQZone,Twitter,Facebook";
+      
+      new needShareButton('#needsharebutton-postbottom', pbOptions);
+    
+    
+  </script>
+
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+  
+  <!-- 添加网站宠物 -->
+  
+<div id="hexo-helper-live2d">
+  <canvas id="live2dcanvas" width="150" height="300"></canvas>
+</div>
+<style>
+  #live2dcanvas{
+    position: fixed;
+    width: 150px;
+    height: 300px;
+    opacity:0.7;
+    right: 0px;
+    z-index: 999;
+    pointer-events: none;
+    bottom: -20px;
+  }
+</style>
+<script type="text/javascript" src="/live2d/device.min.js"></script>
+<script type="text/javascript">
+const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
+(function(){
+  if((typeof(device) != 'undefined') && (device.mobile())){
+    document.getElementById("live2dcanvas").style.width = '75px';
+    document.getElementById("live2dcanvas").style.height = '150px';
+  }else
+    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
+  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
+})();
+</script>
+
+  
+</body>
+<!--崩溃欺骗-->
+<script type="text/javascript" src="/js/src/crash_cheat.js"></script>
+</html>
