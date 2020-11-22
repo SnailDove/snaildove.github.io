@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="旧电脑上博客根目录执行12345678git initgit check -b sourcegit check sourcegit add *git rm --cached .&#x2F;node_modules&#x2F; .&#x2F;source&#x2F;_drafts ._config.yml .&#x2F;themes&#x2F;next&#x2F;_config.ymlvim .gitignore #添加：.&#x2F;node_modules&#x2F; .&#x2F;sour">
+<meta name="description" content="旧电脑上博客根目录执行12345678git initgit check -b sourcegit check sourcegit add *git rm --cached .&#x2F;node_modules&#x2F; .&#x2F;source&#x2F;_drafts ._config.yml .&#x2F;themes&#x2F;next&#x2F;_config.ymlvim .gitignore #添加：.&#x2F;node_modules&#x2F; .&#x2F;sourc">
 <meta property="og:type" content="article">
 <meta property="og:title" content="同步hexo博客">
 <meta property="og:url" content="https://snaildove.github.io/2018/01/23/hexo_source-code_synchronization/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="旧电脑上博客根目录执行12345678git initgit check -b sourcegit check sourcegit add *git rm --cached .&#x2F;node_modules&#x2F; .&#x2F;source&#x2F;_drafts ._config.yml .&#x2F;themes&#x2F;next&#x2F;_config.ymlvim .gitignore #添加：.&#x2F;node_modules&#x2F; .&#x2F;sour">
+<meta property="og:description" content="旧电脑上博客根目录执行12345678git initgit check -b sourcegit check sourcegit add *git rm --cached .&#x2F;node_modules&#x2F; .&#x2F;source&#x2F;_drafts ._config.yml .&#x2F;themes&#x2F;next&#x2F;_config.ymlvim .gitignore #添加：.&#x2F;node_modules&#x2F; .&#x2F;sourc">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2018-01-22T16:00:00.000Z">
 <meta property="article:modified_time" content="2020-11-06T03:08:25.593Z">
@@ -445,9 +445,10 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h3 id="旧电脑上博客根目录执行"><a href="#旧电脑上博客根目录执行" class="headerlink" title="旧电脑上博客根目录执行"></a>旧电脑上博客根目录执行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git check -b source</span><br><span class="line">git check source</span><br><span class="line">git add *</span><br><span class="line">git rm --cached ./node_modules/ ./source/_drafts ._config.yml ./themes/next/_config.yml</span><br><span class="line">vim .gitignore #添加：./node_modules/ ./source/_drafts ._config.yml （博客根目录配置文件，防止泄露隐私）./themes/next/_config.yml (主题配置文件，防止泄露隐私，百度云盘隐藏空间备份)</span><br><span class="line">git commit -m "初次同步博客"</span><br><span class="line">git push origin source:source</span><br></pre></td></tr></table></figure>
-<h3 id="新电脑上博客的新目录下执行"><a href="#新电脑上博客的新目录下执行" class="headerlink" title="新电脑上博客的新目录下执行"></a>新电脑上博客的新目录下执行</h3><p>在github的 ~.github.io.git（~代表你的github用户名） 仓库上设置 source 分支为默认分支</p>
-<p>git 配置完成以后<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/~/~.github.io.git</span><br><span class="line">cd ~.github.io.git</span><br><span class="line">npm install hexo</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure></p>
+        <h3 id="旧电脑上博客根目录执行"><a href="#旧电脑上博客根目录执行" class="headerlink" title="旧电脑上博客根目录执行"></a>旧电脑上博客根目录执行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git init</span><br><span class="line">git check -b source</span><br><span class="line">git check source</span><br><span class="line">git add *</span><br><span class="line">git rm --cached ./node_modules/ ./source/_drafts ._config.yml ./themes/next/_config.yml</span><br><span class="line">vim .gitignore #添加：./node_modules/ ./source/_drafts ._config.yml （博客根目录配置文件，防止泄露隐私）./themes/next/_config.yml (主题配置文件，防止泄露隐私，百度云盘隐藏空间备份)</span><br><span class="line">git commit -m "初次同步博客"</span><br><span class="line">git push origin source:source</span><br></pre></td></tr></table></figure>
+<h3 id="新电脑上博客的新目录下执行"><a href="#新电脑上博客的新目录下执行" class="headerlink" title="新电脑上博客的新目录下执行"></a>新电脑上博客的新目录下执行</h3><p>在github的 <del>.github.io.git（</del>代表你的github用户名） 仓库上设置 source 分支为默认分支</p>
+<p>git 配置完成以后</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/~/~.github.io.git</span><br><span class="line">cd ~.github.io.git</span><br><span class="line">npm install hexo</span><br><span class="line">npm install</span><br><span class="line">npm install hexo-deployer-git</span><br></pre></td></tr></table></figure>
 <h3 id="latex公式问题"><a href="#latex公式问题" class="headerlink" title="latex公式问题"></a>latex公式问题</h3><p>按网上的教程继续修改 <code>./node_modules/marked/marked.js</code> 以支持数学公式中的 <code>\</code> <code>-</code> </p>
 
       
@@ -773,7 +774,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

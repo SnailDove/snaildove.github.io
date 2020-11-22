@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="NoteThis personal note is written after studying the opening course on the coursera website, Machine Learning by Andrew NG. And images, audios of this note all comes from the opening course.  01_cost">
+<meta name="description" content="NoteThis personal note is written after studying the opening course on the coursera website, Machine Learning by Andrew NG. And images, audios of this note all comes from the opening course.  01_cost-">
 <meta property="og:type" content="article">
 <meta property="og:title" content="09_neural-networks-learning note9">
 <meta property="og:url" content="https://snaildove.github.io/2018/01/09/09_neural-networks-learning/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="NoteThis personal note is written after studying the opening course on the coursera website, Machine Learning by Andrew NG. And images, audios of this note all comes from the opening course.  01_cost">
+<meta property="og:description" content="NoteThis personal note is written after studying the opening course on the coursera website, Machine Learning by Andrew NG. And images, audios of this note all comes from the opening course.  01_cost-">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/1.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/2.png">
@@ -453,7 +453,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>This personal note is written after studying the opening course on <a href="https://www.coursera.org" target="_blank" rel="noopener">the coursera website</a>, <a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank" rel="noopener">Machine Learning by Andrew NG</a>. And images, audios of this note all comes from the opening course. </p>
+        <h1 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h1><p>This personal note is written after studying the opening course on <a href="https://www.coursera.org/" target="_blank" rel="noopener">the coursera website</a>, <a href="https://www.coursera.org/learn/machine-learning/home/welcome" target="_blank" rel="noopener">Machine Learning by Andrew NG</a>. And images, audios of this note all comes from the opening course. </p>
 <h1 id="01-cost-function-and-backpropagation"><a href="#01-cost-function-and-backpropagation" class="headerlink" title="01_cost-function-and-backpropagation"></a>01_cost-function-and-backpropagation</h1><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/1.png" alt="img"></p>
 <h2 id="Cost-Function"><a href="#Cost-Function" class="headerlink" title="Cost Function"></a>Cost Function</h2><p>Let’s first define a few variables that we will need to use: </p>
 <ul>
@@ -461,7 +461,7 @@
 <li>​    $s_l$ = number of units (not counting bias unit) in layer l   </li>
 <li>​    K = number of output units/classes   </li>
 </ul>
-<p>Recall that in neural networks, we may have many output nodes. We denote $h_Θ(x)<em>k$ as being a hypothesis that results in the $k^{th}$output. Our cost function for neural networks is going to be a generalization of the one we used for logistic regression. Recall that the cost function for regularized logistic regression was :<br>$$<br>J(\theta) = - \frac{1}{m} \sum</em>{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h_\theta(x^{(i)}))] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2<br>$$<br>For neural networks, it is going to be slightly more complicated :<br>$$<br>\begin{gather<em>} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}<em>k \log ((h</em>\Theta (x^{(i)}))_k) + (1 - y^{(i)}<em>k)\log (1 - (h</em>\Theta(x^{(i)}))<em>k)\right] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather</em>}<br>$$<br>We have added a few nested summations to account for our multiple output nodes. In the first part of the equation, before the square brackets, we have an additional nested summation that loops through the number of output nodes. </p>
+<p>Recall that in neural networks, we may have many output nodes. We denote $h_Θ(x)<em>k$ as being a hypothesis that results in the $k^{th}$output. Our cost function for neural networks is going to be a generalization of the one we used for logistic regression. Recall that the cost function for regularized logistic regression was :<br>$$<br>J(\theta) = - \frac{1}{m} \sum</em>{i=1}^m [ y^{(i)}\ \log (h_\theta (x^{(i)})) + (1 - y^{(i)})\ \log (1 - h_\theta(x^{(i)}))] + \frac{\lambda}{2m}\sum_{j=1}^n \theta_j^2<br>$$<br>For neural networks, it is going to be slightly more complicated :<br>$$<br>\begin{gather*} J(\Theta) = - \frac{1}{m} \sum_{i=1}^m \sum_{k=1}^K \left[y^{(i)}<em>k \log ((h_\Theta (x^{(i)}))_k) + (1 - y^{(i)}<em>k)\log (1 - (h_\Theta(x^{(i)}))_k)\right] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1} \sum</em>{i=1}^{s_l} \sum_{j=1}^{s_{l+1}} ( \Theta_{j,i}^{(l)})^2\end{gather*}<br>$$<br>We have added a few nested summations to account for our multiple output nodes. In the first part of the equation, before the square brackets, we have an additional nested summation that loops through the number of output nodes. </p>
 <p><strong>In the regularization part, after the square brackets, we must account for multiple theta matrices. The number of columns in our current theta matrix is equal to the number of nodes in our current layer (including the bias unit). The number of rows in our current theta matrix is equal to the number of nodes in the next layer (excluding the bias unit).</strong> As before with logistic regression, we square every term. </p>
 <p>Note:  </p>
 <ul>
@@ -479,31 +479,22 @@
 <li>Set $a^{(1)} := x^{(t)}$</li>
 <li>Perform forward propagation to compute $a^{(l)}$ for l=2,3,…,L   </li>
 </ol>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/3.png" alt="forward_propagation"></p>
-<ol start="3">
-<li>Using $y^{(t)}$, compute $\delta^{(L)} = a^{(L)} - y^{(t)}$ </li>
-</ol>
-<p>Where L is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our “error values” for the last layer are simply the differences of our actual results in the last layer and the correct outputs in y. To get the delta values of the layers before the last layer, we can use an equation that steps us back from right to left : </p>
-<ol start="4">
-<li>Compute $\delta^{(L-1)}, \delta^{(L-2)},\dots,\delta^{(2)}$ using $\delta^{(l)} = ((\Theta^{(l)})^T \delta^{(l+1)})\ .<em>\ a^{(l)}\ .</em>\ (1 - a^{(l)})$ </li>
-</ol>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/3.png" alt="forward_propagation"><br>3.  Using $y^{(t)}$, compute $\delta^{(L)} = a^{(L)} - y^{(t)}$ </p>
+<p>Where L is our total number of layers and $a^{(L)}$ is the vector of outputs of the activation units for the last layer. So our “error values” for the last layer are simply the differences of our actual results in the last layer and the correct outputs in y. To get the delta values of the layers before the last layer, we can use an equation that steps us back from right to left :<br>4.  Compute $\delta^{(L-1)}, \delta^{(L-2)},\dots,\delta^{(2)}$ using $\delta^{(l)} = ((\Theta^{(l)})^T \delta^{(l+1)})\ .*\ a^{(l)}\ .*\ (1 - a^{(l)})$ </p>
 <p>The delta values of layer l are calculated by multiplying the delta values in the next layer with the theta matrix of layer l. We then element-wise multiply that with a function called g’, or g-prime, which is the derivative of the activation function g evaluated with the input values given by $z^{(l)}$. </p>
 <p>  The g-prime derivative terms can also be written out as: </p>
-<p>$$g’(z^{(l)}) = a^{(l)}\ .*\ (1 - a^{(l)})$$</p>
-<ol start="5">
-<li><p>$\Delta^{(l)}<em>{i,j} := \Delta^{(l)}</em>{i,j} + a_j^{(l)} \delta_i^{(l+1)}$ or with vectorization, $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$ </p>
-<p>Hence we update our new $\Delta$ matrix. </p>
-</li>
-</ol>
+<p>$$g’(z^{(l)}) = a^{(l)}\ .*\ (1 - a^{(l)})$$<br>5. $\Delta^{(l)}<em>{i,j} := \Delta^{(l)}</em>{i,j} + a_j^{(l)} \delta_i^{(l+1)}$ or with vectorization, $\Delta^{(l)} := \Delta^{(l)} + \delta^{(l+1)}(a^{(l)})^T$ </p>
+<p>  Hence we update our new $\Delta$ matrix. </p>
 <ul>
-<li>$D^{(l)}<em>{i,j} := \dfrac{1}{m}\left(\Delta^{(l)}</em>{i,j} + \lambda\Theta^{(l)}_{i,j}\right)$, if j≠0.   </li>
+<li><p>$D^{(l)}<em>{i,j} := \dfrac{1}{m}\left(\Delta^{(l)}</em>{i,j} + \lambda\Theta^{(l)}_{i,j}\right)$, if j≠0.   </p>
+</li>
 <li><p>$D^{(l)}<em>{i,j} := \dfrac{1}{m}\Delta^{(l)}</em>{i,j}$ If j=0   </p>
 <p>The capital-delta matrix D is used as an “accumulator” to add up our values as we go along and eventually compute our partial derivative. Thus we get $\frac \partial {\partial \Theta_{ij}^{(l)}} J(\Theta)$= $D_{ij}^{(l)}$</p>
 </li>
 </ul>
 <h2 id="Backpropagation-Intuition"><a href="#Backpropagation-Intuition" class="headerlink" title="Backpropagation Intuition"></a>Backpropagation Intuition</h2><p><strong>Note:</strong>    [4:39, the last term for the calculation for $z^3_1$ (three-color handwritten formula) should be $a^2_2$ instead of $a^2_1$. 6:08 - the equation for cost(i) is incorrect. The first term is missing parentheses for the log() function, and the second term should be $(1-y^{(i)})\log(1-h{_\theta}{(x^{(i)}}))$. 8:50 - $\delta^{(4)} = y - a^{(4)}$ is incorrect and should be $\delta^{(4)} = a^{(4)} - y$.]  </p>
 <p>Recall that the cost function for a neural network is:  </p>
-<p>$$\begin{gather<em>}J(\Theta) = - \frac{1}{m} \sum_{t=1}^m\sum_{k=1}^K \left[ y^{(t)}<em>k \ \log (h</em>\Theta (x^{(t)}))_k + (1 - y^{(t)}<em>k)\ \log (1 - h</em>\Theta(x^{(t)})<em>k)\right] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1} \sum_{i=1}^{s_l} \sum_{j=1}^{s_l+1} ( \Theta_{j,i}^{(l)})^2\end{gather</em>}$$</p>
+<p>$$\begin{gather*}J(\Theta) = - \frac{1}{m} \sum_{t=1}^m\sum_{k=1}^K \left[ y^{(t)}<em>k \ \log (h_\Theta (x^{(t)}))_k + (1 - y^{(t)}<em>k)\ \log (1 - h_\Theta(x^{(t)})_k)\right] + \frac{\lambda}{2m}\sum</em>{l=1}^{L-1} \sum</em>{i=1}^{s_l} \sum_{j=1}^{s_l+1} ( \Theta_{j,i}^{(l)})^2\end{gather*}$$</p>
 <p>If we consider simple non-multiclass classification (k = 1) and disregard regularization, the cost is computed with: </p>
 <p>$$cost(t) =y^{(t)} \ \log (h_\Theta (x^{(t)})) + (1 - y^{(t)})\ \log (1 - h_\Theta(x^{(t)}))$$  </p>
 <p>Intuitively, $\delta_j^{(l)}$ is the “error” for $a^{(l)}_j$ (unit j in layer l). More formally, the delta values are actually the derivative of the cost function:  </p>
@@ -515,19 +506,23 @@
 <p> $$\begin{align*} \Theta^{(1)}, \Theta^{(2)}, \Theta^{(3)}, \dots \newline D^{(1)}, D^{(2)}, D^{(3)}, \dots \end{align*}$$</p>
 <p>In order to use optimizing functions such as “fminunc()”, we will want to “unroll” all the elements and put them into one long vector: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">thetaVector &#x3D; [ Theta1(:); Theta2(:); Theta3(:); ]</span><br><span class="line">deltaVector &#x3D; [ D1(:); D2(:); D3(:) ]</span><br></pre></td></tr></table></figure>
+
 <p>If the dimensions of Theta1 is 10x11, Theta2 is 10x11 and Theta3 is 1x11, then we can get back our original matrices from the “unrolled” versions as follows: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Theta1 &#x3D; reshape(thetaVector(1:110),10,11)</span><br><span class="line">Theta2 &#x3D; reshape(thetaVector(111:220),10,11)</span><br><span class="line">Theta3 &#x3D; reshape(thetaVector(221:231),1,11)</span><br></pre></td></tr></table></figure>
+
 <p>To summarize:</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/5.png" alt="neural_network_learning_theta"></p>
 <h2 id="Gradient-Checking"><a href="#Gradient-Checking" class="headerlink" title="Gradient Checking"></a>Gradient Checking</h2><p>Gradient checking will assure that our backpropagation works as intended. We can approximate the derivative of our cost function with:<br>$$<br>\dfrac{\partial}{\partial\Theta}J(\Theta) \approx \dfrac{J(\Theta + \epsilon) - J(\Theta - \epsilon)}{2\epsilon}<br>$$<br>With multiple theta matrices, we can approximate the derivative with respect to  $Θ_j$ as follows:<br>$$<br>\dfrac{\partial}{\partial\Theta_j}J(\Theta) \approx \dfrac{J(\Theta_1, \dots, \Theta_j + \epsilon, \dots, \Theta_n) - J(\Theta_1, \dots, \Theta_j - \epsilon, \dots, \Theta_n)}{2\epsilon}<br>$$<br>A small value for ϵ (epsilon) such as $ϵ=10^{−4}$ , guarantees that the math works out properly. If the value for ϵ is too small, we can end up with numerical problems. </p>
 <p>Hence, we are only adding or subtracting epsilon to the $Θ_j$ matrix. In octave we can do it as follows:</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">epsilon &#x3D; 1e-4;</span><br><span class="line">for i &#x3D; 1:n,</span><br><span class="line">  thetaPlus &#x3D; theta;</span><br><span class="line">  thetaPlus(i) +&#x3D; epsilon;</span><br><span class="line">  thetaMinus &#x3D; theta;</span><br><span class="line">  thetaMinus(i) -&#x3D; epsilon;</span><br><span class="line">  gradApprox(i) &#x3D; (J(thetaPlus) - J(thetaMinus))&#x2F;(2*epsilon)</span><br><span class="line">end;</span><br></pre></td></tr></table></figure>
+
 <p>We previously saw how to calculate the deltaVector. So once we compute our gradApprox vector, we can check that gradApprox ≈ deltaVector. </p>
 <p>Once you have verified once that your backpropagation algorithm is correct, you don’t need to compute gradApprox again. The code to compute gradApprox can be very slow.</p>
 <h2 id="Random-Initialization"><a href="#Random-Initialization" class="headerlink" title="Random Initialization"></a>Random Initialization</h2><p>Initializing all theta weights to zero does not work with neural networks. When we backpropagate, all nodes will update to the same value repeatedly. Instead we can randomly initialize our weights for our ΘΘ matrices using the following method:</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/6.png" alt="random_initialization_on_nn"></p>
 <p>Hence, we initialize each $Θ^{(l)}_{ij}$ to a random value between $[−ϵ,ϵ]$ .  Using the above formula guarantees that we get the desired bound. The same procedure applies to all the $Θ’s$. Below is some working code you could use to experiment.</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">If the dimensions of Theta1 is 10x11, Theta2 is 10x11 and Theta3 is 1x11.</span><br><span class="line"></span><br><span class="line">Theta1 &#x3D; rand(10,11) * (2 * INIT_EPSILON) - INIT_EPSILON;</span><br><span class="line">Theta2 &#x3D; rand(10,11) * (2 * INIT_EPSILON) - INIT_EPSILON;</span><br><span class="line">Theta3 &#x3D; rand(1,11) * (2 * INIT_EPSILON) - INIT_EPSILON;</span><br></pre></td></tr></table></figure>
+
 <p>rand(x,y) is just a function in octave that will initialize a matrix of random real numbers between 0 and 1. </p>
 <p>(Note: the epsilon used above is unrelated to the epsilon from Gradient Checking)</p>
 <h2 id="Putting-it-Together"><a href="#Putting-it-Together" class="headerlink" title="Putting it Together"></a>Putting it Together</h2><p>First, pick a network architecture; choose the layout of your neural network, including how many hidden units in each layer and how many layers in total you want to have. </p>
@@ -539,18 +534,24 @@
 </ul>
 <p><strong>Training a Neural Network</strong>   </p>
 <ol>
-<li>​    Randomly initialize the weights   </li>
-<li>​    Implement forward propagation to get $h_Θ(x^{(i)})$ for any $x^{(i)}$   </li>
-<li>​    Implement the cost function   </li>
-<li>​    Implement backpropagation to compute partial derivatives   </li>
-<li>​    Use gradient checking to confirm that your backpropagation works. Then disable gradient checking.   </li>
+<li><p>​    Randomly initialize the weights   </p>
+</li>
+<li><p>​    Implement forward propagation to get $h_Θ(x^{(i)})$ for any $x^{(i)}$   </p>
+</li>
+<li><p>​    Implement the cost function   </p>
+</li>
+<li><p>​    Implement backpropagation to compute partial derivatives   </p>
+</li>
+<li><p>​    Use gradient checking to confirm that your backpropagation works. Then disable gradient checking.   </p>
+</li>
 <li><p>​    Use gradient descent or a built-in optimization function to minimize the cost function with the weights in theta.   </p>
 <p>When we perform forward and back propagation, we loop on every training example:</p>
 </li>
 </ol>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">for i &#x3D; 1:m,</span><br><span class="line">   Perform forward propagation and backpropagation using example (x(i),y(i))</span><br><span class="line">   (Get activations a(l) and delta terms d(l) for l &#x3D; 2,...,L</span><br></pre></td></tr></table></figure>
+
 <p>The following image gives us an intuition of what is happening as we are implementing our neural network:</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/7.png" alt=""></p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/09/7.png"></p>
 <p>Ideally, you want $h_Θ(x^{(i)}) ≈ y(i)$ . This will minimize our cost function. However, keep in mind that $J(Θ)$ is not convex and thus we can end up in a local minimum instead.</p>
 
       
@@ -876,7 +877,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

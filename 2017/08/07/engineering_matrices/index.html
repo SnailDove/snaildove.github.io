@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="笔记源自：清华大学公开课：线性代数2——第七讲：工程中的矩阵 应用数学的几个原则 将非线性问题变成线性问题(Nonlinear becomes linear) 将连续问题转化为离散的(Continuous becomes discrete)  工程中的矩阵许多物理定理都是线性关系(as approximations of reality)，比如胡克定律(Hook’s law)、欧姆定律(Ohm’">
+<meta name="description" content="笔记源自：清华大学公开课：线性代数2——第七讲：工程中的矩阵 应用数学的几个原则  将非线性问题变成线性问题(Nonlinear becomes linear)  将连续问题转化为离散的(Continuous becomes discrete)  工程中的矩阵许多物理定理都是线性关系(as approximations of reality)，比如胡克定律(Hook’s law)、欧姆定律(Ohm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tsinghua linear-algebra-2 7th-lecture engineering-matrix">
 <meta property="og:url" content="https://snaildove.github.io/2017/08/07/engineering_matrices/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="笔记源自：清华大学公开课：线性代数2——第七讲：工程中的矩阵 应用数学的几个原则 将非线性问题变成线性问题(Nonlinear becomes linear) 将连续问题转化为离散的(Continuous becomes discrete)  工程中的矩阵许多物理定理都是线性关系(as approximations of reality)，比如胡克定律(Hook’s law)、欧姆定律(Ohm’">
+<meta property="og:description" content="笔记源自：清华大学公开课：线性代数2——第七讲：工程中的矩阵 应用数学的几个原则  将非线性问题变成线性问题(Nonlinear becomes linear)  将连续问题转化为离散的(Continuous becomes discrete)  工程中的矩阵许多物理定理都是线性关系(as approximations of reality)，比如胡克定律(Hook’s law)、欧姆定律(Ohm">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-7/1.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-7/2.png">
@@ -460,10 +460,10 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>笔记源自：清华大学公开课：线性代数2——第七讲：工程中的矩阵</p>
+        <p>笔记源自：清华大学公开课：线性代数2——第七讲：工程中的矩阵</p>
 <h2 id="应用数学的几个原则"><a href="#应用数学的几个原则" class="headerlink" title="应用数学的几个原则"></a>应用数学的几个原则</h2><ol>
-<li>将非线性问题变成线性问题(Nonlinear becomes linear)</li>
-<li>将连续问题转化为离散的(Continuous becomes discrete)</li>
+<li> 将非线性问题变成线性问题(Nonlinear becomes linear)</li>
+<li> 将连续问题转化为离散的(Continuous becomes discrete)</li>
 </ol>
 <h2 id="工程中的矩阵"><a href="#工程中的矩阵" class="headerlink" title="工程中的矩阵"></a>工程中的矩阵</h2><p>许多物理定理都是线性关系(as approximations of reality)，比如胡克定律(Hook’s law)、欧姆定律(Ohm’s law)、牛顿第二定律(F=ma)，讨论这些定律的向量形式。线性关系的向量形式以如下<strong>方式、框架</strong>来讨论：</p>
 <p>$(1)\ e=Au$<br>$(2)\  y=Ce$<br>$(3)\ f=A^Tw$</p>
@@ -482,14 +482,14 @@
 <h3 id="刚度矩阵"><a href="#刚度矩阵" class="headerlink" title="刚度矩阵"></a>刚度矩阵</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-7/9.png" alt="4_kinds_of_stiffness_matrix"></p>
 <p><strong>注：此处老师讲解具有小的跳跃性</strong> ，渣渣注释如下：</p>
 <ul>
-<li>$K,T$是正定的：$C$ 矩阵表示弹性系数是正定的，$K=A^TCA$ ，当 $A$ 可逆的时候，$K$ 与 $C$ 合同的。</li>
+<li>  $K,T$是正定的：$C$ 矩阵表示弹性系数是正定的，$K=A^TCA$ ，当 $A$ 可逆的时候，$K$ 与 $C$ 合同的。</li>
 </ul>
 <blockquote>
 <p>与正定矩阵合同的对称矩阵也是正定的</p>
 <p>​    判断是实对称阵是不是正定的第一条判别法：特征值是否全正，是的话则这个实对称矩阵就是正定的。根据惯性定理，由于与正定矩阵（记为$A$）合同的矩阵（记为$B$）其特征值符号与 $A$ 一致且保持对称性，那么$B$ 的特征值也是全正的，因此 $B$ 也是正定的。</p>
 </blockquote>
 <ul>
-<li>$B, C$ 是半正定的</li>
+<li>  $B, C$ 是半正定的</li>
 </ul>
 <blockquote>
 <p>  因为弹性系数矩阵 $C$ 是正定的对角阵$\Rightarrow x^TKx=x^TA^TCAx=x^TA^T ({\sqrt{C}}^T \sqrt{C}) Ax = x^TA^T {\sqrt{C}}^T \sqrt{C} Ax = ||\sqrt{C} Ax||^2 $，因为$A$是奇异的，$x^TKx\ge 0$， 因此K是半正定的。</p>
@@ -828,7 +828,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="本文会一直随时间持续更新 梯度一个点的切线的斜率与法线的斜率相乘等于-1证明：斜率 $k_1&#x3D;tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么$$k_1 * k_2&#x3D;tan\theta * tan(\theta+90)&#x3D;tan\theta * (-cot\theta)&#x3D;-1$$ 直线的点法式方程函数 $y&#x3D;f(x)$ 在点 $x_0$ 处的导数">
+<meta name="description" content="本文会一直随时间持续更新 梯度一个点的切线的斜率与法线的斜率相乘等于-1证明：斜率 $k_1&#x3D;tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么 $$k_1 * k_2&#x3D;tan\theta * tan(\theta+90)&#x3D;tan\theta * (-cot\theta)&#x3D;-1$$  直线的点法式方程函数 $y&#x3D;f(x)$ 在点 $x_0$ 处的导">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Calculus and Differential in Machine Learning">
 <meta property="og:url" content="https://snaildove.github.io/2018/01/28/Calculus_and_Differential/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="本文会一直随时间持续更新 梯度一个点的切线的斜率与法线的斜率相乘等于-1证明：斜率 $k_1&#x3D;tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么$$k_1 * k_2&#x3D;tan\theta * tan(\theta+90)&#x3D;tan\theta * (-cot\theta)&#x3D;-1$$ 直线的点法式方程函数 $y&#x3D;f(x)$ 在点 $x_0$ 处的导数">
+<meta property="og:description" content="本文会一直随时间持续更新 梯度一个点的切线的斜率与法线的斜率相乘等于-1证明：斜率 $k_1&#x3D;tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么 $$k_1 * k_2&#x3D;tan\theta * tan(\theta+90)&#x3D;tan\theta * (-cot\theta)&#x3D;-1$$  直线的点法式方程函数 $y&#x3D;f(x)$ 在点 $x_0$ 处的导">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/Calculus_and_Differential/directional_derivative.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/Calculus_and_Differential/rectangular_coordinate_system.png">
@@ -455,8 +455,10 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><strong>本文会一直随时间持续更新</strong></p>
-<h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><h3 id="一个点的切线的斜率与法线的斜率相乘等于-1"><a href="#一个点的切线的斜率与法线的斜率相乘等于-1" class="headerlink" title="一个点的切线的斜率与法线的斜率相乘等于-1"></a>一个点的切线的斜率与法线的斜率相乘等于-1</h3><p>证明：斜率 $k_1=tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么<br>$$k_1 * k_2=tan\theta * tan(\theta+90)=tan\theta * (-cot\theta)=-1$$</p>
+        <p><strong>本文会一直随时间持续更新</strong></p>
+<h2 id="梯度"><a href="#梯度" class="headerlink" title="梯度"></a>梯度</h2><h3 id="一个点的切线的斜率与法线的斜率相乘等于-1"><a href="#一个点的切线的斜率与法线的斜率相乘等于-1" class="headerlink" title="一个点的切线的斜率与法线的斜率相乘等于-1"></a>一个点的切线的斜率与法线的斜率相乘等于-1</h3><p>证明：斜率 $k_1=tan\theta$，$\theta$ 是倾斜角，对应的法线的倾斜角为 $\theta+90$，那么</p>
+$$k_1 * k_2=tan\theta * tan(\theta+90)=tan\theta * (-cot\theta)=-1$$
+
 <h3 id="直线的点法式方程"><a href="#直线的点法式方程" class="headerlink" title="直线的点法式方程"></a>直线的点法式方程</h3><p>函数 $y=f(x)$ 在点 $x_0$ 处的导数 $f’(x_0)$ 在几何上表示曲线 $y=f(x)$ 在点 $M(x_0,f(x_0))$ 处的切线的斜率，即<br>$$f’(x_0)=tan\alpha$$<br>其中$α$ 是切线的倾角.<br>根据导数的几何意义并应用直线的点斜式方程，可知曲线 $y=f(x)$ 在点 $M(x_0,y_0)$ 处的切线方程为<br>$$y - y_0=f’(x_0)(x - x_0)$$<br>过切线 $M(x_0, y_0)$ 且与切线垂直的直线叫做曲线 $y=f(x)$ 在点 $M$ 处的法线.如果 $f’(x_0)≠0$，法线的斜率为 $-\frac{1}{f’(x_0)}$，从而法线方程为<br>$$y - y_0 = -\frac{1}{f’(x_0)}(x - x_0)$$<br>切线斜率与法线斜率相乘等于 $-1​$ 。</p>
 <h3 id="等值线的法向量"><a href="#等值线的法向量" class="headerlink" title="等值线的法向量"></a>等值线的法向量</h3><p><strong>注意</strong>：这部分内容必须先看到下文的梯度定义以后再看<br>设方程 $f(x, y) = k$ 确定了隐函数 $y=y(x)$ ，将此函数代入回原方程，得恒等式：<br>$$f(x,y(x))\equiv 0$$<br>等式两端对 $x$ 求导：<br>$$f_x \cdot 1 + f_y \cdot y’(x)=0$$<br>得：$y’(x)=-\frac{f_x}{f_y}$<br>等值线 $f(x, y) = k$ 在一点 $(x, y)$ 处的法线斜率为：<br>$$k=-\frac{1}{y’(x)}=\frac{f_y}{f_x}$$<br>故等值线 $f(x, y)=k$ 在一点 $(x, y)$ 处的<strong>法线向量</strong>为：<br>$${1, \frac{f_y}{f_x}}\text{ 或 } {f_x, f_y}=\nabla f(x, y)$$<br>这正好是函数 $f(x, y)$ 在 $(x, y)$ 处的梯度。<strong>所以，函数 $f(x, y)$ 在 $(x, y)$ 处的梯度垂直于函数经过该点的等值线。</strong> 因此，<strong>等值线的单位法向量</strong>可表示为：<br>$$\frac{\nabla f(x, y)}{|\nabla f(x, y)|}$$</p>
 <h3 id="方向导数"><a href="#方向导数" class="headerlink" title="方向导数"></a>方向导数</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/Calculus_and_Differential/directional_derivative.png" alt="《高等数学》（下册），同济版"></p>
@@ -796,7 +798,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

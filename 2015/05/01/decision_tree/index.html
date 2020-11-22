@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="决策树学习决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。 特征选择为了解释清楚各个数学概念，引入例子 表5.1  贷款申请样本数据表（来自李航《统计方法》）  ​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷">
+<meta name="description" content="决策树学习决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。 特征选择为了解释清楚各个数学概念，引入例子 表5.1  贷款申请样本数据表（来自李航《统计方法》）  ​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷款">
 <meta property="og:type" content="article">
 <meta property="og:title" content="决策树学习">
 <meta property="og:url" content="https://snaildove.github.io/2015/05/01/decision_tree/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="决策树学习决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。 特征选择为了解释清楚各个数学概念，引入例子 表5.1  贷款申请样本数据表（来自李航《统计方法》）  ​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷">
+<meta property="og:description" content="决策树学习决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。 特征选择为了解释清楚各个数学概念，引入例子 表5.1  贷款申请样本数据表（来自李航《统计方法》）  ​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷款">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png">
@@ -453,7 +453,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h2><p>决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。</p>
+        <h2 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h2><p>决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。</p>
 <h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>为了解释清楚各个数学概念，引入例子</p>
 <p>表5.1  贷款申请样本数据表（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png" alt="img"></p>
@@ -472,19 +472,19 @@
 <p>$$gain(A)=info(D)-info_A(D)$$</p>
 <p>具体问题具体分析</p>
 <ul>
-<li>按照年龄属性（记为A1）划分：青年（D1表示），中年（D2表示），老年（D3表示）</li>
+<li>  按照年龄属性（记为A1）划分：青年（D1表示），中年（D2表示），老年（D3表示）</li>
 </ul>
 <p>$$\begin{align}g(D, A_1) &amp;= H(D) - [\frac{5}{15}H(D_1) + \frac{5}{15}H(D_2) + \frac{5}{15}H(D_3)] \ &amp;= 0.971 - [ \frac{5}{15}(-\frac{2}{5}log_2\frac{2}{5}-\frac{3}{5}log_2\frac{3}{5})+\frac{5}{15}(-\frac{3}{5}log_2\frac{3}{5} - \frac{2}{5}log_2\frac{2}{5}) + \frac{5}{15}(-\frac{4}{5}log_2\frac{4}{5} - \frac{1}{5}log_2\frac{1}{5})] \ &amp;= 0.971 - 0.888 \ &amp;= 0.083   \end{align}$$</p>
 <ul>
-<li>按照是否有工作（记为A2）划分：有工作（D1表示），无工作（D2表示）</li>
+<li>  按照是否有工作（记为A2）划分：有工作（D1表示），无工作（D2表示）</li>
 </ul>
 <p>$$\begin{align}g(D, A_2) &amp;= H(D) - [\frac{5}{15}H(D_1) + \frac{5}{15}H(D_2) ] \ &amp;= 0.971 - [ \frac{5}{15}\times 0+\frac{10}{15}(-\frac{4}{10}log_2\frac{4}{10} - \frac{6}{10}log_2\frac{6}{10})] \ &amp;= 0.324   \end{align}$$</p>
 <ul>
-<li>按照是否有自己房子（记为A3）划分：有自己房子（D1表示），无自己房子（D2表示）</li>
+<li>  按照是否有自己房子（记为A3）划分：有自己房子（D1表示），无自己房子（D2表示）</li>
 </ul>
 <p>$$\begin{align}g(D, A_3) &amp;= 0.971 - [ \frac{6}{15}\times 0+\frac{9}{15}(-\frac{3}{9}log_2\frac{3}{9} - \frac{6}{9}log_2\frac{6}{9})] \ &amp;= 0.971 - 0.551 \ &amp;= 0.420   \end{align}$$</p>
 <ul>
-<li>同理，根据最后一个属性：信贷情况算出其信息增益：</li>
+<li>  同理，根据最后一个属性：信贷情况算出其信息增益：</li>
 </ul>
 <p>$$g(D, A_4) = 0.971 - 0.608 = 0.363$$</p>
 <p>所以可以看出信息增益度量的是：信息熵的降低量，这个降低是经过某个属性对原数据进行划分得出的。信息熵的降低，即确定性的提高，进一步讲，就是类别的数量在下降，那么确定为哪一类的可能性就提高，这样就更容易分类了。ID3算法就是基于信息增益来衡量属性（即特征）划分数据的能力，进而为特征（即属性）选择提供原则。</p>
@@ -515,17 +515,17 @@
 <p>$$Gini(D, A) = \frac{|D_1|}{|D|}Gini(D_1) + \frac{|D_2|}{D}Gini(D_2)$$</p>
 <p>基尼指数Gini(D)表示集合D的不确定性，基尼指数Gini(D, A)表示经A=α分割后集合D的不确定性。基尼指数值越大，样本集合的不确定性也就越大，这一点与熵相似。</p>
 <h2 id="ID3算法"><a href="#ID3算法" class="headerlink" title="ID3算法"></a>ID3算法</h2><ul>
-<li><h3 id="信息增益算法"><a href="#信息增益算法" class="headerlink" title="信息增益算法"></a>信息增益算法</h3><p>（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
+<li><h3 id="信息增益算法"><a href="#信息增益算法" class="headerlink" title="信息增益算法"></a>信息增益算法</h3><p>  （来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 </li>
 </ul>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png" alt="img"></p>
 <ul>
-<li><h3 id="ID3算法-1"><a href="#ID3算法-1" class="headerlink" title="ID3算法"></a>ID3算法</h3><p>（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
+<li><h3 id="ID3算法-1"><a href="#ID3算法-1" class="headerlink" title="ID3算法"></a>ID3算法</h3><p>  （来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 </li>
 </ul>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png" alt="img"></p>
 <ul>
-<li><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
+<li><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>  （来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 </li>
 </ul>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png" alt="img"></p>
@@ -857,7 +857,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

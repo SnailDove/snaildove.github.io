@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="前言本文陈述脉络：理论结合kaggle上一个具体的比赛。 正文数据科学的一般流程 指南 特征工程 评价指标 XGBoost参数调优 XGBoost并行处理   特征工程结合以下案例分析： Two Sigma Connect: Rental Listing Inquiries 任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度标签： interest_level，">
+<meta name="description" content="前言本文陈述脉络：理论结合kaggle上一个具体的比赛。 正文数据科学的一般流程 指南 特征工程 评价指标 XGBoost参数调优 XGBoost并行处理   特征工程结合以下案例分析： Two Sigma Connect: Rental Listing Inquiries 任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度标签： interest_level，该">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从特征工程到XGBoost参数调优">
 <meta property="og:url" content="https://snaildove.github.io/2018/12/18/get_started_feature-engineering/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="前言本文陈述脉络：理论结合kaggle上一个具体的比赛。 正文数据科学的一般流程 指南 特征工程 评价指标 XGBoost参数调优 XGBoost并行处理   特征工程结合以下案例分析： Two Sigma Connect: Rental Listing Inquiries 任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度标签： interest_level，">
+<meta property="og:description" content="前言本文陈述脉络：理论结合kaggle上一个具体的比赛。 正文数据科学的一般流程 指南 特征工程 评价指标 XGBoost参数调优 XGBoost并行处理   特征工程结合以下案例分析： Two Sigma Connect: Rental Listing Inquiries 任务：根据公寓的listing 内容，预测纽约市某公寓租赁listing的受欢迎程度标签： interest_level，该">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548322618454.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331998361.png">
@@ -464,7 +464,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文陈述脉络：理论结合kaggle上一个具体的比赛。</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>本文陈述脉络：理论结合kaggle上一个具体的比赛。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="数据科学的一般流程"><a href="#数据科学的一般流程" class="headerlink" title="数据科学的一般流程"></a>数据科学的一般流程</h2><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548322618454.png" alt="1548322618454"></p>
 <h2 id="指南"><a href="#指南" class="headerlink" title="指南"></a>指南</h2><ul>
 <li>特征工程</li>
@@ -515,24 +515,27 @@
 <li><p>直方图：每个取值在数据集中出现的次数，可视为概率函<br> 数（PDF）的估计（seaborn可视化工具比较简单）</p>
  <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">import seaborn as sns</span><br><span class="line">%matplotlib inline（ seaborn 是基于matplotlib 的）</span><br><span class="line">sns.distplot(train.price.values, bins&#x3D;50, kde&#x3D;True)</span><br></pre></td></tr></table></figure></li>
 <li><p>核密度估计</p>
+</li>
+</ol>
 <ul>
 <li>Kernel Density Estimation, KDE</li>
 <li>对直方图的加窗平滑 </li>
 </ul>
-</li>
-</ol>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331998361.png" alt="1548331998361"></p>
 <p><strong>在分类任务中，我们关心不同类别的特征分布</strong></p>
 <p><strong>violinplot</strong> 提供不同类别条件下特征更多的分部信息 核密度估计（KDE） 三个4分位数（quartile）：1/4, 1/2, 3/4 1.5倍四分数间距（nterquartile range, IQR） IQR ：第三四分位数和第一分位数的区别（即Q1~Q3的差距），表示变量的分散情况，播放差更稳健的统计量</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">order = [<span class="string">'low'</span>, <span class="string">'medium'</span>, <span class="string">'high'</span>]</span><br><span class="line">sns.violinplot(x=<span class="string">'interest_level'</span>, y=<span class="string">'price'</span>, data=train, order = order)</span><br></pre></td></tr></table></figure>
+
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331822211.png" alt="1548331822211"></p>
 <h3 id="outliers-奇异点"><a href="#outliers-奇异点" class="headerlink" title="outliers 奇异点"></a>outliers 奇异点</h3><p>奇异点：或称离群点，指远离大多数样本的样本点。通常认为这些点是噪声，对模型有坏影响</p>
 <ol>
 <li><p>可以通过直方图或散点图发现奇异点</p>
 <ul>
-<li>直方图的尾巴</li>
+<li><p>直方图的尾巴</p>
+</li>
 <li><p>散点图上孤立的点</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">plt.figure(figsize=(<span class="number">8</span>,<span class="number">6</span>))</span><br><span class="line">plt.scatter(range(train_df.shape[<span class="number">0</span>]), train_df.price.values, color = color[<span class="number">6</span>])</span><br><span class="line">plt.xlabel(<span class="string">'the number of train data'</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">plt.ylabel(<span class="string">'price'</span>, fontsize=<span class="number">12</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331724663.png" alt="1548331724663"></p>
 </li>
 </ul>
@@ -544,6 +547,7 @@
 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ulimit = np.percentile(train.price.values, <span class="number">99</span>)</span><br><span class="line">train[<span class="string">'price'</span>].loc[train[<span class="string">'price'</span>]&gt;ulimit] = ulimit</span><br></pre></td></tr></table></figure>
+
 <h3 id="correlation-相关性"><a href="#correlation-相关性" class="headerlink" title="correlation 相关性"></a>correlation 相关性</h3><ul>
 <li><p>相关性可以通过计算相关系数或打印散点图来发现</p>
 <p>  <img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548330721971.png" alt="1548330721971"></p>
@@ -562,6 +566,7 @@
 <ul>
 <li><p>我们希望特征与标签强相关，分类直方图可以从某种程度上看出特征与标签的相关性：不同类别的直方图差异大</p>
   <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">order = [<span class="string">'low'</span>, <span class="string">'medium'</span>, <span class="string">'high'</span>]</span><br><span class="line">sns.stripplot(train_df.interest_level, train_df.price.values, jitter=<span class="literal">True</span>, order=order)</span><br><span class="line">plt.title(<span class="string">"Price VS Interest Level"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p>  <img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548331676891.png" alt="1548331676891"></p>
 </li>
 <li><p>特征与特征之间强相关的话意味着信息冗余</p>
@@ -570,6 +575,7 @@
 </li>
 <li><p>或采用主成分分析（PCA）等降维</p>
  <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">contFeaturelist = []</span><br><span class="line">contFeaturelist.append(<span class="string">'bathrooms'</span>)</span><br><span class="line">contFeaturelist.append(<span class="string">'bedrooms'</span>)</span><br><span class="line">contFeaturelist.append(<span class="string">'price'</span>)</span><br><span class="line"></span><br><span class="line">correlationMatrix = train_df[contFeaturelist].corr().abs()</span><br><span class="line">plt.subplots()</span><br><span class="line">sns.heatmap(correlationMatrix, annot=<span class="literal">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#Mask unimportant features</span></span><br><span class="line">sns.heatmap(correlationMatrix, mask=correlationMatrix &lt; <span class="number">1</span>, cbar = <span class="literal">False</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p> <img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548332212260.png" alt="1548332212260"></p>
 </li>
 </ol>
@@ -593,12 +599,14 @@
 <li>存储要求高 </li>
 </ol>
 </li>
-<li><strong>低基数（low-cardinality ）</strong>类别型特征： OneHotEncoder <ol>
+<li><p><strong>低基数（low-cardinality ）</strong>类别型特征： OneHotEncoder </p>
+<ol>
 <li>1维到K维， K为该特征不同的取值数目 </li>
 <li>通常在K &lt;10的情况下采用 </li>
 </ol>
 </li>
-<li><strong>高基数（high-cardinality）</strong>类别型特征：通常有成百上千个不同的取值，可先降维，如：邮政编码、街道名称…<ol>
+<li><p><strong>高基数（high-cardinality）</strong>类别型特征：通常有成百上千个不同的取值，可先降维，如：邮政编码、街道名称…</p>
+<ol>
 <li>聚类（Clustering）： 1 维 到 K维，K为聚类的类别数</li>
 <li>主成分分析（principle component analysis, PCA）：但对大矩阵操作费资源</li>
 <li>均值编码：在贝叶斯的架构下，利用标签变量，有监督地确定最适合特定特征的编码方式。均值编码详细参考：<ul>
@@ -616,6 +624,7 @@
 <li>星期，工作日／周末 </li>
 </ol>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">train_test[<span class="string">'Date'</span>] = pd.to_datetime(train_test[<span class="string">'created'</span>])</span><br><span class="line">train_test[<span class="string">'Year'</span>] = train_test[<span class="string">'Date'</span>].dt.year</span><br><span class="line">train_test[<span class="string">'Month'</span>] = train_test[<span class="string">'Date'</span>].dt.month</span><br><span class="line">train_test[<span class="string">'Day'</span>] = train_test[<span class="string">'Date'</span>].dt.day</span><br><span class="line">train_test[<span class="string">'Wday'</span>] = train_test[<span class="string">'Date'</span>].dt.dayofweek</span><br><span class="line">train_test[<span class="string">'Yday'</span>] = train_test[<span class="string">'Date'</span>].dt.dayofyear</span><br><span class="line">train_test[<span class="string">'hour'</span>] = train_test[<span class="string">'Date'</span>].dt.hour</span><br><span class="line"> </span><br><span class="line">train_test = train_test.drop([<span class="string">'Date'</span>, <span class="string">'created'</span>], axis=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
 <h3 id="文本型特征"><a href="#文本型特征" class="headerlink" title="文本型特征"></a>文本型特征</h3><ul>
 <li>可用词云（wordcloud）可视化<ul>
 <li>文本词频统计函数，自动统计词的个数，以字典形式内部存储，在显示的时候词频大的词的字体更大 </li>
@@ -623,6 +632,7 @@
 </li>
 </ul>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># wordcloud for street address</span></span><br><span class="line">plt.figure()</span><br><span class="line">wordcloud = WordCloud(background_color=<span class="string">'white'</span>, width=<span class="number">600</span>, height=<span class="number">300</span>, max_font_size=<span class="number">50</span>, max_words=<span class="number">40</span>)</span><br><span class="line">wordcloud.generate(text_street)</span><br><span class="line">wordcloud.recolor(random_state=<span class="number">0</span>)</span><br><span class="line">plt.imshow(wordcloud)</span><br><span class="line">plt.title(<span class="string">"Wordcloud for street address"</span>, fontsize=<span class="number">30</span>)</span><br><span class="line">plt.axis(<span class="string">"off"</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548332336363.png" alt="1548332336363"></p>
 <ul>
 <li><p>TF-IDF</p>
@@ -634,7 +644,8 @@
 </ol>
 </li>
 </ul>
-<p>下面是个例子<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"></span><br><span class="line">X_train = [<span class="string">'This is the first document.'</span>, <span class="string">'This is the second document.'</span>]</span><br><span class="line">X_test = [<span class="string">'This is the third document.'</span>]</span><br><span class="line">vectorizer = TfidfVectorizer()</span><br><span class="line"><span class="comment"># 用X_train数据来fit</span></span><br><span class="line">vectorizer.fit(X_train)</span><br><span class="line"><span class="comment"># 得到tfidf的矩阵</span></span><br><span class="line">tfidf_train = vectorizer.transform(X_train)</span><br><span class="line">tfidf_test = vectorizer.transform(X_test)</span><br><span class="line"></span><br><span class="line">tfidf_train.toarray()</span><br></pre></td></tr></table></figure></p>
+<p>下面是个例子</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.feature_extraction.text <span class="keyword">import</span> TfidfVectorizer</span><br><span class="line"></span><br><span class="line">X_train = [<span class="string">'This is the first document.'</span>, <span class="string">'This is the second document.'</span>]</span><br><span class="line">X_test = [<span class="string">'This is the third document.'</span>]</span><br><span class="line">vectorizer = TfidfVectorizer()</span><br><span class="line"><span class="comment"># 用X_train数据来fit</span></span><br><span class="line">vectorizer.fit(X_train)</span><br><span class="line"><span class="comment"># 得到tfidf的矩阵</span></span><br><span class="line">tfidf_train = vectorizer.transform(X_train)</span><br><span class="line">tfidf_test = vectorizer.transform(X_test)</span><br><span class="line"></span><br><span class="line">tfidf_train.toarray()</span><br></pre></td></tr></table></figure>
 <h3 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h3><p><code>from sklearn.preprocessing import …</code></p>
 <ol>
 <li>数据标准化</li>
@@ -732,10 +743,10 @@
 <li><p>SciKit-Learn实现了多类分类任务的混淆矩阵</p>
 <p>  <code>sklearn.metrics.confusion_matrix(y_true, y_pred, labels=None, sample_weight=None)</code></p>
 <ol>
-<li>y_true： N个样本的标签真值</li>
-<li>y_pred： N个样本的预测标签值</li>
-<li>labels：C个类别在矩阵的索引顺序，缺省为y_true或y_pred类别出现的顺序</li>
-<li>sample_weight： N个样本的权重 </li>
+<li> y_true： N个样本的标签真值</li>
+<li> y_pred： N个样本的预测标签值</li>
+<li> labels：C个类别在矩阵的索引顺序，缺省为y_true或y_pred类别出现的顺序</li>
+<li> sample_weight： N个样本的权重 </li>
 </ol>
 </li>
 </ul>
@@ -798,7 +809,7 @@
 </ul>
 <h3 id="F1-分数-调和平均"><a href="#F1-分数-调和平均" class="headerlink" title="F1 分数/调和平均"></a>F1 分数/调和平均</h3><ul>
 <li>亦被称为F1 score, balanced F-score or F-measure</li>
-<li>Precision 和 Recall 加权平均： $F1=\frac{2<em>(\text{Precision </em> Recall)}}{(\text{Precision + Recall)}}$<ul>
+<li>Precision 和 Recall 加权平均： $F1=\frac{2*(\text{Precision * Recall)}}{(\text{Precision + Recall)}}$<ul>
 <li>最好为1，最差为0</li>
 <li>多类：每类的F1平均值 </li>
 </ul>
@@ -820,8 +831,7 @@
 <th>Comment</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>Classification</strong></td>
 <td></td>
 <td></td>
@@ -969,9 +979,9 @@
 <tr>
 <td>‘r2’</td>
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score" target="_blank" rel="noopener"><code>metrics.r2_score</code></a></td>
+<td></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="SciKit-Learn：sklearn-metrics"><a href="#SciKit-Learn：sklearn-metrics" class="headerlink" title="SciKit-Learn：sklearn.metrics"></a>SciKit-Learn：sklearn.metrics</h3><ul>
 <li>metrics模块还提供为其他目的而实现的预测误差评估函数<br>  分类任务的评估函数如表所示，其他任务评估函数请见：<a href="http://scikitlearn.org/stable/modules/classes.html#module-sklearn.metrics" target="_blank" rel="noopener">http://scikitlearn.org/stable/modules/classes.html#module-sklearn.metrics</a> </li>
 </ul>
@@ -983,8 +993,7 @@
 <th>Accuracy classification score.</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.auc.html#sklearn.metrics.auc" target="_blank" rel="noopener"><code>metrics.auc</code></a>(x, y[, reorder])</td>
 <td>Compute Area Under the Curve (AUC) using the trapezoidal rule</td>
 </tr>
@@ -1068,8 +1077,7 @@
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.zero_one_loss.html#sklearn.metrics.zero_one_loss" target="_blank" rel="noopener"><code>metrics.zero_one_loss</code></a>(y_true, y_pred[, …])</td>
 <td>Zero-one classification loss.</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h4 id="Regression-metrics"><a href="#Regression-metrics" class="headerlink" title="Regression metrics"></a>Regression metrics</h4><p>See the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#regression-metrics" target="_blank" rel="noopener">Regression metrics</a> section of the user guide for further details.</p>
 <table>
 <thead>
@@ -1078,8 +1086,7 @@
 <th>Explained variance regression score function</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.mean_absolute_error.html#sklearn.metrics.mean_absolute_error" target="_blank" rel="noopener"><code>metrics.mean_absolute_error</code></a>(y_true, y_pred)</td>
 <td>Mean absolute error regression loss</td>
 </tr>
@@ -1099,8 +1106,7 @@
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.r2_score.html#sklearn.metrics.r2_score" target="_blank" rel="noopener"><code>metrics.r2_score</code></a>(y_true, y_pred[, …])</td>
 <td>R^2 (coefficient of determination) regression score function.</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h4 id="Multilabel-ranking-metrics"><a href="#Multilabel-ranking-metrics" class="headerlink" title="Multilabel ranking metrics"></a>Multilabel ranking metrics</h4><p>See the <a href="https://scikit-learn.org/stable/modules/model_evaluation.html#multilabel-ranking-metrics" target="_blank" rel="noopener">Multilabel ranking metrics</a> section of the user guide for further details.</p>
 <table>
 <thead>
@@ -1109,8 +1115,7 @@
 <th>Coverage error measure</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.label_ranking_average_precision_score.html#sklearn.metrics.label_ranking_average_precision_score" target="_blank" rel="noopener"><code>metrics.label_ranking_average_precision_score</code></a>(…)</td>
 <td>Compute ranking-based average precision</td>
 </tr>
@@ -1118,8 +1123,7 @@
 <td><a href="https://scikit-learn.org/stable/modules/generated/sklearn.metrics.label_ranking_loss.html#sklearn.metrics.label_ranking_loss" target="_blank" rel="noopener"><code>metrics.label_ranking_loss</code></a>(y_true, y_score)</td>
 <td>Compute Ranking loss measure</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong><font color="red">XGBoost 原理部分参考：</font></strong> <a href="/2018/10/02/get-started-XGBoost/">XGBoost第一课</a></p>
 <h2 id="XGBoost支持的目标函数"><a href="#XGBoost支持的目标函数" class="headerlink" title="XGBoost支持的目标函数"></a>XGBoost支持的目标函数</h2><p>objective参数，这个参数在 XGBoost 里面属于任务参数（Learning Task Parameters）</p>
 <p> [default=reg:linear]</p>
@@ -1143,7 +1147,8 @@
 <li><code>reg:tweedie</code>: Tweedie regression with log-link. It might be useful, e.g., for modeling total loss in insurance, or for any outcome that might be <a href="https://en.wikipedia.org/wiki/Tweedie_distribution#Applications" target="_blank" rel="noopener">Tweedie-distributed</a>.</li>
 </ul>
 <h2 id="XGBoost自定义目标函数"><a href="#XGBoost自定义目标函数" class="headerlink" title="XGBoost自定义目标函数"></a>XGBoost自定义目标函数</h2><ul>
-<li>在GBDT训练过程，当每步训练得到一棵树，要调用目标函数得到其梯度作为下一棵树拟合的目标</li>
+<li><p>在GBDT训练过程，当每步训练得到一棵树，要调用目标函数得到其梯度作为下一棵树拟合的目标</p>
+</li>
 <li><p>XGBoost在调用obj函数时会传入两个参数：preds和dtrain</p>
 <ul>
 <li><p>preds为当前模型完成训练时，所有训练数据的预测值</p>
@@ -1158,7 +1163,9 @@
 <p><strong>例子</strong></p>
 <p>参考官网：<a href="https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py" target="_blank" rel="noopener">https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#user define objective function, given prediction, return gradient and second order gradient</span></span><br><span class="line"><span class="comment">#this is log likelihood loss</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">logregobj</span><span class="params">(preds, dtrain)</span>:</span> <span class="comment">#自定义损失函数</span></span><br><span class="line">    labels = dtrain.get_label()</span><br><span class="line">    preds = <span class="number">1.0</span> / (<span class="number">1.0</span> + np.exp(-preds))</span><br><span class="line">    grad = preds - labels <span class="comment">#梯度</span></span><br><span class="line">    hess = preds * (<span class="number">1.0</span>-preds) <span class="comment">#2阶导数</span></span><br><span class="line">    <span class="keyword">return</span> grad, hess</span><br></pre></td></tr></table></figure>
-<p>调用的时候：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure></p>
+<p>调用的时候：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure>
+
 <h2 id="XGBoost支持的评价函数"><a href="#XGBoost支持的评价函数" class="headerlink" title="XGBoost支持的评价函数"></a>XGBoost支持的评价函数</h2><p><code>eval_metric</code>参数，这个参数在 XGBoost 里面属于任务参数（Learning Task Parameters）</p>
 <p> [default according to objective]</p>
 <ul>
@@ -1188,8 +1195,10 @@
 </ul>
 <h2 id="XGBoost自定义评价函数"><a href="#XGBoost自定义评价函数" class="headerlink" title="XGBoost自定义评价函数"></a>XGBoost自定义评价函数</h2><p>例子参考官网：<a href="https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py" target="_blank" rel="noopener">https://github.com/dmlc/xgboost/blob/master/demo/guide-python/custom_objective.py</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># user defined evaluation function, return a pair metric_name, result</span></span><br><span class="line"><span class="comment"># <span class="doctag">NOTE:</span> when you do customized loss function, the default prediction value is margin</span></span><br><span class="line"><span class="comment"># this may make builtin evaluation metric not function properly</span></span><br><span class="line"><span class="comment"># for example, we are doing logistic loss, the prediction is score before logistic transformation</span></span><br><span class="line"><span class="comment"># the builtin evaluation error assumes input is after logistic transformation</span></span><br><span class="line"><span class="comment"># Take this in mind when you use the customization, and maybe you need write customized evaluation function</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">evalerror</span><span class="params">(preds, dtrain)</span>:</span></span><br><span class="line">    labels = dtrain.get_label()</span><br><span class="line">    <span class="comment"># return a pair metric_name, result. The metric name must not contain a colon (:) or a space</span></span><br><span class="line">    <span class="comment"># since preds are margin(before logistic transformation, cutoff at 0)</span></span><br><span class="line">    <span class="keyword">return</span> <span class="string">'my-error'</span>, float(sum(labels != (preds &gt; <span class="number">0.0</span>))) / len(labels)</span><br><span class="line"></span><br><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure>
+
 <p>调用的时候：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># training with customized objective, we can also do step by step training</span></span><br><span class="line"><span class="comment"># simply look at xgboost.py's implementation of train</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round, watchlist, obj=logregobj, feval=evalerror)</span><br></pre></td></tr></table></figure>
+
 <h2 id="XGBoost参数调优"><a href="#XGBoost参数调优" class="headerlink" title="XGBoost参数调优"></a>XGBoost参数调优</h2><h3 id="XGBoost参数列表"><a href="#XGBoost参数列表" class="headerlink" title="XGBoost参数列表"></a>XGBoost参数列表</h3><table>
 <thead>
 <tr>
@@ -1197,8 +1206,7 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><strong>max_depth</strong></td>
 <td>树的最大深度。树越深通常模型越复杂，更容易过拟合。</td>
 </tr>
@@ -1282,10 +1290,9 @@
 <td>kwargs</td>
 <td>XGBoost Booster的Keyword参数</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="参数类别"><a href="#参数类别" class="headerlink" title="参数类别"></a>参数类别</h3><ol>
-<li>通用参数：这部分参数通常我们不需要调整，默认值就好</li>
+<li> 通用参数：这部分参数通常我们不需要调整，默认值就好</li>
 <li>学习目标参数：与任务有关，定下来后通常也不需要调整</li>
 <li>booster参数：弱学习器相关参数，需要仔细调整，会影响模型性能 </li>
 </ol>
@@ -1293,13 +1300,13 @@
 <li><p>booster：弱学习器类型</p>
 <ul>
 <li>可选gbtree（树模型）或gbliner（线性模型） 或 dart （参考我的另一篇博文： <a href="/2018/10/02/get-started-XGBoost/">XGBoost第一课</a>）</li>
-<li>默认为gbtree（树模型为非线性模型，能处理更复杂的任务）</li>
+<li> 默认为gbtree（树模型为非线性模型，能处理更复杂的任务）</li>
 </ul>
 </li>
 <li><p>silent：是否开启静默模式</p>
 <ul>
 <li>1：静默模式开启，不输出任何信息</li>
-<li>默认值为0：输出一些中间信息，以助于我们了解模型的状态</li>
+<li> 默认值为0：输出一些中间信息，以助于我们了解模型的状态</li>
 </ul>
 </li>
 <li><p>nthread：线程数</p>
@@ -1310,7 +1317,8 @@
 </ul>
 <h3 id="学习目标参数"><a href="#学习目标参数" class="headerlink" title="学习目标参数"></a>学习目标参数</h3><ul>
 <li>objective: 损失函数<ul>
-<li>支持分类／回归／排</li>
+<li><pre><code>支持分类／回归／排</code></pre>
+</li>
 </ul>
 </li>
 <li>eval_metric：评价函数</li>
@@ -1329,7 +1337,8 @@
 <li><p>通常建议学习率较小（ $\eta &lt; 0.1$ ）弱学习器数目n_estimators大 </p>
 <p>   $f_m(x_i)=f_{m-1}(x_i)+\eta\beta_m WeakLearner_m(x_i) $</p>
 </li>
-<li>可以设置较小的学习率，然后用交叉验证确定n_estimators</li>
+<li><p>可以设置较小的学习率，然后用交叉验证确定n_estimators</p>
+</li>
 </ul>
 </li>
 <li><p>行（subsample）列（colsample_bytree、colsample_bylevel）下采样比例</p>
@@ -1382,7 +1391,7 @@
 </li>
 </ul>
 <h3 id="参数调优的一般方法"><a href="#参数调优的一般方法" class="headerlink" title="参数调优的一般方法"></a>参数调优的一般方法</h3><ol>
-<li>选择较高的<strong>学习率(learning rate)</strong>，并选择对应于此学习率的理想的<strong>树数量</strong><ul>
+<li>选择较高的<strong>学习率(learning rate)**，并选择对应于此学习率的理想的</strong>树数量**<ul>
 <li>学习率以工具包默认值为0.1。</li>
 <li>XGBoost直接引用函数“cv”可以在每一次迭代中使用交叉验证，并返回理想的树数量（因为交叉验证很慢，所以可以import两种XGBoost：直接引用xgboost（用“cv”函数调整树的数目）和XGBClassifier —xgboost的sklearn包（用GridSearchCV调整其他参数 ）。</li>
 </ul>
@@ -1416,7 +1425,8 @@
 </li>
 </ul>
 </li>
-<li>在准备建树数据时高效（近似建树、稀疏、 Cache、数据分块）</li>
+<li><p>在准备建树数据时高效（近似建树、稀疏、 Cache、数据分块）</p>
+</li>
 <li><p>交叉验证也支持并行（由scikit-learn 提供支持） </p>
 <ul>
 <li><p>scikit-learn 支持的k折交叉验证也支持多线程</p>
@@ -1427,13 +1437,15 @@
 </li>
 </ul>
 </li>
-<li>并行处理的三种配置<ul>
+<li><p>并行处理的三种配置</p>
+<ul>
 <li>交叉验证并行，XGBoost建树不并行</li>
 <li>交叉验证不并行，XGBoost建树并行</li>
 <li>交叉验证并行，XGBoost建树并行</li>
 </ul>
 </li>
-<li>Otto数据集上的10折交叉验证实验结果：<ul>
+<li><p>Otto数据集上的10折交叉验证实验结果：</p>
+<ul>
 <li>Single Thread XGBoost, Parallel Thread CV: 359.854589</li>
 <li>Parallel Thread XGBoost, Single Thread CV: 330.498101</li>
 <li>Parallel Thread XGBoost and CV: 313.382301，并行 XGBoost 比并行交叉验证好，两者都并行更好 </li>
@@ -1442,6 +1454,7 @@
 </ol>
 <h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><p>查看</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># evaluate the effect of the number of threads</span></span><br><span class="line"> results = []</span><br><span class="line"> num_threads = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>]</span><br><span class="line"> <span class="keyword">for</span> n <span class="keyword">in</span> num_threads:</span><br><span class="line">	start = time.time()</span><br><span class="line">	model = XGBClassifier(nthread=n)</span><br><span class="line">	model.fit(X_train, y_train)</span><br><span class="line">	elapsed = time.time() - start</span><br><span class="line">	print(n, elapsed)</span><br><span class="line">	results.append(elapsed)</span><br></pre></td></tr></table></figure>
+
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1548608348576.png" alt="1548608348576"></p>
 <h2 id="XGBoost总结"><a href="#XGBoost总结" class="headerlink" title="XGBoost总结"></a>XGBoost总结</h2><ul>
 <li><p>XGBoost是一个用于监督学习的非参数模型</p>
@@ -1830,7 +1843,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="前言笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，本文将每一步推导都详细列出来了。 清华大学线性代数2公开课笔记总结 第1讲：正定矩阵第2讲：相似矩阵第3讲：奇异值分解第4讲：线性变换1第5讲：线性变换2第6讲：伪逆第7讲：工程中的矩阵第8讲：图与网络第9讲：Markov矩阵和正矩阵第10讲：Fourier级数第11讲：计算机图像第12讲：复数与复矩阵 正文对角矩阵是我们最喜欢的一">
+<meta name="description" content="前言笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，本文将每一步推导都详细列出来了。 清华大学线性代数2公开课笔记总结 第1讲：正定矩阵第2讲：相似矩阵第3讲：奇异值分解第4讲：线性变换1第5讲：线性变换2第6讲：伪逆第7讲：工程中的矩阵第8讲：图与网络第9讲：Markov矩阵和正矩阵第10讲：Fourier级数第11讲：计算机图像第12讲：复数与复矩阵 正文对角矩阵是我们最喜欢的一类">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tsinghua linear-algebra-2 3rd-lecture Singular-Values-Decomposition">
 <meta property="og:url" content="https://snaildove.github.io/2017/08/03/singular_values_decomposition/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="前言笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，本文将每一步推导都详细列出来了。 清华大学线性代数2公开课笔记总结 第1讲：正定矩阵第2讲：相似矩阵第3讲：奇异值分解第4讲：线性变换1第5讲：线性变换2第6讲：伪逆第7讲：工程中的矩阵第8讲：图与网络第9讲：Markov矩阵和正矩阵第10讲：Fourier级数第11讲：计算机图像第12讲：复数与复矩阵 正文对角矩阵是我们最喜欢的一">
+<meta property="og:description" content="前言笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，本文将每一步推导都详细列出来了。 清华大学线性代数2公开课笔记总结 第1讲：正定矩阵第2讲：相似矩阵第3讲：奇异值分解第4讲：线性变换1第5讲：线性变换2第6讲：伪逆第7讲：工程中的矩阵第8讲：图与网络第9讲：Markov矩阵和正矩阵第10讲：Fourier级数第11讲：计算机图像第12讲：复数与复矩阵 正文对角矩阵是我们最喜欢的一类">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/1.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/2.png">
@@ -463,7 +463,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，<strong>本文将每一步推导都详细列出来了</strong>。</p>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>笔记源自：清华大学公开课：线性代数2——第三讲：奇异值分解，<strong>本文将每一步推导都详细列出来了</strong>。</p>
 <p><strong>清华大学线性代数2公开课笔记总结</strong></p>
 <p>第1讲：<a href="https://snaildove.github.io/2017/08/01/positive_definite_matrix/">正定矩阵</a><br>第2讲：<a href="">相似矩阵</a><br>第3讲：<a href="https://snaildove.github.io/2017/08/03/singular_values_decomposition/">奇异值分解</a><br>第4讲：<a href="https://snaildove.github.io/2017/08/04/linear_transformation_1st_part/">线性变换1</a><br>第5讲：<a href="https://snaildove.github.io/2017/08/05/linear_transformation_2nd_part/">线性变换2</a><br>第6讲：<a href="https://snaildove.github.io/2017/08/06/pseudo_inverse/">伪逆</a><br>第7讲：<a href="https://snaildove.github.io/2017/08/07/engineering_matrices/">工程中的矩阵</a><br>第8讲：<a href="https://snaildove.github.io/2017/08/08/graph_and_network/">图与网络</a><br>第9讲：<a href="https://snaildove.github.io/2017/08/06/Markov_matrix/">Markov矩阵和正矩阵</a><br>第10讲：<a href="https://snaildove.github.io/2017/08/02/Fourier_series/">Fourier级数</a><br>第11讲：<a href="https://snaildove.github.io/2017/08/11/computer_graphics/">计算机图像</a><br>第12讲：<a href="https://snaildove.github.io/2017/08/12/complex_and_complex_matrix/">复数与复矩阵</a></p>
 <h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>对角矩阵是我们最喜欢的一类矩阵，对能够相似于对角阵的矩阵能方便地计算其幂和指数，对不能相似于对角阵的方阵。上节课我们讨论了如何求出其尽可能简单的相似标准形及Jordan标准形以上讨论的都是方阵。那么对m乘n的矩阵我们如何来对它进行对角化呢？</p>
@@ -471,9 +471,9 @@
 <h2 id="AA-T-与-A-TA-的特性"><a href="#AA-T-与-A-TA-的特性" class="headerlink" title="$AA^T$与$A^TA$的特性"></a>$AA^T$与$A^TA$的特性</h2><h3 id="AA-T-与-A-TA-的特征值"><a href="#AA-T-与-A-TA-的特征值" class="headerlink" title="$AA^T$与$A^TA$的特征值"></a>$AA^T$与$A^TA$的特征值</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/2.png" alt="1st_property_of_AAT"> </p>
 <h3 id="AA-T-与-A-TA-非0特征值集合"><a href="#AA-T-与-A-TA-非0特征值集合" class="headerlink" title="$AA^T$与$A^TA$非0特征值集合"></a>$AA^T$与$A^TA$非0特征值集合</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/3.png" alt="2nd_property_of_AAT"> </p>
 <h3 id="A-TA-与-AA-T-的特征向量"><a href="#A-TA-与-AA-T-的特征向量" class="headerlink" title="$A^TA$与$AA^T$的特征向量"></a>$A^TA$与$AA^T$的特征向量</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/4.png" alt="orthonormal_eigenvectors_of_AAT"></p>
-<p>令$u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) $，则 $AA^Tu_i=A(A^T\frac{Av_i}{\sigma_i})=A\frac{A^TAv_i}{\sigma_i}=A\frac{\sigma_i^2v_i}{\sigma_i}={\sigma_i}^2{Av_i \over \sigma_i}={\sigma_i}^2u_i$，得出：$AA^Tu_i={\sigma_i}^2u_i$。又因为：${u_i}^T{u_j}=\frac{(Av_i)^T}{\sigma_i}{Av_j \over \sigma_j}={v_i^T(A^TAv_j) \over \sigma_i\sigma_j}=\frac{\sigma_j^2{v_i}^Tv_j}{\sigma_i\sigma_j}={\sigma_j\over \sigma_i}v_i^Tv_j\rightarrow u_i^Tu_j=\begin{cases}0, &amp; i\ne j\ 1, &amp; i=j\end{cases}$故：${u_i|1\le i \le r}$ 是$AA^T$的单位正交特征向量。</p>
-<p>根据假设（$v_1,\,…\,,v_n$是$A^TA$的单位交基，$\sigma_1^2,\,…\,,\sigma_n^2$是$AA^T$的特征值）得：$A^TAv_i=\sigma_i^2v_i(1\le i\le r) \rightarrow v_i^TA^TAv_i=v_i^T\sigma_i^2v_i=\sigma_i^2v_i^Tv_i \rightarrow ||Av_i||^2=\sigma_i^2 \rightarrow|Av_i|=\sigma_i$</p>
-<h3 id="从-AA-T-得出SVD"><a href="#从-AA-T-得出SVD" class="headerlink" title="从$AA^T$得出SVD"></a>从$AA^T$得出SVD</h3><p>$(1)u_i:={Av_i \over \sigma_i}\in\,R^m(1 \le i \le r) \rightarrow Av_i=\sigma_iu_i\ (2)A^TAv_i={\sigma_i}^2v_i, (i\le i \le r)\rightarrow A^T{Av_i\over \sigma_i}=\sigma_iv_i\rightarrow A^Tu_i=\sigma_iv_i$</p>
+<p>令$u_i:={Av_i \over \sigma_i}\in,R^m(1 \le i \le r) $，则 $AA^Tu_i=A(A^T\frac{Av_i}{\sigma_i})=A\frac{A^TAv_i}{\sigma_i}=A\frac{\sigma_i^2v_i}{\sigma_i}={\sigma_i}^2{Av_i \over \sigma_i}={\sigma_i}^2u_i$，得出：$AA^Tu_i={\sigma_i}^2u_i$。又因为：${u_i}^T{u_j}=\frac{(Av_i)^T}{\sigma_i}{Av_j \over \sigma_j}={v_i^T(A^TAv_j) \over \sigma_i\sigma_j}=\frac{\sigma_j^2{v_i}^Tv_j}{\sigma_i\sigma_j}={\sigma_j\over \sigma_i}v_i^Tv_j\rightarrow u_i^Tu_j=\begin{cases}0, &amp; i\ne j\ 1, &amp; i=j\end{cases}$故：${u_i|1\le i \le r}$ 是$AA^T$的单位正交特征向量。</p>
+<p>根据假设（$v_1,,…,,v_n$是$A^TA$的单位交基，$\sigma_1^2,,…,,\sigma_n^2$是$AA^T$的特征值）得：$A^TAv_i=\sigma_i^2v_i(1\le i\le r) \rightarrow v_i^TA^TAv_i=v_i^T\sigma_i^2v_i=\sigma_i^2v_i^Tv_i \rightarrow ||Av_i||^2=\sigma_i^2 \rightarrow|Av_i|=\sigma_i$</p>
+<h3 id="从-AA-T-得出SVD"><a href="#从-AA-T-得出SVD" class="headerlink" title="从$AA^T$得出SVD"></a>从$AA^T$得出SVD</h3><p>$(1)u_i:={Av_i \over \sigma_i}\in,R^m(1 \le i \le r) \rightarrow Av_i=\sigma_iu_i\ (2)A^TAv_i={\sigma_i}^2v_i, (i\le i \le r)\rightarrow A^T{Av_i\over \sigma_i}=\sigma_iv_i\rightarrow A^Tu_i=\sigma_iv_i$</p>
 <p>由上式子得：$U$是$A$列空间的一组单位正交基，$V$是$A^T$的列空间的一组单位正交基。$\sigma_i$是$Av_i$的长度，计$\begin{pmatrix}\sigma_1&amp;&amp;&amp;&amp;\&amp;.&amp;&amp;&amp;\&amp;&amp;.&amp;&amp;\&amp;&amp;&amp;.&amp;\&amp;&amp;&amp;&amp;\sigma_r\end{pmatrix}$为$\Sigma$，得：$A_{m\times n}V_{n\times r}=U_{m\times r}\Sigma_{r\times r}\rightarrow A_{m\times n}=U_{m\times r}\Sigma_{r\times r} {V^{-1}}<em>{r\times n}\=U</em>{m\times r}\Sigma_{r\times r} {V^{T}}_{r\times n}$</p>
 <p>向量形式：$A=\sum_{i=1}^r \sigma_i u_i{v_i}^T$</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-3/5.png" alt="get_svd_from_AAT"></p>
@@ -811,7 +811,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

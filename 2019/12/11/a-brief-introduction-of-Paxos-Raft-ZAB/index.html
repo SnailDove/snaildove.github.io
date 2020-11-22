@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。 CAP 定理根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在2000 年的分布式原理研讨会上提出计算（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（Seth Gilbert ) 和 南希·林奇">
+<meta name="description" content="本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。 CAP 定理根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在2000 年的分布式原理研讨会上提出计算（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（Seth Gilbert ) 和 南希·林奇（">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CAP定理图示与Raft各种场景演示">
 <meta property="og:url" content="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。 CAP 定理根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在2000 年的分布式原理研讨会上提出计算（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（Seth Gilbert ) 和 南希·林奇">
+<meta property="og:description" content="本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。 CAP 定理根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在2000 年的分布式原理研讨会上提出计算（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（Seth Gilbert ) 和 南希·林奇（">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://stph.scenari-community.org/bdd/nos1/res/cap-theorem_1.png">
 <meta property="og:image" content="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap1.svg">
@@ -490,9 +490,10 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。</p>
+        <p>本文主要着重于CAP定理和raft各种场景演示，如有错误，欢迎指出，方便你我他，互相学习进步。</p>
 <h2 id="CAP-定理"><a href="#CAP-定理" class="headerlink" title="CAP 定理"></a>CAP 定理</h2><p>根据加州大学伯克利分校计算机科学家Eric Brewer说法，该定理于1998年秋季首次出现。该定理于1999年作为CAP原理发表，并由Brewer在<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/Symposium_on_Principles_of_Distributed_Computing)作为[猜想](https://en.wikipedia.org/wiki/Conjecture" target="_blank" rel="noopener">2000 年的分布式原理研讨会上</a>提出<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/Symposium_on_Principles_of_Distributed_Computing" target="_blank" rel="noopener">计算</a>（PODC）。2002年，麻省理工学院的塞斯·吉尔伯特（<a style="color:#0879e3" href="https://en.wikipedia.org/w/index.php?title=Seth_Gilbert&action=edit&redlink=1" target="_blank" rel="noopener">Seth Gilbert</a> ) 和 南希·林奇（<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/Nancy_Lynch" target="_blank" rel="noopener">Nancy Lynch</a>）发表了布鲁尔猜想的正式证明，使之成为一个<a style="color:#0879e3" href="http://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">定理</a>。</p>
-<p><img src="https://stph.scenari-community.org/bdd/nos1/res/cap-theorem_1.png" alt="11122" style="zoom:65%;" /></p>
+<img src="https://stph.scenari-community.org/bdd/nos1/res/cap-theorem_1.png" alt="11122" style="zoom:65%;" />
+
 <p><a style="color:#0879e3" href="http://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">CAP定理</a>指出分布式计算机系统不可能同时提供以下三个保证（来自<a style="color:#0879e3" href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener"> wiki : CAP Theorum</a>）：</p>
 <ul>
 <li><p><strong>Consistency</strong>: Every read receives the most recent write or an error</p>
@@ -538,7 +539,9 @@
 <p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap21.svg" alt="img"></p>
 <p>接下来，我们有客户端要求 $v_1$ 写入 $G_1$。由于我们的系统可用，因此 $G_1$ 必须响应。由于网络是分区的，因此 $G_1$ 无法将其数据复制到 $G_2$。Gilbert 和 Lynch 将此执行阶段称为 $\alpha_1$。</p>
 <blockquote>
-<p><center><strong>译者附</strong></center><br>原文：”Since the network is partitioned, however, $G_1$ cannot replicate its data to $G_2$.”</p>
+<center><strong>译者附</strong></center>
+原文：”Since the network is partitioned, however, $G_1$ cannot replicate its data to $G_2$.”
+
 <p>网络<strong>被</strong>分区，比如：中美海底电缆火山喷发断掉了，淘宝电缆被施工方不小心挖掉了，这时候，对于前者美国的所有服务器和中国的所有服务器都是对外可用的，国家内的服务器节点都是互通的，但是中美之间的服务器是不通的，虽然开始阶段所有各个服务器节点都是互通的，那么这时候就发生了<strong>网络分区</strong>。对于后者，国内的情况也同理，各个大区之间也有可能发生网络分区，举例：华东，华北，华南，西北，西南等等。</p>
 </blockquote>
 <p><img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap22.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap23.svg" alt="img"> <img src="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/assets/cap24.svg" alt="img"></p>
@@ -547,7 +550,8 @@
 <p>客户端已经将 $v_1$ 写至 $G_1$ 之后，$G_2$ 返回 $v_0$ 给客户端。这是不一致的。</p>
 <p>我们假设存在一个一致的，可用的，分区容错的系统，但是我们只是展示了存在任何此类系统执行的情况，其中该系统的行为不一致。因此，不存在这样的系统。</p>
 <blockquote>
-<p><center><strong>译者附</strong></center><br>由于发生了网络分区，此时只能在可用性和一致性之间做一个取舍，比如上文提到的海底电缆断掉，那么为了一致性，停掉中国或者美国服务器节点提供的对外服务，这时候可能所有原本请求国内的服务器节点都得转向去请求美国的服务器节点，但是这时候就降低了可用性，比如：请求的延迟。那么另外一种情况，保持中美服务器节点继续对外服务，那么可用性没有变化，但是就破坏了一致性，因为网络分区以后中美内部服务器节点行为不一致，这样给系统留下的影响（数据，及其间接衍生物：比如算法迭代更新等）是不一样的。</p>
+<center><strong>译者附</strong></center>
+由于发生了网络分区，此时只能在可用性和一致性之间做一个取舍，比如上文提到的海底电缆断掉，那么为了一致性，停掉中国或者美国服务器节点提供的对外服务，这时候可能所有原本请求国内的服务器节点都得转向去请求美国的服务器节点，但是这时候就降低了可用性，比如：请求的延迟。那么另外一种情况，保持中美服务器节点继续对外服务，那么可用性没有变化，但是就破坏了一致性，因为网络分区以后中美内部服务器节点行为不一致，这样给系统留下的影响（数据，及其间接衍生物：比如算法迭代更新等）是不一样的。
 </blockquote>
 <h2 id="什么是一致性"><a href="#什么是一致性" class="headerlink" title="什么是一致性"></a>什么是一致性</h2><ul>
 <li><p>弱一致性</p>
@@ -555,11 +559,11 @@
 <li><p>最终一致性（无法实时获取最新更新的数据，但是一段时间过后，数据是一致的）</p>
 <ol>
 <li><p>DNS(Domain Name System)</p>
-<p> <img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573824877788.png" alt="1572487" style="zoom:80%;" /></p>
+ <img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573824877788.png" alt="1572487" style="zoom:80%;" />
 </li>
 <li><p>Gossip(Cassandra的通信协议) </p>
 </li>
-<li><p>优先保证AP（Availability, Partition tolerance）的 CouchDB，Cassandra，DynamoDB，Riak</p>
+<li><p> 优先保证AP（Availability, Partition tolerance）的 CouchDB，Cassandra，DynamoDB，Riak</p>
 </li>
 </ol>
 </li>
@@ -618,36 +622,45 @@
 <h4 id="图示流程"><a href="#图示流程" class="headerlink" title="图示流程"></a><font color="#3399cc">图示流程</font></h4><p><strong>Basic Paxos when an Acceptor fails</strong></p>
 <p>在下图中，有1个client，1个proposer，3个acceptor（即法定人数为3）和2个 learner（由2条垂直线表示）。该图表示第一轮成功的情况（即网络中没有进程失败）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer      Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(1,&#123;Va,Vb,Vc&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(1,V)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(1,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+
 <p>这里 V 是最后的 {Va, Vb, Vc}.</p>
 <p><strong>Basic Paxos when an Acceptor fails</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer      Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |         |          |  |  !       |  |  !! FAIL !!</span><br><span class="line">   |         |&lt;---------X--X          |  |  Promise(1,&#123;Va, Vb, null&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|          |  |  Accept!(1,V)</span><br><span class="line">   |         |&lt;---------X--X---------&gt;|-&gt;|  Accepted(1,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |          |  |</span><br></pre></td></tr></table></figure>
+
 <p><strong>Basic Paxos when a Proposer fails</strong></p>
 <p>在这种情况下，proposer 在提出值之后但在达成协议之前失败。具体来说，它在Accept消息的中间失败，因此只有一个Acceptor接收到该值。此时由新的proposer（即图中的 NEW LEADER，选举出来的，怎么选举看后面详细分析）。请注意，在这种情况下有2轮（轮从上到下垂直进行）。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Client  Proposer        Acceptor     Learner</span><br><span class="line">   |      |             |  |  |       |  |</span><br><span class="line">   X-----&gt;|             |  |  |       |  |  Request</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Promise(1,&#123;Va, Vb, Vc&#125;)</span><br><span class="line">   |      |             |  |  |       |  |</span><br><span class="line">   |      |             |  |  |       |  |  !! Leader fails during broadcast !!</span><br><span class="line">   |      X------------&gt;|  |  |       |  |  Accept!(1,V)</span><br><span class="line">   |      !             |  |  |       |  |</span><br><span class="line">   |         |          |  |  |       |  |  !! NEW LEADER !!</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(2,&#123;V, null, null&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(2,V)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(2,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+
 <p>新的提案人重新提出此前失败的提案，但是此时提案编号已经增大。</p>
 <p><strong>Basic Paxos when a redundant learner fails</strong></p>
 <p>在以下情况下，（冗余的）学习者之一失败，但是Basic Paxos协议仍然成功。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Client Proposer         Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(1,&#123;Va,Vb,Vc&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(1,V)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(1,V)</span><br><span class="line">   |         |          |  |  |       |  !  !! FAIL !!</span><br><span class="line">   |&lt;---------------------------------X     Response</span><br><span class="line">   |         |          |  |  |       |</span><br></pre></td></tr></table></figure>
+
 <p><strong>Basic Paxos when multiple Proposers conflict</strong></p>
 <p>潜在问题：多个proposer竞争地提出各自提案，比如一个proposer，假设叫 Mike，提出提案的时候，正在处理第二个阶段却被另一个叫 Tom 的 proposer，打断（即这个提案失效了），因为 Tom 提出更大提案编号的提案，然后被打断的 Mike 重新提出提案，这时刚好也打断了 Tom 提出的提案，而这时候 Tom 的提案刚好也进行到了第二阶段，然后循环反复。这个现象称为：活锁（liveness）或 dueling（竞争）</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">Client  Proposer       Acceptor     Learner</span><br><span class="line">   |      |             |  |  |       |  |</span><br><span class="line">   X-----&gt;|             |  |  |       |  |  Request</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(1)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Promise(1,&#123;null,null,null&#125;)</span><br><span class="line">   |      !             |  |  |       |  |  !! LEADER FAILS</span><br><span class="line">   |         |          |  |  |       |  |  !! NEW LEADER (knows last number was 1)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(2,&#123;null,null,null&#125;)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER recovers</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER tries 2, denied</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(2)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Nack(2)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER tries 3</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Prepare(3)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Promise(3,&#123;null,null,null&#125;)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! NEW LEADER proposes, denied</span><br><span class="line">   |      |  X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(2,Va)</span><br><span class="line">   |      |  |&lt;---------X--X--X       |  |  Nack(3)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! NEW LEADER tries 4</span><br><span class="line">   |      |  X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(4)</span><br><span class="line">   |      |  |&lt;---------X--X--X       |  |  Promise(4,&#123;null,null,null&#125;)</span><br><span class="line">   |      |  |          |  |  |       |  |  !! OLD LEADER proposes, denied</span><br><span class="line">   |      X------------&gt;|-&gt;|-&gt;|       |  |  Accept!(3,Vb)</span><br><span class="line">   |      |&lt;------------X--X--X       |  |  Nack(4)</span><br><span class="line">   |      |  |          |  |  |       |  |  ... and so on ...</span><br></pre></td></tr></table></figure>
+
 <h3 id="Multi-Paxos"><a href="#Multi-Paxos" class="headerlink" title="Multi Paxos"></a>Multi Paxos</h3><p>Basic Paxos 除了活锁（liveness），还有2轮RPC效率低下且难以实现的问题。</p>
 <h4 id="Leader"><a href="#Leader" class="headerlink" title="Leader"></a><font color="#3399cc">Leader</font></h4><p>这是新的概念，是“<strong>唯一</strong>”的proposer，所有请求都要经过此 leader。</p>
 <p><strong>Multi-Paxos without failures</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer      Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  | --- First Request ---</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Prepare(N)</span><br><span class="line">   |         |&lt;---------X--X--X       |  |  Promise(N,I,&#123;Va,Vb,Vc&#125;)</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(N,I,V)   where V &#x3D; last of (Va, Vb, Vc)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(N,I,V)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+
 <ul>
 <li>N 表示竞选出来的第 N 任 leader，</li>
 <li>I 表示第 I 个提案</li>
 </ul>
 <p>在这种情况下，新的提案过来，由于使用相同的且唯一的 leader，因此Basic Paxos中包含“Prepare”和“Promise”子阶段的阶段一都可以被跳过。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Client   Proposer       Acceptor     Learner</span><br><span class="line">   |         |          |  |  |       |  |  --- Following Requests ---</span><br><span class="line">   X--------&gt;|          |  |  |       |  |  Request</span><br><span class="line">   |         X---------&gt;|-&gt;|-&gt;|       |  |  Accept!(N,I+1,W)</span><br><span class="line">   |         |&lt;---------X--X--X------&gt;|-&gt;|  Accepted(N,I+1,W)</span><br><span class="line">   |&lt;---------------------------------X--X  Response</span><br><span class="line">   |         |          |  |  |       |  |</span><br></pre></td></tr></table></figure>
+
 <p>其实Basic Paxos中 prepare 和 promise 阶段可以认为是多个proposer在申请相应编号的提案权，所以会出现活锁（liveness），而在 Multi-Paxos 中由于只有唯一的被竞选出来的leader有提案权，所以就可以省去了阶段一。</p>
-<p><strong>角色精简的 Multi-Paxos </strong></p>
+<p>**角色精简的 Multi-Paxos **</p>
 <p>Multi-Paxos的常见部署包括将 proposer，acceptor 和  learner 的角色精简为为“server”。因此，最后只有“client”和“server”。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">Client      Servers</span><br><span class="line">   |         |  |  | --- First Request ---</span><br><span class="line">   X--------&gt;|  |  |  Request</span><br><span class="line">   |         X-&gt;|-&gt;|  Prepare(N)</span><br><span class="line">   |         |&lt;-X--X  Promise(N, I, &#123;Va, Vb&#125;)</span><br><span class="line">   |         X-&gt;|-&gt;|  Accept!(N, I, Vn)</span><br><span class="line">   |         X&lt;&gt;X&lt;&gt;X  Accepted(N, I)</span><br><span class="line">   |&lt;--------X  |  |  Response</span><br><span class="line">   |         |  |  |</span><br></pre></td></tr></table></figure>
+
 <p><strong>角色精简且 leader 稳定的 Multi-Paxos</strong></p>
 <p>因此后面来的提案，就可以简化流程了。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Client      Servers</span><br><span class="line">   X--------&gt;|  |  |  Request</span><br><span class="line">   |         X-&gt;|-&gt;|  Accept!(N,I+1,W)</span><br><span class="line">   |         X&lt;&gt;X&lt;&gt;X  Accepted(N,I+1)</span><br><span class="line">   |&lt;--------X  |  |  Response</span><br><span class="line">   |         |  |  |</span><br></pre></td></tr></table></figure>
+
 <p>这时候，可以明显看出，只要 leader 稳定，没有经常竞选 leader，那么服务器之间的请求（RPC：远程过程调用）减少了，相应效率也提高了。</p>
 <h3 id="Raft"><a href="#Raft" class="headerlink" title="Raft"></a>Raft</h3><h4 id="3个子问题"><a href="#3个子问题" class="headerlink" title="3个子问题"></a><font color="#3399cc">3个子问题</font></h4><ol>
 <li>Leader election</li>
@@ -662,45 +675,56 @@
 </ol>
 <h4 id="原理的动画解释"><a href="#原理的动画解释" class="headerlink" title="原理的动画解释"></a><font color="#3399cc">原理的动画解释</font></h4><p>初始时，集群中所有节点，都是 follower 状态。</p>
 <p>如果 follower 没有收到 leader 的来信，那么他们可以成为 candidate，怎么成为candidate后文会说明。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573898788730.png" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/1573898788730.png" style="zoom:68%;" />
+
 <p><strong>说明：</strong></p>
 <ol>
 <li>term：表示任期，表示节点处在第几任的leader管辖下）</li>
 <li>Vote Count : 投票计数。 </li>
 </ol>
 <p>然后，candidate 从其他节点请求投票，其他节点会用投票进行回复。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElection.gif" alt="1" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElection.gif" alt="1" style="zoom:68%;" />
+
 <p>如果 candidate 从多数（majority）节点中获得选票，它将成为 leader。这个过程称为<strong>领导人选举（Leader election）</strong>。下面是这个过程的细节：</p>
 <p><strong>在Raft中，有两个超时设置可控制选举</strong>。首先是<u>选举超时（election timeout）</u>。选举超时是指 follower 成为 candidate 之前所等待的时间。选举超时被随机分配在150毫秒至300毫秒之间。选举超时后，follower 将成为 candidate，开始新的选举任期（term），对其进行投票（ballot），然后将“请求投票”消息发送给其他节点。如果接收节点在此期限内尚未投票，则它将为 candidate 投票，节点将重置其选举超时。一旦 candidate  获得多数票（majority），便成为 leader。leader 开始向其 follower 发送“添加条目”消息。这些消息将按<u>心跳超时（heartbeat timeout）</u>指定的时间间隔发送，然后 follower 响应每个追加条目消息。此选举任期将持续到 follower 停止接收心跳并成为 candidate 为止。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionDetails.gif" alt="1" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionDetails.gif" alt="1" style="zoom:68%;" />
+
 <p>让我们停止 leader 并观察再次选举，节点B现在是第2届的 leader。需要多数表决才能保证每个任期只能选举一名leader。如果两个节点同时成为 candidate，则“可能”会发生投票表决的分裂。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderRe-election.gif" alt="1" style="zoom:68%;"/></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderRe-election.gif" alt="1" style="zoom:68%;"/>
+
 <p>让我们看一个<strong>投票表决的分裂</strong>的例子。两个节点都开始以相同的任期进行选举，并且每个节点都已经选举超时，并且先获得一个follower。现在，每个 candidate 都有2票，并且在这个任期中将无法获得更多选票。<strong>节点将等待新的选举，然后重试。</strong>节点A在第5届中获得了多数选票，因此成为 leader。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionSplit.gif" alt="1" style="zoom:68%;"/></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LeaderElectionSplit.gif" alt="1" style="zoom:68%;"/>
+
 <p>系统的所有更改现在都通过领导者。每次更改都将添加为节点日志中的条目。该日志条目当前未提交（uncommitted），因此不会更新节点的值。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication-uncommited.gif" alt="1" style="zoom:68%;"/></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication-uncommited.gif" alt="1" style="zoom:68%;"/>
+
 <p>要提交条目，节点首先将其复制到 follower 节点上， 然后 leader 等待，直到大多数（majority）节点都写入了条目，在这期间leader不断发送给follower心跳包，一方面确定集群中各节点是否存活，另一方面也可以知道follower是否写入了条目；现在，该条目已提交到 leader 节点上，并且节点状态为“ 5”；leader 节点然后通知 follower 节点该条目已提交（commited）；现在，集群已就系统状态达成共识（consensus），然后最后再响应给客户端表示成功。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication.gif" alt="1" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/LogReplication.gif" alt="1" style="zoom:68%;" />
+
 <p>此过程称为<strong>日志复制（Log Replication）</strong>。</p>
 <p><strong>面对网络分区</strong>，日志甚至可以保持一致。让我们添加一个分区以将A＆B与C，D＆E分开。由于有了这个分区，我们现在拥有两个术语不同的 leader。让我们添加另一个客户端，并尝试更新两个 leader。一个客户端将尝试将节点B的值设置为“ 3”。节点B无法复制为多数，因此其日志条目保持未提交状态。另一个客户端将尝试将节点E的值设置为“ 8”。这将成功，因为它可以复制到大多数。现在，让我们修复网络分区。节点B将看到更高的任期（term）并退出。节点A和B都将回滚其未提交的条目并匹配新 leader 的日志。现在，我们的日志在整个集群中是一致的。</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/NetworkPartitionRecovery.gif" alt="" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/NetworkPartitionRecovery.gif" alt="" style="zoom:68%;" />
+
 <p>这里验证上文 CAP定理中的保证了强一致性和分区容忍，但是分区时，底下两个节点形成的集群(即一个分区)不是多数派(quorum)不具备可用性，但是整个集群依然可用。但是因为 “SET 3” 被删除了，没有写到集群中，所以并没有完全正确虽然保证了一致性。此处跟前文我注明的”译者附””一致：网络分区下，只能选择C A中的一者，这里实验选择了一致性，牺牲了B节点作为另外一个leader的可用性，即降低了可用性：所有客户端只能通过节点成功完成服务。</p>
 <h4 id="场景测试"><a href="#场景测试" class="headerlink" title="场景测试"></a><font color="#3399cc">场景测试</font></h4><p>由以上可知保证一致性并不能代表完全正确。接下来又一个例子将会说明，并到 <a href="https://raft.github.io/" target="_blank" rel="noopener">https://raft.github.io/</a> 网站进行验证。</p>
 <p>假设集群共有5个节点，Client 写请求，leader向follower同步日志，此时急集群中有3个节点失败，2个结点存活，对于客户端得到结果有3种情况。</p>
 <ol>
 <li>unknown（Timeout）</li>
 </ol>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientUnkown.gif" alt="" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientUnkown.gif" alt="" style="zoom:68%;" />
+
 <ol start="2">
 <li><p>（超时后）成功</p>
 <p> client 发送给 S5 的请求刚开始，由于只有2个节点存活，因此S4，S5的第二条日志只是虚线（表示未提交），client 此时并不知道，是否请求成功。随后其他节点相继恢复服务，同步了S5的日志，最终client第二条日志写入成功。</p>
 </li>
 </ol>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientSuccess.gif" alt="" style="zoom:68%;" /></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientSuccess.gif" alt="" style="zoom:68%;" />
+
 <ol start="3">
 <li><p>（超时后）失败</p>
 <p> client 发送给 S4 的请求刚开始，由于只有2个节点存活，因此S4，S5的索引为2的日志（即第二条内容为2的日志）只是虚线（表示未提交），client 此时并不知道，是否请求成功。此时如果S4，S5停止服务，但是S1，S2，S3恢复服务并且S3为leader，有client向S3发送了另一条请求，而后S4，S5恢复服务，那么此时将抹掉S4，S5的第二条日志。索引为2的日志内容统一为：4，即依然保证集群一致性。</p>
-<p> <img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientFailue.gif" alt="" style="zoom:68%;" /></p>
+ <img src="http://qjctul5ib.hn-bkt.clouddn.com/distributed-system/a-brief-introduction-of-Paxos-Raft-ZAB/ClientFailue.gif" alt="" style="zoom:68%;" />
+
 </li>
 </ol>
 <p>对于client请求响应是unkown（Timeout），客户端可以跟集群配合来增强可用性，比如：重试机制，但同时带来了副作用——可能重复写入（在超时后成功却重试了）。</p>
@@ -712,11 +736,16 @@
 </li>
 </ol>
 <h2 id="巨人的肩膀"><a href="#巨人的肩膀" class="headerlink" title="巨人的肩膀"></a>巨人的肩膀</h2><ol>
-<li><u><a style="color:#0879e3" href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">wiki CAP theorem</a></u></li>
-<li><u><a style="color:#0879e3" href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="noopener">an_illustrated_proof_of_the_cap_theorem</a></u></li>
-<li><u><a style="color:#0879e3" href="https://teddyma.gitbooks.io/learncassandra/content/about/the_cap_theorem.html" target="_blank" rel="noopener">The CAP Theorem | Learn Cassandra</a></u></li>
-<li><u><a style="color:#0879e3" href="http://lpd.epfl.ch/sgilbert/pubs/BrewersConjecture-SigAct.pdf" target="_blank" rel="noopener">Gilbert and Lynch’s specification and proof of the CAP Theorem</a></u></li>
-<li><u><a style="color:#0879e3" href="https://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft : Understandable Distributed Consensus</a></u></li>
+<li><p><u><a style="color:#0879e3" href="https://en.wikipedia.org/wiki/CAP_theorem" target="_blank" rel="noopener">wiki CAP theorem</a></u></p>
+</li>
+<li><p><u><a style="color:#0879e3" href="https://mwhittaker.github.io/blog/an_illustrated_proof_of_the_cap_theorem/" target="_blank" rel="noopener">an_illustrated_proof_of_the_cap_theorem</a></u></p>
+</li>
+<li><p><u><a style="color:#0879e3" href="https://teddyma.gitbooks.io/learncassandra/content/about/the_cap_theorem.html" target="_blank" rel="noopener">The CAP Theorem | Learn Cassandra</a></u></p>
+</li>
+<li><p> <u><a style="color:#0879e3" href="http://lpd.epfl.ch/sgilbert/pubs/BrewersConjecture-SigAct.pdf" target="_blank" rel="noopener">Gilbert and Lynch’s specification and proof of the CAP Theorem</a></u></p>
+</li>
+<li><p><u><a style="color:#0879e3" href="https://thesecretlivesofdata.com/raft/" target="_blank" rel="noopener">Raft : Understandable Distributed Consensus</a></u></p>
+</li>
 <li><p><u><a style="color:#0879e3" href="https://raft.github.io/" target="_blank" rel="noopener">https://raft.github.io/</a></u></p>
 </li>
 <li><p><a href="https://www.youtube.com/watch?v=BhosKsE8up8" target="_blank" rel="noopener">https://www.youtube.com/watch?v=BhosKsE8up8</a> </p>
@@ -1046,7 +1075,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

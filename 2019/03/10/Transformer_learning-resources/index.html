@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="资源Transformer来自论文: All Attention Is You Need 别人的总结资源：  谷歌官方AI博客: Transformer: A Novel Neural Network Architecture for Language Understanding Attention机制详解（二）——Self-Attention与Transformer  谷歌软件工程师 一个是J">
+<meta name="description" content="资源Transformer来自论文: All Attention Is You Need 别人的总结资源：  谷歌官方AI博客: Transformer: A Novel Neural Network Architecture for Language Understanding Attention机制详解（二）——Self-Attention与Transformer  谷歌软件工程师 一个是Ja">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Transformer论文简记">
 <meta property="og:url" content="https://snaildove.github.io/2019/03/10/Transformer_learning-resources/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="资源Transformer来自论文: All Attention Is You Need 别人的总结资源：  谷歌官方AI博客: Transformer: A Novel Neural Network Architecture for Language Understanding Attention机制详解（二）——Self-Attention与Transformer  谷歌软件工程师 一个是J">
+<meta property="og:description" content="资源Transformer来自论文: All Attention Is You Need 别人的总结资源：  谷歌官方AI博客: Transformer: A Novel Neural Network Architecture for Language Understanding Attention机制详解（二）——Self-Attention与Transformer  谷歌软件工程师 一个是Ja">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png">
 <meta property="og:image" content="https://jalammar.github.io/images/t/transformer_resideual_layer_norm.png">
@@ -458,7 +458,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>Transformer来自论文: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">All Attention Is You Need</a></p>
+        <h2 id="资源"><a href="#资源" class="headerlink" title="资源"></a>资源</h2><p>Transformer来自论文: <a href="https://arxiv.org/abs/1706.03762" target="_blank" rel="noopener">All Attention Is You Need</a></p>
 <p>别人的总结资源：</p>
 <ol>
 <li>谷歌官方AI博客: <a href="http://ai.googleblog.com/2017/08/transformer-novel-neural-network.html" target="_blank" rel="noopener">Transformer: A Novel Neural Network Architecture for Language Understanding</a></li>
@@ -470,15 +470,15 @@
 <li><a href="https://kexue.fm/archives/4765" target="_blank" rel="noopener">《Attention is All You Need》浅读（简介+代码）</a> 这个总结的角度也很棒。</li>
 </ol>
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>这里总结的思路：自顶向下方法</p>
-<h3 id="model-architecture"><a href="#model-architecture" class="headerlink" title="model architecture"></a>model architecture</h3><p>一图胜千言，6层编码器和解码器，论文中没有说为什么是6这个特定的数字<br><img src="https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png" alt=""></p>
-<h4 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h4><p><img src="https://jalammar.github.io/images/t/transformer_resideual_layer_norm.png" alt=""></p>
-<h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><p>如果我们想做堆叠了<strong>2</strong>个Encoder和<strong>2</strong>个Decoder的Transformer，那么它可视化就会如下图所示：<br><img src="https://jalammar.github.io/images/t/transformer_resideual_layer_norm_3.png" alt=""></p>
-<p>翻译输出的时候，前一个时间步的输出，要作为下一个时间步的解码器端的输入，下图展示第2~6步：<img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/nlp/transformer/transformer_decoding_2.gif" alt=""></p>
+<h3 id="model-architecture"><a href="#model-architecture" class="headerlink" title="model architecture"></a>model architecture</h3><p>一图胜千言，6层编码器和解码器，论文中没有说为什么是6这个特定的数字<br><img src="https://jalammar.github.io/images/t/The_transformer_encoder_decoder_stack.png"></p>
+<h4 id="Encoder"><a href="#Encoder" class="headerlink" title="Encoder"></a>Encoder</h4><p><img src="https://jalammar.github.io/images/t/transformer_resideual_layer_norm.png"></p>
+<h4 id="Decoder"><a href="#Decoder" class="headerlink" title="Decoder"></a>Decoder</h4><p>如果我们想做堆叠了<strong>2</strong>个Encoder和<strong>2</strong>个Decoder的Transformer，那么它可视化就会如下图所示：<br><img src="https://jalammar.github.io/images/t/transformer_resideual_layer_norm_3.png"></p>
+<p>翻译输出的时候，前一个时间步的输出，要作为下一个时间步的解码器端的输入，下图展示第2~6步：<img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/nlp/transformer/transformer_decoding_2.gif"></p>
 <p>下面是一个单层：Nx 表示 N1, … , N6 层</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/nlp/transformer/All-attetion-is-you-need_%20architecture.jpg" alt=""></p>
-<h3 id="parts"><a href="#parts" class="headerlink" title="parts"></a>parts</h3><h4 id="Multi-head-Attention"><a href="#Multi-head-Attention" class="headerlink" title="Multi-head Attention"></a>Multi-head Attention</h4><p>其实就是多个Self-Attention结构的结合，每个head学习到在不同表示空间中的特征，所谓“多头”（Multi-Head），就是做h次同样的事情（参数不共享），然后把结果拼接。<br><img src="https://kexue.fm/usr/uploads/2018/01/2809060486.png" alt=""></p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/nlp/transformer/All-attetion-is-you-need_%20architecture.jpg"></p>
+<h3 id="parts"><a href="#parts" class="headerlink" title="parts"></a>parts</h3><h4 id="Multi-head-Attention"><a href="#Multi-head-Attention" class="headerlink" title="Multi-head Attention"></a>Multi-head Attention</h4><p>其实就是多个Self-Attention结构的结合，每个head学习到在不同表示空间中的特征，所谓“多头”（Multi-Head），就是做h次同样的事情（参数不共享），然后把结果拼接。<br><img src="https://kexue.fm/usr/uploads/2018/01/2809060486.png"></p>
 <h4 id="Self-Attention"><a href="#Self-Attention" class="headerlink" title="Self-Attention"></a>Self-Attention</h4><p>实际上是scaled dot-product attention 缩放的点积注意力：</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/nlp/transformer/All-attetion-is-you-need_Scaled-Dot-Product-Attention.jpg" alt=""></p>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/nlp/transformer/All-attetion-is-you-need_Scaled-Dot-Product-Attention.jpg"></p>
 <h4 id="Add"><a href="#Add" class="headerlink" title="Add"></a>Add</h4><p>residual connection: skip connection 跳跃了解</p>
 <h4 id="Norm"><a href="#Norm" class="headerlink" title="Norm"></a>Norm</h4><p>layer norm 归一化层</p>
 <h4 id="Positional-encoding"><a href="#Positional-encoding" class="headerlink" title="Positional encoding"></a>Positional encoding</h4><p>google的这个位置编码很魔幻，是两个周期函数：sine cosine<br>数学系出生的博主的解释：<a href="https://kexue.fm/archives/4765" target="_blank" rel="noopener">《Attention is All You Need》浅读（简介+代码）</a>，相比之下Bert的位置编码直观的多。</p>
@@ -808,7 +808,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

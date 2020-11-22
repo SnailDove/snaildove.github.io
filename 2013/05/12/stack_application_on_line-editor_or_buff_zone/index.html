@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="功能接收用户的从终端输入程序或数据，并存入用户的数据区。由于用户在终端上输入难免出现差错，因此，若在行编辑程序中，“每接收一个字符即存入用户数据区”显然是不合理的。较好的做法，设立一个缓冲区，用以接收用户输入的每一行字符，然后逐行存入用户数据区。允许用户输入出错，并在发现有误时可以及时更正。例如，当用户发现刚刚键入的一个字符是错的时，补进一个退格符#，以表示前一个字符无效；如果发现当前键入的行内">
+<meta name="description" content="功能接收用户的从终端输入程序或数据，并存入用户的数据区。由于用户在终端上输入难免出现差错，因此，若在行编辑程序中，“每接收一个字符即存入用户数据区”显然是不合理的。较好的做法，设立一个缓冲区，用以接收用户输入的每一行字符，然后逐行存入用户数据区。允许用户输入出错，并在发现有误时可以及时更正。例如，当用户发现刚刚键入的一个字符是错的时，补进一个退格符#，以表示前一个字符无效；如果发现当前键入的行内差">
 <meta property="og:type" content="article">
 <meta property="og:title" content="行编辑器&#x2F;容错缓冲区-栈的基础应用2">
 <meta property="og:url" content="https://snaildove.github.io/2013/05/12/stack_application_on_line-editor_or_buff_zone/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="功能接收用户的从终端输入程序或数据，并存入用户的数据区。由于用户在终端上输入难免出现差错，因此，若在行编辑程序中，“每接收一个字符即存入用户数据区”显然是不合理的。较好的做法，设立一个缓冲区，用以接收用户输入的每一行字符，然后逐行存入用户数据区。允许用户输入出错，并在发现有误时可以及时更正。例如，当用户发现刚刚键入的一个字符是错的时，补进一个退格符#，以表示前一个字符无效；如果发现当前键入的行内">
+<meta property="og:description" content="功能接收用户的从终端输入程序或数据，并存入用户的数据区。由于用户在终端上输入难免出现差错，因此，若在行编辑程序中，“每接收一个字符即存入用户数据区”显然是不合理的。较好的做法，设立一个缓冲区，用以接收用户输入的每一行字符，然后逐行存入用户数据区。允许用户输入出错，并在发现有误时可以及时更正。例如，当用户发现刚刚键入的一个字符是错的时，补进一个退格符#，以表示前一个字符无效；如果发现当前键入的行内差">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2013-05-12T14:16:00.000Z">
 <meta property="article:modified_time" content="2020-11-06T03:08:25.650Z">
@@ -445,7 +445,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>接收用户的从终端输入程序或数据，并存入用户的数据区。由于用户在终端上输入难免出现差错，因此，若在行编辑程序中，“每接收一个字符即存入用户数据区”显然是不合理的。较好的做法，设立一个缓冲区，用以接收用户输入的每一行字符，然后逐行存入用户数据区。允许用户输入出错，并在发现有误时可以及时更正。例如，当用户发现刚刚键入的一个字符是错的时，补进一个退格符#，以表示前一个字符无效；如果发现当前键入的行内差错较多或难以补救，就可以键入一个退行符号@，以表示当前行中的字符均无效。</p>
+        <h2 id="功能"><a href="#功能" class="headerlink" title="功能"></a>功能</h2><p>接收用户的从终端输入程序或数据，并存入用户的数据区。由于用户在终端上输入难免出现差错，因此，若在行编辑程序中，“每接收一个字符即存入用户数据区”显然是不合理的。较好的做法，设立一个缓冲区，用以接收用户输入的每一行字符，然后逐行存入用户数据区。允许用户输入出错，并在发现有误时可以及时更正。例如，当用户发现刚刚键入的一个字符是错的时，补进一个退格符#，以表示前一个字符无效；如果发现当前键入的行内差错较多或难以补救，就可以键入一个退行符号@，以表示当前行中的字符均无效。</p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>​         从终端接收这样两行字符：</p>
 <p>​                            whi##ilr#e(s#*s)</p>
 <p>​                                     outcha@putchar(*s#++)</p>
@@ -454,6 +454,7 @@
 <p>​                                     putchar(*s++)</p>
 <p>​         为此，我们可以设立一个缓冲区，结构为栈，每当用户从终端接受了一个字符之后现做如下判别：如果他既不是退格符，也不是退行符，则将该字符压入栈中，如果是退格符，则从栈顶删去一个字符；如果是退行符，则将字符栈清空。</p>
 <h2 id="源代码"><a href="#源代码" class="headerlink" title="源代码"></a>源代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">LineEdit</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123; <span class="comment">//利用字符栈s，从终端接收一行并送至调用过程的数据区。算法3.2</span></span><br><span class="line">	SqStack s;</span><br><span class="line">	<span class="keyword">char</span> ch,c;</span><br><span class="line">	InitStack(s);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"请输入一个文本文件,^Z结束输入:\n"</span>);</span><br><span class="line">	ch=getchar();</span><br><span class="line">	<span class="keyword">while</span>(ch!=EOF)</span><br><span class="line">	&#123;<span class="comment">// EOF为^Z键，全文结束符</span></span><br><span class="line">		<span class="keyword">while</span>(ch!=EOF&amp;&amp;ch!=<span class="string">'\n'</span>)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">switch</span>(ch)</span><br><span class="line">			&#123;</span><br><span class="line">				<span class="keyword">case</span> <span class="string">'#'</span>:Pop(s,c);</span><br><span class="line">						 <span class="keyword">break</span>; <span class="comment">// 仅当栈非空时退栈</span></span><br><span class="line">				<span class="keyword">case</span> <span class="string">'@'</span>:ClearStack(s);</span><br><span class="line">						 <span class="keyword">break</span>; <span class="comment">// 重置s为空栈</span></span><br><span class="line">				<span class="keyword">default</span> :Push(s,ch); <span class="comment">// 有效字符进栈</span></span><br><span class="line">			&#125;</span><br><span class="line">			ch=getchar(); <span class="comment">// 从终端接收下一个字符</span></span><br><span class="line">		&#125;</span><br><span class="line">		StackTraverse(s,copy); <span class="comment">// 将从栈底到栈顶的栈内字符传送至文件</span></span><br><span class="line">		ClearStack(s); <span class="comment">// 重置s为空栈</span></span><br><span class="line">		fputc(<span class="string">'\n'</span>,fp);</span><br><span class="line">		<span class="keyword">if</span>(ch!=EOF)</span><br><span class="line">			ch=getchar();</span><br><span class="line">	&#125;</span><br><span class="line">	DestroyStack(s);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -774,7 +775,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

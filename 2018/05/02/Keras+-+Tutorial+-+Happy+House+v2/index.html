@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Keras tutorial - the Happy Hous">
+<meta name="description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Keras tutorial - the Happy House">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Keras Tutorial Happy House">
 <meta property="og:url" content="https://snaildove.github.io/2018/05/02/Keras+-+Tutorial+-+Happy+House+v2/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Keras tutorial - the Happy Hous">
+<meta property="og:description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Keras tutorial - the Happy House">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/happy-house.jpg">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/house-members.png">
@@ -414,7 +414,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  2,597
+                  2,598
                 </span>
               
 
@@ -451,7 +451,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>These are my personal programming assignments at the 2nd week after studying the course <a href="https://www.coursera.org/learn/convolutional-neural-networks" target="_blank" rel="noopener">convolutional neural networks</a> and the copyright belongs to <a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">deeplearning.ai</a>.</p>
+        <h2 id="Note"><a href="#Note" class="headerlink" title="Note"></a>Note</h2><p>These are my personal programming assignments at the 2nd week after studying the course <a href="https://www.coursera.org/learn/convolutional-neural-networks" target="_blank" rel="noopener">convolutional neural networks</a> and the copyright belongs to <a href="https://www.deeplearning.ai/" target="_blank" rel="noopener">deeplearning.ai</a>.</p>
 <h1 id="Keras-tutorial-the-Happy-House"><a href="#Keras-tutorial-the-Happy-House" class="headerlink" title="Keras tutorial - the Happy House"></a>Keras tutorial - the Happy House</h1><p>Welcome to the first assignment of week 2. In this assignment, you will:</p>
 <ol>
 <li>Learn to use Keras, a high-level neural networks API (programming framework), written in Python and capable of running on top of several lower-level frameworks including TensorFlow and CNTK. </li>
@@ -460,25 +460,28 @@
 <p>Why are we using Keras? Keras was developed to enable deep learning engineers to build and experiment with different models very quickly. Just as TensorFlow is a higher-level framework than Python, Keras is an even higher-level framework and provides additional abstractions. Being able to go from idea to result with the least possible delay is key to finding good models. However, Keras is more restrictive than the lower-level frameworks, so there are some very complex models that you can implement in TensorFlow but not (without more difficulty) in Keras. That being said, Keras will work fine for many common models. </p>
 <p>In this exercise, you’ll work on the “Happy House” problem, which we’ll explain below. Let’s load the required packages and solve the problem of the Happy House!</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> AveragePooling2D, MaxPooling2D, Dropout, GlobalMaxPooling2D, GlobalAveragePooling2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> image</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> layer_utils</span><br><span class="line"><span class="keyword">from</span> keras.utils.data_utils <span class="keyword">import</span> get_file</span><br><span class="line"><span class="keyword">from</span> keras.applications.imagenet_utils <span class="keyword">import</span> preprocess_input</span><br><span class="line"><span class="keyword">import</span> pydot</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> SVG</span><br><span class="line"><span class="keyword">from</span> keras.utils.vis_utils <span class="keyword">import</span> model_to_dot</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> plot_model</span><br><span class="line"><span class="keyword">from</span> kt_utils <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</span><br><span class="line">K.set_image_data_format(<span class="string">'channels_last'</span>)</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> imshow</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
-<pre><code>Using TensorFlow backend.
-</code></pre><p><strong>Note</strong>: As you can see, we’ve imported a lot of functions from Keras. You can use them easily just by calling them directly in the notebook. Ex: <code>X = Input(...)</code> or <code>X = ZeroPadding2D(...)</code>.</p>
+
+<pre><code>Using TensorFlow backend.</code></pre>
+<p><strong>Note</strong>: As you can see, we’ve imported a lot of functions from Keras. You can use them easily just by calling them directly in the notebook. Ex: <code>X = Input(...)</code> or <code>X = ZeroPadding2D(...)</code>.</p>
 <h2 id="1-The-Happy-House"><a href="#1-The-Happy-House" class="headerlink" title="1 - The Happy House"></a>1 - The Happy House</h2><p>For your next vacation, you decided to spend a week with five of your friends from school. It is a very convenient house with many things to do nearby. But the most important benefit is that everybody has commited to be happy when they are in the house. So anyone wanting to enter the house must prove their current state of happiness.</p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/happy-house.jpg" style="width:350px;height:270px;"></p>
-<caption><center> <u> <font color='purple'> <strong>Figure 1</strong> </u><font color='purple'>  : <strong>the Happy House</strong></center></caption>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/happy-house.jpg" style="width:350px;height:270px;">
+<caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **the Happy House**</center></caption>
 
 
 <p>As a deep learning expert, to make sure the “Happy” rule is strictly applied, you are going to build an algorithm which that uses pictures from the front door camera to check if the person is happy or not. The door should open only if the person is happy. </p>
 <p>You have gathered pictures of your friends and yourself, taken by the front-door camera. The dataset is labbeled. </p>
-<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/house-members.png" style="width:550px;height:250px;"></p>
+<img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/house-members.png" style="width:550px;height:250px;">
+
 <p>Run the following code to normalize the dataset and learn about its shapes.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()</span><br><span class="line"></span><br><span class="line"><span class="comment"># Normalize image vectors</span></span><br><span class="line">X_train = X_train_orig/<span class="number">255.</span></span><br><span class="line">X_test = X_test_orig/<span class="number">255.</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Reshape</span></span><br><span class="line">Y_train = Y_train_orig.T</span><br><span class="line">Y_test = Y_test_orig.T</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"number of training examples = "</span> + str(X_train.shape[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"number of test examples = "</span> + str(X_test.shape[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"X_train shape: "</span> + str(X_train.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Y_train shape: "</span> + str(Y_train.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"X_test shape: "</span> + str(X_test.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Y_test shape: "</span> + str(Y_test.shape))</span><br></pre></td></tr></table></figure>
+
 <pre><code>number of training examples = 600
 number of test examples = 150
 X_train shape: (600, 64, 64, 3)
 Y_train shape: (600, 1)
 X_test shape: (150, 64, 64, 3)
-Y_test shape: (150, 1)
-</code></pre><p><strong>Details of the “Happy” dataset</strong>:</p>
+Y_test shape: (150, 1)</code></pre>
+<p><strong>Details of the “Happy” dataset</strong>:</p>
 <ul>
 <li>Images are of shape (64,64,3)</li>
 <li>Training: 600 pictures</li>
@@ -488,10 +491,12 @@ Y_test shape: (150, 1)
 <h2 id="2-Building-a-model-in-Keras"><a href="#2-Building-a-model-in-Keras" class="headerlink" title="2 - Building a model in Keras"></a>2 - Building a model in Keras</h2><p>Keras is very good for rapid prototyping. In just a short time you will be able to build a model that achieves outstanding results.</p>
 <p>Here is an example of a model in Keras:</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">model</span><span class="params">(input_shape)</span>:</span></span><br><span class="line">    <span class="comment"># Define the input placeholder as a tensor with shape input_shape. Think of this as your input image!</span></span><br><span class="line">    X_input = Input(input_shape)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Zero-Padding: pads the border of X_input with zeroes</span></span><br><span class="line">    X = ZeroPadding2D((<span class="number">3</span>, <span class="number">3</span>))(X_input)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># CONV -&gt; BN -&gt; RELU Block applied to X</span></span><br><span class="line">    X = Conv2D(<span class="number">32</span>, (<span class="number">7</span>, <span class="number">7</span>), strides = (<span class="number">1</span>, <span class="number">1</span>), name = <span class="string">'conv0'</span>)(X)</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = <span class="string">'bn0'</span>)(X)</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># MAXPOOL</span></span><br><span class="line">    X = MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), name=<span class="string">'max_pool'</span>)(X)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># FLATTEN X (means convert it to a vector) + FULLYCONNECTED</span></span><br><span class="line">    X = Flatten()(X)</span><br><span class="line">    X = Dense(<span class="number">1</span>, activation=<span class="string">'sigmoid'</span>, name=<span class="string">'fc'</span>)(X)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># Create model. This creates your Keras model instance, you'll use this instance to train/test the model.</span></span><br><span class="line">    model = Model(inputs = X_input, outputs = X, name=<span class="string">'HappyModel'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+
 <p>Note that Keras uses a different convention with variable names than we’ve previously used with numpy and TensorFlow. In particular, rather than creating and assigning a new variable on each step of forward propagation such as <code>X</code>, <code>Z1</code>, <code>A1</code>, <code>Z2</code>, <code>A2</code>, etc. for the computations for the different layers, in Keras code each line above just reassigns <code>X</code> to a new value using <code>X = ...</code>. In other words, during each step of forward propagation, we are just writing the latest value in the commputation into the same variable <code>X</code>. The only exception was <code>X_input</code>, which we kept separate and did not overwrite, since we needed it at the end to create the Keras model instance (<code>model = Model(inputs = X_input, ...)</code> above). </p>
 <p><strong>Exercise</strong>: Implement a <code>HappyModel()</code>. This assignment is more open-ended than most. We suggest that you start by implementing a model using the architecture we suggest, and run through the rest of this assignment using that as your initial model. But after that, come back and take initiative to try out other model architectures. For example, you might take inspiration from the model above, but then vary the network architecture and hyperparameters however you wish. You can also use other functions such as <code>AveragePooling2D()</code>, <code>GlobalMaxPooling2D()</code>, <code>Dropout()</code>. </p>
 <p><strong>Note</strong>: You have to be careful with your data’s shapes. Use what you’ve learned in the videos to make sure your convolutional, pooling and fully-connected layers are adapted to the volumes you’re applying it to.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># GRADED FUNCTION: HappyModel</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">HappyModel</span><span class="params">(input_shape)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    Implementation of the HappyModel.</span></span><br><span class="line"><span class="string">    </span></span><br><span class="line"><span class="string">    Arguments:</span></span><br><span class="line"><span class="string">    input_shape -- shape of the images of the dataset</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">    Returns:</span></span><br><span class="line"><span class="string">    model -- a Model() instance in Keras</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">### START CODE HERE ###</span></span><br><span class="line">    <span class="comment"># Feel free to use the suggested outline in the text above to get started, and run through the whole</span></span><br><span class="line">    <span class="comment"># exercise (including the later portions of this notebook) once. The come back also try out other</span></span><br><span class="line">    <span class="comment"># network architectures as well. </span></span><br><span class="line">    X_input = Input(input_shape);</span><br><span class="line">    </span><br><span class="line">    X = ZeroPadding2D((<span class="number">3</span>,<span class="number">3</span>))(X_input);</span><br><span class="line">    </span><br><span class="line">    X = Conv2D(<span class="number">32</span>, (<span class="number">7</span>, <span class="number">7</span>), strides = (<span class="number">1</span>, <span class="number">1</span>), name = <span class="string">'conv0'</span>)(X)</span><br><span class="line">    X = BatchNormalization(axis = <span class="number">3</span>, name = <span class="string">'bn0'</span>)(X);</span><br><span class="line">    X = Activation(<span class="string">'relu'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    X = MaxPooling2D((<span class="number">2</span>, <span class="number">2</span>), name = <span class="string">'max_pool'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    X = Flatten()(X);</span><br><span class="line">    X = Dense(<span class="number">1</span>, activation = <span class="string">'sigmoid'</span>, name = <span class="string">'fc0'</span>)(X);</span><br><span class="line">    </span><br><span class="line">    model = Model(X_input, X, <span class="string">'HappyModel'</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">### END CODE HERE ###</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> model</span><br></pre></td></tr></table></figure>
+
 <p>You have now built a function to describe your model. To train and test this model, there are four steps in Keras:</p>
 <ol>
 <li>Create the model by calling the function above</li>
@@ -502,10 +507,13 @@ Y_test shape: (150, 1)
 <p>If you want to know more about <code>model.compile()</code>, <code>model.fit()</code>, <code>model.evaluate()</code> and their arguments, refer to the official <a href="https://keras.io/models/model/" target="_blank" rel="noopener">Keras documentation</a>.</p>
 <p><strong>Exercise</strong>: Implement step 1, i.e. create the model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### (1 line)</span></span><br><span class="line">happyModel = HappyModel(X_train[<span class="number">1</span>, :, :, :].shape);</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>Exercise</strong>: Implement step 2, i.e. compile the model to configure the learning process. Choose the 3 arguments of <code>compile()</code> wisely. Hint: the Happy Challenge is a binary classification problem.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### (1 line)</span></span><br><span class="line">happyModel.compile(optimizer = <span class="string">'Adam'</span>, loss=<span class="string">'binary_crossentropy'</span>, metrics=[<span class="string">'accuracy'</span>] )</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
 <p><strong>Exercise</strong>: Implement step 3, i.e. train the model. Choose the number of epochs and the batch size.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### (1 line)</span></span><br><span class="line">happyModel.fit(x = X_train, y = Y_train, batch_size = <span class="number">32</span>, epochs = <span class="number">20</span>);</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br></pre></td></tr></table></figure>
+
 <pre><code>Epoch 1/20
 600/600 [==============================] - 13s - loss: 1.6428 - acc: 0.6250    
 Epoch 2/20
@@ -545,15 +553,16 @@ Epoch 18/20
 Epoch 19/20
 600/600 [==============================] - 13s - loss: 0.0591 - acc: 0.9767    
 Epoch 20/20
-600/600 [==============================] - 13s - loss: 0.0747 - acc: 0.9700    
-</code></pre><p>Note that if you run <code>fit()</code> again, the <code>model</code> will continue to train with the parameters it has already learnt instead of reinitializing them.</p>
+600/600 [==============================] - 13s - loss: 0.0747 - acc: 0.9700    </code></pre>
+<p>Note that if you run <code>fit()</code> again, the <code>model</code> will continue to train with the parameters it has already learnt instead of reinitializing them.</p>
 <p><strong>Exercise</strong>: Implement step 4, i.e. test/evaluate the model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ### (1 line)</span></span><br><span class="line">preds = happyModel.evaluate(x = X_test, y = Y_test);</span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line">print()</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Loss = "</span> + str(preds[<span class="number">0</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Test Accuracy = "</span> + str(preds[<span class="number">1</span>]))</span><br></pre></td></tr></table></figure>
+
 <pre><code>150/150 [==============================] - 1s     
 
 Loss = 0.49950652957
-Test Accuracy = 0.800000001589
-</code></pre><p>If your <code>happyModel()</code> function worked, you should have observed much better than random-guessing (50%) accuracy on the train and test sets.</p>
+Test Accuracy = 0.800000001589</code></pre>
+<p>If your <code>happyModel()</code> function worked, you should have observed much better than random-guessing (50%) accuracy on the train and test sets.</p>
 <p>To give you a point of comparison, our model gets around <strong>95% test accuracy in 40 epochs</strong> (and 99% train accuracy) with a mini batch size of 16 and “adam” optimizer. But our model gets decent accuracy after just 2-5 epochs, so if you’re comparing different models you can also train a variety of models on just a few epochs and see how they compare. </p>
 <p>If you have not yet achieved a very good accuracy (let’s say more than 80%), here’re some things you can play around with to try to achieve it:</p>
 <ul>
@@ -568,20 +577,17 @@ until your height and width dimensions are quite low and your number of channels
 <p><strong>Note</strong>: If you perform hyperparameter tuning on your model, the test set actually becomes a dev set, and your model might end up overfitting to the test (dev) set. But just for the purpose of this assignment, we won’t worry about that here.</p>
 <h2 id="3-Conclusion"><a href="#3-Conclusion" class="headerlink" title="3 - Conclusion"></a>3 - Conclusion</h2><p>Congratulations, you have solved the Happy House challenge! </p>
 <p>Now, you just need to link this model to the front-door camera of your house. We unfortunately won’t go into the details of how to do that here. </p>
-<p><font color='blue'><br><strong>What we would like you to remember from this assignment:</strong></p>
-<ul>
-<li>Keras is a tool we recommend for rapid prototyping. It allows you to quickly try out different model architectures. Are there any applications of deep learning to your daily life that you’d like to implement using Keras? </li>
-<li>Remember how to code a model in Keras and the four steps leading to the evaluation of your model on the test set. Create-&gt;Compile-&gt;Fit/Train-&gt;Evaluate/Test.</li>
-</ul>
-<h2 id="4-Test-with-your-own-image-Optional"><a href="#4-Test-with-your-own-image-Optional" class="headerlink" title="4 - Test with your own image (Optional)"></a>4 - Test with your own image (Optional)</h2><p>Congratulations on finishing this assignment. You can now take a picture of your face and see if you could enter the Happy House. To do that:</p>
-<pre><code>1. Click on &quot;File&quot; in the upper bar of this notebook, then click &quot;Open&quot; to go on your Coursera Hub.
-2. Add your image to this Jupyter Notebook&apos;s directory, in the &quot;images&quot; folder
-3. Write your image&apos;s name in the following code
-4. Run the code and check if the algorithm is right (0 is unhappy, 1 is happy)!
-</code></pre><p>The training/test sets were quite similar; for example, all the pictures were taken against the same background (since a front door camera is always mounted in the same position). This makes the problem easier, but a model trained on this data may or may not work on your own data. But feel free to give it a try! </p>
+<font color='blue'>
+**What we would like you to remember from this assignment:**
+- Keras is a tool we recommend for rapid prototyping. It allows you to quickly try out different model architectures. Are there any applications of deep learning to your daily life that you'd like to implement using Keras? 
+- Remember how to code a model in Keras and the four steps leading to the evaluation of your model on the test set. Create->Compile->Fit/Train->Evaluate/Test.
+
+<h2 id="4-Test-with-your-own-image-Optional"><a href="#4-Test-with-your-own-image-Optional" class="headerlink" title="4 - Test with your own image (Optional)"></a>4 - Test with your own image (Optional)</h2><p>Congratulations on finishing this assignment. You can now take a picture of your face and see if you could enter the Happy House. To do that:<br>    1. Click on “File” in the upper bar of this notebook, then click “Open” to go on your Coursera Hub.<br>    2. Add your image to this Jupyter Notebook’s directory, in the “images” folder<br>    3. Write your image’s name in the following code<br>    4. Run the code and check if the algorithm is right (0 is unhappy, 1 is happy)!</p>
+<p>The training/test sets were quite similar; for example, all the pictures were taken against the same background (since a front door camera is always mounted in the same position). This makes the problem easier, but a model trained on this data may or may not work on your own data. But feel free to give it a try! </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">### START CODE HERE ###</span></span><br><span class="line">img_path = <span class="string">'images/my_image.jpg'</span></span><br><span class="line"><span class="comment">### END CODE HERE ###</span></span><br><span class="line">img = image.load_img(img_path, target_size=(<span class="number">64</span>, <span class="number">64</span>))</span><br><span class="line">imshow(img)</span><br><span class="line"></span><br><span class="line">x = image.img_to_array(img)</span><br><span class="line">x = np.expand_dims(x, axis=<span class="number">0</span>)</span><br><span class="line">x = preprocess_input(x)</span><br><span class="line"></span><br><span class="line">print(happyModel.predict(x))</span><br></pre></td></tr></table></figure>
-<pre><code>[[  2.04726325e-36]]
-</code></pre><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_20_1.png" alt="png"></p>
+
+<pre><code>[[  2.04726325e-36]]</code></pre>
+<p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_20_1.png" alt="png"></p>
 <h2 id="5-Other-useful-functions-in-Keras-Optional"><a href="#5-Other-useful-functions-in-Keras-Optional" class="headerlink" title="5 - Other useful functions in Keras (Optional)"></a>5 - Other useful functions in Keras (Optional)</h2><p>Two other basic features of Keras that you’ll find useful are:</p>
 <ul>
 <li><code>model.summary()</code>: prints the details of your layers in a table with the sizes of its inputs/outputs</li>
@@ -589,6 +595,7 @@ until your height and width dimensions are quite low and your number of channels
 </ul>
 <p>Run the following code.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">happyModel.summary()</span><br></pre></td></tr></table></figure>
+
 <pre><code>_________________________________________________________________
 Layer (type)                 Output Shape              Param #   
 =================================================================
@@ -611,8 +618,12 @@ fc0 (Dense)                  (None, 1)                 32769
 Total params: 37,633
 Trainable params: 37,569
 Non-trainable params: 64
-_________________________________________________________________
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_model(happyModel, to_file=<span class="string">'HappyModel.png'</span>)</span><br><span class="line">SVG(model_to_dot(happyModel).create(prog=<span class="string">'dot'</span>, format=<span class="string">'svg'</span>))</span><br></pre></td></tr></table></figure>
+_________________________________________________________________</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_model(happyModel, to_file=<span class="string">'HappyModel.png'</span>)</span><br><span class="line">SVG(model_to_dot(happyModel).create(prog=<span class="string">'dot'</span>, format=<span class="string">'svg'</span>))</span><br></pre></td></tr></table></figure>
+
+
+
+
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/keras-tutorial/images/output_23_0.svg" alt="svg"></p>
 
       
@@ -940,7 +951,7 @@ _________________________________________________________________
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

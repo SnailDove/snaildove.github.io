@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="5.1 基本操作在这段视频中，我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过的，或者将要学的机器学习算法。 过去我一直尝试用不同的编程语言来教授机器学习，包括C++、Java、Python、Numpy和Octave。我发现当使用像Octave这样的高级语言时，学生能够更快更好地学习并掌握这些算法。事实上，在硅谷，我经常看到进行大规模的机器学习项目的人，通常">
+<meta name="description" content="5.1 基本操作在这段视频中，我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过的，或者将要学的机器学习算法。 过去我一直尝试用不同的编程语言来教授机器学习，包括C++、Java、Python、Numpy和Octave。我发现当使用像Octave这样的高级语言时，学生能够更快更好地学习并掌握这些算法。事实上，在硅谷，我经常看到进行大规模的机器学习项目的人，通常使">
 <meta property="og:type" content="article">
 <meta property="og:title" content="05_octave-matlab-tutorial note5">
 <meta property="og:url" content="https://snaildove.github.io/2018/01/01/05_octave-matlab-tutorial/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="5.1 基本操作在这段视频中，我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过的，或者将要学的机器学习算法。 过去我一直尝试用不同的编程语言来教授机器学习，包括C++、Java、Python、Numpy和Octave。我发现当使用像Octave这样的高级语言时，学生能够更快更好地学习并掌握这些算法。事实上，在硅谷，我经常看到进行大规模的机器学习项目的人，通常">
+<meta property="og:description" content="5.1 基本操作在这段视频中，我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过的，或者将要学的机器学习算法。 过去我一直尝试用不同的编程语言来教授机器学习，包括C++、Java、Python、Numpy和Octave。我发现当使用像Octave这样的高级语言时，学生能够更快更好地学习并掌握这些算法。事实上，在硅谷，我经常看到进行大规模的机器学习项目的人，通常使">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://7xvfir.com1.z0.glb.clouddn.com/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/e2c2dcc31f19ac255566fa616799d496.png">
 <meta property="og:image" content="http://7xvfir.com1.z0.glb.clouddn.com/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/6dcdf4a7c0d56787648d4a1902034150.png">
@@ -536,7 +536,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h2 id="5-1-基本操作"><a href="#5-1-基本操作" class="headerlink" title="5.1 基本操作"></a>5.1 基本操作</h2><p>在这段视频中，我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过的，或者将要学的机器学习算法。</p>
+        <h2 id="5-1-基本操作"><a href="#5-1-基本操作" class="headerlink" title="5.1 基本操作"></a>5.1 基本操作</h2><p>在这段视频中，我将教你一种编程语言：Octave语言。你能够用它来非常迅速地实现这门课中我们已经学过的，或者将要学的机器学习算法。</p>
 <p>过去我一直尝试用不同的编程语言来教授机器学习，包括C++、Java、Python、Numpy和Octave。我发现当使用像Octave这样的高级语言时，学生能够更快更好地学习并掌握这些算法。事实上，在硅谷，我经常看到进行大规模的机器学习项目的人，通常使用的程序语言就是Octave。</p>
 <p>Octave是一种很好的原始语言(prototyping language)，使用Octave你能快速地实现你的算法，剩下的事情，你只需要进行大规模的资源配置，你只用再花时间用C++或Java这些语言把算法重新实现就行了。开发项目的时间是很宝贵的，机器学习的时间也是很宝贵的。所以，如果你能让你的学习算法在Octave上快速的实现，基本的想法实现以后，再用C++或者Java去改写，这样你就能节省出大量的时间。</p>
 <p>据我所见，人们使用最多的用于机器学习的原始语言是Octave、MATLAB、Python、NumPy 和R。</p>
@@ -556,7 +556,7 @@
 <p><img src="http://7xvfir.com1.z0.glb.clouddn.com/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/126b2a5c4b5bfb24e5c21cd080159530.png" alt="img"></p>
 <p>让我们看看逻辑运算 1 &amp;&amp; 0，使用双&amp;符号表示逻辑与，1 &amp;&amp; 0判断为假，1和0的或运算 1 || 0，其计算结果为真。</p>
 <p><img src="http://7xvfir.com1.z0.glb.clouddn.com/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/fec0936e2a78c0fe8c9e3ed107614a31.png" alt="img"></p>
-<p>还有异或运算 如 <strong>XOR ( 1, 0 )</strong>，其返回值为1</p>
+<p>还有异或运算 如 **XOR ( 1, 0 )**，其返回值为1</p>
 <p>从左向右写着 Octave 324.x版本，是默认的Octave提示，它显示了当前Octave的版本，以及相关的其它信息。</p>
 <p>如果你不想看到那个提示，这里有一个隐藏的命令</p>
 <p>输入命令</p>
@@ -591,8 +591,10 @@
 <p>如果我想，分配一个列向量，我可以写“1;2;3”，现在便有了一个3 行 1 列<br>的向量，同时这是一个列向量。</p>
 <h3 id="通过增量或步长来构造矩阵"><a href="#通过增量或步长来构造矩阵" class="headerlink" title="通过增量或步长来构造矩阵"></a>通过增量或步长来构造矩阵</h3><p>下面是一些更为有用的符号，如：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V&#x3D;1:0.1:2</span><br></pre></td></tr></table></figure>
+
 <p>这个该如何理解呢：这个集合V是一组值，从数值1开始，<strong>增量</strong>或说是<strong>步长</strong>为0.1，直到增加到2，按照这样的方法对向量V操作，可以得到一个行向量，这是一个1行11列的矩阵，其矩阵的元素是1<br>1.1 1.2 1.3，依此类推，直到数值2。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">V&#x3D;[1:0.5:2;3:0.5:4]</span><br></pre></td></tr></table></figure>
+
 <p>我也可以建立一个集合V并用命令“1:6”进行赋值，这样V就被赋值了1至6的六个整数。</p>
 <p><img src="http://7xvfir.com1.z0.glb.clouddn.com/%E5%90%B4%E6%81%A9%E8%BE%BE%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/1cdbd87db83a4184098cd6d5ee3c6a87.png" alt="img"></p>
 <p>这里还有一些其他的方法来生成矩阵</p>
@@ -728,7 +730,7 @@
 <p>l  sort(X)命令将X按由小到大排序。当X为向量时，该命令返回的X为按由小到大排序后的向量；当X为矩阵时，该命令返回X矩阵的各列按由小到大排序。 </p>
 <p>l  sort(X,DIM)命令在给定的维数DIM内排序。  </p>
 <p>l  [Y,I]=sort(X)命令中，Y为排序结果，I中元素表示Y中对应元素在X中的位置。当X是一个向量时，那么有Y=X(I)；当X是一个m×n阶矩阵时，程序段“for j = 1:n, Y(:,j) = X(I(:,j),j); end”成立。 </p>
-<p>>&gt; X = [1 7 5; 6 4 2;9 8 3] </p>
+<p>&gt;&gt; X = [1 7 5; 6 4 2;9 8 3] </p>
 <blockquote>
 <blockquote>
 <p>sort(X,2)   </p>
@@ -748,7 +750,7 @@
 <p> I =   1     2     2   </p>
 <p>   2     1     3      </p>
 <p>3      3     1</p>
-<p><strong>2.</strong>按行进行数据排序</p>
+<p>**2.**按行进行数据排序</p>
 <p>在MALTAB语言中，使用sortrows函数按行进行数据的排序，其使用格式如下。 </p>
 <p>l  Y=sortrows(X)命令将X按由小到大以行的方式进行排序。当X为矩阵时，返回矩阵Y，并且Y是按X的第1列由小到大，以行方式排序后生成的矩阵。 </p>
 <p>l  sortrows (X, COL)命令按指定列COL由小到大进行排序。 </p>
@@ -1251,7 +1253,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

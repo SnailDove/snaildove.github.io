@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差Consider the experiment of tossing a coin, which comes up a head with probability $p$ and a tail with probability $1 - p$. and the Bernoul">
+<meta name="description" content="Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差Consider the experiment of tossing a coin, which comes up a head with probability $p$ and a tail with probability $1 - p$. and the Bernoull">
 <meta property="og:type" content="article">
 <meta property="og:title" content="经典摘录 - 伯努利和泊松随机变量的均值方差">
 <meta property="og:url" content="https://snaildove.github.io/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差Consider the experiment of tossing a coin, which comes up a head with probability $p$ and a tail with probability $1 - p$. and the Bernoul">
+<meta property="og:description" content="Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差Consider the experiment of tossing a coin, which comes up a head with probability $p$ and a tail with probability $1 - p$. and the Bernoull">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2017-08-28T12:16:00.000Z">
 <meta property="article:modified_time" content="2020-11-06T03:08:25.609Z">
@@ -445,7 +445,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h3 id="Example-2-5-Mean-and-Variance-of-the-Bernoulli-伯努利随机变量的均值和方差"><a href="#Example-2-5-Mean-and-Variance-of-the-Bernoulli-伯努利随机变量的均值和方差" class="headerlink" title="Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差"></a>Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差</h3><p>Consider the experiment of tossing a coin, which comes up a head with probability $p$ and a tail with probability $1 - p$. and the Bernoulli random variable $X$ with $PMF$ :<br>$$<br>p_X(k)=\cases{p, &amp; if $k=1$\1-p, &amp; if $k=0$}<br>$$<br>The mean. second moment. and variance of $X$ are given by the following calculations:<br>$$<br>E[X]=1\cdot p + 0 \cdot (1-p) = p ,\<br>E[X^2]=1^2\cdot p + 0 \cdot (1-p) = p, \<br>var(x)=E[X^2]-(E[X])^2=p-p^2=p(1-p)<br>$$</p>
+        <h3 id="Example-2-5-Mean-and-Variance-of-the-Bernoulli-伯努利随机变量的均值和方差"><a href="#Example-2-5-Mean-and-Variance-of-the-Bernoulli-伯努利随机变量的均值和方差" class="headerlink" title="Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差"></a>Example 2.5. Mean and Variance of the Bernoulli.伯努利随机变量的均值和方差</h3><p>Consider the experiment of tossing a coin, which comes up a head with probability $p$ and a tail with probability $1 - p$. and the Bernoulli random variable $X$ with $PMF$ :<br>$$<br>p_X(k)=\cases{p, &amp; if $k=1$\1-p, &amp; if $k=0$}<br>$$<br>The mean. second moment. and variance of $X$ are given by the following calculations:<br>$$<br>E[X]=1\cdot p + 0 \cdot (1-p) = p ,\<br>E[X^2]=1^2\cdot p + 0 \cdot (1-p) = p, \<br>var(x)=E[X^2]-(E[X])^2=p-p^2=p(1-p)<br>$$</p>
 <h3 id="Example-2-7-The-Mean-of-the-Poisson-泊松随机变量的均值方差"><a href="#Example-2-7-The-Mean-of-the-Poisson-泊松随机变量的均值方差" class="headerlink" title="Example 2.7. The Mean of the Poisson. 泊松随机变量的均值方差"></a>Example 2.7. The Mean of the Poisson. 泊松随机变量的均值方差</h3><p>The mean of the Poisson $PMF $ :<br>$$<br>p_X(k)=e^{-\lambda}\frac{\lambda^k}{k!}, k=0,1,2,\ldots<br>$$<br>can be calculated is follows:<br>$$<br>\begin{eqnarray}<br>E[X] &amp;=&amp; \sum\limits^{\infty}<em>{k=0}ke^{-\lambda}\frac{\lambda^k}{k!}\<br>&amp;=&amp; \sum\limits^{\infty}</em>{k=1}ke^{-\lambda}\frac{\lambda^k}{k!} \quad (\text{k=0的项等于0})\<br>&amp;=&amp; \lambda\sum\limits_{k=1}^{\infty}e^{-\lambda}\frac{\lambda^{k-1}}{k-1!}\<br>&amp;=&amp; \lambda\sum\limits_{m=0}^{\infty}e^{-\lambda}\frac{m^{k-1}}{m!} \quad (\text{让m=k-1})\<br>&amp;=&amp; \lambda<br>\end{eqnarray}<br>$$<br>The last equality is obtained by noting that is the normalization property for the Poisson $PMF$. </p>
 <h3 id="Example-2-20-Variance-of-the-Binomial-and-the-Poisson-二项随机变量和泊松随机变量的方差"><a href="#Example-2-20-Variance-of-the-Binomial-and-the-Poisson-二项随机变量和泊松随机变量的方差" class="headerlink" title="Example 2.20. Variance of the Binomial and the Poisson. 二项随机变量和泊松随机变量的方差"></a>Example 2.20. Variance of the Binomial and the Poisson. 二项随机变量和泊松随机变量的方差</h3><p>We consider $n$ independent coin tosses, with each toss having probability $p$ of coming up a head. For each $i$, we let $X_i$ be the Bernoulli random variable which is equal to $1$ if the $i$th toss comes up a head, and is 0 otherwise. Then, $X = X_l + X_2 + . . . + X_n$ is a binomial random variable. Its mean is $E[X] = np$. as derived in Example 2. 10. By the independence of the coin tosses. the random variables $X_1 , . . . . X_n$ are independent, and<br>$$<br>var(X)=\sum\limits_{i=1}^{n}var(x_i)=np(1-p)<br>$$<br>As we discussed in Section 2.2. a Poisson random variable $Y$ with parameter $\lambda$ can be viewed as the “limit” of the binomial as $n\rightarrow \infty, p\rightarrow 0$. while $np = \lambda$. Thus, taking the limit of the mean and the variance of the binomial. we informally obtain the mean and variance of the Poisson: $E[Y] = var(Y) = \lambda $ .  We have indeed verified the formula $E[Y] = \lambda$ in Example 2.7. To verify the formula $var(Y) = \lambda$, we write<br>$$<br>\begin{eqnarray}<br>E[Y^2] &amp;=&amp; \sum\limits_{k=1}^{\infty}k^2e^{-\lambda}\frac{\lambda^k}{k!} \<br>&amp;=&amp; \lambda\sum\limits_{k=1}^{\infty}k\frac{e^{-\lambda}\lambda^{k-1}}{(k-1)!} \<br>&amp;=&amp; \lambda\sum\limits_{m=0}^{\infty}(m+1)\frac{e^{-\lambda}\lambda^{m}}{m!}, m = k-1 \<br>&amp;=&amp; \lambda[\sum\limits_{m=0}^{\infty}m\frac{e^{-\lambda}\lambda^{m}}{m!}+\sum\limits_{m=0}^{\infty}\frac{e^{-\lambda}\lambda^{m}}{m!}], \<br>&amp;=&amp; \lambda(E[Y]+1) , \<br>&amp;=&amp; \lambda(\lambda+1) \<br>\end{eqnarray}<br>$$</p>
 <p>from which<br>$$<br>var(Y)=E[Y^2]-(E[Y])^2=\lambda(\lambda+1)-\lambda^2=\lambda<br>$$</p>
@@ -773,7 +773,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

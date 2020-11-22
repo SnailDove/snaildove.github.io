@@ -451,7 +451,8 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/></p>
+        <img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+
 <h1 id="Chapter-4-Structured-API-Overview"><a href="#Chapter-4-Structured-API-Overview" class="headerlink" title="Chapter 4 Structured API Overview"></a>Chapter 4 Structured API Overview</h1><p>This part of the book will be a deep dive into Spark’s Structured APIs. The Structured APIs are a tool for manipulating all sorts of data, from unstructured log files to semi-structured CSV files and highly structured Parquet files. These APIs refer to three core types of distributed collection APIs:</p>
 <p>本书的这一部分将深入探讨Spark的结构化API。结构化API是用于处理各种数据的工具，从非结构化日志文件到半结构化CSV文件以及高度结构化的Parquet文件。这些API指的是分布式集合API的三种核心类型：</p>
 <ul>
@@ -484,7 +485,9 @@
 <h2 id="Overview-of-Structured-Spark-Types-结构化Spark类型概述"><a href="#Overview-of-Structured-Spark-Types-结构化Spark类型概述" class="headerlink" title="Overview of Structured Spark Types 结构化Spark类型概述"></a><font color="#9a161a">Overview of Structured Spark Types 结构化Spark类型概述</font></h2><p>Spark is effectively a programming language of its own. Internally, Spark uses an engine called Catalyst that maintains its own type information through the planning and processing of work. In doing so, this opens up a wide variety of execution optimizations that make significant differences. Spark types map directly to the different language APIs that Spark maintains and there exists a lookup table for each of these in Scala, Java, Python, SQL, and R. Even if we use Spark’s Structured APIs from Python or R, the majority of our manipulations will operate strictly on Spark types, not Python types. For example, the following code does not perform addition in Scala or Python; it actually performs addition purely in Spark:</p>
 <p>Spark实际上是一种自己的编程语言。在内部，Spark使用一种称为Catalyst的引擎，该引擎通过计划和处理工作来维护自己的类型信息。这样一来，就可以开辟出各种各样的执行优化方案，从而产生显着差异。 Spark类型直接映射到Spark维护的不同语言API，并且在Scala，Java，Python，SQL和R中存在针对每种语言的查找表。即使我们使用来自Python或R的Spark的结构化API，我们大多数操作将严格针对Spark类型而不是Python类型进行操作。例如，以下代码在Scala或Python中不执行加法；它实际上仅在Spark中执行加法：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> df = spark.range(<span class="number">500</span>).toDF(<span class="string">"number"</span>)</span><br><span class="line">df.select(df.col(<span class="string">"number"</span>) + <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">df = spark.range(<span class="number">500</span>).toDF(<span class="string">"number"</span>)</span><br><span class="line">df.select(df[<span class="string">"number"</span>] + <span class="number">10</span>)</span><br></pre></td></tr></table></figure>
+
 <p>This addition operation happens because Spark will convert an expression written in an input language to Spark’s internal Catalyst representation of that same type information. It then will operate on that internal representation. We touch on why this is the case momentarily, but before we can, we need to discuss Datasets.</p>
 <p>之所以进行这种加法操作，是因为Spark会将以一种输入语言编写的表达式转换为相同类型信息的Spark内部Catalyst表示形式，然后它将在该内部表示上运行。我们短暂地谈谈为什么会这样，但是在我们这样做之前，我们需要讨论数据集。</p>
 <h3 id="DataFrames-Versus-Datasets-DataFrames对比DataSet"><a href="#DataFrames-Versus-Datasets-DataFrames对比DataSet" class="headerlink" title="DataFrames Versus Datasets DataFrames对比DataSet"></a><font color="#00000">DataFrames Versus Datasets DataFrames对比DataSet</font></h3><p>In essence, within the Structured APIs, there are two more APIs, the “untyped” DataFrames and the “typed” Datasets. To say that DataFrames are untyped is as lightly in accurate; they have types, but Spark maintains them completely and only checks whether those types line up to those specified in the schema at runtime. Datasets, on the other hand, check whether types conform to the specification at compile time. Datasets are only available to Java Virtual Machine (JVM)–based languages (Scala and Java) and we specify types with case classes or Java beans.</p>
@@ -498,7 +501,8 @@
 <p>许多Spark演示都很好地介绍了内部Catalyst格式。 鉴于本书是为更广泛的读者准备的，我们将不着手实施。 如果您感到好奇，Databricks的 <u><a style="color:#0879e3" href="https://www.youtube.com/watch?v=5ajs8EIPWGI&feature=youtu.be" target="_blank" rel="noopener">Josh Rosen</a></u> 和 <u><a style="color:#0879e3" href="https://www.youtube.com/watch?v=GDeePbbCz2g&feature=youtu.be" target="_blank" rel="noopener">Herman van Hovell</a></u> 都会就他们在Spark的Catalyst引擎开发方面的工作进行精彩的演讲。</p>
 <hr>
 <blockquote>
-<center><strong>译者附</strong></center><br><center>为什么使用结构化API？</center>
+<center><strong>译者附</strong></center>
+<center>为什么使用结构化API？</center>
 
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1575778747016.png" alt="1575778747016"></p>
 <p>截图来自<u><a style="color:#0879e3" href="https://www.youtube.com/watch?v=GDeePbbCz2g&feature=youtu.be" target="_blank" rel="noopener">Herman van Hovell</a></u>视频的内容，非原书内容。</p>
@@ -512,7 +516,9 @@
 <h3 id="Rows-行"><a href="#Rows-行" class="headerlink" title="Rows 行"></a><font color="#00000">Rows 行</font></h3><p>A row is nothing more than a record of data. Each record in a DataFrame must be of type Row, as we can see when we <code>collect</code> the following DataFrames. We can create these rows manually from SQL, from Resilient Distributed Datasets (RDDs), from data sources, or manually from scratch. Here, we create one by using a <code>range</code>:</p>
 <p>行只不过是数据记录。 DataFrame中的每个记录都必须是Row类型，正如我们在 <code>collect</code> 以下 DataFrame 时所看到的。我们可以从SQL，弹性分布式数据集（RDD），数据源或从头开始手动创建这些行。在这里，我们使用 <code>range</code> 创建一个：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">spark.range(<span class="number">2</span>).toDF().collect()</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">spark.range(<span class="number">2</span>).collect()</span><br></pre></td></tr></table></figure>
+
 <p>These both result in an array of Row objects. </p>
 <p>这些都导致 Row 对象的数组。</p>
 <h3 id="Spark-Types"><a href="#Spark-Types" class="headerlink" title="Spark Types"></a><font color="#00000">Spark Types</font></h3><p>We mentioned earlier that Spark has a large number of internal type representations. We include a handy reference table on the next several pages so that you can most easily reference what type, in your specific language, lines up with the type in Spark.</p>
@@ -522,12 +528,15 @@
 <p>To work with the correct Scala types, use the following:</p>
 <p>要使用正确的Scala类型，请使用以下命令：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.types._</span><br><span class="line"><span class="keyword">val</span> b = <span class="type">ByteType</span></span><br></pre></td></tr></table></figure>
+
 <p>To work with the correct Java types, you should use the factory method in the following package:</p>
 <p>要使用正确的Java类型，应使用以下软件包中的工厂方法：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.types.<span class="type">DataTypes</span>;</span><br><span class="line"><span class="type">ByteType</span> x = <span class="type">DataTypes</span>.<span class="type">ByteType</span>;</span><br></pre></td></tr></table></figure>
+
 <p>Python types at times have certain requirements, which you can see listed in Table 4-1, as do Scala and Java, which you can see listed in Tables 4-2 and 4-3, respectively. To work with the correct Python types, use the following:</p>
 <p>有时，Python类型具有某些要求，表4-1中列出了这些要求，而Scala和Java则具有某些要求，分别在表4-2和表4-3中列出了。 要使用正确的Python类型，请使用以下命令：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">from pyspark.sql.types <span class="keyword">import</span> *</span><br><span class="line">b = <span class="type">ByteType</span>()</span><br></pre></td></tr></table></figure>
+
 <p>The following tables provide the detailed type information for each of Spark’s language bindings. </p>
 <p>下表提供了每种Spark语言绑定的详细类型信息。</p>
 <p><em>Table 4-1. Python type reference</em></p>
@@ -539,8 +548,7 @@
 <th><strong>API to access or create a data type</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>ByteType</td>
 <td>int or long. Note: Numbers will be converted to 1-byte signed integer numbers at runtime. Ensure that numbers are within the range of-128 to 127.<br />int或long。注意：数字将在运行时转换为1字节有符号整数。确保数字在-128到127的范围内。</td>
 <td>ByteType()</td>
@@ -620,8 +628,7 @@
 <td>The value type in Python of the data type of this field (for example, Int for a StructField with the data type IntegerType)</td>
 <td>StructField(name, datalype, [nullable]) <br />Note: The defaul value of nullable is True.<br />注意：nullable的默认值为True。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><em>Table 4-2. Scala type reference</em></p>
 <table>
 <thead>
@@ -631,8 +638,7 @@
 <th><strong>API to access or create a data type</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>ByteType</td>
 <td>Byte</td>
 <td>ByteType</td>
@@ -712,8 +718,7 @@
 <td>The value type in Scala of the data type of this field (for example, Int for a StructField with the data type IntegerType)<br />Scala中此字段的数据类型的值类型（例如，对于数据类型为IntegerType的StructField为Int）</td>
 <td>StructField(name, dataType, [nullable]). <br />Note: The default value of nullable is true.<br />注意：nullable的默认值为true。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><em>Table 4-3. Java type reference</em> </p>
 <table>
 <thead>
@@ -723,8 +728,7 @@
 <th><strong>API to access or create a data type</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>ByteType</td>
 <td>byte or Byte</td>
 <td>DataTypes. ByteType</td>
@@ -804,8 +808,7 @@
 <td>The value type in Java of the data type of this field (for example, int for a StructField with the data type IntegerType)<br />Java中此字段的数据类型的值类型（例如，数据类型为IntegerType的StructField的int）</td>
 <td>DataTypes.createStructField(name, dataType, nullable)</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="Overview-of-Structured-API-Execution-结构化API执行概述"><a href="#Overview-of-Structured-API-Execution-结构化API执行概述" class="headerlink" title="Overview of Structured API Execution 结构化API执行概述"></a><font color="#9a161a">Overview of Structured API Execution 结构化API执行概述</font></h2><p>This section will demonstrate how this code is actually executed across a cluster. This will help you understand (and potentially debug) the process of writing and executing code on clusters, so let’s walk through the execution of a single structured API query from user code to executed code. Here’s an overview of the steps:</p>
 <p>本节将演示如何在整个集群中实际执行此代码。这将帮助您了解（并可能调试）在集群上编写和执行代码的过程，因此让我们逐步执行从用户代码到执行代码的单个结构化API查询的执行。以下是步骤概述：</p>
 <ol>
@@ -926,8 +929,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/05/Chapter8-Joins(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 8 Joins">
-                <i class="fa fa-chevron-left"></i> 翻译 Chapter 8 Joins
+              <a href="/2019/08/05/Chapter5_Basic-Structured-Operations(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 5 Basic Structured Operations">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 5 Basic Structured Operations
               </a>
             
           </div>
@@ -1163,7 +1166,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

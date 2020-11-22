@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\m">
+<meta name="description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu">
 <meta property="og:type" content="article">
 <meta property="og:title" content="经典摘录-正态随机变量">
 <meta property="og:url" content="https://snaildove.github.io/2017/08/27/normal_random_variables/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\m">
+<meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png">
@@ -449,7 +449,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><strong>说明</strong>：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a> 3.3 normal random variables</p>
+        <p><strong>说明</strong>：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a> 3.3 normal random variables</p>
 <h2 id="正态随机变量"><a href="#正态随机变量" class="headerlink" title="正态随机变量"></a>正态随机变量</h2><p>如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。<br>$$<br>f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}<br>$$<br>其中 $u$ 和 $\sigma$ 是密度函数的两个参数，$\sigma$ 还必须是正数。可以证明，$f_X(x)$ 满足下面的概率密度函数的归一化条件（见本章关于定理的习题）：<br>$$<br>\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx=1<br>$$<br>下图是正态分布的密度函数和分布函数 $(\mu=1 \text{ 和 } \sigma^2=1)$ 。</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png" alt="A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1"></p>
 <p>由图可以看出，正态随机变量的概率密度函数是相对于均值 $\mu$ 对称的钟形曲线。当 $x$ 离开 $\mu$ 的时候，概率密度函数的表达式中的项 $e^{\frac{-(x-\mu)^2}{2\sigma^2}}$ 很快地下降。在图中，概率密度函数在区间 $[-1,3]$ 之外非常接近 $0$ 。</p>
@@ -462,570 +462,568 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">y</th>
-<th style="text-align:center">+0.00</th>
-<th style="text-align:center">+0.01</th>
-<th style="text-align:center">+0.02</th>
-<th style="text-align:center">+0.03</th>
-<th style="text-align:center">+0.04</th>
-<th style="text-align:center">+0.05</th>
-<th style="text-align:center">+0.06</th>
-<th style="text-align:center">+0.07</th>
+<th align="center">y</th>
+<th align="center">+0.00</th>
+<th align="center">+0.01</th>
+<th align="center">+0.02</th>
+<th align="center">+0.03</th>
+<th align="center">+0.04</th>
+<th align="center">+0.05</th>
+<th align="center">+0.06</th>
+<th align="center">+0.07</th>
 <th>+0.08</th>
 <th>+0.09</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">0.0</td>
-<td style="text-align:center">0.50000</td>
-<td style="text-align:center">0.50399</td>
-<td style="text-align:center">0.50798</td>
-<td style="text-align:center">0.51197</td>
-<td style="text-align:center">0.51595</td>
-<td style="text-align:center">0.51994</td>
-<td style="text-align:center">0.52392</td>
-<td style="text-align:center">0.52790</td>
+<tbody><tr>
+<td align="center">0.0</td>
+<td align="center">0.50000</td>
+<td align="center">0.50399</td>
+<td align="center">0.50798</td>
+<td align="center">0.51197</td>
+<td align="center">0.51595</td>
+<td align="center">0.51994</td>
+<td align="center">0.52392</td>
+<td align="center">0.52790</td>
 <td>0.53188</td>
 <td>0.53586</td>
 </tr>
 <tr>
-<td style="text-align:center">0.1</td>
-<td style="text-align:center">0.53983</td>
-<td style="text-align:center">0.54380</td>
-<td style="text-align:center">0.54776</td>
-<td style="text-align:center">0.55172</td>
-<td style="text-align:center">0.55567</td>
-<td style="text-align:center">0.55966</td>
-<td style="text-align:center">0.56360</td>
-<td style="text-align:center">0.56749</td>
+<td align="center">0.1</td>
+<td align="center">0.53983</td>
+<td align="center">0.54380</td>
+<td align="center">0.54776</td>
+<td align="center">0.55172</td>
+<td align="center">0.55567</td>
+<td align="center">0.55966</td>
+<td align="center">0.56360</td>
+<td align="center">0.56749</td>
 <td>0.57142</td>
 <td>0.57535</td>
 </tr>
 <tr>
-<td style="text-align:center">0.2</td>
-<td style="text-align:center">0.57926</td>
-<td style="text-align:center">0.58317</td>
-<td style="text-align:center">0.58706</td>
-<td style="text-align:center">0.59095</td>
-<td style="text-align:center">0.59483</td>
-<td style="text-align:center">0.59871</td>
-<td style="text-align:center">0.60257</td>
-<td style="text-align:center">0.60642</td>
+<td align="center">0.2</td>
+<td align="center">0.57926</td>
+<td align="center">0.58317</td>
+<td align="center">0.58706</td>
+<td align="center">0.59095</td>
+<td align="center">0.59483</td>
+<td align="center">0.59871</td>
+<td align="center">0.60257</td>
+<td align="center">0.60642</td>
 <td>0.61026</td>
 <td>0.61409</td>
 </tr>
 <tr>
-<td style="text-align:center">0.3</td>
-<td style="text-align:center">0.61791</td>
-<td style="text-align:center">0.62172</td>
-<td style="text-align:center">0.62552</td>
-<td style="text-align:center">0.62930</td>
-<td style="text-align:center">0.63307</td>
-<td style="text-align:center">0.63683</td>
-<td style="text-align:center">0.64058</td>
-<td style="text-align:center">0.64431</td>
+<td align="center">0.3</td>
+<td align="center">0.61791</td>
+<td align="center">0.62172</td>
+<td align="center">0.62552</td>
+<td align="center">0.62930</td>
+<td align="center">0.63307</td>
+<td align="center">0.63683</td>
+<td align="center">0.64058</td>
+<td align="center">0.64431</td>
 <td>0.64803</td>
 <td>0.65173</td>
 </tr>
 <tr>
-<td style="text-align:center">0.4</td>
-<td style="text-align:center">0.65542</td>
-<td style="text-align:center">0.65910</td>
-<td style="text-align:center">0.66276</td>
-<td style="text-align:center">0.66640</td>
-<td style="text-align:center">0.67003</td>
-<td style="text-align:center">0.67364</td>
-<td style="text-align:center">0.67724</td>
-<td style="text-align:center">0.68082</td>
+<td align="center">0.4</td>
+<td align="center">0.65542</td>
+<td align="center">0.65910</td>
+<td align="center">0.66276</td>
+<td align="center">0.66640</td>
+<td align="center">0.67003</td>
+<td align="center">0.67364</td>
+<td align="center">0.67724</td>
+<td align="center">0.68082</td>
 <td>0.68439</td>
 <td>0.68793</td>
 </tr>
 <tr>
-<td style="text-align:center">0.5</td>
-<td style="text-align:center">0.69146</td>
-<td style="text-align:center">0.69497</td>
-<td style="text-align:center">0.69847</td>
-<td style="text-align:center">0.70194</td>
-<td style="text-align:center">0.70540</td>
-<td style="text-align:center">0.70884</td>
-<td style="text-align:center">0.71226</td>
-<td style="text-align:center">0.71566</td>
+<td align="center">0.5</td>
+<td align="center">0.69146</td>
+<td align="center">0.69497</td>
+<td align="center">0.69847</td>
+<td align="center">0.70194</td>
+<td align="center">0.70540</td>
+<td align="center">0.70884</td>
+<td align="center">0.71226</td>
+<td align="center">0.71566</td>
 <td>0.71904</td>
 <td>0.72240</td>
 </tr>
 <tr>
-<td style="text-align:center">0.6</td>
-<td style="text-align:center">0.72575</td>
-<td style="text-align:center">0.72907</td>
-<td style="text-align:center">0.73237</td>
-<td style="text-align:center">0.73565</td>
-<td style="text-align:center">0.73891</td>
-<td style="text-align:center">0.74215</td>
-<td style="text-align:center">0.74537</td>
-<td style="text-align:center">0.74857</td>
+<td align="center">0.6</td>
+<td align="center">0.72575</td>
+<td align="center">0.72907</td>
+<td align="center">0.73237</td>
+<td align="center">0.73565</td>
+<td align="center">0.73891</td>
+<td align="center">0.74215</td>
+<td align="center">0.74537</td>
+<td align="center">0.74857</td>
 <td>0.75175</td>
 <td>0.75490</td>
 </tr>
 <tr>
-<td style="text-align:center">0.7</td>
-<td style="text-align:center">0.75804</td>
-<td style="text-align:center">0.76115</td>
-<td style="text-align:center">0.76424</td>
-<td style="text-align:center">0.76730</td>
-<td style="text-align:center">0.77035</td>
-<td style="text-align:center">0.77337</td>
-<td style="text-align:center">0.77637</td>
-<td style="text-align:center">0.77935</td>
+<td align="center">0.7</td>
+<td align="center">0.75804</td>
+<td align="center">0.76115</td>
+<td align="center">0.76424</td>
+<td align="center">0.76730</td>
+<td align="center">0.77035</td>
+<td align="center">0.77337</td>
+<td align="center">0.77637</td>
+<td align="center">0.77935</td>
 <td>0.78230</td>
 <td>0.78524</td>
 </tr>
 <tr>
-<td style="text-align:center">0.8</td>
-<td style="text-align:center">0.78814</td>
-<td style="text-align:center">0.79103</td>
-<td style="text-align:center">0.79389</td>
-<td style="text-align:center">0.79673</td>
-<td style="text-align:center">0.79955</td>
-<td style="text-align:center">0.80234</td>
-<td style="text-align:center">0.80511</td>
-<td style="text-align:center">0.80785</td>
+<td align="center">0.8</td>
+<td align="center">0.78814</td>
+<td align="center">0.79103</td>
+<td align="center">0.79389</td>
+<td align="center">0.79673</td>
+<td align="center">0.79955</td>
+<td align="center">0.80234</td>
+<td align="center">0.80511</td>
+<td align="center">0.80785</td>
 <td>0.81057</td>
 <td>0.81327</td>
 </tr>
 <tr>
-<td style="text-align:center">0.9</td>
-<td style="text-align:center">0.81594</td>
-<td style="text-align:center">0.81859</td>
-<td style="text-align:center">0.82121</td>
-<td style="text-align:center">0.82381</td>
-<td style="text-align:center">0.82639</td>
-<td style="text-align:center">0.82894</td>
-<td style="text-align:center">0.83147</td>
-<td style="text-align:center">0.83398</td>
+<td align="center">0.9</td>
+<td align="center">0.81594</td>
+<td align="center">0.81859</td>
+<td align="center">0.82121</td>
+<td align="center">0.82381</td>
+<td align="center">0.82639</td>
+<td align="center">0.82894</td>
+<td align="center">0.83147</td>
+<td align="center">0.83398</td>
 <td>0.83646</td>
 <td>0.83891</td>
 </tr>
 <tr>
-<td style="text-align:center">1.0</td>
-<td style="text-align:center">0.84134</td>
-<td style="text-align:center">0.84375</td>
-<td style="text-align:center">0.84614</td>
-<td style="text-align:center">0.84849</td>
-<td style="text-align:center">0.85083</td>
-<td style="text-align:center">0.85314</td>
-<td style="text-align:center">0.85543</td>
-<td style="text-align:center">0.85769</td>
+<td align="center">1.0</td>
+<td align="center">0.84134</td>
+<td align="center">0.84375</td>
+<td align="center">0.84614</td>
+<td align="center">0.84849</td>
+<td align="center">0.85083</td>
+<td align="center">0.85314</td>
+<td align="center">0.85543</td>
+<td align="center">0.85769</td>
 <td>0.85993</td>
 <td>0.86214</td>
 </tr>
 <tr>
-<td style="text-align:center">1.1</td>
-<td style="text-align:center">0.86433</td>
-<td style="text-align:center">0.86650</td>
-<td style="text-align:center">0.86864</td>
-<td style="text-align:center">0.87076</td>
-<td style="text-align:center">0.87286</td>
-<td style="text-align:center">0.87493</td>
-<td style="text-align:center">0.87698</td>
-<td style="text-align:center">0.87900</td>
+<td align="center">1.1</td>
+<td align="center">0.86433</td>
+<td align="center">0.86650</td>
+<td align="center">0.86864</td>
+<td align="center">0.87076</td>
+<td align="center">0.87286</td>
+<td align="center">0.87493</td>
+<td align="center">0.87698</td>
+<td align="center">0.87900</td>
 <td>0.88100</td>
 <td>0.88298</td>
 </tr>
 <tr>
-<td style="text-align:center">1.2</td>
-<td style="text-align:center">0.88493</td>
-<td style="text-align:center">0.88686</td>
-<td style="text-align:center">0.88877</td>
-<td style="text-align:center">0.89065</td>
-<td style="text-align:center">0.89251</td>
-<td style="text-align:center">0.89435</td>
-<td style="text-align:center">0.89617</td>
-<td style="text-align:center">0.89796</td>
+<td align="center">1.2</td>
+<td align="center">0.88493</td>
+<td align="center">0.88686</td>
+<td align="center">0.88877</td>
+<td align="center">0.89065</td>
+<td align="center">0.89251</td>
+<td align="center">0.89435</td>
+<td align="center">0.89617</td>
+<td align="center">0.89796</td>
 <td>0.89973</td>
 <td>0.90147</td>
 </tr>
 <tr>
-<td style="text-align:center">1.3</td>
-<td style="text-align:center">0.90320</td>
-<td style="text-align:center">0.90490</td>
-<td style="text-align:center">0.90658</td>
-<td style="text-align:center">0.90824</td>
-<td style="text-align:center">0.90988</td>
-<td style="text-align:center">0.91149</td>
-<td style="text-align:center">0.91308</td>
-<td style="text-align:center">0.91466</td>
+<td align="center">1.3</td>
+<td align="center">0.90320</td>
+<td align="center">0.90490</td>
+<td align="center">0.90658</td>
+<td align="center">0.90824</td>
+<td align="center">0.90988</td>
+<td align="center">0.91149</td>
+<td align="center">0.91308</td>
+<td align="center">0.91466</td>
 <td>0.91621</td>
 <td>0.91774</td>
 </tr>
 <tr>
-<td style="text-align:center">1.4</td>
-<td style="text-align:center">0.91924</td>
-<td style="text-align:center">0.92073</td>
-<td style="text-align:center">0.92220</td>
-<td style="text-align:center">0.92364</td>
-<td style="text-align:center">0.92507</td>
-<td style="text-align:center">0.92647</td>
-<td style="text-align:center">0.92785</td>
-<td style="text-align:center">0.92922</td>
+<td align="center">1.4</td>
+<td align="center">0.91924</td>
+<td align="center">0.92073</td>
+<td align="center">0.92220</td>
+<td align="center">0.92364</td>
+<td align="center">0.92507</td>
+<td align="center">0.92647</td>
+<td align="center">0.92785</td>
+<td align="center">0.92922</td>
 <td>0.93056</td>
 <td>0.93189</td>
 </tr>
 <tr>
-<td style="text-align:center">1.5</td>
-<td style="text-align:center">0.93319</td>
-<td style="text-align:center">0.93448</td>
-<td style="text-align:center">0.93574</td>
-<td style="text-align:center">0.93699</td>
-<td style="text-align:center">0.93822</td>
-<td style="text-align:center">0.93943</td>
-<td style="text-align:center">0.94062</td>
-<td style="text-align:center">0.94179</td>
+<td align="center">1.5</td>
+<td align="center">0.93319</td>
+<td align="center">0.93448</td>
+<td align="center">0.93574</td>
+<td align="center">0.93699</td>
+<td align="center">0.93822</td>
+<td align="center">0.93943</td>
+<td align="center">0.94062</td>
+<td align="center">0.94179</td>
 <td>0.94295</td>
 <td>0.94408</td>
 </tr>
 <tr>
-<td style="text-align:center">1.6</td>
-<td style="text-align:center">0.94520</td>
-<td style="text-align:center">0.94630</td>
-<td style="text-align:center">0.94738</td>
-<td style="text-align:center">0.94845</td>
-<td style="text-align:center">0.94950</td>
-<td style="text-align:center">0.95053</td>
-<td style="text-align:center">0.95154</td>
-<td style="text-align:center">0.95254</td>
+<td align="center">1.6</td>
+<td align="center">0.94520</td>
+<td align="center">0.94630</td>
+<td align="center">0.94738</td>
+<td align="center">0.94845</td>
+<td align="center">0.94950</td>
+<td align="center">0.95053</td>
+<td align="center">0.95154</td>
+<td align="center">0.95254</td>
 <td>0.95352</td>
 <td>0.95449</td>
 </tr>
 <tr>
-<td style="text-align:center">1.7</td>
-<td style="text-align:center">0.95543</td>
-<td style="text-align:center">0.95637</td>
-<td style="text-align:center">0.95728</td>
-<td style="text-align:center">0.95818</td>
-<td style="text-align:center">0.95907</td>
-<td style="text-align:center">0.95994</td>
-<td style="text-align:center">0.96080</td>
-<td style="text-align:center">0.96164</td>
+<td align="center">1.7</td>
+<td align="center">0.95543</td>
+<td align="center">0.95637</td>
+<td align="center">0.95728</td>
+<td align="center">0.95818</td>
+<td align="center">0.95907</td>
+<td align="center">0.95994</td>
+<td align="center">0.96080</td>
+<td align="center">0.96164</td>
 <td>0.96246</td>
 <td>0.96327</td>
 </tr>
 <tr>
-<td style="text-align:center">1.8</td>
-<td style="text-align:center">0.96407</td>
-<td style="text-align:center">0.96485</td>
-<td style="text-align:center">0.96562</td>
-<td style="text-align:center">0.96638</td>
-<td style="text-align:center">0.96712</td>
-<td style="text-align:center">0.96784</td>
-<td style="text-align:center">0.96856</td>
-<td style="text-align:center">0.96926</td>
+<td align="center">1.8</td>
+<td align="center">0.96407</td>
+<td align="center">0.96485</td>
+<td align="center">0.96562</td>
+<td align="center">0.96638</td>
+<td align="center">0.96712</td>
+<td align="center">0.96784</td>
+<td align="center">0.96856</td>
+<td align="center">0.96926</td>
 <td>0.96995</td>
 <td>0.97062</td>
 </tr>
 <tr>
-<td style="text-align:center">1.9</td>
-<td style="text-align:center">0.97128</td>
-<td style="text-align:center">0.97193</td>
-<td style="text-align:center">0.97257</td>
-<td style="text-align:center">0.97320</td>
-<td style="text-align:center">0.97381</td>
-<td style="text-align:center">0.97441</td>
-<td style="text-align:center">0.97500</td>
-<td style="text-align:center">0.97558</td>
+<td align="center">1.9</td>
+<td align="center">0.97128</td>
+<td align="center">0.97193</td>
+<td align="center">0.97257</td>
+<td align="center">0.97320</td>
+<td align="center">0.97381</td>
+<td align="center">0.97441</td>
+<td align="center">0.97500</td>
+<td align="center">0.97558</td>
 <td>0.97615</td>
 <td>0.97670</td>
 </tr>
 <tr>
-<td style="text-align:center">2.0</td>
-<td style="text-align:center">0.97725</td>
-<td style="text-align:center">0.97778</td>
-<td style="text-align:center">0.97831</td>
-<td style="text-align:center">0.97882</td>
-<td style="text-align:center">0.97932</td>
-<td style="text-align:center">0.97982</td>
-<td style="text-align:center">0.98030</td>
-<td style="text-align:center">0.98077</td>
+<td align="center">2.0</td>
+<td align="center">0.97725</td>
+<td align="center">0.97778</td>
+<td align="center">0.97831</td>
+<td align="center">0.97882</td>
+<td align="center">0.97932</td>
+<td align="center">0.97982</td>
+<td align="center">0.98030</td>
+<td align="center">0.98077</td>
 <td>0.98124</td>
 <td>0.98169</td>
 </tr>
 <tr>
-<td style="text-align:center">2.1</td>
-<td style="text-align:center">0.98214</td>
-<td style="text-align:center">0.98257</td>
-<td style="text-align:center">0.98300</td>
-<td style="text-align:center">0.98341</td>
-<td style="text-align:center">0.98382</td>
-<td style="text-align:center">0.98422</td>
-<td style="text-align:center">0.98461</td>
-<td style="text-align:center">0.98500</td>
+<td align="center">2.1</td>
+<td align="center">0.98214</td>
+<td align="center">0.98257</td>
+<td align="center">0.98300</td>
+<td align="center">0.98341</td>
+<td align="center">0.98382</td>
+<td align="center">0.98422</td>
+<td align="center">0.98461</td>
+<td align="center">0.98500</td>
 <td>0.98537</td>
 <td>0.98574</td>
 </tr>
 <tr>
-<td style="text-align:center">2.2</td>
-<td style="text-align:center">0.98610</td>
-<td style="text-align:center">0.98645</td>
-<td style="text-align:center">0.98679</td>
-<td style="text-align:center">0.98713</td>
-<td style="text-align:center">0.98745</td>
-<td style="text-align:center">0.98778</td>
-<td style="text-align:center">0.98809</td>
-<td style="text-align:center">0.98840</td>
+<td align="center">2.2</td>
+<td align="center">0.98610</td>
+<td align="center">0.98645</td>
+<td align="center">0.98679</td>
+<td align="center">0.98713</td>
+<td align="center">0.98745</td>
+<td align="center">0.98778</td>
+<td align="center">0.98809</td>
+<td align="center">0.98840</td>
 <td>0.98870</td>
 <td>0.98899</td>
 </tr>
 <tr>
-<td style="text-align:center">2.3</td>
-<td style="text-align:center">0.98928</td>
-<td style="text-align:center">0.98956</td>
-<td style="text-align:center">0.98983</td>
-<td style="text-align:center">0.99010</td>
-<td style="text-align:center">0.99036</td>
-<td style="text-align:center">0.99061</td>
-<td style="text-align:center">0.99086</td>
-<td style="text-align:center">0.99111</td>
+<td align="center">2.3</td>
+<td align="center">0.98928</td>
+<td align="center">0.98956</td>
+<td align="center">0.98983</td>
+<td align="center">0.99010</td>
+<td align="center">0.99036</td>
+<td align="center">0.99061</td>
+<td align="center">0.99086</td>
+<td align="center">0.99111</td>
 <td>0.99134</td>
 <td>0.99158</td>
 </tr>
 <tr>
-<td style="text-align:center">2.4</td>
-<td style="text-align:center">0.99180</td>
-<td style="text-align:center">0.99202</td>
-<td style="text-align:center">0.99224</td>
-<td style="text-align:center">0.99245</td>
-<td style="text-align:center">0.99266</td>
-<td style="text-align:center">0.99286</td>
-<td style="text-align:center">0.99305</td>
-<td style="text-align:center">0.99324</td>
+<td align="center">2.4</td>
+<td align="center">0.99180</td>
+<td align="center">0.99202</td>
+<td align="center">0.99224</td>
+<td align="center">0.99245</td>
+<td align="center">0.99266</td>
+<td align="center">0.99286</td>
+<td align="center">0.99305</td>
+<td align="center">0.99324</td>
 <td>0.99343</td>
 <td>0.99361</td>
 </tr>
 <tr>
-<td style="text-align:center">2.5</td>
-<td style="text-align:center">0.99379</td>
-<td style="text-align:center">0.99396</td>
-<td style="text-align:center">0.99413</td>
-<td style="text-align:center">0.99430</td>
-<td style="text-align:center">0.99446</td>
-<td style="text-align:center">0.99461</td>
-<td style="text-align:center">0.99477</td>
-<td style="text-align:center">0.99492</td>
+<td align="center">2.5</td>
+<td align="center">0.99379</td>
+<td align="center">0.99396</td>
+<td align="center">0.99413</td>
+<td align="center">0.99430</td>
+<td align="center">0.99446</td>
+<td align="center">0.99461</td>
+<td align="center">0.99477</td>
+<td align="center">0.99492</td>
 <td>0.99506</td>
 <td>0.99520</td>
 </tr>
 <tr>
-<td style="text-align:center">2.6</td>
-<td style="text-align:center">0.99534</td>
-<td style="text-align:center">0.99547</td>
-<td style="text-align:center">0.99560</td>
-<td style="text-align:center">0.99573</td>
-<td style="text-align:center">0.99585</td>
-<td style="text-align:center">0.99598</td>
-<td style="text-align:center">0.99609</td>
-<td style="text-align:center">0.99621</td>
+<td align="center">2.6</td>
+<td align="center">0.99534</td>
+<td align="center">0.99547</td>
+<td align="center">0.99560</td>
+<td align="center">0.99573</td>
+<td align="center">0.99585</td>
+<td align="center">0.99598</td>
+<td align="center">0.99609</td>
+<td align="center">0.99621</td>
 <td>0.99632</td>
 <td>0.99643</td>
 </tr>
 <tr>
-<td style="text-align:center">2.7</td>
-<td style="text-align:center">0.99653</td>
-<td style="text-align:center">0.99664</td>
-<td style="text-align:center">0.99674</td>
-<td style="text-align:center">0.99683</td>
-<td style="text-align:center">0.99693</td>
-<td style="text-align:center">0.99702</td>
-<td style="text-align:center">0.99711</td>
-<td style="text-align:center">0.99720</td>
+<td align="center">2.7</td>
+<td align="center">0.99653</td>
+<td align="center">0.99664</td>
+<td align="center">0.99674</td>
+<td align="center">0.99683</td>
+<td align="center">0.99693</td>
+<td align="center">0.99702</td>
+<td align="center">0.99711</td>
+<td align="center">0.99720</td>
 <td>0.99728</td>
 <td>0.99736</td>
 </tr>
 <tr>
-<td style="text-align:center">2.8</td>
-<td style="text-align:center">0.99744</td>
-<td style="text-align:center">0.99752</td>
-<td style="text-align:center">0.99760</td>
-<td style="text-align:center">0.99767</td>
-<td style="text-align:center">0.99774</td>
-<td style="text-align:center">0.99781</td>
-<td style="text-align:center">0.99788</td>
-<td style="text-align:center">0.99795</td>
+<td align="center">2.8</td>
+<td align="center">0.99744</td>
+<td align="center">0.99752</td>
+<td align="center">0.99760</td>
+<td align="center">0.99767</td>
+<td align="center">0.99774</td>
+<td align="center">0.99781</td>
+<td align="center">0.99788</td>
+<td align="center">0.99795</td>
 <td>0.99801</td>
 <td>0.99807</td>
 </tr>
 <tr>
-<td style="text-align:center">2.9</td>
-<td style="text-align:center">0.99813</td>
-<td style="text-align:center">0.99819</td>
-<td style="text-align:center">0.99825</td>
-<td style="text-align:center">0.99831</td>
-<td style="text-align:center">0.99836</td>
-<td style="text-align:center">0.99841</td>
-<td style="text-align:center">0.99846</td>
-<td style="text-align:center">0.99851</td>
+<td align="center">2.9</td>
+<td align="center">0.99813</td>
+<td align="center">0.99819</td>
+<td align="center">0.99825</td>
+<td align="center">0.99831</td>
+<td align="center">0.99836</td>
+<td align="center">0.99841</td>
+<td align="center">0.99846</td>
+<td align="center">0.99851</td>
 <td>0.99856</td>
 <td>0.99861</td>
 </tr>
 <tr>
-<td style="text-align:center">3.0</td>
-<td style="text-align:center">0.99865</td>
-<td style="text-align:center">0.99869</td>
-<td style="text-align:center">0.99874</td>
-<td style="text-align:center">0.99878</td>
-<td style="text-align:center">0.99882</td>
-<td style="text-align:center">0.99886</td>
-<td style="text-align:center">0.99889</td>
-<td style="text-align:center">0.99893</td>
+<td align="center">3.0</td>
+<td align="center">0.99865</td>
+<td align="center">0.99869</td>
+<td align="center">0.99874</td>
+<td align="center">0.99878</td>
+<td align="center">0.99882</td>
+<td align="center">0.99886</td>
+<td align="center">0.99889</td>
+<td align="center">0.99893</td>
 <td>0.99896</td>
 <td>0.99900</td>
 </tr>
 <tr>
-<td style="text-align:center">3.1</td>
-<td style="text-align:center">0.99903</td>
-<td style="text-align:center">0.99906</td>
-<td style="text-align:center">0.99910</td>
-<td style="text-align:center">0.99913</td>
-<td style="text-align:center">0.99916</td>
-<td style="text-align:center">0.99918</td>
-<td style="text-align:center">0.99921</td>
-<td style="text-align:center">0.99924</td>
+<td align="center">3.1</td>
+<td align="center">0.99903</td>
+<td align="center">0.99906</td>
+<td align="center">0.99910</td>
+<td align="center">0.99913</td>
+<td align="center">0.99916</td>
+<td align="center">0.99918</td>
+<td align="center">0.99921</td>
+<td align="center">0.99924</td>
 <td>0.99926</td>
 <td>0.99929</td>
 </tr>
 <tr>
-<td style="text-align:center">3.2</td>
-<td style="text-align:center">0.99931</td>
-<td style="text-align:center">0.99934</td>
-<td style="text-align:center">0.99936</td>
-<td style="text-align:center">0.99938</td>
-<td style="text-align:center">0.99940</td>
-<td style="text-align:center">0.99942</td>
-<td style="text-align:center">0.99944</td>
-<td style="text-align:center">0.99946</td>
+<td align="center">3.2</td>
+<td align="center">0.99931</td>
+<td align="center">0.99934</td>
+<td align="center">0.99936</td>
+<td align="center">0.99938</td>
+<td align="center">0.99940</td>
+<td align="center">0.99942</td>
+<td align="center">0.99944</td>
+<td align="center">0.99946</td>
 <td>0.99948</td>
 <td>0.99950</td>
 </tr>
 <tr>
-<td style="text-align:center">3.3</td>
-<td style="text-align:center">0.99952</td>
-<td style="text-align:center">0.99953</td>
-<td style="text-align:center">0.99955</td>
-<td style="text-align:center">0.99957</td>
-<td style="text-align:center">0.99958</td>
-<td style="text-align:center">0.99960</td>
-<td style="text-align:center">0.99961</td>
-<td style="text-align:center">0.99962</td>
+<td align="center">3.3</td>
+<td align="center">0.99952</td>
+<td align="center">0.99953</td>
+<td align="center">0.99955</td>
+<td align="center">0.99957</td>
+<td align="center">0.99958</td>
+<td align="center">0.99960</td>
+<td align="center">0.99961</td>
+<td align="center">0.99962</td>
 <td>0.99964</td>
 <td>0.99965</td>
 </tr>
 <tr>
-<td style="text-align:center">3.4</td>
-<td style="text-align:center">0.99966</td>
-<td style="text-align:center">0.99968</td>
-<td style="text-align:center">0.99969</td>
-<td style="text-align:center">0.99970</td>
-<td style="text-align:center">0.99971</td>
-<td style="text-align:center">0.99972</td>
-<td style="text-align:center">0.99973</td>
-<td style="text-align:center">0.99974</td>
+<td align="center">3.4</td>
+<td align="center">0.99966</td>
+<td align="center">0.99968</td>
+<td align="center">0.99969</td>
+<td align="center">0.99970</td>
+<td align="center">0.99971</td>
+<td align="center">0.99972</td>
+<td align="center">0.99973</td>
+<td align="center">0.99974</td>
 <td>0.99975</td>
 <td>0.99976</td>
 </tr>
 <tr>
-<td style="text-align:center">3.5</td>
-<td style="text-align:center">0.99977</td>
-<td style="text-align:center">0.99978</td>
-<td style="text-align:center">0.99978</td>
-<td style="text-align:center">0.99979</td>
-<td style="text-align:center">0.99980</td>
-<td style="text-align:center">0.99981</td>
-<td style="text-align:center">0.99981</td>
-<td style="text-align:center">0.99982</td>
+<td align="center">3.5</td>
+<td align="center">0.99977</td>
+<td align="center">0.99978</td>
+<td align="center">0.99978</td>
+<td align="center">0.99979</td>
+<td align="center">0.99980</td>
+<td align="center">0.99981</td>
+<td align="center">0.99981</td>
+<td align="center">0.99982</td>
 <td>0.99983</td>
 <td>0.99983</td>
 </tr>
 <tr>
-<td style="text-align:center">3.6</td>
-<td style="text-align:center">0.99984</td>
-<td style="text-align:center">0.99985</td>
-<td style="text-align:center">0.99985</td>
-<td style="text-align:center">0.99986</td>
-<td style="text-align:center">0.99986</td>
-<td style="text-align:center">0.99987</td>
-<td style="text-align:center">0.99987</td>
-<td style="text-align:center">0.99988</td>
+<td align="center">3.6</td>
+<td align="center">0.99984</td>
+<td align="center">0.99985</td>
+<td align="center">0.99985</td>
+<td align="center">0.99986</td>
+<td align="center">0.99986</td>
+<td align="center">0.99987</td>
+<td align="center">0.99987</td>
+<td align="center">0.99988</td>
 <td>0.99988</td>
 <td>0.99989</td>
 </tr>
 <tr>
-<td style="text-align:center">3.7</td>
-<td style="text-align:center">0.99989</td>
-<td style="text-align:center">0.99990</td>
-<td style="text-align:center">0.99990</td>
-<td style="text-align:center">0.99990</td>
-<td style="text-align:center">0.99991</td>
-<td style="text-align:center">0.99991</td>
-<td style="text-align:center">0.99992</td>
-<td style="text-align:center">0.99992</td>
+<td align="center">3.7</td>
+<td align="center">0.99989</td>
+<td align="center">0.99990</td>
+<td align="center">0.99990</td>
+<td align="center">0.99990</td>
+<td align="center">0.99991</td>
+<td align="center">0.99991</td>
+<td align="center">0.99992</td>
+<td align="center">0.99992</td>
 <td>0.99992</td>
 <td>0.99992</td>
 </tr>
 <tr>
-<td style="text-align:center">3.8</td>
-<td style="text-align:center">0.99993</td>
-<td style="text-align:center">0.99993</td>
-<td style="text-align:center">0.99993</td>
-<td style="text-align:center">0.99994</td>
-<td style="text-align:center">0.99994</td>
-<td style="text-align:center">0.99994</td>
-<td style="text-align:center">0.99994</td>
-<td style="text-align:center">0.99995</td>
+<td align="center">3.8</td>
+<td align="center">0.99993</td>
+<td align="center">0.99993</td>
+<td align="center">0.99993</td>
+<td align="center">0.99994</td>
+<td align="center">0.99994</td>
+<td align="center">0.99994</td>
+<td align="center">0.99994</td>
+<td align="center">0.99995</td>
 <td>0.99995</td>
 <td>0.99995</td>
 </tr>
 <tr>
-<td style="text-align:center">3.9</td>
-<td style="text-align:center">0.99995</td>
-<td style="text-align:center">0.99995</td>
-<td style="text-align:center">0.99996</td>
-<td style="text-align:center">0.99996</td>
-<td style="text-align:center">0.99996</td>
-<td style="text-align:center">0.99996</td>
-<td style="text-align:center">0.99996</td>
-<td style="text-align:center">0.99996</td>
+<td align="center">3.9</td>
+<td align="center">0.99995</td>
+<td align="center">0.99995</td>
+<td align="center">0.99996</td>
+<td align="center">0.99996</td>
+<td align="center">0.99996</td>
+<td align="center">0.99996</td>
+<td align="center">0.99996</td>
+<td align="center">0.99996</td>
 <td>0.99997</td>
 <td>0.99997</td>
 </tr>
 <tr>
-<td style="text-align:center">4.0</td>
-<td style="text-align:center">0.99997</td>
-<td style="text-align:center">0.99997</td>
-<td style="text-align:center">0.99997</td>
-<td style="text-align:center">0.99997</td>
-<td style="text-align:center">0.99997</td>
-<td style="text-align:center">0.99997</td>
-<td style="text-align:center">0.99998</td>
-<td style="text-align:center">0.99998</td>
+<td align="center">4.0</td>
+<td align="center">0.99997</td>
+<td align="center">0.99997</td>
+<td align="center">0.99997</td>
+<td align="center">0.99997</td>
+<td align="center">0.99997</td>
+<td align="center">0.99997</td>
+<td align="center">0.99998</td>
+<td align="center">0.99998</td>
 <td>0.99998</td>
 <td>0.99998</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>现在用 $X$ 表示一个均值为 $\mu$ 和方差为 $\sigma^2$ 的正态随机变量。通过定义一个新的随机变量 $Y$ 来(“standardize”)标准化 $X$ ：<br>$$<br>Y=\frac{X-\mu}{\sigma}<br>$$<br>因为 $Y$ 是 $X$ 的线性函数，所以 $Y$ 也是正态随机变量。而且<br>$$<br>E[Y]=\frac{E[X]-u}{\sigma}=0,\quad var(Y)=\frac{var(X)}{\sigma^2}=1<br>$$<br>因此，$Y$ 是一个标准正态随机变量。这个事实可以让我们用 $Y$ 重新定义 $X$ 所表示的事件，然后使用标准正态表去计算。</p>
 <h4 id="使用正态分布表的例子"><a href="#使用正态分布表的例子" class="headerlink" title="使用正态分布表的例子"></a>使用正态分布表的例子</h4><p>某地区的年度降雪量是一个正态随机变量，期望为 $\mu=60$ 英寸，标准差为 $\sigma=20$ 。本年度降雪量至少为 $80$ 英寸的概率有多大？</p>
 <p>记 $X$ 为年降雪量，令<br>$$<br>Y=\frac{X-\mu}{\sigma}=\frac{X-60}{20}<br>$$<br>显然 $Y$ 是标准正态随机变量。<br>$$<br>P(X\ge 80)=P(\frac{X-60}{20} \ge \frac{80-60}{20})=P(Y\ge \frac{80-60}{20})=P(Y\ge 1)=1-\Phi(1)<br>$$<br>其中 $\Phi$ 为标准正态累积分布函数。通过查询上表得到：$\Phi(1)=0.84134$ ，因此<br>$$<br>P(X\ge 80)=1-\Phi(1)=0.15866<br>$$<br>推广这个例子中的方法，得到如下：</p>
 <h3 id="正态随机变量的累积分布函数计算"><a href="#正态随机变量的累积分布函数计算" class="headerlink" title="正态随机变量的累积分布函数计算"></a>正态随机变量的累积分布函数计算</h3><p>对于均值为 $\mu$ 方差为 $\sigma^2$ 的正态随机变量 $X$ ，使用一下步骤：</p>
 <ol>
-<li><p>标准化 $X$ ：先减去 $\mu$ 再除以 $\sigma$ 来获取标准随机变量 $Y$ 。</p>
+<li><p> 标准化 $X$ ：先减去 $\mu$ 再除以 $\sigma$ 来获取标准随机变量 $Y$ 。</p>
 </li>
-<li><p>从标准正态表中读取累积分布函数值：<br>$$<br>P(X\le x)=P(\frac{X-\mu}{\sigma}\le \frac{x-\mu}{\sigma})=P(Y\le \frac{x-\mu}{\sigma})=\Phi(\frac{x-\mu}{\sigma})<br>$$<br>正态随机变量经常使用在信号处理和通信工程中去对噪音和信号失真进行建模。</p>
+<li><p>从标准正态表中读取累积分布函数值：<br> $$<br> P(X\le x)=P(\frac{X-\mu}{\sigma}\le \frac{x-\mu}{\sigma})=P(Y\le \frac{x-\mu}{\sigma})=\Phi(\frac{x-\mu}{\sigma})<br> $$<br> 正态随机变量经常使用在信号处理和通信工程中去对噪音和信号失真进行建模。</p>
 </li>
 </ol>
 <h4 id="例3-8-信号侦测"><a href="#例3-8-信号侦测" class="headerlink" title="例3.8 信号侦测"></a>例3.8 信号侦测</h4><p>二进制信息用信号 $s$ 传输，这个信息要么是 $-1$ 和 $+1$ 。信号在信道传输过程中会伴随一些噪声，噪声满足均值为 $\mu=0$ ，方差为 $\sigma^2$ 的正态分布。接收器会接收到混有噪音的信号 ，如果接收到的值为小于 $0$ ，那么就认为信号为 $-1$ ，如果接收到的值为大于 $0$ ，那么就认为接收到的信号为 $+1$ 。问这种判断方法的误差有多大？</p>
 <p>误差只有出现在下面两种情况：</p>
 <ol>
-<li>实际被传输的信号为 $-1$，但是噪声变量 $N$ 值至少是 $1$ ，因此 $s+N=-1+N \ge 0$ 。 </li>
-<li>实际被传输的信号为 $+1$，但是噪声变量 $N$ 值小于 $-1$ 。因此 $s+N=1+N &lt;0$ 。</li>
+<li>  实际被传输的信号为 $-1$，但是噪声变量 $N$ 值至少是 $1$ ，因此 $s+N=-1+N \ge 0$ 。 </li>
+<li>  实际被传输的信号为 $+1$，但是噪声变量 $N$ 值小于 $-1$ 。因此 $s+N=1+N &lt;0$ 。</li>
 </ol>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png" alt="Figure_3.11_The_signal_detection"></p>
 <p>因此这种判断方法在情况1下出现误差的概率为：<br>$$<br>\begin{eqnarray}<br>P(N\ge 1) &amp;=&amp; 1-P(N &lt; 1) = 1 - P(N&lt;1)=1-P(\frac{N-\mu}{\sigma}&lt;\frac{1-\mu}{\sigma}) \<br>&amp;=&amp; 1- \Phi(\frac{1-\mu}{\sigma}) \<br>&amp;=&amp; 1-\Phi(\frac{1}{\sigma})<br>\end{eqnarray}<br>$$<br>在第2种情况下出现误差的概率根据正态分布的对称性得到与前一种情况一样。$\Phi(\frac{1}{\sigma})$ 能够从正态分布表得到。例如对于 $\sigma=1$ ，$\Phi(\frac{1}{\sigma})=\Phi(1)=0.84134$ ，所以出现误差的概率为 $0.15864$ 。</p>
@@ -1354,7 +1352,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

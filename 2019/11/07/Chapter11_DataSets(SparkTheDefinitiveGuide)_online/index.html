@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="Chapter 11 Datasets 译者：https:&#x2F;&#x2F;snaildove.github.io  Datasets are the foundational type of the Structured APIs. We already worked with DataFrames, which are Datasets of type Row, and are available ac">
+<meta name="description" content="Chapter 11 Datasets  译者：https:&#x2F;&#x2F;snaildove.github.io  Datasets are the foundational type of the Structured APIs. We already worked with DataFrames, which are Datasets of type Row, and are available a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻译 Chapter 11 Datasets">
 <meta property="og:url" content="https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="Chapter 11 Datasets 译者：https:&#x2F;&#x2F;snaildove.github.io  Datasets are the foundational type of the Structured APIs. We already worked with DataFrames, which are Datasets of type Row, and are available ac">
+<meta property="og:description" content="Chapter 11 Datasets  译者：https:&#x2F;&#x2F;snaildove.github.io  Datasets are the foundational type of the Structured APIs. We already worked with DataFrames, which are Datasets of type Row, and are available a">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="article:published_time" content="2019-11-06T16:00:00.000Z">
@@ -447,8 +447,10 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/></p>
-<p><h1 align="center">Chapter 11 Datasets<br></h1></p>
+        <img src="http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+
+<h1 align="center">Chapter 11 Datasets
+</h1>
 <center><strong>译者</strong>：<u><a style="color:#0879e3" href="https://snaildove.github.io">https://snaildove.github.io</a></u></center>
 
 <p>Datasets are the foundational type of the Structured APIs. We already worked with DataFrames, which are Datasets of type Row, and are available across Spark’s different languages. Datasets are a strictly Java Virtual Machine (JVM) language feature that work only with Scala and Java. Using Datasets, you can define the object that each row in your Dataset will consist of. In Scala, this will be a case class object that essentially defines a schema that you can use, and in Java, you will define a Java Bean. Experienced users often refer to Datasets as the “typed set of APIs” in Spark. For more information, see Chapter 4.</p>
@@ -479,6 +481,7 @@
 <h3 id="In-Java-Encoders"><a href="#In-Java-Encoders" class="headerlink" title="In Java: Encoders"></a><font color="#00000">In Java: Encoders</font></h3><p>Java Encoders are fairly simple, you simply specify your class and then you’ll encode it when you come upon your DataFrame (which is of type <code>Dataset&lt;Row&gt;</code>):</p>
 <p>Java编码器非常简单，只需指定您的类，然后在遇到DataFrame（类型为 <code>Dataset&lt;Row&gt;</code> ）时对它进行编码：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> org.apache.spark.sql.Encoders;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Flight</span> <span class="keyword">implements</span> <span class="title">Serializable</span></span>&#123;</span><br><span class="line">    String DEST_COUNTRY_NAME;</span><br><span class="line">    String ORIGIN_COUNTRY_NAME;</span><br><span class="line">    Long DEST_COUNTRY_NAME;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">Dataset&lt;Flight&gt; flights = spark.read</span><br><span class="line">.parquet(<span class="string">"/data/flight-data/parquet/2010-summary.parquet/"</span>)</span><br><span class="line">.as(Encoders.bean(Flight<span class="class">.<span class="keyword">class</span>))</span>;</span><br></pre></td></tr></table></figure>
+
 <h3 id="In-Scala-Case-Classes"><a href="#In-Scala-Case-Classes" class="headerlink" title="In Scala: Case Classes"></a><font color="#00000">In Scala: Case Classes</font></h3><p>To create Datasets in Scala, you define a Scala case class. A case class is a regular class that has the following characteristics:</p>
 <p>要在Scala中创建数据集，您需要定义一个Scala案例类。案例类是具有以下特征的常规类：</p>
 <ul>
@@ -505,16 +508,21 @@
 <p>To begin creating a Dataset, let’s define a case class for one of our datasets:</p>
 <p>要开始创建数据集，请为我们的一个数据集定义一个案例类：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">Flight</span>(<span class="params"><span class="type">DEST_COUNTRY_NAME</span>: <span class="type">String</span>,</span></span></span><br><span class="line"><span class="class"><span class="params">	<span class="type">ORIGIN_COUNTRY_NAME</span>: <span class="type">String</span>, count: <span class="type">BigInt</span></span>)</span></span><br></pre></td></tr></table></figure>
+
 <p>Now that we defined a case class, this will represent a single record in our dataset. More succinctly, we now have a Dataset of Flights. This doesn’t define any methods for us, simply the schema. When we read in our data, we’ll get a DataFrame. However, we simply use the as method to cast it to our specified row type:</p>
 <p>现在我们定义了一个案例类，它将代表我们 dataset 中的一条记录。更简洁地说，我们现在有了一个航班数据集。这并没有为我们定义任何方法，仅是模式。读取数据后，我们将获得一个DataFrame。但是，我们仅使用as方法将其强制转换为指定的行类型：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> flightsDF = spark.read.parquet(<span class="string">"/data/flight-data/parquet/2010-summary.parquet/"</span>)</span><br><span class="line"><span class="keyword">val</span> flights = flightsDF.as[<span class="type">Flight</span>]</span><br></pre></td></tr></table></figure>
+
 <h2 id="Actions"><a href="#Actions" class="headerlink" title="Actions"></a><font color="#9a161a">Actions</font></h2><p>Even though we can see the power of Datasets, what’s important to understand is that actions like collect, take, and count apply to whether we are using Datasets or DataFrames:</p>
 <p>即使我们可以看到 Datasets 的强大能力，但重要的是要了解，诸如  collect, take,  和 count 的 action（动作，算子） 适用于我们使用的不管是 Datasets 还是 DataFrame：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.show(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">+-----------------+-------------------+-----+</span><br><span class="line">|DEST_COUNTRY_NAME|ORIGIN_COUNTRY_NAME|count|</span><br><span class="line">+-----------------+-------------------+-----+</span><br><span class="line">| United States   |    Romania        | 1   |</span><br><span class="line">| United States   |    Ireland        | 264 |</span><br><span class="line">+-----------------+-------------------+-----+</span><br></pre></td></tr></table></figure>
+
 <p>You’ll also notice that when we actually go to access one of the case classes, we don’t need to do any type coercion, we simply specify the named attribute of the case class and get back, not just the expected value but the expected type, as well:</p>
 <p>您还会注意到，当我们实际上要访问其中一个案例类时，我们不需要执行任何类型强制转换，我们只需指定案例类已经命名的属性并获取，不仅返回期望值，还返回预期类型：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.first.<span class="type">DEST_COUNTRY_NAME</span> <span class="comment">// United States</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="Transformations"><a href="#Transformations" class="headerlink" title="Transformations"></a><font color="#9a161a">Transformations</font></h2><p>Transformations on Datasets are the same as those that we saw on DataFrames. Any transformation that you read about in this section is valid on a Dataset, and we encourage you to look through the specific sections on relevant aggregations or joins.</p>
 <p>Datasets 的转换与我们在 DataFrame 上看到的转换相同。您在本节中了解的任何转换都对 Dataset 有效，我们建议您仔细阅读有关聚合或连接的特定部分。</p>
 <p>In addition to those transformations, Datasets allow us to specify more complex and strongly typed transformations than we could perform on DataFrames alone because we manipulate raw Java Virtual Machine (JVM) types. To illustrate this raw object manipulation, let’s filter the Dataset that you just created.</p>
@@ -522,24 +530,31 @@
 <h3 id="Filtering"><a href="#Filtering" class="headerlink" title="Filtering"></a><font color="#00000">Filtering</font></h3><p> Let’s look at a simple example by creating a simple function that accepts a Flight and returns a Boolean value that describes whether the origin and destination are the same. This is not a UDF (at least, in the way that Spark SQL defines UDF) but a generic function.</p>
 <p>让我们看一个简单的例子，创建一个简单的函数，该函数接受一个Flight并返回一个布尔值，该值描述起点和终点是否相同。这不是UDF（至少以Spark SQL定义UDF的方式），而是通用函数。</p>
 <hr>
-<p><p><center><font face="constant-width" color="#737373" size=3><strong>TIP 提示</strong></font></center></P><br>You’ll notice in the following example that we’re going to create a function to define this filter. This is an important difference from what we have done thus far in the book. By specifying a function, we are forcing Spark to evaluate this function on every row in our Dataset. This can be very resource intensive. For simple filters it is always preferred to write SQL expressions. This will greatly reduce the cost of filtering out the data while still allowing you to manipulate it as a Dataset later on:</p>
+<p><center><font face="constant-width" color="#737373" size=3><strong>TIP 提示</strong></font></center></P>
+You’ll notice in the following example that we’re going to create a function to define this filter. This is an important difference from what we have done thus far in the book. By specifying a function, we are forcing Spark to evaluate this function on every row in our Dataset. This can be very resource intensive. For simple filters it is always preferred to write SQL expressions. This will greatly reduce the cost of filtering out the data while still allowing you to manipulate it as a Dataset later on:
+
 <p>在以下示例中，您会注意到我们将创建一个函数来定义此过滤器。这与到目前为止我们在书中所做的是一个重要的区别。通过指定一个函数，我们迫使Spark在数据集中的每一行上计算这个函数。这可能会占用大量资源。对于简单的过滤器，总是首选编写SQL表达式。这将大大降低过滤数据的成本，同时仍允许您稍后将其作为 Dataset 进行操作：</p>
 <hr>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">originIsDestination</span></span>(flight_row: <span class="type">Flight</span>): <span class="type">Boolean</span> = &#123;</span><br><span class="line">	<span class="keyword">return</span> flight_row.<span class="type">ORIGIN_COUNTRY_NAME</span> == flight_row.<span class="type">DEST_COUNTRY_NAME</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>We can now pass this function into the filter method specifying that for each row it should verify that this function returns true and in the process will filter our Dataset down accordingly:</p>
 <p>现在，我们可以将此函数传递到filter方法中，指定它应针对每一行验证该函数返回true，并在此过程中相应地过滤掉我们的数据集：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.filter(flight_row =&gt; originIsDestination(flight_row)).first()</span><br></pre></td></tr></table></figure>
+
 <p>The result is:</p>
 <p>结果是：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Flight &#x3D; Flight(United States,United States,348113)</span><br></pre></td></tr></table></figure>
+
 <p>As we saw earlier, this function does not need to execute in Spark code at all. Similar to our UDFs, we can use it and test it on data on our local machines before using it within Spark.</p>
 <p>如我们先前所见，此功能根本不需要在Spark代码中执行。与我们的UDF类似，在Spark中使用它之前，我们可以使用它并在本地计算机上的数据上对其进行测试。</p>
 <p>For example, this dataset is small enough for us to collect to the driver (as an Array of Flights) on which we can operate and perform the exact same filtering operation:</p>
 <p>例如，此数据集足够小，我们可以收集给驱动程序（作为航班数组），在该驱动程序上我们可以进行操作并执行完全相同的过滤操作：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.collect().filter(flight_row =&gt; originIsDestination(flight_row))</span><br></pre></td></tr></table></figure>
+
 <p>The result is:</p>
 <p>结果是：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">Array</span>[<span class="type">Flight</span>] = <span class="type">Array</span>(<span class="type">Flight</span>(<span class="type">United</span> <span class="type">States</span>,<span class="type">United</span> <span class="type">States</span>,<span class="number">348113</span>))</span><br></pre></td></tr></table></figure>
+
 <p>We can see that we get the exact same answer as before.</p>
 <p>我们可以看到我们得到了与以前完全相同的答案。</p>
 <h3 id="Mapping"><a href="#Mapping" class="headerlink" title="Mapping"></a><font color="#00000">Mapping</font></h3><p>Filtering is a simple transformation, but sometimes you need to map one value to another value. We did this with our function in the previous example: it accepts a flight and returns a Boolean, but other times we might actually need to perform something more sophisticated like extract a value, compare a set of values, or something similar.</p>
@@ -547,11 +562,13 @@
 <p>The simplest example is manipulating our Dataset such that we extract one value from each row. This is effectively performing a DataFrame like select on our Dataset. Let’s extract the destination:</p>
 <p>最简单的示例是处理 Dataset ，以便从每一行提取一个值。这实际上是在我们的 Dataset 上执行类似于select的DataFrame。让我们提取目的地：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> destinations = flights.map(f =&gt; f.<span class="type">DEST_COUNTRY_NAME</span>)</span><br></pre></td></tr></table></figure>
+
 <p>Notice that we end up with a Dataset of type String. That is because Spark already knows the JVM type that this result should return and allows us to benefit from compile-time checking if, for some reason, it is invalid.</p>
 <p>注意，我们最终得到的是String类型的 Dataset。这是因为Spark已经知道该结果应返回的JVM类型，并允许我们从编译时检查中受益（如果出于某种原而无效）。</p>
 <p>We can collect this and get back an array of strings on the driver:</p>
 <p>我们可以收集这些并获取驱动程序上的字符串数组：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> localDestinations = destinations.take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
 <p>This might feel trivial and unnecessary; we can do the majority of this right on DataFrames. We in fact recommend that you do this because you gain so many benefits from doing so. You will gain advantages like code generation that are simply not possible with arbitrary user-defined functions. However, this can come in handy with much more sophisticated row-by-row manipulation.</p>
 <p>这可能是琐碎且不必要的。我们可以在DataFrames上行使大部分权利。实际上，我们建议您这样做，因为这样做会带来很多好处。您将获得诸如代码生成之类的优势，而这些优势是任意用户定义函数根本无法实现的。但是，这可以通过更复杂的逐行操作来派上用场。</p>
 <h2 id="Joins"><a href="#Joins" class="headerlink" title="Joins "></a><font color="#9a161a">Joins </font></h2><p>Joins, as we covered earlier, apply just the same as they did for DataFrames. However Datasets also provide a more sophisticated method, the <code>joinWith</code> method. <code>joinWith</code> is roughly equal to a co-group (in RDD terminology) and you basically end up with two nested Datasets inside of one. Each column represents one Dataset and these can be manipulated accordingly. This can be useful when you need to maintain more information in the join or perform some more sophisticated manipulation on the entire result, like an advanced map or filter.</p>
@@ -559,37 +576,51 @@
 <p>Let’s create a fake flight metadata dataset to demonstrate <code>joinWith</code>:</p>
 <p>我们创建一个假的航班元数据数据集来演示 <code>joinWith</code>：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> <span class="class"><span class="keyword">class</span> <span class="title">FlightMetadata</span>(<span class="params">count: <span class="type">BigInt</span>, randomData: <span class="type">BigInt</span></span>)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class"><span class="title">val</span> <span class="title">flightsMeta</span> </span>= spark.range(<span class="number">500</span>).map(x =&gt; (x, scala.util.<span class="type">Random</span>.nextLong))</span><br><span class="line">.withColumnRenamed(<span class="string">"_1"</span>, <span class="string">"count"</span>).withColumnRenamed(<span class="string">"_2"</span>, <span class="string">"randomData"</span>)</span><br><span class="line">.as[<span class="type">FlightMetadata</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">val</span> flights2 = flights</span><br><span class="line">.joinWith(flightsMeta, flights.col(<span class="string">"count"</span>) === flightsMeta.col(<span class="string">"count"</span>))</span><br></pre></td></tr></table></figure>
+
 <p>Notice that we end up with a Dataset of a sort of key-value pair, in which each row represents a Flight and the Flight Metadata. We can, of course, query these as a Dataset or a DataFrame with complex types:</p>
 <p>请注意，我们最后得到的是一种键值对的数据集，其中每一行代表一个Flight和Flight Metadata。当然，我们可以将它们查询为具有复杂类型的 Dataset 或 DataFrame：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights2.selectExpr(<span class="string">"_1.DEST_COUNTRY_NAME"</span>)</span><br></pre></td></tr></table></figure>
+
 <p>We can collect them just as we did before:</p>
 <p>我们可以像以前一样收集它们：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">flights2.take(<span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="type">Array</span>[(<span class="type">Flight</span>, <span class="type">FlightMetadata</span>)] = <span class="type">Array</span>((<span class="type">Flight</span>(<span class="type">United</span> <span class="type">States</span>,<span class="type">Romania</span>,<span class="number">1</span>),...</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> flights2 = flights.join(flightsMeta, <span class="type">Seq</span>(<span class="string">"count"</span>))</span><br></pre></td></tr></table></figure>
+
 <p>We can always define another Dataset to gain this back. It’s also important to note that there are no problems joining a DataFrame and a Dataset—we end up with the same result:</p>
 <p>我们总是可以定义另一个数据集来获得回报。同样重要的是要注意，将DataFrame和Dataset连接起来没有问题——我们最终得到了相同的结果：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> flights2 = flights.join(flightsMeta.toDF(), <span class="type">Seq</span>(<span class="string">"count"</span>))</span><br></pre></td></tr></table></figure>
+
 <h2 id="Grouping-and-Aggregations"><a href="#Grouping-and-Aggregations" class="headerlink" title="Grouping and Aggregations"></a><font color="#9a161a">Grouping and Aggregations</font></h2><p>Grouping and aggregations follow the same fundamental standards that we saw in the previous aggregation chapter, so <code>groupBy</code> <code>rollup</code> and <code>cube</code> still apply, but these return DataFrames instead of Datasets (you lose type information):</p>
 <p>分组和聚合遵循在上一聚合章中看到的相同基本标准，因此 <code>groupBy</code>, <code>rollup</code>和 <code>cube</code> 仍然适用，但是它们返回DataFrames而不是Datasets（您会丢失类型信息）：</p>
  <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.groupBy(<span class="string">"DEST_COUNTRY_NAME"</span>).count()</span><br></pre></td></tr></table></figure>
+
 <p>This often is not too big of a deal, but if you want to keep type information around there are other groupings and aggregations that you can perform. An excellent example is the <code>groupByKey</code> method. This allows you to group by a specific key in the Dataset and get a typed Dataset in return. This function, however, doesn’t accept a specific column name but rather a function. This makes it possible for you to specify more sophisticated grouping functions that are much more akin to something like this:</p>
 <p>这通常没什么大不了的，但是如果您想保留类型信息，则可以执行其他分组和聚合。一个很好的例子是<code>groupByKey</code>方法。这使您可以按数据集中的特定键进行分组，并获取返回的类型化数据集。但是，此函数不接受特定的列名，而是接受一个函数。这使您可以指定更复杂的分组功能，这些功能类似于以下内容： </p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.groupByKey(x =&gt; x.<span class="type">DEST_COUNTRY_NAME</span>).count()</span><br></pre></td></tr></table></figure>
+
 <p>Although this provides flexibility, it’s a trade-off because now we are introducing JVM types as well as functions that cannot be optimized by Spark. This means that you will see a performance difference and we can see this when we inspect the explain plan. In the following, you can see that we are effectively appending a new column to the DataFrame (the result of our function) an d then performing the grouping on that:</p>
 <p>尽管这提供了灵活性，但是这是一个折衷，因为现在我们引入了JVM类型以及Spark无法优化的功能。这意味着您将看到性能差异，并且在检查解释计划时可以看到此差异。在下面的内容中，您可以看到我们正在有效地向DataFrame追加新列（我们函数的结果），然后对该分组执行分组：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flights.groupByKey(x =&gt; x.<span class="type">DEST_COUNTRY_NAME</span>).count().explain</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#x3D;&#x3D; Physical Plan &#x3D;&#x3D;</span><br><span class="line">*HashAggregate(keys&#x3D;[value#1396], functions&#x3D;[count(1)])</span><br><span class="line">	+- Exchange hashpartitioning(value#1396, 200)</span><br><span class="line">	   +- *HashAggregate(keys&#x3D;[value#1396], functions&#x3D;[partial_count(1)])</span><br><span class="line">		  +- *Project [value#1396]</span><br><span class="line">			 +- AppendColumns &lt;function1&gt;, newInstance(class ...</span><br><span class="line">			 [staticinvoke(class org.apache.spark.unsafe.types.UTF8String, ...</span><br><span class="line">			 +- *FileScan parquet [D...</span><br></pre></td></tr></table></figure>
+
 <p>After we perform a grouping with a key on a Dataset, we can operate on the Key Value Dataset with functions that will manipulate the groupings as raw objects:</p>
 <p>在对 Dataset 上的键执行分组之后，我们可以对键值数据集进行操作，该函数具有将分组作为原始对象进行操作的功能：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grpSum</span></span>(countryName:<span class="type">String</span>, values: <span class="type">Iterator</span>[<span class="type">Flight</span>]) = &#123;</span><br><span class="line">	values.dropWhile(_.count &lt; <span class="number">5</span>).map(x =&gt; (countryName, x))</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">flights.groupByKey(x =&gt; x.<span class="type">DEST_COUNTRY_NAME</span>).flatMapGroups(grpSum).show(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">+--------+--------------------+</span><br><span class="line">|   _1   |        _2          |</span><br><span class="line">+--------+--------------------+</span><br><span class="line">|Anguilla|[Anguilla,United ...|</span><br><span class="line">|Paraguay|[Paraguay,United ...|</span><br><span class="line">| Russia |[Russia,United St...|</span><br><span class="line">| Senegal|[Senegal,United S...|</span><br><span class="line">| Sweden |[Sweden,United St...|</span><br><span class="line">+--------+--------------------+</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">grpSum2</span></span>(f:<span class="type">Flight</span>):<span class="type">Integer</span> = &#123;</span><br><span class="line">	<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">flights.groupByKey(x =&gt; x.<span class="type">DEST_COUNTRY_NAME</span>).mapValues(grpSum2).count().take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
 <p>We can even create new manipulations and define how groups should be reduced:</p>
 <p>我们甚至可以创建新的操作并定义应如何减少组：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">sum2</span></span>(left:<span class="type">Flight</span>, right:<span class="type">Flight</span>) = &#123;</span><br><span class="line">	<span class="type">Flight</span>(left.<span class="type">DEST_COUNTRY_NAME</span>, <span class="literal">null</span>, left.count + right.count)</span><br><span class="line">&#125; </span><br><span class="line"></span><br><span class="line">flights.groupByKey(x =&gt; x.<span class="type">DEST_COUNTRY_NAME</span>).reduceGroups((l, r) =&gt; sum2(l, r))</span><br><span class="line">.take(<span class="number">5</span>)</span><br></pre></td></tr></table></figure>
+
 <p>It should be straightfoward enough to understand that this is a more expensive process than aggregating immediately after scanning, especially because it ends up in the same end result:</p>
 <p>应该足够直观地了解到，与扫描后立即进行聚合相比，这是一个更昂贵的过程，尤其是因为它最终会达到相同的最终结果：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">flights.groupBy(&quot;DEST_COUNTRY_NAME&quot;).count().explain</span><br><span class="line">&#x3D;&#x3D; Physical Plan &#x3D;&#x3D;</span><br><span class="line">*HashAggregate(keys&#x3D;[DEST_COUNTRY_NAME#1308], functions&#x3D;[count(1)])</span><br><span class="line">+- Exchange hashpartitioning(DEST_COUNTRY_NAME#1308, 200)</span><br><span class="line">   +- *HashAggregate(keys&#x3D;[DEST_COUNTRY_NAME#1308], functions&#x3D;[partial_count(1)])</span><br><span class="line">	  +- *FileScan parquet [DEST_COUNTRY_NAME#1308] Batched: tru...</span><br></pre></td></tr></table></figure>
+
 <p>This should motivate using Datasets only with user-defined encoding surgically and only where it makes sense. This might be at the beginning of a big data pipeline or at the end of one.</p>
 <p>这应该仅通过外科手术并且仅在有意义的地方激发使用 Datasets 的动机。这可能是在大数据管道的开始或结束时。</p>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><font color="#9a161a">Conclusion</font></h2><p>In this chapter, we covered the basics of Datasets and provided some motivating examples. Although short, this chapter actually teaches you basically all that you need to know about Datasets and how to use them. It can be helpful to think of them as a blend between the higher-level Structured APIs and the low-level RDD APIs, which is the topic of Chapter 12.</p>
@@ -681,8 +712,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 14 Distributed Shared Variables">
-                <i class="fa fa-chevron-left"></i> 翻译 Chapter 14 Distributed Shared Variables
+              <a href="/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 13 Advanced RDDs">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 13 Advanced RDDs
               </a>
             
           </div>
@@ -919,7 +950,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

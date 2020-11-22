@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="前言在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： 《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT ，陈天奇 的 XGBoost (eXtreme Gra">
+<meta name="description" content="前言在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： 《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT ，陈天奇 的 XGBoost (eXtreme Grad">
 <meta property="og:type" content="article">
 <meta property="og:title" content="XGBoost原理和底层实现剖析">
 <meta property="og:url" content="https://snaildove.github.io/2018/10/02/get-started-XGBoost/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="前言在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： 《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT ，陈天奇 的 XGBoost (eXtreme Gra">
+<meta property="og:description" content="前言在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： 《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT ，陈天奇 的 XGBoost (eXtreme Grad">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541689140248.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541668145422.png">
@@ -438,7 +438,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  14,165
+                  14,163
                 </span>
               
 
@@ -475,7 +475,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： <a href="https://snaildove.github.io/2018/10/01/8.Booting-Methods_LiHang-Statistical-Learning-Methods/">《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT</a> ，<a href="https://homes.cs.washington.edu/~tqchen/" target="_blank" rel="noopener">陈天奇</a> 的 <a href="https://xgboost.ai/" target="_blank" rel="noopener">XGBoost</a> (eXtreme Gradient Boosting)  和 微软的 lightGBM 是 GBDT 算法模型的实现，非常巧妙，是比赛的<strong>屠龙之器</strong>，算法不仅仅是数学，还涉及系统设计和工程优化。以下引用陈天奇 <a href="https://arxiv.org/pdf/1603.02754" target="_blank" rel="noopener">XGBoost论文</a> 的一段话：</p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>在深度学习火起来之前，集成学习 （ensemble learning 包括  boosting: GBDT, XGBoost）是 kaggle 等比赛中的利器，所以集成学习是机器学习必备的知识点，如果提升树或者GBDT不熟悉，最好先看一下我的另一文： <a href="https://snaildove.github.io/2018/10/01/8.Booting-Methods_LiHang-Statistical-Learning-Methods/">《统计学习方法》第8章 提升方法之AdaBoost\BoostingTree\GBDT</a> ，<a href="https://homes.cs.washington.edu/~tqchen/" target="_blank" rel="noopener">陈天奇</a> 的 <a href="https://xgboost.ai/" target="_blank" rel="noopener">XGBoost</a> (eXtreme Gradient Boosting)  和 微软的 lightGBM 是 GBDT 算法模型的实现，非常巧妙，是比赛的<strong>屠龙之器</strong>，算法不仅仅是数学，还涉及系统设计和工程优化。以下引用陈天奇 <a href="https://arxiv.org/pdf/1603.02754" target="_blank" rel="noopener">XGBoost论文</a> 的一段话：</p>
 <blockquote>
 <p>Among the 29 challenge winning solutions 3 published at Kaggle’s blog during 2015, 17 solutions used XGBoost. Among these solutions, eight solely used XGBoost to train the model, while most others combined XGBoost with neural nets in ensembles. For comparison, the second most popular method, deep neural nets, was used in 11 solutions. The success of the system was also witnessed in KDDCup 2015, where XGBoost was used by every winning team in the top-10. Moreover, the winning teams reported that ensemble methods outperform a well-configured XGBoost by only a small amount [1]. </p>
 </blockquote>
@@ -496,8 +496,7 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>$R^d$</td>
 <td>特征维度为d的数据集</td>
 </tr>
@@ -521,8 +520,7 @@
 <td>$\Theta$</td>
 <td>特征权重的集合</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p><strong>模型</strong></p>
 <p>基本上相关的所有模型都是在下面这个线性式子上发展起来的<br>$$<br>\hat y_i = \sum_{j = 0}^{d} w_j x_{ij}<br>$$<br>上式中 $x_0=1$，就是引入了一个偏差量，或者说加入了一个常数项。由该式子可以得到一些模型：</p>
 <ul>
@@ -530,7 +528,8 @@
 </li>
 <li><p><strong>logistic模型</strong>，最后的得分是sigmoid函数 $\frac{1}{1+e^{−\hat{y}_i}}$ 。然后设置阀值，转为正负实例。</p>
 </li>
-<li>其余的大部分也是基于 $\hat{y}_i$ 做了一些运算得到最后的分数</li>
+<li><p>其余的大部分也是基于 $\hat{y}_i$ 做了一些运算得到最后的分数</p>
+</li>
 </ul>
 <p><strong>参数</strong></p>
 <p>  参数就是 $\Theta={w_j|j=1,…,d}$ ，这也正是我们所需要通过训练得出的。</p>
@@ -539,7 +538,7 @@
 <p>训练误差可以用 $L = \sum_{i = 1}^n l(y_i, \hat y_i)$ 来表示，一般有方差和logistic误差。</p>
 <ul>
 <li>方差: $l(y_i,\hat y_i) = (y_i - \hat y_i)^2$</li>
-<li>logstic误差: $l(y_i, \hat y_i) =  y_i ln(1 + e^{- \hat y_i}) + (1 - y_i)ln(1 + e^{\hat y_i})$</li>
+<li> logstic误差: $l(y_i, \hat y_i) =  y_i ln(1 + e^{- \hat y_i}) + (1 - y_i)ln(1 + e^{\hat y_i})$</li>
 </ul>
 <p>正则项按照Andrew NG的话来说，就是避免过拟合的。为什么能起到这个作用呢？正是因为它反应的是模型复杂度。模型复杂度，也就是我们的假设的复杂度，按照奥卡姆剃刀的原则，假设越简单越好。所以我们需要这一项来控制。</p>
 <ul>
@@ -619,7 +618,8 @@
 </li>
 <li><p>回归树的功能取决于你怎么定义目标函数</p>
 </li>
-<li>目前为止我们已经学习过<ul>
+<li><p>目前为止我们已经学习过</p>
+<ul>
 <li>使用方差损失（Square Loss） $l(y_i, \hat{y_i})=(y_i-\hat{y}_i)$ ，这样就产生了普通的梯度提升机（common gradient boosted machine）</li>
 <li>使用逻辑损失（Logistic loss）$l(y, \hat{y}_i)=y_i\ln(1+e^{-\hat{y}_i}) + (1-y_i)\ln(1+e^{\hat{y}_i})$ ，这样就产生了逻辑梯度提升（LogitBoost）。</li>
 </ul>
@@ -647,7 +647,7 @@
 <li><p>考虑平方误差<br>  $$<br>  \begin{align}<br>  Obj^{(t)} &amp;= \sum_{i=1}^{n} \left {y_i-(\hat{y}^{(t-1)}_i)+f_t(x_i)\right }^2 +\Omega(f_t)+const \<br>  &amp;= \sum_{i=1}^{n} \left {2(\hat{y}^{(t-1)}_i-y_i)+f_t(x_i)^2\right } +\Omega(f_t)+const \<br>  \end{align}<br>  $$<br>  $(\hat{y}^{(t-1)}_i-y_i)$ 称为残差。</p>
 </li>
 </ul>
-<h5 id="损失函数的泰勒展开"><a href="#损失函数的泰勒展开" class="headerlink" title="损失函数的泰勒展开"></a>损失函数的泰勒展开</h5><p>可由<a href="https://zh.wikipedia.org/zh-hans/%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F" target="_blank" rel="noopener">泰勒公式</a>得到下式<br>$$<br>f(x + \Delta x) \approx f(x) +f^{\prime}(x) \Delta x + \frac 1 2 f^{\prime \prime}(x) \Delta x^2<br>$$<br>那么现在可以把 $y^{(t)}_i$看成上式中的 $f(x+Δx)$ ，$y^{(t−1)}_i$ 就是 $f(x)$ ，$f_t(x_i)$ 为 $Δx$ 。然后设 $g_i$ 代表 $f′(x)$ ，也就是 $g_i = {\partial}_{\hat y^{(t - 1)}} \ l(y_i, \hat y^{(t - 1)})$  用 $h_i$ 代表 $f′′(x)$， 于是 $h_i = {\partial}_{\hat y^{(t - 1)}}^2 \  l(y_i, \hat y^{(t - 1)})$ 于是现在目标函数就为下式:<br>$$<br>\begin{align}<br>Obj^{(t)} &amp;\approx \sum_{i = 1}^n [l(y_i, \hat y_i^{(t - 1)}) + g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) + constant \<br>&amp;= \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) + [\sum_{i = 1}^n l(y_i, \hat y_i^{(t - 1)}) + constant]<br>\end{align}<br>$$<br>可以用平方误差的例子进行泰勒展开看看结果是否一致，很明显，上式中后面那项 $[\sum_{i = 1}^n l(y_i, \hat y_i^{(t - 1)}) + constant]$ 对于该目标函数我们求最优值点的时候并无影响，所以，现在有了<strong>新的优化目标</strong><br>$$<br>Obj^{(t)} \approx \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t)<br>$$</p>
+<h5 id="损失函数的泰勒展开"><a href="#损失函数的泰勒展开" class="headerlink" title="损失函数的泰勒展开"></a>损失函数的泰勒展开</h5><p>可由<a href="https://zh.wikipedia.org/zh-hans/%E6%B3%B0%E5%8B%92%E5%85%AC%E5%BC%8F" target="_blank" rel="noopener">泰勒公式</a>得到下式<br>$$<br>f(x + \Delta x) \approx f(x) +f^{\prime}(x) \Delta x + \frac 1 2 f^{\prime \prime}(x) \Delta x^2<br>$$<br>那么现在可以把 $y^{(t)}<em>i$看成上式中的 $f(x+Δx)$ ，$y^{(t−1)}<em>i$ 就是 $f(x)$ ，$f_t(x_i)$ 为 $Δx$ 。然后设 $g_i$ 代表 $f′(x)$ ，也就是 $g_i = {\partial}</em>{\hat y^{(t - 1)}} \ l(y_i, \hat y^{(t - 1)})$  用 $h_i$ 代表 $f′′(x)$， 于是 $h_i = {\partial}_{\hat y^{(t - 1)}}^2 \  l(y_i, \hat y^{(t - 1)})$ 于是现在目标函数就为下式:<br>$$<br>\begin{align}<br>Obj^{(t)} &amp;\approx \sum_{i = 1}^n [l(y_i, \hat y_i^{(t - 1)}) + g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) + constant \<br>&amp;= \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t) + [\sum_{i = 1}^n l(y_i, \hat y_i^{(t - 1)}) + constant]<br>\end{align}<br>$$<br>可以用平方误差的例子进行泰勒展开看看结果是否一致，很明显，上式中后面那项 $[\sum</em>{i = 1}^n l(y_i, \hat y_i^{(t - 1)}) + constant]$ 对于该目标函数我们求最优值点的时候并无影响，所以，现在有了<strong>新的优化目标</strong><br>$$<br>Obj^{(t)} \approx \sum_{i = 1}^n [g_i f_t(x_i) + \frac 1 2 h_i f_t^2 (x_i)] + \Omega (f_t)<br>$$</p>
 <h5 id="这么苦逼图啥？"><a href="#这么苦逼图啥？" class="headerlink" title="这么苦逼图啥？"></a>这么苦逼图啥？</h5><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541700947093.png" alt="1541700947093"></p>
 <h5 id="改进树的定义-Refine-the-definition-of-tree"><a href="#改进树的定义-Refine-the-definition-of-tree" class="headerlink" title="改进树的定义 Refine the definition of tree"></a>改进树的定义 Refine the definition of tree</h5><p>上一节讨论了 $f_t(x)$ 的物理意义，现在我们对其进行数学公式化。设 $w∈R^T$ ， $w$ 为树叶的权重序列，$q:R^d \rightarrow \lbrace 1,2, \cdots ,T \rbrace$ ，$q$ 为树的结构。那么 $q(x)$ 表示的就是样本 $x$ 所落在树叶的位置。可以用下图形象地表示</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541701316727.png" alt="1541701316727"></p>
@@ -675,7 +675,7 @@
 <h5 id="树的贪婪学习-Greedy-Learning-of-the-Tree"><a href="#树的贪婪学习-Greedy-Learning-of-the-Tree" class="headerlink" title="树的贪婪学习 Greedy Learning of the Tree"></a>树的贪婪学习 Greedy Learning of the Tree</h5><ul>
 <li><p>从深度为 0 的树开始</p>
 </li>
-<li><p>对树的每个叶子节点，试着添加一个分裂点。添加这个分裂点后目标函数（即损失函数）的值变化<br>  $$<br>  \begin{align}<br>  Obj_{split} &amp;= - \frac{1}{2}[\underbrace{\frac{G_L^2}{H_L+\lambda}}_{左孩子节点分数} + \underbrace {\frac{G^2_R}{H_R+\lambda}}<em>{右孩子节点分数}] + \gamma T</em>{split} \<br>  Obj_{unsplit} &amp;=  - \frac{1}{2}\underbrace{\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}}<em>{分裂前的分数} + \gamma T</em>{unsplit} \<br>  Gain &amp;= Obj_{unsplit} - Obj_{split} \<br>  &amp;= \frac 1 2 [\frac {G_L^2}{H_L + \lambda} + \frac {G_R^2}{H_R + \lambda} - \frac {(G_L + G_R)^2}{H_L + H_R + \lambda}] - \gamma(T_{split} - T_{unsplit})<br>  \end{align}<br>  $$</p>
+<li><p>对树的每个叶子节点，试着添加一个分裂点。添加这个分裂点后目标函数（即损失函数）的值变化<br>  $$<br>  \begin{align}<br>  Obj_{split} &amp;= - \frac{1}{2}[\underbrace{\frac{G_L^2}{H_L+\lambda}}<em>{左孩子节点分数} + \underbrace {\frac{G^2_R}{H_R+\lambda}}</em>{右孩子节点分数}] + \gamma T_{split} \<br>  Obj_{unsplit} &amp;=  - \frac{1}{2}\underbrace{\frac{(G_L+G_R)^2}{H_L+H_R+\lambda}}<em>{分裂前的分数} + \gamma T</em>{unsplit} \<br>  Gain &amp;= Obj_{unsplit} - Obj_{split} \<br>  &amp;= \frac 1 2 [\frac {G_L^2}{H_L + \lambda} + \frac {G_R^2}{H_R + \lambda} - \frac {(G_L + G_R)^2}{H_L + H_R + \lambda}] - \gamma(T_{split} - T_{unsplit})<br>  \end{align}<br>  $$</p>
 </li>
 <li><p>剩下的问题：我们如何找到最好的分裂点？</p>
 </li>
@@ -727,7 +727,8 @@
 </li>
 <li><p>当训练损失减少量小于正则项的时候，分裂后的增益就变成负的。</p>
 </li>
-<li>在树的简化度（simplicity）和预测性能（predictiveness）的权衡（trade-off）</li>
+<li><p>在树的简化度（simplicity）和预测性能（predictiveness）的权衡（trade-off）</p>
+</li>
 </ul>
 </li>
 <li><p>提早终止（Pre-stopping）</p>
@@ -745,7 +746,7 @@
 <h5 id="回顾提升树算法-Recap-Boosted-Tree-Algorithm"><a href="#回顾提升树算法-Recap-Boosted-Tree-Algorithm" class="headerlink" title="回顾提升树算法 Recap: Boosted Tree Algorithm"></a>回顾提升树算法 Recap: Boosted Tree Algorithm</h5><ul>
 <li><p>每一轮添加一棵树</p>
 </li>
-<li><p>每一轮开始的时候，计算 $g_i=\partial_{\hat{y}_i^{(t-1)}}l(y_i,\hat{y}^{(t-1)}), h_i=\partial_{\hat{y}^{(t-1)}}l(y_i, \hat{y}^{(t-1)})$</p>
+<li><p>每一轮开始的时候，计算 $g_i=\partial_{\hat{y}<em>i^{(t-1)}}l(y_i,\hat{y}^{(t-1)}), h_i=\partial</em>{\hat{y}^{(t-1)}}l(y_i, \hat{y}^{(t-1)})$</p>
 </li>
 <li><p>使用统计学知识（统计所有分裂点信息：一节梯度和二阶梯度），用贪婪的方式生长一棵树 $f_t(x)$  ：<br>  $$<br>  Obj = -\frac{1}{2}\sum\limits_{j=1}^{T}\frac{G_j^2}{H_j+\lambda} + \gamma T<br>  $$</p>
 </li>
@@ -802,7 +803,7 @@
 <p>使用了该方法，相当于比传统方法多遍历了一次，但是它只在非缺失值的样本上进行迭代，因此其复杂度与非缺失值的样本成线性关系。在 Allstate-10k 数据集上，比传统方法快了50倍：</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541862763402.png" alt="1541862763402"></p>
 <h4 id="旨在并行学习的列块结构-Column-Block-for-Parallel-Learning"><a href="#旨在并行学习的列块结构-Column-Block-for-Parallel-Learning" class="headerlink" title="旨在并行学习的列块结构 Column Block for Parallel Learning"></a>旨在并行学习的列块结构 Column Block for Parallel Learning</h4><p>主要参考论文4.1节</p>
-<p><strong>CSR vs CSC </strong></p>
+<p>**CSR vs CSC **</p>
 <p>稀疏矩阵的压缩存储形式，比较常见的其中两种：压缩的稀疏行（Compressed Sparse Row）和 压缩的稀疏列（Compressed Sparse Column）</p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/Matrix_CSR.png" alt="1541862763402"></p>
 <p>CSR结构包含非0数据块values，行偏移offsets，列下标indices。offsets数组大小为（总行数目+1），CSR 是对稠密矩阵的压缩，实际上直接访问稠密矩阵元素 $(i,j)$ 并不高效，毕竟损失部分信息，访问过程如下：</p>
@@ -901,28 +902,34 @@
 </ol>
 <p>我们知道，决策树的学习最耗时的一个步骤就是对特征的值进行排序（因为要确定最佳分割点），xgboost在训练之前，预先对数据进行了排序，然后保存为block结构，后面的迭代中重复地使用这个结构，大大减小计算量。这个block结构也使得并行成为了可能，在进行节点的分裂时，需要计算每个特征的增益，最终选增益最大的那个特征去做分裂，那么各个特征的增益计算就可以开多线程进行。</p>
 <p><strong>总体来说，这部分内容需要学习很多，特别是涉及到分布式地并发优化和资源调度算法，这就不仅仅是数学模型的问题了，还涉及到系统设计，程序运行性能的优化，本人实在是才疏学浅，这部分内容理解尚浅，进一步学习还需要其他论文和看XGBoost源码，有些优化的地方也不是作者首创，表示从附录的论文中得以学习集成到XGBoost中，真的是集万千之大作，作者不愧是上海交大ACM班出身</strong>。大神的访谈：<a href="https://cosx.org/2015/06/interview-of-tianqi/" target="_blank" rel="noopener">https://cosx.org/2015/06/interview-of-tianqi/</a></p>
-<h4 id="优化的角度"><a href="#优化的角度" class="headerlink" title="优化的角度"></a>优化的角度</h4><p><a href="https://www.zhihu.com/question/41354392/answer/157538270" target="_blank" rel="noopener">马琳同学的回答</a> 非常棒，真是让我感受到了：<font color="blue">横看成岭侧成峰</font><br><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541846850051.png" alt=""></p>
-<h3 id="高可用的xgboost"><a href="#高可用的xgboost" class="headerlink" title="高可用的xgboost"></a>高可用的xgboost</h3><p>由于xgboost发展平稳成熟，现在已经非常易用，下图来自<a href="https://xgboost.ai" target="_blank" rel="noopener">官网</a></p>
+<h4 id="优化的角度"><a href="#优化的角度" class="headerlink" title="优化的角度"></a>优化的角度</h4><p><a href="https://www.zhihu.com/question/41354392/answer/157538270" target="_blank" rel="noopener">马琳同学的回答</a> 非常棒，真是让我感受到了：<font color="blue">横看成岭侧成峰</font><br><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541846850051.png"></p>
+<h3 id="高可用的xgboost"><a href="#高可用的xgboost" class="headerlink" title="高可用的xgboost"></a>高可用的xgboost</h3><p>由于xgboost发展平稳成熟，现在已经非常易用，下图来自<a href="https://xgboost.ai/" target="_blank" rel="noopener">官网</a></p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpages/ML/get_started_xgboost/1541270621305.png" alt="1541270621305"></p>
 <h3 id="hello-world"><a href="#hello-world" class="headerlink" title="hello world"></a>hello world</h3><p>来自<a href="https://xgboost.readthedocs.io/en/latest/get_started.html" target="_blank" rel="noopener">官网</a>，其他复杂的demo，参看github的demo目录</p>
 <p> <strong>Python</strong></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="comment"># read in data</span></span><br><span class="line">dtrain = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.train'</span>)</span><br><span class="line">dtest = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.test'</span>)</span><br><span class="line"><span class="comment"># specify parameters via map</span></span><br><span class="line">param = &#123;<span class="string">'max_depth'</span>:<span class="number">2</span>, <span class="string">'eta'</span>:<span class="number">1</span>, <span class="string">'silent'</span>:<span class="number">1</span>, <span class="string">'objective'</span>:<span class="string">'binary:logistic'</span> &#125;</span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest)</span><br></pre></td></tr></table></figure>
 <p>在jupter notebook中运行结果</p>
 <h4 id="树形提升器"><a href="#树形提升器" class="headerlink" title="树形提升器"></a>树形提升器</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> xgboost <span class="keyword">as</span> xgb</span><br><span class="line"><span class="comment"># read in data</span></span><br><span class="line">dtrain = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.train'</span>)</span><br><span class="line">dtest = xgb.DMatrix(<span class="string">'demo/data/agaricus.txt.test'</span>)</span><br></pre></td></tr></table></figure>
+
 <pre><code>[18:22:42] 6513x127 matrix with 143286 entries loaded from demo/data/agaricus.txt.train
-[18:22:42] 1611x127 matrix with 35442 entries loaded from demo/data/agaricus.txt.test
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># specify parameters via map</span></span><br><span class="line">param = &#123;<span class="string">'max_depth'</span>:<span class="number">3</span>, <span class="string">'eta'</span>:<span class="number">1</span>, <span class="string">'silent'</span>: <span class="number">0</span>, <span class="string">'objective'</span>:<span class="string">'binary:logistic'</span> &#125;</span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br></pre></td></tr></table></figure>
+[18:22:42] 1611x127 matrix with 35442 entries loaded from demo/data/agaricus.txt.test</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># specify parameters via map</span></span><br><span class="line">param = &#123;<span class="string">'max_depth'</span>:<span class="number">3</span>, <span class="string">'eta'</span>:<span class="number">1</span>, <span class="string">'silent'</span>: <span class="number">0</span>, <span class="string">'objective'</span>:<span class="string">'binary:logistic'</span> &#125;</span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br></pre></td></tr></table></figure>
+
 <pre><code>[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 12 extra nodes, 0 pruned nodes, max_depth=3
-[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 10 extra nodes, 0 pruned nodes, max_depth=3
-</code></pre><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest)</span><br><span class="line">print(preds)</span><br><span class="line">print(bst.eval(dtest))</span><br></pre></td></tr></table></figure>
+[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 10 extra nodes, 0 pruned nodes, max_depth=3</code></pre>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest)</span><br><span class="line">print(preds)</span><br><span class="line">print(bst.eval(dtest))</span><br></pre></td></tr></table></figure>
+
 <pre><code>[0.10828121 0.85500014 0.10828121 ... 0.95467216 0.04156424 0.95467216]
-[0]    eval-error:0.000000
-</code></pre><h4 id="DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees"><a href="#DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees" class="headerlink" title="DART提升器 Dropouts meet Multiple Additive Regression Trees"></a>DART提升器 Dropouts meet Multiple Additive Regression Trees</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">param = &#123;<span class="string">'booster'</span>: <span class="string">'dart'</span>,</span><br><span class="line">         <span class="string">'max_depth'</span>: <span class="number">4</span>, </span><br><span class="line">         <span class="string">'eta'</span>: <span class="number">0.001</span>,</span><br><span class="line">         <span class="string">'objective'</span>: <span class="string">'binary:logistic'</span>, </span><br><span class="line">         <span class="string">'silent'</span>: <span class="number">0</span>,</span><br><span class="line">         <span class="string">'sample_type'</span>: <span class="string">'uniform'</span>,</span><br><span class="line">         <span class="string">'normalize_type'</span>: <span class="string">'tree'</span>,</span><br><span class="line">         <span class="string">'rate_drop'</span>: <span class="number">0.5</span>,</span><br><span class="line">         <span class="string">'skip_drop'</span>: <span class="number">0.0</span>&#125;</span><br><span class="line"><span class="comment">#Command Line Parameters: 提升的轮次数</span></span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br></pre></td></tr></table></figure>
+[0]    eval-error:0.000000</code></pre>
+<h4 id="DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees"><a href="#DART提升器-Dropouts-meet-Multiple-Additive-Regression-Trees" class="headerlink" title="DART提升器 Dropouts meet Multiple Additive Regression Trees"></a>DART提升器 Dropouts meet Multiple Additive Regression Trees</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">param = &#123;<span class="string">'booster'</span>: <span class="string">'dart'</span>,</span><br><span class="line">         <span class="string">'max_depth'</span>: <span class="number">4</span>, </span><br><span class="line">         <span class="string">'eta'</span>: <span class="number">0.001</span>,</span><br><span class="line">         <span class="string">'objective'</span>: <span class="string">'binary:logistic'</span>, </span><br><span class="line">         <span class="string">'silent'</span>: <span class="number">0</span>,</span><br><span class="line">         <span class="string">'sample_type'</span>: <span class="string">'uniform'</span>,</span><br><span class="line">         <span class="string">'normalize_type'</span>: <span class="string">'tree'</span>,</span><br><span class="line">         <span class="string">'rate_drop'</span>: <span class="number">0.5</span>,</span><br><span class="line">         <span class="string">'skip_drop'</span>: <span class="number">0.0</span>&#125;</span><br><span class="line"><span class="comment">#Command Line Parameters: 提升的轮次数</span></span><br><span class="line">num_round = <span class="number">2</span></span><br><span class="line">bst = xgb.train(param, dtrain, num_round)</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight console"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 18 extra nodes, 0 pruned nodes, max_depth=4</span><br><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\gbm\gbtree.cc:494: drop 0 trees, weight = 1</span><br><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\tree\updater_prune.cc:74: tree pruning end, 1 roots, 18 extra nodes, 0 pruned nodes, max_depth=4</span><br><span class="line">[18:22:42] C:\Users\Administrator\Desktop\xgboost\src\gbm\gbtree.cc:494: drop 1 trees, weight = 0.999001</span><br></pre></td></tr></table></figure>
+
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># make prediction</span></span><br><span class="line">preds = bst.predict(dtest, ntree_limit=num_round)</span><br><span class="line">print(preds)</span><br><span class="line">print(bst.eval(dtest))</span><br></pre></td></tr></table></figure>
+
 <pre><code>[0.4990105 0.5009742 0.4990105 ... 0.5009742 0.4990054 0.5009742]
-[0]    eval-error:0.007449
-</code></pre><h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><p><a href="https://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">官网</a>，<strong>看懂参数的前提是把前文数学公式和理论看懂</strong>，这部分内容主要是对官网的翻译。</p>
+[0]    eval-error:0.007449</code></pre>
+<h3 id="参数详解"><a href="#参数详解" class="headerlink" title="参数详解"></a>参数详解</h3><p><a href="https://xgboost.readthedocs.io/en/latest/parameter.html" target="_blank" rel="noopener">官网</a>，<strong>看懂参数的前提是把前文数学公式和理论看懂</strong>，这部分内容主要是对官网的翻译。</p>
 <p>运行XGBoost之前，我们必须设置3种类型的参数：通用参数（general parameters），提升器参数（booster paramter），任务参数（task parameter）。</p>
 <ol>
 <li>通用参数：与我们所使用的提升器（通常是树型提升器或者线性提升器）的提升算法相关。</li>
@@ -1058,7 +1065,7 @@
 <li>This is a parameter of the <code>refresh</code> updater plugin. When this flag is 1, tree leafs as well as tree nodes’ stats are updated. When it is 0, only node stats are updated. 用来标记是否刷新叶子节点信息的标识。当这个标志位为0时，只有节点的统计信息被更新。                                                        </li>
 </ul>
 </li>
-<li><p><code>process_type</code>  [default=<code>default</code>]</p>
+<li><p><code> process_type</code>  [default=<code>default</code>]</p>
 <ul>
 <li>A type of boosting process to run.</li>
 <li>Choices:<code>default</code>,<code>update</code><ul>
@@ -1079,7 +1086,7 @@
 </li>
 </ul>
 </li>
-<li><p><code>max_leaves</code> [default=0] 叶子节点的最大数目，只有当参数<code></code>grow_policy=lossguide`才相关（起作用）</p>
+<li><p><code>max_leaves</code> [default=0] 叶子节点的最大数目，只有当参数``grow_policy=lossguide`才相关（起作用）</p>
 <ul>
 <li>Maximum number of nodes to be added. Only relevant when <code>grow_policy=lossguide</code> is set.</li>
 </ul>
@@ -1109,7 +1116,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;preds = bst.predict(dtest, ntree_limit=num_round)</span><br></pre></td></tr></table></figure>
 </blockquote>
 <ul>
-<li><code>sample_type</code>  [default=<code>uniform</code>] 设定抽样算法的类型<ul>
+<li><p><code>sample_type</code>  [default=<code>uniform</code>] 设定抽样算法的类型</p>
+<ul>
 <li>Type of sampling algorithm.<ul>
 <li><code>uniform</code>: dropped trees are selected uniformly. 所有的树被统一处理，指的是权重一样，同样的几率被选为辍学树（被选为辍学的树，即不参与训练的学习过程）</li>
 <li><code>weighted</code>: dropped trees are selected in proportion to weight. 选择辍学树的时候是正比于权重。</li>
@@ -1193,7 +1201,7 @@
 </li>
 </ul>
 </li>
-<li><p><code>base_score</code> [default=0.5]</p>
+<li><p><code> base_score</code> [default=0.5]</p>
 <ul>
 <li>The <strong>initial prediction score of all instances</strong>, global bias</li>
 <li>For sufficient number of iterations, changing this value will not have too much effect.</li>
@@ -1298,7 +1306,7 @@
 </ol>
 <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ol>
 <li>陈天奇的论文 <a href="https://arxiv.org/pdf/1603.02754" target="_blank" rel="noopener">XGBoost: A Scalable Tree Boosting System</a></li>
-<li>陈天奇的演讲视频 <a href="https://www.youtube.com/watch?v=Vly8xGnNiWs&amp;list=PLSz28ynAy1RohdgsPfC4l4t3lHu863PGx&amp;index=3&amp;t=1786s" target="_blank" rel="noopener">XGBoost A Scalable Tree Boosting System June 02, 2016 </a> <a href="https://speakerdeck.com/datasciencela/tianqi-chen-xgboost-overview-and-latest-news-la-meetup-talk" target="_blank" rel="noopener">演讲幻灯片 </a>和  <a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf" target="_blank" rel="noopener">官网幻灯片</a> </li>
+<li>陈天奇的演讲视频 <a href="https://www.youtube.com/watch?v=Vly8xGnNiWs&list=PLSz28ynAy1RohdgsPfC4l4t3lHu863PGx&index=3&t=1786s" target="_blank" rel="noopener">XGBoost A Scalable Tree Boosting System June 02, 2016 </a> <a href="https://speakerdeck.com/datasciencela/tianqi-chen-xgboost-overview-and-latest-news-la-meetup-talk" target="_blank" rel="noopener">演讲幻灯片 </a>和  <a href="https://homes.cs.washington.edu/~tqchen/pdf/BoostedTree.pdf" target="_blank" rel="noopener">官网幻灯片</a> </li>
 <li><a href="https://xgboost.ai/" target="_blank" rel="noopener">XGBoost 官网</a></li>
 <li>XGBoost的源代码贡献者之一的 <a href="https://www.youtube.com/watch?v=ufHo8vbk6g4" target="_blank" rel="noopener">演讲</a></li>
 <li><a href="https://www.zhihu.com/question/41354392" target="_blank" rel="noopener">机器学习算法中 GBDT 和 XGBOOST 的区别有哪些？ - 知乎</a></li>
@@ -1627,7 +1635,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 

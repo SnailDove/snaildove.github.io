@@ -90,12 +90,12 @@
 
 
 
-<meta name="description" content="笔记源自：清华大学公开课：线性代数2——第8讲：图和网络 简介欧姆定律Ohm’s law的向量形式 图与矩阵 关联矩阵incidence matrix 邻接矩阵adjacency matrix 拉普拉斯矩阵laplacian matrix 注： 半正定证明与刚度矩阵类似 网络和加权Laplacian矩阵 电路相关的物理定律 例子不接外部源 接外部源 带权$K&#x3D;A^TCA$ 关联矩阵的四个基本子空">
+<meta name="description" content="笔记源自：清华大学公开课：线性代数2——第8讲：图和网络 简介欧姆定律Ohm’s law的向量形式 图与矩阵 关联矩阵incidence matrix 邻接矩阵adjacency matrix 拉普拉斯矩阵laplacian matrix 注： 半正定证明与刚度矩阵类似 网络和加权Laplacian矩阵 电路相关的物理定律 例子不接外部源 接外部源 带权$K&#x3D;A^TCA$ 关联矩阵的四个基本子空间">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tsinghua linear-algebra-2 8th-lecture graph-and-network">
 <meta property="og:url" content="https://snaildove.github.io/2017/08/08/graph_and_network/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="笔记源自：清华大学公开课：线性代数2——第8讲：图和网络 简介欧姆定律Ohm’s law的向量形式 图与矩阵 关联矩阵incidence matrix 邻接矩阵adjacency matrix 拉普拉斯矩阵laplacian matrix 注： 半正定证明与刚度矩阵类似 网络和加权Laplacian矩阵 电路相关的物理定律 例子不接外部源 接外部源 带权$K&#x3D;A^TCA$ 关联矩阵的四个基本子空">
+<meta property="og:description" content="笔记源自：清华大学公开课：线性代数2——第8讲：图和网络 简介欧姆定律Ohm’s law的向量形式 图与矩阵 关联矩阵incidence matrix 邻接矩阵adjacency matrix 拉普拉斯矩阵laplacian matrix 注： 半正定证明与刚度矩阵类似 网络和加权Laplacian矩阵 电路相关的物理定律 例子不接外部源 接外部源 带权$K&#x3D;A^TCA$ 关联矩阵的四个基本子空间">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/1.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/2.png">
@@ -462,7 +462,7 @@
       
 
       
-        <script src="/assets/js/APlayer.min.js"> </script><p>笔记源自：清华大学公开课：线性代数2——第8讲：图和网络</p>
+        <p>笔记源自：清华大学公开课：线性代数2——第8讲：图和网络</p>
 <h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><h4 id="欧姆定律Ohm’s-law的向量形式"><a href="#欧姆定律Ohm’s-law的向量形式" class="headerlink" title="欧姆定律Ohm’s law的向量形式"></a>欧姆定律Ohm’s law的向量形式</h4><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/1.png" alt="matrix_of_Ohm&#39;s_law.png"></p>
 <h3 id="图与矩阵"><a href="#图与矩阵" class="headerlink" title="图与矩阵"></a>图与矩阵</h3><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/2.png" alt="directed_graphs.png"><br><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/3.png" alt="circute_graph"></p>
 <h4 id="关联矩阵incidence-matrix"><a href="#关联矩阵incidence-matrix" class="headerlink" title="关联矩阵incidence matrix"></a>关联矩阵incidence matrix</h4><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/4.png" alt="incidence_matrix"></p>
@@ -477,25 +477,26 @@
 <h3 id="关联矩阵的四个基本子空间"><a href="#关联矩阵的四个基本子空间" class="headerlink" title="关联矩阵的四个基本子空间"></a>关联矩阵的四个基本子空间</h3><h4 id="N-A"><a href="#N-A" class="headerlink" title="N(A)"></a>N(A)</h4><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/12.png" alt="N(A)_of_incidence_matrix"></p>
 <h4 id="C-A"><a href="#C-A" class="headerlink" title="C(A)"></a>C(A)</h4><p>按$C(A)$的定义得：$C(A)={Ax|x\in R^n}$ 。沿用前面使用的字母：$u$是各点电势，$e$是各边电势差，$Au=e$ ，当$Au=e$ 有解 $\Leftrightarrow e \in C(A)$</p>
 <ol>
-<li><p>去证明：$dim(C(A))=n-1$ ，即$A$ 的任意 $n-1$个列向量是线性无关的。设$A=(a_1,a_2,\,…\,,a_n) $，不妨假设$a_1,a_2,\,…\,,a_{n-1}$线性相关，那么存在$c_1, c_2,\,…\,,c_{n-1} \in R$ 且不全为0满足：$c_1a_1+c_2a_2+…+c_{n-1}a_{n-1}+0a_n=0\Rightarrow A\begin{pmatrix}c_1\c_2\\vdots\c_{n-1}\0\end{pmatrix}={0}\Rightarrow \begin{pmatrix}c_1\c_2\\vdots\c_{n-1}\0\end{pmatrix}\in N(A), $但与$N(A)=\left{c\begin{pmatrix}1\\vdots\1\end{pmatrix} \Bigg| c\in R \right} $ 矛盾，以此类推，得以证明$C(A)$的维数是$n-1$ ，即$A$的任意$n-1$个列向量均可作为$C(A)$的一组基。</p>
+<li><p> 去证明：$dim(C(A))=n-1$ ，即$A$ 的任意 $n-1$个列向量是线性无关的。设$A=(a_1,a_2,,…,,a_n) $，不妨假设$a_1,a_2,,…,,a_{n-1}$线性相关，那么存在$c_1, c_2,,…,,c_{n-1} \in R$ 且不全为0满足：$c_1a_1+c_2a_2+…+c_{n-1}a_{n-1}+0a_n=0\Rightarrow A\begin{pmatrix}c_1\c_2\\vdots\c_{n-1}\0\end{pmatrix}={0}\Rightarrow \begin{pmatrix}c_1\c_2\\vdots\c_{n-1}\0\end{pmatrix}\in N(A), $但与$N(A)=\left{c\begin{pmatrix}1\\vdots\1\end{pmatrix} \Bigg| c\in R \right} $ 矛盾，以此类推，得以证明$C(A)$的维数是$n-1$ ，即$A$的任意$n-1$个列向量均可作为$C(A)$的一组基。</p>
 </li>
-<li><p>发现矩阵中对应的回路：$e\in C(A)$ 如下等式有解 $Au=e\Rightarrow \begin{pmatrix}-1&amp;1&amp;0&amp;0\ -1&amp;0&amp;1&amp;0\0&amp;-1&amp;1&amp;0\0&amp;-1&amp;0&amp;1\0&amp;0&amp;-1&amp;1\end{pmatrix}\begin{pmatrix}u_1\u_2\u_3\u_4\u_5 \end{pmatrix}=\begin{pmatrix}e_1\e_2\e_3\e_4\e_5 \end{pmatrix} \Rightarrow \begin{cases}-u_1+u_2=e_1\ -u_1+u_3=e_2\ -u_2+u_3=e_3\ -u_2+u_4=e_4\ -u_3+u_4=e_5\end{cases} \Rightarrow \begin{cases}e_1-e_2+e_3=0\e_3-e_4+e_5=0\end{cases}$ ，即边1,2,3这3条边电势差之和为0，由图上可得边1,2,3恰好构成一个回路，边3,4,5也一样。这恰好是<strong>Kirchholff Voltage Law (KVL)</strong>。把这两个回路等式书写成矩阵形式$\begin{pmatrix}1&amp;-1&amp;1&amp;0&amp;0\0&amp;0&amp;1&amp;-1&amp;1 \end{pmatrix}\begin{pmatrix} e_1\e_2\e_3\e_4\e_5 \end{pmatrix}=0$ . 此时称矩阵$B =\begin{pmatrix}1&amp;-1&amp;1&amp;0&amp;0\0&amp;0&amp;1&amp;-1&amp;1 \end{pmatrix}$ 为<strong>回路矩阵</strong>，可以看到它的每一行代表一个回路且称为<strong>极小回路</strong>，每一列代表一条边。如果边的方向是逆时针方向则取为正号，否则取为负号。<strong><em>注意，此时$e\in N(B)$</em></strong>。</p>
+<li><p> 发现矩阵中对应的回路：$e\in C(A)$ 如下等式有解 $Au=e\Rightarrow \begin{pmatrix}-1&amp;1&amp;0&amp;0\ -1&amp;0&amp;1&amp;0\0&amp;-1&amp;1&amp;0\0&amp;-1&amp;0&amp;1\0&amp;0&amp;-1&amp;1\end{pmatrix}\begin{pmatrix}u_1\u_2\u_3\u_4\u_5 \end{pmatrix}=\begin{pmatrix}e_1\e_2\e_3\e_4\e_5 \end{pmatrix} \Rightarrow \begin{cases}-u_1+u_2=e_1\ -u_1+u_3=e_2\ -u_2+u_3=e_3\ -u_2+u_4=e_4\ -u_3+u_4=e_5\end{cases} \Rightarrow \begin{cases}e_1-e_2+e_3=0\e_3-e_4+e_5=0\end{cases}$ ，即边1,2,3这3条边电势差之和为0，由图上可得边1,2,3恰好构成一个回路，边3,4,5也一样。这恰好是<strong>Kirchholff Voltage Law (KVL)**。把这两个回路等式书写成矩阵形式$\begin{pmatrix}1&amp;-1&amp;1&amp;0&amp;0\0&amp;0&amp;1&amp;-1&amp;1 \end{pmatrix}\begin{pmatrix} e_1\e_2\e_3\e_4\e_5 \end{pmatrix}=0$ . 此时称矩阵$B =\begin{pmatrix}1&amp;-1&amp;1&amp;0&amp;0\0&amp;0&amp;1&amp;-1&amp;1 \end{pmatrix}$ 为</strong>回路矩阵<strong>，可以看到它的每一行代表一个回路且称为</strong>极小回路<strong>，每一列代表一条边。如果边的方向是逆时针方向则取为正号，否则取为负号。**<em>注意，此时$e\in N(B)$</em></strong>。</p>
 </li>
-<li>此外，$BA=\begin{pmatrix}1&amp;-1&amp;1&amp;0&amp;0\0&amp;0&amp;1&amp;-1&amp;1\end{pmatrix}\begin{pmatrix}-1&amp;1&amp;0&amp;0\ -1&amp;0&amp;1&amp;0\0&amp;-1&amp;1&amp;0\0&amp;-1&amp;0&amp;1\0&amp;0&amp;-1&amp;1\end{pmatrix}=\begin{pmatrix}0&amp;0&amp;0&amp;0\0&amp;0&amp;0&amp;0\end{pmatrix}$即$C(A) \subseteq N(B) $ 。$dim(N(B))=3, dim(C(A))=3$，因此$C(A)$就构成了$N(B)$的基。从理意义角度理解：$A$矩阵执行的操作表示求解各边电势之差，$B$各行刚好是回路，由$KVL$定律得结果必为0.</li>
+<li><p> 此外，$BA=\begin{pmatrix}1&amp;-1&amp;1&amp;0&amp;0\0&amp;0&amp;1&amp;-1&amp;1\end{pmatrix}\begin{pmatrix}-1&amp;1&amp;0&amp;0\ -1&amp;0&amp;1&amp;0\0&amp;-1&amp;1&amp;0\0&amp;-1&amp;0&amp;1\0&amp;0&amp;-1&amp;1\end{pmatrix}=\begin{pmatrix}0&amp;0&amp;0&amp;0\0&amp;0&amp;0&amp;0\end{pmatrix}$即$C(A) \subseteq N(B) $ 。$dim(N(B))=3, dim(C(A))=3$，因此$C(A)$就构成了$N(B)$的基。从理意义角度理解：$A$矩阵执行的操作表示求解各边电势之差，$B$各行刚好是回路，由$KVL$定律得结果必为0.</p>
+</li>
 </ol>
 <h4 id="N-A-T"><a href="#N-A-T" class="headerlink" title="$N(A^T)$"></a>$N(A^T)$</h4><ol>
-<li>由定义得：$N(A^T)={y\in R^m|A^Ty=0}$。例子中，关联矩阵$A$ 各行代表一条边，各列代表一个顶点。那么$A^T$ 的行代表顶点，列代表边。<br>$A^Ty=0\Rightarrow\begin{pmatrix}-1&amp;-1&amp;0&amp;0&amp;0\1&amp;0&amp;-1&amp;-1&amp;0\0&amp;1&amp;1&amp;0&amp;-1\0&amp;0&amp;0&amp;1&amp;1\end{pmatrix}\begin{pmatrix}y_1\y_2\y_3\y_4\y_5 \end{pmatrix}=\begin{pmatrix}0\0\0\0\0\end{pmatrix} \Rightarrow \begin{cases}-y_1-y_2=0\y_1-y_3-y_4=0\y_2+y_3-y_5=0\y_4+y_5=0\end{cases}$<br>物理意义解读：$y_i$是各第$i$边上的电流，上述等式表明每一个顶点输入输出电流和为0，即<strong>Kichhoff Current Law (KCL)</strong>。</li>
+<li>由定义得：$N(A^T)={y\in R^m|A^Ty=0}$。例子中，关联矩阵$A$ 各行代表一条边，各列代表一个顶点。那么$A^T$ 的行代表顶点，列代表边。<br> $A^Ty=0\Rightarrow\begin{pmatrix}-1&amp;-1&amp;0&amp;0&amp;0\1&amp;0&amp;-1&amp;-1&amp;0\0&amp;1&amp;1&amp;0&amp;-1\0&amp;0&amp;0&amp;1&amp;1\end{pmatrix}\begin{pmatrix}y_1\y_2\y_3\y_4\y_5 \end{pmatrix}=\begin{pmatrix}0\0\0\0\0\end{pmatrix} \Rightarrow \begin{cases}-y_1-y_2=0\y_1-y_3-y_4=0\y_2+y_3-y_5=0\y_4+y_5=0\end{cases}$<br> 物理意义解读：$y_i$是各第$i$边上的电流，上述等式表明每一个顶点输入输出电流和为0，即**Kichhoff Current Law (KCL)**。</li>
 </ol>
 <ol>
-<li>$A^Ty=0$， 由前文得到：<br>$BA=0 \Rightarrow A^TB^T=0 \Rightarrow A^TB^T=\begin{pmatrix}-1&amp;-1&amp;0&amp;0&amp;0\1&amp;0&amp;-1&amp;-1&amp;0\0&amp;1&amp;1&amp;0&amp;-1\0&amp;0&amp;0&amp;1&amp;1\end{pmatrix}\begin{pmatrix}1&amp;0\ -1&amp;0\1&amp;1\0&amp;-1\0&amp;1\end{pmatrix}=\begin{pmatrix}0&amp;0\0&amp;0\0&amp;0\0&amp;0\end{pmatrix}$<br>因此，$C(B^T) \subseteq N(A^T)$。由于$r(A)=C(A)=r=n-1, N(A^T)+C(A)=m, N(A^T)=m-r=5-3=2$， 由于$B^T$的列向量线性无关，即$B$的行向量代表回路，那么回路向量就是$N(A^T)$的一组基。</li>
+<li>$A^Ty=0$， 由前文得到：<br> $BA=0 \Rightarrow A^TB^T=0 \Rightarrow A^TB^T=\begin{pmatrix}-1&amp;-1&amp;0&amp;0&amp;0\1&amp;0&amp;-1&amp;-1&amp;0\0&amp;1&amp;1&amp;0&amp;-1\0&amp;0&amp;0&amp;1&amp;1\end{pmatrix}\begin{pmatrix}1&amp;0\ -1&amp;0\1&amp;1\0&amp;-1\0&amp;1\end{pmatrix}=\begin{pmatrix}0&amp;0\0&amp;0\0&amp;0\0&amp;0\end{pmatrix}$<br> 因此，$C(B^T) \subseteq N(A^T)$。由于$r(A)=C(A)=r=n-1, N(A^T)+C(A)=m, N(A^T)=m-r=5-3=2$， 由于$B^T$的列向量线性无关，即$B$的行向量代表回路，那么回路向量就是$N(A^T)$的一组基。</li>
 </ol>
 <h4 id="C-A-T"><a href="#C-A-T" class="headerlink" title="$C(A^T)$"></a>$C(A^T)$</h4><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/13.png" alt="C(A^T)_of_incidence_matrix"></p>
 <h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/14.png" alt="summary_of_4_subspaces_of_incidence_matrix"></p>
 <ul>
-<li>$N(A_{m\times n})$零空间 $Au=0$ ，$N(A)=c{(1,1,\,…\,,1)^T}_{n\times 1}$ ；物理意义：各点电势相等，电势差为0。</li>
-<li>$C(A_{m\times n})$列空间 $Au=e$(上文用的是x, b)，$A$ 中任意$n-1$ 列构成了$C(A)$ 的一组基；物理意义每个极小回路电势守恒，每个极小回路构成的极大回路电势依然守恒，诠释了KVL定律。</li>
-<li>$N(A^T)$左零空间 $A^Ty=0$，回路向量构成了$N(A^T)$ 的一组基；诠释了无外部电流源的KCL定律。</li>
-<li>$C(A^T)$行空间 ，$A^Ty=f$， 每个极大树子图对应关联矩阵的行向量（即边）构成了$C(A^T)$ 的一组基；诠释了有外部电流源的KCL定律。</li>
+<li>  $N(A_{m\times n})$零空间 $Au=0$ ，$N(A)=c{(1,1,,…,,1)^T}_{n\times 1}$ ；物理意义：各点电势相等，电势差为0。</li>
+<li>  $C(A_{m\times n})$列空间 $Au=e$(上文用的是x, b)，$A$ 中任意$n-1$ 列构成了$C(A)$ 的一组基；物理意义每个极小回路电势守恒，每个极小回路构成的极大回路电势依然守恒，诠释了KVL定律。</li>
+<li>  $N(A^T)$左零空间 $A^Ty=0$，回路向量构成了$N(A^T)$ 的一组基；诠释了无外部电流源的KCL定律。</li>
+<li>  $C(A^T)$行空间 ，$A^Ty=f$， 每个极大树子图对应关联矩阵的行向量（即边）构成了$C(A^T)$ 的一组基；诠释了有外部电流源的KCL定律。</li>
 </ul>
 <h4 id="注计"><a href="#注计" class="headerlink" title="注计"></a>注计</h4><h5 id="N-B-C-A"><a href="#N-B-C-A" class="headerlink" title="N(B)=C(A)"></a>N(B)=C(A)</h5><p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-8/15.png" alt="N(B)=C(A)"></p>
 <p><strong>B的零空间中的任何一个向量，它都要属于A的列空间</strong>，$A$的列空间中的每一个向量的特点，比如说$A$乘上一个$x_1$到$x_n$，$x_1$到$x_n$是$n$个顶点的电势。$A$乘上这个向量得到的是各个边上的电势差，那么相应的$x_j-x_k$就是$j$和$k$两个顶点上的电势差，顶点连线，$j$和$k$连线的边上的电势差。<strong>那么我们要想说明，N(B)中的向量属于C(A)那么我们只要说明任何一个向量属于B的零空间，它最后都能写成这样一种形式，就可以了</strong>。那么设$e$属于$N(B)$，那么我们可以取定这个连通图的一个极大树子图，然后在这个极大树子图$T$上取一个顶点作为基点，那么任意的另外一个顶点$K$跟这个基点之间它们连线的路在$T$上只有一条这样的路，因为$T$是一个树，它不可能有回路，所以在$T$中有唯一的一条连接K到基点的路。<strong>定义K的电势：在这条路上各边的电势之和，各边的电势之和</strong>，我们这个$e_1$到$e_m$呢，我们可以刻画各个边上的电势，那么我们可以看到$e$属于$N(B)$我们实际上可以检查出任意边上的电势差实际上是$e_j$等$u_k$减$u_1$，那么其中的这个$k$呢为j的起点，$l$为$j$的终点，最后我们就可以得到$e=-Au$，所以$e$就属于$C(A)$就是这个地方呢，我们要使用$e$属于$N(B)$，我们才能检查出：任意边上的这个电势差等于$u_k$减$u_l$，就是要满足科尔霍夫电压定律。</p>
@@ -826,7 +827,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">918.9k</span>
+    <span title="Site words total count">919.4k</span>
   
 </div>
 
