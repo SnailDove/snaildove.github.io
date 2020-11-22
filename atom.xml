@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://snaildove.github.io/"/>
-  <updated>2020-11-06T03:08:25.664Z</updated>
+  <updated>2020-11-18T15:34:44.517Z</updated>
   <id>https://snaildove.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</id>
     <published>2020-02-09T16:00:00.000Z</published>
-    <updated>2020-11-06T03:08:25.664Z</updated>
+    <updated>2020-11-18T15:34:44.517Z</updated>
     
     <summary type="html">
     
@@ -160,6 +160,32 @@
   </entry>
   
   <entry>
+    <title>翻译 Chapter 14 Distributed Shared Variables</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.354Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
+        
+      
+    
+    </summary>
+    
+      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
     <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
     <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</id>
@@ -191,32 +217,6 @@
     <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-11-06T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.349Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;script src=&quot;/assets/js/APlayer.min.js&quot;&gt; &lt;/script&gt;&lt;p&gt;&lt;img src=&quot;http://qjctul5ib.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
-    
-    
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>翻译 Chapter 14 Distributed Shared Variables</title>
-    <link href="https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/"/>
-    <id>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</id>
-    <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2020-11-06T03:08:25.354Z</updated>
     
     <summary type="html">
     
