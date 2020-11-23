@@ -3,7 +3,7 @@
   <title>SnailDove&#39;s blog</title>
   
   <subtitle>蜗牛哥博客</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="https://snaildove.github.io/atom.xml" rel="self"/>
   
   <link href="https://snaildove.github.io/"/>
   <updated>2020-11-18T15:34:44.517Z</updated>
@@ -14,7 +14,7 @@
     
   </author>
   
-  <generator uri="http://hexo.io/">Hexo</generator>
+  <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
     <title>《Spark权威指南》的翻译综述</title>
@@ -23,22 +23,21 @@
     <published>2020-02-09T16:00:00.000Z</published>
     <updated>2020-11-18T15:34:44.517Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -49,26 +48,25 @@
     <published>2019-12-30T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.529Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="distributed system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
-      <category term="papers" scheme="https://snaildove.github.io/tags/papers/"/>
     
-      <category term="google" scheme="https://snaildove.github.io/tags/google/"/>
+    <category term="distributed system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    
+    <category term="papers" scheme="https://snaildove.github.io/tags/papers/"/>
+    
+    <category term="google" scheme="https://snaildove.github.io/tags/google/"/>
     
   </entry>
   
@@ -79,22 +77,21 @@
     <published>2019-12-10T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.552Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="distributed-system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
+    <category term="中文" scheme="https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="distributed-system" scheme="https://snaildove.github.io/tags/distributed-system/"/>
     
   </entry>
   
@@ -105,30 +102,29 @@
     <published>2019-11-13T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.490Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
-      <category term="Redis" scheme="https://snaildove.github.io/tags/Redis/"/>
     
-      <category term="distributed compute" scheme="https://snaildove.github.io/tags/distributed-compute/"/>
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
-      <category term="Big Data" scheme="https://snaildove.github.io/tags/Big-Data/"/>
+    <category term="Redis" scheme="https://snaildove.github.io/tags/Redis/"/>
     
-      <category term="Estimate" scheme="https://snaildove.github.io/tags/Estimate/"/>
+    <category term="distributed compute" scheme="https://snaildove.github.io/tags/distributed-compute/"/>
+    
+    <category term="Big Data" scheme="https://snaildove.github.io/tags/Big-Data/"/>
+    
+    <category term="Estimate" scheme="https://snaildove.github.io/tags/Estimate/"/>
     
   </entry>
   
@@ -139,48 +135,21 @@
     <published>2019-11-06T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.338Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>翻译 Chapter 13 Advanced RDDs</title>
-    <link href="https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/"/>
-    <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
-    <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2020-11-06T03:08:25.349Z</updated>
-    
-    <summary type="html">
-    
-      
-      
-        
-        
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
-        
-      
-    
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -191,22 +160,21 @@
     <published>2019-11-06T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.354Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -217,22 +185,46 @@
     <published>2019-11-06T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.344Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 13 Advanced RDDs</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2020-11-06T03:08:25.349Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -243,22 +235,21 @@
     <published>2019-11-06T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.441Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -269,22 +260,21 @@
     <published>2019-10-19T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.333Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -295,22 +285,21 @@
     <published>2019-10-19T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.465Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -321,22 +310,21 @@
     <published>2019-08-31T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.428Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -347,22 +335,21 @@
     <published>2019-08-31T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.423Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -373,22 +360,21 @@
     <published>2019-08-30T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.434Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -399,22 +385,21 @@
     <published>2019-08-25T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.418Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -425,22 +410,21 @@
     <published>2019-08-19T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.411Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -451,22 +435,21 @@
     <published>2019-08-12T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.383Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -477,22 +460,21 @@
     <published>2019-08-09T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.405Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -503,22 +485,21 @@
     <published>2019-08-09T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.377Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   
@@ -529,22 +510,21 @@
     <published>2019-08-06T16:00:00.000Z</published>
     <updated>2020-11-06T03:08:25.371Z</updated>
     
-    <summary type="html">
     
       
       
         
         
-          &lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
         
       
     
-    </summary>
-    
-      <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
     
     
-      <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    <category term="English,中文" scheme="https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
     
   </entry>
   

@@ -93,7 +93,7 @@
 <meta name="description" content="笔记源自：清华大学公开课：线性代数2——第一讲：正定矩阵 引言 矩阵特征值的正负在求解微分方程和差分方程时，会影响解是否收敛，例如上图如果$\lambda_i &lt; 0$那么$e^{\lambda_i t}$ 随着$t\rightarrow \infty, e^{\lambda_it}\rightarrow0$ 主子式  实对称矩阵A正定的充要条件下列6项条件，满足任意一项即可判定实对称矩阵$">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tsinghua linear-algebra-2 1st-lecture positive-definite-matrix">
-<meta property="og:url" content="https://snaildove.github.io/2017/08/01/positive_definite_matrix/index.html">
+<meta property="og:url" content="https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture%20positive-definite-matrix/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="笔记源自：清华大学公开课：线性代数2——第一讲：正定矩阵 引言 矩阵特征值的正负在求解微分方程和差分方程时，会影响解是否收敛，例如上图如果$\lambda_i &lt; 0$那么$e^{\lambda_i t}$ 随着$t\rightarrow \infty, e^{\lambda_it}\rightarrow0$ 主子式  实对称矩阵A正定的充要条件下列6项条件，满足任意一项即可判定实对称矩阵$">
 <meta property="og:locale" content="en_US">
@@ -148,7 +148,7 @@
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-1/47.png">
 <meta property="og:image" content="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-1/48.png">
 <meta property="article:published_time" content="2017-08-01T12:16:00.000Z">
-<meta property="article:modified_time" content="2020-11-06T03:08:25.635Z">
+<meta property="article:modified_time" content="2020-11-22T12:27:12.830Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="linear_algebra">
 <meta name="twitter:card" content="summary">
@@ -182,7 +182,7 @@
 
 
 
-  <link rel="canonical" href="https://snaildove.github.io/2017/08/01/positive_definite_matrix/"/>
+  <link rel="canonical" href="https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture positive-definite-matrix/"/>
 
 
 
@@ -369,7 +369,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2017/08/01/positive_definite_matrix/">
+    <link itemprop="mainEntityOfPage" href="https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture%20positive-definite-matrix/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="SnailDove">
@@ -459,7 +459,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  1,649
+                  1.6k
                 </span>
               
 
@@ -475,7 +475,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  6
                 </span>
               
             </div>
@@ -504,9 +504,10 @@
 <h2 id="实对称矩阵A正定的充要条件"><a href="#实对称矩阵A正定的充要条件" class="headerlink" title="实对称矩阵A正定的充要条件"></a>实对称矩阵A正定的充要条件</h2><p><strong>下列6项条件，满足任意一项即可判定实对称矩阵$A$为正定矩阵：</strong></p>
 <p><img src="http://qjctul5ib.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-1/4.png" alt="prerequisites_of_positive_definite_matrix.png"> </p>
 <h3 id="证明"><a href="#证明" class="headerlink" title="证明"></a>证明</h3><p>$(1)\Rightarrow(2):$ 对实对称矩阵$A$，那么存在正交阵$Q$，使得$AQ=Q\Lambda \rightarrow A=Q\Lambda Q^T$，其中$\Lambda=diag(\lambda_1,,…,,\lambda_n)$。于是对于**任意非零向量$x$**，有$x^TAx=x^TQ\Lambda Q^Tx=y^T \Lambda y=\lambda_1 {y_1}^2+,…,+\lambda_n {y_n}^2&gt;0, y=Q^Tx=(y_1,,…,,y_n) \ne\vec{0}$</p>
-<p>$(2)\Rightarrow(1):​$ 设$Ax=\lambda x(x\ne0)​$ 则$0&lt;x^TAx=x^T\lambda x=\lambda||x||^2​$，因此所有$\lambda_i&gt;0​$。</p>
+<p>$(2)\Rightarrow(1):$ 设$Ax=\lambda x(x\ne0)$ 则$0&lt;x^TAx=x^T\lambda x=\lambda||x||^2$，因此所有$\lambda_i&gt;0$。</p>
 <p>$(2)\Rightarrow(3):$ 由于行列式等于矩阵特征值的乘积，故$(2)\Rightarrow(1)\Rightarrow (3)det A=\lambda_1,…,\lambda_n&gt;0$ ：</p>
-<p>$(2), 0&lt;\begin{pmatrix}x_k^T&amp;0\end{pmatrix} \begin{pmatrix}A_k&amp;*\*&amp;*\end{pmatrix}\begin{pmatrix}x_k\0\end{pmatrix}={x_k}^T A_k x_k = {x_k}^T \begin{pmatrix} \lambda_1&amp;\&amp;\ddots\&amp;&amp;\lambda_k \end{pmatrix} x,, (1 \le k \le n) \\Rightarrow  (1) \lambda_i &gt; 0,(1\le i \le k, 1 \le k \le n) \Rightarrow (3) detA_k&gt;0, (1 \le k \le n)$</p>
+$(2)\, 0<\begin{pmatrix}x_k^T&0\end{pmatrix} \begin{pmatrix}A_k&*\\*&*\end{pmatrix}\begin{pmatrix}x_k\\0\end{pmatrix}={x_k}^T A_k x_k = {x_k}^T \begin{pmatrix} \lambda_1&\\&\ddots\\&&\lambda_k \end{pmatrix} x,\, (1 \le k \le n) \\\Rightarrow  (1) \lambda_i > 0,(1\le i \le k, 1 \le k \le n) \Rightarrow (3) detA_k>0, (1 \le k \le n)$
+
 <p>$(3)\Rightarrow(4)$：顺序主子式与主元有直接联系，因为第k个主元$d_k={det A_k \over det A_{k-1}}$，所以$(3) \Rightarrow (4),d_k &gt; 0$，其中$A_k$是第$k$个顺序主子矩阵（the k-th leading principal sub-matrix）。</p>
 <p>$(4) \Rightarrow (2)$：由对称矩阵的Gauss消元法得$A=LDL^T$且对角阵$D=diag(d_1,,…,d_n)$ 的对角元为A的主元，$L$是下三角矩阵，$L^T$ 是上三角矩阵，而且根据分解结果知道$L$的主对角线上全元素为1，也即$L^T$的主元全为1，即$L^T$行列式为1且是方阵，那么这俩都可逆。因为$(4):d_1,,…,,d_n$大于0，那么到：$x\ne 0\Rightarrow y=L^Tx\ne 0\Rightarrow x^TAx=x^TLDL^Tx=y^TDy=d_1y_1^2+…+d_ny_n^2&gt;0$ 。</p>
 <blockquote>
@@ -613,7 +614,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="https://snaildove.github.io/2017/08/01/positive_definite_matrix/" title="Tsinghua linear-algebra-2 1st-lecture positive-definite-matrix">https://snaildove.github.io/2017/08/01/positive_definite_matrix/</a>
+    <a href="https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture%20positive-definite-matrix/" title="Tsinghua linear-algebra-2 1st-lecture positive-definite-matrix">https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture%20positive-definite-matrix/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -893,7 +894,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">919.4k</span>
+    <span title="Site words total count">908.1k</span>
   
 </div>
 
@@ -1501,34 +1502,6 @@
   
   <!-- 添加网站宠物 -->
   
-<div id="hexo-helper-live2d">
-  <canvas id="live2dcanvas" width="150" height="300"></canvas>
-</div>
-<style>
-  #live2dcanvas{
-    position: fixed;
-    width: 150px;
-    height: 300px;
-    opacity:0.7;
-    right: 0px;
-    z-index: 999;
-    pointer-events: none;
-    bottom: -20px;
-  }
-</style>
-<script type="text/javascript" src="/live2d/device.min.js"></script>
-<script type="text/javascript">
-const loadScript = function loadScript(c,b){var a=document.createElement("script");a.type="text/javascript";"undefined"!=typeof b&&(a.readyState?a.onreadystatechange=function(){if("loaded"==a.readyState||"complete"==a.readyState)a.onreadystatechange=null,b()}:a.onload=function(){b()});a.src=c;document.body.appendChild(a)};
-(function(){
-  if((typeof(device) != 'undefined') && (device.mobile())){
-    document.getElementById("live2dcanvas").style.width = '75px';
-    document.getElementById("live2dcanvas").style.height = '150px';
-  }else
-    if (typeof(device) === 'undefined') console.error('Cannot find current-device script.');
-  loadScript("/live2d/script.js", function(){loadlive2d("live2dcanvas", "/live2d/assets/z16.model.json", 0.5);});
-})();
-</script>
-
   
 </body>
 <!--崩溃欺骗-->

@@ -2,1011 +2,1295 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
+    <loc>https://snaildove.github.io/2018/03/03/TensorflowTutorial/</loc>
     
-    <lastmod>2020-11-18T15:34:44.517Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/index.html</loc>
-    
-    <lastmod>2020-11-18T03:23:00.195Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/about/index.html</loc>
-    
-    <lastmod>2020-11-18T03:23:00.194Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/categories/index.html</loc>
-    
-    <lastmod>2020-11-18T03:23:00.194Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2016/01/20/vim_without_widgets/</loc>
-    
-    <lastmod>2020-11-07T09:40:59.097Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/15/trees_describe_the_sample_space/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.681Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/24/the_two-envelopes_paradox/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.678Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/06/06/summary_of_nlp-sequence-models/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.676Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/02/08/summary_of_neural-networks-deep-learning/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.673Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/01/20/summary_of_ml-coursera-andrew-ng/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.671Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/06/28/summary_of_learning_of_Deep_Learning_Specializatio_on_Coursera/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.669Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/05/04/summary_of_convolutional-neural-networks/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.666Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/04/03/summary_of_Structuring-Machine-Learning-Projects/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.662Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/12/28/summary_of_Linear-Algebra/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.660Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/10/01/summary_of_LiHang_Statistical-learning-methods/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.657Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/03/02/summary_of_Improving-Deep-Neural-Networks/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.652Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2013/05/12/stack_application_on_line-editor_or_buff_zone/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.650Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2013/05/13/stack_application_on_expression-resolution-with-braces/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.647Z</lastmod>
+    <lastmod>2020-11-22</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/03/singular_values_decomposition/</loc>
     
-    <lastmod>2020-11-06T03:08:25.644Z</lastmod>
+    <lastmod>2020-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture%20positive-definite-matrix/</loc>
+    
+    <lastmod>2020-11-22</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
+    
+    <lastmod>2020-11-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/index.html</loc>
+    
+    <lastmod>2020-11-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/about/index.html</loc>
+    
+    <lastmod>2020-11-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/categories/index.html</loc>
+    
+    <lastmod>2020-11-18</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2016/01/20/vim_without_widgets/</loc>
+    
+    <lastmod>2020-11-07</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/15/trees_describe_the_sample_space/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/24/the_two-envelopes_paradox/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/06/06/summary_of_nlp-sequence-models/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/02/08/summary_of_neural-networks-deep-learning/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/01/20/summary_of_ml-coursera-andrew-ng/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/06/28/summary_of_learning_of_Deep_Learning_Specializatio_on_Coursera/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/05/04/summary_of_convolutional-neural-networks/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/04/03/summary_of_Structuring-Machine-Learning-Projects/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/12/28/summary_of_Linear-Algebra/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/10/01/summary_of_LiHang_Statistical-learning-methods/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2018/03/02/summary_of_Improving-Deep-Neural-Networks/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2013/05/12/stack_application_on_line-editor_or_buff_zone/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2013/05/13/stack_application_on_expression-resolution-with-braces/</loc>
+    
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/06/pseudo_inverse/</loc>
     
-    <lastmod>2020-11-06T03:08:25.642Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/03/01/practical-aspects-of-deep-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.639Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/01/positive_definite_matrix/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.635Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/01/positive_definite_and_least_square/</loc>
     
-    <lastmod>2020-11-06T03:08:25.632Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/06/planar-data-classification-with-one-hidden-layer_week3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.628Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2015/04/24/perception_learning_algorithm/</loc>
     
-    <lastmod>2020-11-06T03:08:25.625Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/27/normal_random_variables/</loc>
     
-    <lastmod>2020-11-06T03:08:25.623Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/26/mean_and_variance_of_uniform_random_variable/</loc>
     
-    <lastmod>2020-11-06T03:08:25.620Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/23/mean_and_variance_of_the_geometric/</loc>
     
-    <lastmod>2020-11-06T03:08:25.616Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/25/mean_and_variance_of_sample_and_estimating_probability_by_simulation/</loc>
     
-    <lastmod>2020-11-06T03:08:25.614Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/</loc>
     
-    <lastmod>2020-11-06T03:08:25.611Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/</loc>
     
-    <lastmod>2020-11-06T03:08:25.609Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2014/06/01/longest_common_sub-sequence/</loc>
     
-    <lastmod>2020-11-06T03:08:25.607Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/05/logistic-regression-with-a-neural-network-mindset_week1_and_week2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.604Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/05/linear_transformation_2nd_part/</loc>
     
-    <lastmod>2020-11-06T03:08:25.601Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/04/linear_transformation_1st_part/</loc>
     
-    <lastmod>2020-11-06T03:08:25.597Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/23/hexo_source-code_synchronization/</loc>
     
-    <lastmod>2020-11-06T03:08:25.593Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/02/greek-letters/</loc>
     
-    <lastmod>2020-11-06T03:08:25.591Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/08/graph_and_network/</loc>
     
-    <lastmod>2020-11-06T03:08:25.589Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/12/18/get_started_feature-engineering/</loc>
     
-    <lastmod>2020-11-06T03:08:25.587Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/10/02/get-started-XGBoost/</loc>
     
-    <lastmod>2020-11-06T03:08:25.584Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/12/28/foundations_of_spark_programming/</loc>
     
-    <lastmod>2020-11-06T03:08:25.578Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/25/exponential_random_variables/</loc>
     
-    <lastmod>2020-11-06T03:08:25.574Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/07/engineering_matrices/</loc>
     
-    <lastmod>2020-11-06T03:08:25.571Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/14/definition_of_expectation/</loc>
     
-    <lastmod>2020-11-06T03:08:25.568Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2015/05/01/decision_tree/</loc>
     
-    <lastmod>2020-11-06T03:08:25.564Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/26/cumulative_distribution_function/</loc>
     
-    <lastmod>2020-11-06T03:08:25.560Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/11/computer_graphics/</loc>
     
-    <lastmod>2020-11-06T03:08:25.558Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/12/complex_and_complex_matrix/</loc>
     
-    <lastmod>2020-11-06T03:08:25.556Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/</loc>
     
-    <lastmod>2020-11-06T03:08:25.552Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/10/02/Tsinghua-open-course_Java-programming-language(2nd_part)/</loc>
     
-    <lastmod>2020-11-06T03:08:25.550Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/06/Trigger_word_detection-v1/</loc>
     
-    <lastmod>2020-11-06T03:08:25.546Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/03/10/Transformer_learning-resources/</loc>
     
-    <lastmod>2020-11-06T03:08:25.543Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/01/06/Titanic_with_name_sex_age_and_ticket_features-0.82275-0.83732/</loc>
     
-    <lastmod>2020-11-06T03:08:25.541Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/03/03/TensorflowTutorial/</loc>
-    
-    <lastmod>2020-11-06T03:08:25.538Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/02/Residual+Networks+-+v2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.535Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.529Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/02/11/PCA_in_action/</loc>
     
-    <lastmod>2020-11-06T03:08:25.525Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/03/02/OptimizationMethods/</loc>
     
-    <lastmod>2020-11-06T03:08:25.522Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/03/Operations+on+word+vectors+-+v2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.519Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/05/Neural+machine+translation+with+attention+-+v4/</loc>
     
-    <lastmod>2020-11-06T03:08:25.515Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/01/01/Maximum-Likelihood-Estimation_VS_Bayes-Estimation/</loc>
     
-    <lastmod>2020-11-06T03:08:25.512Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/06/Markov_matrix/</loc>
     
-    <lastmod>2020-11-06T03:08:25.509Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/20/LaTeX_symbols/</loc>
     
-    <lastmod>2020-11-06T03:08:25.505Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/02/Keras+-+Tutorial+-+Happy+House+v2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.501Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/03/28/Information_Theory/</loc>
     
-    <lastmod>2020-11-06T03:08:25.498Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/02/Improvise+a+Jazz+Solo+with+an+LSTM+Network+-+v3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.494Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/11/14/HyperLogLog/</loc>
     
-    <lastmod>2020-11-06T03:08:25.490Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/05/14/HadoopYARNFederation/</loc>
     
-    <lastmod>2020-11-06T03:08:25.488Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/02/Fourier_series/</loc>
     
-    <lastmod>2020-11-06T03:08:25.482Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/04/Face+Recognition+for+the+Happy+House+-+v3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.478Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/03/Emojify+-+v2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.475Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/02/Dinosaurus+Island+--+Character+level+language+model+final+-+v3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.472Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/01/Convolution+model+-+Step+by+Step+-+v2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.468Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.465Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter8-Joins(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.461Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter7_Aggregations(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.458Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter6_Working-with-Different-Types-of-Data(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.454Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter5_Basic-Structured-Operations(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.450Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter4_StructuredAPIOverview(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.444Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.441Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter29-Unsupervised-Learning(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.438Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/31/Chapter28_Recommendation(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.434Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/09/01/Chapter27_Regression(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.428Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/09/01/Chapter26_Classification(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.423Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/26/Chapter25_PreprocessingAndFeature(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.418Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/20/Chapter24_Advanced-Analytics-and-Machine-Learning-Overview(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.411Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/10/Chapter23_StructuredStreamingInProduction(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.405Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/07/28/Chapter22_EventTimeAndStatefulProcessing(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.400Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/06/28/Chapter21_StructuredStreamingBasics(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.394Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/06/02/Chapter20_StreamProcessingFundamentals(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.388Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/13/Chapter19_Performance-Tuning(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.383Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/10/Chapter18_Monitoring-and-Debugging(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.377Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/07/Chapter17_Deploying-Spark(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.371Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.366Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter15_HowSparkRuns-on-a-Cluster(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.360Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.354Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.349Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.344Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.338Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/</loc>
     
-    <lastmod>2020-11-06T03:08:25.333Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/28/Calculus_and_Differential/</loc>
     
-    <lastmod>2020-11-06T03:08:25.328Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/07/Building-your-Deep-Neural-Network_week4/</loc>
     
-    <lastmod>2020-11-06T03:08:25.323Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/02/Building+a+Recurrent+Neural+Network+-+Step+by+Step+-+v3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.317Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2017/08/28/Bayesian_rule/</loc>
     
-    <lastmod>2020-11-06T03:08:25.311Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/03/Autonomous+driving+application+-+Car+detection+-+v3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.306Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/04/Art+Generation+with+Neural+Style+Transfer+-+v3/</loc>
     
-    <lastmod>2020-11-06T03:08:25.301Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2019/02/01/Achitecture_of_Apache_Hadoop_YARN/</loc>
     
-    <lastmod>2020-11-06T03:08:25.296Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/10/01/9.EM_and_GEM_LiHang-Statistical-Learning-Methods/</loc>
     
-    <lastmod>2020-11-06T03:08:25.291Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/10/01/8.Booting-Methods_LiHang-Statistical-Learning-Methods/</loc>
     
-    <lastmod>2020-11-06T03:08:25.286Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/10/01/4.Naive-Bayes_LiHang-Statistical-Learning-Methods/</loc>
     
-    <lastmod>2020-11-06T03:08:25.282Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/18/18_application-example-photo-ocr/</loc>
     
-    <lastmod>2020-11-06T03:08:25.277Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/17/17_large-scale-machine-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.272Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/16/16_recommender-systems/</loc>
     
-    <lastmod>2020-11-06T03:08:25.267Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/15/15_anomaly-detection/</loc>
     
-    <lastmod>2020-11-06T03:08:25.260Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/14/14_dimensionality-reduction/</loc>
     
-    <lastmod>2020-11-06T03:08:25.253Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/13/13_unsupervised-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.248Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/12/12_support-vector-machines/</loc>
     
-    <lastmod>2020-11-06T03:08:25.242Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/11/11_machine-learning-system-design/</loc>
     
-    <lastmod>2020-11-06T03:08:25.232Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/10/10_advice-for-applying-machine-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.227Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/09/09_neural-networks-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.224Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/08/08_neural-networks-representation/</loc>
     
-    <lastmod>2020-11-06T03:08:25.220Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/07/07_regularization/</loc>
     
-    <lastmod>2020-11-06T03:08:25.216Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/06/06_logistic-regression/</loc>
     
-    <lastmod>2020-11-06T03:08:25.213Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/01/05_octave-matlab-tutorial/</loc>
     
-    <lastmod>2020-11-06T03:08:25.210Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/04/04_special-applications-face-recognition-neural-style-transfer/</loc>
     
-    <lastmod>2020-11-06T03:08:25.207Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/04/04_linear-regression-with-multiple-variables/</loc>
     
-    <lastmod>2020-11-06T03:08:25.204Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/04/04_deep-neural-networks/</loc>
     
-    <lastmod>2020-11-06T03:08:25.202Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/03/03_shallow-neural-networks/</loc>
     
-    <lastmod>2020-11-06T03:08:25.200Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/03/03_sequence-models-attention-mechanism/</loc>
     
-    <lastmod>2020-11-06T03:08:25.198Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/03/03_object-detection/</loc>
     
-    <lastmod>2020-11-06T03:08:25.195Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/03/03_linear-algebra-review/</loc>
     
-    <lastmod>2020-11-06T03:08:25.192Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/03/02/03_hyperparameter-tuning-batch-normalization-and-programming-frameworks/</loc>
     
-    <lastmod>2020-11-06T03:08:25.190Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/03/02/02_optimization-algorithms/</loc>
     
-    <lastmod>2020-11-06T03:08:25.187Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/02/02_neural-networks-basics/</loc>
     
-    <lastmod>2020-11-06T03:08:25.184Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/02/02_natural-language-processing-word-embeddings/</loc>
     
-    <lastmod>2020-11-06T03:08:25.182Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/04/02/02_ml-strategy-2/</loc>
     
-    <lastmod>2020-11-06T03:08:25.179Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/02/02_linear-regression-with-one-variable/</loc>
     
-    <lastmod>2020-11-06T03:08:25.176Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/01/02_deep-convolutional-models-case-studies/</loc>
     
-    <lastmod>2020-11-06T03:08:25.174Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/01/01/01_what-is-machine-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.172Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/06/01/01_recurrent-neural-networks/</loc>
     
-    <lastmod>2020-11-06T03:08:25.170Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/03/01/01_practical-aspects-of-deep-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.166Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/04/01/01_ml-strategy-1/</loc>
     
-    <lastmod>2020-11-06T03:08:25.163Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/02/01/01_introduction-to-deep-learning/</loc>
     
-    <lastmod>2020-11-06T03:08:25.159Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
   </url>
   
   <url>
     <loc>https://snaildove.github.io/2018/05/01/01_foundations-of-convolutional-neural-networks/</loc>
     
-    <lastmod>2020-11-06T03:08:25.157Z</lastmod>
+    <lastmod>2020-11-06</lastmod>
     
+  </url>
+  
+
+  <url>
+    <loc>https://snaildove.github.io/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/linux/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/deep-learning/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Spark/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Machine-Learning/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Hadoop-YARN/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Distributed-System/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/probability/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/nlp-sequence-models/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Calculus-and-Differential/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/linear-algebra/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Redis/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/distributed-compute/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Big-Data/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Estimate/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Information-Theory/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Python-Data-Science-Cookbook/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/kaggle/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/NLP/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/java/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/english/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/XGBoost/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/hexo/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Data-Structure/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Structuring-Machine-Learning-Projects/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Machine-Learning-by-Andrew-NG/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Latex/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/papers/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/google/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+
+  
+  <url>
+    <loc>https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/categories/English/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2020-11-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
   </url>
   
 </urlset>

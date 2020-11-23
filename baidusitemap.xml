@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://snaildove.github.io/2018/03/03/TensorflowTutorial/</loc>
+    <lastmod>2020-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/03/singular_values_decomposition/</loc>
+    <lastmod>2020-11-22</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/01/Tsinghua_linear-algebra-2_1st-lecture%20positive-definite-matrix/</loc>
+    <lastmod>2020-11-22</lastmod>
+  </url>
+  <url>
     <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
     <lastmod>2020-11-18</lastmod>
   </url>
@@ -61,19 +73,11 @@
     <lastmod>2020-11-06</lastmod>
   </url>
   <url>
-    <loc>https://snaildove.github.io/2017/08/03/singular_values_decomposition/</loc>
-    <lastmod>2020-11-06</lastmod>
-  </url>
-  <url>
     <loc>https://snaildove.github.io/2017/08/06/pseudo_inverse/</loc>
     <lastmod>2020-11-06</lastmod>
   </url>
   <url>
     <loc>https://snaildove.github.io/2018/03/01/practical-aspects-of-deep-learning/</loc>
-    <lastmod>2020-11-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/08/01/positive_definite_matrix/</loc>
     <lastmod>2020-11-06</lastmod>
   </url>
   <url>
@@ -198,10 +202,6 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2019/01/06/Titanic_with_name_sex_age_and_ticket_features-0.82275-0.83732/</loc>
-    <lastmod>2020-11-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2018/03/03/TensorflowTutorial/</loc>
     <lastmod>2020-11-06</lastmod>
   </url>
   <url>
