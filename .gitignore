@@ -1,10 +1,11 @@
 .DS_Store
 .deploy_git/
 .npmignore
+.gitignore
 SVM_principle.md
 _config.yml
 node_modules/
-node_modules_
+node_modules_/
 public/
 source/.DS_Store
 source/_drafts/
@@ -14,3 +15,4 @@ themes/.DS_Store
 themes/next/_config.yml
 writing_shortcuts.md
 generating_book.sh
+
