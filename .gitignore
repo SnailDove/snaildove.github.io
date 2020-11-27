@@ -4,6 +4,7 @@
 SVM_principle.md
 _config.yml
 node_modules/
+node_modules_
 public/
 source/.DS_Store
 source/_drafts/
@@ -11,5 +12,5 @@ source/_posts/
 substitute_bucket.sh
 themes/.DS_Store
 themes/next/_config.yml
-writing_shortcuts.txt
+writing_shortcuts.md
 generating_book.sh
