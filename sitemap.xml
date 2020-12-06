@@ -1061,21 +1061,7 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
-    <lastmod>2020-12-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/probability/</loc>
-    <lastmod>2020-12-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/nlp-sequence-models/</loc>
     <lastmod>2020-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1089,7 +1075,21 @@
   </url>
   
   <url>
+    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
+    <lastmod>2020-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://snaildove.github.io/tags/Spark/</loc>
+    <lastmod>2020-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/nlp-sequence-models/</loc>
     <lastmod>2020-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1152,14 +1152,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
+    <loc>https://snaildove.github.io/tags/NLP/</loc>
     <lastmod>2020-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/NLP/</loc>
+    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
     <lastmod>2020-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1187,13 +1187,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/hexo/</loc>
-    <lastmod>2020-12-06</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
     <lastmod>2020-12-06</lastmod>
     <changefreq>daily</changefreq>
@@ -1202,6 +1195,13 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/XGBoost/</loc>
+    <lastmod>2020-12-06</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/hexo/</loc>
     <lastmod>2020-12-06</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>

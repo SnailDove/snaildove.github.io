@@ -100,11 +100,11 @@ if (isSidebarCouldDisplay && hasTOC) {
 });
 
 // 防止页面被复制   
-$(document).ready(function(){
-    $("body").attr("oncontextmenu","return false");
-    $("body").attr("onselectstart","return false");
-    $("body").attr("ondragstart","return false");
-    $("body").attr("onbeforecopy","return false");
-    $("body").attr("oncopy","document.selection.empty()");
-    $("body").attr("onselect","election.empty()");
-})
+//$(document).ready(function(){
+//    $("body").attr("oncontextmenu","return false");
+//    $("body").attr("onselectstart","return false");
+//    $("body").attr("ondragstart","return false");
+//    $("body").attr("onbeforecopy","return false");
+//    $("body").attr("oncopy","document.selection.empty()");
+//    $("body").attr("onselect","election.empty()");
+//})
