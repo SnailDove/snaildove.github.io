@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://snaildove.github.io/2018/12/28/foundations_of_spark_programming/</loc>
+    
+    <lastmod>2020-12-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://snaildove.github.io/2016/01/20/vim_without_widgets/</loc>
     
     <lastmod>2020-12-14</lastmod>
@@ -248,13 +255,6 @@
   
   <url>
     <loc>https://snaildove.github.io/2018/10/02/get-started-XGBoost/</loc>
-    
-    <lastmod>2020-12-14</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2018/12/28/foundations_of_spark_programming/</loc>
     
     <lastmod>2020-12-14</lastmod>
     
@@ -996,14 +996,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/about/index.html</loc>
+    <loc>https://snaildove.github.io/categories/index.html</loc>
     
     <lastmod>2020-11-18</lastmod>
     
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/categories/index.html</loc>
+    <loc>https://snaildove.github.io/about/index.html</loc>
     
     <lastmod>2020-11-18</lastmod>
     
@@ -1019,7 +1019,28 @@
 
   
   <url>
-    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
+    <loc>https://snaildove.github.io/tags/Spark/</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/linux/</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1027,6 +1048,13 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/deep-learning/</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1089,13 +1117,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Spark/</loc>
-    <lastmod>2020-12-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/linear-algebra/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
@@ -1138,13 +1159,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
-    <lastmod>2020-12-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/Python-Data-Science-Cookbook/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
@@ -1152,14 +1166,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/NLP/</loc>
+    <loc>https://snaildove.github.io/tags/kaggle/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/kaggle/</loc>
+    <loc>https://snaildove.github.io/tags/NLP/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1180,14 +1194,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/hexo/</loc>
+    <loc>https://snaildove.github.io/tags/english/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/english/</loc>
+    <loc>https://snaildove.github.io/tags/hexo/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1230,20 +1244,6 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/Machine-Learning-by-Andrew-NG/</loc>
-    <lastmod>2020-12-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/linux/</loc>
-    <lastmod>2020-12-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
