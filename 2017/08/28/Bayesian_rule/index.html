@@ -97,14 +97,14 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="说明：全文摘自Introduction to probability, 2nd Edition  本文讨论条件概率定律的应用，首先引入一个计算事件概率的定理。 The law of total probability设 $A_1, A_2, … , A_n$ 是一组互不相容的事件，它形成样本空间的一个分割（每个试验结果必定使得其中一个事件发生！）。又假定对每个 $i, P(A_i) &gt; 0$">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/2.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/2.png">
 <meta property="article:published_time" content="2017-08-28T12:16:00.000Z">
-<meta property="article:modified_time" content="2020-12-06T15:10:21.563Z">
+<meta property="article:modified_time" content="2020-12-14T10:31:32.655Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png">
+<meta name="twitter:image" content="http://qkx3odwah.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png">
 
 
 
@@ -451,7 +451,7 @@
         <p>说明：全文摘自<a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a> </p>
 <p>本文讨论条件概率定律的应用，首先引入一个计算事件概率的定理。</p>
 <h2 id="The-law-of-total-probability"><a href="#The-law-of-total-probability" class="headerlink" title="The law of total probability"></a>The law of total probability</h2><p>设 $A_1, A_2, … , A_n$ 是一组互不相容的事件，它形成样本空间的一个分割（每个试验结果必定使得其中一个事件发生！）。又假定对每个 $i, P(A_i) &gt; 0$ 。则对任何事件 $B$ ，下列公式成立<br>$$<br>\begin{eqnarray}<br>P(B) &amp;=&amp; P(A_1\cap B )+\cdots+P(A_n\cap B) \<br>&amp;=&amp; P(A_1)P(B|A_1)+\cdots+P(B)P(B|A_n)<br>\end{eqnarray}<br>$$<br>这是<strong>总概率定律（或翻译为：全概率定律），</strong>下面有图示和证明。直观上，将样本空间分割成若干事件 $A_i$ 的并（ $A_1, \cdots, A_n$ 形成样本空间的一个分割）然后任意事件 $B$ 的概率等于事件 $B$ 在 $A_i$ 发生的情况下的条件概率的加权平均，而权重刚好等于这些事件 $A_i$ 的无条件概率。这条定理的一个主要应用是计算事件 $B$ 的概率。直接计算事件 $B$ 的概率有点难度，但是若条件概率 $P(B|A_i)$ 是已知的或是很容易推导计算时，总概率定律定理就成为了计算 $P(B)$ 的有力工具。应用这条定理的关键是找到合适的分割 $A_1,\cdots, A_n$ ，而合适的分割又与问题的实际背景有关。</p>
-<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png" alt="Figure_1.13_visualization_and_verification_of_the_total_probability_theorem.png"></p>
+<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/1.png" alt="Figure_1.13_visualization_and_verification_of_the_total_probability_theorem.png"></p>
 <p>由于事件 $A_1, A_2, \cdots, A_n$ 形成一个样本空间的一个分割，事件 $B$ 可以分解成不想交的 $n$ 个事件的并，即：</p>
 <p>$$<br>B=(A_!\cap B)\cup\cdots\cup(A_n\cap B) \quad (1)<br>$$<br>利用可加定理，得到：</p>
 <p>$$<br>P(B) = P(A_1 \cap B)+\cdots+P(A_n \cap B) \quad (2)<br>$$<br>利用条件概率的定义，得到：</p>
@@ -470,7 +470,7 @@
 <h4 id="假阳性之谜"><a href="#假阳性之谜" class="headerlink" title="假阳性之谜"></a>假阳性之谜</h4><p> 设对于某种少见的疾病的检出率为 $0.95$ ；如果一个被检查的病人有某种疾病，其检查结果为阳性的概率为 $0.95$ ；如果该人没有这种疾病，其检查结果为阴性的概率是 $0.95$ 。现在假定某一人群中患有这种病的概率为  $0.001$ ，并从这个总体中随机地抽取一个人进行检测，检查结果为阳性。现在问这个人患有这种病的概率有多大？</p>
 <p>设 $A$ 为这个人有这种疾病， $B$ 为经检验这个人为阳性。利用贝叶斯公式：<br>$$<br>\begin{eqnarray}<br>P(A|B) &amp;=&amp; \frac{P(A)P(B|A)}{P(A)P(B|A)+P(A^c)P(B|A^c)} \<br>&amp;=&amp; \frac{0.001\cdot 0.95}{0.001\cdot 0.95 + 0.999\cdot 0.05} \<br>&amp;=&amp; 0.0187<br>\end{eqnarray}<br>$$<br>尽管检验方法非常精确，一个经检测为阳性的人仍然不大可能真正患有这种疾病（患有该疾病的概率小于 $2%$ ）。根据《经济学人》杂志 $1999$ 年 $2$ 月 $20$ 日的报道，在一家著名的大医院中 $80%$ 的受访者不知道这类问题的正确答案，而大部分人回答，这个经检测为阳性的人患病概率为 $0.95$ !</p>
 <h2 id="连续随机变量的贝叶斯定律"><a href="#连续随机变量的贝叶斯定律" class="headerlink" title="连续随机变量的贝叶斯定律"></a>连续随机变量的贝叶斯定律</h2><p>在许多情况下，我们会遇到一个没有观察到的对象。用随机变量 $X$ 代表这种未观察到的量，设其概率密度函数是 $ f_X(x)$ 。我们能够观察到的量是经过噪声干扰的量 $Y$ ，$Y$ 的分布函数是条件分布函数，其条件概率密度函数为： $f_{X|Y}(y|x)$ 。当 $Y$ 的值被观察到以后，它包含 $X$ 的多少信息呢？这类问题与离散随机变量的推断问题类似。现在唯一的不同之处在于处理的是连续随机变量。</p>
-<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/2.png" alt="Figure_3.20_schematic_description_of_the_inference_problem.png"></p>
+<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/introduction_to_probability/Bayes%27rule/2.png" alt="Figure_3.20_schematic_description_of_the_inference_problem.png"></p>
 <p>上图是推断问题的框图，有一个未观察到的变量 $X$ ，其概率密度函数 $f_X$ 是已知的，同时得到一个观察到的随机变量 $Y$ ，其条件概率密度函数为 $f_{Y|X}(y|x)$ 。给定 $Y$ 的观察值 $y$ ，推断问题变成条件概率密度函数 $f_{X|Y}(x|y)$ 的计算问题。</p>
 <p>注意到：当观察到事件 $Y=y$ 以后，所有的信息都包含在条件概率密度函数 $f_{X|Y}(x|y)$ 中，现在只需计算这个条件概率密度函数。利用公式 $f_Xf_{Y|X}=f_{X,Y}=f_Yf_{X|Y}$ 可以得到：</p>
 <p>$$<br>f_{X|Y}(x|y)=\frac{f_X(x)f_{Y|X}(y|x)}{f_Y(y)}<br>$$<br>这个即所求的公式，与之等价的公式：</p>

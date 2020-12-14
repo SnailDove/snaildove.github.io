@@ -97,19 +97,19 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThis is one of my personal programming assignments after studying the course nlp sequence models at the 1st week and the copyright belongs to deeplearning.ai. Character level language model - Dino">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/rnn.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/clip.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dinos3.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/mangosaurus.jpeg">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/shakespeare.jpg">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/rnn.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/clip.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dinos3.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/mangosaurus.jpeg">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/shakespeare.jpg">
 <meta property="article:published_time" content="2018-06-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-06T15:10:21.680Z">
+<meta property="article:modified_time" content="2020-12-14T10:31:32.780Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="nlp-sequence-models">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg">
+<meta name="twitter:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg">
 
 
 
@@ -457,7 +457,7 @@
 <h1 id="Character-level-language-model-Dinosaurus-land"><a href="#Character-level-language-model-Dinosaurus-land" class="headerlink" title="Character level language model - Dinosaurus land"></a>Character level language model - Dinosaurus land</h1><p>Welcome to Dinosaurus Island! 65 million years ago, dinosaurs existed, and in this assignment they are back. You are in charge of a special task. Leading biology researchers are creating new breeds of dinosaurs and bringing them to life on earth, and your job is to give names to these dinosaurs. If a dinosaur does not like its name, it might go beserk, so choose wisely! </p>
 <table>
 <td>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg" style="width:250;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dino.jpg" style="width:250;height:300px;">
 
 </td>
 
@@ -494,7 +494,7 @@
 </li>
 <li>Return the learned parameters </li>
 </ul>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/rnn.png" style="width:450;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/rnn.png" style="width:450;height:300px;">
 <caption><center> **Figure 1**: Recurrent Neural Network, similar to what you had built in the previous notebook "Building a RNN - Step by Step".  </center></caption>
 
 <p>At each time-step, the RNN tries to predict what is the next character given the previous characters. The dataset $X = (x^{\langle 1 \rangle}, x^{\langle 2 \rangle}, …, x^{\langle T_x \rangle})$ is a list of characters in the training set, while $Y = (y^{\langle 1 \rangle}, y^{\langle 2 \rangle}, …, y^{\langle T_x \rangle})$ is such that at every time-step $t$, we have $y^{\langle t \rangle} = x^{\langle t+1 \rangle}$. </p>
@@ -506,7 +506,7 @@
 <p>You will then apply these two functions to build the model.</p>
 <h3 id="2-1-Clipping-the-gradients-in-the-optimization-loop"><a href="#2-1-Clipping-the-gradients-in-the-optimization-loop" class="headerlink" title="2.1 - Clipping the gradients in the optimization loop"></a>2.1 - Clipping the gradients in the optimization loop</h3><p>In this section you will implement the <code>clip</code> function that you will call inside of your optimization loop. Recall that your overall loop structure usually consists of a forward pass, a cost computation, a backward pass, and a parameter update. Before updating the parameters, you will perform gradient clipping when needed to make sure that your gradients are not “exploding,” meaning taking on overly large values. </p>
 <p>In the exercise below, you will implement a function <code>clip</code> that takes in a dictionary of gradients and returns a clipped version of gradients if needed. There are different ways to clip gradients; we will use a simple element-wise clipping procedure, in which every element of the gradient vector is clipped to lie between some range [-N, N]. More generally, you will provide a <code>maxValue</code> (say 10). In this example, if any component of the gradient vector is greater than 10, it would be set to 10; and if any component of the gradient vector is less than -10, it would be set to -10. If it is between -10 and 10, it is left alone. </p>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/clip.png" style="width:400;height:150px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/clip.png" style="width:400;height:150px;">
 <caption><center> **Figure 2**: Visualization of gradient descent with and without gradient clipping, in a case where the network is running into slight "exploding gradient" problems. </center></caption>
 
 <p><strong>Exercise</strong>: Implement the function below to return the clipped gradients of your dictionary <code>gradients</code>. Your function takes in a maximum threshold and returns the clipped versions of your gradients. You can check out this <a href="https://docs.scipy.org/doc/numpy-1.13.0/reference/generated/numpy.clip.html" target="_blank" rel="noopener">hint</a> for examples of how to clip in numpy. You will need to use the argument <code>out = ...</code>.</p>
@@ -568,7 +568,7 @@ gradients[&quot;dby&quot;][1] = [8.45833407]</code></pre>
 </table>
 
 <h3 id="2-2-Sampling"><a href="#2-2-Sampling" class="headerlink" title="2.2 - Sampling"></a>2.2 - Sampling</h3><p>Now assume that your model is trained. You would like to generate new text (characters). The process of generation is explained in the picture below:</p>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dinos3.png" style="width:500;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/dinos3.png" style="width:500;height:300px;">
 <caption><center> **Figure 3**: In this picture, we assume the model is already trained. We pass in $x^{\langle 1\rangle} = \vec{0}$ at the first time step, and have the network then sample one character at a time. </center></caption>
 
 <p><strong>Exercise</strong>: Implement the <code>sample</code> function below to sample characters. You need to carry out 4 steps:</p>
@@ -911,11 +911,11 @@ Stegngosaurus</code></pre>
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>You can see that your algorithm has started to generate plausible dinosaur names towards the end of the training. At first, it was generating random characters, but towards the end you could see dinosaur names with cool endings. Feel free to run the algorithm even longer and play with hyperparameters to see if you can get even better results. Our implemetation generated some really cool names like <code>maconucon</code>, <code>marloralus</code> and <code>macingsersaurus</code>. Your model hopefully also learned that dinosaur names tend to end in <code>saurus</code>, <code>don</code>, <code>aura</code>, <code>tor</code>, etc.</p>
 <p>If your model generates some non-cool names, don’t blame the model entirely–not all actual dinosaur names sound cool. (For example, <code>dromaeosauroides</code> is an actual dinosaur name and is in the training set.) But this model should give you a set of candidates from which you can pick the coolest! </p>
 <p>This assignment had used a relatively small dataset, so that you could train an RNN quickly on a CPU. Training a model of the english language requires a much bigger dataset, and usually needs much more computation, and could run for many hours on GPUs. We ran our dinosaur name for quite some time, and so far our favoriate name is the great, undefeatable, and fierce: Mangosaurus!</p>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/mangosaurus.jpeg" style="width:250;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/mangosaurus.jpeg" style="width:250;height:300px;">
 
 <h2 id="4-Writing-like-Shakespeare"><a href="#4-Writing-like-Shakespeare" class="headerlink" title="4 - Writing like Shakespeare"></a>4 - Writing like Shakespeare</h2><p>The rest of this notebook is optional and is not graded, but we hope you’ll do it anyway since it’s quite fun and informative. </p>
 <p>A similar (but more complicated) task is to generate Shakespeare poems. Instead of learning from a dataset of Dinosaur names you can use a collection of Shakespearian poems. Using LSTM cells, you can learn longer term dependencies that span many characters in the text–e.g., where a character appearing somewhere a sequence can influence what should be a different character much much later in ths sequence. These long term dependencies were less important with dinosaur names, since the names were quite short. </p>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/shakespeare.jpg" style="width:500;height:400px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week1/dinosaurus_island/images/shakespeare.jpg" style="width:500;height:400px;">
 <caption><center> Let's become poets! </center></caption>
 
 <p>We have implemented a Shakespeare poem generator with Keras. Run the following cell to load the required packages and models. This may take a few minutes. </p>

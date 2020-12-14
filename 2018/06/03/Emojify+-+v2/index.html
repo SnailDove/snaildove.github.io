@@ -97,20 +97,20 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThis is one of my personal programming assignments after studying the course nlp sequence models at the 2nd week and the copyright belongs to deeplearning.ai. Emojify!Welcome to the second assignm">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/image_1.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/image_1.png">
 <meta property="og:image" content="https://snaildove.github.io/2018/06/03/Emojify+-+v2/output_34_1.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/embedding1.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png">
-<meta property="og:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/woebot.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/embedding1.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png">
+<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/woebot.png">
 <meta property="article:published_time" content="2018-06-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-06T15:10:21.684Z">
+<meta property="article:modified_time" content="2020-12-14T10:31:32.784Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="nlp-sequence-models">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png">
+<meta name="twitter:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png">
 
 
 
@@ -468,7 +468,7 @@
 <li>X contains 127 sentences (strings)</li>
 <li>Y contains a integer label between 0 and 4 corresponding to an emoji for each sentence</li>
 </ul>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png" style="width:700px;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/data_set.png" style="width:700px;height:300px;">
 <caption><center> **Figure 1**: EMOJISET - a classification problem with 5 classes. A few examples of sentences are given here. </center></caption>
 
 <p>Let’s load the dataset using the code below. We split the dataset between training (127 examples) and testing (56 examples).</p>
@@ -483,7 +483,7 @@
 <pre><code>I am proud of your achievements 😄</code></pre>
 <h3 id="1-2-Overview-of-the-Emojifier-V1"><a href="#1-2-Overview-of-the-Emojifier-V1" class="headerlink" title="1.2 - Overview of the Emojifier-V1"></a>1.2 - Overview of the Emojifier-V1</h3><p>In this part, you are going to implement a baseline model called “Emojifier-v1”.  </p>
 <center>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/image_1.png" style="width:900px;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/image_1.png" style="width:900px;height:300px;">
 <caption><center> **Figure 2**: Baseline model (Emojifier-V1).</center></caption>
 </center>
 
@@ -829,7 +829,7 @@ All          9    9   19   13    6   56</code></pre>
 
 <pre><code>Using TensorFlow backend.</code></pre>
 <h3 id="2-1-Overview-of-the-model"><a href="#2-1-Overview-of-the-model" class="headerlink" title="2.1 - Overview of the model"></a>2.1 - Overview of the model</h3><p>Here is the Emojifier-v2 you will implement:</p>
-<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br></p>
+<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br></p>
 <caption><center> **Figure 3**: Emojifier-V2. A 2-layer LSTM sequence classifier. </center></caption>
 
 
@@ -838,7 +838,7 @@ All          9    9   19   13    6   56</code></pre>
 <p>The common solution to this is to use padding. Specifically, set a maximum sequence length, and pad all sequences to the same length. For example, of the maximum sequence length is 20, we could pad every sentence with “0”s so that each input sentence is of length 20. Thus, a sentence “i love you” would be represented as $(e_{i}, e_{love}, e_{you}, \vec{0}, \vec{0}, \ldots, \vec{0})$. In this example, any sentences longer than 20 words would have to be truncated. One simple way to choose the maximum sequence length is to just pick the length of the longest sentence in the training set. </p>
 <h3 id="2-3-The-Embedding-layer"><a href="#2-3-The-Embedding-layer" class="headerlink" title="2.3 - The Embedding layer"></a>2.3 - The Embedding layer</h3><p>In Keras, the embedding matrix is represented as a “layer”, and maps positive integers (indices corresponding to words) into dense vectors of fixed size (the embedding vectors). It can be trained or initialized with a pretrained embedding. In this part, you will learn how to create an <a href="https://keras.io/layers/embeddings/" target="_blank" rel="noopener">Embedding()</a> layer in Keras, initialize it with the GloVe 50-dimensional vectors loaded earlier in the notebook. Because our training set is quite small, we will not update the word embeddings but will instead leave their values fixed. But in the code below, we’ll show you how Keras allows you to either train or leave fixed this layer.  </p>
 <p>The <code>Embedding()</code> layer takes an integer matrix of size (batch size, max input length) as input. This corresponds to sentences converted into lists of indices (integers), as shown in the figure below.</p>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/embedding1.png" style="width:700px;height:250px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/embedding1.png" style="width:700px;height:250px;">
 <caption><center> **Figure 4**: Embedding layer. This example shows the propagation of two examples through the embedding layer. Both have been zero-padded to a length of `max_len=5`. The final dimension of the representation is  `(2,max_len,50)` because the word embeddings we are using are 50 dimensional. </center></caption>
 
 <p>The largest integer (i.e. word index) in the input should be no larger than the vocabulary size. The layer outputs an array of shape (batch size, max input length, dimension of word vectors).</p>
@@ -902,7 +902,7 @@ X1_indices = [[ 155345.  225122.       0.       0.       0.]
 </table>
 
 <h2 id="2-3-Building-the-Emojifier-V2"><a href="#2-3-Building-the-Emojifier-V2" class="headerlink" title="2.3 Building the Emojifier-V2"></a>2.3 Building the Emojifier-V2</h2><p>Lets now build the Emojifier-V2 model. You will do so using the embedding layer you have built, and feed its output to an LSTM network. </p>
-<p><img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br></p>
+<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/emojifier-v2.png" style="width:700px;height:400px;"> <br></p>
 <caption><center> **Figure 3**: Emojifier-v2. A 2-layer LSTM sequence classifier. </center></caption>
 
 
@@ -1085,7 +1085,7 @@ Expected emoji:😄 prediction: What you did was awesome    😞</code></pre>
 
 <p>Congratulations on finishing this assignment and building an Emojifier. We hope you’re happy with what you’ve accomplished in this notebook! </p>
 <h1 id="😀😀😀😀😀😀"><a href="#😀😀😀😀😀😀" class="headerlink" title="😀😀😀😀😀😀"></a>😀😀😀😀😀😀</h1><h2 id="Acknowledgments"><a href="#Acknowledgments" class="headerlink" title="Acknowledgments"></a>Acknowledgments</h2><p>Thanks to Alison Darcy and the Woebot team for their advice on the creation of this assignment. Woebot is a chatbot friend that is ready to speak with you 24/7. As part of Woebot’s technology, it uses word embeddings to understand the emotions of what you say. You can play with it by going to <a href="http://woebot.io/" target="_blank" rel="noopener">http://woebot.io</a></p>
-<img src="http://qhimw3wxz.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/woebot.png" style="width:600px;height:300px;">
+<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Emojify/images/woebot.png" style="width:600px;height:300px;">
 
 
 
