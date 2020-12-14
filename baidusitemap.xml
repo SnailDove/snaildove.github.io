@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://snaildove.github.io/2019/05/14/HadoopYARNFederation/</loc>
+    <lastmod>2020-12-14</lastmod>
+  </url>
+  <url>
     <loc>https://snaildove.github.io/2018/12/28/foundations_of_spark_programming/</loc>
     <lastmod>2020-12-14</lastmod>
   </url>
@@ -254,10 +258,6 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2019/11/14/HyperLogLog/</loc>
-    <lastmod>2020-12-14</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/05/14/HadoopYARNFederation/</loc>
     <lastmod>2020-12-14</lastmod>
   </url>
   <url>

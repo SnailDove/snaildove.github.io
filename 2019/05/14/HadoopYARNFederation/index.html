@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
+<meta name="description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，YARN Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hadoop YARN Federation">
 <meta property="og:url" content="https://snaildove.github.io/2019/05/14/HadoopYARNFederation/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
+<meta property="og:description" content="Preface写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。 YARN Federation 思想源自：HDFS Federation，官方文档介绍，YARN Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。 PurposeYARN is known to scale to thousands of">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_architecture.png">
 <meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/amrmproxy_architecture.png">
 <meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/images/federation_sequence_diagram.png">
 <meta property="article:published_time" content="2019-05-13T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-14T10:31:32.794Z">
+<meta property="article:modified_time" content="2020-12-14T12:45:19.376Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Hadoop YARN">
 <meta property="article:tag" content="Distributed System">
@@ -451,7 +451,7 @@
 
       
         <h2 id="Preface"><a href="#Preface" class="headerlink" title="Preface"></a>Preface</h2><p>写这个阅读笔记之前，Hadoop YARN 的稳定发行版是：2.9.2 。</p>
-<p>YARN Federation 思想源自：HDFS Federation，官方文档<a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/Federation.html" target="_blank" rel="noopener">介绍</a>，HDFS Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。</p>
+<p>YARN Federation 思想源自：HDFS Federation，官方文档<a href="https://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-hdfs/Federation.html" target="_blank" rel="noopener">介绍</a>，YARN Federation 解决的是 NameNode 的横向扩展，HDFS HA 解决的是 NameNode 的单点问题。</p>
 <h2 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h2><p>YARN is known to scale to thousands of nodes. The scalability of <a href="http://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html" target="_blank" rel="noopener">YARN</a> is determined by the Resource Manager, and is proportional to number of nodes, active applications, active containers, and frequency of heartbeat (of both nodes and applications). Lowering heartbeat can provide scalability increase, but <u>is detrimental to</u> utilization (see old Hadoop 1.x experience). This document described a <u>federation-based</u> approach to scale a single YARN cluster to tens of thousands of nodes, by federating multiple YARN sub-clusters. The proposed approach is to divide a large (10-100k nodes) cluster into smaller units called sub-clusters, each with its own YARN RM and compute nodes. The federation system will <u>stitch</u> these sub-clusters <u>together</u> and make them appear as one large YARN cluster to the applications. The applications running in this federated environment will see a single massive YARN cluster and will be able to schedule tasks on any node of the federated cluster. <u>Under the hood</u>, the federation system will <u>negotiate with</u> sub-clusters resource managers and provide resources to the application. The goal is to allow an individual job to “span” sub-clusters <u>seamlessly</u>.</p>
 <p><strong>YARN 可以伸缩到数千个节点。 YARN 的可伸缩性由资源管理器决定，与节点数量、活动的应用程序、活动的容器和心跳频率（节点和应用程序）成正比。降低心跳可以提高可伸缩性，但<u>不利于</u>利用率（请参阅旧的Hadoop1.x体验）</strong>。本文描述了一种<u>基于联邦（federation）</u>的方法，通过将多个 YARN 子集群结成（federate）联邦，将单个 YARN 集群扩展到数万个节点。该方法将一个大的（10-100K节点）集群划分为更小的子集群单元，<strong>每个子集群都有自己的 YARN RM 和计算节点。联邦系统（federation system）将这些子集群结合（stitch）在一起，使它们成为应用程序中的一个大型 YARN 集群。在这个联合环境中运行的应用程序将看到一个单个巨大的 YARN 集群，并且能够在联邦集群的任何节点上调度任务。<u>在幕后</u>，联邦系统将与子集群资源管理器<u>协商</u>，并向应用程序提供资源。目标是允许单个作业<u>无缝地</u>“跨越”子集群</strong>。</p>
 <p>This design is structurally scalable, as we bound the number of nodes each RM is responsible for, and appropriate policies, will try to ensure that the majority of applications will reside within a single sub-cluster, thus the number of applications each RM will see is also <u>bounded</u>. This means we could almost <u>linearly scale</u>, by simply adding sub-clusters (as very little coordination is needed across them). This architecture can provide very tight enforcement of scheduling invariants within each sub-cluster (simply inherits from YARN), while continuous rebalancing across subcluster will enforce (less strictly) that these properties are also respected at a global level (e.g., if a sub-cluster loses a large number of nodes, we could re-map queues to other sub-clusters to ensure users running on the impaired sub-cluster are not unfairly affected).</p>
