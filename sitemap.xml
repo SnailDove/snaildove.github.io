@@ -1061,14 +1061,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/probability/</loc>
+    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
+    <loc>https://snaildove.github.io/tags/probability/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1138,14 +1138,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Python-Data-Science-Cookbook/</loc>
+    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/kaggle/</loc>
+    <loc>https://snaildove.github.io/tags/Python-Data-Science-Cookbook/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1159,7 +1159,7 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
+    <loc>https://snaildove.github.io/tags/kaggle/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1173,7 +1173,7 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/english/</loc>
+    <loc>https://snaildove.github.io/tags/java/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1187,14 +1187,7 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/java/</loc>
-    <lastmod>2020-12-14</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
+    <loc>https://snaildove.github.io/tags/english/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1209,6 +1202,13 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/XGBoost/</loc>
+    <lastmod>2020-12-14</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
     <lastmod>2020-12-14</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
