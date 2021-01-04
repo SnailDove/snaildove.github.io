@@ -97,18 +97,18 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThis is one of my personal programming assignments after studying the course nlp sequence models at the 3rd week and the copyright belongs to deeplearning.ai. Neural Machine TranslationWelcome to">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png">
 <meta property="article:published_time" content="2018-06-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-14T10:31:32.823Z">
+<meta property="article:modified_time" content="2021-01-04T09:54:29.436Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="nlp-sequence-models">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png">
+<meta name="twitter:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png">
 
 
 
@@ -539,12 +539,12 @@ Target after preprocessing (one-hot): [[ 0.  0.  1.  0.  0.  0.  0.  0.  0.  0. 
 <table>
 <tr>
 <td> 
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png"> <br>
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_model.png"> <br>
 </td> 
 </tr>
 <tr>
 <td> 
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png"> <br>
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/attn_mechanism.png"> <br>
 </td> 
 </tr>
 </table>
@@ -847,7 +847,7 @@ ________________________________________________________________________________
 
 &lt;keras.callbacks.History at 0x7f8fbd556f60&gt;</code></pre>
 <p>While training you can see the loss as well as the accuracy on each of the 10 positions of the output. The table below gives you an example of what the accuracies could be if the batch had 2 examples: </p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png" style="width:700;height:200px;"> <br></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/table.png" style="width:700;height:200px;"> <br></p>
 <caption><center>Thus, `dense_2_acc_8: 0.89` means that you are predicting the 7th character of the output correctly 89% of the time in the current batch of data. </center></caption>
 
 
@@ -876,7 +876,7 @@ output: 2001-03-01</code></pre>
 <p>You can also change these examples to test with your own examples. The next part will give you a better sense on what the attention mechanism is doing–i.e., what part of the input the network is paying attention to when generating a particular output character. </p>
 <h2 id="3-Visualizing-Attention-Optional-Ungraded"><a href="#3-Visualizing-Attention-Optional-Ungraded" class="headerlink" title="3 - Visualizing Attention (Optional / Ungraded)"></a>3 - Visualizing Attention (Optional / Ungraded)</h2><p>Since the problem has a fixed output length of 10, it is also possible to carry out this task using 10 different softmax units to generate the 10 characters of the output. But one advantage of the attention model is that each part of the output (say the month) knows it needs to depend only on a small part of the input (the characters in the input giving the month). We can  visualize what part of the output is looking at what part of the input.</p>
 <p>Consider the task of translating “Saturday 9 May 2018” to “2018-05-09”. If we visualize the computed $\alpha^{\langle t, t’ \rangle}$ we get this: </p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png" style="width:600;height:300px;"> <br></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/date_attention.png" style="width:600;height:300px;"> <br></p>
 <caption><center> **Figure 8**: Full Attention Map</center></caption>
 
 <p>Notice how the output ignores the “Saturday” portion of the input. None of the output timesteps are paying much attention to that portion of the input. We see also that 9 has been translated as 09 and May has been correctly translated into 05, with the output paying attention to the parts of the input it needs to to make the translation. The year mostly requires it to pay attention to the input’s “18” in order to generate “2018.” </p>
@@ -1033,7 +1033,7 @@ ________________________________________________________________________________
 
 
 <pre><code>&lt;matplotlib.figure.Figure at 0x7f8fcf43c748&gt;</code></pre>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png" alt="png"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week3/machine_translation/images/output_41_1.png" alt="png"></p>
 <p>On the generated plot you can observe the values of the attention weights for each character of the predicted output. Examine this plot and check that where the network is paying attention makes sense to you.</p>
 <p>In the date translation application, you will observe that most of the time attention helps predict the year, and hasn’t much impact on predicting the day/month.</p>
 <h3 id="Congratulations"><a href="#Congratulations" class="headerlink" title="Congratulations!"></a>Congratulations!</h3><p>You have come to the end of this assignment </p>
@@ -1134,8 +1134,8 @@ ________________________________________________________________________________
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/03/Emojify+-+v2/" rel="next" title="Emojify">
-                <i class="fa fa-chevron-left"></i> Emojify
+              <a href="/2018/06/03/Operations+on+word+vectors+-+v2/" rel="next" title="Operations on word vectors">
+                <i class="fa fa-chevron-left"></i> Operations on word vectors
               </a>
             
           </div>
@@ -1232,7 +1232,7 @@ ________________________________________________________________________________
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">142</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1266,7 +1266,7 @@ ________________________________________________________________________________
 				<h4 class="widget-title">Tag Cloud</h4>
 					<div id="myCanvasContainer" class="widget tagcloud">
 					<canvas width="250" height="250" id="resCanvas" style="width=100%">
-						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
 					</canvas>
 				</div>
 			</div>
@@ -1357,7 +1357,7 @@ ________________________________________________________________________________
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1371,7 +1371,7 @@ ________________________________________________________________________________
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">908.1k</span>
+    <span title="Site words total count">933.4k</span>
   
 </div>
 

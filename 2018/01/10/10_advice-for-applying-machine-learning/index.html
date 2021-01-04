@@ -97,21 +97,21 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="By now you have seen a lot of different learning algorithms. And if you’ve been following along these videos you should consider yourself an expert on many state-of-the-art machine learning techniques">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/2.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/3.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/4.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/5.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/6.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/7.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/8.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/9.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/2.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/3.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/4.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/5.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/6.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/7.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/8.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/9.png">
 <meta property="article:published_time" content="2018-01-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-14T10:31:32.572Z">
+<meta property="article:modified_time" content="2021-01-04T09:54:29.081Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png">
+<meta name="twitter:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png">
 
 
 
@@ -513,19 +513,19 @@
 <li>We need to distinguish whether <strong>bias</strong> or <strong>variance</strong> is the problem contributing to bad predictions.   </li>
 <li>High bias is underfitting and high variance is overfitting. Ideally, we need to find a golden mean between these two.   </li>
 </ul>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png" alt="img"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/1.png" alt="img"></p>
 <p>The training error will tend to <strong>decrease</strong> as we increase the degree d of the polynomial. </p>
 <p>At the same time, the cross validation error will tend to <strong>decrease</strong> as we increase d up to a point, and then it will <strong>increase</strong> as d is increased, forming a convex curve. </p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/2.png" alt="high_bias_and_high_variance"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/2.png" alt="high_bias_and_high_variance"></p>
 <p><strong>High bias (underfitting)</strong>: both $J_{train}(Θ)$ and $J_{CV}(Θ)$ will be high. Also, $J_{CV}(Θ)≈J_{train}(Θ)$. </p>
 <p><strong>High variance (overfitting)</strong>: $J_{train}(Θ)$ will be low and $J_{CV}(Θ)$ will be much greater than $J_{train}(Θ)$. </p>
 <p>The is summarized in the figure below: </p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/3.png" alt="img"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/3.png" alt="img"></p>
 <h2 id="Regularization-and-Bias-Variance"><a href="#Regularization-and-Bias-Variance" class="headerlink" title="Regularization and Bias/Variance"></a>Regularization and Bias/Variance</h2><p><strong>Note:</strong>    [The regularization term below and through out the video should be $\frac \lambda {2m} \sum _{j=1}^n \theta_j ^2$ and     <strong>NOT</strong>    $\frac \lambda {2m} \sum _{j=1}^m \theta_j ^2$]  </p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/4.png" alt="3_kinds_of_Linear_regression_with_regularization"></p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/5.png" alt="img"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/4.png" alt="3_kinds_of_Linear_regression_with_regularization"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/5.png" alt="img"></p>
 <p>In the figure above, we see that as $\lambda$ increases, our fit becomes more rigid. On the other hand, as $\lambda$ approaches 0, we tend to over overfit the data. So how do we choose our parameter $\lambda$ to get it ‘just right’ ? In order to choose the model and the regularization term $λ$ , we need to: </p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/6.png" alt="img"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/6.png" alt="img"></p>
 <ol>
 <li> Create a list of lambdas (i.e.$ λ∈{0,0.01,0.02,0.04,0.08,0.16,0.32,0.64,1.28,2.56,5.12,10.24}$);   </li>
 <li> Create a set of models with different degrees or any other variants.   </li>
@@ -541,12 +541,12 @@
 <p><strong>Low training set size</strong>  : causes $J_{train}(\Theta)$ to be low and $J_{CV}(\Theta)$ to be high. </p>
 <p><strong>Large training set size</strong> : causes both $J_{train}(\Theta)$ and $J_{CV}(\Theta)$ to be high with $J_{train}(\Theta)$≈$J_{CV}(\Theta)$.</p>
 <p>If a learning algorithm is suffering from <strong>high bias</strong>, getting more training data will not <strong>(by itself)</strong> help much.</p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/7.png" alt="high_bias_on_training_size"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/7.png" alt="high_bias_on_training_size"></p>
 <p><strong>Experiencing high variance:</strong></p>
 <p><strong>Low training set size</strong> : $J_{train}(\Theta)$ will be low and $J_{CV}(\Theta)$ will be high.</p>
 <p><strong>Large training set size</strong>: $J_{train}(\Theta)$ increases with training set size and $J_{CV} (\Theta$) continues to decrease without leveling off. Also, $J_{train}(\Theta)$ &lt; $J_{CV}(\Theta)$ but the difference between them remains significant.</p>
 <p>If a learning algorithm is suffering from <strong>high variance</strong>, getting more training data is likely to help.</p>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/8.png" alt="high_variance_on_training_size"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/8.png" alt="high_variance_on_training_size"></p>
 <h2 id="Deciding-What-to-Do-Next-Revisited"><a href="#Deciding-What-to-Do-Next-Revisited" class="headerlink" title="Deciding What to Do Next Revisited"></a>Deciding What to Do Next Revisited</h2><p> Our decision process can be broken down as follows: </p>
 <ul>
 <li>​         <strong>Getting more training examples:</strong> Fixes high variance   </li>
@@ -570,7 +570,7 @@
 <li>A neural network with fewer parameters is <strong>prone to underfitting</strong>. It is also <strong>computationally cheaper</strong>. </li>
 <li>A large neural network with more parameters is <strong>prone to overfitting</strong>. It is also <strong>computationally expensive</strong>. In this case you can use regularization (increase λ) to address the overfitting.   </li>
 </ul>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/9.png" alt="Neural_networks_and_overfitting"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/10/9.png" alt="Neural_networks_and_overfitting"></p>
 <p>Using a single hidden layer is a good starting default. You can train your neural network on a number of hidden layers using your cross validation set. You can then select the one that performs best. </p>
 <p><strong>Model Complexity Effects:</strong>    </p>
 <ul>
@@ -805,7 +805,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">142</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -839,7 +839,7 @@
 				<h4 class="widget-title">Tag Cloud</h4>
 					<div id="myCanvasContainer" class="widget tagcloud">
 					<canvas width="250" height="250" id="resCanvas" style="width=100%">
-						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
 					</canvas>
 				</div>
 			</div>
@@ -930,7 +930,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -944,7 +944,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">908.1k</span>
+    <span title="Site words total count">933.4k</span>
   
 </div>
 

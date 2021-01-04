@@ -97,21 +97,21 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThese are my personal programming assignments at the 1th week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Convolutional Neural Networks: S">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png">
 <meta property="og:image" content="https://snaildove.github.io/2018/05/01/Convolution+model+-+Step+by+Step+-+v2/images/Convolution_schematic.gif">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png">
-<meta property="og:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png">
+<meta property="og:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png">
 <meta property="article:published_time" content="2018-04-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2020-12-14T10:31:32.777Z">
+<meta property="article:modified_time" content="2021-01-04T09:54:29.373Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="convolutional-neural-networks">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
+<meta name="twitter:image" content="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
 
 
 
@@ -509,15 +509,15 @@
 </li>
 </ul>
 <p>This notebook will ask you to implement these functions from scratch in <code>numpy</code>. In the next notebook, you will use the TensorFlow equivalents of these functions to build the following model:</p>
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png" style="width:800px;height:300px;">
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png" style="width:800px;height:300px;">
 
 <p><strong>Note</strong> that for every forward function, there is its corresponding backward equivalent. Hence, at every step of your forward module you will store some parameters in a cache. These parameters are used to compute gradients during backpropagation. </p>
 <h2 id="3-Convolutional-Neural-Networks"><a href="#3-Convolutional-Neural-Networks" class="headerlink" title="3 - Convolutional Neural Networks"></a>3 - Convolutional Neural Networks</h2><p>Although programming frameworks make convolutions easy to use, they remain one of the hardest concepts to understand in Deep Learning. A convolution layer transforms an input volume into an output volume of different size, as shown below. </p>
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png" style="width:350px;height:200px;">
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png" style="width:350px;height:200px;">
 
 <p>In this part, you will build every step of the convolution layer. You will first implement two helper functions: one for zero padding and the other for computing the convolution function itself. </p>
 <h3 id="3-1-Zero-Padding"><a href="#3-1-Zero-Padding" class="headerlink" title="3.1 - Zero-Padding"></a>3.1 - Zero-Padding</h3><p>Zero-padding adds zeros around the border of an image:</p>
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png" style="width:600px;height:400px;">
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png" style="width:600px;height:400px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **Zero-Padding**<br> Image (3 channels, RGB) with a padding of 2. </center></caption>
 
 <p>The main benefits of padding are the following:</p>
@@ -554,7 +554,7 @@ x_pad[1,1] = [[0. 0.]
 
 
 &lt;matplotlib.image.AxesImage at 0x2917ff759b0&gt;</code></pre>
-<p><img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png" alt="png"></p>
+<p><img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png" alt="png"></p>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -633,7 +633,7 @@ x_pad[1,1] = [[0. 0.]
 
 <h3 id="3-3-Convolutional-Neural-Networks-Forward-pass"><a href="#3-3-Convolutional-Neural-Networks-Forward-pass" class="headerlink" title="3.3 - Convolutional Neural Networks - Forward pass"></a>3.3 - Convolutional Neural Networks - Forward pass</h3><p>In the forward pass, you will take many filters and convolve them on the input. Each ‘convolution’ gives you a 2D matrix output. You will then stack these outputs to get a 3D volume: </p>
 <center>
-<video width="620" height="440" src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_kiank.mp4" type="video/mp4" controls>
+<video width="620" height="440" src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_kiank.mp4" type="video/mp4" controls>
 </video>
 </center>
 
@@ -644,7 +644,7 @@ x_pad[1,1] = [[0. 0.]
 This will be useful when you will define <code>a_slice_prev</code> below, using the <code>start/end</code> indexes you will define.</li>
 <li>To define a_slice you will need to first define its corners <code>vert_start</code>, <code>vert_end</code>, <code>horiz_start</code> and <code>horiz_end</code>. This figure may be helpful for you to find how each of the corner can be defined using h, w, f and s in the code below.</li>
 </ol>
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png" style="width:400px;height:300px;">
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png" style="width:400px;height:300px;">
 <caption><center> <u> <font color='purple'> **Figure 3** </u><font color='purple'>  : **Definition of a slice using vertical and horizontal start/end (with a 2x2 filter)** <br> This figure shows only a single channel.  </center></caption>
 
 
@@ -703,11 +703,11 @@ cache_conv[0][1][2][3] = [-0.20075807  0.18656139  0.41005165]</code></pre>
 </ul>
 <table>
 <td>
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png" style="width:500px;height:300px;">
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png" style="width:500px;height:300px;">
 <td>
 
 <td>
-<img src="http://qkx3odwah.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png" style="width:500px;height:300px;">
+<img src="http://qmem98ip3.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png" style="width:500px;height:300px;">
 <td>
 </table>
 
@@ -1143,7 +1143,7 @@ dA_prev[1,1] =  [[ 0.08485462  0.2787552 ]
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">141</span>
+                  <span class="site-state-item-count">142</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -1177,7 +1177,7 @@ dA_prev[1,1] =  [[ 0.08485462  0.2787552 ]
 				<h4 class="widget-title">Tag Cloud</h4>
 					<div id="myCanvasContainer" class="widget tagcloud">
 					<canvas width="250" height="250" id="resCanvas" style="width=100%">
-						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">30</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
+						<ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Basic-Algorithm/" rel="tag">Basic Algorithm</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Big-Data/" rel="tag">Big Data</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Calculus-and-Differential/" rel="tag">Calculus and Differential</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Distributed-System/" rel="tag">Distributed System</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Estimate/" rel="tag">Estimate</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Hadoop-YARN/" rel="tag">Hadoop YARN</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Improving-Deep-Neural-Networks/" rel="tag">Improving Deep Neural Networks</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Information-Theory/" rel="tag">Information Theory</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Latex/" rel="tag">Latex</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a><span class="tag-list-count">27</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-by-Andrew-NG/" rel="tag">Machine Learning by Andrew NG</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning-feature-engineering/" rel="tag">Machine Learning.feature engineering</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/NLP/" rel="tag">NLP</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Python-Data-Science-Cookbook/" rel="tag">Python Data Science Cookbook</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Redis/" rel="tag">Redis</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Spark/" rel="tag">Spark</a><span class="tag-list-count">31</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Structuring-Machine-Learning-Projects/" rel="tag">Structuring Machine Learning Projects</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/XGBoost/" rel="tag">XGBoost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/convolutional-neural-networks/" rel="tag">convolutional-neural-networks</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/deep-learning/" rel="tag">deep learning</a><span class="tag-list-count">41</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-compute/" rel="tag">distributed compute</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/distributed-system/" rel="tag">distributed-system</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/english/" rel="tag">english</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/google/" rel="tag">google</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/" rel="tag">hexo</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/java/" rel="tag">java</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kaggle/" rel="tag">kaggle</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linear-algebra/" rel="tag">linear_algebra</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/linux/" rel="tag">linux</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/neural-networks-deep-learning/" rel="tag">neural-networks-deep-learning</a><span class="tag-list-count">8</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nlp-sequence-models/" rel="tag">nlp-sequence-models</a><span class="tag-list-count">11</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/papers/" rel="tag">papers</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/probability/" rel="tag">probability</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/" rel="tag">统计学习方法</a><span class="tag-list-count">4</span></li></ul>
 					</canvas>
 				</div>
 			</div>
@@ -1268,7 +1268,7 @@ dA_prev[1,1] =  [[ 0.08485462  0.2787552 ]
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -1282,7 +1282,7 @@ dA_prev[1,1] =  [[ 0.08485462  0.2787552 ]
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">908.1k</span>
+    <span title="Site words total count">933.4k</span>
   
 </div>
 
