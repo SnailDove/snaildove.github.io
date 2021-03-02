@@ -97,19 +97,19 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="决策树学习决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。 特征选择为了解释清楚各个数学概念，引入例子 表5.1  贷款申请样本数据表（来自李航《统计方法》）  ​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷款">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/5.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/6.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/7.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/5.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/6.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/7.png">
 <meta property="article:published_time" content="2015-05-01T12:16:00.000Z">
-<meta property="article:modified_time" content="2021-02-02T02:17:17.212Z">
+<meta property="article:modified_time" content="2021-03-02T02:49:52.109Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png">
+<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png">
 
 
 
@@ -456,7 +456,7 @@
         <h2 id="决策树学习"><a href="#决策树学习" class="headerlink" title="决策树学习"></a>决策树学习</h2><p>决策树学习通常包含三个方面：特征选择、决策树生成和决策树剪枝。决策树学习思想主要来源于：Quinlan在1986年提出的ID算法、在1993年提出的C4.5算法和Breiman等人在1984年提出的CART算法。</p>
 <h2 id="特征选择"><a href="#特征选择" class="headerlink" title="特征选择"></a>特征选择</h2><p>为了解释清楚各个数学概念，引入例子</p>
 <p>表5.1  贷款申请样本数据表（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png" alt="img"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/1.png" alt="img"></p>
 <p>​       上表有15个样本数据组成的贷款申请训练数据D。数据包括贷款申请人的4个特征：年龄、有工作与否、有房子与否、信贷情况，其中最后一列类别的意思是：是否同意发放贷款，这个就是决策树最后要给出的结论，即目标属性——是否发放贷款，即决策树最末端的叶子节点只分成2类：同意发放贷款与不同意发放贷款。</p>
 <h3 id="信息熵（entropy）"><a href="#信息熵（entropy）" class="headerlink" title="信息熵（entropy）"></a>信息熵（entropy）</h3><p>​    引入概念，对于第一个要用到的概念：信息熵在另外一篇博客——<a href="http://2.mybrtzl.sinaapp.com/%e8%bd%ac%e6%95%b0%e6%8d%ae%e5%8e%8b%e7%bc%a9%e4%b8%8e%e4%bf%a1%e6%81%af%e7%86%b5/" target="_blank" rel="noopener">数据压缩与信息熵</a>中详细解释了信息熵为什么度量的是不确定性，下文也不再赘述，直接引用。</p>
 <p>​     设D为按照目标类别（或称目标属性）对训练数据（即样本数据）进行的划分，则D的信息熵（information entropy）表示为：<br>$$info(D)=-\sum\limits_{i=1}^{m}p_ilog_2(p_i)$$</p>
@@ -518,22 +518,22 @@
 <li><h3 id="信息增益算法"><a href="#信息增益算法" class="headerlink" title="信息增益算法"></a>信息增益算法</h3><p>  （来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 </li>
 </ul>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png" alt="img"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/2.png" alt="img"></p>
 <ul>
 <li><h3 id="ID3算法-1"><a href="#ID3算法-1" class="headerlink" title="ID3算法"></a>ID3算法</h3><p>  （来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 </li>
 </ul>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png" alt="img"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/3.png" alt="img"></p>
 <ul>
 <li><h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><p>  （来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
 </li>
 </ul>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png" alt="img"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/4.png" alt="img"></p>
 <h2 id="C4-5生成算法"><a href="#C4-5生成算法" class="headerlink" title="C4.5生成算法"></a>C4.5生成算法</h2><p>（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/5.png" alt="img"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/5.png" alt="img"></p>
 <h2 id="CART生成算法"><a href="#CART生成算法" class="headerlink" title="CART生成算法"></a>CART生成算法</h2><p>（来自<a href="https://book.douban.com/subject/10590856/" target="_blank" rel="noopener">李航《统计方法》</a>）</p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/6.png" alt="img"></p>
-<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/7.png" alt="img"></h3>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/6.png" alt="img"></p>
+<h3 id="示例-1"><a href="#示例-1" class="headerlink" title="示例"></a>示例</h3><h3 id=""><a href="#" class="headerlink" title=""></a><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/TongJiXueXiFangfa/decision_tree/7.png" alt="img"></h3>
       
     </div>
     

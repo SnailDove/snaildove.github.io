@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThese are my personal programming assignments at the 3rd week after studying the course Improving Deep Neural Networks: Hyperparameter tuning, Regularization and Optimization and the copyright bel">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/onehot.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/hands.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/onehot.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/hands.png">
 <meta property="article:published_time" content="2018-03-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-02T02:17:17.156Z">
+<meta property="article:modified_time" content="2021-03-02T02:49:52.080Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Improving Deep Neural Networks">
 <meta property="article:tag" content="deep learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/onehot.png">
+<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/onehot.png">
 
 
 
@@ -602,7 +602,7 @@ sigmoid(12) = 0.999994</code></pre>
 </table>
 
 <h3 id="1-4-Using-One-Hot-encodings"><a href="#1-4-Using-One-Hot-encodings" class="headerlink" title="1.4 - Using One Hot encodings"></a>1.4 - Using One Hot encodings</h3><p>Many times in deep learning you will have a y vector with numbers ranging from 0 to C-1, where C is the number of classes. If C is for example 4, then you might have the following y vector which you will need to convert as follows:</p>
-<img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/onehot.png" style="width:600px;height:150px;">
+<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/onehot.png" style="width:600px;height:150px;">
 
 <p>This is called a “one hot” encoding, because in the converted representation exactly one element of each column is “hot” (meaning set to 1). To do this conversion in numpy, you might have to write a few lines of code. In tensorflow, you can use one line of code: </p>
 <ul>
@@ -671,7 +671,7 @@ sigmoid(12) = 0.999994</code></pre>
 <li><strong>Test set</strong>: 120 pictures (64 by 64 pixels) of signs representing numbers from 0 to 5 (20 pictures per number).</li>
 </ul>
 <p>Note that this is a subset of the SIGNS dataset. The complete dataset contains many more signs.</p>
-<p>Here are examples for each number, and how an explanation of how we represent the labels. These are the original pictures, before we lowered the image resolutoion to 64 by 64 pixels.<br>&lt;img src=”<img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/hands.png" style="width:800px;height:350px;"><caption><center> <u><font color='purple'> <strong>Figure 1</strong></u><font color='purple'>: SIGNS dataset <br> <font color='black'> </center></p>
+<p>Here are examples for each number, and how an explanation of how we represent the labels. These are the original pictures, before we lowered the image resolutoion to 64 by 64 pixels.<br>&lt;img src=”<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/images/hands.png" style="width:800px;height:350px;"><caption><center> <u><font color='purple'> <strong>Figure 1</strong></u><font color='purple'>: SIGNS dataset <br> <font color='black'> </center></p>
 <p>Run the following code to load the dataset.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Loading the dataset</span></span><br><span class="line">X_train_orig, Y_train_orig, X_test_orig, Y_test_orig, classes = load_dataset()</span><br></pre></td></tr></table></figure>
 
@@ -679,7 +679,7 @@ sigmoid(12) = 0.999994</code></pre>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Example of a picture</span></span><br><span class="line">index = <span class="number">0</span></span><br><span class="line">plt.imshow(X_train_orig[index])</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"y = "</span> + str(np.squeeze(Y_train_orig[:, index])))</span><br></pre></td></tr></table></figure>
 
 <pre><code>y = 5</code></pre>
-<p>![png](&lt;img src=”<a href="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_35_1.png" target="_blank" rel="noopener">http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_35_1.png</a>)</p>
+<p>![png](&lt;img src=”<a href="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_35_1.png" target="_blank" rel="noopener">http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_35_1.png</a>)</p>
 <p>As usual you flatten the image dataset, then normalize it by dividing by 255. On top of that, you will convert each label to a one-hot vector as shown in Figure 1. Run the cell below to do so.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Flatten the training and test images</span></span><br><span class="line">X_train_flatten = X_train_orig.reshape(X_train_orig.shape[<span class="number">0</span>], <span class="number">-1</span>).T</span><br><span class="line">X_test_flatten = X_test_orig.reshape(X_test_orig.shape[<span class="number">0</span>], <span class="number">-1</span>).T</span><br><span class="line"><span class="comment"># Normalize image vectors</span></span><br><span class="line">X_train = X_train_flatten/<span class="number">255.</span></span><br><span class="line">X_test = X_test_flatten/<span class="number">255.</span></span><br><span class="line"><span class="comment"># Convert training and test labels to one hot matrices</span></span><br><span class="line">Y_train = convert_to_one_hot(Y_train_orig, <span class="number">6</span>)</span><br><span class="line">Y_test = convert_to_one_hot(Y_test_orig, <span class="number">6</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> (<span class="string">"number of training examples = "</span> + str(X_train.shape[<span class="number">1</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"number of test examples = "</span> + str(X_test.shape[<span class="number">1</span>]))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"X_train shape: "</span> + str(X_train.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Y_train shape: "</span> + str(Y_train.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"X_test shape: "</span> + str(X_test.shape))</span><br><span class="line"><span class="keyword">print</span> (<span class="string">"Y_test shape: "</span> + str(Y_test.shape))</span><br></pre></td></tr></table></figure>
 
@@ -858,7 +858,7 @@ Cost after epoch 1100: 0.107580
 Cost after epoch 1200: 0.086270
 Cost after epoch 1300: 0.059371
 Cost after epoch 1400: 0.052228</code></pre>
-<p>![png](&lt;img src=”<a href="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_62_1.png" target="_blank" rel="noopener">http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_62_1.png</a>)</p>
+<p>![png](&lt;img src=”<a href="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_62_1.png" target="_blank" rel="noopener">http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_62_1.png</a>)</p>
 <pre><code>Parameters have been trained!
 Train Accuracy: 0.999074
 Test Accuracy: 0.716667</code></pre>
@@ -893,7 +893,7 @@ Test Accuracy: 0.716667</code></pre>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> scipy</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> ndimage</span><br><span class="line"></span><br><span class="line"><span class="comment">## START CODE HERE ## (PUT YOUR IMAGE NAME) </span></span><br><span class="line">my_image = <span class="string">"my5.jpg"</span></span><br><span class="line"><span class="comment">## END CODE HERE ##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># We preprocess your image to fit your algorithm.</span></span><br><span class="line">fname = <span class="string">"images/"</span> + my_image</span><br><span class="line">image = np.array(ndimage.imread(fname, flatten=<span class="literal">False</span>))</span><br><span class="line">my_image = scipy.misc.imresize(image, size=(<span class="number">64</span>,<span class="number">64</span>)).reshape((<span class="number">1</span>, <span class="number">64</span>*<span class="number">64</span>*<span class="number">3</span>)).T</span><br><span class="line">my_image_prediction = predict(my_image, parameters)</span><br><span class="line"></span><br><span class="line">plt.imshow(image)</span><br><span class="line">print(<span class="string">"Your algorithm predicts: y = "</span> + str(np.squeeze(my_image_prediction)))</span><br></pre></td></tr></table></figure>
 
 <pre><code>Your algorithm predicts: y = 0</code></pre>
-<p>![png](&lt;img src=”<a href="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_65_1.png" target="_blank" rel="noopener">http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_65_1.png</a>)</p>
+<p>![png](&lt;img src=”<a href="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_65_1.png" target="_blank" rel="noopener">http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/deep-neural-network/week3/output_65_1.png</a>)</p>
 <p>You indeed deserved a “thumbs-up” although as you can see the algorithm seems to classify it incorrectly. The reason is that the training set doesn’t contain any “thumbs-up”, so the model doesn’t know how to deal with it! We call that a “mismatched data distribution” and it is one of the various of the next course on “Structuring Machine Learning Projects”.</p>
 <font color='blue'>
 **What you should remember**:

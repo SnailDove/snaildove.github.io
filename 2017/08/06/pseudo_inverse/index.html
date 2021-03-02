@@ -97,23 +97,23 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="笔记源自：清华大学公开课：线性代数2——第六讲：伪逆 引言矩阵的奇异值分解可以理解成从$R^n$到$R^m$的线性变换在不同基底下矩阵表示，接下来利用矩阵的奇异值分解来定义矩阵的伪逆，然后再利用矩阵的伪逆来讨论线性方程组Ax＝b无解时的最小二乘解，线性代数的中心问题是求解线性方程组$Ax&#x3D;b$，最简单的情况是如果系数矩阵A是n阶的可逆矩阵，那么这时对于任意的n维向量$b$，线性方程组$Ax&#x3D;b$有">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/1.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/2.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/3.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/4.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/5.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/6.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/7.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/8.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/9.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/10.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/11.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/1.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/2.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/3.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/4.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/5.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/6.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/7.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/8.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/9.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/10.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/11.png">
 <meta property="article:published_time" content="2017-08-06T12:30:00.000Z">
-<meta property="article:modified_time" content="2021-02-02T02:17:17.333Z">
+<meta property="article:modified_time" content="2021-03-02T02:49:52.233Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="linear_algebra">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/1.png">
+<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/1.png">
 
 
 
@@ -458,8 +458,8 @@
 
       
         <p>笔记源自：清华大学公开课：线性代数2——第六讲：伪逆</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/1.png" alt="introductory_content_of_pseudo-inverse"><br>矩阵的奇异值分解可以理解成从$R^n$到$R^m$的线性变换在不同基底下矩阵表示，接下来利用矩阵的奇异值分解<br>来定义矩阵的伪逆，然后再利用矩阵的伪逆来讨论线性方程组Ax＝b无解时的最小二乘解，线性代数的中心问题是<br>求解线性方程组$Ax=b$，最简单的情况是如果系数矩阵A是n阶的可逆矩阵，那么这时对于任意的n维向量$b$，线性方程组$Ax=b$有唯一的解，这个解是$A^{-1} b$，那这就启发去对于不可逆的矩阵或者是对于$A_{m\times n}$的矩阵，我们来定义它的一个逆矩阵，那么这时候逆矩阵我们叫做<strong>伪逆</strong>或者是叫<strong>广义逆</strong> 。</p>
-<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>伪逆的定义来自于<a href="/2017/08/03/singular_values_decomposition/">奇异值分解</a> (需先了解奇异值分解的内容)：<br><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/2.png" alt="definition_of_pseudo_inverse"><br>(1)若$A$可逆，即$r=m=n$，则：$A^{-1}=(U\Sigma V^T)^{-1}=V\Sigma^{-1}U^T=A^+$，注意：由奇异值分解公式$AV=U\Sigma,\ (v_1,…,v_r)\in C(A^T),\ (v_{r+1},…,v_n)\in N(A),\ (u_1,…,u_r)\in C(A),\ (u_{r+1},…,u_m)\in N(A^T)$ 得：$AV=U\Sigma: C(A^T)\rightarrow C(A)$，同理可得：$A^+U^T=V\Sigma^{+}:C(A)\rightarrow C(A^T)$</p>
+<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/1.png" alt="introductory_content_of_pseudo-inverse"><br>矩阵的奇异值分解可以理解成从$R^n$到$R^m$的线性变换在不同基底下矩阵表示，接下来利用矩阵的奇异值分解<br>来定义矩阵的伪逆，然后再利用矩阵的伪逆来讨论线性方程组Ax＝b无解时的最小二乘解，线性代数的中心问题是<br>求解线性方程组$Ax=b$，最简单的情况是如果系数矩阵A是n阶的可逆矩阵，那么这时对于任意的n维向量$b$，线性方程组$Ax=b$有唯一的解，这个解是$A^{-1} b$，那这就启发去对于不可逆的矩阵或者是对于$A_{m\times n}$的矩阵，我们来定义它的一个逆矩阵，那么这时候逆矩阵我们叫做<strong>伪逆</strong>或者是叫<strong>广义逆</strong> 。</p>
+<h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>伪逆的定义来自于<a href="/2017/08/03/singular_values_decomposition/">奇异值分解</a> (需先了解奇异值分解的内容)：<br><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/2.png" alt="definition_of_pseudo_inverse"><br>(1)若$A$可逆，即$r=m=n$，则：$A^{-1}=(U\Sigma V^T)^{-1}=V\Sigma^{-1}U^T=A^+$，注意：由奇异值分解公式$AV=U\Sigma,\ (v_1,…,v_r)\in C(A^T),\ (v_{r+1},…,v_n)\in N(A),\ (u_1,…,u_r)\in C(A),\ (u_{r+1},…,u_m)\in N(A^T)$ 得：$AV=U\Sigma: C(A^T)\rightarrow C(A)$，同理可得：$A^+U^T=V\Sigma^{+}:C(A)\rightarrow C(A^T)$</p>
 <p>(2)$AA^+=(U\Sigma_{m\times n} V^T)(V\Sigma^+<em>{n\times m}U^T)=U\Sigma</em>{m\times n}\Sigma^+_{n\times m}U^T=U\begin{pmatrix}I_r&amp;0\0&amp;0\end{pmatrix}_{m\times m}U^T$ 得出以下3个性质：</p>
 <ul>
 <li>  对称性：$(AA^+)^T=AA^+$ </li>
@@ -481,21 +481,21 @@
 </ul>
 </li>
 </ul>
-<h2 id="为什么称为伪逆、左逆、右逆"><a href="#为什么称为伪逆、左逆、右逆" class="headerlink" title="为什么称为伪逆、左逆、右逆"></a>为什么称为伪逆、左逆、右逆</h2><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/3.png" alt="why_call_it_as_pseudo-inverse"> </p>
-<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/4.png" alt="example_of_pseudo-inverse"><br><strong>注：$u_1, u_2,u_3$ 是$R^m$的一组基底那么它是${Av_1\over \sigma_1}$，那么很容易计算出来，是${1\over\sqrt{2}}\begin{pmatrix}1\1\0\end{pmatrix}$那$u_2$和$u_3$ 分别是0所对应的特征向量，$u_2$和$u_3$可以看成是三维空间里头，$u_1$的正交补所给出来的单位正交的向量</strong>。</p>
-<h2 id="特例"><a href="#特例" class="headerlink" title="特例"></a>特例</h2><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/5.png" alt="a_special_case_of_pseudo_inverse">  </p>
-<h2 id="Jordan标准形的伪逆"><a href="#Jordan标准形的伪逆" class="headerlink" title="Jordan标准形的伪逆"></a>Jordan标准形的伪逆</h2><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/6.png" alt="pseudo-inverse_of_normal_Jordan_form"><br><strong>推导结论：$J_n^+=J_n^T$，Jordan标准形的伪逆是它自己的转置。</strong> </p>
-<h2 id="Moore-Penrose伪逆"><a href="#Moore-Penrose伪逆" class="headerlink" title="Moore-Penrose伪逆"></a>Moore-Penrose伪逆</h2><h3 id="E-H-Moore伪逆"><a href="#E-H-Moore伪逆" class="headerlink" title="E.H.Moore伪逆"></a>E.H.Moore伪逆</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/7.png" alt="pseudo-inverse_of_E.H.Moore"> </p>
-<h3 id="Penrose伪逆"><a href="#Penrose伪逆" class="headerlink" title="Penrose伪逆"></a>Penrose伪逆</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/8.png" alt="pseudo-inverse_of_Penrose"><br><strong>注：</strong> </p>
+<h2 id="为什么称为伪逆、左逆、右逆"><a href="#为什么称为伪逆、左逆、右逆" class="headerlink" title="为什么称为伪逆、左逆、右逆"></a>为什么称为伪逆、左逆、右逆</h2><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/3.png" alt="why_call_it_as_pseudo-inverse"> </p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/4.png" alt="example_of_pseudo-inverse"><br><strong>注：$u_1, u_2,u_3$ 是$R^m$的一组基底那么它是${Av_1\over \sigma_1}$，那么很容易计算出来，是${1\over\sqrt{2}}\begin{pmatrix}1\1\0\end{pmatrix}$那$u_2$和$u_3$ 分别是0所对应的特征向量，$u_2$和$u_3$可以看成是三维空间里头，$u_1$的正交补所给出来的单位正交的向量</strong>。</p>
+<h2 id="特例"><a href="#特例" class="headerlink" title="特例"></a>特例</h2><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/5.png" alt="a_special_case_of_pseudo_inverse">  </p>
+<h2 id="Jordan标准形的伪逆"><a href="#Jordan标准形的伪逆" class="headerlink" title="Jordan标准形的伪逆"></a>Jordan标准形的伪逆</h2><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/6.png" alt="pseudo-inverse_of_normal_Jordan_form"><br><strong>推导结论：$J_n^+=J_n^T$，Jordan标准形的伪逆是它自己的转置。</strong> </p>
+<h2 id="Moore-Penrose伪逆"><a href="#Moore-Penrose伪逆" class="headerlink" title="Moore-Penrose伪逆"></a>Moore-Penrose伪逆</h2><h3 id="E-H-Moore伪逆"><a href="#E-H-Moore伪逆" class="headerlink" title="E.H.Moore伪逆"></a>E.H.Moore伪逆</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/7.png" alt="pseudo-inverse_of_E.H.Moore"> </p>
+<h3 id="Penrose伪逆"><a href="#Penrose伪逆" class="headerlink" title="Penrose伪逆"></a>Penrose伪逆</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/8.png" alt="pseudo-inverse_of_Penrose"><br><strong>注：</strong> </p>
 <ol>
 <li> <strong>A可以是mxn的复数矩阵，这样的话(3)(4)里面就变成共轭转置。</strong></li>
 <li> <strong>Penrose伪逆与E.H.Moore伪逆定义是等价的。</strong></li>
 </ol>
 <p>$(1)AXA =A \Rightarrow AXAX=AX\Rightarrow (AX)^N=AX\Rightarrow AX$ 是幂等矩阵，投影矩阵<br>$(2)XAX=X\Rightarrow XAXA=XA\Rightarrow (XA)^N=XA\Rightarrow XA$ 是幂等矩阵，投影矩阵<br>$(3)(AX)^T=AX\Rightarrow AX$ 是对称矩阵<br>$(4)(XA)^T=XA\Rightarrow XA$ 是对称矩阵</p>
 <p>通过奇异值分解得到的伪逆矩阵$A^+$，$AA^+: R^m \rightarrow C(A)$，$A^+A:R^n\rightarrow C(A^T)=C(A^+)$，前文已经证明两者都是对称的，所以符合Penrose对伪逆矩阵的定义。对于伪逆唯一性的证明上文图片太小可以放大来看。</p>
-<h2 id="伪逆的应用之最小二乘法"><a href="#伪逆的应用之最小二乘法" class="headerlink" title="伪逆的应用之最小二乘法"></a>伪逆的应用之最小二乘法</h2><h3 id="引言-1"><a href="#引言-1" class="headerlink" title="引言"></a>引言</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/9.png" alt="introductory_content_of_least_squares_approximations_by_pseudo-inverse"><br><strong>但是我们需要求$e$ 即误差最小的解！</strong>但是这时候$A_{m\times n}$不是列满秩不存在逆矩阵，于是自然地想到利用伪逆求解。</p>
-<h3 id="伪逆求解正规方程——最佳最小二乘解"><a href="#伪逆求解正规方程——最佳最小二乘解" class="headerlink" title="伪逆求解正规方程——最佳最小二乘解"></a>伪逆求解正规方程——最佳最小二乘解</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/10.png" alt="the_best_solution_of_least_squares_approximations_by_pseudo-inverse"><br><strong>注：由于$A^+$ 来自于：$A^+U^T=V\Sigma^{+},\ (v_1,…,v_r)\in C(A^T),\ (v_{r+1},…,v_n)\in N(A),\ (u_1,…,u_r)\in C(A),\ (u_{r+1},…,u_m)\in N(A^T),\\Sigma^+=\begin{pmatrix}{1\over \sigma_1}\&amp;{1\over \sigma_2}\&amp;&amp;.\&amp;&amp;&amp;.\&amp;&amp;&amp;&amp;{1\over \sigma_r}\&amp;&amp;&amp;&amp;&amp;0\end{pmatrix}_{n\times m}\Rightarrow A^+: C(A)\rightarrow C(A^T)$，另外由于 $A^TAx=0, Ax=0$ 同解所以零空间相同。</strong></p>
-<h3 id="最佳最小二乘解的四个基本子空间"><a href="#最佳最小二乘解的四个基本子空间" class="headerlink" title="最佳最小二乘解的四个基本子空间"></a>最佳最小二乘解的四个基本子空间</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/11.png" alt="4_subspaces_of_best_solution_of_least_squares_approximations"> </p>
+<h2 id="伪逆的应用之最小二乘法"><a href="#伪逆的应用之最小二乘法" class="headerlink" title="伪逆的应用之最小二乘法"></a>伪逆的应用之最小二乘法</h2><h3 id="引言-1"><a href="#引言-1" class="headerlink" title="引言"></a>引言</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/9.png" alt="introductory_content_of_least_squares_approximations_by_pseudo-inverse"><br><strong>但是我们需要求$e$ 即误差最小的解！</strong>但是这时候$A_{m\times n}$不是列满秩不存在逆矩阵，于是自然地想到利用伪逆求解。</p>
+<h3 id="伪逆求解正规方程——最佳最小二乘解"><a href="#伪逆求解正规方程——最佳最小二乘解" class="headerlink" title="伪逆求解正规方程——最佳最小二乘解"></a>伪逆求解正规方程——最佳最小二乘解</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/10.png" alt="the_best_solution_of_least_squares_approximations_by_pseudo-inverse"><br><strong>注：由于$A^+$ 来自于：$A^+U^T=V\Sigma^{+},\ (v_1,…,v_r)\in C(A^T),\ (v_{r+1},…,v_n)\in N(A),\ (u_1,…,u_r)\in C(A),\ (u_{r+1},…,u_m)\in N(A^T),\\Sigma^+=\begin{pmatrix}{1\over \sigma_1}\&amp;{1\over \sigma_2}\&amp;&amp;.\&amp;&amp;&amp;.\&amp;&amp;&amp;&amp;{1\over \sigma_r}\&amp;&amp;&amp;&amp;&amp;0\end{pmatrix}_{n\times m}\Rightarrow A^+: C(A)\rightarrow C(A^T)$，另外由于 $A^TAx=0, Ax=0$ 同解所以零空间相同。</strong></p>
+<h3 id="最佳最小二乘解的四个基本子空间"><a href="#最佳最小二乘解的四个基本子空间" class="headerlink" title="最佳最小二乘解的四个基本子空间"></a>最佳最小二乘解的四个基本子空间</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/tsinghua_linear_algebra/2-6/11.png" alt="4_subspaces_of_best_solution_of_least_squares_approximations"> </p>
 
       
     </div>

@@ -97,34 +97,34 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="前言 第一部分主要是论文的翻译与旁注：按照论文原文结构一步步翻译 第二部分主要是BigTable思想总结：BigTable论文相比GFS、MapReduce两篇复杂，行文并不流畅（可能本渣渣太弱），文中甚至没有总体结构说明和一些难点解释（例如：BigTable中出现的且在后来众多优秀的开源组件（例如：LevelDB, RocksDB）中常用的SSTable文件索引格式：LSM 都没有详细说明），因">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577620233604.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577705846192.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577707829591.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708726543.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708648568.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-15.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-06.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-55.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-47.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-38.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-31.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-25.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-18.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-10.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-59.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-48.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-18.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-10.png">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/bigtable_arch.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577620233604.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577705846192.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577707829591.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708726543.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708648568.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-15.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-06.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-55.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-47.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-38.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-31.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-25.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-18.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-10.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-59.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-48.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-18.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-10.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/bigtable_arch.png">
 <meta property="article:published_time" content="2019-12-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-02-02T02:17:17.136Z">
+<meta property="article:modified_time" content="2021-03-02T02:49:52.069Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="distributed system">
 <meta property="article:tag" content="papers">
 <meta property="article:tag" content="google">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1.png">
+<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1.png">
 
 
 
@@ -489,7 +489,7 @@
 <p>(row:string, column string, time:int64)→string</p>
 <p>We settled on this data model after examining a variety of potential uses of a Bigtable-like system. As one concrete example that drove some of our design decisions, suppose we want to keep a copy of a large collection of web pages and related information that could be used by many different projects; let us call this particular table the Webtable. In Webtable, we would use URLs as row keys, various aspects of web pages as column names, and store the contents of the web pages in the contents: column under the timestamps when they were fetched, as illustrated in Figure 1. </p>
 <p>在研究了类似Bigtable的系统的各种潜在用途之后，我们选择了此数据模型。 作为推动我们某些设计决策的一个具体示例，假设我们想要保留大量网页和相关信息的副本，这些副本可以由许多不同的项目使用。 让我们将此特定表称为Webtable。 在Webtable中，我们将使用URL作为行键，将网页的各个方面用作列名，并将网页的内容存储在 contents: 列，这些列在时间戳（获取时的时间）底下<sup id="fnref:17"><a href="#fn:17" rel="footnote">17</a></sup>，如图1所示。</p>
-<img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1.png" alt="1122" style="zoom:50%;" />
+<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1.png" alt="1122" style="zoom:50%;" />
 
 <p><i><center>图1 存储了网页数据的Webtable的一个片段</center></br>行名称是反转的URL，contents列家族包含了网页内容，anchor列家族包含了任何引用这个页面的anchor文本。CNN的主页被Sports Illustrated和MY-look主页同时引用，因此，我们的行包含了名称为 ”anchor:cnnsi.com” 和 ”anchor:my.look.ca” 的列。每个anchor单元格都只有一个版本，contents列有三个版本，分别对应于时间戳t3，t5和t6。</i></p>
 #### Rows
@@ -556,7 +556,7 @@ Figure 3 shows C++ code that uses <u>a Scanner abstraction</u> to iterate over a
 <p><strong>Bigtable集群存储许多表。每个表由一组Tablet组成，并且每个Tablet包含了关联一个行区间的所有数据。最初，每个表格仅包含一个Tablet。随着表的增长，它会自动切分成多个Tablet，默认情况下每个Tablet的大小约为100-200 MB</strong>。</p>
 <h4 id="5-1-Tablet-Location"><a href="#5-1-Tablet-Location" class="headerlink" title="5.1 Tablet Location"></a>5.1 Tablet Location</h4><p>We use <u>a three-level hierarchy</u> analogous to that of a B+ tree <a href=" #[10]">[10]</a> to store tablet location information (Figure 4). </p>
 <p> <strong>我们使用类似于B+树<a href=" #[10]">[10]</a>的三级层次结构来存储Tablet位置信息（图4）</strong>。</p>
-<img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577620233604.png" style="zoom:60%;" />
+<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577620233604.png" style="zoom:60%;" />
 
 <p>The first level is a file stored in Chubby that contains the location of the root tablet. The root tablet contains the location of all tablets in a special METADATA table. Each METADATA tablet contains the location of a set of user tablets. The root tablet is just the first tablet in the METADATA table, but is treated specially—it is never split—to ensure that the tablet location hierarchy has no more than three levels.</p>
 <p>第一级是存储在Chubby中的文件，它包含Root Tablet的位置。 Root Tablet 包含特殊的 METADATA table 中所有Tablet的位置。 每个METADATA Tablet都包含一组 User Tablets 的位置。 Root Tablet只是METADATA table中的第一个Tablet，但经过特殊处理（从不切分），以确保Tablet位置层次结构不超过三个级别。</p>
@@ -606,7 +606,7 @@ Figure 3 shows C++ code that uses <u>a Scanner abstraction</u> to iterate over a
 <center><strong>译者附</strong></center>
 如果通知丢失（由于Tablet服务器或主服务器挂掉），主服务器会在它下次要求一个Tablet server 加载 Tablet 时发现。这个 Tablet 服务器会将这次切分事件通知给主服务器，因为“Tablet服务器通过在 METADATA table 中记录新Tablet的信息来提交切分操作。提交切分操作后，它将通知主服务器”。所以它在 METADATA table 中发现的 Tablet 项只覆盖主服务器要求它加载的 Tablet 的了一部分。
 </blockquote>
-<h4 id="5-3-Tablet-Serving"><a href="#5-3-Tablet-Serving" class="headerlink" title="5.3 Tablet Serving"></a>5.3 Tablet Serving</h4><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577705846192.png" alt="1122" style="zoom:50%;" />
+<h4 id="5-3-Tablet-Serving"><a href="#5-3-Tablet-Serving" class="headerlink" title="5.3 Tablet Serving"></a>5.3 Tablet Serving</h4><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577705846192.png" alt="1122" style="zoom:50%;" />
 
 <p>The persistent state of a tablet is stored in GFS, as illustrated in Figure 5. Updates are committed to a commit log that stores redo records. Of these updates, the recently committed ones are stored in memory in a sorted buffer called a memtable; the older updates are stored in a sequence of SSTables. To recover a tablet, a tablet server reads its metadata from the METADATA table. This metadata contains the list of SSTables that comprise a tablet and a set of a redo points, which are pointers into any commit logs that may contain data for the tablet. The server reads the indices of the SSTables into memory and reconstructs the memtable by applying all of the updates that have committed since the redo points.</p>
 <p>Tablet的持久化状态存储在GFS中，如图5所示。更新被提交（commit）到一个提交日志（commit log），这些日志存储着重做的记录（redo records）。在这些更新当中，最近提交的更新被存储到内存当中的一个被称为memtable的排序缓冲区，比较老的更新被存储在一系列SSTable中。为了恢复Tablet，Tablet服务器从 METADATA table 读取其元数据。该元数据包含SSTables列表，该SSTables包含一个Tablet和一个重做点（redo point）的集合 ，这些重做点（redo point）是指向任何可能包含该Tablet数据的提交日志的指针。服务器将SSTables的索引读入内存，并通过应用自重做点以来已提交的所有更新来重建memtable。</p>
@@ -665,7 +665,7 @@ Figure 3 shows C++ code that uses <u>a Scanner abstraction</u> to iterate over a
 <p><strong>扫描基准测试</strong>（scan benchmark）类似于顺序读基准测试，但是使用Bigtable API提供的支持来扫描行区间内的所有值。使用扫描减少了基准测试执行的RPC数量，因为单个RPC从Tablet服务器中提取了大量的值。</p>
 <p>The random reads (mem) benchmark is similar to the random read benchmark, but the locality group that contains the benchmark data is marked as in-memory, and therefore the reads are satisfied from the tablet server’s memory instead of requiring a GFS read. For just this benchmark, we reduced the amount of data per tablet server from 1 GB to 100 MB so that it would <u>fit comfortably in the memory</u> available to the tablet server. </p>
 <p><strong>随机读（mem）基准测试</strong>类似于<strong>随机读基准测试</strong>，但是包含基准数据的 locality group 被标记为内存中，因此可以从Tablet服务器的内存中读取数据，而无需进行GFS读取。<u>对于该基准测试，我们将每个Tablet服务器的数据量从1 GB减少到100 MB，以便可以合适地容纳在Tablet服务器可用的内存中</u>。</p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577707829591.png" alt="1577707829591"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577707829591.png" alt="1577707829591"></p>
 <p>Figure 6 shows two views on the performance of our benchmarks when reading and writing 1000-byte values to Bigtable. The table shows the number of operations per second per tablet server; the graph shows the aggregate number of operations per second. </p>
 <p>图6显示了在向 Bigtable 读取和写入 1000MB/S 时基准测试性能的两个视图。该表显示了每台Tablet服务器每秒的操作数；该图显示了每秒的总操作数。</p>
 <h4 id="Single-tablet-server-performance"><a href="#Single-tablet-server-performance" class="headerlink" title="Single tablet-server performance"></a>Single tablet-server performance</h4><p>Let us first consider performance with just one tablet server. Random reads are slower than all other operations by an order of magnitude or more. Each random read involves the transfer of a 64 KB SSTable block over the network from GFS to a tablet server, out of which only a single 1000-byte value is used. The tablet server executes approximately 1200 reads per second, which translates into approximately 75 MB/s of data read from GFS. This bandwidth is enough to <u>saturate the tablet server CPUs</u> because of overheads in our networking stack, SSTable parsing, and Bigtable code, and is also almost enough to saturate the network links used in our system. Most Bigtable applications with this type of an access pattern reduce the block size to a smaller value, typically 8KB.</p>
@@ -684,11 +684,11 @@ Figure 3 shows C++ code that uses <u>a Scanner abstraction</u> to iterate over a
 <p>但是，性能不会线性增加。对于大多数基准测试，当从1台Tablet服务器增加到50台Tablet服务器时，每台服务器的吞吐量将大幅下降。这种下降是由于多个服务器配置中的负载不平衡而引起的，通常是由于其他争用CPU和网络的进程所致。我们的负载平衡算法试图解决这种不平衡问题，但由于两个主要原因而无法做到完美：限制重新平衡以减少Tablet的移动次数（Tablet在短时间内无法使用，通常少于一秒钟，移动），并且随着基准测试的进行，由基准测试产生的负载也会发生变化。</p>
 <p>The random read benchmark shows the worst scaling (an increase in aggregate throughput by only a factor of 100 for a 500-fold increase in number of servers). This behavior occurs because (as explained above) we transfer one large 64KB block over the network for every 1000- byte read. This transfer saturates various shared 1 Gigabit links in our network and as a result, the per-server throughput drops significantly as we increase the number of machines. </p>
 <p><strong>随机读基准测试</strong>显示最差的扩展性（服务器数量增加500倍时，总吞吐量仅增加100倍）。<u>发生这种现象的原因是（如上所述），每读取1000字节，我们就会通过网络传输一个 64 KB的大块。这种转移使我们网络中的各种共享 1 Gigabit 链路饱和，结果，随着计算机数量的增加，每服务器的吞吐量显着下降。</u></p>
-<h3 id="8-Real-Applications"><a href="#8-Real-Applications" class="headerlink" title="8 Real Applications"></a>8 Real Applications</h3><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708726543.png" alt="1122" style="zoom:30%;" />
+<h3 id="8-Real-Applications"><a href="#8-Real-Applications" class="headerlink" title="8 Real Applications"></a>8 Real Applications</h3><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708726543.png" alt="1122" style="zoom:30%;" />
 
 <p>As of August 2006, there are 388 non-test Bigtable clusters running in various Google machine clusters, with a combined total of about 24,500 tablet servers. Table 1 shows a rough distribution of tablet servers per cluster. Many of these clusters are used for development purposes and therefore are idle for significant periods. One group of 14 busy clusters with 8069 total tablet servers saw an aggregate volume of more than 1.2 million requests per second, with incoming RPC traffic of about 741 MB/s and outgoing RPC traffic of about 16 GB/s.</p>
 <p>截至2006年8月，在各种Google机器集群中运行着388个非测试版Bigtable集群，总共约有24,500台Tablet服务器。表1显示了每个集群的Tablet服务器的大致分布。这些集群中的许多集群都用于开发目的，因此在相当长的一段时间内都处于空闲状态。一组14个繁忙的集群（总共8069个Tablet服务器）每秒总计收到超过120万个请求，其中传入RPC流量约为 741 MB/s，传出RPC流量约为 16 GB/s。</p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708648568.png" alt="1122"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/1577708648568.png" alt="1122"></p>
 <p>Table 2 provides some data about a few of the tables currently in use. Some tables store data that is served to users, whereas others store data for batch processing; the tables range widely in total size, average cell size, percentage of data served from memory, and complexity of the table schema. In the rest of this section, we briefly describe how three product teams use Bigtable.</p>
 <p>表2提供了一些有关当前使用的表的数据。有些表存储提供给用户的数据，而另一些表则存储用于批处理的数据。这些表在总大小，平均单元大小，从内存提供的数据百分比以及表模式的复杂性方面分布的范围很广。在本节的其余部分，我们简要描述三个产品团队如何使用Bigtable。</p>
 <h4 id="8-1-Google-Analytics"><a href="#8-1-Google-Analytics" class="headerlink" title="8.1 Google Analytics"></a>8.1 Google Analytics</h4><p>Google Analytics (analytics.google.com) is a service that helps webmasters analyze traffic patterns at their web sites. It provides aggregate statistics, such as the number of unique visitors per day and the page views per URL per day, as well as site-tracking reports, such as the percentage of users that made a purchase, given that they earlier viewed a specific page. </p>
@@ -832,20 +832,20 @@ Figure 3 shows C++ code that uses <u>a Scanner abstraction</u> to iterate over a
 <li><a href="https://www.youtube.com/watch?v=r1bh90_8dsg" target="_blank" rel="noopener">深入浅出BigTable</a></li>
 <li><a href="https://niceaz.com/2019/03/24/bigtable/" target="_blank" rel="noopener">BigTable论文阅读</a></li>
 </ol>
-<h2 id="论文总结"><a href="#论文总结" class="headerlink" title="论文总结"></a>论文总结</h2><h3 id="BigTable-推演过程"><a href="#BigTable-推演过程" class="headerlink" title="BigTable 推演过程"></a>BigTable 推演过程</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-15.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-06.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-55.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-47.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-38.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-31.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-25.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-18.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-10.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-59.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-48.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-18.png"></p>
-<p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-10.png"></p>
-<h3 id="BigTable架构"><a href="#BigTable架构" class="headerlink" title="BigTable架构"></a>BigTable架构</h3><p><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/distributed-system/Google-BigTable/bigtable_arch.png"></p>
+<h2 id="论文总结"><a href="#论文总结" class="headerlink" title="论文总结"></a>论文总结</h2><h3 id="BigTable-推演过程"><a href="#BigTable-推演过程" class="headerlink" title="BigTable 推演过程"></a>BigTable 推演过程</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-15.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-20-06.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-55.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-47.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-38.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-31.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-25.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-18.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-19-10.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-59.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-48.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-18.png"></p>
+<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/Snipaste_2020-01-07_17-18-10.png"></p>
+<h3 id="BigTable架构"><a href="#BigTable架构" class="headerlink" title="BigTable架构"></a>BigTable架构</h3><p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/distributed-system/Google-BigTable/bigtable_arch.png"></p>
 <h3 id="SSTable"><a href="#SSTable" class="headerlink" title="SSTable"></a>SSTable</h3><p>参考：</p>
 <ol>
 <li><a href="https://www.open-open.com/lib/view/open1424916275249.html" target="_blank" rel="noopener">Log Structured Merge Trees(LSM) 原理</a></li>

@@ -97,13 +97,13 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition  一个指数型随机变量是拥有以下形式的概率密度函数：$$f_X(x)&#x3D;\cases{    \lambda e^{-\lambda x}, &amp; if $x\ge 0$ \    0, &amp; 其他情况}$$这个公式中**$\lambda$ 是一个正数，这是一个符合概率归一性的定义，因为：$$">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png">
+<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png">
 <meta property="article:published_time" content="2017-08-25T12:16:00.000Z">
-<meta property="article:modified_time" content="2021-02-02T02:17:17.227Z">
+<meta property="article:modified_time" content="2021-03-02T02:49:52.123Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png">
+<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png">
 
 
 
@@ -448,7 +448,7 @@
 
       
         <p><strong>说明</strong>：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a> </p>
-<p>一个指数型随机变量是拥有以下形式的<strong>概率密度函数</strong>：<br>$$<br>f_X(x)=\cases{<br>    \lambda e^{-\lambda x}, &amp; if $x\ge 0$ \<br>    0, &amp; 其他情况<br>}<br>$$<br>这个公式中**$\lambda$ 是一个正数<strong>，这是一个符合概率归一性的定义，因为：<br>$$<br>\int_{-\infty}^{+\infty}f_X(x)dx=\int_{-\infty}^{+\infty}\lambda e^{-\lambda}dx=-e^{\lambda x}|<em>0^{+\infty}=1<br>$$<br>注意，指数型概率密度函数具有这样的特性：$X$ 超过某个值的概率随着这个值的增加而按指数递减<br>$$<br>\forall  a\ge 0,P(X\ge a)=\int</em>{a}^{\infty}\lambda e^{-\lambda x}dx=-e^{-\lambda x}|_a^{+\infty}=e^{-\lambda a}<br>$$<br>由概率密度函数得到</strong>累积分布函数**：<br>$$<br>\forall x \ge 0, P(X\le x)=\int_{0}^{x}\lambda e^{-\lambda x}dx=1-e^{-\lambda x}<br>$$<br><img src="http://qnvq4jwlu.hn-bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png" alt="The_PDF_of_an_exponential_random_variable"></p>
+<p>一个指数型随机变量是拥有以下形式的<strong>概率密度函数</strong>：<br>$$<br>f_X(x)=\cases{<br>    \lambda e^{-\lambda x}, &amp; if $x\ge 0$ \<br>    0, &amp; 其他情况<br>}<br>$$<br>这个公式中**$\lambda$ 是一个正数<strong>，这是一个符合概率归一性的定义，因为：<br>$$<br>\int_{-\infty}^{+\infty}f_X(x)dx=\int_{-\infty}^{+\infty}\lambda e^{-\lambda}dx=-e^{\lambda x}|<em>0^{+\infty}=1<br>$$<br>注意，指数型概率密度函数具有这样的特性：$X$ 超过某个值的概率随着这个值的增加而按指数递减<br>$$<br>\forall  a\ge 0,P(X\ge a)=\int</em>{a}^{\infty}\lambda e^{-\lambda x}dx=-e^{-\lambda x}|_a^{+\infty}=e^{-\lambda a}<br>$$<br>由概率密度函数得到</strong>累积分布函数**：<br>$$<br>\forall x \ge 0, P(X\le x)=\int_{0}^{x}\lambda e^{-\lambda x}dx=1-e^{-\lambda x}<br>$$<br><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/exponential-random-variable/1.png" alt="The_PDF_of_an_exponential_random_variable"></p>
 <p><strong>指数型随机变量能够对直到事件发生的时间建模，例如：消息到达计算机的时间，设备的使用寿命，灯泡的寿命，事故发生的时间等等</strong>（An exponential random variable can, for example, be a good model for the amount of time until an incident of interest takes place）。将在后面的章节看到指数型随机变量与几何随机变量紧密关联，几何随机变量也与相关事件发生的（离散）时间相关联。<strong>指数型随机变量将在第六章随机过程的学习中扮演重要的角色</strong>。但是目前为止，仅仅视它为一种特殊的可分析追中的随机变量。</p>
 <p><strong>指数型随机变量的均值和方差</strong>：<br>$$<br>\begin{eqnarray}<br>E[X] &amp;=&amp; \int_{0}^{\infty}x\lambda e^{-\lambda x}dx \<br>&amp;=&amp; (-xe^{-\lambda x})|<em>0^{\infty} + \int</em>{0}^{\infty}e^{-\lambda x}dx \quad\text{这一步利用分部积分法}\<br>&amp;=&amp; 0-\frac{e^{-\lambda x}}{\lambda}|<em>0^{\infty}\<br>&amp;=&amp; \frac{1}{\lambda}<br>\end{eqnarray}<br>$$<br>在此利用分布积分法，可得到 $X$ 的二阶矩：<br>$$<br>\begin{eqnarray}<br>E[X^2] &amp;=&amp; \int</em>{0}^{\infty}x^2\lambda e^{-\lambda x}dx \<br>&amp;=&amp; (-x^2e^{-\lambda x})|<em>0^{\infty}+\int</em>{0}^{\infty}2xe^{-\lambda x}dx<br>&amp;=&amp; 0+ \frac{2}{\lambda}E[X]\<br>&amp;=&amp; \frac{2}{\lambda^2}<br>\end{eqnarray}<br>$$<br>最后利用公式 $var(x)=E[X^2]-(E[X])^2$ ，得到：<br>$$<br>var(X)=\frac{2}{\lambda^2}-\frac{1}{\lambda}=\frac{1}{\lambda^2}<br>$$</p>
 <h3 id="例3-5"><a href="#例3-5" class="headerlink" title="例3.5"></a>例3.5</h3><p>小陨石落入非洲撒哈拉沙漠的时间是遵从指数族分布的。具体地说，从某一观察者开始观察，知道发现一个陨石落到沙漠中，这个时间被模拟成指数型随机变量，其均值为 $10$ 天，现在假定，目前时间为晚上 $12$ 点整。问第二天早晨 $6:00$ 到傍晚 $6:00$ 之间陨石首次落下的概率是多少？</p>
