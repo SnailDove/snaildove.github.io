@@ -97,21 +97,21 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThese are my personal programming assignments at the 1th week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Convolutional Neural Networks: S">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png">
 <meta property="og:image" content="https://snaildove.github.io/2018/05/01/Convolution+model+-+Step+by+Step+-+v2/images/Convolution_schematic.gif">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png">
 <meta property="article:published_time" content="2018-04-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T02:49:52.018Z">
+<meta property="article:modified_time" content="2021-04-02T13:41:17.418Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="convolutional-neural-networks">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
+<meta name="twitter:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png">
 
 
 
@@ -469,14 +469,10 @@
 <li>Example: $x^{(i)}$ is the $i^{th}$ training example input.</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li>Lowerscript $i$ denotes the $i^{th}$ entry of a vector.<ul>
 <li>Example: $a^{[l]}_i$ denotes the $i^{th}$ entry of the activations in layer $l$, assuming this is a fully connected (FC) layer.</li>
 </ul>
 </li>
-</ul>
-<ul>
 <li>$n_H$, $n_W$ and $n_C$ denote respectively the height, width and number of channels of a given layer. If you want to reference a specific layer $l$, you can also write $n_H^{[l]}$, $n_W^{[l]}$, $n_C^{[l]}$. </li>
 <li>$n_{H_{prev}}$, $n_{W_{prev}}$ and $n_{C_{prev}}$ denote respectively the height, width and number of channels of the previous layer. If referencing a specific layer $l$, this could also be denoted $n_H^{[l-1]}$, $n_W^{[l-1]}$, $n_C^{[l-1]}$. </li>
 </ul>
@@ -490,7 +486,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> h5py</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br><span class="line">plt.rcParams[<span class="string">'figure.figsize'</span>] = (<span class="number">5.0</span>, <span class="number">4.0</span>) <span class="comment"># set default size of plots</span></span><br><span class="line">plt.rcParams[<span class="string">'image.interpolation'</span>] = <span class="string">'nearest'</span></span><br><span class="line">plt.rcParams[<span class="string">'image.cmap'</span>] = <span class="string">'gray'</span></span><br><span class="line"></span><br><span class="line">%load_ext autoreload</span><br><span class="line">%autoreload <span class="number">2</span></span><br><span class="line"></span><br><span class="line">np.random.seed(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
 <pre><code>C:\Anaconda3\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters</code></pre>
+  from ._conv import register_converters as _register_converters
+</code></pre>
 <h2 id="2-Outline-of-the-Assignment"><a href="#2-Outline-of-the-Assignment" class="headerlink" title="2 - Outline of the Assignment"></a>2 - Outline of the Assignment</h2><p>You will be implementing the building blocks of a convolutional neural network! Each function you will implement will have detailed instructions that will walk you through the steps needed:</p>
 <ul>
 <li>Convolution functions, including:<ul>
@@ -501,23 +498,27 @@
 </ul>
 </li>
 <li>Pooling functions, including:<ul>
-<li>Pooling forward</li>
-<li>Create mask </li>
-<li>Distribute value</li>
-<li>Pooling backward (optional)</li>
+<li><p>Pooling forward</p>
+</li>
+<li><p>Create mask </p>
+</li>
+<li><p>Distribute value</p>
+</li>
+<li><p>Pooling backward (optional)</p>
+<p>This notebook will ask you to implement these functions from scratch in <code>numpy</code>. In the next notebook, you will use the TensorFlow equivalents of these functions to build the following model:</p>
+</li>
 </ul>
 </li>
 </ul>
-<p>This notebook will ask you to implement these functions from scratch in <code>numpy</code>. In the next notebook, you will use the TensorFlow equivalents of these functions to build the following model:</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png" style="width:800px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/model.png" style="width:800px;height:300px;">
 
 <p><strong>Note</strong> that for every forward function, there is its corresponding backward equivalent. Hence, at every step of your forward module you will store some parameters in a cache. These parameters are used to compute gradients during backpropagation. </p>
 <h2 id="3-Convolutional-Neural-Networks"><a href="#3-Convolutional-Neural-Networks" class="headerlink" title="3 - Convolutional Neural Networks"></a>3 - Convolutional Neural Networks</h2><p>Although programming frameworks make convolutions easy to use, they remain one of the hardest concepts to understand in Deep Learning. A convolution layer transforms an input volume into an output volume of different size, as shown below. </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png" style="width:350px;height:200px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_nn.png" style="width:350px;height:200px;">
 
 <p>In this part, you will build every step of the convolution layer. You will first implement two helper functions: one for zero padding and the other for computing the convolution function itself. </p>
 <h3 id="3-1-Zero-Padding"><a href="#3-1-Zero-Padding" class="headerlink" title="3.1 - Zero-Padding"></a>3.1 - Zero-Padding</h3><p>Zero-padding adds zeros around the border of an image:</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png" style="width:600px;height:400px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/PAD.png" style="width:600px;height:400px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **Zero-Padding**<br> Image (3 channels, RGB) with a padding of 2. </center></caption>
 
 <p>The main benefits of padding are the following:</p>
@@ -553,8 +554,9 @@ x_pad[1,1] = [[0. 0.]
 
 
 
-&lt;matplotlib.image.AxesImage at 0x2917ff759b0&gt;</code></pre>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png" alt="png"></p>
+&lt;matplotlib.image.AxesImage at 0x2917ff759b0&gt;
+</code></pre>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/output_7_2.png" alt="png"></p>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -617,7 +619,8 @@ x_pad[1,1] = [[0. 0.]
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">1</span>)</span><br><span class="line">a_slice_prev = np.random.randn(<span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>)</span><br><span class="line">W = np.random.randn(<span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>)</span><br><span class="line">b = np.random.randn(<span class="number">1</span>, <span class="number">1</span>, <span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">Z = conv_single_step(a_slice_prev, W, b)</span><br><span class="line">print(<span class="string">"Z ="</span>, Z)</span><br></pre></td></tr></table></figure>
 
-<pre><code>Z = [[[-6.99908945]]]</code></pre>
+<pre><code>Z = [[[-6.99908945]]]
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -633,7 +636,7 @@ x_pad[1,1] = [[0. 0.]
 
 <h3 id="3-3-Convolutional-Neural-Networks-Forward-pass"><a href="#3-3-Convolutional-Neural-Networks-Forward-pass" class="headerlink" title="3.3 - Convolutional Neural Networks - Forward pass"></a>3.3 - Convolutional Neural Networks - Forward pass</h3><p>In the forward pass, you will take many filters and convolve them on the input. Each ‘convolution’ gives you a 2D matrix output. You will then stack these outputs to get a 3D volume: </p>
 <center>
-<video width="620" height="440" src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_kiank.mp4" type="video/mp4" controls>
+<video width="620" height="440" src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/conv_kiank.mp4" type="video/mp4" controls>
 </video>
 </center>
 
@@ -644,7 +647,7 @@ x_pad[1,1] = [[0. 0.]
 This will be useful when you will define <code>a_slice_prev</code> below, using the <code>start/end</code> indexes you will define.</li>
 <li>To define a_slice you will need to first define its corners <code>vert_start</code>, <code>vert_end</code>, <code>horiz_start</code> and <code>horiz_end</code>. This figure may be helpful for you to find how each of the corner can be defined using h, w, f and s in the code below.</li>
 </ol>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png" style="width:400px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/vert_horiz_kiank.png" style="width:400px;height:300px;">
 <caption><center> <u> <font color='purple'> **Figure 3** </u><font color='purple'>  : **Definition of a slice using vertical and horizontal start/end (with a 2x2 filter)** <br> This figure shows only a single channel.  </center></caption>
 
 
@@ -658,7 +661,8 @@ This will be useful when you will define <code>a_slice_prev</code> below, using 
 <pre><code>Z&#39;s mean = 0.048995203528855794
 Z[3,2,1] = [-0.61490741 -6.7439236  -2.55153897  1.75698377  3.56208902  0.53036437
   5.18531798  8.75898442]
-cache_conv[0][1][2][3] = [-0.20075807  0.18656139  0.41005165]</code></pre>
+cache_conv[0][1][2][3] = [-0.20075807  0.18656139  0.41005165]
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -703,11 +707,11 @@ cache_conv[0][1][2][3] = [-0.20075807  0.18656139  0.41005165]</code></pre>
 </ul>
 <table>
 <td>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png" style="width:500px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/max_pool1.png" style="width:500px;height:300px;">
 <td>
 
 <td>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png" style="width:500px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week1/images/a_pool.png" style="width:500px;height:300px;">
 <td>
 </table>
 
@@ -726,7 +730,8 @@ A = [[[[1.74481176 0.86540763 1.13376944]]]
 
 mode = average
 A = [[[[ 0.02105773 -0.20328806 -0.40389855]]]
- [[[-0.22154621  0.51716526  0.48155844]]]]</code></pre>
+ [[[-0.22154621  0.51716526  0.48155844]]]]
+</code></pre>
 <p><strong>Expected Output:</strong></p>
 <table>
     <tr>
@@ -781,7 +786,8 @@ A = [[[[ 0.02105773 -0.20328806 -0.40389855]]]
 
 <pre><code>dA_mean = 1.4524377775388075
 dW_mean = 1.7269914583139097
-db_mean = 7.839232564616838</code></pre>
+db_mean = 7.839232564616838
+</code></pre>
 <p>** Expected Output: **</p>
 <table>
     <tr>
@@ -830,7 +836,8 @@ db_mean = 7.839232564616838</code></pre>
 <pre><code>x =  [[ 1.62434536 -0.61175641 -0.52817175]
  [-1.07296862  0.86540763 -2.3015387 ]]
 mask =  [[ True False False]
- [False False False]]</code></pre>
+ [False False False]]
+</code></pre>
 <p><strong>Expected Output:</strong> </p>
 <table> 
 <tr> 
@@ -869,7 +876,8 @@ mask =  [[ True False False]
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">a = distribute_value(<span class="number">2</span>, (<span class="number">2</span>,<span class="number">2</span>))</span><br><span class="line">print(<span class="string">'distributed value ='</span>, a)</span><br></pre></td></tr></table></figure>
 
 <pre><code>distributed value = [[0.5 0.5]
- [0.5 0.5]]</code></pre>
+ [0.5 0.5]]
+</code></pre>
 <p><strong>Expected Output</strong>: </p>
 <table> 
 <tr> 
@@ -901,7 +909,8 @@ mode = average
 mean of dA =  0.14571390272918056
 dA_prev[1,1] =  [[ 0.08485462  0.2787552 ]
  [ 1.26461098 -0.25749373]
- [ 1.17975636 -0.53624893]]</code></pre>
+ [ 1.17975636 -0.53624893]]
+</code></pre>
 <p><strong>Expected Output</strong>: </p>
 <p>mode = max:</p>
 <table> 

@@ -97,22 +97,22 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThese are my personal programming assignments at the 4th week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Deep Learning &amp; Art: Neural">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png">
 <meta property="article:published_time" content="2018-05-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T02:49:51.901Z">
+<meta property="article:modified_time" content="2021-04-02T13:41:17.212Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="convolutional-neural-networks">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
+<meta name="twitter:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
 
 
 
@@ -467,16 +467,18 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> sys</span><br><span class="line"><span class="keyword">import</span> scipy.io</span><br><span class="line"><span class="keyword">import</span> scipy.misc</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> imshow</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"><span class="keyword">from</span> nst_utils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"></span><br><span class="line">%matplotlib inline</span><br></pre></td></tr></table></figure>
 
 <pre><code>C:\Anaconda3\lib\site-packages\h5py\__init__.py:36: FutureWarning: Conversion of the second argument of issubdtype from `float` to `np.floating` is deprecated. In future, it will be treated as `np.float64 == np.dtype(float).type`.
-  from ._conv import register_converters as _register_converters</code></pre>
+  from ._conv import register_converters as _register_converters
+</code></pre>
 <h2 id="1-Problem-Statement"><a href="#1-Problem-Statement" class="headerlink" title="1 - Problem Statement"></a>1 - Problem Statement</h2><p>Neural Style Transfer (NST) is one of the most fun techniques in deep learning. As seen below, it merges two images, namely, a “content” image (C) and a “style” image (S), to create a “generated” image (G). The generated image G combines the “content” of the image C with the “style” of image S. </p>
-<p>In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).<br><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:750px;height:200px;"></p>
+<p>In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).<br><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:750px;height:200px;"></p>
 <p>Let’s see how you can do this. </p>
 <h2 id="2-Transfer-Learning"><a href="#2-Transfer-Learning" class="headerlink" title="2 - Transfer Learning"></a>2 - Transfer Learning</h2><p>Neural Style Transfer (NST) uses a previously trained convolutional network, and builds on top of that. The idea of using a network trained on a different task and applying it to a new task is called transfer learning. </p>
 <p>Following the original NST paper (<a href="https://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">https://arxiv.org/abs/1508.06576</a>), we will use the VGG network. Specifically, we’ll use VGG-19, a 19-layer version of the VGG network. This model has already been trained on the very large ImageNet database, and thus has learned to recognize a variety of low level features (at the earlier layers) and high level features (at the deeper layers). </p>
 <p>Run the following code to load parameters from the VGG model. This may take a few seconds. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">model = load_vgg_model(<span class="string">"pretrained-model/imagenet-vgg-verydeep-19.mat"</span>)</span><br><span class="line">print(model)</span><br></pre></td></tr></table></figure>
 
-<pre><code>{&#39;input&#39;: &lt;tf.Variable &#39;Variable:0&#39; shape=(1, 300, 400, 3) dtype=float32_ref&gt;, &#39;conv1_1&#39;: &lt;tf.Tensor &#39;Relu:0&#39; shape=(1, 300, 400, 64) dtype=float32&gt;, &#39;conv1_2&#39;: &lt;tf.Tensor &#39;Relu_1:0&#39; shape=(1, 300, 400, 64) dtype=float32&gt;, &#39;avgpool1&#39;: &lt;tf.Tensor &#39;AvgPool:0&#39; shape=(1, 150, 200, 64) dtype=float32&gt;, &#39;conv2_1&#39;: &lt;tf.Tensor &#39;Relu_2:0&#39; shape=(1, 150, 200, 128) dtype=float32&gt;, &#39;conv2_2&#39;: &lt;tf.Tensor &#39;Relu_3:0&#39; shape=(1, 150, 200, 128) dtype=float32&gt;, &#39;avgpool2&#39;: &lt;tf.Tensor &#39;AvgPool_1:0&#39; shape=(1, 75, 100, 128) dtype=float32&gt;, &#39;conv3_1&#39;: &lt;tf.Tensor &#39;Relu_4:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;conv3_2&#39;: &lt;tf.Tensor &#39;Relu_5:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;conv3_3&#39;: &lt;tf.Tensor &#39;Relu_6:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;conv3_4&#39;: &lt;tf.Tensor &#39;Relu_7:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;avgpool3&#39;: &lt;tf.Tensor &#39;AvgPool_2:0&#39; shape=(1, 38, 50, 256) dtype=float32&gt;, &#39;conv4_1&#39;: &lt;tf.Tensor &#39;Relu_8:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;conv4_2&#39;: &lt;tf.Tensor &#39;Relu_9:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;conv4_3&#39;: &lt;tf.Tensor &#39;Relu_10:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;conv4_4&#39;: &lt;tf.Tensor &#39;Relu_11:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;avgpool4&#39;: &lt;tf.Tensor &#39;AvgPool_3:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_1&#39;: &lt;tf.Tensor &#39;Relu_12:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_2&#39;: &lt;tf.Tensor &#39;Relu_13:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_3&#39;: &lt;tf.Tensor &#39;Relu_14:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_4&#39;: &lt;tf.Tensor &#39;Relu_15:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;avgpool5&#39;: &lt;tf.Tensor &#39;AvgPool_4:0&#39; shape=(1, 10, 13, 512) dtype=float32&gt;}</code></pre>
+<pre><code>{&#39;input&#39;: &lt;tf.Variable &#39;Variable:0&#39; shape=(1, 300, 400, 3) dtype=float32_ref&gt;, &#39;conv1_1&#39;: &lt;tf.Tensor &#39;Relu:0&#39; shape=(1, 300, 400, 64) dtype=float32&gt;, &#39;conv1_2&#39;: &lt;tf.Tensor &#39;Relu_1:0&#39; shape=(1, 300, 400, 64) dtype=float32&gt;, &#39;avgpool1&#39;: &lt;tf.Tensor &#39;AvgPool:0&#39; shape=(1, 150, 200, 64) dtype=float32&gt;, &#39;conv2_1&#39;: &lt;tf.Tensor &#39;Relu_2:0&#39; shape=(1, 150, 200, 128) dtype=float32&gt;, &#39;conv2_2&#39;: &lt;tf.Tensor &#39;Relu_3:0&#39; shape=(1, 150, 200, 128) dtype=float32&gt;, &#39;avgpool2&#39;: &lt;tf.Tensor &#39;AvgPool_1:0&#39; shape=(1, 75, 100, 128) dtype=float32&gt;, &#39;conv3_1&#39;: &lt;tf.Tensor &#39;Relu_4:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;conv3_2&#39;: &lt;tf.Tensor &#39;Relu_5:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;conv3_3&#39;: &lt;tf.Tensor &#39;Relu_6:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;conv3_4&#39;: &lt;tf.Tensor &#39;Relu_7:0&#39; shape=(1, 75, 100, 256) dtype=float32&gt;, &#39;avgpool3&#39;: &lt;tf.Tensor &#39;AvgPool_2:0&#39; shape=(1, 38, 50, 256) dtype=float32&gt;, &#39;conv4_1&#39;: &lt;tf.Tensor &#39;Relu_8:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;conv4_2&#39;: &lt;tf.Tensor &#39;Relu_9:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;conv4_3&#39;: &lt;tf.Tensor &#39;Relu_10:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;conv4_4&#39;: &lt;tf.Tensor &#39;Relu_11:0&#39; shape=(1, 38, 50, 512) dtype=float32&gt;, &#39;avgpool4&#39;: &lt;tf.Tensor &#39;AvgPool_3:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_1&#39;: &lt;tf.Tensor &#39;Relu_12:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_2&#39;: &lt;tf.Tensor &#39;Relu_13:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_3&#39;: &lt;tf.Tensor &#39;Relu_14:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;conv5_4&#39;: &lt;tf.Tensor &#39;Relu_15:0&#39; shape=(1, 19, 25, 512) dtype=float32&gt;, &#39;avgpool5&#39;: &lt;tf.Tensor &#39;AvgPool_4:0&#39; shape=(1, 10, 13, 512) dtype=float32&gt;}
+</code></pre>
 <p>The model is stored in a python dictionary where each variable name is the key and the corresponding value is a tensor containing that variable’s value. To run an image through this network, you just have to feed the image to the model. In TensorFlow, you can do so using the <a href="https://www.tensorflow.org/api_docs/python/tf/assign" target="_blank" rel="noopener">tf.assign</a> function. In particular, you will use the assign function like this:  </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model[<span class="string">"input"</span>].assign(image)</span><br></pre></td></tr></table></figure>
 <p>This assigns the image as an input to the model. After this, if you want to access the activations of a particular layer, say layer <code>4_2</code> when the network is run on this image, you would run a TensorFlow session on the correct tensor <code>conv4_2</code>, as follows:  </p>
@@ -500,8 +502,9 @@ Use ``imageio.imread`` instead.
 
 
 
-&lt;matplotlib.image.AxesImage at 0x23c512646a0&gt;</code></pre>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png" alt="png"></p>
+&lt;matplotlib.image.AxesImage at 0x23c512646a0&gt;
+</code></pre>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png" alt="png"></p>
 <p>The content image (C) shows the Louvre museum’s pyramid surrounded by old Paris buildings, against a sunny sky with a few clouds.</p>
 <p>** 3.1.1 - How do you ensure the generated image G matches the content of the image C?**</p>
 <p>As we saw in lecture, the earlier (shallower) layers of a ConvNet tend to detect lower-level features such as edges and simple textures, and the later (deeper) layers tend to detect higher-level features such as more complex textures as well as object classes. </p>
@@ -509,7 +512,7 @@ Use ``imageio.imread`` instead.
 <p>So, suppose you have picked one particular hidden layer to use. Now, set the image C as the input to the pretrained VGG network, and run forward propagation. Let $a^{(C)}$ be the hidden layer activations in the layer you had chosen. (In lecture, we had written this as $a^{<a href="C">l</a>}$, but here we’ll drop the superscript $[l]$ to simplify the notation.) This will be a $n_H \times n_W \times n_C$ tensor. Repeat this process with the image G: Set G as the input, and run forward progation. Let $a^{(G)}$ be the corresponding hidden layer activation. We will define as the content cost function as:</p>
 <p>$$J_{content}(C,G) =  \frac{1}{4 \times n_H \times n_W \times n_C}\sum _{ \text{all entries}} (a^{(C)} - a^{(G)})^2\tag{1} $$</p>
 <p>Here, $n_H, n_W$ and $n_C$ are the height, width and number of channels of the hidden layer you have chosen, and appear in a normalization term in the cost. For clarity, note that $a^{(C)}$ and $a^{(G)}$ are the volumes corresponding to a hidden layer’s activations. In order to compute the cost $J_{content}(C,G)$, it might also be convenient to unroll these 3D volumes into a 2D matrix, as shown below. (Technically this unrolling step isn’t needed to compute $J_{content}$, but it will be good practice for when you do need to carry out a similar operation later for computing the style const $J_{style}$.)</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png" style="width:800px;height:400px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png" style="width:800px;height:400px;">
 
 <p><strong>Exercise:</strong> Compute the “content cost” using TensorFlow. </p>
 <p><strong>Instructions</strong>: The 3 steps to implement this function are:</p>
@@ -532,7 +535,8 @@ Use ``imageio.imread`` instead.
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    tf.set_random_seed(<span class="number">1</span>)</span><br><span class="line">    a_C = tf.random_normal([<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>], mean=<span class="number">1</span>, stddev=<span class="number">4</span>)</span><br><span class="line">    a_G = tf.random_normal([<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>], mean=<span class="number">1</span>, stddev=<span class="number">4</span>)</span><br><span class="line">    J_content = compute_content_cost(a_C, a_G)</span><br><span class="line">    print(<span class="string">"J_content = "</span> + str(J_content.eval()))</span><br></pre></td></tr></table></figure>
 
-<pre><code>J_content = 6.7655926</code></pre>
+<pre><code>J_content = 6.7655926
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -563,14 +567,15 @@ Use ``imageio.imread`` instead.
 
 
 
-&lt;matplotlib.image.AxesImage at 0x23c57b880f0&gt;</code></pre>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png" alt="png"></p>
+&lt;matplotlib.image.AxesImage at 0x23c57b880f0&gt;
+</code></pre>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png" alt="png"></p>
 <p>This painting was painted in the style of <em><a href="https://en.wikipedia.org/wiki/Impressionism" target="_blank" rel="noopener">impressionism</a></em>.</p>
 <p>Lets see how you can now define a “style” const function $J_{style}(S,G)$. </p>
 <h3 id="3-2-1-Style-matrix"><a href="#3-2-1-Style-matrix" class="headerlink" title="3.2.1 - Style matrix"></a>3.2.1 - Style matrix</h3><p>The style matrix is also called a “Gram matrix.” In linear algebra, the Gram matrix G of a set of vectors $(v_{1},\dots ,v_{n})$ is the matrix of dot products, whose entries are ${\displaystyle G_{ij} = v_{i}^T v_{j} = np.dot(v_{i}, v_{j})  }$. In other words, $G_{ij}$ compares how similar $v_i$ is to $v_j$: If they are highly similar, you would expect them to have a large dot product, and thus for $G_{ij}$ to be large. </p>
 <p>Note that there is an unfortunate collision in the variable names used here. We are following common terminology used in the literature, but $G$ is used to denote the Style matrix (or Gram matrix) as well as to denote the generated image $G$. We will try to make sure which $G$ we are referring to is always clear from the context. </p>
 <p>In NST, you can compute the Style matrix by multiplying the “unrolled” filter matrix with their transpose:</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png" style="width:900px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png" style="width:900px;height:300px;">
 
 <p>The result is a matrix of dimension $(n_C,n_C)$ where $n_C$ is the number of filters. The value $G_{ij}$ measures how similar the activations of filter $i$ are to the activations of filter $j$. </p>
 <p>One important part of the gram matrix is that the diagonal elements such as $G_{ii}$ also measures how active filter $i$ is. For example, suppose filter $i$ is detecting vertical textures in the image. Then $G_{ii}$ measures how common  vertical textures are in the image as a whole: If $G_{ii}$ is large, this means that the image has a lot of vertical texture. </p>
@@ -583,7 +588,8 @@ Use ``imageio.imread`` instead.
 
 <pre><code>GA = [[ 6.422305 -4.429122 -2.096682]
  [-4.429122 19.465837 19.563871]
- [-2.096682 19.563871 20.686462]]</code></pre>
+ [-2.096682 19.563871 20.686462]]
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -624,7 +630,8 @@ Use ``imageio.imread`` instead.
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    tf.set_random_seed(<span class="number">1</span>)</span><br><span class="line">    a_S = tf.random_normal([<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>], mean=<span class="number">1</span>, stddev=<span class="number">4</span>)</span><br><span class="line">    a_G = tf.random_normal([<span class="number">1</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">3</span>], mean=<span class="number">1</span>, stddev=<span class="number">4</span>)</span><br><span class="line">    J_style_layer = compute_layer_style_cost(a_S, a_G)</span><br><span class="line">    </span><br><span class="line">    print(<span class="string">"J_style_layer = "</span> + str(J_style_layer.eval()))</span><br></pre></td></tr></table></figure>
 
-<pre><code>J_style_layer = 9.190277</code></pre>
+<pre><code>J_style_layer = 9.190277
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -681,7 +688,8 @@ How do you choose the coefficients for each layer? The deeper layers capture hig
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    np.random.seed(<span class="number">3</span>)</span><br><span class="line">    J_content = np.random.randn()    </span><br><span class="line">    J_style = np.random.randn()</span><br><span class="line">    J = total_cost(J_content, J_style)</span><br><span class="line">    print(<span class="string">"J = "</span> + str(J))</span><br></pre></td></tr></table></figure>
 
-<pre><code>J = 35.34667875478276</code></pre>
+<pre><code>J = 35.34667875478276
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -730,14 +738,16 @@ Lets go through the individual steps in detail.
 <pre><code>C:\Anaconda3\lib\site-packages\ipykernel\__main__.py:1: DeprecationWarning: `imread` is deprecated!
 `imread` is deprecated in SciPy 1.0.0, and will be removed in 1.2.0.
 Use ``imageio.imread`` instead.
-  if __name__ == &#39;__main__&#39;:</code></pre>
+  if __name__ == &#39;__main__&#39;:
+</code></pre>
 <p>Let’s load, reshape and normalize our “style” image (Claude Monet’s painting):</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">style_image = scipy.misc.imread(<span class="string">"images/monet.jpg"</span>)</span><br><span class="line">style_image = reshape_and_normalize_image(style_image)</span><br></pre></td></tr></table></figure>
 
 <pre><code>C:\Anaconda3\lib\site-packages\ipykernel\__main__.py:1: DeprecationWarning: `imread` is deprecated!
 `imread` is deprecated in SciPy 1.0.0, and will be removed in 1.2.0.
 Use ``imageio.imread`` instead.
-  if __name__ == &#39;__main__&#39;:</code></pre>
+  if __name__ == &#39;__main__&#39;:
+</code></pre>
 <p>Now, we initialize the “generated” image as a noisy image created from the content_image. By initializing the pixels of the generated image to be mostly noise but still slightly correlated with the content image, this will help the content of the “generated” image more rapidly match the content of the “content” image. (Feel free to look in <code>nst_utils.py</code> to see the details of <code>generate_noise_image(...)</code>; to do so, click “File–&gt;Open…” at the upper-left corner of this Jupyter notebook.)</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">generated_image = generate_noise_image(content_image)</span><br><span class="line">imshow(generated_image[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
 
@@ -1024,7 +1034,8 @@ ValueError: Floating point image RGB values must be in the 0..1 range.
 
 
 
-&lt;matplotlib.figure.Figure at 0x23c6251cda0&gt;</code></pre>
+&lt;matplotlib.figure.Figure at 0x23c6251cda0&gt;
+</code></pre>
 <p>Next, as explained in part (2), let’s load the VGG16 model.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model = load_vgg_model(<span class="string">"pretrained-model/imagenet-vgg-verydeep-19.mat"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -1069,19 +1080,19 @@ ValueError: Floating point image RGB values must be in the 0..1 range.
 
 <p>You’re done! After running this, in the upper bar of the notebook click on “File” and then “Open”. Go to the “/output” directory to see all the saved images. Open “generated_image” to see the generated image! :)</p>
 <p>You should see something the image presented below on the right:</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:800px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:800px;height:300px;">
 
 <p>We didn’t want you to wait too long to see an initial result, and so had set the hyperparameters accordingly. To get the best looking results, running the optimization algorithm longer (and perhaps with a smaller learning rate) might work better. After completing and submitting this assignment, we encourage you to come back and play more with this notebook, and see if you can generate even better looking images. </p>
 <p>Here are few other examples:</p>
 <ul>
 <li><p>The beautiful ruins of the ancient city of Persepolis (Iran) with the style of Van Gogh (The Starry Night)</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png" style="width:750px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png" style="width:750px;height:300px;">
 </li>
 <li><p>The tomb of Cyrus the great in Pasargadae with the style of a Ceramic Kashi from Ispahan.</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png" style="width:750px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png" style="width:750px;height:300px;">
 </li>
 <li><p>A scientific study of a turbulent fluid with the style of a abstract blue fluid painting.</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png" style="width:750px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png" style="width:750px;height:300px;">
 
 </li>
 </ul>

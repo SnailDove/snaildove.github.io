@@ -97,17 +97,17 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 4 Structured API OverviewThis part of the book will be a deep dive into Spark’s Structured APIs. The Structured APIs are a tool for manipulating all sorts of data, from unstructured log file">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1575778747016.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090019513.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090084025.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090201269.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1575778747016.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090019513.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090084025.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090201269.png">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T02:49:51.994Z">
+<meta property="article:modified_time" content="2021-04-02T13:41:17.379Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -451,7 +451,7 @@
       
 
       
-        <img src="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-4-Structured-API-Overview"><a href="#Chapter-4-Structured-API-Overview" class="headerlink" title="Chapter 4 Structured API Overview"></a>Chapter 4 Structured API Overview</h1><p>This part of the book will be a deep dive into Spark’s Structured APIs. The Structured APIs are a tool for manipulating all sorts of data, from unstructured log files to semi-structured CSV files and highly structured Parquet files. These APIs refer to three core types of distributed collection APIs:</p>
 <p>本书的这一部分将深入探讨Spark的结构化API。结构化API是用于处理各种数据的工具，从非结构化日志文件到半结构化CSV文件以及高度结构化的Parquet文件。这些API指的是分布式集合API的三种核心类型：</p>
@@ -504,7 +504,7 @@
 <center><strong>译者附</strong></center>
 <center>为什么使用结构化API？</center>
 
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1575778747016.png" alt="1575778747016"></p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1575778747016.png" alt="1575778747016"></p>
 <p>截图来自<u><a style="color:#0879e3" href="https://www.youtube.com/watch?v=GDeePbbCz2g&feature=youtu.be" target="_blank" rel="noopener">Herman van Hovell</a></u>视频的内容，非原书内容。</p>
 </blockquote>
 <p>Understanding DataFrames, Spark Types, and Schemas takes some time to digest. What you need to know is that when you’re using DataFrames, you’re taking advantage of Spark’s optimized internal format. This format applies the same efficiency gains to all of Spark’s language APIs. If you need strict compile-time checking, read Chapter 11 to learn more about it.</p>
@@ -827,15 +827,15 @@
 </ol>
 <p>To execute code, we must write code. This code is then submitted to Spark either through the console or via a submitted job. This code then passes through the Catalyst Optimizer, which decides how the code should be executed and lays out a plan for doing so before, finally, the code is run and the result is returned to the user. Figure 4-1 shows the process. </p>
 <p>要执行代码，我们必须编写代码。然后，此代码通过控制台或提交的作业提交给Spark。然后，此代码通过Catalyst Optimizer，后者确定应如何执行代码，并在此之前制定执行计划，最后，代码将运行并将结果返回给用户。流程如图4-1所示。</p>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090019513.png" alt="1572090019513"></p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090019513.png" alt="1572090019513"></p>
 <h3 id="Logical-Planning-逻辑规划"><a href="#Logical-Planning-逻辑规划" class="headerlink" title="Logical Planning 逻辑规划"></a><font color="#00000">Logical Planning 逻辑规划</font></h3><p>The first phase of execution is meant to take user code and convert it into a logical plan. Figure 4-2 illustrates this process. </p>
 <p>执行的第一阶段旨在获取用户代码并将其转换为逻辑计划。图4-2说明了此过程。</p>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090084025.png" alt="1572090084025"> </p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090084025.png" alt="1572090084025"> </p>
 <p>This logical plan only represents a set of abstract transformations that do not refer to executors or drivers, it’s purely to convert the user’s set of expressions into the most optimized version. It does this by converting user code into an unresolved logical plan. This plan is unresolved because although your code might be valid, the tables or columns that it refers to might or might not exist. Spark uses the catalog, a repository of all table and DataFrame information, to resolve columns and tables in the analyzer. The analyzer might reject the unresolved logical plan if the required table or column name does not exist in the catalog. If the analyzer can resolve it, the result is passed through the Catalyst Optimizer, a collection of rules that attempt to optimize the logical plan by pushing down predicates or selections. Packages can extend the Catalyst to include their own rules for domain specific optimizations.</p>
 <p>此逻辑计划仅代表一组抽象转换，这些转换不涉及 executor 或 driver，而仅仅是将用户的表达式集转换为最优化的版本。它通过将用户代码转换为未解析的逻辑计划来实现。该计划尚未解析，因为尽管您的代码可能有效，但它所引用的表或列可能存在或可能不存在。 Spark使用 catalog（所有表和DataFrame信息的存储库）解析分析器中的列和表。如果所需的表或列名称在目录中不存在，则分析器可能会拒绝未解析的逻辑计划。如果分析器可以解析问题，则结果将通过Catalyst Optimizer传递，Catalyst Optimizer是一组规则的集合，这些规则试图通过向下推理谓词（predicates）或选择（selections）来优化逻辑计划。软件包可以扩展Catalyst，以包括其用于特定领域优化的规则。</p>
 <h3 id="Physical-Planning-物理规划"><a href="#Physical-Planning-物理规划" class="headerlink" title="Physical Planning 物理规划"></a><font color="#00000">Physical Planning 物理规划</font></h3><p>After successfully creating an optimized logical plan, Spark then begins the physical planning process. The physical plan, often called a Spark plan, specifies how the logical plan will execute on the cluster by generating different physical execution strategies and comparing them through a cost model, as depicted in Figure 4-3. An example of the cost comparison might be choosing how to perform a given join by looking at the physical attributes of a given table (how big the table is or how big its partitions are) </p>
 <p>成功创建优化的逻辑计划后，Spark然后开始物理计划过程。物理计划通常称为Spark计划，它通过生成不同的物理执行策略并通过成本模型进行比较来指定逻辑计划在集群上的执行方式，如图4-3所示。成本比较的一个示例可能是通过查看给定表的物理属性（表的大小或分区的大小）来选择如何执行给定的连接。</p>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090201269.png" alt="1572090201269"></p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter4/1572090201269.png" alt="1572090201269"></p>
 <p>Physical planning results in a series of RDDs and transformations. This result is why you might have heard Spark referred to as a compiler—it takes queries in DataFrames, Datasets, and SQL and compiles them into RDD transformations for you.</p>
 <p>物理规划会导致一系列的RDD和转换。这个结果就是为什么您可能听说过Spark称为编译器的原因——它接受DataFrames，Datasets和SQL中的查询，然后将它们编译为RDD转换。</p>
 <h3 id="Execution-执行"><a href="#Execution-执行" class="headerlink" title="Execution 执行"></a><font color="#00000">Execution 执行</font></h3><p>Upon selecting a physical plan, Spark runs all of this code over RDDs, the lower-level programming interface of Spark (which we cover in Part III). Spark performs further optimizations at runtime, generating native Java bytecode that can remove entire tasks or stages during execution. Finally the result is returned to the user.</p>
@@ -929,8 +929,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/08/05/Chapter8-Joins(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 8 Joins">
-                <i class="fa fa-chevron-left"></i> 翻译 Chapter 8 Joins
+              <a href="/2019/08/05/Chapter5_Basic-Structured-Operations(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 5 Basic Structured Operations">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 5 Basic Structured Operations
               </a>
             
           </div>

@@ -97,16 +97,16 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThis is one of my personal programming assignments after studying the course nlp sequence models at the 2nd week and the copyright belongs to deeplearning.ai. Operations on word vectorsWelcome to">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png">
 <meta property="article:published_time" content="2018-06-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T02:49:52.059Z">
+<meta property="article:modified_time" content="2021-04-02T13:41:17.490Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="nlp-sequence-models">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
+<meta name="twitter:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
 
 
 
@@ -462,7 +462,8 @@
 <p>Let’s get started! Run the following cell to load the packages you will need.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> w2v_utils <span class="keyword">import</span> *</span><br></pre></td></tr></table></figure>
 
-<pre><code>Using TensorFlow backend.</code></pre>
+<pre><code>Using TensorFlow backend.
+</code></pre>
 <p>Next, lets load the word vectors. For this assignment, we will use 50-dimensional GloVe vectors to represent words. Run the following cell to load the <code>word_to_vec_map</code>. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words, word_to_vec_map = read_glove_vecs(<span class="string">'data/glove.6B.50d.txt'</span>)</span><br></pre></td></tr></table></figure>
 
@@ -475,7 +476,7 @@
 <h1 id="1-Cosine-similarity"><a href="#1-Cosine-similarity" class="headerlink" title="1 - Cosine similarity"></a>1 - Cosine similarity</h1><p>To measure how similar two words are, we need a way to measure the degree of similarity between two embedding vectors for the two words. Given two vectors $u$ and $v$, cosine similarity is defined as follows: </p>
 <p>$$\text{CosineSimilarity(u, v)} = \frac {u . v} {||u||_2 ||v||_2} = cos(\theta) \tag{1}$$</p>
 <p>where $u.v$ is the dot product (or inner product) of two vectors, $||u||_2$ is the norm (or length) of the vector $u$, and $\theta$ is the angle between $u$ and $v$. This similarity depends on the angle between $u$ and $v$. If $u$ and $v$ are very similar, their cosine similarity will be close to 1; if they are dissimilar, the cosine similarity will take a smaller value. </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png" style="width:800px;height:250px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png" style="width:800px;height:250px;">
 <caption><center> **Figure 1**: The cosine of the angle between two vectors is a measure of how similar they are</center></caption>
 
 <p><strong>Exercise</strong>: Implement the function <code>cosine_similarity()</code> to evaluate similarity between word vectors.</p>
@@ -487,7 +488,8 @@
 
 <pre><code>cosine_similarity(father, mother) =  0.890903844289
 cosine_similarity(ball, crocodile) =  0.274392462614
-cosine_similarity(france - paris, rome - italy) =  -0.675147930817</code></pre>
+cosine_similarity(france - paris, rome - italy) =  -0.675147930817
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -527,7 +529,8 @@ cosine_similarity(france - paris, rome - italy) =  -0.675147930817</code></pre>
 <pre><code>italy -&gt; italian :: spain -&gt; spanish
 india -&gt; delhi :: japan -&gt; tokyo
 man -&gt; woman :: boy -&gt; girl
-small -&gt; smaller :: large -&gt; larger</code></pre>
+small -&gt; smaller :: large -&gt; larger
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -584,7 +587,8 @@ small -&gt; smaller :: large -&gt; larger</code></pre>
  -0.3204      0.07165    -0.13337    -0.25068714 -0.14293    -0.224957
  -0.149       0.048882    0.12191    -0.27362    -0.165476   -0.20426
   0.54376    -0.271425   -0.10245    -0.32108     0.2516     -0.33455
- -0.04371     0.01258   ]</code></pre>
+ -0.04371     0.01258   ]
+</code></pre>
 <p>Now, you will consider the cosine similarity of different words with $g$. Consider what a positive value of similarity means vs a negative cosine similarity. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">print</span> (<span class="string">'List of names and their similarities with constructed vector:'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># girls and boys name</span></span><br><span class="line">name_list = [<span class="string">'john'</span>, <span class="string">'marie'</span>, <span class="string">'sophie'</span>, <span class="string">'ronaldo'</span>, <span class="string">'priya'</span>, <span class="string">'rahul'</span>, <span class="string">'danielle'</span>, <span class="string">'reza'</span>, <span class="string">'katy'</span>, <span class="string">'yasmin'</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> w <span class="keyword">in</span> name_list:</span><br><span class="line">    <span class="keyword">print</span> (w, cosine_similarity(word_to_vec_map[w], g))</span><br></pre></td></tr></table></figure>
 
@@ -598,7 +602,8 @@ rahul -0.169154710392
 danielle 0.243932992163
 reza -0.079304296722
 katy 0.283106865957
-yasmin 0.233138577679</code></pre>
+yasmin 0.233138577679
+</code></pre>
 <p>As you can see, female first names tend to have a positive cosine similarity with our constructed vector $g$, while male first names tend to have a negative cosine similarity. This is not suprising, and the result seems acceptable. </p>
 <p>But let’s try with some other words.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">print(<span class="string">'Other words and their similarities:'</span>)</span><br><span class="line">word_list = [<span class="string">'lipstick'</span>, <span class="string">'guns'</span>, <span class="string">'science'</span>, <span class="string">'arts'</span>, <span class="string">'literature'</span>, <span class="string">'warrior'</span>,<span class="string">'doctor'</span>, <span class="string">'tree'</span>, <span class="string">'receptionist'</span>, </span><br><span class="line">             <span class="string">'technology'</span>,  <span class="string">'fashion'</span>, <span class="string">'teacher'</span>, <span class="string">'engineer'</span>, <span class="string">'pilot'</span>, <span class="string">'computer'</span>, <span class="string">'singer'</span>]</span><br><span class="line"><span class="keyword">for</span> w <span class="keyword">in</span> word_list:</span><br><span class="line">    <span class="keyword">print</span> (w, cosine_similarity(word_to_vec_map[w], g))</span><br></pre></td></tr></table></figure>
@@ -619,12 +624,13 @@ teacher 0.179209234318
 engineer -0.0803928049452
 pilot 0.00107644989919
 computer -0.103303588739
-singer 0.185005181365</code></pre>
+singer 0.185005181365
+</code></pre>
 <p>Do you notice anything surprising? It is astonishing how these results reflect certain unhealthy gender stereotypes. For example, “computer” is closer to “man” while “literature” is closer to “woman”. Ouch! </p>
 <p>We’ll see below how to reduce the bias of these vectors, using an algorithm due to <a href="https://arxiv.org/abs/1607.06520" target="_blank" rel="noopener">Boliukbasi et al., 2016</a>. Note that some word pairs such as “actor”/“actress” or “grandmother”/“grandfather” should remain gender specific, while other words such as “receptionist” or “technology” should be neutralized, i.e. not be gender-related. You will have to treat these two type of words differently when debiasing.</p>
 <h3 id="3-1-Neutralize-bias-for-non-gender-specific-words"><a href="#3-1-Neutralize-bias-for-non-gender-specific-words" class="headerlink" title="3.1 - Neutralize bias for non-gender specific words"></a>3.1 - Neutralize bias for non-gender specific words</h3><p>The figure below should help you visualize what neutralizing does. If you’re using a 50-dimensional word embedding, the 50 dimensional space can be split into two parts: The bias-direction $g$, and the remaining 49 dimensions, which we’ll call $g_{\perp}$. In linear algebra, we say that the 49 dimensional $g_{\perp}$ is perpendicular (or “othogonal”) to $g$, meaning it is at 90 degrees to $g$. The neutralization step takes a vector such as $e_{receptionist}$ and zeros out the component in the direction of $g$, giving us $e_{receptionist}^{debiased}$. </p>
 <p>Even though $g_{\perp}$ is 49 dimensional, given the limitations of what we can draw on a screen, we illustrate it using a 1 dimensional axis below. </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png" style="width:800px;height:300px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png" style="width:800px;height:300px;">
 <caption><center> **Figure 2**: The word vector for "receptionist" represented before and after applying the neutralize operation. </center></caption>
 
 <p><strong>Exercise</strong>: Implement <code>neutralize()</code> to remove the bias of words such as “receptionist” or “scientist”. Given an input embedding $e$, you can use the following formulas to compute $e^{debiased}$: </p>
@@ -643,7 +649,8 @@ where : $u_B = $ and $ u_{\perp} = u - u_B $
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">e = <span class="string">"receptionist"</span></span><br><span class="line">print(<span class="string">"cosine similarity between "</span> + e + <span class="string">" and g, before neutralizing: "</span>, cosine_similarity(word_to_vec_map[<span class="string">"receptionist"</span>], g))</span><br><span class="line"></span><br><span class="line">e_debiased = neutralize(<span class="string">"receptionist"</span>, g, word_to_vec_map)</span><br><span class="line">print(<span class="string">"cosine similarity between "</span> + e + <span class="string">" and g, after neutralizing: "</span>, cosine_similarity(e_debiased, g))</span><br></pre></td></tr></table></figure>
 
 <pre><code>cosine similarity between receptionist and g, before neutralizing:  0.330779417506
-cosine similarity between receptionist and g, after neutralizing:  -5.60374039375e-17</code></pre>
+cosine similarity between receptionist and g, after neutralizing:  -5.60374039375e-17
+</code></pre>
 <p><strong>Expected Output</strong>: The second result is essentially 0, up to numerical roundof (on the order of $10^{-17}$).</p>
 <table>
     <tr>
@@ -665,7 +672,7 @@ cosine similarity between receptionist and g, after neutralizing:  -5.6037403937
 
 <h3 id="3-2-Equalization-algorithm-for-gender-specific-words"><a href="#3-2-Equalization-algorithm-for-gender-specific-words" class="headerlink" title="3.2 - Equalization algorithm for gender-specific words"></a>3.2 - Equalization algorithm for gender-specific words</h3><p>Next, lets see how debiasing can also be applied to word pairs such as “actress” and “actor.” Equalization is applied to pairs of words that you might want to have differ only through the gender property. As a concrete example, suppose that “actress” is closer to “babysit” than “actor.” By applying neutralizing to “babysit” we can reduce the gender-stereotype associated with babysitting. But this still does not guarantee that “actor” and “actress” are equidistant from “babysit.” The equalization algorithm takes care of this. </p>
 <p>The key idea behind equalization is to make sure that a particular pair of words are equi-distant from the 49-dimensional $g_\perp$. The equalization step also ensures that the two equalized steps are now the same distance from $e_{receptionist}^{debiased}$, or from any other work that has been neutralized. In pictures, this is how equalization works: </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png" style="width:800px;height:400px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png" style="width:800px;height:400px;">
 
 
 <p>The derivation of the linear algebra to do this is a bit more complex. (See Bolukbasi et al., 2016 for details.) But the key equations are: </p>
@@ -688,7 +695,8 @@ cosine_similarity(word_to_vec_map[&quot;woman&quot;], gender) =  0.356666188463
 
 cosine similarities after equalizing:
 cosine_similarity(e1, gender) =  -0.700436428931
-cosine_similarity(e2, gender) =  0.700436428931</code></pre>
+cosine_similarity(e2, gender) =  0.700436428931
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <p>cosine similarities before equalizing:</p>
 <table>
@@ -828,8 +836,8 @@ cosine_similarity(e2, gender) =  0.700436428931</code></pre>
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/06/03/Emojify+-+v2/" rel="next" title="Emojify">
-                <i class="fa fa-chevron-left"></i> Emojify
+              <a href="/2018/06/03/03_sequence-models-attention-mechanism/" rel="next" title="sequence models attention mechanism">
+                <i class="fa fa-chevron-left"></i> sequence models attention mechanism
               </a>
             
           </div>
@@ -838,8 +846,8 @@ cosine_similarity(e2, gender) =  0.700436428931</code></pre>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/06/05/Neural+machine+translation+with+attention+-+v4/" rel="prev" title="Neural machine translation with attention">
-                Neural machine translation with attention <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/03/Emojify+-+v2/" rel="prev" title="Emojify">
+                Emojify <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

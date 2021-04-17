@@ -97,22 +97,22 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThese are my personal programming assignments at the 2nd week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Residual NetworksWelcome to the">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png">
-<meta property="og:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg">
 <meta property="article:published_time" content="2018-05-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T02:49:52.072Z">
+<meta property="article:modified_time" content="2021-04-02T13:41:17.508Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="convolutional-neural-networks">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png">
+<meta name="twitter:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png">
 
 
 
@@ -467,28 +467,29 @@
 <p>Before jumping into the problem, let’s run the cell below to load the required packages.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> layers</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Input, Add, Dense, Activation, ZeroPadding2D, BatchNormalization, Flatten, Conv2D, AveragePooling2D, MaxPooling2D, GlobalMaxPooling2D</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model, load_model</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> image</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> layer_utils</span><br><span class="line"><span class="keyword">from</span> keras.utils.data_utils <span class="keyword">import</span> get_file</span><br><span class="line"><span class="keyword">from</span> keras.applications.imagenet_utils <span class="keyword">import</span> preprocess_input</span><br><span class="line"><span class="keyword">import</span> pydot</span><br><span class="line"><span class="keyword">from</span> IPython.display <span class="keyword">import</span> SVG</span><br><span class="line"><span class="keyword">from</span> keras.utils.vis_utils <span class="keyword">import</span> model_to_dot</span><br><span class="line"><span class="keyword">from</span> keras.utils <span class="keyword">import</span> plot_model</span><br><span class="line"><span class="keyword">from</span> resnets_utils <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> keras.initializers <span class="keyword">import</span> glorot_uniform</span><br><span class="line"><span class="keyword">import</span> scipy.misc</span><br><span class="line"><span class="keyword">from</span> matplotlib.pyplot <span class="keyword">import</span> imshow</span><br><span class="line">%matplotlib inline</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> keras.backend <span class="keyword">as</span> K</span><br><span class="line">K.set_image_data_format(<span class="string">'channels_last'</span>)</span><br><span class="line">K.set_learning_phase(<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
 
-<pre><code>Using TensorFlow backend.</code></pre>
+<pre><code>Using TensorFlow backend.
+</code></pre>
 <h2 id="1-The-problem-of-very-deep-neural-networks"><a href="#1-The-problem-of-very-deep-neural-networks" class="headerlink" title="1 - The problem of very deep neural networks"></a>1 - The problem of very deep neural networks</h2><p>Last week, you built your first convolutional neural network. In recent years, neural networks have become deeper, with state-of-the-art networks going from just a few layers (e.g., AlexNet) to over a hundred layers.</p>
 <p>The main benefit of a very deep network is that it can represent very complex functions. It can also learn features at many different levels of abstraction, from edges (at the lower layers) to very complex features (at the deeper layers). However, using a deeper network doesn’t always help. A huge barrier to training them is vanishing gradients: very deep networks often have a gradient signal that goes to zero quickly, thus making gradient descent unbearably slow. More specifically, during gradient descent, as you backprop from the final layer back to the first layer, you are multiplying by the weight matrix on each step, and thus the gradient can decrease exponentially quickly to zero (or, in rare cases, grow exponentially quickly and “explode” to take very large values). </p>
 <p>During training, you might therefore see the magnitude (or norm) of the gradient for the earlier layers descrease to zero very rapidly as training proceeds: </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png" style="width:450px;height:220px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/vanishing_grad_kiank.png" style="width:450px;height:220px;">
 <caption><center> <u> <font color='purple'> **Figure 1** </u><font color='purple'>  : **Vanishing gradient** <br> The speed of learning decreases very rapidly for the early layers as the network trains </center></caption>
 
 <p>You are now going to solve this problem by building a Residual Network!</p>
 <h2 id="2-Building-a-Residual-Network"><a href="#2-Building-a-Residual-Network" class="headerlink" title="2 - Building a Residual Network"></a>2 - Building a Residual Network</h2><p>In ResNets, a “shortcut” or a “skip connection” allows the gradient to be directly backpropagated to earlier layers:  </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png" style="width:650px;height:200px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/skip_connection_kiank.png" style="width:650px;height:200px;">
 <caption><center> <u> <font color='purple'> **Figure 2** </u><font color='purple'>  : A ResNet block showing a **skip-connection** <br> </center></caption>
 
 <p>The image on the left shows the “main path” through the network. The image on the right adds a shortcut to the main path. By stacking these ResNet blocks on top of each other, you can form a very deep network. </p>
 <p>We also saw in lecture that having ResNet blocks with the shortcut also makes it very easy for one of the blocks to learn an identity function. This means that you can stack on additional ResNet blocks with little risk of harming training set performance. (There is also some evidence that the ease of learning an identity function–even more than skip connections helping with vanishing gradients–accounts for ResNets’ remarkable performance.)</p>
 <p>Two main types of blocks are used in a ResNet, depending mainly on whether the input/output dimensions are same or different. You are going to implement both of them. </p>
 <h3 id="2-1-The-identity-block"><a href="#2-1-The-identity-block" class="headerlink" title="2.1 - The identity block"></a>2.1 - The identity block</h3><p>The identity block is the standard block used in ResNets, and corresponds to the case where the input activation (say $a^{[l]}$) has the same dimension as the output activation (say $a^{[l+2]}$). To flesh out the different steps of what happens in a ResNet’s identity block, here is an alternative diagram showing the individual steps:</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png" style="width:650px;height:150px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock2_kiank.png" style="width:650px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 3** </u><font color='purple'>  : **Identity block.** Skip connection "skips over" 2 layers. </center></caption>
 
 <p>The upper path is the “shortcut path.” The lower path is the “main path.” In this diagram, we have also made explicit the CONV2D and ReLU steps in each layer. To speed up training we have also added a BatchNorm step. Don’t worry about this being complicated to implement–you’ll see that BatchNorm is just one line of code in Keras! </p>
 <p>In this exercise, you’ll actually implement a slightly more powerful version of this identity block, in which the skip connection “skips over” 3 hidden layers rather than 2 layers. It looks like this: </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png" style="width:650px;height:150px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/idblock3_kiank.png" style="width:650px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 4** </u><font color='purple'>  : **Identity block.** Skip connection "skips over" 3 layers.</center></caption>
 
 <p>Here’re the individual steps.</p>
@@ -526,7 +527,8 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    np.random.seed(<span class="number">1</span>)</span><br><span class="line">    A_prev = tf.placeholder(<span class="string">"float"</span>, [<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>])</span><br><span class="line">    X = np.random.randn(<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>)</span><br><span class="line">    A = identity_block(A_prev, f = <span class="number">2</span>, filters = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>], stage = <span class="number">1</span>, block = <span class="string">'a'</span>)</span><br><span class="line">    test.run(tf.global_variables_initializer())</span><br><span class="line">    out = test.run([A], feed_dict=&#123;A_prev: X, K.learning_phase(): <span class="number">0</span>&#125;)</span><br><span class="line">    print(<span class="string">"out = "</span> + str(out[<span class="number">0</span>][<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
 
-<pre><code>out = [ 0.94822985  0.          1.16101444  2.747859    0.          1.36677003]</code></pre>
+<pre><code>out = [ 0.94822985  0.          1.16101444  2.747859    0.          1.36677003]
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -541,7 +543,7 @@
 </table>
 
 <h2 id="2-2-The-convolutional-block"><a href="#2-2-The-convolutional-block" class="headerlink" title="2.2 - The convolutional block"></a>2.2 - The convolutional block</h2><p>You’ve implemented the ResNet identity block. Next, the ResNet “convolutional block” is the other type of block. You can use this type of block when the input and output dimensions don’t match up. The difference with the identity block is that there is a CONV2D layer in the shortcut path: </p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png" style="width:650px;height:150px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/convblock_kiank.png" style="width:650px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 4** </u><font color='purple'>  : **Convolutional block** </center></caption>
 
 <p>The CONV2D layer in the shortcut path is used to resize the input $x$ to a different dimension, so that the dimensions match up in the final addition needed to add the shortcut value back to the main path. (This plays a similar role as the matrix $W_s$ discussed in lecture.) For example, to reduce the activation dimensions’s height and width by a factor of 2, you can use a 1x1 convolution with a stride of 2. The CONV2D layer on the shortcut path does not use any non-linear activation function. Its main role is to just apply a (learned) linear function that reduces the dimension of the input, so that the dimensions match up for the later addition step. </p>
@@ -585,7 +587,8 @@
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">tf.reset_default_graph()</span><br><span class="line"></span><br><span class="line"><span class="keyword">with</span> tf.Session() <span class="keyword">as</span> test:</span><br><span class="line">    np.random.seed(<span class="number">1</span>)</span><br><span class="line">    A_prev = tf.placeholder(<span class="string">"float"</span>, [<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>])</span><br><span class="line">    X = np.random.randn(<span class="number">3</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">6</span>)</span><br><span class="line">    A = convolutional_block(A_prev, f = <span class="number">2</span>, filters = [<span class="number">2</span>, <span class="number">4</span>, <span class="number">6</span>], stage = <span class="number">1</span>, block = <span class="string">'a'</span>)</span><br><span class="line">    test.run(tf.global_variables_initializer())</span><br><span class="line">    out = test.run([A], feed_dict=&#123;A_prev: X, K.learning_phase(): <span class="number">0</span>&#125;)</span><br><span class="line">    print(<span class="string">"out = "</span> + str(out[<span class="number">0</span>][<span class="number">1</span>][<span class="number">1</span>][<span class="number">0</span>]))</span><br></pre></td></tr></table></figure>
 
-<pre><code>out = [ 0.09018463  1.23489773  0.46822017  0.0367176   0.          0.65516603]</code></pre>
+<pre><code>out = [ 0.09018463  1.23489773  0.46822017  0.0367176   0.          0.65516603]
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -600,7 +603,7 @@
 </table>
 
 <h2 id="3-Building-your-first-ResNet-model-50-layers"><a href="#3-Building-your-first-ResNet-model-50-layers" class="headerlink" title="3 - Building your first ResNet model (50 layers)"></a>3 - Building your first ResNet model (50 layers)</h2><p>You now have the necessary blocks to build a very deep ResNet. The following figure describes in detail the architecture of this neural network. “ID BLOCK” in the diagram stands for “Identity block,” and “ID BLOCK x3” means you should stack 3 identity blocks together.</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png" style="width:850px;height:150px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/resnet_kiank.png" style="width:850px;height:150px;">
 <caption><center> <u> <font color='purple'> **Figure 5** </u><font color='purple'>  : **ResNet-50 model** </center></caption>
 
 <p>The details of this ResNet-50 model are:</p>
@@ -660,7 +663,7 @@
 
 <p>The model is now ready to be trained. The only thing you need is a dataset.</p>
 <p>Let’s load the SIGNS Dataset.</p>
-<img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png" style="width:450px;height:250px;">
+<img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/signs_data_kiank.png" style="width:450px;height:250px;">
 <caption><center> <u> <font color='purple'> **Figure 6** </u><font color='purple'>  : **SIGNS dataset** </center></caption>
 
 
@@ -672,7 +675,8 @@ number of test examples = 120
 X_train shape: (1080, 64, 64, 3)
 Y_train shape: (1080, 6)
 X_test shape: (120, 64, 64, 3)
-Y_test shape: (120, 6)</code></pre>
+Y_test shape: (120, 6)
+</code></pre>
 <p>Run the following cell to train your model on 2 epochs with a batch size of 32. On a CPU it should take you around 5min per epoch. </p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.fit(X_train, Y_train, epochs = <span class="number">2</span>, batch_size = <span class="number">32</span>)</span><br></pre></td></tr></table></figure>
 
@@ -685,7 +689,8 @@ Epoch 2/2
 
 
 
-&lt;keras.callbacks.History at 0x7f2b2976ae10&gt;</code></pre>
+&lt;keras.callbacks.History at 0x7f2b2976ae10&gt;
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -712,7 +717,8 @@ Epoch 2/2
 
 <pre><code>120/120 [==============================] - 9s     
 Loss = 2.66479465167
-Test Accuracy = 0.166666666667</code></pre>
+Test Accuracy = 0.166666666667
+</code></pre>
 <p><strong>Expected Output</strong>:</p>
 <table>
     <tr>
@@ -736,7 +742,8 @@ Test Accuracy = 0.166666666667</code></pre>
 
 <pre><code>120/120 [==============================] - 9s     
 Loss = 0.530178320408
-Test Accuracy = 0.866666662693</code></pre>
+Test Accuracy = 0.866666662693
+</code></pre>
 <p>ResNet50 is a powerful model for image classification when it is trained for an adequate number of iterations. We hope you can use what you’ve learnt and apply it to your own classification problem to perform state-of-the-art accuracy.</p>
 <p>Congratulations on finishing this assignment! You’ve now implemented a state-of-the-art image classification system! </p>
 <h2 id="4-Test-on-your-own-image-Optional-Ungraded"><a href="#4-Test-on-your-own-image-Optional-Ungraded" class="headerlink" title="4 - Test on your own image (Optional/Ungraded)"></a>4 - Test on your own image (Optional/Ungraded)</h2><p>If you wish, you can also take a picture of your own hand and see the output of the model. To do this:<br>    1. Click on “File” in the upper bar of this notebook, then click “Open” to go on your Coursera Hub.<br>    2. Add your image to this Jupyter Notebook’s directory, in the “images” folder<br>    3. Write your image’s name in the following code<br>    4. Run the code and check if the algorithm is right! </p>
@@ -744,8 +751,9 @@ Test Accuracy = 0.866666662693</code></pre>
 
 <pre><code>Input image shape: (1, 64, 64, 3)
 class prediction vector [p(0), p(1), p(2), p(3), p(4), p(5)] = 
-[[ 1.  0.  0.  0.  0.  0.]]</code></pre>
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png" alt="png"></p>
+[[ 1.  0.  0.  0.  0.  0.]]
+</code></pre>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_35_1.png" alt="png"></p>
 <p>You can also print a summary of your model by running the following code.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">model.summary()</span><br></pre></td></tr></table></figure>
 
@@ -1125,14 +1133,15 @@ fc6 (Dense)                      (None, 6)             12294       flatten_1[0][
 Total params: 23,600,006
 Trainable params: 23,546,886
 Non-trainable params: 53,120
-____________________________________________________________________________________________________</code></pre>
+____________________________________________________________________________________________________
+</code></pre>
 <p>Finally, run the code below to visualize your ResNet50. You can also download a .png picture of your model by going to “File -&gt; Open…-&gt; model.png”.</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">plot_model(model, to_file=<span class="string">'model.png'</span>)</span><br><span class="line">SVG(model_to_dot(model).create(prog=<span class="string">'dot'</span>, format=<span class="string">'svg'</span>))</span><br></pre></td></tr></table></figure>
 
 
 
 
-<p><img src="http://qpbmr9zwf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg" alt="svg"></p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week2/redidual-network/images/output_39_0.svg" alt="svg"></p>
 <font color='blue'>
 **What you should remember:**
 - Very deep "plain" networks don't work in practice because they are hard to train due to vanishing gradients.  

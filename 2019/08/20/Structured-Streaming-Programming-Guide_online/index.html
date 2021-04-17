@@ -105,7 +105,7 @@
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-late-data.png">
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-watermark-update-mode.png">
 <meta property="article:published_time" content="2019-08-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-03-02T02:49:52.077Z">
+<meta property="article:modified_time" content="2021-04-02T13:41:17.515Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -1026,7 +1026,6 @@
 <li><p><strong>Memory sink (for debugging)</strong> - The output is stored in memory as an in-memory table. Both, Append and Complete output modes, are supported. This should be used for debugging purposes on low data volumes as the entire output is collected and stored in the driver’s memory. Hence, use it with caution.</p>
 <p>  <strong>内存接收器</strong>（用于调试）——输出作为内存表存储在内存中。支持附加和完整输出模式。当整个输出被收集并存储在驱动程序内存中时，这应该用于在低数据量上进行调试。因此，<font color="red">谨慎使用</font>。</p>
   <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">writeStream</span><br><span class="line">    .format(<span class="string">"memory"</span>)</span><br><span class="line">    .queryName(<span class="string">"tableName"</span>)</span><br><span class="line">.start()</span><br></pre></td></tr></table></figure>
-
 <p>  Some sinks are not fault-tolerant because they do not guarantee persistence of the output and are meant for debugging purposes only. See the earlier section on <a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#fault-tolerance-semantics" target="_blank" rel="noopener">fault-tolerance semantics</a>. Here are the details of all the sinks in Spark.</p>
 <p>  有些接收器不能容错，因为它们不能保证输出的持久性，并且仅用于调试目的。请参见前面关于<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#fault-tolerance-semantics" target="_blank" rel="noopener">容错语义</a>的部分。以下是 Spark 中所有水槽的细节。</p>
 </li>
