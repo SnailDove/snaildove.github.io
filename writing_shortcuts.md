@@ -17,7 +17,6 @@ top: true
 ### <font color="#00000">代码</font>
 
 #### <font color="#3399cc">Classification</font>
-
 <p><center><font face="constant-width" color="#c67171" size=4><strong>WARNING 警告</strong></font></center></p>
 
 
@@ -53,6 +52,17 @@ top: true
 <font color="#32cd32"><strong>词汇</strong></font>
 <font color="green"><strong>词汇</strong></font>
 <font color="#9a1647">**MULTIPLE DATACENTERS**</font>
+提醒颜色
+<font color="red">
+
+笔记背景色
+<font style="background:yellow;">
+
+专有名词
+<font style="color:#008000">
+
+逻辑助记符
+<font style="color:#0979e3"><strong>步骤</strong></font>
 
 <p><center><font face="constant-width" color="#737373" size=4><strong>NOTE 注意</strong></font></center></P>
 
@@ -66,17 +76,7 @@ top: true
 
 #### <font color="#0a7ae5">
 
-提醒颜色
-<font color="red">
 
-笔记背景色
-<font style="background:yellow;">
-
-专有名词
-<font style="color:#008000">
-
-逻辑助记符
-<font style="color:#0979e3">
 
 
 修正中文冒号为英文冒号
