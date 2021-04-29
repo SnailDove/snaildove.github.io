@@ -101,7 +101,7 @@
 <meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572143049723.png">
 <meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572143485630.png">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.385Z">
+<meta property="article:modified_time" content="2021-04-29T17:19:55.038Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -905,7 +905,7 @@ Unions are currently performed based on location, not on the schema. This means 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> dfTable <span class="keyword">ORDER</span> <span class="keyword">BY</span> <span class="keyword">count</span> <span class="keyword">desc</span> <span class="keyword">LIMIT</span> <span class="number">6</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="Repartition-and-Coalesce-分区与合并"><a href="#Repartition-and-Coalesce-分区与合并" class="headerlink" title="Repartition and Coalesce 分区与合并"></a><font color="#00000">Repartition and Coalesce 分区与合并</font></h3><p>Another important optimization opportunity is to partition the data according to some frequently filtered columns, which control the physical layout of data across the cluster including the partitioning scheme and the number of partitions. Repartition will incur a full shuffle of the data, regardless of whether one is necessary. This means that you should typically only repartition when the future number of partitions is greater than your current number of partitions or when you are looking to partition by a set of columns: </p>
-<p>另一个重要的优化机会是根据一些频繁过滤的列对数据进行分区，这些列控制整个群集中数据的物理布局，包括分区方案和分区数。 无论是否需要重新分区，重新分区都会导致数据的完全随机洗牌（shuffle）。 这意味着您通常仅应在将来的分区数大于当前的分区数时或在按一组列进行分区时重新分区：</p>
+<p>另一个重要的优化机会是根据一些频繁过滤的列对数据进行分区，这些列控制整个群集中数据的物理布局，包括分区方案和分区数。 无论是否需要重新分区，重新分区都会导致数据的完全数据再分配（shuffle）。 这意味着您通常仅应在将来的分区数大于当前的分区数时或在按一组列进行分区时重新分区：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">df.rdd.getNumPartitions <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">df.rdd.getNumPartitions() <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
@@ -927,7 +927,7 @@ Unions are currently performed based on location, not on the schema. This means 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">df.repartition(<span class="number">5</span>, col(<span class="string">"DEST_COUNTRY_NAME"</span>))</span><br></pre></td></tr></table></figure>
 
 <p>Coalesce, on the other hand, will not incur a full shuffle and will try to combine partitions. This operation will shuffle your data into five partitions based on the destination country name, and then coalesce them (without a full shuffle): </p>
-<p>另一方面，合并将不会引起全量随机洗牌，并会尝试合并分区。 此操作将根据目标国家/地区名称将数据随机分为五个分区，然后将它们合并（不进行全量随机洗牌）：</p>
+<p>另一方面，合并将不会引起全量数据再分配，并会尝试合并分区。 此操作将根据目标国家/地区名称将数据随机分为五个分区，然后将它们合并（不进行全量数据再分配）：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">df.repartition(<span class="number">5</span>, col(<span class="string">"DEST_COUNTRY_NAME"</span>)).coalesce(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">df.repartition(<span class="number">5</span>, col(<span class="string">"DEST_COUNTRY_NAME"</span>)).coalesce(<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
@@ -1276,7 +1276,7 @@ Any collection of data to the driver can be a very expensive operation! If you h
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

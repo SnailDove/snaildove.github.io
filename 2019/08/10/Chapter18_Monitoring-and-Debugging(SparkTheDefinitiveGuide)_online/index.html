@@ -107,7 +107,7 @@
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907752419.png">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566908039098.png">
 <meta property="article:published_time" content="2019-08-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.293Z">
+<meta property="article:modified_time" content="2021-04-29T18:04:05.949Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -536,9 +536,9 @@ Succeeded Jobs: 2
 <p>这些将马上变得重要，但首先让我们来看看 Spark 阶段的有向无环图（DAG）。 这些选项卡中的每个蓝色框表示 Spark 任务的一个阶段。 这些阶段的整个组代表我们的 Spark 工作。 让我们详细了解每个阶段，以便我们可以更好地了解每个级别的情况，从图 18-4 开始。</p>
 <p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907520858.png" alt="1566907520858"></p>
 <p>The box on top, labeled WholeStateCodegen, represents a full scan of the CSV file. The box below that represents a shuffle that we forced when we called repartition. This turned our original dataset (of a yet to be specified number of partitions) into two partitions.</p>
-<p>标记为 WholeStateCodegen 的顶部框表示 CSV 文件的完整扫描。 下面的框表示我们在调用重新分区时强制进行的随机洗牌(shuffle)。 这将我们的原始数据集（尚未指定的分区数）转换为两个分区。</p>
+<p>标记为 WholeStateCodegen 的顶部框表示 CSV 文件的完整扫描。 下面的框表示我们在调用重新分区时强制进行的数据再分配(shuffle)。 这将我们的原始数据集（尚未指定的分区数）转换为两个分区。</p>
 <p>The next step is our projection (selecting/adding/filtering columns) and the aggregation. Notice that in Figure 18-5 the number of output rows is six. This conveniently lines up with the number of output rows multiplied by the number of partitions at aggregation time. This is because Spark performs an aggregation for each partition (in this case a hash-based aggregation) before shuffling the data around  in preparation for the final stage.</p>
-<p>下一步是我们的投影（选择/添加/过滤列）和聚合。 请注意，在图18-5中，输出行数为6（final output * 2 = 6）。 这方便与输出行的数量乘以聚合时的分区数对齐。  这是因为 Spark 在为最终阶段做准备之前对数据进行洗牌(shuffle)之前，为每个分区执行聚合（在这种情况下是基于散列（hash-based） 的聚合）。</p>
+<p>下一步是我们的投影（选择/添加/过滤列）和聚合。 请注意，在图18-5中，输出行数为6（final output * 2 = 6）。 这方便与输出行的数量乘以聚合时的分区数对齐。  这是因为 Spark 在为最终阶段做准备之前对数据进行再分配(shuffle)之前，为每个分区执行聚合（在这种情况下是基于散列（hash-based） 的聚合）。</p>
 <p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907630723.png" alt="1566907630723"></p>
 <p>The last stage is the aggregation of the subaggregations that we saw happen on a per-partition basis in the previous stage. We combine those two partitions in the final three rows that are the output of our total query (Figure 18-6)。</p>
 <p>最后一个阶段是我们在前一阶段基于每个分区发生的子聚合的聚合。 我们将这两个分区组合在最后三行中，这三行是我们总查询的输出（图18-6）。</p>
@@ -727,7 +727,7 @@ Succeeded Jobs: 2
 </li>
 </ul>
 <h3 id="Slow-Joins-慢加入"><a href="#Slow-Joins-慢加入" class="headerlink" title="Slow Joins 慢加入"></a><font color="#000000">Slow Joins 慢加入</font></h3><p>Joins and aggregations are both shuffles, so they share some of the same general symptoms as well as treatments.</p>
-<p>连接和聚合都是随机洗牌(shuffle)，因此它们共享一些相同的症状和应对方法。</p>
+<p>连接和聚合都是数据再分配(shuffle)，因此它们共享一些相同的症状和应对方法。</p>
 <h4 id="Signs-and-symptoms-迹象和症状-4"><a href="#Signs-and-symptoms-迹象和症状-4" class="headerlink" title="Signs and symptoms 迹象和症状"></a><font color="#3399cc">Signs and symptoms 迹象和症状</font></h4><ul>
 <li><p>A join stage seems to be taking a long time. This can be one task or many tasks.</p>
 <p>l连接阶段似乎需要很长时间。这可以是一个任务或许多任务。</p>
@@ -744,7 +744,7 @@ Succeeded Jobs: 2
 <p>尝试不同的连接顺序可以真正帮助加快工作，特别是如果其中一些连接过滤掉大量数据; 先做那些。</p>
 </li>
 <li><p>Partitioning a dataset prior to joining can be very helpful for reducing data movement across the cluster, especially if the same dataset will be used in multiple join operations. It’s worth experimenting with different prejoin partitioning. Keep in mind, again, that this isn’t “free” and does come at the cost of a shuffle.</p>
-<p>在连接之前对数据集进行分区对于减少集群中的数据移动非常有用，尤其是在多个连接操作中将使用相同的数据集时。值得尝试不同的预连接（prejoin）分区。请记住，这不是“免费”，而是以洗牌(shuffle)为代价。</p>
+<p>在连接之前对数据集进行分区对于减少集群中的数据移动非常有用，尤其是在多个连接操作中将使用相同的数据集时。值得尝试不同的预连接（prejoin）分区。请记住，这不是“免费”，而是以数据再分配(shuffle)为代价。</p>
 </li>
 <li><p>Slow joins can also be caused by data skew. There’s not always a lot you can do here, but sizing up the Spark application and/or increasing the size of executors can help, as described in earlier sections.</p>
 <p>数据倾斜也可能导致慢连接。你可以在这里做很多事情，但是调整 Spark 应用程序和/或增加执行程序（executor）的数量可以提供帮助，如前面部分所述。</p>
@@ -874,7 +874,7 @@ Succeeded Jobs: 2
 <p>您还可以使用许多存储配置进行试验。其中一些决定了在移除之前应该在机器上保留多长时间的日志。有关更多信息，请参阅第16章中的Spark执行程序(executor)日志滚动配置。</p>
 </li>
 <li><p>Try manually removing some old log files or old shuffle files from the machine(s) in question. This can help alleviate some of the issue although obviously it’s not a permanent fix.</p>
-<p>尝试从相关机器手动删除一些旧的日志文件或旧的随机洗牌文件。这可以帮助减轻一些问题，虽然显然它不是永久性的修复。</p>
+<p>尝试从相关机器手动删除一些旧的日志文件或旧的数据再分配文件。这可以帮助减轻一些问题，虽然显然它不是永久性的修复。</p>
 </li>
 </ul>
 <h3 id="Serialization-Errors-序列化错误"><a href="#Serialization-Errors-序列化错误" class="headerlink" title="Serialization Errors 序列化错误"></a><font color="#000000">Serialization Errors 序列化错误</font></h3><h4 id="Signs-and-symptoms-迹象和症状-10"><a href="#Signs-and-symptoms-迹象和症状-10" class="headerlink" title="Signs and symptoms 迹象和症状"></a><font color="#3399cc">Signs and symptoms 迹象和症状</font></h4><ul>
@@ -1214,7 +1214,7 @@ Succeeded Jobs: 2
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

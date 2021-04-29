@@ -99,7 +99,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="article:published_time" content="2019-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.264Z">
+<meta property="article:modified_time" content="2021-04-29T17:57:25.869Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -549,7 +549,7 @@ This set of APIs has been around since, essentially, the beginning of Spark, and
 <p>There are use cases when <code>groupByKey</code> does make sense. If you have consistent value sizes for each key and know that they will fit in the memory of a given executor, you’re going to be just fine. It’s just good to know exactly what you’re getting yourself into when you do this. There is a preferred approach for additive use cases: <code>reduceByKey</code>.</p>
 <p>在某些情况下，<code>groupByKey</code>确实有意义。如果每个键的值大小都一致，并且知道它们的大小将适合给定执行器的内存，那么就可以了。最好能确切地知道自己在进行此操作时会遇到什么。对于用例，有一种首选方法：<code>reduceByKey</code>。</p>
 <h4 id="reduceByKey"><a href="#reduceByKey" class="headerlink" title="reduceByKey"></a><font color="#3399cc">reduceByKey</font></h4><p>Because we are performing a simple count, a much more stable approach is to perform the same <code>flatMap</code> and then just perform a map to map each letter instance to the number one, and then perform a <code>reduceByKey</code> with a summation function in order to collect back the array. This implementation is much more stable because the reduce happens within each partition and doesn’t need to put everything in memory. Additionally, there is no incurred shuffle during this operation; everything happens at each worker individually before performing a final reduce. This greatly enhances the speed at which you can perform the operation as well as the stability of the operation:</p>
-<p>因为我们执行的是简单计数，所以一种更稳定的方法是执行相同的 <code>flatMap</code>，然后执行映射以将每个字母实例映射到数字，然后执行带有 sum 函数的 <code>reduceByKey</code> 以便回收数组。这种实现更加稳定，因为减少操作发生在每个分区内，不需要将所有内容都放在内存中。此外，在此操作过程中不会发生洗牌；在执行最终归约（reduce）之前，每件事都会在每个 worker 上发生。这极大地提高了您执行操作的速度以及操作的稳定性：</p>
+<p>因为我们执行的是简单计数，所以一种更稳定的方法是执行相同的 <code>flatMap</code>，然后执行映射以将每个字母实例映射到数字，然后执行带有 sum 函数的 <code>reduceByKey</code> 以便回收数组。这种实现更加稳定，因为减少操作发生在每个分区内，不需要将所有内容都放在内存中。此外，在此操作过程中不会发生数据再分配；在执行最终归约（reduce）之前，每件事都会在每个 worker 上发生。这极大地提高了您执行操作的速度以及操作的稳定性：</p>
  <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">KVcharacters</span>.reduceByKey(addFunc).collect()</span><br></pre></td></tr></table></figure>
 
 <p> Here’s the result of the operation:</p>
@@ -629,12 +629,12 @@ This set of APIs has been around since, essentially, the beginning of Spark, and
 <h2 id="Controlling-Partitions"><a href="#Controlling-Partitions" class="headerlink" title="Controlling Partitions"></a><font color="#9a161a">Controlling Partitions</font></h2><p>With RDDs, you have control over how data is exactly physically distributed across the cluster. Some of these methods are basically the same from what we have in the Structured APIs but the key addition (that does not exist in the Structured APIs) is the ability to specify a partitioning function (formally a custom Partitioner, which we discuss later when we look at basic methods).</p>
 <p>使用RDD，您可以控制如何在整个群集中准确地物理分布数据。其中一些方法与结构化API中的方法基本相同，但关键的附加功能（结构化API中不存在）具有指定分区函数（通常是自定义分区程序）的能力，稍后我们将在后面讨论看看基本方法）。</p>
 <h3 id="coalesce"><a href="#coalesce" class="headerlink" title="coalesce"></a><font color="#00000">coalesce</font></h3><p><code>coalesce</code> effectively collapses partitions on the same worker in order to avoid a shuffle of the data when repartitioning. For instance, our words RDD is currently two partitions, we can collapse that to one partition by using <code>coalesce</code> without bringing about a shuffle of the data:</p>
-<p><code>coalesce</code> 有效地折叠了同一 worker 上的分区，以避免在重新分区时数据洗牌。例如，我们的词RDD当前是两个分区，我们可以使用 <code>coalesce</code> 将其折叠为一个分区，而不会造成数据洗牌：</p>
+<p><code>coalesce</code> 有效地折叠了同一 worker 上的分区，以避免在重新分区时数据数据再分配。例如，我们的词RDD当前是两个分区，我们可以使用 <code>coalesce</code> 将其折叠为一个分区，而不会造成数据再分配：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line">words.coalesce(<span class="number">1</span>).getNumPartitions <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">words.coalesce(<span class="number">1</span>).getNumPartitions() <span class="comment"># 1</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="repartition"><a href="#repartition" class="headerlink" title="repartition"></a><font color="#00000">repartition</font></h3><p>The repartition operation allows you to repartition your data up or down but performs a shuffle across nodes in the process. Increasing the number of partitions can increase the level of parallelism when operating in map- and filter-type operations:</p>
-<p>使用重新分区操作，您可以向上或向下重新分区数据，但可以在进程中的各个节点之间执行随机洗牌。在map和filter类型的操作中进行操作时，增加分区数量可以提高并行度：</p>
+<p>使用重新分区操作，您可以向上或向下重新分区数据，但可以在进程中的各个节点之间执行数据再分配。在map和filter类型的操作中进行操作时，增加分区数量可以提高并行度：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">words.repartition(<span class="number">10</span>) <span class="comment">// gives us 10 partitions</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="repartitionAndSortWithinPartitions"><a href="#repartitionAndSortWithinPartitions" class="headerlink" title="repartitionAndSortWithinPartitions"></a><font color="#00000">repartitionAndSortWithinPartitions</font></h3><p>This operation gives you the ability to repartition as well as specify the ordering of each one of those output partitions. We’ll omit the example because the documentation for it is good, but both the partitioning and the key comparisons can be specified by the user.</p>
@@ -681,7 +681,7 @@ This set of APIs has been around since, essentially, the beginning of Spark, and
 <p>The default serialization can be quite slow. Spark can use the Kryo library (version 2) to serialize objects more quickly. Kryo is significantly faster and more compact than Java serialization (often as much as 10x), but does not support all serializable types and requires you to register the classes you’ll use in the program in advance for best performance.</p>
 <p>默认序列化可能会很慢。Spark可以使用Kryo库（版本2）更快地序列化对象。与Java序列化（通常多达10倍）相比，Kryo显着更快，更紧凑，但是它不支持所有可序列化的类型，并且需要您预先注册要在程序中使用的类才能获得最佳性能。</p>
 <p>You can use Kryo by initializing your job with a <code>SparkConf</code> and setting the value of “spark.serializer” to “org.apache.spark.serializer.KryoSerializer” (we discuss this in the next part of the book). This setting configures the serializer used for shuffling data between worker nodes and serializing RDDs to disk. The only reason Kryo is not the default is because of the custom registration requirement, but we recommend trying it in any . Since Spark 2.0.0, we internally use Kryo serializer when shuffling RDDs with simple types, arrays of simple types, or string type. </p>
-<p>您可以通过使用<code>SparkConf</code>初始化作业并将 “<code>spark.serializer</code>” 的值设置为 “<code>org.apache.spark.serializer.KryoSerializer</code>”来使用 Kryo（我们将在本书的下一部分中讨论）。此设置配置序列化器用于在 worker 节点之间对数据进行洗牌以及序列化RDD到磁盘。Kryo 不是默认值的唯一原因是由于自定义注册要求，但是我们建议在任何网络密集型应用程序中尝试使用它。从Spark 2.0.0开始，在对具有简单类型，简单类型数组或字符串类型的RDD进行改组时，我们在内部使用Kryo序列化程序。</p>
+<p>您可以通过使用<code>SparkConf</code>初始化作业并将 “<code>spark.serializer</code>” 的值设置为 “<code>org.apache.spark.serializer.KryoSerializer</code>”来使用 Kryo（我们将在本书的下一部分中讨论）。此设置配置序列化器用于在 worker 节点之间对数据进行再分配以及序列化RDD到磁盘。Kryo 不是默认值的唯一原因是由于自定义注册要求，但是我们建议在任何网络密集型应用程序中尝试使用它。从Spark 2.0.0开始，在对具有简单类型，简单类型数组或字符串类型的RDD进行改组时，我们在内部使用Kryo序列化程序。</p>
 <p>Spark automatically includes Kryo serializers for the many commonly used core Scala classes covered in the AllScalaRegistrar from the Twitter chill library.</p>
 <p>对于许多来自twitter chill库中的属于AllScalaRegistrar的常用核心Scala类，Spark自动为它们包括Kryo序列化器。</p>
 <p>To register your own custom classes with Kryo, use the registerKryoClasses method:</p>
@@ -777,8 +777,8 @@ This set of APIs has been around since, essentially, the beginning of Spark, and
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 14 Distributed Shared Variables">
-                <i class="fa fa-chevron-left"></i> 翻译 Chapter 14 Distributed Shared Variables
+              <a href="/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 3 A Tour of Spark’s Toolset">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 3 A Tour of Spark’s Toolset
               </a>
             
           </div>
@@ -787,8 +787,8 @@ This set of APIs has been around since, essentially, the beginning of Spark, and
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 12 Resilient Distributed Datasets (RDDs)">
-                翻译 Chapter 12 Resilient Distributed Datasets (RDDs) <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 14 Distributed Shared Variables">
+                翻译 Chapter 14 Distributed Shared Variables <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1014,7 +1014,7 @@ This set of APIs has been around since, essentially, the beginning of Spark, and
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

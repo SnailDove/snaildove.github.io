@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter3/1574419267522.png">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter3/1574422330532.png">
 <meta property="article:published_time" content="2019-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.374Z">
+<meta property="article:modified_time" content="2021-04-29T17:18:07.087Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -553,7 +553,7 @@ In Chapter 2, we introduced Spark’s core concepts, like transformations and ac
 <p>That’s the static DataFrame version; there shouldn’t be any big surprises in there if you’re familiar with the syntax.</p>
 <p>那是静态的DataFrame版本；如果您熟悉语法，那么应该不会有什么大的惊喜。</p>
 <p>Because you’re likely running this in local mode, it’s a good practice to set the number of shuffle partitions to something that’s going to be a better fit for local mode. This configuration specifies the number of partitions that should be created after a shuffle. By default, the value is 200, but because there aren’t many executors on this machine, it’s worth reducing this to 5. We did this same operation in Chapter 2, so if you don’t remember why this is important, feel free to flip back to review.</p>
-<p>由于您可能会在本地模式下运行此程序，因此最好将洗牌分区的数量设置为更适合本地模式的数量。此配置指定洗牌后应创建的分区数。默认情况下，该值为200，但是由于这台机器上的执行程序（executor）并不多，因此值得将其减少为5。我们在第2章中进行了相同的操作，因此，如果您不记得为什么这样做很重要，请放心后退以进行查看。</p>
+<p>由于您可能会在本地模式下运行此程序，因此最好将数据再分配分区的数量设置为更适合本地模式的数量。此配置指定数据再分配后应创建的分区数。默认情况下，该值为200，但是由于这台机器上的执行程序（executor）并不多，因此值得将其减少为5。我们在第2章中进行了相同的操作，因此，如果您不记得为什么这样做很重要，请放心后退以进行查看。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.conf.set(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="string">"5"</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Now that we’ve seen how that works, let’s take a look at the streaming code! You’ll notice that very little actually changes about the code. The biggest change is that we used <code>readStream</code> instead of <code>read</code>, additionally you’ll notice the <code>maxFilesPerTrigger</code> option, which simply specifies the number of files we should read in at once. This is to make our demonstration more “streaming,” and in a production scenario this would probably be omitted.</p>
@@ -813,8 +813,8 @@ In Chapter 2, we introduced Spark’s core concepts, like transformations and ac
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 14 Distributed Shared Variables">
-                翻译 Chapter 14 Distributed Shared Variables <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 13 Advanced RDDs">
+                翻译 Chapter 13 Advanced RDDs <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1040,7 +1040,7 @@ In Chapter 2, we introduced Spark’s core concepts, like transformations and ac
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

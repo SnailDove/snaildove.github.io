@@ -98,21 +98,10 @@
 <meta property="og:description" content="Chapter 8. Joins 连接 译者：https:&#x2F;&#x2F;snaildove.github.io Chapter 7 covered aggregating single datasets, which is helpful, but more often than not, your Spark applications are going to bring together a lar">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709961399.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710000748.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572711489110.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710740234.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572707740049.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572711149771.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710816803.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710769494.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572708714268.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572708795550.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709006834.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709612960.png">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709687893.png">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg">
+<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.406Z">
+<meta property="article:modified_time" content="2021-04-29T17:54:51.194Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -423,7 +412,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  7.1k
+                  7.5k
                 </span>
               
 
@@ -439,7 +428,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  33
+                  36
                 </span>
               
             </div>
@@ -509,7 +498,51 @@ Chapter 7 covered aggregating single datasets, which is helpful, but more often 
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> person <span class="keyword">JOIN</span> graduateProgram</span><br><span class="line"><span class="keyword">ON</span> person.graduate_program = graduateProgram.id</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709961399.png" alt="1572709961399"></p>
+
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spark_status</th>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>[100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>…</td>
+</tr>
+</tbody></table>
 <p>We can also specify this explicitly by passing in a third parameter, the <code>joinType</code>:</p>
 <p>我们还可以通过传入第三个参数 <code>joinType</code> 来明确指定此名称：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">var</span> joinType = <span class="string">"inner"</span></span><br></pre></td></tr></table></figure>
@@ -518,47 +551,289 @@ Chapter 7 covered aggregating single datasets, which is helpful, but more often 
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> person <span class="keyword">INNER</span> <span class="keyword">JOIN</span> graduateProgram</span><br><span class="line"><span class="keyword">ON</span> person.graduate_program = graduateProgram.id</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710000748.png" alt="1572710000748"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spark_status</th>
+<th>id</th>
+<th>degree</th>
+<th>department…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>[100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS…</td>
+</tr>
+</tbody></table>
 <h2 id="Outer-Joins-外连接"><a href="#Outer-Joins-外连接" class="headerlink" title="Outer Joins 外连接"></a><font color="#9a161a">Outer Joins 外连接</font></h2><p>Outer joins evaluate the keys in both of the DataFrames or tables and includes (and joins together) the rows that evaluate to true or false. If there is no equivalent row in either the left or right DataFrame, Spark will insert null:</p>
 <p>外部连接评估两个DataFrames或表中的键，并包括（并连接在一起）评估为true或false的行。 如果左侧或右侧DataFrame中没有等效行，Spark将插入null：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">joinType = <span class="string">"outer"</span></span><br><span class="line">person.join(graduateProgram, joinExpression, joinType).show()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> person <span class="keyword">FULL</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> graduateProgram</span><br><span class="line"><span class="keyword">ON</span> graduate_program = graduateProgram.id</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572711489110.png" alt="1572711489110"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spark_status</th>
+<th>id</th>
+<th>degree</th>
+<th>departmen…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EEC…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EEC…</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>[100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+</tr>
+</tbody></table>
 <h2 id="Left-Outer-Joins-左外连接"><a href="#Left-Outer-Joins-左外连接" class="headerlink" title="Left Outer Joins 左外连接"></a><font color="#9a161a">Left Outer Joins 左外连接</font></h2><p>Left outer joins evaluate the keys in both of the DataFrames or tables and includes all rows from the left DataFrame as well as any rows in the right DataFrame that have a match in the left DataFrame. If there is no equivalent row in the right DataFrame, Spark will insert null:</p>
 <p>左外部连接会评估两个DataFrame或表中的键，并包括左DataFrame中的所有行以及右DataFrame中与左DataFrame中具有匹配项的所有行。 如果右侧DataFrame中没有等效的行，Spark将插入null：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">joinType = <span class="string">"left_outer"</span></span><br><span class="line">graduateProgram.join(person, joinExpression, joinType).show()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> graduateProgram <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> person</span><br><span class="line"><span class="keyword">ON</span> person.graduate_program = graduateProgram.id</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710740234.png" alt="1572710740234"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+<th>school</th>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+<td>UC Berkeley</td>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Masters</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>…</td>
+</tr>
+</tbody></table>
 <h2 id="Right-Outer-Joins-右外连接"><a href="#Right-Outer-Joins-右外连接" class="headerlink" title="Right Outer Joins 右外连接"></a><font color="#9a161a">Right Outer Joins 右外连接</font></h2><p>Right outer joins evaluate the keys in both of the DataFrames or tables and includes all rows from the right DataFrame as well as any rows in the left DataFrame that have a match in the right DataFrame. If there is no equivalent row in the left DataFrame, Spark will insert null:</p>
 <p>右外部连接会评估两个DataFrame或表中的键，并包括右DataFrame中的所有行以及左DataFrame中与右DataFrame中具有匹配项的所有行。如果左侧DataFrame中没有等效的行，Spark将插入null：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">joinType = <span class="string">"right_outer"</span></span><br><span class="line">person.join(graduateProgram, joinExpression, joinType).show()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> person <span class="keyword">RIGHT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> graduateProgram</span><br><span class="line"><span class="keyword">ON</span> person.graduate_program = graduateProgram.id</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572707740049.png" alt="1572707734877"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spark_status</th>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>[100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School of…</td>
+</tr>
+<tr>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2</td>
+<td>Masters</td>
+<td>EECS</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+</tr>
+</tbody></table>
 <h2 id="Left-Semi-Joins-左半连接"><a href="#Left-Semi-Joins-左半连接" class="headerlink" title="Left Semi Joins 左半连接"></a><font color="#9a161a">Left Semi Joins 左半连接</font></h2><p>Semi joins are a bit of a departure from the other joins. They do not actually include any values from the right DataFrame. They only compare values to see if the value exists in the second DataFrame. If the value does exist, those rows will be kept in the result, even if there are duplicate keys in the left DataFrame. Think of left semi joins as filters on a DataFrame, as opposed to the function of a conventional join: </p>
 <p>半连接与其他连接有些偏离。它们实际上并不包含来自右DataFrame的任何值。他们仅比较值以查看该值是否存在于第二个DataFrame中。如果该值确实存在，则即使左侧DataFrame中存在重复的键，这些行也将保留在结果中。可以将左半连接视为DataFrame上的过滤器，这与常规连接的功能相反：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">joinType = <span class="string">"left_semi"</span></span><br><span class="line">graduateProgram.join(person, joinExpression, joinType).show()</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572711149771.png" alt="1572711149771"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+<th>school</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Masters</td>
+<td>School of Informa…</td>
+<td>UC Berkeley</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+</tr>
+</tbody></table>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">val</span> gradProgram2 = graduateProgram.union(<span class="type">Seq</span>(</span><br><span class="line">(<span class="number">0</span>, <span class="string">"Masters"</span>, <span class="string">"Duplicated Row"</span>, <span class="string">"Duplicated School"</span>)).toDF())</span><br><span class="line">gradProgram2.createOrReplaceTempView(<span class="string">"gradProgram2"</span>)</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">gradProgram2 = graduateProgram.union(spark.createDataFrame([</span><br><span class="line">(<span class="number">0</span>, <span class="string">"Masters"</span>, <span class="string">"Duplicated Row"</span>, <span class="string">"Duplicated School"</span>)]))</span><br><span class="line">gradProgram2.createOrReplaceTempView(<span class="string">"gradProgram2"</span>)</span><br><span class="line">gradProgram2.join(person, joinExpression, joinType).show()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> gradProgram2 <span class="keyword">LEFT</span> <span class="keyword">SEMI</span> <span class="keyword">JOIN</span> person</span><br><span class="line"><span class="keyword">ON</span> gradProgram2.id = person.graduate_program</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710816803.png" alt="1572710816803"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+<th>school</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Masters</td>
+<td>School of Informa…</td>
+<td>UC Berkeley</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+</tr>
+<tr>
+<td>0</td>
+<td>Masters</td>
+<td>Duplicated Row</td>
+<td>Duplicated School</td>
+</tr>
+</tbody></table>
 <h2 id="Left-Anti-Joins-左反连接"><a href="#Left-Anti-Joins-左反连接" class="headerlink" title="Left Anti Joins 左反连接"></a><font color="#9a161a">Left Anti Joins 左反连接</font></h2><p>Left anti joins are the opposite of left semi joins. Like left semi joins, they do not actually include any values from the right DataFrame. They only compare values to see if the value exists in the second DataFrame. However, rather than keeping the values that exist in the second DataFrame, they keep only the values that do not have a corresponding key in the second DataFrame. Think of anti joins as a NOT IN SQL-style filter: </p>
 <p>左反连接与左半连接相反。像左半连接一样，它们实际上不包括右DataFrame中的任何值。他们仅比较值以查看该值是否存在于第二个DataFrame中。但是，与其保留第二个DataFrame中存在的值，不如保留第二个DataFrame中没有相应键的值。将反连接视为NOT IN SQL样式的过滤器：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">joinType = <span class="string">"left_anti"</span></span><br><span class="line">graduateProgram.join(person, joinExpression, joinType).show()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> graduateProgram <span class="keyword">LEFT</span> <span class="keyword">ANTI</span> <span class="keyword">JOIN</span> person</span><br><span class="line"><span class="keyword">ON</span> graduateProgram.id = person.graduate_program</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572710769494.png" alt="1572710769494"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+<th>school</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>Masters</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+</tr>
+</tbody></table>
 <h2 id="Natural-Joins-自然连接"><a href="#Natural-Joins-自然连接" class="headerlink" title="Natural Joins 自然连接"></a><font color="#9a161a">Natural Joins 自然连接</font></h2><p>Natural joins make implicit guesses at the columns on which you would like to join. It finds matching columns and returns the results. Left, right, and outer natural joins are all supported.</p>
 <p>自然连接对要连接的列进行隐式猜测。它找到匹配的列并返回结果。左，右和外部的自然连接均受到这样的支持。</p>
 <hr>
@@ -575,14 +850,142 @@ Implicit is always dangerous! The following query will give us incorrect results
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> graduateProgram <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> person</span><br><span class="line"><span class="keyword">ON</span> graduateProgram.id = person.graduate_program</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572708714268.png" alt="1572708714268"></p>
-<p>If you truly intend to have a cross-join, you can call that out explicitly : </p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>degree</th>
+<th>department</th>
+<th>school</th>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spar…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+<td>UC Berkeley</td>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[2…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Ph.D.</td>
+<td>EECS</td>
+<td>UC Berkeley</td>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500…</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>If you truly intend to have a cross-join, you can call that out explicitly :</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
 <p>如果您确实打算进行交叉连接，则可以显示调用：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.crossJoin(graduateProgram).show()</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> graduateProgram <span class="keyword">CROSS</span> <span class="keyword">JOIN</span> person</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572708795550.png" alt="1572708795550"></p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spark_status</th>
+<th>id</th>
+<th>degree</th>
+<th>departm…</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>[100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>0</td>
+<td>Masters</td>
+<td>School…</td>
+</tr>
+<tr>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody></table>
 <hr>
 <p><center><font face="constant-width" color="#c67171" size=3><strong>WARNING 警告</strong></font></center></p>
 You should use cross-joins only if you are absolutely, 100 percent sure that this is the join you need. There is a reason why you need to be explicit when defining a cross-join in Spark. They’re dangerous! Advanced users can set the session-level configuration `spark.sql.crossJoin.enable` to true in order to allow cross-joins without warnings or without Spark trying to perform another join for you. 
@@ -599,7 +1002,66 @@ You should use cross-joins only if you are absolutely, 100 percent sure that thi
 
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- in SQL</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span></span><br><span class="line">(<span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">as</span> personId, <span class="keyword">name</span>, graduate_program, spark_status <span class="keyword">FROM</span> person)</span><br><span class="line"><span class="keyword">INNER</span> <span class="keyword">JOIN</span> sparkStatus <span class="keyword">ON</span> array_contains(spark_status, <span class="keyword">id</span>)</span><br></pre></td></tr></table></figure>
 
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709006834.png" alt="1572709006834"></p>
+<table>
+<thead>
+<tr>
+<th>personId</th>
+<th>name</th>
+<th>graduate_program</th>
+<th>spark_status</th>
+<th>id</th>
+<th>status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>Bill Chambers</td>
+<td>0</td>
+<td>[100]</td>
+<td>100</td>
+<td>Contributor</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>500</td>
+<td>Vice President</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>250</td>
+<td>PMC Member</td>
+</tr>
+<tr>
+<td>1</td>
+<td>Matei Zaharia</td>
+<td>1</td>
+<td>[500, 250, 100]</td>
+<td>100</td>
+<td>Contributor</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>250</td>
+<td>PMC Member</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Michael Armbrust</td>
+<td>1</td>
+<td>[250, 100]</td>
+<td>100</td>
+<td>Contributor</td>
+</tr>
+</tbody></table>
 <h3 id="Handling-Duplicate-Column-Names-处理重复的列名"><a href="#Handling-Duplicate-Column-Names-处理重复的列名" class="headerlink" title="Handling Duplicate Column Names 处理重复的列名"></a><font color="#00000">Handling Duplicate Column Names 处理重复的列名</font></h3><p>One of the tricky things that come up in joins is dealing with duplicate column names in your results DataFrame. In a DataFrame, each column has a unique ID within Spark’s SQL Engine, Catalyst. This unique ID is purely internal and not something that you can directly reference. This makes it quite difficult to refer to a specific column when you have a DataFrame with duplicate column names.</p>
 <p>连接中棘手的事情之一是处理结果DataFrame中的重复列名。 在DataFrame中，Spark的SQL引擎Catalyst中的每一列都有唯一的ID。 此唯一ID纯粹是内部的，不能直接引用。 当您的DataFrame具有重复的列名时，这使得引用特定的列变得非常困难。</p>
 <p>This can occur in two distinct situations:</p>
@@ -641,18 +1103,19 @@ You should use cross-joins only if you are absolutely, 100 percent sure that thi
 <h2 id="How-Spark-Performs-Joins-Spark如何执行连接"><a href="#How-Spark-Performs-Joins-Spark如何执行连接" class="headerlink" title="How Spark Performs Joins Spark如何执行连接"></a><font color="#9a161a">How Spark Performs Joins Spark如何执行连接</font></h2><p>To understand how Spark performs joins, you need to understand the two core resources at play: the <em>node-to-node communication strategy</em> and <em>per node computation strategy</em>. These internals are likely irrelevant to your business problem. However, comprehending how Spark performs joins can mean the difference between a job that completes quickly and one that never completes at all.</p>
 <p>要了解Spark如何执行连接，您需要了解两个核心资源：节点对节点通信策略和每个节点计算策略。这些内部因素可能与您的业务问题无关。但是，了解Spark如何执行连接可能意味着快速完成的工作与根本没有完成的工作之间的区别。</p>
 <h3 id="Communication-Strategies-通信策略"><a href="#Communication-Strategies-通信策略" class="headerlink" title="Communication Strategies 通信策略"></a><font color="#00000">Communication Strategies 通信策略</font></h3><p>Spark approaches cluster communication in two different ways during joins. It either incurs a shuffle join, which results in an all-to-all communication or a broadcast join. Keep in mind that there is a lot more detail than we’re letting on at this point, and that’s intentional. Some of these internal optimizations are likely to change over time with new improvements to the cost-based optimizer and improved communication strategies. For this reason, we’re going to focus on the high-level examples to help you understand exactly what’s going on in some of the more common scenarios, and let you take advantage of some of the low-hanging fruit that you can use right away to try to speed up some of your workloads.</p>
-<p>在连接期间，Spark以两种不同的方式处理集群通信。它会导致洗牌连接（shuffle join），从而导致进行所有节点之间（all-to-all）相互通信或广播连接（broadcast join）。请记住，这时我们要提供的细节比我们要多得多，这是故意的。随着基于成本的优化器的新改进和改进的通信策略，其中一些内部优化可能会随时间而变化。因此，我们将集中在高阶示例上，以帮助您准确了解某些较常见的情况下发生的事情，并让您充分利用一些可以直接用的容易的方法去尝试加快一些工作量。</p>
+<p>在连接期间，Spark以两种不同的方式处理集群通信。它会导致数据再分配连接（shuffle join），从而导致进行所有节点之间（all-to-all）相互通信或广播连接（broadcast join）。请记住，这时我们要提供的细节比我们要多得多，这是故意的。随着基于成本的优化器的新改进和改进的通信策略，其中一些内部优化可能会随时间而变化。因此，我们将集中在高阶示例上，以帮助您准确了解某些较常见的情况下发生的事情，并让您充分利用一些可以直接用的容易的方法去尝试加快一些工作量。</p>
 <p>The core foundation of our simplified view of joins is that in Spark you will have either a big table or a small table. Although this is obviously a spectrum (and things do happen differently if you have a “medium-sized table”), it can help to be binary about the distinction for the sake of this explanation. </p>
 <p>我们简化的连接视图的核心基础是，在Spark中，您将有一个大表或一个小表。尽管这显然是一个范围（如果您有“中型表”，事情的发生会有所不同），但是为了便于说明，将其区分成2个范围可能会有所帮助。</p>
 <h4 id="Big-table–to–big-table-大表与大表的连接"><a href="#Big-table–to–big-table-大表与大表的连接" class="headerlink" title="Big table–to–big table 大表与大表的连接"></a><font color="#3399cc">Big table–to–big table 大表与大表的连接</font></h4><p>When you join a big table to another big table, you end up with a shuffle join, such as that illustrates in Figure 8-1. </p>
 <p>当将一个大表连接到另一个大表时，最终将进行随机组合，如图8-1所示。</p>
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709612960.png" alt="1572709612960"> </p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg" alt="1572709612960"> </p>
 <p>In a shuffle join, every node talks to every other node and they share data according to which node has a certain key or set of keys (on which you are joining). These joins are expensive because the network can become congested with traffic, especially if your data is not partitioned well. </p>
-<p>在洗牌连接中，每个节点都与其他每个节点通信，并根据哪个节点具有某个键或一组键（要加入的键）共享数据。这些连接代价非常高，因为网络可能会变得拥塞，特别是如果您的数据没有很好地分区的时候。</p>
+<p>在数据再分配连接中，每个节点都与其他每个节点通信，并根据哪个节点具有某个键或一组键（要加入的键）共享数据。这些连接代价非常高，因为网络可能会变得拥塞，特别是如果您的数据没有很好地分区的时候。</p>
 <p>This join describes taking a big table of data and joining it to another big table of data. An example of this might be a company that receives billions of messages every day from the Internet of Things, and needs to identify the day-over-day changes that have occurred. The way to do this is by joining on deviceId, messageType, and date in one column, and date - 1 day in the other column. In Figure 8-1, DataFrame 1 and DataFrame 2 are both large DataFrames. This means that all worker nodes (and potentially every partition) will need to communicate with one another during the entire join process (with no intelligent partitioning of data).</p>
 <p>此连接描述获取一个大数据表并将其连接到另一个大数据表。例如，一家公司每天从物联网接收数十亿条消息，并且需要确定每天发生的变化，这就是一个例子。要做到这一点，方法是在一列中加入deviceId，messageType和date，在另一列中加入date-1天。在图8-1中，DataFrame 1和DataFrame 2都是大型DataFrame。这意味着所有工作节点（以及可能的每个分区）在整个连接过程中都需要相互通信（没有智能分区数据）。</p>
 <h4 id="Big-table–to–small-table-大表连接小表"><a href="#Big-table–to–small-table-大表连接小表" class="headerlink" title="Big table–to–small table 大表连接小表"></a><font color="#3399cc">Big table–to–small table 大表连接小表</font></h4><p>When the table is small enough to fit into the memory of a single worker node, with some breathing room of course, we can optimize our join. Although we can use a big table–to–big table communication strategy, it can often be more efficient to use a broadcast join. What this means is that we will replicate our small DataFrame onto every worker node in the cluster (be it located on one machine or many). Now this sounds expensive. However, what this does is prevent us from performing the all-to-all communication during the entire join process. Instead, we perform it only once at the beginning and then let each individual worker node perform the work without having to wait or communicate with any other worker node, as is depicted in Figure 8-2. </p>
-<p>当表足够小到融入单个工作节点的内存时，当然还有一些喘息的空间，我们可以优化连接。尽管我们可以使用大表对大表的通信策略，但使用广播连接通常会更有效。这意味着我们将把小型DataFrame复制到集群中的每个工作节点上（无论它位于一台计算机上还是多台计算机上）。现在听起来代价很高。但是，这样做会阻止我们在整个连接过程中执行所有节点之间相互的通信。相反，我们仅在开始时执行一次，然后让每个单独的工作程序节点执行工作，而不必等待或与任何其他工作程序节点通信，如图8-2所示。<img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1572709687893.png" alt="1572709687893"></p>
+<p>当表足够小到融入单个工作节点的内存时，当然还有一些喘息的空间，我们可以优化连接。尽管我们可以使用大表对大表的通信策略，但使用广播连接通常会更有效。这意味着我们将把小型DataFrame复制到集群中的每个工作节点上（无论它位于一台计算机上还是多台计算机上）。现在听起来代价很高。但是，这样做会阻止我们在整个连接过程中执行所有节点之间相互的通信。相反，我们仅在开始时执行一次，然后让每个单独的工作程序节点执行工作，而不必等待或与任何其他工作程序节点通信，如图8-2所示。</p>
+<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg" alt="1572709687893"></p>
 <p>At the beginning of this join will be a large communication, just like in the previous type of join. However, immediately after that first, there will be no further communication between nodes. This means that joins will be performed on every single node individually, making CPU the biggest bottleneck. For our current set of data, we can see that Spark has automatically set this up as a broadcast join by looking at the explain plan: </p>
 <p>与以前的连接类型一样，此连接的开始将进行大量通信。但是，紧接在那之后，节点之间将不再有进一步的通信。这意味着连接将在每个单个节点上单独执行，这使CPU成为最大的瓶颈。对于我们当前的数据集，我们可以通过查看解释计划来看到Spark已<strong>自动</strong>将其设置为广播连接：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> joinExpr = person.col(<span class="string">"graduate_program"</span>) === graduateProgram.col(<span class="string">"id"</span>)</span><br><span class="line">person.join(graduateProgram, joinExpr).explain()</span><br></pre></td></tr></table></figure>
@@ -672,7 +1135,7 @@ You should use cross-joins only if you are absolutely, 100 percent sure that thi
 <h4 id="Little-table–to–little-table-小表连接小表"><a href="#Little-table–to–little-table-小表连接小表" class="headerlink" title="Little table–to–little table 小表连接小表"></a><font color="#3399cc">Little table–to–little table 小表连接小表</font></h4><p>When performing joins with small tables, it’s usually best to let Spark decide how to join them. You can always force a broadcast join if you’re noticing strange behavior.</p>
 <p>在执行小表之间的连接时，通常最好让Spark决定如何连接它们。如果您发现异常行为，可以随时强制加入广播连接。</p>
 <h2 id="Conclusion-结论"><a href="#Conclusion-结论" class="headerlink" title="Conclusion 结论"></a><font color="#9a161a">Conclusion 结论</font></h2><p>In this chapter, we discussed joins, probably one of the most common use cases. One thing we did not mention but is important to consider is if you partition your data correctly prior to a join, you can end up with much more efficient execution because even if a shuffle is planned, if data from two different DataFrames is already located on the same machine, Spark can avoid the shuffle. Experiment with some of your data and try partitioning beforehand to see if you can notice the increase in speed when performing those joins. In Chapter 9, we will discuss Spark’s data source APIs. There are additional implications when you decide what order joins should occur in. Because some joins act as filters, this can be a low-hanging improvement in your workloads, as you are guaranteed to reduce data exchanged over the network.</p>
-<p>在本章中，我们讨论了连接（可能是最常见的用例之一）。我们没有提到但要考虑的一件事是，如果在连接之前正确地对数据进行了分区，则可以提高执行效率，因为即使洗牌是有计划得，如果来自两个不同DataFrames的数据位于同一台机器上，Spark可以避免洗牌。试用一些数据，然后尝试进行分区，以查看执行这些连接时是否可以注意到速度的提高。 在第9章中，我们将讨论Spark的数据源API。当您决定应按什么顺序进行连接时，还存在其他含义。由于某些连接充当过滤器，因此可以保证在网络上交换的数据减少，这对您的工作负载而言是微不足道的改进。</p>
+<p>在本章中，我们讨论了连接（可能是最常见的用例之一）。我们没有提到但要考虑的一件事是，如果在连接之前正确地对数据进行了分区，则可以提高执行效率，因为即使数据再分配是有计划得，如果来自两个不同DataFrames的数据位于同一台机器上，Spark可以避免数据再分配。试用一些数据，然后尝试进行分区，以查看执行这些连接时是否可以注意到速度的提高。 在第9章中，我们将讨论Spark的数据源API。当您决定应按什么顺序进行连接时，还存在其他含义。由于某些连接充当过滤器，因此可以保证在网络上交换的数据减少，这对您的工作负载而言是微不足道的改进。</p>
 <p>The next chapter will depart from user manipulation, as we’ve seen in the last several chapters, and touch on reading and writing data using the Structured APIs. </p>
 <p>正如我们在前几章中所看到的那样，下一章将脱离用户操作，并介绍使用结构化API读写数据。</p>
 
@@ -999,7 +1462,7 @@ You should use cross-joins only if you are absolutely, 100 percent sure that thi
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

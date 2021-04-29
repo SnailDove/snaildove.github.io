@@ -99,7 +99,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="article:published_time" content="2019-10-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.412Z">
+<meta property="article:modified_time" content="2021-04-29T17:55:53.044Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -1168,7 +1168,7 @@ Although SQLite makes for a good reference example, it’s probably not what you
 <p>This is probably the lowest-hanging optimization that you can use when you have a table that readers frequently filter by before manipulating. For instance, date is particularly common for a partition because, downstream, often we want to look at only the previous week’s data (instead of scanning the entire list of records). This can provide massive speedups for readers.</p>
 <p>当您拥有一个表且读取器（reader）在操作这个表之前经常对其进行过滤，那么这可能是您可以使用的最容易优化。例如，日期在分区中尤为常见，因为在下游，我们通常只希望查看前一周的数据（而不是扫描整个记录列表）。这可以为读者提供巨大的提速。</p>
 <h4 id="Bucketing"><a href="#Bucketing" class="headerlink" title="Bucketing "></a><font color="#3399cc">Bucketing </font></h4><p>Bucketing is another file organization approach with which you can control the data that is specifically written to each file. This can help avoid shuffles later when you go to read the data because data with the same bucket ID will all be grouped together into one physical partition. This means that the data is prepartitioned according to how you expect to use that data later on, meaning you can avoid expensive shuffles when joining or aggregating.</p>
-<p>存储桶是另一种文件组织方法，可用于控制专门写入每个文件的数据。这样可以避免以后再读取数据时发生洗牌（shuffle），因为具有相同存储区ID的数据将全部分组到一个物理分区中。这意味着将根据您以后使用数据的方式对数据进行预分区，这意味着您可以避免在合并或聚合时进行代价很高的洗牌（shuffle）。</p>
+<p>存储桶是另一种文件组织方法，可用于控制专门写入每个文件的数据。这样可以避免以后再读取数据时发生数据再分配（shuffle），因为具有相同存储区ID的数据将全部分组到一个物理分区中。这意味着将根据您以后使用数据的方式对数据进行预分区，这意味着您可以避免在合并或聚合时进行代价很高的数据再分配（shuffle）。</p>
 <p>Rather than partitioning on a specific column (which might write out a ton of directories), it’s probably worthwhile to explore bucketing the data instead. This will create a certain number of files and organize our data into those “buckets”:</p>
 <p>与其在特定的列上进行分区（可能会写出大量的目录），不如探索对数据进行存储桶化。这将创建一定数量的文件，并将我们的数据组织到这些“存储桶”中： </p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> numberBuckets = <span class="number">10</span></span><br><span class="line"><span class="keyword">val</span> columnToBucketBy = <span class="string">"count"</span></span><br><span class="line">csvFile.write.format(<span class="string">"parquet"</span>).mode(<span class="string">"overwrite"</span>)</span><br><span class="line">.bucketBy(numberBuckets, columnToBucketBy).saveAsTable(<span class="string">"bucketedFiles"</span>)</span><br></pre></td></tr></table></figure>
@@ -1285,8 +1285,8 @@ Although SQLite makes for a good reference example, it’s probably not what you
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/09/01/Chapter26_Classification(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 26 Classification">
-                <i class="fa fa-chevron-left"></i> 翻译 Chapter 26 Classification
+              <a href="/2019/09/01/Chapter27_Regression(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 27 Regression">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 27 Regression
               </a>
             
           </div>
@@ -1522,7 +1522,7 @@ Although SQLite makes for a good reference example, it’s probably not what you
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

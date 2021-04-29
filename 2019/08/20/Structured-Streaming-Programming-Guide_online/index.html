@@ -90,14 +90,13 @@
 
 
 
-<meta name="description" content="注：翻译时，最新发行版：2.4.5 OverviewStructured Streaming is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine. You can express your streaming computation the same way you woul">
+<meta name="description" content="注：翻译时，最新Spark 2.0.0系列最新发行版是：2.4.5 OverviewStructured Streaming is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine. You can express your streaming computation the s">
 <meta property="og:type" content="article">
 <meta property="og:title" content="翻译 Structured Streaming Programming Guide">
 <meta property="og:url" content="https://snaildove.github.io/2019/08/20/Structured-Streaming-Programming-Guide_online/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="注：翻译时，最新发行版：2.4.5 OverviewStructured Streaming is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine. You can express your streaming computation the same way you woul">
+<meta property="og:description" content="注：翻译时，最新Spark 2.0.0系列最新发行版是：2.4.5 OverviewStructured Streaming is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine. You can express your streaming computation the s">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1565683722961.png">
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-stream-as-a-table.png">
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-model.png">
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-example-model.png">
@@ -105,11 +104,11 @@
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-late-data.png">
 <meta property="og:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-watermark-update-mode.png">
 <meta property="article:published_time" content="2019-08-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.515Z">
+<meta property="article:modified_time" content="2021-04-19T10:07:08.876Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1565683722961.png">
+<meta name="twitter:image" content="http://spark.apache.org/docs/latest/img/structured-streaming-stream-as-a-table.png">
 
 
 
@@ -416,7 +415,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  25.4k
+                  25.5k
                 </span>
               
 
@@ -432,7 +431,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  119
+                  120
                 </span>
               
             </div>
@@ -453,7 +452,7 @@
       
 
       
-        <p><strong>注：翻译时，最新发行版：2.4.5</strong></p>
+        <p><strong>注：翻译时，最新Spark 2.0.0系列最新发行版是：<a href="http://spark.apache.org/docs/2.4.5/structured-streaming-programming-guide.html#programming-model" target="_blank" rel="noopener">2.4.5</a></strong></p>
 <h2 id="Overview"><a href="#Overview" class="headerlink" title="Overview"></a>Overview</h2><p>Structured Streaming is a scalable and fault-tolerant stream processing engine built on the Spark SQL engine. You can express your streaming computation the same way you would express a batch computation on static data. The Spark SQL engine will take care of running it incrementally and continuously and updating the final result as streaming data continues to arrive. You can use the <a href="http://spark.apache.org/docs/latest/sql-programming-guide.html" target="_blank" rel="noopener">Dataset/DataFrame API</a> in Scala, Java, Python or R to express streaming aggregations, event-time windows, stream-to-batch joins, etc. The computation is executed on the same optimized Spark SQL engine. Finally, the system ensures end-to-end exactly-once fault-tolerance guarantees through checkpointing and Write-Ahead Logs. In short, <em>Structured Streaming provides fast, scalable, fault-tolerant, end-to-end exactly-once stream processing without the user having to reason about streaming.</em></p>
 <p>结构化流是一个基于Spark SQL引擎的可扩展、容错的流处理引擎。您可以用在静态数据上表示批处理计算的方式来表示流计算。Spark SQL引擎将负责递增和连续地运行它，并在流数据继续到达时更新最终结果。可以使用Scala、Java、Python 或 R 中的 DataSet／DataFrame API来表示流聚合、事件时间窗口、流到批连接等。在相同的优化 Spark SQL 引擎上执行计算。最后，系统通过检查点和提前写入日志来确保端到端的容错性。<font style="background:yellow;">简而言之，结构化流提供了快速、可扩展、容错、端到端的一次性流处理，而用户无需考虑流。</font></p>
 <p>Internally, by default, Structured Streaming queries are processed using a <em>micro-batch processing</em> engine, which processes data streams as a series of small batch jobs thereby achieving end-to-end latencies as low as 100 milliseconds and exactly-once fault-tolerance guarantees. However, since Spark 2.3, we have introduced a new low-latency processing mode called <strong>Continuous Processing</strong>, which can achieve end-to-end latencies as low as 1 millisecond with at-least-once guarantees. Without changing the Dataset/DataFrame operations in your queries, you will be able to choose the mode based on your application requirements.</p>
@@ -485,7 +484,21 @@
 
 <p>Then, any lines typed in the terminal running the netcat server will be counted and printed on screen every second. It will look something like the following.</p>
 <p>然后，在运行 netcat 服务器的终端中键入的任何行都将被计数并每秒在屏幕上打印。它看起来像下面这样。</p>
-<p><img src="C:/Users/ruito/AppData/Roaming/Typora/typora-user-images/1565683722961.png" alt="1565683722961"></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 终端 1: 运行 Netcat</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> nc -lk 9999</span></span><br><span class="line">apache spark</span><br><span class="line">apache hadoop</span><br></pre></td></tr></table></figure>
+
+<p>Scala代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 终端 2: 运行 StructuredNetworkWordCount</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./bin/run-example org.apache.spark.examples.sql.streaming.StructuredNetworkWordCount localhost 9999</span></span><br></pre></td></tr></table></figure>
+
+<p>Java代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 终端 2: 运行 StructuredNetworkWordCount</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./bin/run-example org.apache.spark.examples.sql.streaming.JavaStructuredNetworkWordCount localhost 9999</span></span><br></pre></td></tr></table></figure>
+
+<p>Python代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 终端 2: 运行 StructuredNetworkWordCount</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./bin/spark-submit examples/src/main/python/sql/streaming/structured_network_wordcount.py localhost 9999</span></span><br></pre></td></tr></table></figure>
+<p>R代码</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#</span><span class="bash"> 终端 2: 运行 structured_network_wordcount.R</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> ./bin/spark-submit examples/src/main/r/streaming/structured_network_wordcount.R localhost 9999</span></span><br></pre></td></tr></table></figure>
+<p>上面的结果：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">-------------------------------------------</span><br><span class="line">Batch: 0</span><br><span class="line">-------------------------------------------</span><br><span class="line">+------+-----+</span><br><span class="line">| value|count|</span><br><span class="line">+------+-----+</span><br><span class="line">|apache|    1|</span><br><span class="line">| spark|    1|</span><br><span class="line">+------+-----+</span><br><span class="line"></span><br><span class="line">-------------------------------------------</span><br><span class="line">Batch: 1</span><br><span class="line">-------------------------------------------</span><br><span class="line">+------+-----+</span><br><span class="line">| value|count|</span><br><span class="line">+------+-----+</span><br><span class="line">|apache|    2|</span><br><span class="line">| spark|    1|</span><br><span class="line">|hadoop|    1|</span><br><span class="line">+------+-----+</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
 <h2 id="Programming-Model编程模型"><a href="#Programming-Model编程模型" class="headerlink" title="Programming Model编程模型"></a>Programming Model<br/>编程模型</h2><p>The key idea in Structured Streaming is to treat a live data stream as a table that is being continuously appended. This leads to a new stream processing model that is very similar to a batch processing model. You will express your streaming computation as standard batch-like query as on a static table, and Spark runs it as an <em>incremental</em> query on the <em>unbounded</em> input table. Let’s understand this model in more detail.</p>
 <p><font style="background:yellow;">结构化流中的关键思想是将实时数据流视为一个不断追加的表。这导致了一个新的流处理模型，与批处理模型非常相似。您将把流计算表示为与静态表类似的标准批处理查询，Spark将在无边界输入表上以增量查询的形式运行它。</font>让我们更详细地了解这个模型。</p>
 <h3 id="Basic-Concepts基本概念"><a href="#Basic-Concepts基本概念" class="headerlink" title="Basic Concepts基本概念"></a>Basic Concepts<br/>基本概念</h3><p>Consider the input data stream as the “Input Table”. Every data item that is arriving on the stream is like a new row being appended to the Input Table.</p>
@@ -516,7 +529,7 @@
 <p><font style="background:yellow;">请注意，结构化流并没有实现整个表。它从流数据源中读取最新的可用数据，然后递增处理以更新结果，然后丢弃源数据。它只保留更新结果所需的最小中间状态数据（例如前面示例中的中间计数）</font>。</p>
 <p>This model is significantly different from many other stream processing engines. Many streaming systems require the user to maintain running aggregations themselves, thus having to reason about fault-tolerance, and data consistency (at-least-once, or at-most-once, or exactly-once). In this model, Spark is responsible for updating the Result Table when there is new data, thus relieving the users from reasoning about it. As an example, let’s see how this model handles event-time based processing and late arriving data.</p>
 <p>此模型与许多其他流处理引擎显著不同。许多流系统要求用户自己维护正在运行的聚合，因此必须考虑容错性和数据一致性（至少一次、最多一次或完全一次）。<font style="background:yellow;">在这个模型中，Spark 负责在有新数据时更新结果表，从而减少用户对结果表的推理。</font>作为一个例子，让我们看看这个模型如何处理基于事件时间的处理和延迟到达的数据。</p>
-<h3 id="Handling-Event-time-and-Late-Data-处理事件时间和延迟数据"><a href="#Handling-Event-time-and-Late-Data-处理事件时间和延迟数据" class="headerlink" title="Handling Event-time and Late Data 处理事件时间和延迟数据"></a>Handling Event-time and Late Data 处理事件时间和延迟数据</h3><p>Event-time is the time embedded in the data itself. For many applications, you may want to operate on this event-time. For example, if you want to get the number of events generated by IoT devices every minute, then you probably want to use the time when the data was generated (that is, event-time in the data), rather than the time Spark receives them. This event-time is very naturally expressed in this model – each event from the devices is a row in the table, and event-time is a column value in the row. This allows window-based aggregations (e.g. number of events every minute) to be just a special type of grouping and aggregation on the event-time column – each time window is a group and each row can belong to multiple windows/groups. Therefore, such event-time-window-based aggregation queries can be defined consistently on both a static dataset (e.g. from collected device events logs) as well as on a data stream, making the life of the user much easier.</p>
+<h3 id="Handling-Event-time-and-Late-Data处理事件时间和延迟数据"><a href="#Handling-Event-time-and-Late-Data处理事件时间和延迟数据" class="headerlink" title="Handling Event-time and Late Data处理事件时间和延迟数据"></a>Handling Event-time and Late Data<br/>处理事件时间和延迟数据</h3><p>Event-time is the time embedded in the data itself. For many applications, you may want to operate on this event-time. For example, if you want to get the number of events generated by IoT devices every minute, then you probably want to use the time when the data was generated (that is, event-time in the data), rather than the time Spark receives them. This event-time is very naturally expressed in this model – each event from the devices is a row in the table, and event-time is a column value in the row. This allows window-based aggregations (e.g. number of events every minute) to be just a special type of grouping and aggregation on the event-time column – each time window is a group and each row can belong to multiple windows/groups. Therefore, such event-time-window-based aggregation queries can be defined consistently on both a static dataset (e.g. from collected device events logs) as well as on a data stream, making the life of the user much easier.</p>
 <p><font style="background:yellow;">事件时间是嵌入到数据本身中的时间。</font>对于许多应用程序，您可能希望在此事件时间上进行操作。例如，如果您希望获得每分钟由物联网设备生成的事件数，那么您可能希望使用生成数据的时间（即数据中的事件时间），而不是Spark接收数据的时间。这个事件时间很自然地用这个模型表示——<font style="background:yellow;">设备中的每个事件都是表中的一行，而事件时间是行中的一列值。这允许基于窗口的聚合（例如，每分钟事件数）只是事件时间列上特殊类型的分组和聚合-每个时间窗口都是一个组，并且每一行可以属于多个窗口/组。因此，这种基于事件时间窗口的聚合查询既可以在静态数据集（例如，从收集的设备事件日志中）上定义，也可以在数据流上定义，从而使用户的生活更加容易。</font></p>
 <p>Furthermore, this model naturally handles data that has arrived later than expected based on its event-time. Since Spark is updating the Result Table, it has full control over updating old aggregates when there is late data, as well as cleaning up old aggregates to limit the size of intermediate state data. Since Spark 2.1, we have support for watermarking which allows the user to specify the threshold of late data, and allows the engine to accordingly clean up old state. These are explained later in more detail in the <a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#window-operations-on-event-time" target="_blank" rel="noopener">Window Operations</a> section.</p>
 <p>此外，该模型根据事件时间自然地处理比预期晚到达的数据。<font style="background:yellow;">由于 Spark 正在更新结果表，因此它可以完全控制在有延迟数据时更新旧聚合，以及清除旧聚合以限制中间状态数据的大小。自Spark2.1以来，我们支持水印技术，允许用户指定延迟数据的阈值，并允许引擎相应地清除旧状态。</font>稍后将在窗口操作部分中更详细地解释这些内容。</p>
@@ -635,7 +648,7 @@
 <p>请注意，对非流式 Dataset 使用  <code>withWatermark</code> 是不起作用的。由于水印不应以任何方式影响任何批查询，因此我们将直接忽略它。</p>
 <p>Similar to the Update Mode earlier, the engine maintains intermediate counts for each window. However, the partial counts are not updated to the Result Table and not written to sink. The engine waits for “10 mins” for late date to be counted, then drops intermediate state of a window &lt; watermark, and appends the final counts to the Result Table/sink. For example, the final counts of window <code>12:00 - 12:10</code> is appended to the Result Table only after the watermark is updated to <code>12:11</code>.</p>
 <p>与之前的更新模式类似，引擎为每个窗口保持中间计数。但是，部分计数不会更新到结果表，也不会写入接收器。引擎等待“10分钟”计算延迟时间，然后将窗口&lt;水印的中间状态剔除，并将最终计数附加到结果表/接收器。例如，只有在水印更新为12:11之后，才会将窗口12:00-12:10的最终计数追加到结果表中。</p>
-<h6 id="Conditions-for-watermarking-to-clean-aggregation-state-水印清除聚合状态的条件"><a href="#Conditions-for-watermarking-to-clean-aggregation-state-水印清除聚合状态的条件" class="headerlink" title="Conditions for watermarking to clean aggregation state 水印清除聚合状态的条件"></a>Conditions for watermarking to clean aggregation state 水印清除聚合状态的条件</h6><p>It is important to note that the following conditions must be satisfied for the watermarking to clean the state in aggregation queries <em>(as of Spark 2.1.1, subject to change in the future)</em>.</p>
+<h6 id="Conditions-for-watermarking-to-clean-aggregation-state水印清除聚合状态的条件"><a href="#Conditions-for-watermarking-to-clean-aggregation-state水印清除聚合状态的条件" class="headerlink" title="Conditions for watermarking to clean aggregation state水印清除聚合状态的条件"></a>Conditions for watermarking to clean aggregation state<br/>水印清除聚合状态的条件</h6><p>It is important to note that the following conditions must be satisfied for the watermarking to clean the state in aggregation queries <em>(as of Spark 2.1.1, subject to change in the future)</em>.</p>
 <p><font style="background:yellow;">需要注意的是，水印必须满足以下条件才能清除聚合查询中的状态</font>（从spark 2.1.1开始，以后可能会更改）。</p>
 <ul>
 <li><p><strong>Output mode must be Append or Update.</strong> Complete mode requires all aggregate data to be preserved, and hence cannot use watermarking to drop intermediate state. See the <a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#output-modes" target="_blank" rel="noopener">Output Modes</a> section for detailed explanation of the semantics of each output mode.</p>
@@ -651,7 +664,7 @@
 <p>  <font style="background:yellow;">必须在聚合之前调用 <code>withWatermark</code> 才能使用水印详细信息。</font>例如，<code>df.groupBy(&quot;time&quot;).count().withWatermark(&quot;time&quot;, &quot;1 min&quot;)</code> 在追加输出模式下无效。</p>
 </li>
 </ul>
-<h6 id="Semantic-Guarantees-of-Aggregation-with-Watermarking"><a href="#Semantic-Guarantees-of-Aggregation-with-Watermarking" class="headerlink" title="Semantic Guarantees of Aggregation with Watermarking"></a>Semantic Guarantees of Aggregation with Watermarking</h6><ul>
+<h6 id="Semantic-Guarantees-of-Aggregation-with-Watermarking具有水印的聚合的语义保证"><a href="#Semantic-Guarantees-of-Aggregation-with-Watermarking具有水印的聚合的语义保证" class="headerlink" title="Semantic Guarantees of Aggregation with Watermarking具有水印的聚合的语义保证"></a>Semantic Guarantees of Aggregation with Watermarking<br/>具有水印的聚合的语义保证</h6><ul>
 <li><p>A watermark delay (set with <code>withWatermark</code>) of “2 hours” guarantees that the engine will never drop any data that is less than 2 hours delayed. In other words, any data less than 2 hours behind (in terms of event-time) the latest data processed till then is guaranteed to be aggregated.</p>
 <p>  <font style="background:yellow;">水印延迟（用水印设置）为“2小时”，保证引擎不会丢弃任何延迟时间小于2小时的数据。换言之，任何比最新处理的数据晚2小时（就事件时间而言）以内的数据都保证被聚合。</font></p>
 </li>
@@ -831,7 +844,7 @@
 </ul>
 </li>
 </ul>
-<h4 id="Streaming-Deduplication-流的去重"><a href="#Streaming-Deduplication-流的去重" class="headerlink" title="Streaming Deduplication 流的去重"></a>Streaming Deduplication 流的去重</h4><p>You can deduplicate records in data streams using a unique identifier in the events. This is exactly same as deduplication on static using a unique identifier column. The query will store the necessary amount of data from previous records such that it can filter duplicate records. Similar to aggregations, you can use deduplication with or without watermarking.</p>
+<h4 id="Streaming-Deduplication流的去重"><a href="#Streaming-Deduplication流的去重" class="headerlink" title="Streaming Deduplication流的去重"></a>Streaming Deduplication<br/>流的去重</h4><p>You can deduplicate records in data streams using a unique identifier in the events. This is exactly same as deduplication on static using a unique identifier column. The query will store the necessary amount of data from previous records such that it can filter duplicate records. Similar to aggregations, you can use deduplication with or without watermarking.</p>
 <p><font style="background:yellow;">可以使用事件中的唯一标识符来消除数据流中的重复记录。这与使用唯一标识符列的静态重复数据消除完全相同</font>。查询将存储来自以前记录中所需的数据，以便可以过滤重复记录。<font style="background:yellow;">与聚合类似，您可以使用带或不带水印的重复数据消除。</font></p>
 <ul>
 <li><p><em>With watermark</em> - If there is a upper bound on how late a duplicate record may arrive, then you can define a watermark on a event time column and deduplicate using both the guid and the event time columns. The query will use the watermark to remove old state data from past records that are not expected to get any duplicates any more. This bounds the amount of the state the query has to maintain.</p>
@@ -1171,7 +1184,7 @@
 </li>
 <li><p><strong>Note:</strong> The <code>partitionId </code> and <code>epochId </code> in the <code>open()</code> method can be used to deduplicate generated data when failures cause reprocessing of some input data. This depends on the execution mode of the query. If the streaming query is being executed in the micro-batch mode, then every partition represented by a unique tuple <code>(partition_id, epoch_id)</code> is guaranteed to have the same data. Hence, (partition_id, epoch_id) can be used to deduplicate and/or transactionally commit data and achieve exactly-once guarantees. However, if the streaming query is being executed in the continuous mode, then this guarantee does not hold and therefore should not be used for deduplication.</p>
 <p>  注意：当失败导致重新处理某些输入数据时，<code>open()</code> 方法中的 <code>partitionId </code>和 <code>epochId </code> 可用于对生成的数据进行重复数据消除。这取决于查询的执行模式。如果流式查询是在微批处理模式下执行的，那么由一个唯一元组<code>(partition_id，epoch_id)</code> 表示的每个分区都保证具有相同的数据。因此，<code>(partition_id, epoch_id)</code> 可用于消除重复和/或事务性提交数据，并实现一次性保证。但是，如果流式查询是在连续模式下执行的，则此保证不适用，因此不应用于重复数据消除。</p>
-<h5 id="Triggers-触发器"><a href="#Triggers-触发器" class="headerlink" title="Triggers 触发器"></a>Triggers 触发器</h5><p>  The trigger settings of a streaming query defines the timing of streaming data processing, whether the query is going to executed as micro-batch query with a fixed batch interval or as a continuous processing query. Here are the different kinds of triggers that are supported.</p>
+<h5 id="Triggers触发器"><a href="#Triggers触发器" class="headerlink" title="Triggers触发器"></a>Triggers<br/>触发器</h5><p>  The trigger settings of a streaming query defines the timing of streaming data processing, whether the query is going to executed as micro-batch query with a fixed batch interval or as a continuous processing query. Here are the different kinds of triggers that are supported.</p>
 <p>  <font style="background:yellow;">流式查询的触发器设置定义了流式数据处理的时间</font>，无论该查询是作为具有固定批处理间隔的微批处理查询还是作为连续处理查询执行。以下是支持的不同类型的触发器。</p>
 </li>
 </ul>
@@ -1263,7 +1276,7 @@
 <p>还可以通过附加 <code>StreamingQueryListener</code>（<a href="http://spark.apache.org/docs/latest/api/scala/index.html#org.apache.spark.sql.streaming.StreamingQueryListener" target="_blank" rel="noopener">Scala</a>/<a href="http://spark.apache.org/docs/latest/api/java/org/apache/spark/sql/streaming/StreamingQueryListener.html" target="_blank" rel="noopener">Java</a> 文档）来异步监视与 <code>SparkSession</code> 相关联的所有查询。使用 <code>sparkSession.streams.attachListener()</code> 附加自定义 <code>StreamingQueryListener</code> 对象后，当查询启动和停止以及活动查询中有进展时，您将得到回调。下面是一个例子，</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> spark: <span class="type">SparkSession</span> = ...</span><br><span class="line"></span><br><span class="line">spark.streams.addListener(<span class="keyword">new</span> <span class="type">StreamingQueryListener</span>() &#123;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">onQueryStarted</span></span>(queryStarted: <span class="type">QueryStartedEvent</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">        println(<span class="string">"Query started: "</span> + queryStarted.id)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">onQueryTerminated</span></span>(queryTerminated: <span class="type">QueryTerminatedEvent</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">        println(<span class="string">"Query terminated: "</span> + queryTerminated.id)</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">override</span> <span class="function"><span class="keyword">def</span> <span class="title">onQueryProgress</span></span>(queryProgress: <span class="type">QueryProgressEvent</span>): <span class="type">Unit</span> = &#123;</span><br><span class="line">        println(<span class="string">"Query made progress: "</span> + queryProgress.progress)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 
-<h4 id="Reporting-Metrics-using-Dropwizard-使用-DropWizard-报告量化指标"><a href="#Reporting-Metrics-using-Dropwizard-使用-DropWizard-报告量化指标" class="headerlink" title="Reporting Metrics using Dropwizard 使用 DropWizard 报告量化指标"></a>Reporting Metrics using Dropwizard 使用 DropWizard 报告量化指标</h4><p>Spark supports reporting metrics using the <a href="http://spark.apache.org/docs/latest/monitoring.html#metrics" target="_blank" rel="noopener">Dropwizard Library</a>. To enable metrics of Structured Streaming queries to be reported as well, you have to explicitly enable the configuration <code>spark.sql.streaming.metricsEnabled</code> in the SparkSession.</p>
+<h4 id="Reporting-Metrics-using-Dropwizard使用-DropWizard-报告量化指标"><a href="#Reporting-Metrics-using-Dropwizard使用-DropWizard-报告量化指标" class="headerlink" title="Reporting Metrics using Dropwizard使用 DropWizard 报告量化指标"></a>Reporting Metrics using Dropwizard<br/>使用 DropWizard 报告量化指标</h4><p>Spark supports reporting metrics using the <a href="http://spark.apache.org/docs/latest/monitoring.html#metrics" target="_blank" rel="noopener">Dropwizard Library</a>. To enable metrics of Structured Streaming queries to be reported as well, you have to explicitly enable the configuration <code>spark.sql.streaming.metricsEnabled</code> in the SparkSession.</p>
 <p>Spark支持使用 DropWizard 库指标量化。要同时使结构化流式查询的量化指标可用，必须显式启用 SparkSession 中启用的配置 <code>spark.sql.streaming.metricsEnabled</code>。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">spark.conf.set(<span class="string">"spark.sql.streaming.metricsEnabled"</span>, <span class="string">"true"</span>)</span><br><span class="line"><span class="comment">// or</span></span><br><span class="line">spark.sql(<span class="string">"SET spark.sql.streaming.metricsEnabled=true"</span>)</span><br></pre></td></tr></table></figure>
 
@@ -1273,7 +1286,7 @@
 <p>如果出现故障或有意关闭，可以恢复以前查询的进度和状态，并在停止的地方继续。这是使用检查点和提前写入日志完成的。您可以使用检查点位置配置查询，该查询将把所有进度信息（即每个触发器中处理的偏移范围）和正在运行的聚合（如快速示例中的字数）保存到检查点位置。此检查点位置必须是HDFS兼容文件系统中的路径，并且可以在启动查询时在 DataStreamWriter 中设置为选项。</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">aggDF</span><br><span class="line">  .writeStream</span><br><span class="line">  .outputMode(<span class="string">"complete"</span>)</span><br><span class="line">  .option(<span class="string">"checkpointLocation"</span>, <span class="string">"path/to/HDFS/dir"</span>)</span><br><span class="line">  .format(<span class="string">"memory"</span>)</span><br><span class="line">  .start()</span><br></pre></td></tr></table></figure>
 
-<h3 id="Recovery-Semantics-after-Changes-in-a-Streaming-Query-流式查询更改后的恢复语义"><a href="#Recovery-Semantics-after-Changes-in-a-Streaming-Query-流式查询更改后的恢复语义" class="headerlink" title="Recovery Semantics after Changes in a Streaming Query 流式查询更改后的恢复语义"></a>Recovery Semantics after Changes in a Streaming Query 流式查询更改后的恢复语义</h3><p>There are limitations on what changes in a streaming query are allowed between restarts from the same checkpoint location. Here are a few kinds of changes that are either not allowed, or the effect of the change is not well-defined. For all of them :</p>
+<h3 id="Recovery-Semantics-after-Changes-in-a-Streaming-Query流式查询更改后的恢复语义"><a href="#Recovery-Semantics-after-Changes-in-a-Streaming-Query流式查询更改后的恢复语义" class="headerlink" title="Recovery Semantics after Changes in a Streaming Query流式查询更改后的恢复语义"></a>Recovery Semantics after Changes in a Streaming Query<br/>流式查询更改后的恢复语义</h3><p>There are limitations on what changes in a streaming query are allowed between restarts from the same checkpoint location. Here are a few kinds of changes that are either not allowed, or the effect of the change is not well-defined. For all of them :</p>
 <p>在从同一检查点位置重新启动之间，流式查询中允许哪些更改受到限制。以下是一些不允许的更改，或者更改的效果没有很好的定义。对于所有人：</p>
 <ul>
 <li><p>The term <em>allowed</em> means you can do the specified change but whether the semantics of its effect is well-defined depends on the query and the change.</p>
@@ -1414,12 +1427,12 @@
 </ul>
 <p>See <a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#input-sources" target="_blank" rel="noopener">Input Sources</a> and <a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#output-sinks" target="_blank" rel="noopener">Output Sinks</a> sections for more details on them. While the console sink is good for testing, the end-to-end low-latency processing can be best observed with Kafka as the source and sink, as this allows the engine to process the data and make the results available in the output topic within milliseconds of the input data being available in the input topic.</p>
 <p>查看<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#input-sources" target="_blank" rel="noopener">输入源</a>和<a href="http://spark.apache.org/docs/latest/structured-streaming-programming-guide.html#output-sinks" target="_blank" rel="noopener">输出接收器</a>章节获取更多细节，当控制台接收器对测试很好时，使用Kafka作为源和接收器可以很好地观察终端到终端的低延迟处理，如允许引擎处理数据，并在输入主题可以得到的输入数据的几毫秒内使结果在（相应的）输出主题中可以得到。</p>
-<h3 id="Caveats警告"><a href="#Caveats警告" class="headerlink" title="Caveats警告"></a>Caveats<br/>警告</h3><ul>
+<h3 id="Caveats告警"><a href="#Caveats告警" class="headerlink" title="Caveats告警"></a>Caveats<br/>告警</h3><ul>
 <li><p>Continuous processing engine launches multiple long-running tasks that continuously read data from sources, process it and continuously write to sinks. The number of tasks required by the query depends on how many partitions the query can read from the sources in parallel. Therefore, before starting a continuous processing query, you must ensure there are enough cores in the cluster to all the tasks in parallel. For example, if you are reading from a Kafka topic that has 10 partitions, then the cluster must have at least 10 cores for the query to make progress.</p>
 <p>  连续处理引擎启动多个长时间运行的任务，这些任务不断地从源读取数据、处理数据并不断地向接收器写入数据。查询所需的任务数取决于查询可以并行从源读取多少分区。因此，在开始连续处理查询之前，必须确保集群中有足够的核心来并行执行所有任务。例如，如果您正在读取具有10个分区的Kafka主题，那么集群必须至少有10个核心才能使查询取得进展。</p>
 </li>
 <li><p>Stopping a continuous processing stream may produce spurious task termination warnings. These can be safely ignored.</p>
-<p>  停止连续处理流可能会产生虚假的任务终止警告。这些可以被安全地忽略。</p>
+<p>  停止连续处理流可能会产生虚假的任务终止告警。这些可以被安全地忽略。</p>
 </li>
 <li><p>There are currently no automatic retries of failed tasks. Any failure will lead to the query being stopped and it needs to be manually restarted from the checkpoint.</p>
 <p>  当前没有失败任务的自动重试。任何失败都将导致查询停止，需要从检查点手动重新启动查询。</p>
@@ -1751,7 +1764,8 @@
               <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Overview"><span class="nav-text">Overview</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Example快速示例"><span class="nav-text">Quick Example
 快速示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Programming-Model编程模型"><span class="nav-text">Programming Model
 编程模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Basic-Concepts基本概念"><span class="nav-text">Basic Concepts
-基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handling-Event-time-and-Late-Data-处理事件时间和延迟数据"><span class="nav-text">Handling Event-time and Late Data 处理事件时间和延迟数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fault-Tolerance-Semantics容错语义"><span class="nav-text">Fault Tolerance Semantics
+基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Handling-Event-time-and-Late-Data处理事件时间和延迟数据"><span class="nav-text">Handling Event-time and Late Data
+处理事件时间和延迟数据</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Fault-Tolerance-Semantics容错语义"><span class="nav-text">Fault Tolerance Semantics
 容错语义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-using-Datasets-and-DataFrames使用数据集和数据帧的API"><span class="nav-text">API using Datasets and DataFrames
 使用数据集和数据帧的API</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Creating-streaming-DataFrames-and-streaming-Datasets创建流式数据帧和流式数据集"><span class="nav-text">Creating streaming DataFrames and streaming Datasets
 创建流式数据帧和流式数据集</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Input-Sources输入源"><span class="nav-text">Input Sources
@@ -1760,28 +1774,34 @@
 流式数据帧&#x2F;数据集上的操作</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Basic-Operations-Selection-Projection-Aggregation基本操作（选择、投影、聚合）"><span class="nav-text">Basic Operations - Selection, Projection, Aggregation
 基本操作（选择、投影、聚合）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Window-Operations-on-Event-Time事件时间的窗口操作"><span class="nav-text">Window Operations on Event Time
 事件时间的窗口操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Handling-Late-Data-and-Watermarking处理延迟数据和水印"><span class="nav-text">Handling Late Data and Watermarking
-处理延迟数据和水印</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Conditions-for-watermarking-to-clean-aggregation-state-水印清除聚合状态的条件"><span class="nav-text">Conditions for watermarking to clean aggregation state 水印清除聚合状态的条件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Semantic-Guarantees-of-Aggregation-with-Watermarking"><span class="nav-text">Semantic Guarantees of Aggregation with Watermarking</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Join-Operations连接操作"><span class="nav-text">Join Operations
+处理延迟数据和水印</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Conditions-for-watermarking-to-clean-aggregation-state水印清除聚合状态的条件"><span class="nav-text">Conditions for watermarking to clean aggregation state
+水印清除聚合状态的条件</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Semantic-Guarantees-of-Aggregation-with-Watermarking具有水印的聚合的语义保证"><span class="nav-text">Semantic Guarantees of Aggregation with Watermarking
+具有水印的聚合的语义保证</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Join-Operations连接操作"><span class="nav-text">Join Operations
 连接操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Stream-static-Joins流与静态数据的连接"><span class="nav-text">Stream-static Joins
 流与静态数据的连接</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Stream-stream-Joins流与流数据的连接"><span class="nav-text">Stream-stream Joins
 流与流数据的连接</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Inner-Joins-with-optional-Watermarking带有可选水印的内部联接"><span class="nav-text">Inner Joins with optional Watermarking
 带有可选水印的内部联接</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Outer-Joins-with-Watermarking带水印的外部连接"><span class="nav-text">Outer Joins with Watermarking
 带水印的外部连接</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#Support-matrix-for-joins-in-streaming-queries流式查询中连接的支持矩阵"><span class="nav-text">Support matrix for joins in streaming queries
-流式查询中连接的支持矩阵</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Streaming-Deduplication-流的去重"><span class="nav-text">Streaming Deduplication 流的去重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Policy-for-handling-multiple-watermarks处理多个水印的策略"><span class="nav-text">Policy for handling multiple watermarks
+流式查询中连接的支持矩阵</span></a></li></ol></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Streaming-Deduplication流的去重"><span class="nav-text">Streaming Deduplication
+流的去重</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Policy-for-handling-multiple-watermarks处理多个水印的策略"><span class="nav-text">Policy for handling multiple watermarks
 处理多个水印的策略</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Arbitrary-Stateful-Operations任意状态操作"><span class="nav-text">Arbitrary Stateful Operations
 任意状态操作</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Unsupported-Operations不支持的操作"><span class="nav-text">Unsupported Operations
 不支持的操作</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Starting-Streaming-Queries开始流查询"><span class="nav-text">Starting Streaming Queries
 开始流查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Output-Modes输出模式"><span class="nav-text">Output Modes
 输出模式</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Output-Sinks输出接收器"><span class="nav-text">Output Sinks
 输出接收器</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#Using-Foreach-and-ForeachBatch使用Foreach和ForeachBatch"><span class="nav-text">Using Foreach and ForeachBatch
-使用Foreach和ForeachBatch</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Triggers-触发器"><span class="nav-text">Triggers 触发器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-Streaming-Queries管理流查询"><span class="nav-text">Managing Streaming Queries
+使用Foreach和ForeachBatch</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Triggers触发器"><span class="nav-text">Triggers
+触发器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-Streaming-Queries管理流查询"><span class="nav-text">Managing Streaming Queries
 管理流查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Monitoring-Streaming-Queries监控流查询"><span class="nav-text">Monitoring Streaming Queries
 监控流查询</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Reading-Metrics-Interactively交互式读取量化指标"><span class="nav-text">Reading Metrics Interactively
 交互式读取量化指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reporting-Metrics-programmatically-using-Asynchronous-APIs使用异步API以编程方式报告量化指标"><span class="nav-text">Reporting Metrics programmatically using Asynchronous APIs
-使用异步API以编程方式报告量化指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reporting-Metrics-using-Dropwizard-使用-DropWizard-报告量化指标"><span class="nav-text">Reporting Metrics using Dropwizard 使用 DropWizard 报告量化指标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recovering-from-Failures-with-Checkpointing使用检查点从失败中恢复"><span class="nav-text">Recovering from Failures with Checkpointing
-使用检查点从失败中恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recovery-Semantics-after-Changes-in-a-Streaming-Query-流式查询更改后的恢复语义"><span class="nav-text">Recovery Semantics after Changes in a Streaming Query 流式查询更改后的恢复语义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Continuous-Processing连续处理"><span class="nav-text">Continuous Processing
+使用异步API以编程方式报告量化指标</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reporting-Metrics-using-Dropwizard使用-DropWizard-报告量化指标"><span class="nav-text">Reporting Metrics using Dropwizard
+使用 DropWizard 报告量化指标</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recovering-from-Failures-with-Checkpointing使用检查点从失败中恢复"><span class="nav-text">Recovering from Failures with Checkpointing
+使用检查点从失败中恢复</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Recovery-Semantics-after-Changes-in-a-Streaming-Query流式查询更改后的恢复语义"><span class="nav-text">Recovery Semantics after Changes in a Streaming Query
+流式查询更改后的恢复语义</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Continuous-Processing连续处理"><span class="nav-text">Continuous Processing
 连续处理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Experimental-实验性的"><span class="nav-text">[Experimental] 实验性的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Supported-Queries支持的查询"><span class="nav-text">Supported Queries
-支持的查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caveats警告"><span class="nav-text">Caveats
-警告</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Additional-Information额外的信息"><span class="nav-text">Additional Information
+支持的查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Caveats告警"><span class="nav-text">Caveats
+告警</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Additional-Information额外的信息"><span class="nav-text">Additional Information
 额外的信息</span></a></li></ol></div>
             
 
@@ -1815,7 +1835,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

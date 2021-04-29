@@ -100,7 +100,7 @@
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter21/1564674106272.png">
 <meta property="article:published_time" content="2019-06-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.313Z">
+<meta property="article:modified_time" content="2021-04-29T18:07:43.813Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -567,7 +567,7 @@ We discuss `maxFilesPerTrigger` a little later on in this chapter but essentiall
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line">activityCounts = streaming.groupBy(<span class="string">"gt"</span>).count()</span><br></pre></td></tr></table></figure>
 
 <p>Because this code is being written in local mode on a small machine, we are going to set the shuffle partitions to a small value to avoid creating too many shuffle partitions:</p>
-<p>因为这段代码是在一台小型机器上以本地模式写入的，所以我们要将洗牌（shuffle）分区设置为一个较小的值，以避免创建过多的洗牌（shuffle）分区：</p>
+<p>因为这段代码是在一台小型机器上以本地模式写入的，所以我们要将数据再分配（shuffle）分区设置为一个较小的值，以避免创建过多的数据再分配（shuffle）分区：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">spark.conf.set(<span class="string">"spark.sql.shuffle.partitions"</span>, <span class="number">5</span>)</span><br></pre></td></tr></table></figure>
 
 <p>Now that we set up our transformation, we need only to specify our action to start the query. As mentioned previously in the chapter, we will specify an output destination, or output sink for our result of this query. For this basic example, we are going to write to a memory sink which keeps an in-memory table of the results.</p>
@@ -1158,7 +1158,7 @@ As of Spark 2.2, the one limitation of aggregations is that multiple “chained�
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 

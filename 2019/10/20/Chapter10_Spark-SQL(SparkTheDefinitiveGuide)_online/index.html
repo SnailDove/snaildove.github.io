@@ -99,7 +99,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="article:published_time" content="2019-10-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.245Z">
+<meta property="article:modified_time" content="2021-04-29T17:56:22.826Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -799,7 +799,6 @@ explode，直译成“爆炸”不合场景，因此此处意译为：展开，�
 例子：
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&gt;DESCRIBE FUNCTION collect_list</span><br></pre></td></tr></table></figure>
-
 </blockquote>
 <h4 id="User-defined-functions"><a href="#User-defined-functions" class="headerlink" title="User-defined functions"></a><font color="#3399cc">User-defined functions</font></h4><p>As we saw in Chapters 3 and 4, Spark gives you the ability to define your own functions and use them in a distributed manner. You can define functions, just as you did before, writing the function in the language of your choice and then registering it appropriately:</p>
 <p>正如我们在第3章和第4章中看到的那样，Spark使您能够定义自己的函数并以分布式方式使用它们。您可以像以前一样定义函数，以您选择的语言编写函数，然后适当地注册它：</p>
@@ -879,11 +878,11 @@ explode，直译成“爆炸”不合场景，因此此处意译为：展开，�
 <tr>
 <td>spark.sql.shuffle.partitions</td>
 <td>200</td>
-<td>Configures the number of partitions to use when shuffling data for joins or aggregations.<br />配置在对连接或聚集进行数据洗牌时要使用的分区数。</td>
+<td>Configures the number of partitions to use when shuffling data for joins or aggregations.<br />配置在对连接或聚集进行数据再分配时要使用的分区数。</td>
 </tr>
 </tbody></table>
 <h3 id="Setting-Configuration-Values-in-SQL"><a href="#Setting-Configuration-Values-in-SQL" class="headerlink" title="Setting Configuration Values in SQL"></a><font color="#00000">Setting Configuration Values in SQL</font></h3><p>We talk about configurations in Chapter 15, but as a preview, it’s worth mentioning how to set configurations from SQL. Naturally, you can only set Spark SQL configurations that way, but here’s how you can set shuffle partitions:</p>
-<p>我们将在第15章中讨论配置，但是作为预览，值得一提的是如何从SQL设置配置。当然，您只能以这种方式设置Spark SQL配置，但是这里是设置洗牌（shuffle）分区的方法：</p>
+<p>我们将在第15章中讨论配置，但是作为预览，值得一提的是如何从SQL设置配置。当然，您只能以这种方式设置Spark SQL配置，但是这里是设置数据再分配（shuffle）分区的方法：</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SET</span> spark.sql.shuffle.partitions=<span class="number">20</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a><font color="#9a161a">Conclusion</font></h2><p>It should be clear from this chapter that Spark SQL and DataFrames are very closely related and that you should be able to use nearly all of the examples throughout this book with only small syntactical tweaks. This chapter illustrated more of the Spark SQL–related specifics. Chapter 11 focuses on a new concept: Datasets that allow for type-safe structured transformations.</p>
@@ -1212,7 +1211,7 @@ explode，直译成“爆炸”不合场景，因此此处意译为：展开，�
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">933.4k</span>
+    <span title="Site words total count">934k</span>
   
 </div>
 
