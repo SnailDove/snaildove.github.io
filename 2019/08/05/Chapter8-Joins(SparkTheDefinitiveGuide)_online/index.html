@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg">
 <meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-04-29T17:54:51.194Z">
+<meta property="article:modified_time" content="2021-04-30T03:24:15.601Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -893,27 +893,8 @@ Implicit is always dangerous! The following query will give us incorrect results
 <td>1</td>
 <td>[500…</td>
 </tr>
-<tr>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>If you truly intend to have a cross-join, you can call that out explicitly :</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
 </tbody></table>
+<p>If you truly intend to have a cross-join, you can call that out explicitly : </p>
 <p>如果您确实打算进行交叉连接，则可以显示调用：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">person.crossJoin(graduateProgram).show()</span><br></pre></td></tr></table></figure>
 
