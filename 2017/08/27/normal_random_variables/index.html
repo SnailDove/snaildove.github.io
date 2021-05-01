@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 3.3 normal random variables 正态随机变量如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。$$f_X(x)&#x3D;\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
-<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png">
-<meta property="og:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png">
+<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
+<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png">
+<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png">
 <meta property="article:published_time" content="2017-08-27T12:16:00.000Z">
-<meta property="article:modified_time" content="2021-04-02T13:41:17.617Z">
+<meta property="article:modified_time" content="2021-05-01T02:49:21.710Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
+<meta name="twitter:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png">
 
 
 
@@ -451,10 +451,10 @@
       
         <p><strong>说明</strong>：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a> 3.3 normal random variables</p>
 <h2 id="正态随机变量"><a href="#正态随机变量" class="headerlink" title="正态随机变量"></a>正态随机变量</h2><p>如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。<br>$$<br>f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}<br>$$<br>其中 $u$ 和 $\sigma$ 是密度函数的两个参数，$\sigma$ 还必须是正数。可以证明，$f_X(x)$ 满足下面的概率密度函数的归一化条件（见本章关于定理的习题）：<br>$$<br>\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx=1<br>$$<br>下图是正态分布的密度函数和分布函数 $(\mu=1 \text{ 和 } \sigma^2=1)$ 。</p>
-<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png" alt="A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1"></p>
+<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png" alt="A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1"></p>
 <p>由图可以看出，正态随机变量的概率密度函数是相对于均值 $\mu$ 对称的钟形曲线。当 $x$ 离开 $\mu$ 的时候，概率密度函数的表达式中的项 $e^{\frac{-(x-\mu)^2}{2\sigma^2}}$ 很快地下降。在图中，概率密度函数在区间 $[-1,3]$ 之外非常接近 $0$ 。</p>
 <p>正态随机变量的均值和方差可由下列式子给出：<br>$$<br>E[X]=\mu,\quad var(X)=\sigma^2<br>$$<br>由于 $X$ 的概率密度函数相对于 $\mu$ 对称，其均值只能是 $\mu$ 。至于方差的公式，一句定义得：<br>$$<br>var(X)=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}(x-\mu)^2e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx<br>$$<br>将公式中的积分作积分变量替换 $y=\frac{(x-\mu)}{\sigma}$ 以及分布积分得到：<br>$$<br>\begin{eqnarray}<br>var(X) &amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}y^2e^{-\frac{y^2}{2}}dy \<br>&amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}(-ye^{-\frac{y^2}{2}})|^{+\infty}<em>{-\infty}+\frac{\sigma^2}{\sqrt{2\pi}}\int</em>{-\infty}^{+\infty}e^{\frac{y^2}{2}}dy \<br>&amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy \<br>&amp;=&amp; \sigma^2<br>\end{eqnarray}<br>$$<br>上面最后的等式，是由于<br>$$<br>\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy=1<br>$$<br>这个公式正好是当 $\mu=0$ 和 $\sigma^2=1$ 的时候的正态随机变量的概率密度函数的归一化条件，在本章习题第14题得以证明，截图如下：</p>
-<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png" alt="the_normal_PDF_satisfies_the_normalization_property"></p>
+<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png" alt="the_normal_PDF_satisfies_the_normalization_property"></p>
 <p>正态随机变量具有若干重要的性质。下面的性质尤其重要，并且将在 第四章 Further Topics<br>on Random Variables 的第一节加以证明。</p>
 <h3 id="随机变量的正态性在线性变换之下保持不变"><a href="#随机变量的正态性在线性变换之下保持不变" class="headerlink" title="随机变量的正态性在线性变换之下保持不变"></a>随机变量的正态性在线性变换之下保持不变</h3><p>设 $X$ 是正态随机变量，其均值为 $\mu$ ，方差为 $\sigma^2$ 。若 $a\ne 0$ 和 $b$ 为两个常数，则随机变量<br>$$<br>Y=aX+b<br>$$<br>仍然是正态随机变量，其均值和方差由下式定义给出：<br>$$<br>E[Y]=a\mu+b,\quad var(Y)=a^2\sigma^2<br>$$</p>
 <h2 id="标准正态随机变量"><a href="#标准正态随机变量" class="headerlink" title="标准正态随机变量"></a>标准正态随机变量</h2><p>设正态随机变量 $Y$ 的期望为 $0$ ，方差为 $1$，则 $Y$ 称为标准正态随机变量。以 $\Phi$ 记为它的 CDF ：<br>$$<br>\Phi(y)=P(Y\le y)=P(Y&lt; y)=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{y}e^{\frac{-t^2}{2}}dt<br>$$<br>通常将它的值列成一个表——标准正态累积分布表（见下表：），这是计算有关正态随机变量的概率的重要的工具。标准正态表的每一项提供了 $\Phi(y)=P(Y\le y)$ 的数值，这里 $Y$ 是一个正态随机变量，这个表中 $y\in [0,4.09]$ 。怎么使用这个表呢？举例，为了查找 $\Phi(1.71)$ 的值，查看关于 $1.7$ 所在的行和 $0.01$ 所在的列，得到 $\Phi(1.71)=0.95637$ 。</p>
@@ -1025,7 +1025,7 @@
 <li>  实际被传输的信号为 $-1$，但是噪声变量 $N$ 值至少是 $1$ ，因此 $s+N=-1+N \ge 0$ 。 </li>
 <li>  实际被传输的信号为 $+1$，但是噪声变量 $N$ 值小于 $-1$ 。因此 $s+N=1+N &lt;0$ 。</li>
 </ol>
-<p><img src="http://qqxuhmfur.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png" alt="Figure_3.11_The_signal_detection"></p>
+<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png" alt="Figure_3.11_The_signal_detection"></p>
 <p>因此这种判断方法在情况1下出现误差的概率为：<br>$$<br>\begin{eqnarray}<br>P(N\ge 1) &amp;=&amp; 1-P(N &lt; 1) = 1 - P(N&lt;1)=1-P(\frac{N-\mu}{\sigma}&lt;\frac{1-\mu}{\sigma}) \<br>&amp;=&amp; 1- \Phi(\frac{1-\mu}{\sigma}) \<br>&amp;=&amp; 1-\Phi(\frac{1}{\sigma})<br>\end{eqnarray}<br>$$<br>在第2种情况下出现误差的概率根据正态分布的对称性得到与前一种情况一样。$\Phi(\frac{1}{\sigma})$ 能够从正态分布表得到。例如对于 $\sigma=1$ ，$\Phi(\frac{1}{\sigma})=\Phi(1)=0.84134$ ，所以出现误差的概率为 $0.15864$ 。</p>
 <p>正态随机变量扮演一个重要的角色在各种广泛的概率模型中，其原因是在物理、工程和统计中，正态随机变量能够很好地模拟许多独立因素的叠加效应。数学上，关键事实是大量独立同分布的随机变量（不必为正态）的和的分布近似地服从正态分布，而这个事实与各个和项的具体的分布无关的。这个事实就是著名的中心极限定理，这个将在本书第五章详细说明。</p>
 
