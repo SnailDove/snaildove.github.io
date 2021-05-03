@@ -154,31 +154,6 @@
   </entry>
   
   <entry>
-    <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
-    <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/"/>
-    <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</id>
-    <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2021-05-01T02:49:21.361Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
-    
-    
-    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
     <title>翻译 Chapter 14 Distributed Shared Variables</title>
     <link href="https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</id>
@@ -209,6 +184,31 @@
     <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-11-06T16:00:00.000Z</published>
     <updated>2021-05-01T02:49:21.367Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2021-05-01T02:49:21.361Z</updated>
     
     
       
