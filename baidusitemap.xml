@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://snaildove.github.io/2017/12/28/summary_of_Linear-Algebra/</loc>
+    <lastmod>2021-05-05</lastmod>
+  </url>
+  <url>
     <loc>https://snaildove.github.io/2017/08/12/complex_and_complex_matrix/</loc>
     <lastmod>2021-05-03</lastmod>
   </url>
@@ -62,10 +66,6 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2018/04/03/summary_of_Structuring-Machine-Learning-Projects/</loc>
-    <lastmod>2021-05-01</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/12/28/summary_of_Linear-Algebra/</loc>
     <lastmod>2021-05-01</lastmod>
   </url>
   <url>
