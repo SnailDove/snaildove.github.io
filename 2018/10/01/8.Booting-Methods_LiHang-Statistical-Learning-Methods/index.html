@@ -97,38 +97,38 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="前言在深度学习火起来之前，提升方法（包括AdaBoost, GBDT, XGBoost）是 kaggle 等比赛中的利器，所以提升方法 （boosting） 是必备的知识点。李航《统计学习方法》第8章——提升方法主要内容：AdaBoost, Boosting Tree, GBDT(这一块原文不够详细，将补充一些)。写本文主要目的是复习（毕竟之前看纸质版做的笔记）， 对于证明比较跳跃和勘误的地方我都">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540460336537.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463170951.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540462856523.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463047157.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463034052.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463221053.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464025343.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464188302.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464221825.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465338753.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465252529.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464455405.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464945423.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465051886.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465092227.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465505323.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465550791.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465671217.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465707158.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465737703.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465774682.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465941114.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541169882361.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541171081333.png">
-<meta property="og:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541266736974.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540460336537.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463170951.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540462856523.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463047157.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463034052.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463221053.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464025343.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464188302.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464221825.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465338753.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465252529.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464455405.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464945423.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465051886.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465092227.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465505323.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465550791.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465671217.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465707158.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465737703.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465774682.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465941114.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541169882361.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541171081333.png">
+<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541266736974.png">
 <meta property="article:published_time" content="2018-09-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-05-01T02:49:21.297Z">
+<meta property="article:modified_time" content="2021-05-29T02:07:39.609Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="统计学习方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540460336537.png">
+<meta name="twitter:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540460336537.png">
 
 
 
@@ -493,33 +493,33 @@
 <li>关于第1个问题， <u>AdaBoost的做法是提高那些被前一轮弱分类器错误分类样本的权值， 而降低那些被正确分类样本的权值。 这样一来， 那些没有得到正确分类的数据， 由于其权值的加大而受到后一轮的弱分类器的更大关注</u>。 于是， 分类问题被一系列的弱分类器“分而治之”。 </li>
 <li>至于第2个问题， <u>即弱分类器的组合， AdaBoost采取加权多数表决的方法。 具体地， 加大分类误差率小的弱分类器的权值， 使其在表决中起较大的作用， 减小分类误差率大的弱分类器的权值， 使其在表决中起较小的作用</u>。 AdaBoost的巧妙之处就在于它将这些想法自然且有效地实现在一 种算法里。  </li>
 </ol>
-<h3 id="8-1-2-AdaBoost算法"><a href="#8-1-2-AdaBoost算法" class="headerlink" title="8.1.2 AdaBoost算法"></a>8.1.2 AdaBoost算法</h3><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540460336537.png" alt="1540460336537"><br><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463170951.png" alt="1540463170951"><br><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540462856523.png" alt="1540462856523"></p>
-<h3 id="8-1-3-AdaBoost的例子"><a href="#8-1-3-AdaBoost的例子" class="headerlink" title="8.1.3 AdaBoost的例子"></a>8.1.3 AdaBoost的例子</h3><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463047157.png" alt="1540463047157"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463034052.png" alt="1540463034052"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463221053.png" alt="1540463221053"></p>
-<h2 id="8-2-AdaBoost算法的训练误差分析"><a href="#8-2-AdaBoost算法的训练误差分析" class="headerlink" title="8.2 AdaBoost算法的训练误差分析"></a>8.2 AdaBoost算法的训练误差分析</h2><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464025343.png" alt="1540464025343"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464188302.png" alt="1540464188302"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464221825.png" alt="1540464221825"></p>
-<h2 id="8-3-AdaBoost算法的解释"><a href="#8-3-AdaBoost算法的解释" class="headerlink" title="8.3 AdaBoost算法的解释"></a>8.3 AdaBoost算法的解释</h2><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465338753.png" alt="1540465338753"></p>
-<h3 id="8-3-1-前向分步算法"><a href="#8-3-1-前向分步算法" class="headerlink" title="8.3.1 前向分步算法"></a>8.3.1 前向分步算法</h3><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465252529.png" alt="1540465252529"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464455405.png" alt="1540464455405"></p>
-<h3 id="8-3-2-前向分步算法与AdaBoost"><a href="#8-3-2-前向分步算法与AdaBoost" class="headerlink" title="8.3.2 前向分步算法与AdaBoost"></a>8.3.2 前向分步算法与AdaBoost</h3><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464945423.png" alt="1540464945423"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465051886.png" alt="1540465051886"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465092227.png" alt="1540465092227"></p>
-<h2 id="8-4-提升树"><a href="#8-4-提升树" class="headerlink" title="8.4 提升树"></a>8.4 提升树</h2><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465505323.png" alt="1540465505323"></p>
-<h3 id="8-4-1-提升树模型"><a href="#8-4-1-提升树模型" class="headerlink" title="8.4.1 提升树模型"></a>8.4.1 提升树模型</h3><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465550791.png" alt="1540465550791"></p>
-<h3 id="8-4-2-提升树算法"><a href="#8-4-2-提升树算法" class="headerlink" title="8.4.2 提升树算法"></a>8.4.2 提升树算法</h3><p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465671217.png" alt="1540465671217"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465707158.png" alt="1540465707158"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465737703.png" alt="1540465737703"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465774682.png" alt="1540465774680"></p>
+<h3 id="8-1-2-AdaBoost算法"><a href="#8-1-2-AdaBoost算法" class="headerlink" title="8.1.2 AdaBoost算法"></a>8.1.2 AdaBoost算法</h3><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540460336537.png" alt="1540460336537"><br><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463170951.png" alt="1540463170951"><br><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540462856523.png" alt="1540462856523"></p>
+<h3 id="8-1-3-AdaBoost的例子"><a href="#8-1-3-AdaBoost的例子" class="headerlink" title="8.1.3 AdaBoost的例子"></a>8.1.3 AdaBoost的例子</h3><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463047157.png" alt="1540463047157"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463034052.png" alt="1540463034052"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540463221053.png" alt="1540463221053"></p>
+<h2 id="8-2-AdaBoost算法的训练误差分析"><a href="#8-2-AdaBoost算法的训练误差分析" class="headerlink" title="8.2 AdaBoost算法的训练误差分析"></a>8.2 AdaBoost算法的训练误差分析</h2><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464025343.png" alt="1540464025343"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464188302.png" alt="1540464188302"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464221825.png" alt="1540464221825"></p>
+<h2 id="8-3-AdaBoost算法的解释"><a href="#8-3-AdaBoost算法的解释" class="headerlink" title="8.3 AdaBoost算法的解释"></a>8.3 AdaBoost算法的解释</h2><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465338753.png" alt="1540465338753"></p>
+<h3 id="8-3-1-前向分步算法"><a href="#8-3-1-前向分步算法" class="headerlink" title="8.3.1 前向分步算法"></a>8.3.1 前向分步算法</h3><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465252529.png" alt="1540465252529"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464455405.png" alt="1540464455405"></p>
+<h3 id="8-3-2-前向分步算法与AdaBoost"><a href="#8-3-2-前向分步算法与AdaBoost" class="headerlink" title="8.3.2 前向分步算法与AdaBoost"></a>8.3.2 前向分步算法与AdaBoost</h3><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540464945423.png" alt="1540464945423"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465051886.png" alt="1540465051886"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465092227.png" alt="1540465092227"></p>
+<h2 id="8-4-提升树"><a href="#8-4-提升树" class="headerlink" title="8.4 提升树"></a>8.4 提升树</h2><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465505323.png" alt="1540465505323"></p>
+<h3 id="8-4-1-提升树模型"><a href="#8-4-1-提升树模型" class="headerlink" title="8.4.1 提升树模型"></a>8.4.1 提升树模型</h3><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465550791.png" alt="1540465550791"></p>
+<h3 id="8-4-2-提升树算法"><a href="#8-4-2-提升树算法" class="headerlink" title="8.4.2 提升树算法"></a>8.4.2 提升树算法</h3><p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465671217.png" alt="1540465671217"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465707158.png" alt="1540465707158"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465737703.png" alt="1540465737703"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465774682.png" alt="1540465774680"></p>
 <h3 id="8-4-3-梯度提升Gradient-Boosting"><a href="#8-4-3-梯度提升Gradient-Boosting" class="headerlink" title="8.4.3 梯度提升Gradient Boosting"></a>8.4.3 梯度提升Gradient Boosting</h3><p>有前面的例子非常容易理解这部分内容，不再赘述，</p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465941114.png" alt="1540465941113"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1540465941114.png" alt="1540465941113"></p>
 <h2 id="GBDT"><a href="#GBDT" class="headerlink" title="GBDT"></a>GBDT</h2><p>如果看懂前文，那么理解GBDT就简单很多。有一篇博客，清晰易懂，总结很不错，推荐看一下： <a href="https://www.cnblogs.com/pinard/p/6140514.html" target="_blank" rel="noopener">梯度提升树(GBDT)原理小结</a> ，里面的这有一个<strong>提示</strong>：关于多分类问题：<strong>每轮都在拟合概率向量 [类别1概率，类别2概率…,类别k的概率] 的伪残差</strong>。</p>
 <p>以下摘录自：大名鼎鼎的 Stanford 统计教材 《The Elements of  Statistical Learning》。根据《李航统计学习方法》的提升方法这一章的参考附录正是此书，对比之下，异曲同工，这里不再赘述，快速总结一下。</p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541169882361.png" alt="1541169882361"></p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541171081333.png" alt="1541171081333"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541169882361.png" alt="1541169882361"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541171081333.png" alt="1541171081333"></p>
 <p><strong>仔细体会这句话</strong>：它和梯度下降十分相似，不同在于GBDT 就是在<font color="blue">函数空间</font>的“梯度下降”，以前学习ML和DL的梯度下降是在<font  color="blue">参数空间</font>的梯度下降。 在梯度下降中，不断减去 $\frac{\partial{f(x)}}{\partial{\theta}}$，希望求得 $min_{\theta}f(x)$ ; 同理梯度提升中不断减去$\frac{\partial{L(y,f(x))}}{f(x)}$，希望求得 $min_{f(x)}L(y, f(x))$ 。这里引用 <a href="https://wepon.me/" target="_blank" rel="noopener">https://wepon.me</a> 的介绍：</p>
-<p><img src="http://qseq62q5l.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541266736974.png" alt="此图来自https://wepon.me"></p>
+<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/8-boosting/1541266736974.png" alt="此图来自https://wepon.me"></p>
 <p><b><font color="red">注意</font></b>：《统计学习方法》这一章介绍的都是最原始的提升树算法，实际上有进一步改进的调整：</p>
 <ol>
 <li><p>步进参数 $\nu$ ，专业名词为shrinkage，又称收缩，类似梯度下降算法的学习率，这里为什么称为步进参数，因为前文提到：提升方法是加法模型的前向分布算法，提升树也属于提升方法中一种（基学习器是决策树）。</p>
