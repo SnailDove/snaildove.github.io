@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   ​分布函数（用记号 CDF">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
-<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png">
-<meta property="og:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png">
+<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
+<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png">
+<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png">
 <meta property="article:published_time" content="2017-08-26T12:16:00.000Z">
-<meta property="article:modified_time" content="2021-05-29T02:07:40.001Z">
+<meta property="article:modified_time" content="2021-07-06T02:45:39.706Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
+<meta name="twitter:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
 
 
 
@@ -454,9 +454,9 @@
 <p>​<strong>分布函数</strong>（用记号 CDF 表示简称）就能完成这个任务。 $X$ 的 CDF 是一个 $x$ 的函数，对每一个 $x$ ，$F_X(x)$ 定义为 $P(X\le x)$ 。特别地，当 $X$ 为离散或连续的情况下：<br>$$<br>F_X(x)=P(X\le x)=\cases{\sum\limits_{k\le x}p_X(k), \text{若 $X$ 是离散的}\\int_{-\infty}^{x}f_X(x)dt, \text{若 $X$ 是连续的 }}<br>$$<br><strong>分布函数又称为累积分布函数（cumulative distribution function）</strong>，累积意味着 $F_X(x)$ 将 $X$ 取值的概率由 $-\infty\rightarrow x$。 </p>
 <p>在一个概率模型中，随机变量可以有不同的类型，可以是离散的，也可以是连续的，甚至可以是既非离散的也非连续的。但不管是什么类型的随机变量，它们有一个共同的特征，即都有一个分布函数，这是因为 ${X\le x}$ 是一个随机事件，这些事件的概率形成概率分布。今后，凡是通过 PMF\PDF\CDF刻画事件 ${X\le x}$ 概率的，都称为<strong>随机变量 $X$ 的概率律</strong>。因此离散情况下的分布列，连续情况下的概率密度函数以及一般情况下的分布函数都是相应的随机变量的概率律。</p>
 <p>下图分别给出不同的离散随机变量和连续随机变量的 CDF 的一些说明。从这些图像以及 CDF 的定义，可以得到 CDF 的某些性质。</p>
-<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png" alt="Figure_3.6_CDFs_of_some_discrete_variables.png"></p>
+<p><img src="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png" alt="Figure_3.6_CDFs_of_some_discrete_variables.png"></p>
 <p>上图这些离散随机变量的 CDF ，通过随机变量的概率质量函数（PMF）可求得相应的分布函数：<br>$$<br>F_X(x)=P(X\le x)=\sum\limits_{k\le x}p_{X}(k)<br>$$<br>这个函数是一个阶梯函数，在具有正概率的那些点上具有跳跃。在跳跃点上， $F_X(x)$ 取较大的那个值，即 $F_X(x)$ 保持右连续。</p>
-<p><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png" alt="Figure_3.7_CDFs_of_some_continuous_random_variables.png"></p>
+<p><img src="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png" alt="Figure_3.7_CDFs_of_some_continuous_random_variables.png"></p>
 <p>上图的这些连续随机变量的 $CDF$ 。通过随机变量的概率密度函数（PDF）可求得相应的分布函数：<br>$$<br>F_X(x)=P(X\le x)=\int_{-\infty}^{+\infty}f_X(t)dt<br>$$<br>概率密度函数 $f_X(x)$ 可由 CDF 经求微分得到：<br>$$<br>f_X(x)=\frac{dF_X(x)}{dx}(x)<br>$$<br>对于连续随机变量，CDF 是连续的</p>
 <h2 id="CDF-的性质"><a href="#CDF-的性质" class="headerlink" title="CDF 的性质"></a>CDF 的性质</h2><p>假设 $X$ 的 CDF $F_X(x)$ 是由下式定义的 ：<br>$$<br>F_X(x)=P(X\le x), \forall x<br>$$<br>并且 $F_X(x)$ 具有下列性质：</p>
 <ol>
@@ -487,7 +487,7 @@
 <p>由题意得：当且仅当 $X\le t$ ，Alvin 获得一个介于 $[\frac{1}{t}, +\infty)$ 的分数s，其它情况下，他的得分为 0 。因此：<br>$$<br>F_S(s)=\cases{<br>0, \quad \text{if $s&lt;0$}\<br>P(S\le s)=1-P(X\le t), \quad \text{if $0\le s\le \frac{1}{t}$  (即Alvin击中了内圆之外)} \<br>P(S\le s)=P(X\le t)P(S\le s|X\le t)+P(X&gt;t)P(S\le s|X&gt;t) \quad \text{if $s &gt; \frac{1}{t}$}<br>}<br>$$<br>根据题意，得到：<br>$$<br>P(X\le t)=\frac{t^2}{r^2},\quad P(X&gt;t)=1-\frac{t^2}{r^2}<br>$$<br>而且因为当 $X&gt;t, S=0$ ， 所以 $P(S\le s|X&gt; t)=1$ 。</p>
 <p>进而得到：<br>$$<br>P(S\le s| X\le t)=P(\frac{1}{X}\le s|X\le t)=P(\frac{1}{s}\le X|X\le t) = \frac{P(\frac{1}{s}\le X \le t)}{P(X\le t)} =\frac{\frac{\pi t^2 -\pi(\frac{1}{s})^2}{\pi r^2}}{\frac{\pi t^2}{\pi r^2}}=1-\frac{1}{s^2t^2}<br>$$<br>最后得到：<br>$$<br>F_S(s)=\cases{<br>    0, &amp; \text{if }s&lt;0 \<br>    1-\frac{t^2}{r^2}, &amp; \text{if } 0\le s \le \frac{1}{t}\<br>    1-\frac{1}{s^2r^2} &amp; \text{if } \frac{1}{t}&lt;s<br>}<br>$$<br>因为 $F_S(s)$ 在 $s=0$ 处不连续，所以随机变量 $S$ 不是连续的。</p>
 <h2 id="几何和指数随机变量的分布函数"><a href="#几何和指数随机变量的分布函数" class="headerlink" title="几何和指数随机变量的分布函数"></a>几何和指数随机变量的分布函数</h2><p><strong>由于分布函数对一切随机变量都适用，可以利用它来探索离散和连续随机变量之间的关系</strong>。特别地，此处讨论几何随机变量和指数随机变量之间的关系。</p>
-<p>设 $X$ 是一个几何随机变量，其参数为 $p$ ，即 $X$ 是在伯努利独立试验序列中直到第一次成功所需要的试验次数，而伯努利试验的参数为 $p$ 。这样对于 $k=1,2\cdots,$  得到 $P(X=k)=p(1-p)^{k-1}$ ，而 $X$ 的 CDF 为：<br>$$<br>F_{geo}(n)=\sum\limits_{k=1}^{n}p(1-p)^{k-1}=p\frac{1-(1-p)^n}{1-(1-p)}=1-(1-p)^n,\quad n=1,2,\cdots<br>$$<br>现在设 $X$ 是一个指数随机变量，其参数 $\lambda&gt;0$ 。其 CDF 是<br>$$<br>F_{exp}(x)=P(X\le x)=0,\quad x\le 0\<br>F_{exp}(x)=\int_{0}^{x}\lambda e^{-\lambda t}dt=-e^{-\lambda t}|^{x}<em>{0}=1-e^{-\lambda x},\quad x&gt;0<br>$$<br>现在比较两个分布函数，令 $\delta=\frac{-ln(1-p)}{\lambda}\rightarrow \delta\lambda=-ln(1 - p)$ ，这样得到：<br>$$<br>e^{-\lambda\delta}=1-p \quad (*)<br>$$<br>那么，将 $(*)​$ 代入 $F</em>{geo}(n)​$ 得：$1-(e^{-\lambda\delta})^n=1-e^{-n\lambda\delta}​$ ，而分布函数 $F_{exp}​$ 在 $x=n\delta​$ 处为： $1-e^{-\lambda n\delta}=1-e^{-n\lambda\delta}​$ 是与 $F_{geo}​$ 在 $n​$ 处相等的，$n=1,2,\cdots​$ ，即：<br>$$<br>F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots<br>$$<br>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://qtujq8nkf.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
+<p>设 $X$ 是一个几何随机变量，其参数为 $p$ ，即 $X$ 是在伯努利独立试验序列中直到第一次成功所需要的试验次数，而伯努利试验的参数为 $p$ 。这样对于 $k=1,2\cdots,$  得到 $P(X=k)=p(1-p)^{k-1}$ ，而 $X$ 的 CDF 为：<br>$$<br>F_{geo}(n)=\sum\limits_{k=1}^{n}p(1-p)^{k-1}=p\frac{1-(1-p)^n}{1-(1-p)}=1-(1-p)^n,\quad n=1,2,\cdots<br>$$<br>现在设 $X$ 是一个指数随机变量，其参数 $\lambda&gt;0$ 。其 CDF 是<br>$$<br>F_{exp}(x)=P(X\le x)=0,\quad x\le 0\<br>F_{exp}(x)=\int_{0}^{x}\lambda e^{-\lambda t}dt=-e^{-\lambda t}|^{x}<em>{0}=1-e^{-\lambda x},\quad x&gt;0<br>$$<br>现在比较两个分布函数，令 $\delta=\frac{-ln(1-p)}{\lambda}\rightarrow \delta\lambda=-ln(1 - p)$ ，这样得到：<br>$$<br>e^{-\lambda\delta}=1-p \quad (*)<br>$$<br>那么，将 $(*)​$ 代入 $F</em>{geo}(n)​$ 得：$1-(e^{-\lambda\delta})^n=1-e^{-n\lambda\delta}​$ ，而分布函数 $F_{exp}​$ 在 $x=n\delta​$ 处为： $1-e^{-\lambda n\delta}=1-e^{-n\lambda\delta}​$ 是与 $F_{geo}​$ 在 $n​$ 处相等的，$n=1,2,\cdots​$ ，即：<br>$$<br>F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots<br>$$<br>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://qvsys9sr5.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
 <p>几何随机变量和指数随机变量的分布函数之间的关系。图中离散分布函数为 $X\delta$ 的分布函数，$X$ 是参数为 $p=1-e^{-\lambda x}$ 的几何随机变量。当 $\delta\rightarrow 0$ 时，$X\delta$ 的分布函数趋于指数分布函数 $1-e^{-\lambda x}$ 。</p>
 
       
