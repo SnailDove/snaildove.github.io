@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 20 Stream Processing Fundamentals 流处理基础Stream processing is a key requirement in many big data applications. As soon as an application computes something of value—say, a report about custome">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564654336845.png">
-<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564655645193.png">
+<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564654336845.png">
+<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564655645193.png">
 <meta property="article:published_time" content="2019-06-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-06T02:45:39.436Z">
+<meta property="article:modified_time" content="2021-08-03T17:07:06.783Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -449,7 +449,7 @@
       
 
       
-        <img src="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-20-Stream-Processing-Fundamentals-流处理基础"><a href="#Chapter-20-Stream-Processing-Fundamentals-流处理基础" class="headerlink" title="Chapter 20 Stream Processing Fundamentals 流处理基础"></a>Chapter 20 Stream Processing Fundamentals 流处理基础</h1><p>Stream processing is a key requirement in many big data applications. As soon as an application computes something of value—say, a report about customer activity, or a new machine learning model —an organization will want to compute this result continuously in a production setting. As a result, organizations of all sizes are starting to incorporate stream processing, often even in the first version of a new application.</p>
 <p>流处理是许多大数据应用程序的关键要求。一旦一个应用程序计算出一些有价值的东西，比如关于客户活动的报告，或者一个新的机器学习模型，一个组织就会想要在生产环境中连续计算这个结果。因此，各种规模的组织都开始合并流处理，甚至在新应用程序的第一个版本中也是如此。</p>
@@ -533,12 +533,12 @@
 <p><strong>当使用事件时间时，几个问题成为应用程序中常见的问题，包括以允许系统合并延迟事件的方式跟踪状态，以及在给定的事件时间窗口内，确定安全输出结果的时间</strong>（即，系统可能具有接收到该点之前的所有输入）。因此，<strong>许多声明性系统（包括结构化流）都支持将事件时间集成到其所有API中，以便在整个程序中自动处理这些问题</strong>。</p>
 <h3 id="Continuous-Versus-Micro-Batch-Execution-连续与微批量执行"><a href="#Continuous-Versus-Micro-Batch-Execution-连续与微批量执行" class="headerlink" title="Continuous Versus Micro-Batch Execution 连续与微批量执行"></a><font color="#f68a1e">Continuous Versus Micro-Batch Execution 连续与微批量执行</font></h3><p>The final design decision you will often see come up is about continuous versus micro-batch execution. In continuous processing-based systems, each node in the system is continually listening to messages from other nodes and outputting new updates to its child nodes. For example, suppose that your application implements a map-reduce computation over several input streams. In a continuous processing system, each of the nodes implementing map would read records one by one from an input source, compute its function on them, and send them to the appropriate reducer. The reducer would then update its state whenever it gets a new record. The key idea is that this happens on each individual record, as illustrated in Figure 20-1. </p>
 <p>您经常会看到的最终设计决策是关于连续与微批量执行的。<strong>在基于连续处理的系统中，系统中的每个节点都在不断地监听来自其他节点的消息，并将新的更新输出到其子节点。</strong>例如，假设您的应用程序在多个输入流上实现了一个map reduce计算。在连续处理系统中，实现映射的每个节点将从输入源中逐个读取记录，计算其功能，并将其发送到相应的reducer。然后，每当有新的记录时，reducer就会更新其状态。关键的想法是这发生在每个单独的记录上，如图20-1所示。</p>
-<p><img src="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564654336845.png" alt="1564654336845"></p>
+<p><img src="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564654336845.png" alt="1564654336845"></p>
 <p>Continuous processing has the advantage of offering the lowest possible latency when the total input rate is relatively low, because each node responds immediately to a new message. However, continuous processing systems generally have lower maximum throughput, because they incur a significant amount of overhead per-record (e.g., calling the operating system to send a packet to a downstream node). In addition, continous systems generally have a fixed topology of operators that cannot be moved at runtime without stopping the whole system, which can introduce load balancing issues.</p>
 <p><strong>当总输入速率相对较低时，连续处理的优点是提供尽可能低的延迟，因为每个节点都会立即响应新消息。但是，连续处理系统通常具有较低的最大吞吐量，因为它们在每条记录上都会产生大量开销</strong>（例如，调用操作系统向下游节点发送数据包）。<strong>此外，连续系统通常具有固定的算子（ operator: [mathematics] a symbol or function which represents an operation in mathematics）拓扑结构，如果不停止整个系统，就无法在运行时移动这些算子，这会引入负载平衡问题</strong>。</p>
 <p>In contrast, micro-batch systems wait to accumulate small batches of input data (say, 500 ms’ worth), then process each batch in parallel using a distributed collection of tasks, similar to the execution of a batch job in Spark. Micro-batch systems can often achieve high throughput per node because they leverage the same optimizations as batch systems (e.g., vectorized processing), and do not incur any extra per-record overhead, as illustrated in Figure 20-2.</p>
 <p><strong>相反，微批处理系统等待积累小批量的输入数据（比如500毫秒的值），然后使用分布式任务集合并行处理每一批，类似于Spark中批处理作业的执行。微批处理系统通常可以实现每个节点的高吞吐量，因为它们利用与批处理系统相同的优化（例如，矢量化处理），并且不会产生任何额外的每记录开销</strong>，如图20-2所示。</p>
-<p><img src="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564655645193.png" alt="1564655645193"></p>
+<p><img src="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter20/1564655645193.png" alt="1564655645193"></p>
 <p>Thus, they need fewer nodes to process the same rate of data. Micro-batch systems can also use dynamic load balancing techniques to handle changing workloads (e.g., increasing or decreasing the number of tasks). The downside, however, is a higher base latency due to waiting to accumulate a micro-batch. In practice, the streaming applications that are large-scale enough to need to <em>distribute</em> their computation tend to prioritize throughput, so Spark has traditionally implemented micro-batch processing. In Structured Streaming, however, there is an active development effort to also support a continuous processing mode beneath the same API.  </p>
 <p><strong>因此，它们需要更少的节点来处理相同的数据速率。微批处理系统还可以使用动态负载平衡技术来处理不断变化的工作负载（例如，增加或减少任务数量）。但是，缺点是，由于等待积累一个微批处理，所以基本延迟更高。</strong>在实践中，<strong>流应用程序的规模足够大，需要分配它们的计算（资源），倾向于优先考虑吞吐量，因此Spark传统上已经实现了微批处理</strong>。然而，<strong>在结构化流中，也有一项积极的开发工作来支持同一API下的连续处理模式</strong>。</p>
 <p>When choosing between these two execution modes, the main factors you should keep in mind are your desired latency and total cost of operation (TCO). Micro-batch systems can comfortably deliver latencies from 100 ms to a second, depending on the application. Within this regime, they will generally require fewer nodes to achieve the same throughput, and hence lower operational cost (including lower maintenance cost due to less frequent node failures). For much lower latencies, you should consider a continuous processing system, or using a micro-batch system in conjunction with a fast serving layer to provide low-latency queries (e.g., outputting data into MySQL or Apache Cassandra, where it can be served to clients in milliseconds).</p>

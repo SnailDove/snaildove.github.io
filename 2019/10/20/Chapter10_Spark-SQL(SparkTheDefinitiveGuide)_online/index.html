@@ -97,13 +97,13 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 10. Spark SQL 译者：https:&#x2F;&#x2F;snaildove.github.io Spark SQL is arguably one of the most important and powerful features in Spark. This chapter introduces the core concepts in Spark SQL that you n">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="article:published_time" content="2019-10-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-07-06T02:45:39.377Z">
+<meta property="article:modified_time" content="2021-08-03T17:07:06.717Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -447,7 +447,7 @@
       
 
       
-        <img src="http://qvsys9sr5.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://qx9wtq3rb.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 align="center">Chapter 10. Spark SQL</h1>
 <center><strong>译者</strong>：<u><a style="color:#0879e3" href="https://snaildove.github.io">https://snaildove.github.io</a></u></center>
@@ -472,7 +472,7 @@ Spark SQL is arguably one of the most important and powerful features in Spark. 
 <p><center><font face="constant-width" color="#737373" size=3><strong>NOTE 注意</strong></font></center></P>
 Spark SQL is intended to operate as an online analytic processing (OLAP) database, not an online transaction processing (OLTP) database. This means that it is not intended to perform extremely low-latency queries. Even though support for in-place modifications is sure to be something that comes up in the future, it’s not something that is currently available.
 
-<p>Spark SQL旨在用作联机分析处理（OLAP）数据库，而不是联机事务处理（OLTP）数据库。这意味着它不打算执行极低延迟的查询。即使将来肯定会支持就地修改，但目前尚不支持。</p>
+<p>Spark SQL旨在用作在线分析处理（OLAP）数据库，而不是在线事务处理（OLTP）数据库。这意味着它不打算执行极低延迟的查询。即使将来肯定会支持就地修改，但目前尚不支持。</p>
 <hr>
 <h3 id="Spark’s-Relationship-to-Hive"><a href="#Spark’s-Relationship-to-Hive" class="headerlink" title="Spark’s Relationship to Hive"></a><font color="#00000">Spark’s Relationship to Hive</font></h3><p>Spark SQL has a great relationship with Hive because it can connect to Hive metastores. The Hive metastore is the way in which Hive maintains table information for use across sessions. With Spark SQL, you can connect to your Hive metastore (if you already have one) and access table metadata to reduce file listing when accessing information. This is popular for users who are migrating from a legacy Hadoop environment and beginning to run all their workloads using Spark.</p>
 <p>Spark SQL与Hive有着密切的关系，因为它可以连接到Hive元存储。Hive元存储库是Hive维护表信息以供跨会话使用的方式。使用Spark SQL，您可以连接到Hive元存储（如果已经拥有一个）并访问表元数据以减少访问信息时的文件列表。非常受遗留的Hadoop环境迁移并开始使用Spark运行其所有工作负载的用户欢迎。</p>
