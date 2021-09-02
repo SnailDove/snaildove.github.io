@@ -97,16 +97,16 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThis is one of my personal programming assignments after studying the course nlp sequence models at the 2nd week and the copyright belongs to deeplearning.ai. Operations on word vectorsWelcome to">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
-<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png">
-<meta property="og:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png">
+<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
+<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png">
+<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png">
 <meta property="article:published_time" content="2018-06-02T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-08-03T17:07:06.972Z">
+<meta property="article:modified_time" content="2021-09-02T08:56:06.090Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="nlp-sequence-models">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
+<meta name="twitter:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png">
 
 
 
@@ -476,7 +476,7 @@
 <h1 id="1-Cosine-similarity"><a href="#1-Cosine-similarity" class="headerlink" title="1 - Cosine similarity"></a>1 - Cosine similarity</h1><p>To measure how similar two words are, we need a way to measure the degree of similarity between two embedding vectors for the two words. Given two vectors $u$ and $v$, cosine similarity is defined as follows: </p>
 <p>$$\text{CosineSimilarity(u, v)} = \frac {u . v} {||u||_2 ||v||_2} = cos(\theta) \tag{1}$$</p>
 <p>where $u.v$ is the dot product (or inner product) of two vectors, $||u||_2$ is the norm (or length) of the vector $u$, and $\theta$ is the angle between $u$ and $v$. This similarity depends on the angle between $u$ and $v$. If $u$ and $v$ are very similar, their cosine similarity will be close to 1; if they are dissimilar, the cosine similarity will take a smaller value. </p>
-<img src="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png" style="width:800px;height:250px;">
+<img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/cosine_sim.png" style="width:800px;height:250px;">
 <caption><center> **Figure 1**: The cosine of the angle between two vectors is a measure of how similar they are</center></caption>
 
 <p><strong>Exercise</strong>: Implement the function <code>cosine_similarity()</code> to evaluate similarity between word vectors.</p>
@@ -630,7 +630,7 @@ singer 0.185005181365
 <p>We’ll see below how to reduce the bias of these vectors, using an algorithm due to <a href="https://arxiv.org/abs/1607.06520" target="_blank" rel="noopener">Boliukbasi et al., 2016</a>. Note that some word pairs such as “actor”/“actress” or “grandmother”/“grandfather” should remain gender specific, while other words such as “receptionist” or “technology” should be neutralized, i.e. not be gender-related. You will have to treat these two type of words differently when debiasing.</p>
 <h3 id="3-1-Neutralize-bias-for-non-gender-specific-words"><a href="#3-1-Neutralize-bias-for-non-gender-specific-words" class="headerlink" title="3.1 - Neutralize bias for non-gender specific words"></a>3.1 - Neutralize bias for non-gender specific words</h3><p>The figure below should help you visualize what neutralizing does. If you’re using a 50-dimensional word embedding, the 50 dimensional space can be split into two parts: The bias-direction $g$, and the remaining 49 dimensions, which we’ll call $g_{\perp}$. In linear algebra, we say that the 49 dimensional $g_{\perp}$ is perpendicular (or “othogonal”) to $g$, meaning it is at 90 degrees to $g$. The neutralization step takes a vector such as $e_{receptionist}$ and zeros out the component in the direction of $g$, giving us $e_{receptionist}^{debiased}$. </p>
 <p>Even though $g_{\perp}$ is 49 dimensional, given the limitations of what we can draw on a screen, we illustrate it using a 1 dimensional axis below. </p>
-<img src="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png" style="width:800px;height:300px;">
+<img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/neutral.png" style="width:800px;height:300px;">
 <caption><center> **Figure 2**: The word vector for "receptionist" represented before and after applying the neutralize operation. </center></caption>
 
 <p><strong>Exercise</strong>: Implement <code>neutralize()</code> to remove the bias of words such as “receptionist” or “scientist”. Given an input embedding $e$, you can use the following formulas to compute $e^{debiased}$: </p>
@@ -672,7 +672,7 @@ cosine similarity between receptionist and g, after neutralizing:  -5.6037403937
 
 <h3 id="3-2-Equalization-algorithm-for-gender-specific-words"><a href="#3-2-Equalization-algorithm-for-gender-specific-words" class="headerlink" title="3.2 - Equalization algorithm for gender-specific words"></a>3.2 - Equalization algorithm for gender-specific words</h3><p>Next, lets see how debiasing can also be applied to word pairs such as “actress” and “actor.” Equalization is applied to pairs of words that you might want to have differ only through the gender property. As a concrete example, suppose that “actress” is closer to “babysit” than “actor.” By applying neutralizing to “babysit” we can reduce the gender-stereotype associated with babysitting. But this still does not guarantee that “actor” and “actress” are equidistant from “babysit.” The equalization algorithm takes care of this. </p>
 <p>The key idea behind equalization is to make sure that a particular pair of words are equi-distant from the 49-dimensional $g_\perp$. The equalization step also ensures that the two equalized steps are now the same distance from $e_{receptionist}^{debiased}$, or from any other work that has been neutralized. In pictures, this is how equalization works: </p>
-<img src="http://qx9wtq3rb.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png" style="width:800px;height:400px;">
+<img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/deeplearning.ai/nlp-sequence-models/jupter/week2/Word_Vector_Representation/images/equalize10.png" style="width:800px;height:400px;">
 
 
 <p>The derivation of the linear algebra to do this is a bit more complex. (See Bolukbasi et al., 2016 for details.) But the key equations are: </p>
