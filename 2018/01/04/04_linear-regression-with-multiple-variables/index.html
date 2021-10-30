@@ -97,20 +97,20 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Multiple FeaturesNote:    [7:25 - $θ^T$ is a 1 by (n+1) matrix and not an (n+1) by 1 matrix]  Linear regression with multiple variables is also known as “multivariate linear regression”.  We now intro">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/why_feature_scale.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/making_sure_gradient_descent_is_working_correctly.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/2_making_sure_gradient_descent_is_working_correctly.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/example_of_polynomial_regression.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/solution_of_normal_equation_with_non-invertible_X%5ETX.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/why_feature_scale.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/making_sure_gradient_descent_is_working_correctly.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/2_making_sure_gradient_descent_is_working_correctly.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/example_of_polynomial_regression.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/solution_of_normal_equation_with_non-invertible_X%5ETX.png">
 <meta property="article:published_time" content="2018-01-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-09-02T08:56:05.719Z">
+<meta property="article:modified_time" content="2021-10-30T07:26:26.850Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png">
+<meta name="twitter:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png">
 
 
 
@@ -489,10 +489,10 @@ $$
 
 
 <p>The following image compares gradient descent with one variable to gradient descent with multiple variables:</p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png" alt="gradient_descent_with_multiple_variables"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/gradient_descent_with_multiple_variables.png" alt="gradient_descent_with_multiple_variables"></p>
 <h2 id="Gradient-Descent-in-Practice-I-Feature-Scaling"><a href="#Gradient-Descent-in-Practice-I-Feature-Scaling" class="headerlink" title="Gradient Descent in Practice I - Feature Scaling"></a>Gradient Descent in Practice I - Feature Scaling</h2><p> <strong>Note:</strong>    [6:20 - The average size of a house is 1000 but 100 is accidentally written instead] </p>
 <p>We can speed up gradient descent by having each of our input values in roughly the same range. This is <strong>because $θ​$ will descend quickly on small ranges and slowly on large ranges, and so will oscillate inefficiently down to the optimum when the variables are very uneven.</strong></p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/why_feature_scale.png" alt="why_feature_scale"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/why_feature_scale.png" alt="why_feature_scale"></p>
 <p>The way to prevent this is to modify the ranges of our input variables so that they are all roughly the same. Ideally:<br>$$<br>−1 ≤  x_{(i)} ≤ 1 \text{ or } −0.5 ≤  x_{(i)} ≤ 0.5<br>$$<br>These aren’t exact requirements; we are only trying to speed things up. The goal is to get all input variables into roughly one of these ranges, give or take a few. </p>
 <p>Two techniques to help with this are  <strong>feature scaling</strong> and <strong>mean normalization</strong> . </p>
 <ol>
@@ -506,9 +506,9 @@ $$
 <h2 id="Gradient-Descent-in-Practice-II-Learning-Rate"><a href="#Gradient-Descent-in-Practice-II-Learning-Rate" class="headerlink" title="Gradient Descent in Practice II - Learning Rate"></a>Gradient Descent in Practice II - Learning Rate</h2><p><strong>Note:</strong>    [5:20 - the x -axis label in the right graph should be $θ$ rather than No. of iterations ] </p>
 <p><strong>Debugging gradient descent.</strong>  Make a plot with  <strong>number of iterations</strong> on the x-axis. Now plot the cost function, $J(θ)$ over the number of iterations of gradient descent. If $J(θ)$ ever increases, then you probably need to decrease $α$. </p>
 <p><strong>Automatic convergence test.</strong> Declare convergence if $J(θ)$ decreases by less than E in one iteration, where E is some small value such as $10^{−3}$. However in practice it’s difficult to choose this threshold value.</p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/making_sure_gradient_descent_is_working_correctly.png" alt="making_sure_gradient_descent_is_working_correctly"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/making_sure_gradient_descent_is_working_correctly.png" alt="making_sure_gradient_descent_is_working_correctly"></p>
 <p>It has been proven that if learning rate $α$ is sufficiently small, then $J(θ)$ will decrease on every iteration.</p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/2_making_sure_gradient_descent_is_working_correctly.png" alt="2_making_sure_gradient_descent_is_working_correctly"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/2_making_sure_gradient_descent_is_working_correctly.png" alt="2_making_sure_gradient_descent_is_working_correctly"></p>
 <p>To summarize: </p>
 <ol>
 <li>If $α$ is too small: slow convergence. </li>
@@ -522,10 +522,10 @@ $$
 <p>To make it a square root function, we could do: $h_\theta(x) = \theta_0 + \theta_1 x_1 + \theta_2 \sqrt{x_1}$</p>
 <p>One important thing to keep in mind is, if you choose your features this way then feature scaling becomes very important. </p>
 <p>eg. if $x_1$ has range 1 - 1000 then range of $x_1^2$ becomes 1 - 1000000 and that of $x_1^3$ becomes 1 - 1000000000</p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/example_of_polynomial_regression.png" alt="example_of_polynomial_regression"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/example_of_polynomial_regression.png" alt="example_of_polynomial_regression"></p>
 <h2 id="Normal-Equation"><a href="#Normal-Equation" class="headerlink" title="Normal Equation"></a>Normal Equation</h2><p><strong>Note:</strong>    [8:00 to 8:44 - The design matrix $X$ (in the bottom right side of the slide) given in the example should have elements $x$ with subscript 1 and superscripts varying from 1 to m because for all m training sets there are only 2 features $x_0$ and $x_1$. 12:56 - The $X$ matrix is m by (n+1) and NOT n by n. ] </p>
-<p>Gradient descent gives one way of minimizing $J$ . Let’s discuss a second way of doing so, this time performing the minimization explicitly and without resorting to an iterative algorithm. In the “Normal Equation” method, we will minimize $J$ by explicitly taking its derivatives with respect to the θj’s, and setting them to zero. This allows us to find the optimum theta without iteration. The normal equation formula is given below:<br>$$<br>\theta = (X^T X)^{-1}X^T y<br>$$<br><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png" alt="example_of_normal_equation"></p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png" alt="construction_of_normal_equation"></p>
+<p>Gradient descent gives one way of minimizing $J$ . Let’s discuss a second way of doing so, this time performing the minimization explicitly and without resorting to an iterative algorithm. In the “Normal Equation” method, we will minimize $J$ by explicitly taking its derivatives with respect to the θj’s, and setting them to zero. This allows us to find the optimum theta without iteration. The normal equation formula is given below:<br>$$<br>\theta = (X^T X)^{-1}X^T y<br>$$<br><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png" alt="example_of_normal_equation"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/construction_of_normal_equation.png" alt="construction_of_normal_equation"></p>
 <p>There is  <strong>no need</strong> to do feature scaling with the normal equation. </p>
 <p>**The following is a comparison of gradient descent and the normal equation: ** </p>
 <table>
@@ -560,7 +560,7 @@ $$
 <li>Too many features (e.g. m ≤ n). In this case, delete some features or use “regularization” (to be explained in a later lesson).   </li>
 </ul>
 <p>Solutions to the above problems include deleting a feature that is linearly dependent with another or deleting one or more features when there are too many features.</p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/solution_of_normal_equation_with_non-invertible_X%5ETX.png" alt="solution_of_normal_equation_with_non-invertible_X^TX"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/gitpage/ml-andrew-ng/04/solution_of_normal_equation_with_non-invertible_X%5ETX.png" alt="solution_of_normal_equation_with_non-invertible_X^TX"></p>
 
       
     </div>

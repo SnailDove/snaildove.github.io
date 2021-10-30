@@ -97,14 +97,14 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 21 Structured Streaming Basics 结构化流基础Now that we have covered a brief overview of stream processing, let’s dive right into Structured Streaming. In this chapter, we will, again, state some o">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://qysglkomf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter21/1564674106272.png">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter21/1564674106272.png">
 <meta property="article:published_time" content="2019-06-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-09-02T08:56:05.930Z">
+<meta property="article:modified_time" content="2021-10-30T07:26:27.072Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://qysglkomf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -448,7 +448,7 @@
       
 
       
-        <img src="http://qysglkomf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-21-Structured-Streaming-Basics-结构化流基础"><a href="#Chapter-21-Structured-Streaming-Basics-结构化流基础" class="headerlink" title="Chapter 21 Structured Streaming Basics 结构化流基础"></a>Chapter 21 Structured Streaming Basics 结构化流基础</h1><p>Now that we have covered a brief overview of stream processing, let’s dive right into Structured Streaming. In this chapter, we will, again, state some of the key concepts behind Structured Streaming and then apply them with some code examples that show how easy the system is to use.</p>
 <p>既然我们已经介绍了流处理的简要概述，那么让我们直接深入到 Structured Streaming 中。在本章中，我们将再次说明 Structured Streaming 背后的一些关键概念，然后将它们与一些代码示例一起应用，这些代码示例说明系统的易用性。</p>
@@ -456,7 +456,7 @@
 <p>Structured Streaming，正如我们在第20章末尾所讨论的，是基于Spark SQL引擎构建的流处理框架。Structured Streaming 处理不引入单独的API，而是使用Spark中现有的结构化API（DataFrames、Datasets 和 SQL），这意味着支持您熟悉的所有操作。用户表达流计算的方式与对静态数据编写批处理计算的方式相同。在指定了这一点并指定了流目的地之后，Structured Streaming 引擎将负责在新数据到达系统时以增量和连续的方式运行查询。然后使用本书第二部分中讨论的相同Catalyst引擎执行这些计算逻辑指令，包括查询优化、代码生成等。除了核心结构化处理引擎之外，Structured Streaming 还包括一些专门与流相关的特性。例如，Structured Streaming 通过检查点和提前写入日志确保端到端、一次性处理以及容错性。</p>
 <p>The main idea behind Structured Streaming is to treat a stream of data as a table to which data is continuously appended. The job then periodically checks for new input data, process it, updates some internal state located in a state store if needed, and updates its result. A cornerstone of the API is that you should not have to change your query’s code when doing batch or stream processing—you should have to specify only whether to run that query in a batch or streaming fashion. Internally, Structured Streaming will automatically figure out how to “incrementalize” your query, i.e., update its result efficiently whenever new data arrives, and will run it in a fault-tolerant fashion. </p>
 <p>Structured Streaming 背后的主要思想是将数据流视为一个连续追加数据的表。然后，该作业会定期检查新的输入数据、处理它、根据需要更新位于状态存储中的某些内部状态，并更新其结果。API的一个基石是，在进行批处理或流处理时，不必更改查询的代码，只需指定是以批处理还是流方式运行该查询。在内部，Structured Streaming 将自动计算出如何“增量化”查询，即在新数据到达时高效地更新其结果，并以容错的方式运行它。</p>
-<p><img src="http://qysglkomf.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter21/1564674106272.png" alt="1564674106272"></p>
+<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter21/1564674106272.png" alt="1564674106272"></p>
 <p>In simplest terms, Structured Streaming is “your DataFrame, but streaming.” This makes it very easy to get started using streaming applications. You probably already have the code for them! There are some limits to the types of queries Structured Streaming will be able to run, however, as well as some new concepts you have to think about that are specific to streaming, such as event-time and out of-order data. We will discuss these in this and the following chapters.</p>
 <p>简单来说，Structured Streaming 是“你的DataFrame，却是流”，这使得开始使用流应用程序变得非常容易。你可能已经有了他们的代码了！但是，结构化流能够运行的查询类型有一些限制，以及一些您必须考虑的特定于流媒体的新概念，例如事件时间和无序数据。我们将在本章和以下章节中讨论这些问题。</p>
 <p>Finally, by integrating with the rest of Spark, Structured Streaming enables users to build what we call continuous applications. A continuous application is an end-to-end application that reacts to data in real time by combining a variety of tools: streaming jobs, batch jobs, joins between streaming and offline data, and interactive ad-hoc queries. Because most streaming jobs today are deployed within the context of a larger continuous application, the Spark developers sought to make it easy to specify the whole application in one framework and get consistent results across these different portions of it. For example, you can use Structured Streaming to continuously update a table that users query interactively with Spark SQL, serve a machine learning model trained by MLlib, or join streams with offline data in any of Spark’s data sources—applications that would be much more complex to build using a mix of different tools.</p>
