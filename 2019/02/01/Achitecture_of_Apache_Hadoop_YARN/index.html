@@ -99,7 +99,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/yarn_architecture.gif">
 <meta property="article:published_time" content="2019-01-31T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-30T07:26:26.959Z">
+<meta property="article:modified_time" content="2021-11-28T16:35:11.792Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Hadoop YARN">
 <meta property="article:tag" content="Distributed System">
@@ -465,7 +465,7 @@
 <p> 调度器有一个可插拔的策略，负责在不同的队列、应用程序等之间划分集群资源。当前的调度器（如<a href="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/CapacityScheduler.html" target="_blank" rel="noopener">CapacityScheduler</a> 和 <a href="https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/FairScheduler.html" target="_blank" rel="noopener">FairScheduler</a>）是插件的一些示例。</p>
 </li>
 <li><p>The ApplicationsManager is responsible for accepting job-submissions, negotiating the first container for executing the application specific ApplicationMaster and provides the service for restarting the ApplicationMaster container on failure. The per-application ApplicationMaster has the responsibility of negotiating appropriate resource containers from the Scheduler, tracking their status and monitoring for progress.</p>
-<p> <strong>ApplicationsManager</strong>负责接受作业提交、协商用于执行某一个具体应用程序的ApplicationMaster的第一个容器，并提供在失败时重新启动ApplicationMaster容器的服务。每个应用程序ApplicationMaster负责与Scheduler协商合适的资源容器，跟踪其状态并监视进度。</p>
+<p> <strong>ApplicationsManager</strong>负责接受作业提交、协商（得到）用于执行某一个具体应用程序的ApplicationMaster的第一个容器，并提供在失败时重新启动ApplicationMaster容器的服务。每个应用程序ApplicationMaster负责与Scheduler协商合适的资源容器，跟踪其状态并监视进度。</p>
 </li>
 </ol>
 <p>MapReduce in hadoop-2.x maintains API compatibility with previous stable release (hadoop-1.x). This means that all MapReduce jobs should still run unchanged on top of YARN with just a recompile.</p>

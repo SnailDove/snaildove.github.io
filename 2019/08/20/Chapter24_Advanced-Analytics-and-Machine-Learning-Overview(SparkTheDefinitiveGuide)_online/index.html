@@ -97,18 +97,18 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 24 Advanced Analytics and Machine Learning OverviewThus far, we have covered fairly general data flow APIs. This part of the book will dive deeper into some of the more specific advanced ana">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256517488.png">
-<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256299402.png">
-<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256344807.png">
-<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567261735442.png">
-<meta property="og:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567262732536.png">
+<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256517488.png">
+<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256299402.png">
+<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256344807.png">
+<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567261735442.png">
+<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567262732536.png">
 <meta property="article:published_time" content="2019-08-19T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-10-30T07:26:27.097Z">
+<meta property="article:modified_time" content="2021-11-28T16:35:11.933Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -452,7 +452,7 @@
       
 
       
-        <img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-24-Advanced-Analytics-and-Machine-Learning-Overview"><a href="#Chapter-24-Advanced-Analytics-and-Machine-Learning-Overview" class="headerlink" title="Chapter 24 Advanced Analytics and Machine Learning Overview"></a>Chapter 24 Advanced Analytics and Machine Learning Overview</h1><p>Thus far, we have covered fairly general data flow APIs. This part of the book will dive deeper into some of the more specific advanced analytics APIs available in Spark. Beyond large-scale SQL analysis and streaming, Spark also provides support for statistics, machine learning, and graph analytics. These encompass a set of workloads that we will refer to as advanced analytics. This part of the book will cover advanced analytics tools in Spark, including : </p>
 <p>到目前为止，我们已经涵盖了相当通用的数据流 API。本书的这一部分将深入探讨 Spark 中可用的一些更具体的高级分析 API。除了大规模的 SQL  分析和流媒体，Spark 还提供对统计，机器学习和图形分析的支持。这些包含一套工作负荷，我们将其称为高级分析。本书的这一部分将介绍Spark中的高级分析工具，包括：</p>
@@ -574,7 +574,7 @@ This book is not intended to teach you everything you need to know about machine
 <p>Google 的原始网络推荐算法 PageRank 是一种图表算法，可以分析网站关系，以便对网页的重要性进行排名。例如，具有大量链接指向的网页被排名为比没有链接指向的网页更重要。我们将在第30章讨论更多图形分析的例子。</p>
 <h3 id="The-Advanced-Analytics-Process-高级分析流程"><a href="#The-Advanced-Analytics-Process-高级分析流程" class="headerlink" title="The Advanced Analytics Process 高级分析流程"></a><font color="#00000">The Advanced Analytics Process 高级分析流程</font></h3><p>You should have a firm grasp of some fundamental use cases for machine learning and advanced analytics. However, finding a use case is only a small part of the actual advanced analytics process. There is a lot of work in preparing your data for analysis, testing different ways of modeling it, and evaluating these models. This section will provide structure to the overall analytics process and the steps we have to take to not just perform one of the tasks just outlined, but actually evaluate success objectively in order to understand whether or not we should apply our model to the real world (Figure 24-1).</p>
 <p>您应该牢牢掌握机器学习和高级分析的一些基本用户案例。但是，查找用户案例只是实际高级分析过程的一小部分。在准备分析数据，测试不同的建模方法以及评估这些模型方面，有很多工作要做。本节将提供整体分析过程的结构，以及我们必须采取的步骤，不仅要执行刚刚概述的任务之一，而且要客观地评估成功，以便了解我们是否应该将我们的模型应用于现实世界（图24-1）。</p>
-<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256517488.png" alt="1567256517488"></p>
+<p><img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256517488.png" alt="1567256517488"></p>
 <p>The overall process involves, the following steps (with some variation):</p>
 <p>整个过程涉及以下步骤（有一些变化）：</p>
 <ol>
@@ -645,10 +645,10 @@ MLlib actually consists of two packages that leverage different core data struct
 <p>所有这一切的一个重要警告是，虽然训练和数据准备工作变得简单，但仍需要记住一些复杂性，特别是在部署经过训练的模型时。例如，Spark 不提供从模型提供低延迟预测的内置方法，因此您可能希望将模型导出到另一个服务系统或自定义应用程序来执行此操作。 MLlib 通常设计为允许在可能的情况下检查和导出模型到其他工具。</p>
 <h2 id="High-Level-MLlib-Concepts"><a href="#High-Level-MLlib-Concepts" class="headerlink" title="High-Level MLlib Concepts"></a><font color="#9a161a" >High-Level MLlib Concepts</font></h2><p>In MLlib there are several fundamental “structural” types: transformers, estimators, evaluators, and pipelines. By structural, we mean you will think in terms of these types when you define an end-to-end machine learning pipeline. They’ll provide the common language for defining what belongs in what part of the pipeline. Figure 24-2 illustrates the overall workflow that you will follow when developing machine learning models in Spark. </p>
 <p>在 MLlib 中，有几种基本的“结构”类型：转换器（transformer），估计器（estimator），评估器（evaluator）和管道（pipeline）。 通过结构，我们的意思是当您定义端到端机器学习管道时，您将考虑这些类型。 它们将提供用于定义属于管道的哪些部分的通用语言。 图24-2说明了在 Spark 中开发机器学习模型时要遵循的整体工作流程。</p>
-<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256299402.png" alt="1567256299402"></p>
+<p><img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256299402.png" alt="1567256299402"></p>
 <p><strong><em>Transformers</em></strong> are functions that convert raw data in some way. This might be to create a new interaction variable (from two other variables), normalize a column, or simply change an Integer into a  <code>Double</code>  type to be input into a model. An example of a transformer is one that converts string categorical variables into numerical values that can be used in MLlib. Transformers are primarily used in preprocessing and feature engineering. Transformers take a DataFrame as input and produce a new DataFrame as output, as illustrated in Figure 24-3. </p>
 <p><strong>转换器（transformer）</strong>是以某种方式转换原始数据的函数。 这可能是创建一个新的交互变量（来自另外两个变量），规范化一个列，或者只是将一个 Integer 更改为  <code>Double</code>  类型以输入到模型中。 转换器（transformer）的示例是将字符串分类变量转换为可在 MLlib 中使用的数值的转换器（transformer）。 转换器（transformer）主要用于预处理和特征工程。 转换器（transformer）将 DataFrame 作为输入并生成一个新的 DataFrame 作为输出，如图 24-3 所示。</p>
-<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256344807.png" alt="1567256344807"></p>
+<p><img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567256344807.png" alt="1567256344807"></p>
 <p><strong><em>Estimators</em></strong> are one of two kinds of things. First, estimators can be a kind of transformer that is initialized with data. For instance, to normalize numerical data we’ll need to initialize our transformation with some information about the current values in the column we would like to normalize. This requires two passes over our data—the initial pass generates the initialization values and the second actually applies the generated function over the data. In the Spark’s nomenclature, algorithms that allow users to train a model from data are also referred to as estimators.</p>
 <p><strong><em>估计器（estimator）</em></strong>是两种事物之一。首先，估计器（estimator）可以是一种用数据初始化的转换器（transformer）。例如，为了标准化数值数据，我们需要使用有关我们想要标准化的列中的当前值的一些信息来初始化我们的转换。这需要对数据进行两次传递——初始传递生成初始化值，第二次实际应用于在数据上生成的函数。在Spark的命名法中，允许用户从数据训练模型的算法也称为估计器（estimator）。</p>
 <p>An <strong><em>evaluator</em></strong> allows us to see how a given model performs according to criteria we specify like a <a href="http://mlwiki.org/index.php/ROC_Analysis" target="_blank" rel="noopener">receiver operating characteristic (ROC) curve</a>. After we use an evaluator to select the best model from the ones we tested, we can then use that model to make predictions.</p>
@@ -802,7 +802,7 @@ Although we mentioned them previously, let’s more formally define hyperparamet
 
 <h3 id="Pipelining-Our-Workflow-流水线我们的工作流程"><a href="#Pipelining-Our-Workflow-流水线我们的工作流程" class="headerlink" title="Pipelining Our Workflow 流水线我们的工作流程"></a><font color="#00000">Pipelining Our Workflow 流水线我们的工作流程</font></h3><p>As you probably noticed, if you are performing a lot of transformations, writing all the steps and keeping track of DataFrames ends up being quite tedious. That’s why Spark includes the Pipeline concept. A pipeline allows you to set up a dataflow of the relevant transformations that ends with an estimator that is automatically tuned according to your specifications, resulting in a tuned model ready for use. Figure 24-4 illustrates this process. </p>
 <p>正如您可能已经注意到的，如果您正在执行大量转换，那么编写所有步骤并跟踪 DataFrames 最终会非常繁琐。 这就是 Spark 包含 Pipeline 概念的原因。 管道允许您设置相关转换的数据流，该数据流以估计器（estimator）结束，而估计器（estimator）根据您设置的规范自动调整，从而使得可以使用的调整模型。 图24-4说明了这个过程。</p>
-<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567261735442.png" alt="1567261735442"></p>
+<p><img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567261735442.png" alt="1567261735442"></p>
 <p>Note that it is essential that instances of transformers or models are not reused across different pipelines. Always create a new instance of a model before creating another pipeline.</p>
 <p>请注意，转换器（transformer）或模型的实例不能在不同的管道中重复使用。 始终在创建另一个管道之前创建模型的新实例。</p>
 <p>In order to make sure we don’t overfit, we are going to create a holdout test set and tune our hyperparameters based on a validation set (note that we create this validation set based on the original dataset, not the preparedDF used in the previous pages) :  </p>
@@ -883,7 +883,7 @@ Although we mentioned them previously, let’s more formally define hyperparamet
 
 <h2 id="Deployment-Patterns"><a href="#Deployment-Patterns" class="headerlink" title="Deployment Patterns"></a><font color="#9a161a">Deployment Patterns</font></h2><p>In Spark there are several different deployment patterns for putting machine learning models into production. Figure 24-5 illustrates common workflows. </p>
 <p>在 Spark 中，有几种不同的部署模式可用于将机器学习模型投入生产。 图 24-5 说明了常见的工作流程。</p>
-<p><img src="http://r1s4buuxp.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567262732536.png" alt="1567262732536"></p>
+<p><img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter24/1567262732536.png" alt="1567262732536"></p>
 <p>Here are the various options for how you might go about deploying a Spark model. These are the general options you should be able to link to the process illustrated in Figure 24-5.</p>
 <p>以下是有关如何部署 Spark 模型的各种选项。这些是您应该能够链接到图24-5中所示流程的通用选项。</p>
 <p>Train your machine learning (ML) model offline and then supply it with offline data. In this context, we mean offline data to be data that is stored for analysis, and not data that you need to get an answer from quickly. Spark is well suited to this sort of deployment.</p>
