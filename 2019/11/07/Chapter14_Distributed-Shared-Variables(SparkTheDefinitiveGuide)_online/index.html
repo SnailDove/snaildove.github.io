@@ -97,16 +97,16 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 14 Distributed Shared VariablesIn addition to the Resilient Distributed Dataset (RDD) interface, the second kind of low-level API in Spark is two types of “distributed shared variables”: bro">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574393608504.png">
-<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574401245639.png">
-<meta property="og:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574402832000.png">
+<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574393608504.png">
+<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574401245639.png">
+<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574402832000.png">
 <meta property="article:published_time" content="2019-11-06T16:00:00.000Z">
-<meta property="article:modified_time" content="2021-11-28T16:35:11.862Z">
+<meta property="article:modified_time" content="2022-03-20T09:57:42.903Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -450,7 +450,7 @@
       
 
       
-        <img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-14-Distributed-Shared-Variables"><a href="#Chapter-14-Distributed-Shared-Variables" class="headerlink" title="Chapter 14 Distributed Shared Variables"></a>Chapter 14 Distributed Shared Variables</h1><p>In addition to the Resilient Distributed Dataset (RDD) interface, the second kind of low-level API in Spark is two types of “distributed shared variables”: broadcast variables and accumulators. These are variables you can use in your user-defined functions (e.g., in a map function on an RDD or a DataFrame) that have special properties when running on a cluster. Specifically, accumulators let you add together data from all the tasks into a shared result (e.g., to implement a counter so you can see how many of your job’s input records failed to parse), while broadcast variables let you save a large value on all the worker nodes and reuse it across many Spark actions without re-sending it to the cluster. This chapter discusses some of the motivation for each of these variable types as well as how to use them.</p>
 <p>除了弹性分布式数据集（RDD）接口外，Spark中的第二种底层API是两种“分布式共享变量”：广播变量（broadcast variable）和累加器（accumulator）。这些是您可以在用户定义的函数（例如，在RDD或DataFrame上的映射函数）中使用的变量，这些变量在集群上运行时具有特殊的属性。具体来说，累加器使您可以将所有任务的数据加到一个共享的结果中（例如，实现一个计数器，以便您可以查看有多少作业的输入记录无法解析），而广播变量使您可以在所有工作节点上保存较大的值，并在许多Spark action中重复使用它，而无需将其重新发送到集群。本章讨论了每种变量类型的一些动机以及如何使用它们。</p>
@@ -458,7 +458,7 @@
 <p>广播变量是一种无需在函数闭包中封装该变量就可以有效地在集群中共享不可变值的方法。在任务的驱动程序节点中使用变量的通常方法是在函数闭包中（例如在映射操作中）简单地引用它，但这可能效率不高，尤其是对于较大的变量，例如查找表或机器学习模型。这样做的原因是，当在闭包中使用变量时，必须在 worker 上多次对它进行反序列化（每个任务一个）。而且，如果您在多个Spark action和作业中使用相同的变量，则它将随每个作业重新发送给 worker，而不是一次。</p>
 <p>This is where broadcast variables come in. Broadcast variables are shared, immutable variables that are cached on every machine in the cluster instead of serialized with every single task. The canonical use case is to pass around a large lookup table that fits in memory on the executors and use that in a function, as illustrated in Figure 14-1.</p>
 <p>这就是广播变量的用处。广播变量是共享的，不可变的变量，它们缓存在集群中的每台计算机上，而不是与每个任务序列化。规范的用例是传递一个大的查找表，该表的大小适合 executor 的内存，并在函数中使用它，如图14-1所示。</p>
-<img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574393608504.png" alt="1" style="zoom:80%;" />
+<img src="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574393608504.png" alt="1" style="zoom:80%;" />
 
 <p>For example, suppose that you have a list of words or values:</p>
 <p>例如，假设您有一个单词或值的列表：</p>
@@ -500,7 +500,7 @@
 <p> 需要注意的一件事是，我们在RDD的上下文中使用了它。我们也可以在 UDF 或 Dataset 中使用它来达到相同的结果。</p>
 <h2 id="Accumulators"><a href="#Accumulators" class="headerlink" title="Accumulators"></a><font color="#9a161a">Accumulators</font></h2><p>Accumulators (Figure 14-2), Spark’s second type of shared variable, are a way of updating a value inside of a variety of transformations and propagating that value to the driver node in an efficient and fault-tolerant way.</p>
 <p> 累加器（图14-2）是Spark的第二种共享变量，是一种在各种转换中更新值并将该值以有效且容错的方式传播到驱动程序节点的方法。</p>
-<img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574401245639.png" alt="1" style="zoom:80%;" />
+<img src="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574401245639.png" alt="1" style="zoom:80%;" />
 
 <p> Accumulators provide a mutable variable that a Spark cluster can safely update on a per-row basis. You can use these for debugging purposes (say to track the values of a certain variable per partition in order to intelligently use it over time) or to create low-level aggregation. Accumulators are variables that are “added” to only through an associative and commutative operation and can therefore be efficiently supported in parallel. You can use them to implement counters (as in MapReduce) or sums. Spark natively supports accumulators of numeric types, and programmers can add support for new types.</p>
 <p> 累加器提供一个可变变量，Spark集群可以在每行的基础上安全地对其进行更新。您可以将它们用于调试目的（例如跟踪每个分区中某个变量的值，以便随着时间的推移智能地使用它）或创建底层聚合。累加器是仅通过关联和交换操作“添加”的变量，因此可以并行有效地得到支持。您可以使用它们来实现计数器（如MapReduce）或总和。Spark原生支持数字类型的累加器，程序员可以添加对新类型的支持。</p>
@@ -544,7 +544,7 @@
 
 <p>This will complete fairly quickly, but if you navigate to the Spark UI, you can see the relevant value, on a per-Executor level, even before querying it programmatically, as demonstrated in Figure 14-3.</p>
 <p>这将很快完成，但是 如果导航到Spark UI，则即使在以编程方式查询它之前，也可以在每个执行器级别上看到相关值，如图14-3所示。</p>
-<img src="http://r3aj9sulg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574402832000.png" alt="1122" style="zoom:80%;" />
+<img src="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter14/1574402832000.png" alt="1122" style="zoom:80%;" />
 
 <p>Of course, we can query it programmatically, as well. To do this, we use the value property:</p>
 <p>当然，我们也可以通过编程方式查询它。为此，我们使用value属性：</p>
@@ -649,8 +649,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 13 Advanced RDDs">
-                <i class="fa fa-chevron-left"></i> 翻译 Chapter 13 Advanced RDDs
+              <a href="/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/" rel="next" title="翻译 Chapter 3 A Tour of Spark’s Toolset">
+                <i class="fa fa-chevron-left"></i> 翻译 Chapter 3 A Tour of Spark’s Toolset
               </a>
             
           </div>
@@ -659,8 +659,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 11 Datasets">
-                翻译 Chapter 11 Datasets <i class="fa fa-chevron-right"></i>
+              <a href="/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 13 Advanced RDDs">
+                翻译 Chapter 13 Advanced RDDs <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -872,7 +872,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2021</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
