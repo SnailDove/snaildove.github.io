@@ -99,7 +99,7 @@
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-20T09:57:42.915Z">
+<meta property="article:modified_time" content="2022-04-12T14:51:03.000Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
@@ -848,7 +848,7 @@ When running Spark on YARN in cluster mode, you need to set environment variable
 <p>在集群模式下在 YARN 上运行Spark时，需要使用 <code>conf/spark-defaults.conf</code> 文件中的<code>spark.yarn.appMasterEnv.[EnvironmentVariableName]</code> 属性设置环境变量。在 <code>spark-env.sh</code> 中设置的环境变量不会在集群模式下反映在 YARN Application Master 进程中。有关更多信息，请参阅与 YARN 相关的 Spark属性。</p>
 <hr>
 <h3 id="Job-Scheduling-Within-an-Application-应用程序内的作业调度"><a href="#Job-Scheduling-Within-an-Application-应用程序内的作业调度" class="headerlink" title="Job Scheduling Within an Application 应用程序内的作业调度"></a><font color="#000000" >Job Scheduling Within an Application 应用程序内的作业调度</font></h3><p>Within a given Spark Application, multiple parallel jobs can run simultaneously if they were submitted from separate threads. By job, in this section, we mean a Spark action and any tasks that need to run to evaluate that action. Spark’s scheduler is fully thread-safe and supports this use case to enable applications that serve multiple requests (e.g., queries for multiple users). By default, Spark’s scheduler runs jobs in <font face="constant-width" color="#000000" size=4>FIFO</font> fashion. If the jobs at the head of the queue don’t need to use the entire cluster, later jobs can begin to run right away, but if the jobs at the head of the queue are large, later jobs might be delayed significantly.</p>
-<p>在给定的 Spark 应用程序中，如果从不同的的线程提交多个并行作业，则它们可以同时运行。按照作业，在本节中，我们指的是 Spark 操作以及需要运行以评估该操作的任何任务。 Spark 的调度程序是完全线程安全的，并支持此用户案例以支持提供多个请求的应用程序（例如，为多个用户进行查询）。默认情况下，Spark 的调度程序以<font face="constant-width" color="#000000" size=4>FIFO</font>方式运行作业。如果队列头部的作业不需要使用整个集群，则以后的作业可以立即开始运行，但如果队列头部的作业很大，则后续作业可能会显着延迟。</p>
+<p>在给定的 Spark 应用程序中，如果从不同的的线程提交多个并行作业，则它们可以同时运行。按照作业，在本节中，我们指的是 Spark 操作以及需要运行以计算该操作的任何任务。 Spark 的调度程序是完全线程安全的，并支持此用户案例以支持提供多个请求的应用程序（例如，为多个用户进行查询）。默认情况下，Spark 的调度程序以<font face="constant-width" color="#000000" size=4>FIFO</font>方式运行作业。如果队列头部的作业不需要使用整个集群，则以后的作业可以立即开始运行，但如果队列头部的作业很大，则后续作业可能会显著延迟。</p>
 <p>It is also possible to configure fair sharing between jobs. Under fair sharing, Spark assigns tasks between jobs in a round-robin fashion so that all jobs get a roughly equal share of cluster resources. This means that short jobs submitted while a long job is running can begin receiving resources right away and still achieve good response times without waiting for the long job to finish. This mode is best for multiuser settings.</p>
 <p>也可以在作业之间配置公平共享。在公平共享下，Spark以循环方式在作业之间分配任务，以便所有作业获得大致相等的集群资源份额。这意味着当长期运行的工作正在执行时所提交的短期工作可以立即开始接收资源，并且仍然可以实现良好的响应时间，而无需等待长时间的工作完成。此模式最适合多用户设置。</p>
 <p>To enable the fair scheduler, set the <code>spark.scheduler.mode</code> property to <font face="constant-width" color="#000000" size=4>FAIR</font> when configuring a <font face="constant-width" color="#000000" size=3>SparkContext</font>.</p>

@@ -1,6 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter7_Aggregations(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter6_Working-with-Different-Types-of-Data(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter5_Basic-Structured-Operations(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/06/02/Chapter20_StreamProcessingFundamentals(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter29_Unsupervised-Learning(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/31/Chapter28_Recommendation(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/09/01/Chapter27_Regression(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/10/Chapter23_StructuredStreamingInProduction(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/10/Chapter18_Monitoring-and-Debugging(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/07/Chapter17_Deploying-Spark(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter15_HowSparkRuns-on-a-Cluster(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/05/Chapter8-Joins(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-04-12</lastmod>
+  </url>
+  <url>
     <loc>https://snaildove.github.io/2016/01/20/vim_without_widgets/</loc>
     <lastmod>2022-03-20</lastmod>
   </url>
@@ -30,10 +110,6 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2018/05/04/summary_of_convolutional-neural-networks/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
     <lastmod>2022-03-20</lastmod>
   </url>
   <url>
@@ -285,111 +361,7 @@
     <lastmod>2022-03-20</lastmod>
   </url>
   <url>
-    <loc>https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter8-Joins(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter7_Aggregations(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter6_Working-with-Different-Types-of-Data(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter5_Basic-Structured-Operations(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
     <loc>https://snaildove.github.io/2019/08/05/Chapter4_StructuredAPIOverview(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter29_Unsupervised-Learning(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/31/Chapter28_Recommendation(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/09/01/Chapter27_Regression(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/09/01/Chapter26_Classification(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/26/Chapter25_PreprocessingAndFeature(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/20/Chapter24_Advanced-Analytics-and-Machine-Learning-Overview(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/10/Chapter23_StructuredStreamingInProduction(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/07/28/Chapter22_EventTimeAndStatefulProcessing(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/06/28/Chapter21_StructuredStreamingBasics(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/06/02/Chapter20_StreamProcessingFundamentals(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/13/Chapter19_Performance-Tuning(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/10/Chapter18_Monitoring-and-Debugging(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/07/Chapter17_Deploying-Spark(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter16_DevelopingSparkApplications(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/08/05/Chapter15_HowSparkRuns-on-a-Cluster(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/</loc>
-    <lastmod>2022-03-20</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/</loc>
     <lastmod>2022-03-20</lastmod>
   </url>
   <url>
@@ -566,6 +538,34 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2018/05/01/01_foundations-of-convolutional-neural-networks/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/13/Chapter19_Performance-Tuning(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/09/01/Chapter26_Classification(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/20/Chapter24_Advanced-Analytics-and-Machine-Learning-Overview(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/07/28/Chapter22_EventTimeAndStatefulProcessing(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/06/28/Chapter21_StructuredStreamingBasics(SparkTheDefinitiveGuide)_online/</loc>
+    <lastmod>2022-03-20</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/08/26/Chapter25_PreprocessingAndFeature(SparkTheDefinitiveGuide)_online/</loc>
     <lastmod>2022-03-20</lastmod>
   </url>
 </urlset> 
