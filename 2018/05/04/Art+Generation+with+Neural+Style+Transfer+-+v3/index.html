@@ -97,22 +97,22 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="NoteThese are my personal programming assignments at the 4th week after studying the course convolutional neural networks and the copyright belongs to deeplearning.ai. Deep Learning &amp; Art: Neural">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png">
 <meta property="article:published_time" content="2018-05-03T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-03-20T09:57:42.837Z">
+<meta property="article:modified_time" content="2022-05-16T13:47:45.011Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="deep learning">
 <meta property="article:tag" content="convolutional-neural-networks">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
+<meta name="twitter:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png">
 
 
 
@@ -470,7 +470,7 @@
   from ._conv import register_converters as _register_converters
 </code></pre>
 <h2 id="1-Problem-Statement"><a href="#1-Problem-Statement" class="headerlink" title="1 - Problem Statement"></a>1 - Problem Statement</h2><p>Neural Style Transfer (NST) is one of the most fun techniques in deep learning. As seen below, it merges two images, namely, a “content” image (C) and a “style” image (S), to create a “generated” image (G). The generated image G combines the “content” of the image C with the “style” of image S. </p>
-<p>In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).<br><img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:750px;height:200px;"></p>
+<p>In this example, you are going to generate an image of the Louvre museum in Paris (content image C), mixed with a painting by Claude Monet, a leader of the impressionist movement (style image S).<br><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:750px;height:200px;"></p>
 <p>Let’s see how you can do this. </p>
 <h2 id="2-Transfer-Learning"><a href="#2-Transfer-Learning" class="headerlink" title="2 - Transfer Learning"></a>2 - Transfer Learning</h2><p>Neural Style Transfer (NST) uses a previously trained convolutional network, and builds on top of that. The idea of using a network trained on a different task and applying it to a new task is called transfer learning. </p>
 <p>Following the original NST paper (<a href="https://arxiv.org/abs/1508.06576" target="_blank" rel="noopener">https://arxiv.org/abs/1508.06576</a>), we will use the VGG network. Specifically, we’ll use VGG-19, a 19-layer version of the VGG network. This model has already been trained on the very large ImageNet database, and thus has learned to recognize a variety of low level features (at the earlier layers) and high level features (at the deeper layers). </p>
@@ -504,7 +504,7 @@ Use ``imageio.imread`` instead.
 
 &lt;matplotlib.image.AxesImage at 0x23c512646a0&gt;
 </code></pre>
-<p><img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png" alt="png"></p>
+<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_7_2.png" alt="png"></p>
 <p>The content image (C) shows the Louvre museum’s pyramid surrounded by old Paris buildings, against a sunny sky with a few clouds.</p>
 <p>** 3.1.1 - How do you ensure the generated image G matches the content of the image C?**</p>
 <p>As we saw in lecture, the earlier (shallower) layers of a ConvNet tend to detect lower-level features such as edges and simple textures, and the later (deeper) layers tend to detect higher-level features such as more complex textures as well as object classes. </p>
@@ -512,7 +512,7 @@ Use ``imageio.imread`` instead.
 <p>So, suppose you have picked one particular hidden layer to use. Now, set the image C as the input to the pretrained VGG network, and run forward propagation. Let $a^{(C)}$ be the hidden layer activations in the layer you had chosen. (In lecture, we had written this as $a^{<a href="C">l</a>}$, but here we’ll drop the superscript $[l]$ to simplify the notation.) This will be a $n_H \times n_W \times n_C$ tensor. Repeat this process with the image G: Set G as the input, and run forward progation. Let $a^{(G)}$ be the corresponding hidden layer activation. We will define as the content cost function as:</p>
 <p>$$J_{content}(C,G) =  \frac{1}{4 \times n_H \times n_W \times n_C}\sum _{ \text{all entries}} (a^{(C)} - a^{(G)})^2\tag{1} $$</p>
 <p>Here, $n_H, n_W$ and $n_C$ are the height, width and number of channels of the hidden layer you have chosen, and appear in a normalization term in the cost. For clarity, note that $a^{(C)}$ and $a^{(G)}$ are the volumes corresponding to a hidden layer’s activations. In order to compute the cost $J_{content}(C,G)$, it might also be convenient to unroll these 3D volumes into a 2D matrix, as shown below. (Technically this unrolling step isn’t needed to compute $J_{content}$, but it will be good practice for when you do need to carry out a similar operation later for computing the style const $J_{style}$.)</p>
-<img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png" style="width:800px;height:400px;">
+<img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_LOSS.png" style="width:800px;height:400px;">
 
 <p><strong>Exercise:</strong> Compute the “content cost” using TensorFlow. </p>
 <p><strong>Instructions</strong>: The 3 steps to implement this function are:</p>
@@ -569,13 +569,13 @@ Use ``imageio.imread`` instead.
 
 &lt;matplotlib.image.AxesImage at 0x23c57b880f0&gt;
 </code></pre>
-<p><img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png" alt="png"></p>
+<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/output_14_2.png" alt="png"></p>
 <p>This painting was painted in the style of <em><a href="https://en.wikipedia.org/wiki/Impressionism" target="_blank" rel="noopener">impressionism</a></em>.</p>
 <p>Lets see how you can now define a “style” const function $J_{style}(S,G)$. </p>
 <h3 id="3-2-1-Style-matrix"><a href="#3-2-1-Style-matrix" class="headerlink" title="3.2.1 - Style matrix"></a>3.2.1 - Style matrix</h3><p>The style matrix is also called a “Gram matrix.” In linear algebra, the Gram matrix G of a set of vectors $(v_{1},\dots ,v_{n})$ is the matrix of dot products, whose entries are ${\displaystyle G_{ij} = v_{i}^T v_{j} = np.dot(v_{i}, v_{j})  }$. In other words, $G_{ij}$ compares how similar $v_i$ is to $v_j$: If they are highly similar, you would expect them to have a large dot product, and thus for $G_{ij}$ to be large. </p>
 <p>Note that there is an unfortunate collision in the variable names used here. We are following common terminology used in the literature, but $G$ is used to denote the Style matrix (or Gram matrix) as well as to denote the generated image $G$. We will try to make sure which $G$ we are referring to is always clear from the context. </p>
 <p>In NST, you can compute the Style matrix by multiplying the “unrolled” filter matrix with their transpose:</p>
-<img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png" style="width:900px;height:300px;">
+<img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/NST_GM.png" style="width:900px;height:300px;">
 
 <p>The result is a matrix of dimension $(n_C,n_C)$ where $n_C$ is the number of filters. The value $G_{ij}$ measures how similar the activations of filter $i$ are to the activations of filter $j$. </p>
 <p>One important part of the gram matrix is that the diagonal elements such as $G_{ii}$ also measures how active filter $i$ is. For example, suppose filter $i$ is detecting vertical textures in the image. Then $G_{ii}$ measures how common  vertical textures are in the image as a whole: If $G_{ii}$ is large, this means that the image has a lot of vertical texture. </p>
@@ -1080,19 +1080,19 @@ ValueError: Floating point image RGB values must be in the 0..1 range.
 
 <p>You’re done! After running this, in the upper bar of the notebook click on “File” and then “Open”. Go to the “/output” directory to see all the saved images. Open “generated_image” to see the generated image! :)</p>
 <p>You should see something the image presented below on the right:</p>
-<img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:800px;height:300px;">
+<img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/louvre_generated.png" style="width:800px;height:300px;">
 
 <p>We didn’t want you to wait too long to see an initial result, and so had set the hyperparameters accordingly. To get the best looking results, running the optimization algorithm longer (and perhaps with a smaller learning rate) might work better. After completing and submitting this assignment, we encourage you to come back and play more with this notebook, and see if you can generate even better looking images. </p>
 <p>Here are few other examples:</p>
 <ul>
 <li><p>The beautiful ruins of the ancient city of Persepolis (Iran) with the style of Van Gogh (The Starry Night)</p>
-<img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png" style="width:750px;height:300px;">
+<img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/perspolis_vangogh.png" style="width:750px;height:300px;">
 </li>
 <li><p>The tomb of Cyrus the great in Pasargadae with the style of a Ceramic Kashi from Ispahan.</p>
-<img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png" style="width:750px;height:300px;">
+<img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/pasargad_kashi.png" style="width:750px;height:300px;">
 </li>
 <li><p>A scientific study of a turbulent fluid with the style of a abstract blue fluid painting.</p>
-<img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png" style="width:750px;height:300px;">
+<img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/deeplearning.ai/convolutional-neural-networks/jupter/week4/Art-Generation-with-Neural-Style-Transfer/images/circle_abstract.png" style="width:750px;height:300px;">
 
 </li>
 </ul>

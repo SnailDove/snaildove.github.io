@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="This note comes from Introduction to Probability, 2nd Edition Example 1.9 Rada DetectionIf an aircraft is present in a certain area, a radar detects it and generates an alarm signal with probability 0">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/2.png">
-<meta property="og:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/3.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/2.png">
+<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/3.png">
 <meta property="article:published_time" content="2017-08-15T12:16:00.000Z">
-<meta property="article:modified_time" content="2022-03-20T09:57:43.315Z">
+<meta property="article:modified_time" content="2022-05-16T13:47:45.464Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png">
+<meta name="twitter:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png">
 
 
 
@@ -460,13 +460,13 @@
 <li>  (b) We record the conditional probabilities associated with the branches of the tree.</li>
 <li>  (c) We obtain the probability of a leaf by multiplying the probabilities recorded along the corresponding path of the tree. </li>
 </ul>
-<p><img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png" alt="base64_of_Sequential_description_of_the_sample_space_for_the_radar_detection"></p>
+<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/1.png" alt="base64_of_Sequential_description_of_the_sample_space_for_the_radar_detection"></p>
 <h2 id="multiplication-rule"><a href="#multiplication-rule" class="headerlink" title="multiplication rule"></a>multiplication rule</h2><p>In mathematical terms, we are dealing with an event A which occurs if and only if each one of several events $A_1, . . . , A_n$ has occurred, i.e., $A = A_1 ∩ A_2 ∩ · · · ∩ A_n$. The occurrence of $A$ is viewed as an occurrence of $A_1$, followed by the occurrence of $A_2$, then of $A_3$, etc, and it is visualized as a path on the tree with $n$ branches, corresponding to the events $A_1, . . . , A_n$. The probability of $A$ is given by the following rule (see also Fig. 1.9). </p>
-<p><img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/2.png" alt="base64_of_multiplication_rule"></p>
+<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/2.png" alt="base64_of_multiplication_rule"></p>
 <p>The multiplication rule can be verified by writing<br>$$P(\cap^n_{i=1} A_i)=P(A_1)\frac{P(A_1\cap A_2)}{P(A_1)}\frac{P(A_1\cap A_2\cap A_3)}{P(A_1\cap A_2)}\cdots\frac{P(\cap_{i=1}^n A_i)}{P(\cap^{n-1}_{i=1} A_i)}$$,</p>
 <p>and by using the definition of conditional probability to rewrite the right-hand side above as</p>
 <p>$$P(A_1)P(A_2|A_1)P(A_3|A_1\cap A_2)\cdots P(A_N|\cap^{n-1}_{i=1} A_i)$$.</p>
-<p><img src="http://r91f3wdjg.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/3.png" alt="base64_of_visualization_of_multiplication_rule"></p>
+<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/trees_describe_the_sample_space/3.png" alt="base64_of_visualization_of_multiplication_rule"></p>
 <p><strong>The intersection event $A = A_1∩A_2∩· · ·∩A_n$ is associated with a path on the tree of a sequential description of the experiment. We associate the branches of this path with the events $A_1, . . . , A_n$, and we record next to the branches the corresponding conditional probabilities.</strong></p>
 <p>The final node of the path corresponds to the intersection event $A$, and its probability is obtained by multiplying the conditional probabilities recorded along the branches of the path </p>
 <p>$$P(A_1\cap A_2\cap\cdots\cap A_3)=P(A_1)P(A_2|A_1)\cdots P(A_n|A_1\cap A_2\cdots \cap A_{n-1}).$$</p>
