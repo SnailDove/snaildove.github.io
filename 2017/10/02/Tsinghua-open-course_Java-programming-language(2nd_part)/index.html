@@ -97,318 +97,318 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="本文是清华大学许斌老师的公开课：Java语言程序设计进阶 的课堂笔记，快速复习一下（我不是专门搞java的话），时间有限，因此大量直接截图。许斌老师声明：没有配套讲义，建议参考书籍：周志明《深入理解java虚拟机》。(JUC) java.utile.concurrency 部分参考源码和技术博客。 第一章 线程（上）1.0 导学  1.1 线程的基本概念       1.2 通过Thread类创建">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008813620.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008859039.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009969070.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009984077.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009143304.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009203189.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009430772.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009574503.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009665675.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009918717.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406861072.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406869998.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406876613.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406882916.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406887715.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406895994.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010059187.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010375863.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010405934.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010618493.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011791263.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011800469.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011806430.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012104103.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012342296.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012415734.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012516154.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012651662.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012759620.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012814520.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012944363.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013125468.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013882402.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014130891.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014260700.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014850716.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014878920.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016663199.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016705556.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016795632.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016830468.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017054833.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017181751.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017224926.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017381221.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017485915.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017568234.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017702394.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017744493.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017987439.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018289399.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018392108.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018487545.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018879503.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019284302.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019370141.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019483438.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019531529.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019552318.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019688049.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539023144629.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071230986.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071238290.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071537462.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071636937.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072724499.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072801199.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076855969.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076979258.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077334242.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077435366.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077461022.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077569978.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077751809.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077820164.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077847191.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077924190.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077981985.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073197605.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073339084.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073553254.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073606722.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075549275.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075786770.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075932520.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075996274.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076123946.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076577555.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076703328.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539078195419.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092094328.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092137232.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092210369.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093903103.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093969693.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539094981555.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095091501.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095449832.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095474977.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095546295.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539099909957.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100009472.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100178410.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100716303.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100471798.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101286254.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101341800.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101432019.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101645384.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539102939632.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103649773.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103656234.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104257575.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104378267.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104424027.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104476304.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105602554.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105752008.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105852330.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244505401.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244534446.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244801576.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245451379.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245767019.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245834109.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245898509.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245956762.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245984052.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246010514.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246052077.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246211340.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246251876.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246318190.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246522880.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246527495.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246570432.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246720288.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246836812.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246936840.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248246737.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248277357.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248323241.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248356777.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248563289.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249189011.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249549584.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249542348.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249811812.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249848946.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250143290.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250150533.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250156213.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252104203.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252110980.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252121234.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252126376.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252147933.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252275033.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254072310.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254198089.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254477911.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254535776.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254560475.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254578716.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254484574.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267932034.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267969444.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268051255.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268477916.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268866026.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268872283.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268971931.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270238283.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270248439.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270313592.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270333292.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270367641.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271072535.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271612788.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271626548.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271671371.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271676934.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271843572.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271849995.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279041381.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280107792.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280120139.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280125626.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280132480.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280143416.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280148860.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280153459.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280162757.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280172673.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280181412.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280189503.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280194806.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279964634.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539106278412.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152742070.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152824180.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152930663.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152984208.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539153141326.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539158818149.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160258794.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160296855.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160957650.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161076357.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161252058.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161369363.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161595199.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161500327.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161553038.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161763782.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161758041.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161925586.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161967122.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162253019.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163215077.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162910083.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162974202.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163015403.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163248799.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163344947.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163385453.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163621558.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163888139.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164010609.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164393543.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164434403.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164514978.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164585155.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164642112.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164730132.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164819538.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539165861048.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166829998.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166851653.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166911602.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166985009.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167023486.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167756540.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167879951.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172675709.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172739041.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172833305.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173020388.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173539375.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173752342.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174547853.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174562202.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174689397.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174707566.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175102241.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175158234.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175293680.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175387312.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175494926.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175639852.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175684847.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176066589.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176310007.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176528691.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176623549.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177101407.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177164867.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178600822.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178636271.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178843148.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178868002.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178948012.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179258434.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179432947.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179495885.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179625696.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179667322.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179718352.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179788542.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539181467775.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186923792.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186930949.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186938506.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186946955.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186953329.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187203705.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187503835.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539190674840.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191075024.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191329444.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191522836.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191759255.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225038613.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225666987.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539226052214.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228376485.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228382891.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539232525052.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233621727.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233745371.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242915189.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242983420.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243003067.png">
-<meta property="og:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243156735.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008813620.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008859039.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009969070.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009984077.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009143304.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009203189.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009430772.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009574503.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009665675.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009918717.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406861072.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406869998.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406876613.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406882916.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406887715.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406895994.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010059187.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010375863.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010405934.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010618493.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011791263.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011800469.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011806430.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012104103.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012342296.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012415734.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012516154.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012651662.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012759620.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012814520.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012944363.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013125468.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013882402.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014130891.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014260700.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014850716.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014878920.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016663199.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016705556.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016795632.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016830468.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017054833.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017181751.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017224926.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017381221.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017485915.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017568234.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017702394.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017744493.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017987439.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018289399.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018392108.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018487545.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018879503.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019284302.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019370141.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019483438.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019531529.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019552318.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019688049.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539023144629.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071230986.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071238290.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071537462.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071636937.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072724499.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072801199.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076855969.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076979258.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077334242.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077435366.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077461022.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077569978.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077751809.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077820164.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077847191.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077924190.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077981985.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073197605.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073339084.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073553254.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073606722.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075549275.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075786770.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075932520.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075996274.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076123946.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076577555.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076703328.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539078195419.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092094328.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092137232.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092210369.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093903103.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093969693.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539094981555.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095091501.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095449832.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095474977.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095546295.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539099909957.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100009472.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100178410.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100716303.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100471798.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101286254.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101341800.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101432019.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101645384.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539102939632.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103649773.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103656234.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104257575.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104378267.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104424027.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104476304.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105602554.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105752008.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105852330.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244505401.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244534446.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244801576.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245451379.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245767019.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245834109.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245898509.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245956762.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245984052.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246010514.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246052077.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246211340.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246251876.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246318190.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246522880.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246527495.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246570432.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246720288.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246836812.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246936840.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248246737.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248277357.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248323241.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248356777.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248563289.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249189011.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249549584.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249542348.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249811812.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249848946.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250143290.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250150533.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250156213.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252104203.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252110980.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252121234.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252126376.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252147933.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252275033.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254072310.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254198089.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254477911.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254535776.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254560475.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254578716.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254484574.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267932034.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267969444.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268051255.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268477916.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268866026.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268872283.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268971931.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270238283.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270248439.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270313592.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270333292.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270367641.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271072535.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271612788.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271626548.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271671371.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271676934.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271843572.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271849995.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279041381.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280107792.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280120139.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280125626.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280132480.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280143416.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280148860.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280153459.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280162757.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280172673.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280181412.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280189503.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280194806.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279964634.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539106278412.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152742070.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152824180.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152930663.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152984208.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539153141326.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539158818149.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160258794.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160296855.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160957650.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161076357.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161252058.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161369363.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161595199.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161500327.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161553038.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161763782.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161758041.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161925586.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161967122.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162253019.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163215077.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162910083.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162974202.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163015403.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163248799.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163344947.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163385453.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163621558.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163888139.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164010609.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164393543.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164434403.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164514978.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164585155.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164642112.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164730132.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164819538.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539165861048.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166829998.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166851653.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166911602.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166985009.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167023486.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167756540.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167879951.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172675709.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172739041.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172833305.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173020388.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173539375.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173752342.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174547853.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174562202.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174689397.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174707566.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175102241.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175158234.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175293680.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175387312.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175494926.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175639852.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175684847.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176066589.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176310007.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176528691.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176623549.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177101407.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177164867.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178600822.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178636271.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178843148.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178868002.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178948012.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179258434.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179432947.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179495885.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179625696.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179667322.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179718352.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179788542.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539181467775.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186923792.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186930949.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186938506.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186946955.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186953329.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187203705.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187503835.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539190674840.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191075024.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191329444.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191522836.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191759255.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225038613.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225666987.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539226052214.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228376485.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228382891.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539232525052.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233621727.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233745371.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242915189.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242983420.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243003067.png">
+<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243156735.png">
 <meta property="article:published_time" content="2017-10-01T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-05-16T14:34:00.972Z">
+<meta property="article:modified_time" content="2022-07-09T06:23:41.065Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="java">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008813620.png">
+<meta name="twitter:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008813620.png">
 
 
 
@@ -757,152 +757,152 @@
 
       
         <p>本文是清华大学许斌老师的公开课：Java语言程序设计进阶 的课堂笔记，快速复习一下（我不是专门搞java的话），时间有限，因此大量直接截图。许斌老师声明：没有配套讲义，建议参考书籍：周志明《深入理解java虚拟机》。(JUC) java.utile.concurrency 部分参考源码和技术博客。</p>
-<h2 id="第一章-线程（上）"><a href="#第一章-线程（上）" class="headerlink" title="第一章 线程（上）"></a>第一章 线程（上）</h2><h3 id="1-0-导学"><a href="#1-0-导学" class="headerlink" title="1.0 导学"></a>1.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008813620.png" alt="1539008813620"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008859039.png" alt="1539008859039"></p>
-<h3 id="1-1-线程的基本概念"><a href="#1-1-线程的基本概念" class="headerlink" title="1.1 线程的基本概念"></a>1.1 线程的基本概念</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009969070.png" alt="1539009969070"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009984077.png" alt="1539009984077"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009143304.png" alt="1539009143304"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009203189.png" alt="1539009203189"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009430772.png" alt="1539009430772"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009574503.png" alt="1539009574503"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009665675.png" alt="1539009665675"></p>
-<h3 id="1-2-通过Thread类创建线程"><a href="#1-2-通过Thread类创建线程" class="headerlink" title="1.2 通过Thread类创建线程"></a>1.2 通过Thread类创建线程</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009918717.png" alt="1539009918717"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406861072.png" alt="1539406861072"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406869998.png" alt="1539406869998"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406876613.png" alt="1539406876613"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406882916.png" alt="1539406882916"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406887715.png" alt="1539406887715"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406895994.png" alt="1539406895994"></p>
-<h3 id="1-3-线程的休眠"><a href="#1-3-线程的休眠" class="headerlink" title="1.3 线程的休眠"></a>1.3 线程的休眠</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010059187.png" alt="1539010059187"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010375863.png" alt="1539010375863"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010405934.png" alt="1539010405934"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010618493.png" alt="1539010618493"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011791263.png" alt="1539011791263"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011800469.png" alt="1539011800469"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011806430.png" alt="1539011806430"></p>
+<h2 id="第一章-线程（上）"><a href="#第一章-线程（上）" class="headerlink" title="第一章 线程（上）"></a>第一章 线程（上）</h2><h3 id="1-0-导学"><a href="#1-0-导学" class="headerlink" title="1.0 导学"></a>1.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008813620.png" alt="1539008813620"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539008859039.png" alt="1539008859039"></p>
+<h3 id="1-1-线程的基本概念"><a href="#1-1-线程的基本概念" class="headerlink" title="1.1 线程的基本概念"></a>1.1 线程的基本概念</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009969070.png" alt="1539009969070"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009984077.png" alt="1539009984077"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009143304.png" alt="1539009143304"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009203189.png" alt="1539009203189"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009430772.png" alt="1539009430772"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009574503.png" alt="1539009574503"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009665675.png" alt="1539009665675"></p>
+<h3 id="1-2-通过Thread类创建线程"><a href="#1-2-通过Thread类创建线程" class="headerlink" title="1.2 通过Thread类创建线程"></a>1.2 通过Thread类创建线程</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539009918717.png" alt="1539009918717"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406861072.png" alt="1539406861072"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406869998.png" alt="1539406869998"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406876613.png" alt="1539406876613"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406882916.png" alt="1539406882916"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406887715.png" alt="1539406887715"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539406895994.png" alt="1539406895994"></p>
+<h3 id="1-3-线程的休眠"><a href="#1-3-线程的休眠" class="headerlink" title="1.3 线程的休眠"></a>1.3 线程的休眠</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010059187.png" alt="1539010059187"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010375863.png" alt="1539010375863"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010405934.png" alt="1539010405934"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539010618493.png" alt="1539010618493"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011791263.png" alt="1539011791263"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011800469.png" alt="1539011800469"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539011806430.png" alt="1539011806430"></p>
 <p><strong>注</strong>：线程休眠的原因就是让其他线程有执行的机会</p>
-<h3 id="1-4-Thread类详解"><a href="#1-4-Thread类详解" class="headerlink" title="1.4 Thread类详解"></a>1.4 Thread类详解</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012104103.png" alt="1539012104103"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012342296.png" alt="1539012342296"></p>
+<h3 id="1-4-Thread类详解"><a href="#1-4-Thread类详解" class="headerlink" title="1.4 Thread类详解"></a>1.4 Thread类详解</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012104103.png" alt="1539012104103"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012342296.png" alt="1539012342296"></p>
 <p><strong>注</strong>：线程启动（即调用start方法）并不意味着线程马上运行，线程是否运行取决于线程调度器。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012415734.png" alt="1539012415734"></p>
-<h3 id="1-5-通过Runnable接口创建线程"><a href="#1-5-通过Runnable接口创建线程" class="headerlink" title="1.5 通过Runnable接口创建线程"></a>1.5 通过Runnable接口创建线程</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012516154.png" alt="1539012516154"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012651662.png" alt="1539012651662"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012759620.png" alt="1539012759620"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012814520.png" alt="1539012814520"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012944363.png" alt="1539012944363"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png" alt="1539012958930"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013125468.png" alt="1539013125468"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012415734.png" alt="1539012415734"></p>
+<h3 id="1-5-通过Runnable接口创建线程"><a href="#1-5-通过Runnable接口创建线程" class="headerlink" title="1.5 通过Runnable接口创建线程"></a>1.5 通过Runnable接口创建线程</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012516154.png" alt="1539012516154"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012651662.png" alt="1539012651662"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012759620.png" alt="1539012759620"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012814520.png" alt="1539012814520"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012944363.png" alt="1539012944363"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png" alt="1539012958930"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013125468.png" alt="1539013125468"></p>
 <p><strong>注</strong>：Runnable接口中我们所实现的run方法就是我们这个线程想要执行的代码</p>
 <h3 id="1-6-线程内部的数据共享"><a href="#1-6-线程内部的数据共享" class="headerlink" title="1.6 线程内部的数据共享"></a>1.6 线程内部的数据共享</h3><p>同样一个线程类，它可以实例化出很多线程。同样一个线程，它们是可以共享它们的代码和数据，那也就是说当我们实现了Runnable接口的这个类，它所实例出来的对象的话，它去构造出的线程，它们之间是可以共享它们的代码和它们之间的一些数据的。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013882402.png" alt="1539013882402"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png" alt="1539012958930"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014130891.png" alt="1539014130891"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014260700.png" alt="1539014260700"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014850716.png" alt="1539014850716"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014878920.png" alt="1539014878920"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016663199.png" alt="1539016663199"></p>
-<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016705556.png" alt="1539016705556"></p>
-<h2 id="第二章-线程（中）"><a href="#第二章-线程（中）" class="headerlink" title="第二章 线程（中）"></a>第二章 线程（中）</h2><h3 id="2-0-导学"><a href="#2-0-导学" class="headerlink" title="2.0 导学"></a>2.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016795632.png" alt="1539016795632"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016830468.png" alt="1539016830468"></p>
-<h3 id="2-1-线程同步的思路"><a href="#2-1-线程同步的思路" class="headerlink" title="2.1 线程同步的思路"></a>2.1 线程同步的思路</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017054833.png" alt="1539017054833"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017181751.png" alt="1539017181751"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017224926.png" alt="1539017224926"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017381221.png" alt="1539017381221"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017485915.png" alt="1539017485915"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017568234.png" alt="1539017568234"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017702394.png" alt="1539017702394"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017744493.png" alt="1539017744493"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539013882402.png" alt="1539013882402"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539012958930.png" alt="1539012958930"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014130891.png" alt="1539014130891"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014260700.png" alt="1539014260700"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014850716.png" alt="1539014850716"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539014878920.png" alt="1539014878920"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016663199.png" alt="1539016663199"></p>
+<h3 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016705556.png" alt="1539016705556"></p>
+<h2 id="第二章-线程（中）"><a href="#第二章-线程（中）" class="headerlink" title="第二章 线程（中）"></a>第二章 线程（中）</h2><h3 id="2-0-导学"><a href="#2-0-导学" class="headerlink" title="2.0 导学"></a>2.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016795632.png" alt="1539016795632"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539016830468.png" alt="1539016830468"></p>
+<h3 id="2-1-线程同步的思路"><a href="#2-1-线程同步的思路" class="headerlink" title="2.1 线程同步的思路"></a>2.1 线程同步的思路</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017054833.png" alt="1539017054833"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017181751.png" alt="1539017181751"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017224926.png" alt="1539017224926"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017381221.png" alt="1539017381221"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017485915.png" alt="1539017485915"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017568234.png" alt="1539017568234"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017702394.png" alt="1539017702394"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017744493.png" alt="1539017744493"></p>
 <p><strong>注</strong>：那原因就是在于说这两个线程的话，它们是同一优先级，只不过是说这个producer先这个排在前面，所以的话从调度上，往往会调度它这个producer先执行，那它一执行呢就把这个票都生产完了，然后再等待着卖票的程序把它去卖掉，这是一种有意思的这个现象</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017987439.png" alt="1539017987439"></p>
-<h3 id="2-2-线程同步的实现方式—Synchronization"><a href="#2-2-线程同步的实现方式—Synchronization" class="headerlink" title="2.2 线程同步的实现方式—Synchronization"></a>2.2 线程同步的实现方式—Synchronization</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018289399.png" alt="1539018289399"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018392108.png" alt="1539018392108"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018487545.png" alt="1539018487545"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018879503.png" alt="1539018879503"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539017987439.png" alt="1539017987439"></p>
+<h3 id="2-2-线程同步的实现方式—Synchronization"><a href="#2-2-线程同步的实现方式—Synchronization" class="headerlink" title="2.2 线程同步的实现方式—Synchronization"></a>2.2 线程同步的实现方式—Synchronization</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018289399.png" alt="1539018289399"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018392108.png" alt="1539018392108"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018487545.png" alt="1539018487545"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539018879503.png" alt="1539018879503"></p>
 <p><strong>注</strong>：把这两行代码变成一个（原子）操作，就是在执行过程中不可能被打散执行</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019284302.png" alt="1539019284302"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019284302.png" alt="1539019284302"></p>
 <p><strong>注</strong>：用synchronized后面大括号括起来其实是代码，实际上它把它变成一个原子操作，也就是说当我拿到这个对象t的锁的时候，我这里面的这些代码是肯定都会被执行的，不会说我执行某一句以后就被这个打断，然后那个插入别的线程去执行去访问这个对象t，所以这个是synchronized它的很重要的作用。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019370141.png" alt="1539019370141"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019483438.png" alt="1539019483438"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019531529.png" alt="1539019531529"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019552318.png" alt="1539019552318"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019688049.png" alt="1539019688049"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019370141.png" alt="1539019370141"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019483438.png" alt="1539019483438"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019531529.png" alt="1539019531529"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019552318.png" alt="1539019552318"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539019688049.png" alt="1539019688049"></p>
 <p>就像刚才我们那个例子：我们在这个售票线程里面，每售出来票的时候，它就会休眠一毫秒，但休眠一毫秒的时候，它不会释放出它所占有的这个ticket对象的锁的，它一直会持有，所以这是一个独特的一个地方。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539023144629.png" alt="1539023144629"></p>
-<h3 id="2-3-线程的等待与唤醒"><a href="#2-3-线程的等待与唤醒" class="headerlink" title="2.3 线程的等待与唤醒"></a>2.3 线程的等待与唤醒</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071230986.png" alt="1539071230986"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071238290.png" alt="1539071238290"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539023144629.png" alt="1539023144629"></p>
+<h3 id="2-3-线程的等待与唤醒"><a href="#2-3-线程的等待与唤醒" class="headerlink" title="2.3 线程的等待与唤醒"></a>2.3 线程的等待与唤醒</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071230986.png" alt="1539071230986"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071238290.png" alt="1539071238290"></p>
 <p><strong>注</strong>：那现在wait notify notifyAll方法这三个方法都属于object这个类的方法，也就意味着我们java当中所有的类它都有这个三个方法</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071537462.png" alt="1539071537462"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071537462.png" alt="1539071537462"></p>
 <p><strong>注</strong>：修改之后，相当于票箱大小为1，Tickets.size = 1。Tickets.put() 方法中的 notify() 与 Tickets.sell() 方法中的wait()一一对应，Tickets.put() 方法中的 wait() 与 Tickets.sell() 方法中的notify()一一对应。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071636937.png" alt="1539071636937"></p>
-<h3 id="2-4-后台进程"><a href="#2-4-后台进程" class="headerlink" title="2.4 后台进程"></a>2.4 后台进程</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072724499.png" alt="1539072724499"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072801199.png" alt="1539072801199"></p>
-<h3 id="2-5-线程的生命周期与死锁"><a href="#2-5-线程的生命周期与死锁" class="headerlink" title="2.5 线程的生命周期与死锁"></a>2.5 线程的生命周期与死锁</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076855969.png" alt="1539076855969"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076979258.png" alt="1539076979258"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539071636937.png" alt="1539071636937"></p>
+<h3 id="2-4-后台进程"><a href="#2-4-后台进程" class="headerlink" title="2.4 后台进程"></a>2.4 后台进程</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072724499.png" alt="1539072724499"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539072801199.png" alt="1539072801199"></p>
+<h3 id="2-5-线程的生命周期与死锁"><a href="#2-5-线程的生命周期与死锁" class="headerlink" title="2.5 线程的生命周期与死锁"></a>2.5 线程的生命周期与死锁</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076855969.png" alt="1539076855969"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076979258.png" alt="1539076979258"></p>
 <p><strong>注</strong>：线程进入就绪状态就是runnable state，即可运行状态，但是并未开始运行，所以不是运行状态（running state），是否运行取决于线程调度器是否调度它。（Runnable state isn’t running state）。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077334242.png" alt="1539077334242"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077435366.png" alt="1539077435366"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077461022.png" alt="1539077461022"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077569978.png" alt="1539077569978"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077751809.png" alt="1539077751809"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077820164.png" alt="1539077820164"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077847191.png" alt="1539077847191"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077924190.png" alt="1539077924190"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077981985.png" alt="1539077981985"></p>
-<h3 id="2-6-线程的调度"><a href="#2-6-线程的调度" class="headerlink" title="2.6 线程的调度"></a>2.6 线程的调度</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073197605.png" alt="1539073197605"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073339084.png" alt="1539073339084"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073553254.png" alt="1539073553254"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077334242.png" alt="1539077334242"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077435366.png" alt="1539077435366"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077461022.png" alt="1539077461022"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077569978.png" alt="1539077569978"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077751809.png" alt="1539077751809"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077820164.png" alt="1539077820164"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077847191.png" alt="1539077847191"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077924190.png" alt="1539077924190"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539077981985.png" alt="1539077981985"></p>
+<h3 id="2-6-线程的调度"><a href="#2-6-线程的调度" class="headerlink" title="2.6 线程的调度"></a>2.6 线程的调度</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073197605.png" alt="1539073197605"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073339084.png" alt="1539073339084"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073553254.png" alt="1539073553254"></p>
 <p><strong>注</strong>：可以通过这个使用这个yield的方法来去稍微改变一下它的这个执行过程，yield方法主要作用是把自己当前运行的线程暂停下来，把线程让给同优先级的线程执行，当如果这时候不存在同优先级的线程，那还是继续执行当前运行的线程。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073606722.png" alt="1539073606722"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075549275.png" alt="1539075549275"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075786770.png" alt="1539075786770"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075932520.png" alt="1539075932520"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075996274.png" alt="1539075996274"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076123946.png" alt="1539076123946"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076577555.png" alt="1539076577555"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539073606722.png" alt="1539073606722"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075549275.png" alt="1539075549275"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075786770.png" alt="1539075786770"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075932520.png" alt="1539075932520"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539075996274.png" alt="1539075996274"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076123946.png" alt="1539076123946"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076577555.png" alt="1539076577555"></p>
 <p><strong>注</strong>：有交错执行的这个过程，重要的原因：线程调用sleep方法，sleep方法是说我自己进入休眠，线程调度器有可能调度低优先级的这个线程，也就是说对高优先级的这个线程，如果要让出自己的执行权限的话，就要调用sleep方法，然后给其它低优先级线程机会。如果高优先级的线程，仅仅只是调用了yield方法，它并不能给我们低优先级线程以执行的机会，它只给了它同优先级的线程以执行的这个机会。</p>
-<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076703328.png" alt="1539076703328"></p>
-<h2 id="第三章-线程（下）线程安全与锁优化"><a href="#第三章-线程（下）线程安全与锁优化" class="headerlink" title="第三章 线程（下）线程安全与锁优化"></a>第三章 线程（下）线程安全与锁优化</h2><h3 id="3-0-导学"><a href="#3-0-导学" class="headerlink" title="3.0 导学"></a>3.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539078195419.png" alt="1539078195419"></p>
+<h3 id="小结-1"><a href="#小结-1" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539076703328.png" alt="1539076703328"></p>
+<h2 id="第三章-线程（下）线程安全与锁优化"><a href="#第三章-线程（下）线程安全与锁优化" class="headerlink" title="第三章 线程（下）线程安全与锁优化"></a>第三章 线程（下）线程安全与锁优化</h2><h3 id="3-0-导学"><a href="#3-0-导学" class="headerlink" title="3.0 导学"></a>3.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539078195419.png" alt="1539078195419"></p>
 <p><strong>注</strong>：它是想描述线程的安全，而最重要的是描述你的程序，甚至你是某个类它的线程安全的特性。</p>
-<h3 id="3-1-线程安全与线程兼容与对立"><a href="#3-1-线程安全与线程兼容与对立" class="headerlink" title="3.1 线程安全与线程兼容与对立"></a>3.1 线程安全与线程兼容与对立</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092094328.png" alt="1539092094328"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092137232.png" alt="1539092137232"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092210369.png" alt="1539092210369"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093903103.png" alt="1539093903103"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093969693.png" alt="1539093969693"></p>
+<h3 id="3-1-线程安全与线程兼容与对立"><a href="#3-1-线程安全与线程兼容与对立" class="headerlink" title="3.1 线程安全与线程兼容与对立"></a>3.1 线程安全与线程兼容与对立</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092094328.png" alt="1539092094328"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092137232.png" alt="1539092137232"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539092210369.png" alt="1539092210369"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093903103.png" alt="1539093903103"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539093969693.png" alt="1539093969693"></p>
 <p>向大家展示一下，一些java API中类，它在碰到这个线程操作的时候，有可能产生线程出错的这个情况。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539094981555.png" alt="1539094981555"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095091501.png" alt="1539095091501"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539094981555.png" alt="1539094981555"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095091501.png" alt="1539095091501"></p>
 <p>运行过程当中它不经常出错，但是偶尔也会出错，出现了数组下标越界的错误。最重要的原因：刚才有两个线程Thread remove,Thread print这两个线程都在同时访问一个数据：vector，其中一个线程的操作：删除我们相量中的元素，另外一个线程的操作读取我们相量中的元素。大家看到这其实这两个操作：是有点互逆的 互斥的，那在这个读写向量的过程当中就可能产生错误，那从我们发现了这个运行的结果当中也发现了这一点。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095449832.png" alt="1539095449832"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095474977.png" alt="1539095474977"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095546295.png" alt="1539095546295"></p>
-<h3 id="3-2-线程的安全实现-互斥同步"><a href="#3-2-线程的安全实现-互斥同步" class="headerlink" title="3.2 线程的安全实现-互斥同步"></a>3.2 线程的安全实现-互斥同步</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539099909957.png" alt="1539099909957"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100009472.png" alt="1539100009472"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100178410.png" alt="1539100178410"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100716303.png" alt="1539100716303"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100471798.png" alt="1539100471798"></p>
-<h3 id="3-3-线程的安全实现-非阻塞同步"><a href="#3-3-线程的安全实现-非阻塞同步" class="headerlink" title="3.3 线程的安全实现-非阻塞同步"></a>3.3 线程的安全实现-非阻塞同步</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101286254.png" alt="1539101286254"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101341800.png" alt="1539101341800"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101432019.png" alt="1539101432019"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101645384.png" alt="1539101645384"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095449832.png" alt="1539095449832"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095474977.png" alt="1539095474977"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539095546295.png" alt="1539095546295"></p>
+<h3 id="3-2-线程的安全实现-互斥同步"><a href="#3-2-线程的安全实现-互斥同步" class="headerlink" title="3.2 线程的安全实现-互斥同步"></a>3.2 线程的安全实现-互斥同步</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539099909957.png" alt="1539099909957"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100009472.png" alt="1539100009472"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100178410.png" alt="1539100178410"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100716303.png" alt="1539100716303"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539100471798.png" alt="1539100471798"></p>
+<h3 id="3-3-线程的安全实现-非阻塞同步"><a href="#3-3-线程的安全实现-非阻塞同步" class="headerlink" title="3.3 线程的安全实现-非阻塞同步"></a>3.3 线程的安全实现-非阻塞同步</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101286254.png" alt="1539101286254"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101341800.png" alt="1539101341800"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101432019.png" alt="1539101432019"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539101645384.png" alt="1539101645384"></p>
 <p>那其实大家也可以这么理解，也就是说我们对于这种线程安全，就是对我们这个访问对象的线程安全的这种控制不是放到我们当前count这个类，它的increment方法来去实现的而是已经放到底下的叫 Atomiclnteger 这个类来实现了，所以你就可以直接去调用它的这个方法来去实现加1的这个功能，那整体上我们这个新的类,class Counter就是这个类通过用 Atomiclnteger 来改进这类,它也是线程安全的,整体上也是线程安全的,只不过说当你写这个类的时候，你不需要考虑自己去加上synchronized这样的同步互斥的这种实现方式,而是通过直接使用了Atomiclnteger这样一个本身就是线程安全的这个类，就能够保证你的整个这个代码达到线程安全的目的。</p>
-<h3 id="3-4-线程的安全实现-无同步方案"><a href="#3-4-线程的安全实现-无同步方案" class="headerlink" title="3.4 线程的安全实现-无同步方案"></a>3.4 线程的安全实现-无同步方案</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539102939632.png" alt="1539102939632"></p>
+<h3 id="3-4-线程的安全实现-无同步方案"><a href="#3-4-线程的安全实现-无同步方案" class="headerlink" title="3.4 线程的安全实现-无同步方案"></a>3.4 线程的安全实现-无同步方案</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539102939632.png" alt="1539102939632"></p>
 <p><strong>注</strong>：Threadlocal是我们java当中的一个类，它是存在于java.lang这个默认这个包当中。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103649773.png" alt="1539103649773"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103656234.png" alt="1539103656234"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103649773.png" alt="1539103649773"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539103656234.png" alt="1539103656234"></p>
 <p>这个 SequenceNumber 的实例，通过用 ThreadLocal 的这个方式也能够保证这三个线程来访问同一数据的时候，没有产生错误。这也是为什么说，可以通过这个 ThreadLocal 就来去达到这个同步，就是说安全的这个目的。也不一定非得加个synchronize，因为如果一旦加了synchronize的话，性能可能会受到影响，如果能通过类似 ThreadLocal 这样这种线程的本地存储的方式来达到我们这个对于数据访问安全的控制化，那就能提高这个程序代码的性能。</p>
-<h3 id="3-5-锁优化"><a href="#3-5-锁优化" class="headerlink" title="3.5 锁优化"></a>3.5 锁优化</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104257575.png" alt="1539104257575"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104378267.png" alt="1539104378267"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104424027.png" alt="1539104424027"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104476304.png" alt="1539104476304"></p>
+<h3 id="3-5-锁优化"><a href="#3-5-锁优化" class="headerlink" title="3.5 锁优化"></a>3.5 锁优化</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104257575.png" alt="1539104257575"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104378267.png" alt="1539104378267"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104424027.png" alt="1539104424027"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539104476304.png" alt="1539104476304"></p>
 <p>操作系统的堆栈与数据结构中堆栈概念参考:</p>
 <ol>
 <li>什么是堆？什么是栈？他们之间有什么区别和联系？ - 知乎<br><a href="https://www.zhihu.com/question/19729973" target="_blank" rel="noopener">https://www.zhihu.com/question/19729973</a></li>
 <li><a href="https://jingyan.baidu.com/article/6c67b1d6a09f9a2786bb1e4a.html" target="_blank" rel="noopener">https://jingyan.baidu.com/article/6c67b1d6a09f9a2786bb1e4a.html</a></li>
 </ol>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105602554.png" alt="1539105602554"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105602554.png" alt="1539105602554"></p>
 <p><strong>注</strong>：由于细锁太多，然后不断切换线程的开销反而降低了性能。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105752008.png" alt="1539105752008"></p>
-<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105852330.png" alt="1539105852330"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105752008.png" alt="1539105752008"></p>
+<h3 id="小结-2"><a href="#小结-2" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539105852330.png" alt="1539105852330"></p>
 <ul>
 <li>线程安全指的是我们的访问对象无论被多少个线程进行访问都能够保证我们这对象访问的正确性，那与之相关的这个概念是线程兼容。</li>
 <li>线程兼容是指我们的对象本身不是线程安全的，但是通过我们外部的同步控制能够达到线程安全的目的.</li>
@@ -915,189 +915,189 @@
 </li>
 <li>最后我们还学习了锁优化，那锁优化的目标就是在我们不得不给我们的代码加锁的情况下如何去提高锁的效率，进而达到提升整个代码的效率的目标。</li>
 </ul>
-<h2 id="第四章-网络编程（上）"><a href="#第四章-网络编程（上）" class="headerlink" title="第四章 网络编程（上）"></a>第四章 网络编程（上）</h2><h3 id="4-0-导学"><a href="#4-0-导学" class="headerlink" title="4.0 导学"></a>4.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244505401.png" alt="1539244505401"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244534446.png" alt="1539244534446"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244801576.png" alt="1539244801576"></p>
-<h3 id="4-1-URL对象"><a href="#4-1-URL对象" class="headerlink" title="4.1 URL对象"></a>4.1 URL对象</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245451379.png" alt="1539245451379"></p>
+<h2 id="第四章-网络编程（上）"><a href="#第四章-网络编程（上）" class="headerlink" title="第四章 网络编程（上）"></a>第四章 网络编程（上）</h2><h3 id="4-0-导学"><a href="#4-0-导学" class="headerlink" title="4.0 导学"></a>4.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244505401.png" alt="1539244505401"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244534446.png" alt="1539244534446"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539244801576.png" alt="1539244801576"></p>
+<h3 id="4-1-URL对象"><a href="#4-1-URL对象" class="headerlink" title="4.1 URL对象"></a>4.1 URL对象</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245451379.png" alt="1539245451379"></p>
 <p>注：保留端口号是计算机系统进行网络交互需要的端口号，自己编写程序不要去占用这些保留端口号，具体保留端口号对应网络服务google一下。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245767019.png" alt="1539245767019"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245834109.png" alt="1539245834109"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245898509.png" alt="1539245898509"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245956762.png" alt="1539245956762"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245984052.png" alt="1539245984052"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246010514.png" alt="1539246010514"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246052077.png" alt="1539246052077"></p>
-<h3 id="4-2-URLConnection对象"><a href="#4-2-URLConnection对象" class="headerlink" title="4.2 URLConnection对象"></a>4.2 URLConnection对象</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246211340.png" alt="1539246211340"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246251876.png" alt="1539246251876"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246318190.png" alt="1539246318190"></p>
-<h3 id="4-3-Get请求与Post请求"><a href="#4-3-Get请求与Post请求" class="headerlink" title="4.3 Get请求与Post请求"></a>4.3 Get请求与Post请求</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246522880.png" alt="1539246522880"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246527495.png" alt="1539246527495"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246570432.png" alt="1539246570432"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246720288.png" alt="1539246720288"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246836812.png" alt="1539246836812"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246936840.png" alt="1539246936840"></p>
-<h3 id="4-4-Socket通信原理"><a href="#4-4-Socket通信原理" class="headerlink" title="4.4 Socket通信原理"></a>4.4 Socket通信原理</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248246737.png" alt="1539248246737"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248277357.png" alt="1539248277357"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248323241.png" alt="1539248323241"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248356777.png" alt="1539248356777"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248563289.png" alt="1539248563289"></p>
-<h3 id="4-5-Socket通信实现"><a href="#4-5-Socket通信实现" class="headerlink" title="4.5 Socket通信实现"></a>4.5 Socket通信实现</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249189011.png" alt="1539249189011"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249549584.png" alt="1539249549584"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249542348.png" alt="1539249542348"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245767019.png" alt="1539245767019"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245834109.png" alt="1539245834109"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245898509.png" alt="1539245898509"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245956762.png" alt="1539245956762"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539245984052.png" alt="1539245984052"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246010514.png" alt="1539246010514"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246052077.png" alt="1539246052077"></p>
+<h3 id="4-2-URLConnection对象"><a href="#4-2-URLConnection对象" class="headerlink" title="4.2 URLConnection对象"></a>4.2 URLConnection对象</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246211340.png" alt="1539246211340"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246251876.png" alt="1539246251876"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246318190.png" alt="1539246318190"></p>
+<h3 id="4-3-Get请求与Post请求"><a href="#4-3-Get请求与Post请求" class="headerlink" title="4.3 Get请求与Post请求"></a>4.3 Get请求与Post请求</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246522880.png" alt="1539246522880"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246527495.png" alt="1539246527495"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246570432.png" alt="1539246570432"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246720288.png" alt="1539246720288"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246836812.png" alt="1539246836812"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539246936840.png" alt="1539246936840"></p>
+<h3 id="4-4-Socket通信原理"><a href="#4-4-Socket通信原理" class="headerlink" title="4.4 Socket通信原理"></a>4.4 Socket通信原理</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248246737.png" alt="1539248246737"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248277357.png" alt="1539248277357"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248323241.png" alt="1539248323241"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248356777.png" alt="1539248356777"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539248563289.png" alt="1539248563289"></p>
+<h3 id="4-5-Socket通信实现"><a href="#4-5-Socket通信实现" class="headerlink" title="4.5 Socket通信实现"></a>4.5 Socket通信实现</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249189011.png" alt="1539249189011"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249549584.png" alt="1539249549584"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249542348.png" alt="1539249542348"></p>
 <p>accept这个方法属于ServerSocket方法，这种方法我们称之它为阻塞方法，就是说它是在那里运行一直等着有客户端来给它发送Socket连接请求，如果没有客户端给我们的服务端发送这个Socket连接请求accept就一直在那里循环执行一直不返回，一直等到有客户端的Socket发连接请求过来。那我们这服务端的 ServerSocket 这个对象的话它就会accept方法就会返回一个值，返回的是一个Socket对象，而这个Socket对象就是和我们客户端的Socket对象进行对应的。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249811812.png" alt="1539249811812"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249848946.png" alt="1539249848946"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250143290.png" alt="1539250143290"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250150533.png" alt="1539250150533"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250156213.png" alt="1539250156213"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252104203.png" alt="1539252104203"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252110980.png" alt="1539252110980"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252121234.png" alt="1539252121234"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252126376.png" alt="1539252126376"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252147933.png" alt="1539252147933"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249811812.png" alt="1539249811812"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539249848946.png" alt="1539249848946"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250143290.png" alt="1539250143290"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250150533.png" alt="1539250150533"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539250156213.png" alt="1539250156213"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252104203.png" alt="1539252104203"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252110980.png" alt="1539252110980"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252121234.png" alt="1539252121234"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252126376.png" alt="1539252126376"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252147933.png" alt="1539252147933"></p>
 <p><strong>注</strong>：那需要提醒大家注意是我们这个程序非常简单，简单到什么程度呢？就是说聊天的时候，都是你说一句 我说一句如果一个想连续说两句话的话可能现有这个机制还处理不过来，必须是一人一句，当然我们同学可以把这个程序再进一步改进使它更加的丰富。</p>
-<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252275033.png" alt="1539252275033"></p>
-<h2 id="第五章-网络编程（下）"><a href="#第五章-网络编程（下）" class="headerlink" title="第五章 网络编程（下）"></a>第五章 网络编程（下）</h2><h3 id="5-0-导学"><a href="#5-0-导学" class="headerlink" title="5.0 导学"></a>5.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254072310.png" alt="1539254072310"></p>
-<h3 id="5-1-Socket-多客户端通信实现"><a href="#5-1-Socket-多客户端通信实现" class="headerlink" title="5.1 Socket 多客户端通信实现"></a>5.1 Socket 多客户端通信实现</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254198089.png" alt="1539254198089"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254477911.png" alt="1539254477911"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254535776.png" alt="1539254535776"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254560475.png" alt="1539254560475"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254578716.png" alt="1539254578716"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254484574.png" alt="1539254484574"></p>
+<h3 id="小结-3"><a href="#小结-3" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539252275033.png" alt="1539252275033"></p>
+<h2 id="第五章-网络编程（下）"><a href="#第五章-网络编程（下）" class="headerlink" title="第五章 网络编程（下）"></a>第五章 网络编程（下）</h2><h3 id="5-0-导学"><a href="#5-0-导学" class="headerlink" title="5.0 导学"></a>5.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254072310.png" alt="1539254072310"></p>
+<h3 id="5-1-Socket-多客户端通信实现"><a href="#5-1-Socket-多客户端通信实现" class="headerlink" title="5.1 Socket 多客户端通信实现"></a>5.1 Socket 多客户端通信实现</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254198089.png" alt="1539254198089"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254477911.png" alt="1539254477911"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254535776.png" alt="1539254535776"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254560475.png" alt="1539254560475"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254578716.png" alt="1539254578716"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539254484574.png" alt="1539254484574"></p>
 <p><strong>注</strong>：先运行server线程，再运行client。</p>
-<h3 id="5-2-数据报通信"><a href="#5-2-数据报通信" class="headerlink" title="5.2 数据报通信"></a>5.2 数据报通信</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267932034.png" alt="1539267932034"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267969444.png" alt="1539267969444"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268051255.png" alt="1539268051255"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268477916.png" alt="1539268477916"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268866026.png" alt="1539268866026"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268872283.png" alt="1539268872283"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268971931.png" alt="1539268971931"></p>
+<h3 id="5-2-数据报通信"><a href="#5-2-数据报通信" class="headerlink" title="5.2 数据报通信"></a>5.2 数据报通信</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267932034.png" alt="1539267932034"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539267969444.png" alt="1539267969444"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268051255.png" alt="1539268051255"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268477916.png" alt="1539268477916"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268866026.png" alt="1539268866026"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268872283.png" alt="1539268872283"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539268971931.png" alt="1539268971931"></p>
 <p>one-liners.txt这个是构造了一个文件输入流，因为我们做了一个非常简单的模拟，也就是说把一些股票信息就写到这个文件里面了，写到这个文件里面了以后就是每次有客户端发过来请求，说咨询一下股票的价格的时候，我们就从这个文件里读出某一股票的价格在返还给我们的客户端。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270238283.png" alt="1539270238283"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270248439.png" alt="1539270248439"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270313592.png" alt="1539270313592"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270333292.png" alt="1539270333292"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270367641.png" alt="1539270367641"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270238283.png" alt="1539270238283"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270248439.png" alt="1539270248439"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270313592.png" alt="1539270313592"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270333292.png" alt="1539270333292"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539270367641.png" alt="1539270367641"></p>
 <p>那刚才这个程序当中客户端服务端各一个程序，客户端和服务端之间的通讯是通过数据报这个Socket来进行通讯的然后整个过程就非常类似于，我们人类进行平信这个通讯方式，也就是说客户端通过构造一个DatagramPacket这个对象向它写一封信，然后通过DatagramSocket的send方法把它发出去了，服务端收到了这封来信以后，通过这个来信知道了客户端的地址和端口号，然后服务端它自己也写一封信，说白了写信就是构造一个DatagramPacket对象，写好了以后，通过DatagramSocket的这个对象的send方法，把这个信再发出去又发还给客户端，所以这个数据报包总结起来就非常类似于我们人类写平信的这个过程。</p>
-<h3 id="5-3-使用数据报进行广播通信"><a href="#5-3-使用数据报进行广播通信" class="headerlink" title="5.3 使用数据报进行广播通信"></a>5.3 使用数据报进行广播通信</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271072535.png" alt="1539271072535"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271612788.png" alt="1539271612788"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271626548.png" alt="1539271626548"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271671371.png" alt="1539271671371"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271676934.png" alt="1539271676934"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271843572.png" alt="1539271843572"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271849995.png" alt="1539271849995"></p>
-<h3 id="5-4-网络聊天程序"><a href="#5-4-网络聊天程序" class="headerlink" title="5.4 网络聊天程序"></a>5.4 网络聊天程序</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279041381.png" alt="1539279041381"></p>
+<h3 id="5-3-使用数据报进行广播通信"><a href="#5-3-使用数据报进行广播通信" class="headerlink" title="5.3 使用数据报进行广播通信"></a>5.3 使用数据报进行广播通信</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271072535.png" alt="1539271072535"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271612788.png" alt="1539271612788"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271626548.png" alt="1539271626548"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271671371.png" alt="1539271671371"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271676934.png" alt="1539271676934"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271843572.png" alt="1539271843572"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539271849995.png" alt="1539271849995"></p>
+<h3 id="5-4-网络聊天程序"><a href="#5-4-网络聊天程序" class="headerlink" title="5.4 网络聊天程序"></a>5.4 网络聊天程序</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279041381.png" alt="1539279041381"></p>
 <p>那整个这个布局其实大家采用一个BorderLayout就可以达到你的目标，那就是在BorderLayout的center中间那区域先放一个滚动面板，然后接着再放一个TextArea，然后在它的南部区域，我们先放一个Panel，紧接着再放一个TextView文本输入区域，然后接着再放一个Button而且TextView和Button的话都是按照FlowLayout这种放置规则。</p>
 <p>大家需要这个写的事件响应是什么呢？其实首先最重要的是说我们能够接收这个在文本区域，就是最下面这个文本区域这个输入的文本，我们可以给TextView这个组件来注册一个监听器，当我们这个一回车就在TextView里面一输入字符一回车的时候，它产生的是一个ActionEvent，所以我们可以给TextView注册一个EventListener。那TextView旁边的话，是一个按钮发送，其实发送的话它所对应的这个事件处理也是ActionEvent，所以在这个例子当中我们只需要写一个事件处理类然后都分别这个授权来去处理TextView和我们按钮的这么这个事件处理就可以完成获得我们这个文本的这么一个过程以及把它发送的一个过程。那在这里面怎么去获得内容呢？TextView里面有个一个getText的方法，那我们只要在我们的ActionPerform方法里面去通过TextView的getText来获得它的内容然后来决定一个是往外发送同时把它显示到当前我们的这个界面上面。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280107792.png" alt="1539280107792"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280120139.png" alt="1539280120139"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280125626.png" alt="1539280125626"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280132480.png" alt="1539280132480"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280143416.png" alt="1539280143416"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280148860.png" alt="1539280148860"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280153459.png" alt="1539280153459"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280162757.png" alt="1539280162757"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280172673.png" alt="1539280172673"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280181412.png" alt="1539280181412"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280189503.png" alt="1539280189503"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280194806.png" alt="1539280194806"></p>
-<h3 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279964634.png" alt="1539279964634"></p>
-<h2 id="第六章-java虚拟机"><a href="#第六章-java虚拟机" class="headerlink" title="第六章 java虚拟机"></a>第六章 java虚拟机</h2><h3 id="6-0-导学"><a href="#6-0-导学" class="headerlink" title="6.0 导学"></a>6.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539106278412.png" alt="1539106278412"></p>
-<h3 id="6-1-Java虚拟机概念"><a href="#6-1-Java虚拟机概念" class="headerlink" title="6.1 Java虚拟机概念"></a>6.1 Java虚拟机概念</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152742070.png" alt="1539152742070"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152824180.png" alt="1539152824180"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152930663.png" alt="1539152930663"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152984208.png" alt="1539152984208"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539153141326.png" alt="1539153141326"></p>
-<h3 id="6-2-Java虚拟机内存划分"><a href="#6-2-Java虚拟机内存划分" class="headerlink" title="6.2 Java虚拟机内存划分"></a>6.2 Java虚拟机内存划分</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539158818149.png" alt="1539158818149"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160258794.png" alt="1539160258794"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160296855.png" alt="1539160296855"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280107792.png" alt="1539280107792"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280120139.png" alt="1539280120139"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280125626.png" alt="1539280125626"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280132480.png" alt="1539280132480"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280143416.png" alt="1539280143416"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280148860.png" alt="1539280148860"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280153459.png" alt="1539280153459"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280162757.png" alt="1539280162757"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280172673.png" alt="1539280172673"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280181412.png" alt="1539280181412"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280189503.png" alt="1539280189503"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539280194806.png" alt="1539280194806"></p>
+<h3 id="小结-4"><a href="#小结-4" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539279964634.png" alt="1539279964634"></p>
+<h2 id="第六章-java虚拟机"><a href="#第六章-java虚拟机" class="headerlink" title="第六章 java虚拟机"></a>第六章 java虚拟机</h2><h3 id="6-0-导学"><a href="#6-0-导学" class="headerlink" title="6.0 导学"></a>6.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539106278412.png" alt="1539106278412"></p>
+<h3 id="6-1-Java虚拟机概念"><a href="#6-1-Java虚拟机概念" class="headerlink" title="6.1 Java虚拟机概念"></a>6.1 Java虚拟机概念</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152742070.png" alt="1539152742070"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152824180.png" alt="1539152824180"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152930663.png" alt="1539152930663"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539152984208.png" alt="1539152984208"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539153141326.png" alt="1539153141326"></p>
+<h3 id="6-2-Java虚拟机内存划分"><a href="#6-2-Java虚拟机内存划分" class="headerlink" title="6.2 Java虚拟机内存划分"></a>6.2 Java虚拟机内存划分</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539158818149.png" alt="1539158818149"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160258794.png" alt="1539160258794"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160296855.png" alt="1539160296855"></p>
 <p>本地方法（native method）它不一定是拿Java语言来编写的方法，Java虚拟机是会运行在不同的操作系统和硬件上面，那在本身Java虚拟机的内部实现的时候，也会有一部分代码是运行的是本地代码非Java这个代码，包括你们自己写程序的时候，也可以比如用C或C++，写一段程序，最后把它嵌入到Java代码当中这也是可以的。这个本地方法栈主要是用来执行本地方法，它同样有可能会抛出异常，那所谓的抛出异常的种类也和虚拟机栈一样，而我们的虚拟机栈它的对应的功能主要是用来执行我们的Java方法。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160957650.png" alt="1539160957650"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539160957650.png" alt="1539160957650"></p>
 <p><strong>注</strong>：官网G1垃圾回收器介绍<a href="https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html" target="_blank" rel="noopener">Getting Started with the G1 Garbage Collector</a></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161076357.png" alt="1539161076357"></p>
-<h3 id="6-3-Java虚拟机类加载机制"><a href="#6-3-Java虚拟机类加载机制" class="headerlink" title="6.3 Java虚拟机类加载机制"></a>6.3 Java虚拟机类加载机制</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161252058.png" alt="1539161252058"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161076357.png" alt="1539161076357"></p>
+<h3 id="6-3-Java虚拟机类加载机制"><a href="#6-3-Java虚拟机类加载机制" class="headerlink" title="6.3 Java虚拟机类加载机制"></a>6.3 Java虚拟机类加载机制</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161252058.png" alt="1539161252058"></p>
 <p>比较旧的一些这个编程语言的经验，当我们编译完了以后可能还要做链接然后再执行，Java它有一个这个大的特点就是在程序运行过程当中来进行这个类的加载和连接，这样的话就保证了，它这个一个程序运行的这个流畅和灵活性。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161369363.png" alt="1539161369363"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161595199.png" alt="1539161595199"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161500327.png" alt="1539161500327"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161553038.png" alt="1539161553038"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161763782.png" alt="1539161763782"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161758041.png" alt="1539161758041"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161925586.png" alt="1539161925586"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161967122.png" alt="1539161967122"></p>
-<h3 id="6-4-判断对象是否存活算法及对象引用"><a href="#6-4-判断对象是否存活算法及对象引用" class="headerlink" title="6.4 判断对象是否存活算法及对象引用"></a>6.4 判断对象是否存活算法及对象引用</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162253019.png" alt="1539162253019"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163215077.png" alt="1539163215077"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162910083.png" alt="1539162910083"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162974202.png" alt="1539162974202"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163015403.png" alt="1539163015403"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163248799.png" alt="1539163248799"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161369363.png" alt="1539161369363"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161595199.png" alt="1539161595199"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161500327.png" alt="1539161500327"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161553038.png" alt="1539161553038"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161763782.png" alt="1539161763782"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161758041.png" alt="1539161758041"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161925586.png" alt="1539161925586"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539161967122.png" alt="1539161967122"></p>
+<h3 id="6-4-判断对象是否存活算法及对象引用"><a href="#6-4-判断对象是否存活算法及对象引用" class="headerlink" title="6.4 判断对象是否存活算法及对象引用"></a>6.4 判断对象是否存活算法及对象引用</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162253019.png" alt="1539162253019"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163215077.png" alt="1539163215077"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162910083.png" alt="1539162910083"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539162974202.png" alt="1539162974202"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163015403.png" alt="1539163015403"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163248799.png" alt="1539163248799"></p>
 <p>通过sf.get方法可以获取到这个对象，当然当这个对象被标志为需要回收的对象时，它就会返回的是空，所以说软引用主要用户来实现类似缓存的功能，在内存足够的情况下，我们可以直接通过软引用来取值而不需要从繁忙的真实来源去查询数据提升速度，那当内存不足的时候就会自动删除这部分的缓存数据，然后从真正的数据来源当中去查询这些数据。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163344947.png" alt="1539163344947"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163385453.png" alt="1539163385453"></p>
-<h3 id="6-5-分代垃圾回收"><a href="#6-5-分代垃圾回收" class="headerlink" title="6.5 分代垃圾回收"></a>6.5 分代垃圾回收</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163621558.png" alt="1539163621558"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163344947.png" alt="1539163344947"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163385453.png" alt="1539163385453"></p>
+<h3 id="6-5-分代垃圾回收"><a href="#6-5-分代垃圾回收" class="headerlink" title="6.5 分代垃圾回收"></a>6.5 分代垃圾回收</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163621558.png" alt="1539163621558"></p>
 <p><strong>注</strong></p>
 <ol>
 <li>将引用对象设置为空，这种方式来去释放内存的话，应该没什么大问题，但如果我们用system gt方法去释放内存的话会大大的影响我们的系统性能。</li>
 <li>不可达含义：不用了，没有引用链指向。看英文：unavailable 就明白了，没有引用指向它们而且毕竟不属于空闲区，当然就不可使用。</li>
 </ol>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163888139.png" alt="1539163888139"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164010609.png" alt="1539164010609"></p>
-<h3 id="6-6-典型的垃圾收集算法"><a href="#6-6-典型的垃圾收集算法" class="headerlink" title="6.6 典型的垃圾收集算法"></a>6.6 典型的垃圾收集算法</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164393543.png" alt="1539164393543"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164434403.png" alt="1539164434403"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164514978.png" alt="1539164514978"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164585155.png" alt="1539164585155"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164642112.png" alt="1539164642112"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164730132.png" alt="1539164730132"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164819538.png" alt="1539164819538"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539165861048.png" alt="1539165861048"></p>
-<h3 id="6-7典型的垃圾收集器"><a href="#6-7典型的垃圾收集器" class="headerlink" title="6.7典型的垃圾收集器"></a>6.7典型的垃圾收集器</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166829998.png" alt="1539166829998"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166851653.png" alt="1539166851653"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166911602.png" alt="1539166911602"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166985009.png" alt="1539166985009"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167023486.png" alt="1539167023486"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539163888139.png" alt="1539163888139"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164010609.png" alt="1539164010609"></p>
+<h3 id="6-6-典型的垃圾收集算法"><a href="#6-6-典型的垃圾收集算法" class="headerlink" title="6.6 典型的垃圾收集算法"></a>6.6 典型的垃圾收集算法</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164393543.png" alt="1539164393543"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164434403.png" alt="1539164434403"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164514978.png" alt="1539164514978"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164585155.png" alt="1539164585155"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164642112.png" alt="1539164642112"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164730132.png" alt="1539164730132"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539164819538.png" alt="1539164819538"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539165861048.png" alt="1539165861048"></p>
+<h3 id="6-7典型的垃圾收集器"><a href="#6-7典型的垃圾收集器" class="headerlink" title="6.7典型的垃圾收集器"></a>6.7典型的垃圾收集器</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166829998.png" alt="1539166829998"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166851653.png" alt="1539166851653"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166911602.png" alt="1539166911602"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539166985009.png" alt="1539166985009"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167023486.png" alt="1539167023486"></p>
 <p><strong>注</strong>：jvm垃圾回收详解参考官网G1垃圾回收器介绍<a href="https://www.oracle.com/technetwork/tutorials/tutorials-1876574.html" target="_blank" rel="noopener">Getting Started with the G1 Garbage Collector</a></p>
 <p>今天介绍这几种垃圾收集器一般说来它会影响到程序执行性能，尤其是当想编一些对效率要求非常高的Java程序的时候，比如说服务器端的Java程序的时候，有时候你会比较顾及Java虚拟机的垃圾回收效率是不是足够那个帮助你的程序的运行，那据我所知国内外都有一些大公司在他们的服务器端性质当中重新改写了一些关于Java虚拟机的里面的垃圾回收的机制。</p>
 <p>就举一个例子来说：双十一淘宝它的这个系统肯定就会承受着极大的这个用户购买商品的点击的压力，淘宝实际上它的很多后台系统拿是拿Java写的，所以为了提高这个Java在服务器端的这种工作效率，那我听说他们也是对于一些垃圾回收的这些机制进行了改进。在一些性能要求特别高的情况下的话，可能我们在<strong>服务器端会对这些Java虚拟机以及相应它的一些局部做一些改进</strong>。</p>
-<h2 id="第七章-深入集合collection"><a href="#第七章-深入集合collection" class="headerlink" title="第七章 深入集合collection"></a>第七章 深入集合collection</h2><h3 id="7-0-导学"><a href="#7-0-导学" class="headerlink" title="7.0 导学"></a>7.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167756540.png" alt="1539167756540"></p>
-<h3 id="7-1-集合框架与ArrayList"><a href="#7-1-集合框架与ArrayList" class="headerlink" title="7.1 集合框架与ArrayList"></a>7.1 集合框架与ArrayList</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167879951.png" alt="1539167879951"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172675709.png" alt="1539172675709"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172739041.png" alt="1539172739041"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172833305.png" alt="1539172833305"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173020388.png" alt="1539173020388"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173539375.png" alt="1539173539375"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173752342.png" alt="1539173752342"></p>
-<h3 id="7-2-LinkedList"><a href="#7-2-LinkedList" class="headerlink" title="7.2 LinkedList"></a>7.2 LinkedList</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174547853.png" alt="1539174547853"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174562202.png" alt="1539174562202"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174689397.png" alt="1539174689397"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174707566.png" alt="1539174707566"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175102241.png" alt="1539175102241"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175158234.png" alt="1539175158234"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175293680.png" alt="1539175293680"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175387312.png" alt="1539175387312"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175494926.png" alt="1539175494926"></p>
-<h3 id="7-3-HashMap与HashTable"><a href="#7-3-HashMap与HashTable" class="headerlink" title="7.3 HashMap与HashTable"></a>7.3 HashMap与HashTable</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175639852.png" alt="1539175639852"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175684847.png" alt="1539175684847"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176066589.png" alt="1539176066589"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176310007.png" alt="1539176310007"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176528691.png" alt="1539176528691"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176623549.png" alt="1539176623549"></p>
+<h2 id="第七章-深入集合collection"><a href="#第七章-深入集合collection" class="headerlink" title="第七章 深入集合collection"></a>第七章 深入集合collection</h2><h3 id="7-0-导学"><a href="#7-0-导学" class="headerlink" title="7.0 导学"></a>7.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167756540.png" alt="1539167756540"></p>
+<h3 id="7-1-集合框架与ArrayList"><a href="#7-1-集合框架与ArrayList" class="headerlink" title="7.1 集合框架与ArrayList"></a>7.1 集合框架与ArrayList</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539167879951.png" alt="1539167879951"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172675709.png" alt="1539172675709"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172739041.png" alt="1539172739041"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539172833305.png" alt="1539172833305"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173020388.png" alt="1539173020388"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173539375.png" alt="1539173539375"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539173752342.png" alt="1539173752342"></p>
+<h3 id="7-2-LinkedList"><a href="#7-2-LinkedList" class="headerlink" title="7.2 LinkedList"></a>7.2 LinkedList</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174547853.png" alt="1539174547853"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174562202.png" alt="1539174562202"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174689397.png" alt="1539174689397"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539174707566.png" alt="1539174707566"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175102241.png" alt="1539175102241"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175158234.png" alt="1539175158234"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175293680.png" alt="1539175293680"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175387312.png" alt="1539175387312"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175494926.png" alt="1539175494926"></p>
+<h3 id="7-3-HashMap与HashTable"><a href="#7-3-HashMap与HashTable" class="headerlink" title="7.3 HashMap与HashTable"></a>7.3 HashMap与HashTable</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175639852.png" alt="1539175639852"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539175684847.png" alt="1539175684847"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176066589.png" alt="1539176066589"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176310007.png" alt="1539176310007"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176528691.png" alt="1539176528691"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539176623549.png" alt="1539176623549"></p>
 <p>可以看到这个HashMap底层数组的长度它总是2的N次方，这就是为了保证数组的使用率最高，尽可能的减少这个碰撞现象的产生，当HashMap中的元素越来越多的时候，这个哈希冲撞的冲突的可能性也就越来越高，因为数组的长度是固定的。那为了提高这查询的效率就要对这个HashMap的数组进行扩容容量变为原来的两倍，这时候，原数组当中的数据必须重新计算它在新数组当中的位置，并且放进去，那这个过程呢就非常耗时。当HashMap中的元素个数超过数组大小（取个名字叫lot fat），就会进行数组的扩容，这个（lot fat）的默认值为0.75。那这个是一个非常消耗性能的操作所以如果我们已经预知这个HashMap当中元素的个数，那么就能够有效的提高HashMap的性能，所以这也是一个HashMap它的一个独特的地方。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177101407.png" alt="1539177101407"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177164867.png" alt="1539177164867"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177101407.png" alt="1539177101407"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539177164867.png" alt="1539177164867"></p>
 <p><strong>注</strong>：关于hashtable与hashmap 建议参考源码解析 <a href="https://javadoop.com/post/hashmap" target="_blank" rel="noopener">Java7/8 中的 HashMap 和 ConcurrentHashMap 全解析</a></p>
-<h3 id="7-4-TreeMap与LinkedHashMap"><a href="#7-4-TreeMap与LinkedHashMap" class="headerlink" title="7.4 TreeMap与LinkedHashMap"></a>7.4 TreeMap与LinkedHashMap</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178600822.png" alt="1539178600822"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178636271.png" alt="1539178636271"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178843148.png" alt="1539178843148"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178868002.png" alt="1539178868002"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178948012.png" alt="1539178948012"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179258434.png" alt="1539179258434"></p>
+<h3 id="7-4-TreeMap与LinkedHashMap"><a href="#7-4-TreeMap与LinkedHashMap" class="headerlink" title="7.4 TreeMap与LinkedHashMap"></a>7.4 TreeMap与LinkedHashMap</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178600822.png" alt="1539178600822"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178636271.png" alt="1539178636271"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178843148.png" alt="1539178843148"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178868002.png" alt="1539178868002"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539178948012.png" alt="1539178948012"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179258434.png" alt="1539179258434"></p>
 <p>所以说它和之前的那个HashMap的区别就是：HashMap里面的数据结构第一级结构是一个数组，第二级结构是一个单向链表，而我们的LinkedHashMap第二级结构是一个双向链表，所以在往里添加的时候就可以根据你要添加元素的位置来决定是从正向的去检索往里添加，还是反向从队尾开始去检索进行添加。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179432947.png" alt="1539179432947"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179495885.png" alt="1539179495885"></p>
-<h3 id="7-5-HashSet"><a href="#7-5-HashSet" class="headerlink" title="7.5 HashSet"></a>7.5 HashSet</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179625696.png" alt="1539179625696"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179667322.png" alt="1539179667322"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179718352.png" alt="1539179718352"></p>
-<h3 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179788542.png" alt="1539179788542"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179432947.png" alt="1539179432947"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179495885.png" alt="1539179495885"></p>
+<h3 id="7-5-HashSet"><a href="#7-5-HashSet" class="headerlink" title="7.5 HashSet"></a>7.5 HashSet</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179625696.png" alt="1539179625696"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179667322.png" alt="1539179667322"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179718352.png" alt="1539179718352"></p>
+<h3 id="小结-5"><a href="#小结-5" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539179788542.png" alt="1539179788542"></p>
 <ol>
 <li><p><strong>常用的一些集合类</strong> </p>
 <p>首先介绍了List Map Set 这几个接口，那在这几个接口之下又有好多的类是实现了这些接口，比如说我们的HashSet、ArrayList linkedList、HashMap、TreeMap等等这些。</p>
@@ -1109,37 +1109,37 @@
 <p>由于这些集合类它本身所具有的特点并不一样，所以当我们在编程序过程中，考虑选择哪个类作为我们的数据结构的时候，你就能够很好的去选择和决定。</p>
 </li>
 </ol>
-<h2 id="第八章-反射与代理机制"><a href="#第八章-反射与代理机制" class="headerlink" title="第八章 反射与代理机制"></a>第八章 反射与代理机制</h2><h3 id="8-0-导学"><a href="#8-0-导学" class="headerlink" title="8.0 导学"></a>8.0 导学</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539181467775.png" alt="1539181467775"></p>
-<h3 id="8-1-Java反射机制"><a href="#8-1-Java反射机制" class="headerlink" title="8.1 Java反射机制"></a>8.1 Java反射机制</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186923792.png" alt="1539186923792"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186930949.png" alt="1539186930949"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186938506.png" alt="1539186938506"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186946955.png" alt="1539186946955"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186953329.png" alt="1539186953329"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187203705.png" alt="1539187203705"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187503835.png" alt="1539187503835"></p>
-<h3 id="8-2-Java静态代理"><a href="#8-2-Java静态代理" class="headerlink" title="8.2 Java静态代理"></a>8.2 Java静态代理</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539190674840.png" alt="1539190674840"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191075024.png" alt="1539191075024"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191329444.png" alt="1539191329444"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191522836.png" alt="1539191522836"></p>
-<h3 id="8-3-Java动态代理"><a href="#8-3-Java动态代理" class="headerlink" title="8.3 Java动态代理"></a>8.3 Java动态代理</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191759255.png" alt="1539191759255"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225038613.png" alt="1539225038613"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225666987.png" alt="1539225666987"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539226052214.png" alt="1539226052214"></p>
+<h2 id="第八章-反射与代理机制"><a href="#第八章-反射与代理机制" class="headerlink" title="第八章 反射与代理机制"></a>第八章 反射与代理机制</h2><h3 id="8-0-导学"><a href="#8-0-导学" class="headerlink" title="8.0 导学"></a>8.0 导学</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539181467775.png" alt="1539181467775"></p>
+<h3 id="8-1-Java反射机制"><a href="#8-1-Java反射机制" class="headerlink" title="8.1 Java反射机制"></a>8.1 Java反射机制</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186923792.png" alt="1539186923792"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186930949.png" alt="1539186930949"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186938506.png" alt="1539186938506"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186946955.png" alt="1539186946955"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539186953329.png" alt="1539186953329"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187203705.png" alt="1539187203705"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539187503835.png" alt="1539187503835"></p>
+<h3 id="8-2-Java静态代理"><a href="#8-2-Java静态代理" class="headerlink" title="8.2 Java静态代理"></a>8.2 Java静态代理</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539190674840.png" alt="1539190674840"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191075024.png" alt="1539191075024"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191329444.png" alt="1539191329444"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191522836.png" alt="1539191522836"></p>
+<h3 id="8-3-Java动态代理"><a href="#8-3-Java动态代理" class="headerlink" title="8.3 Java动态代理"></a>8.3 Java动态代理</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539191759255.png" alt="1539191759255"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225038613.png" alt="1539225038613"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539225666987.png" alt="1539225666987"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539226052214.png" alt="1539226052214"></p>
 <p>这个例子实际上是告诉大家说你可以给一个真实的对象，你给它生成一个动态代理，那生成这个动态代理的话。既然是个代理，你可以在这个真实对象的方法执行之前先做一些预处理，执行之后你还可以做一些后处理，所以你就可以增加一些你想干的这个事情，而通过这个动态代理的话，它的好处就是能够让你更加方便的去实现这些代理的过程。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228376485.png" alt="1539228376485"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228382891.png" alt="1539228382891"></p>
-<h3 id="8-4-Java-反射扩展-jvm加载类原理"><a href="#8-4-Java-反射扩展-jvm加载类原理" class="headerlink" title="8.4 Java 反射扩展-jvm加载类原理"></a>8.4 Java 反射扩展-jvm加载类原理</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539232525052.png" alt="1539232525052"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228376485.png" alt="1539228376485"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539228382891.png" alt="1539228382891"></p>
+<h3 id="8-4-Java-反射扩展-jvm加载类原理"><a href="#8-4-Java-反射扩展-jvm加载类原理" class="headerlink" title="8.4 Java 反射扩展-jvm加载类原理"></a>8.4 Java 反射扩展-jvm加载类原理</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539232525052.png" alt="1539232525052"></p>
 <p>JAVA虚拟机中类加载的原理，什么叫类加载，想想当编辑完JAVA的源程序以后，一编译会得到是一大堆点class文件，那点class文件就是这些类文件，而这些类文件平常是存在硬盘上，也就存在电脑的文件系统当中那当这些类文件需要执行的时候就需要JAVA虚拟机把它从硬盘上给挪到我们内存当中，那整个挪到JAVA虚拟机内存当中过程实际上就是一个类加载的过程。</p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233621727.png" alt="1539233621727"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233745371.png" alt="1539233745371"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242915189.png" alt="1539242915189"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233621727.png" alt="1539233621727"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539233745371.png" alt="1539233745371"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242915189.png" alt="1539242915189"></p>
 <ol>
 <li>第二步要做连接，连接里面也会包括第一部分是验证、注意验证主要验证说，你装载进来的这个点class文件它是不是符合我们JAVA虚拟机对于自解码文件的一个规范，做格式的这种校验，甚至是不是有恶意是不是有危害，这些都是我们验证的过程，那第二个小步骤是准备要把我们这些类它的一些相应的静态的成员做一下内存的分配，那第三小步骤的话是要解析，解析是什么就是把我们很多的这些符号性的引用把它转化成一种直接的引用。</li>
 <li>第三个步骤是做类的初始化，比如说我们将类的静态变量给它做赋于正确的初始值，注意这个初始值是指的是程序员在给它定义的这个初始值而不是说默认初始值，默认初始值这个确定是在第二个步骤连接步骤里边，这个准备小步骤里边已经实现了。</li>
 </ol>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242983420.png" alt="1539242983420"></p>
-<p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243003067.png" alt="1539243003067"></p>
-<h3 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h3><p><img src="http://rbzamy6g6.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243156735.png" alt="1539243156735"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539242983420.png" alt="1539242983420"></p>
+<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243003067.png" alt="1539243003067"></p>
+<h3 id="小结-6"><a href="#小结-6" class="headerlink" title="小结"></a>小结</h3><p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/gitpages/java/tsinghua_open_course_2/1539243156735.png" alt="1539243156735"></p>
 <p>我们今天主要讲了三个方面的内容</p>
 <ol>
 <li><p>JAVA的反射机制</p>
