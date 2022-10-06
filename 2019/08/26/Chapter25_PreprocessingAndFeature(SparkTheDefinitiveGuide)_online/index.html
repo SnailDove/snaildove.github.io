@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 25 Preprocessing and Feature Engineering 预处理和特征工程Any data scientist worth her salt knows that one of the biggest challenges (and time sinks) in advanced analytics is preprocessing. It’s not">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564236559.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564499836.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564236559.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564499836.png">
 <meta property="article:published_time" content="2019-08-25T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-09T06:23:40.911Z">
+<meta property="article:modified_time" content="2022-10-06T03:45:29.482Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -449,7 +449,7 @@
       
 
       
-        <img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-25-Preprocessing-and-Feature-Engineering-预处理和特征工程"><a href="#Chapter-25-Preprocessing-and-Feature-Engineering-预处理和特征工程" class="headerlink" title="Chapter 25 Preprocessing and Feature Engineering 预处理和特征工程"></a>Chapter 25 Preprocessing and Feature Engineering 预处理和特征工程</h1><p>Any data scientist worth her salt knows that one of the biggest challenges (and time sinks) in advanced analytics is preprocessing. It’s not that it’s particularly complicated programming, but rather that it requires deep knowledge of the data you are working with and an understanding of what your model needs in order to successfully leverage this data. This chapter covers the details of how you can use Spark to perform preprocessing and feature engineering. We’ll walk through the core requirements you’ll need to meet in order to train an MLlib model in terms of how your data is structured. We will then discuss the different tools Spark makes available for performing this kind of work. </p>
 <p>值得任何数据科学家都知道的是高级分析中最大的挑战之一（和时间汇集）是预处理。这不是特别复杂的编程，而是需要深入了解您正在使用的数据，并了解您的模型需要什么才能成功利用这些数据。本章介绍了如何使用 Spark  执行预处理和功能工程的详细信息。我们将逐步介绍您需要满足的核心要求，以便根据数据的结构来训练 MLlib 模型。然后，我们将讨论 Spark 可用于执行此类工作的不同工具。</p>
@@ -499,7 +499,7 @@ It is important to note that we filtered out null values here. MLlib does not al
 <p>我们在前一章讨论过转换器，但值得再次回顾一下。转换器是以某种方式转换原始数据的函数。这可能是创建一个新的交互变量（来自其他两个变量），标准化一个列，或者简单地将其转换为 Double 以输入到模型中。转换器主要用于预处理或特征生成。</p>
 <p>Spark’s transformer only includes a transform method. This is because it will not change based on the input data. Figure 25-1 is a simple illustration. On the left is an input DataFrame with the column to be manipulated. On the right is the input DataFrame with a new column representing the output transformation.</p>
 <p>Spark 的转换器只包含一种转换方法。这是因为它不会根据输入数据而改变。图25-1是一个简单的图示。左侧是输入 DataFrame，其中包含要操作的列。右侧是输入DataFrame，其中一个新列表示输出转换。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564236559.png" alt="1567564236559"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564236559.png" alt="1567564236559"></p>
 <p>The Tokenizer is an example of a transformer. It tokenizes a string, splitting on a given character, and has nothing to learn from our data; it simply applies a function. We’ll discuss the tokenizer in more depth later in this chapter, but here’s a small code snippet  showing how a tokenizer is built to accept the input column, how it transforms the data, and then the output from that transformation: </p>
 <p>Tokenizer是转换器的一个例子。它符号化一个字符串，分裂给定的文本，并且没有任何东西可以从我们的数据中学习；它只是应用一个功能。我们将在本章后面更深入地讨论符号生成器，但这里有一个小代码片段，显示如何构建标记生成器以接受输入列，如何转换数据，然后来自该转换的输出：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.feature.<span class="type">Tokenizer</span></span><br><span class="line"><span class="keyword">val</span> tkn = <span class="keyword">new</span> <span class="type">Tokenizer</span>().setInputCol(<span class="string">"Description"</span>)</span><br><span class="line">tkn.transform(sales.select(<span class="string">"Description"</span>)).show(<span class="literal">false</span>)</span><br></pre></td></tr></table></figure>
@@ -508,7 +508,7 @@ It is important to note that we filtered out null values here. MLlib does not al
 
 <h2 id="Estimators-for-Preprocessing-预处理的估记器"><a href="#Estimators-for-Preprocessing-预处理的估记器" class="headerlink" title="Estimators for Preprocessing 预处理的估记器"></a><font color="#9a161a">Estimators for Preprocessing 预处理的估记器</font></h2><p>Another tool for preprocessing are estimators. An estimator is necessary when a transformation you would like to perform must be initialized with data or information about the input column (often derived by doing a pass over the input column itself). For example, if you wanted to scale the values in our column to have mean zero and unit variance, you would need to perform a pass over the entire data in order to calculate the values you would use to normalize the data to mean zero and unit variance. In effect, an estimator can be a transformer configured according to your particular input data. In simplest terms, you can either blindly apply a transformation (a “regular” transformer type) or perform a transformation based on your data (an estimator type). Figure 25-2 is a simple illustration of an estimator fitting to a particular input dataset, generating a transformer that is then applied to the input dataset to append a new column (of the transformed data). </p>
 <p>预处理的另一个工具是估记器。当您想要执行的转换必须使用有关输入列的数据或信息进行初始化时（通常通过对输入列本身进行传递），必须使用估计器。例如，如果要将列中的值缩放为具有均值零和单位方差，则需要对整个数据执行传递，以便计算用于将数据标准化为零和单位方差的值。实际上，估计器可以是根据您的特定输入数据配置的转换器。简单来说，您可以盲目地应用转换（“常规”转换器类型）或根据您的数据执行转换（估计器类型）。图25-2是拟合特定输入数据集的估计器的简单图示，生成转换器，然后将其应用于输入数据集以附加（已经转换的数据的）新列。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564499836.png" alt="1567564499836"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter25/1567564499836.png" alt="1567564499836"></p>
 <p>An example of this type of estimator is the <code>StandardScaler</code>, which scales your input column according to the range of values in that column to have a zero mean and a variance of 1 in each dimension. For that reason it must first perform a pass over the data to create the transformer. Here’s a sample code snippet showing the entire process, as well as the output: </p>
 <p>此类估计器的一个示例是 <code>StandardScaler</code>，它根据该列中的值范围缩放输入列，使其在每个维度中具有零均值和方差1。因此，它必须首先对数据执行传递以创建变换器。这是一个示例代码片段，显示整个过程以及输出：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.ml.feature.<span class="type">StandardScaler</span></span><br><span class="line"><span class="keyword">val</span> ss = <span class="keyword">new</span> <span class="type">StandardScaler</span>().setInputCol(<span class="string">"features"</span>)</span><br><span class="line">ss.fit(scaleDF).transform(scaleDF).show(<span class="literal">false</span>)</span><br></pre></td></tr></table></figure>

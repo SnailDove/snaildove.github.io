@@ -97,21 +97,21 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 18 Monitoring and Debugging 监控与调试This chapter covers the key details you need to monitor and debug your Spark Applications. To do this, we will walk through the Spark UI with an example quer">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566897517782.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904042989.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904811641.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907520858.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907630723.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907691417.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907752419.png">
-<meta property="og:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566908039098.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566897517782.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904042989.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904811641.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907520858.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907630723.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907691417.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907752419.png">
+<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566908039098.png">
 <meta property="article:published_time" content="2019-08-09T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-07-09T06:23:40.872Z">
+<meta property="article:modified_time" content="2022-10-06T03:45:29.432Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -455,7 +455,7 @@
       
 
       
-        <img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-18-Monitoring-and-Debugging-监控与调试"><a href="#Chapter-18-Monitoring-and-Debugging-监控与调试" class="headerlink" title="Chapter 18 Monitoring and Debugging 监控与调试"></a>Chapter 18 Monitoring and Debugging 监控与调试</h1><p>This chapter covers the key details you need to monitor and debug your Spark Applications. To do this, we will walk through the Spark UI with an example query designed to help you understand how to trace your own jobs through the execution life cycle. The example we’ll look at will also help you understand how to debug your jobs and where errors are likely to occur.</p>
 <p>本章介绍了监视和调试Spark应用程序所需的关键详细信息。为此，我们将使用一个示例查询来浏览Spark UI，该查询旨在帮助您了解如何在执行生命周期中跟踪自己的作业。我们将看到的示例还将帮助您了解如何调试作业以及可能发生错误的位置。</p>
@@ -473,7 +473,7 @@
 <p><strong>Cluster</strong></p>
 <p>Naturally, you can monitor the cluster on which your Spark Application(s) will run. This might be a YARN, Mesos, or standalone cluster. Usually it’s important to have some sort of monitoring solution here because, somewhat obviously, if your cluster is not working, you should probably know pretty quickly. Some popular cluster-level monitoring tools include <em>Ganglia</em> and <em>Prometheus</em>. </p>
 <p>当然，您可以监视运行 Spark 应用程序的集群。这可能是 YARN，Mesos 或独立集群。通常，在这里使用某种监控解决方案很重要，因为很明显，如果您的集群不工作，您应该很快就会知道。一些流行的集群级监控工具包括Ganglia 和 Prometheus。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566897517782.png" alt="1566897517782"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566897517782.png" alt="1566897517782"></p>
 <h2 id="What-to-Monitor-要监控什么"><a href="#What-to-Monitor-要监控什么" class="headerlink" title="What to Monitor 要监控什么"></a><font color="#9a161a">What to Monitor 要监控什么</font></h2><p>After that brief tour of the monitoring landscape, let’s discuss how we can go about monitoring and debugging our Spark Applications. There are two main things you will want to monitor: the processes running your application (at the level of CPU usage, memory usage, etc.), and the query execution inside it (e.g., jobs and tasks).</p>
 <p>在简要介绍了监控环境之后，让我们讨论如何监控和调试我们的 Spark 应用程序。您需要监视两个主要内容：运行应用程序的进程（在 CPU 使用情况，内存使用情况的等级）以及在其中执行的查询（例如，作业和任务）。</p>
 <h3 id="Driver-and-Executor-Processes-驱动程序和执行程序进程"><a href="#Driver-and-Executor-Processes-驱动程序和执行程序进程" class="headerlink" title="Driver and Executor Processes 驱动程序和执行程序进程"></a><font color="#000000">Driver and Executor Processes 驱动程序和执行程序进程</font></h3><p>When you’re monitoring a Spark application, you’re definitely going to want to keep an eye on the driver. This is where all of the state of your application lives, and you’ll need to be sure it’s running in a stable manner. If you could monitor only one machine or a single JVM, it would definitely be the driver. With that being said, understanding the state of the executors is also extremely important for monitoring individual Spark jobs. To help with this challenge, Spark has a configurable metrics system based on the Dropwizard Metrics Library. The metrics system is configured via a configuration file that Spark expects to be present at <code>$SPARK_HOME/conf/metrics.properties</code>. A custom file location can be specified by changing the <code>spark.metrics.conf</code> configuration property. These metrics can be output to a variety of different sinks, including cluster monitoring solutions like <em>Ganglia</em>.</p>
@@ -494,7 +494,7 @@
 <p>Spark UI 提供了一种可视化方式，用于在运行时监视应用程序，以及 Spark 和 JVM 级别的 Spark 工作负载指标。每个运行的 SparkContext 都会在端口 4040 上默认启动 Web UI，该UI显示有关应用程序的有用信息。例如，在本地模式下运行 Spark 时，只需导航到 <a href="http://localhost:4040，即可在本地计算机上运行">http://localhost:4040，即可在本地计算机上运行</a> Spark 应用程序时查看UI 。如果您正在运行多个应用程序，他们将在增加端口号（4041,4042，…）时启动Web UI。集群管理器还将从其自己的 UI 链接到每个应用程序的 Web UI。</p>
 <p>Figure 18-2 shows all of the tabs available in the Spark UI. </p>
 <p>图18-2 显示了 Spark UI 中可用的所有选项卡。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904042989.png" alt="1566904042989"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904042989.png" alt="1566904042989"></p>
 <p>These tabs are accessible for each of the things that we’d like to monitor. For the most part, each of these should be self-explanatory : </p>
 <p>这些选项卡可供我们要监控的每个事项访问。在大多数情况下，每一个都应该是不言自明的：</p>
 <ul>
@@ -523,7 +523,7 @@
 
 <p>This results in three rows of various values. The code kicks off a SQL query, so let’s navigate to the SQL tab, where you should see something similar to Figure 18-3.</p>
 <p>这导致不同值的三行。 代码开始启动 SQL 查询，所以让我们导航到 SQL 选项卡，在那里你应该看到类似于图 18-3 的内容。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904811641.png" alt="1566904811641"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566904811641.png" alt="1566904811641"></p>
 <p>The first thing you see is aggregate statistics about this query:</p>
 <p>您看到的第一件事是关于此查询的汇总统计信息：</p>
 <p style="font-family:Consolas;color:#000000;">
@@ -534,25 +534,25 @@ Succeeded Jobs: 2
 
 <p>These will become important in a minute, but first let’s take a look at the Directed Acyclic Graph (DAG) of Spark stages. Each blue box in these tabs represent a stage of Spark tasks. The entire group of these stages represent our Spark job. Let’s take a look at each stage in detail so that we can better understand what is going on at each level, starting with Figure 18-4. </p>
 <p>这些将马上变得重要，但首先让我们来看看 Spark 阶段的有向无环图（DAG）。 这些选项卡中的每个蓝色框表示 Spark 任务的一个阶段。 这些阶段的整个组代表我们的 Spark 工作。 让我们详细了解每个阶段，以便我们可以更好地了解每个级别的情况，从图 18-4 开始。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907520858.png" alt="1566907520858"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907520858.png" alt="1566907520858"></p>
 <p>The box on top, labeled WholeStateCodegen, represents a full scan of the CSV file. The box below that represents a shuffle that we forced when we called repartition. This turned our original dataset (of a yet to be specified number of partitions) into two partitions.</p>
 <p>标记为 WholeStateCodegen 的顶部框表示 CSV 文件的完整扫描。 下面的框表示我们在调用重新分区时强制进行的数据再分配(shuffle)。 这将我们的原始数据集（尚未指定的分区数）转换为两个分区。</p>
 <p>The next step is our projection (selecting/adding/filtering columns) and the aggregation. Notice that in Figure 18-5 the number of output rows is six. This conveniently lines up with the number of output rows multiplied by the number of partitions at aggregation time. This is because Spark performs an aggregation for each partition (in this case a hash-based aggregation) before shuffling the data around  in preparation for the final stage.</p>
 <p>下一步是我们的投影（选择/添加/过滤列）和聚合。 请注意，在图18-5中，输出行数为6（final output * 2 = 6）。 这方便与输出行的数量乘以聚合时的分区数对齐。  这是因为 Spark 在为最终阶段做准备之前对数据进行再分配(shuffle)之前，为每个分区执行聚合（在这种情况下是基于散列（hash-based） 的聚合）。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907630723.png" alt="1566907630723"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907630723.png" alt="1566907630723"></p>
 <p>The last stage is the aggregation of the subaggregations that we saw happen on a per-partition basis in the previous stage. We combine those two partitions in the final three rows that are the output of our total query (Figure 18-6)。</p>
 <p>最后一个阶段是我们在前一阶段基于每个分区发生的子聚合的聚合。 我们将这两个分区组合在最后三行中，这三行是我们总查询的输出（图18-6）。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907691417.png" alt="1566907691417"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907691417.png" alt="1566907691417"></p>
 <p>Let’s look further into the job’s execution. On the Jobs tab, next to Succeeded Jobs, click 2. As Figure 18-7 demonstrates, our job breaks down into three stages (which corresponds to what we saw on the SQL tab). </p>
 <p>让我们进一步了解作业的执行情况。 在 Jobs 选项卡上，单击 Succeeded Jobs，单击2. 如图18-7所示，我们的工作分为三个阶段（与我们在SQL选项卡上看到的相对应）。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907752419.png" alt="1566907752419"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566907752419.png" alt="1566907752419"></p>
 <p>These stages have more or less the same information as what’s shown in Figure 18-6, but clicking the label for one of them will show the details for a given stage. In this example, three stages ran, with eight, two, and then two hundred tasks each. Before diving into the stage detail, let’s review why this is the case.</p>
 <p>这些阶段或多或少与图18-6中显示的信息相同，但单击其中一个阶段的标签将显示给定阶段的详细信息。 在这个例子中，运行了三个阶段，每个阶段分别有八个，两个，然后是两百个任务。 在深入了解阶段细节之前，让我们回顾一下为什么会这样。</p>
 <p>The first stage has eight tasks. CSV files are splittable, and Spark broke up the work to be distributed relatively evenly between the different cores on the machine. This happens at the cluster level and points to an important optimization: how you store your files. The following stage has two tasks because we explicitly called a repartition to move the data into two partitions. The last stage has 200 tasks because the default shuffle partitions value is 200.</p>
 <p>第一阶段有八个任务。 CSV 文件是可拆分的，Spark 分解了工作使其相对均匀分布在机器上不同核心之间。 这发生在集群级别，并指向一个重要的优化：如何存储文件。 下一个阶段有两个任务，因为我们显式调用了重新分区以将数据移动到两个分区中。 最后一个阶段有200个任务，因为默认的 shuffle 分区值为 200。</p>
 <p>Now that we reviewed how we got here, click the stage with eight tasks to see the next level of detail, as shown in Figure 18-8.</p>
 <p>现在我们回顾了我们如何到达这里，单击具有八个任务的阶段以查看下一个详细级别，如图18-8所示。</p>
-<p><img src="http://reqp5dk8d.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566908039098.png" alt="1566908039098"></p>
+<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter18/1566908039098.png" alt="1566908039098"></p>
 <p>Spark provides a lot of detail about what this job did when it ran. Toward the top, notice the Summary Metrics section. This provides a synopsis of statistics regarding various metrics. What you want to be on the lookout for is uneven distributions of the values (we touch on this in Chapter 19). In this case, everything looks very consistent; there are no wide swings in the distribution of values. In the table at the bottom, we can also examine on a per-executor basis (one for every core on this particular machine, in this case). This can help identify whether a particular executor is struggling with its workload.</p>
 <p>Spark 提供了很多关于这项工作在运行时所做些什么的细节。在顶部，请注意“摘要衡量标准（Summary Metrics）”部分。这提供了有关各种指标的统计数据的概要。你想要注意的是值的不均匀分布（我们在第19章中讨论）。在这种情况下，一切看起来都非常一致; 值的分布没有大幅波动。在底部的表中，我们还可以基于每个执行程序（executor）进行检查（在这种情况下，该特定计算机上的每个核心都有一个）。这有助于确定特定执行程序（executor）是否在努力应对其工作量。</p>
 <p>Spark also makes available a set of more detailed metrics, as shown in Figure 18-8, which are probably not relevant to the large majority of users. To view those, click Show Additional Metrics, and then either choose (De)select All or select individual metrics, depending on what you want to see.</p>
