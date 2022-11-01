@@ -101,7 +101,7 @@
 <meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png">
 <meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/3.png">
 <meta property="article:published_time" content="2017-08-27T12:16:00.000Z">
-<meta property="article:modified_time" content="2022-10-06T03:45:29.779Z">
+<meta property="article:modified_time" content="2022-11-01T03:31:25.792Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
@@ -454,7 +454,30 @@
 <h2 id="正态随机变量"><a href="#正态随机变量" class="headerlink" title="正态随机变量"></a>正态随机变量</h2><p>如果一个连续的随机变量 $X$ 的概率密度具有下列形式， 那么这个随机变量称为正态(normal)的或高斯(Gaussian)的。<br>$$<br>f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{\frac{-(x-\mu)^2}{2\sigma^2}}<br>$$<br>其中 $u$ 和 $\sigma$ 是密度函数的两个参数，$\sigma$ 还必须是正数。可以证明，$f_X(x)$ 满足下面的概率密度函数的归一化条件（见本章关于定理的习题）：<br>$$<br>\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}e^{\frac{-(x-\mu)^2}{2\sigma^2}}dx=1<br>$$<br>下图是正态分布的密度函数和分布函数 $(\mu=1 \text{ 和 } \sigma^2=1)$ 。</p>
 <p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/1.png" alt="A_normal_PDF_and_CDF_with_u=1_and_sigmal^2=1"></p>
 <p>由图可以看出，正态随机变量的概率密度函数是相对于均值 $\mu$ 对称的钟形曲线。当 $x$ 离开 $\mu$ 的时候，概率密度函数的表达式中的项 $e^{\frac{-(x-\mu)^2}{2\sigma^2}}$ 很快地下降。在图中，概率密度函数在区间 $[-1,3]$ 之外非常接近 $0$ 。</p>
-<p>正态随机变量的均值和方差可由下列式子给出：<br>$$<br>E[X]=\mu,\quad var(X)=\sigma^2<br>$$<br>由于 $X$ 的概率密度函数相对于 $\mu$ 对称，其均值只能是 $\mu$ 。至于方差的公式，一句定义得：<br>$$<br>var(X)=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}(x-\mu)^2e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx<br>$$<br>将公式中的积分作积分变量替换 $y=\frac{(x-\mu)}{\sigma}$ 以及分布积分得到：<br>$$<br>\begin{eqnarray}<br>var(X) &amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}y^2e^{-\frac{y^2}{2}}dy \<br>&amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}(-ye^{-\frac{y^2}{2}})|^{+\infty}<em>{-\infty}+\frac{\sigma^2}{\sqrt{2\pi}}\int</em>{-\infty}^{+\infty}e^{\frac{y^2}{2}}dy \<br>&amp;=&amp; \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy \<br>&amp;=&amp; \sigma^2<br>\end{eqnarray}<br>$$<br>上面最后的等式，是由于<br>$$<br>\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy=1<br>$$<br>这个公式正好是当 $\mu=0$ 和 $\sigma^2=1$ 的时候的正态随机变量的概率密度函数的归一化条件，在本章习题第14题得以证明，截图如下：</p>
+<p>正态随机变量的均值和方差可由下列式子给出：</p>
+<p>$$<br>E[X]=\mu,\quad var(X)=\sigma^2<br>$$</p>
+<p>由于 $X$ 的概率密度函数相对于 $\mu$ 对称，其均值只能是 $\mu$ 。至于方差的公式，一句定义得：</p>
+<p>$$<br>var(X)=\frac{1}{\sqrt{2\pi}\sigma}\int_{-\infty}^{+\infty}(x-\mu)^2e^{-\frac{(x-\mu)^2}{2\sigma^2}}dx<br>$$</p>
+<p>将公式中的积分作积分变量替换 $y=\frac{(x-\mu)}{\sigma}$ 以及分布积分得到：</p>
+
+$$
+\begin{eqnarray}
+var(X) &=& \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}y^2e^{-\frac{y^2}{2}}dy \\
+&=& \frac{\sigma^2}{\sqrt{2\pi}}(-ye^{-\frac{y^2}{2}})|^{+\infty}_{-\infty}+\frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{\frac{y^2}{2}}dy \\
+&=& \frac{\sigma^2}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy \\
+&=& \sigma^2
+\end{eqnarray}
+$$
+
+
+<p>上面最后的等式，是由于</p>
+
+$$
+\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{+\infty}e^{-\frac{y^2}{2}}dy=1
+$$
+
+
+<p>这个公式正好是当 $\mu=0$ 和 $\sigma^2=1$ 的时候的正态随机变量的概率密度函数的归一化条件，在本章习题第 14 题得以证明，截图如下：</p>
 <p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/normal-random-variable/2.png" alt="the_normal_PDF_satisfies_the_normalization_property"></p>
 <p>正态随机变量具有若干重要的性质。下面的性质尤其重要，并且将在 第四章 Further Topics<br>on Random Variables 的第一节加以证明。</p>
 <h3 id="随机变量的正态性在线性变换之下保持不变"><a href="#随机变量的正态性在线性变换之下保持不变" class="headerlink" title="随机变量的正态性在线性变换之下保持不变"></a>随机变量的正态性在线性变换之下保持不变</h3><p>设 $X$ 是正态随机变量，其均值为 $\mu$ ，方差为 $\sigma^2$ 。若 $a\ne 0$ 和 $b$ 为两个常数，则随机变量<br>$$<br>Y=aX+b<br>$$<br>仍然是正态随机变量，其均值和方差由下式定义给出：<br>$$<br>E[Y]=a\mu+b,\quad var(Y)=a^2\sigma^2<br>$$</p>
@@ -1116,8 +1139,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/08/26/cumulative_distribution_function/" rel="next" title="经典摘录-[累积]分布函数CDF">
-                <i class="fa fa-chevron-left"></i> 经典摘录-[累积]分布函数CDF
+              <a href="/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/" rel="next" title="经典摘录-分段常数概率密度函数的均值和方差">
+                <i class="fa fa-chevron-left"></i> 经典摘录-分段常数概率密度函数的均值和方差
               </a>
             
           </div>
@@ -1126,8 +1149,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/" rel="prev" title="经典摘录-分段常数概率密度函数的均值和方差">
-                经典摘录-分段常数概率密度函数的均值和方差 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/" rel="prev" title="经典摘录 - 伯努利和泊松随机变量的均值方差">
+                经典摘录 - 伯努利和泊松随机变量的均值方差 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -1353,7 +1376,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">929.9k</span>
+    <span title="Site words total count">929.1k</span>
   
 </div>
 

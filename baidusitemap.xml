@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://snaildove.github.io/2017/08/25/mean_and_variance_of_sample_and_estimating_probability_by_simulation/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/25/exponential_random_variables/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/26/mean_and_variance_of_uniform_random_variable/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/26/cumulative_distribution_function/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2019/01/01/Maximum-Likelihood-Estimation_VS_Bayes-Estimation/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
+    <loc>https://snaildove.github.io/2017/08/27/normal_random_variables/</loc>
+    <lastmod>2022-11-01</lastmod>
+  </url>
+  <url>
     <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
     <lastmod>2022-10-06</lastmod>
   </url>
@@ -85,27 +117,7 @@
     <lastmod>2022-10-06</lastmod>
   </url>
   <url>
-    <loc>https://snaildove.github.io/2017/08/27/normal_random_variables/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/08/26/mean_and_variance_of_uniform_random_variable/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
     <loc>https://snaildove.github.io/2017/08/23/mean_and_variance_of_the_geometric/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/08/25/mean_and_variance_of_sample_and_estimating_probability_by_simulation/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/</loc>
     <lastmod>2022-10-06</lastmod>
   </url>
   <url>
@@ -149,10 +161,6 @@
     <lastmod>2022-10-06</lastmod>
   </url>
   <url>
-    <loc>https://snaildove.github.io/2017/08/25/exponential_random_variables/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
     <loc>https://snaildove.github.io/2017/08/07/engineering_matrices/</loc>
     <lastmod>2022-10-06</lastmod>
   </url>
@@ -162,10 +170,6 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2015/05/01/decision_tree/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2017/08/26/cumulative_distribution_function/</loc>
     <lastmod>2022-10-06</lastmod>
   </url>
   <url>
@@ -230,10 +234,6 @@
   </url>
   <url>
     <loc>https://snaildove.github.io/2018/06/05/Neural+machine+translation+with+attention+-+v4/</loc>
-    <lastmod>2022-10-06</lastmod>
-  </url>
-  <url>
-    <loc>https://snaildove.github.io/2019/01/01/Maximum-Likelihood-Estimation_VS_Bayes-Estimation/</loc>
     <lastmod>2022-10-06</lastmod>
   </url>
   <url>

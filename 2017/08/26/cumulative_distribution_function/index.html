@@ -90,18 +90,18 @@
 
 
 
-<meta name="description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   ​分布函数（用记号 CDF">
+<meta name="description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   分布函数（用记号 CDF 表">
 <meta property="og:type" content="article">
 <meta property="og:title" content="经典摘录-[累积]分布函数CDF">
 <meta property="og:url" content="https://snaildove.github.io/2017/08/26/cumulative_distribution_function/index.html">
 <meta property="og:site_name" content="SnailDove&#39;s blog">
-<meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   ​分布函数（用记号 CDF">
+<meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   分布函数（用记号 CDF 表">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
 <meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png">
 <meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png">
 <meta property="article:published_time" content="2017-08-26T12:16:00.000Z">
-<meta property="article:modified_time" content="2022-10-06T03:45:29.687Z">
+<meta property="article:modified_time" content="2022-11-01T04:06:07.790Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
@@ -413,7 +413,7 @@
                   <span class="post-meta-item-text">Words count in article</span>
                 
                 <span title="Words count in article">
-                  3k
+                  2.3k
                 </span>
               
 
@@ -429,7 +429,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  12
+                  9
                 </span>
               
             </div>
@@ -452,7 +452,14 @@
       
         <p>说明：全文摘自 <a href="http://www.athenasc.com/probbook.html" target="_blank" rel="noopener">Introduction to probability, 2nd Edition</a></p>
 <h2 id="分布函数"><a href="#分布函数" class="headerlink" title="分布函数"></a>分布函数</h2><p>我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在<strong>希望用一个统一的数学工具去刻画随机变量的取值规律</strong>。  </p>
-<p>​<strong>分布函数</strong>（用记号 CDF 表示简称）就能完成这个任务。 $X$ 的 CDF 是一个 $x$ 的函数，对每一个 $x$ ，$F_X(x)$ 定义为 $P(X\le x)$ 。特别地，当 $X$ 为离散或连续的情况下：<br>$$<br>F_X(x)=P(X\le x)=\cases{\sum\limits_{k\le x}p_X(k), \text{若 $X$ 是离散的}\\int_{-\infty}^{x}f_X(x)dt, \text{若 $X$ 是连续的 }}<br>$$<br><strong>分布函数又称为累积分布函数（cumulative distribution function）</strong>，累积意味着 $F_X(x)$ 将 $X$ 取值的概率由 $-\infty\rightarrow x$。 </p>
+<p><strong>分布函数</strong>（用记号 CDF 表示简称）就能完成这个任务。 $X$ 的 CDF 是一个 $x$ 的函数，对每一个 $x$ ，$F_X(x)$ 定义为 $P(X\le x)$ 。特别地，当 $X$ 为离散或连续的情况下：</p>
+
+$$
+F_X(x)=P(X\le x)=\cases{\sum\limits_{k\le x}p_X(k), \text{若 $X$ 是离散的}\\\int_{-\infty}^{x}f_X(x)dt, \text{若 $X$ 是连续的 }}
+$$
+
+
+<p><strong>分布函数又称为累积分布函数（cumulative distribution function）</strong>，累积意味着 $F_X(x)$ 将 $X$ 取值的概率由 $-\infty\rightarrow x$。 </p>
 <p>在一个概率模型中，随机变量可以有不同的类型，可以是离散的，也可以是连续的，甚至可以是既非离散的也非连续的。但不管是什么类型的随机变量，它们有一个共同的特征，即都有一个分布函数，这是因为 ${X\le x}$ 是一个随机事件，这些事件的概率形成概率分布。今后，凡是通过 PMF\PDF\CDF刻画事件 ${X\le x}$ 概率的，都称为<strong>随机变量 $X$ 的概率律</strong>。因此离散情况下的分布列，连续情况下的概率密度函数以及一般情况下的分布函数都是相应的随机变量的概率律。</p>
 <p>下图分别给出不同的离散随机变量和连续随机变量的 CDF 的一些说明。从这些图像以及 CDF 的定义，可以得到 CDF 的某些性质。</p>
 <p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png" alt="Figure_3.6_CDFs_of_some_discrete_variables.png"></p>
@@ -479,16 +486,117 @@
 <p>采用间接方法求分布函数。首先计算 $X$ 的 CDF，然后通过<br>$$<br>p_X(k)=F_X(k)-F_X(k-1), i=1,\ldots,10<br>$$<br>得到 $X$ 的概率质量函数。对于 $F_X(k)$ ，得到：<br>$$<br>\begin{eqnarray}<br>F_X(k) &amp;=&amp; P(X\le k) \<br>&amp;=&amp; P(X_1\le k, X_2\le k, X_3\le k) \<br>&amp;=&amp; P(X_1\le k)P(X_2\le k)P(X_3\le k) \<br>&amp;=&amp; (\frac{k}{10})^3<br>\end{eqnarray}<br>$$<br>此处第三个等式是由事件 ${X_1\le k},{X_2\le k},{X_3\le k}$ 相互独立所致。这样 $X$ 的概率质量函数为：<br>$$<br>p_X(k)=(\frac{k}{10})^3-(\frac{k-1}{10})^3, k=1,\ldots,10<br>$$<br>本例的方法可推广到 $n$ 个随机变量 $X_1,\ldots,X_n$ 的情况。如果对每一个 $x$ ，事件 ${X_1\le x},\ldots, {X_n\le x}$ 相互独立，则 $X=max{X_1,\ldots,X_n}$ 的 CDF 为：<br>$$<br>F(x)=F_{X_1}(x)\cdots F_{X_n}(x)<br>$$<br>利用这个公式，在离散情况下通过差分可得到 $P_X(x)$ ，在连续情况下通过微分可得到 $f_X(x)$ 。</p>
 <h3 id="距离的分布函数和概率密度函数"><a href="#距离的分布函数和概率密度函数" class="headerlink" title="距离的分布函数和概率密度函数"></a>距离的分布函数和概率密度函数</h3><p>习题3.5 ：按照均匀分布律，在一个三角形中随机的选取一个点，设已知三角形的高，求这个点到底边的距离 $X$ 的分布函数和概率密度函数。</p>
 <p>用 $b$ 表示底的长度，$h$ 表示三角形的高度，$A=\frac{bh}{2}$ 表示三角形的面积。随机地在三角形内选取一个点，然后画一条平行于三角形底边的辅助直线，用 $A_x$ 表示由这条辅助线构成的小三角形的面积，那么这个小三角形的高度即 $h-x$ ，它的底边按比例求得：$b\frac{h-x}{h}$ ，因此 $A_x=\frac{b(h-x)^2}{2h}$ 。对于 $x\in [0,h]$ ，得到：<br>$$<br>F_X(x)=P(0&lt; x \le x)=1-P(X&gt;x)=1-\frac{A_x}{A}=1-\frac{\frac{b(h-x)^2}{2h}}{\frac{bh}{2}}=1-(\frac{h-x}{h})^2<br>$$<br>当 $x&lt;0,$ 那么 $F_X(x)=0$ ; 当 $x&gt;h,$ 那么 $F_X(x)=1$ 。</p>
-<p>概率密度函数可以对累积分布函数 CDF 进行求微分得到：<br>$$<br>f_X(x)=\frac{dF_X}{dx}(x)=\cases{\frac{2(h-x)}{h^2}, &amp; 当 $0\le x \le h$\0, &amp; 其他情况}<br>$$</p>
+<p>概率密度函数可以对累积分布函数 CDF 进行求微分得到：</p>
+
+$$
+f_X(x)=\frac{dF_X}{dx}(x)=\cases{\frac{2(h-x)}{h^2}, & 当 $0\le x \le h$\\0, & 其他情况}
+$$
+
+
 <h3 id="等待时间"><a href="#等待时间" class="headerlink" title="等待时间"></a>等待时间</h3><p>习题3.6 ：Jane去银行取款，有1个或0个顾客在她前面，这两种情况是等可能的。已知一个顾客的服务时间是一个指数随机变量，参数为 $\lambda$ 。那么Jane所等待的时间分布函数是？</p>
-<p>用 $X$ 表示等待的时间，用 $Y$ 表示在Jane之前顾客的数量。于是得到：$\forall x &lt;0, F_X(x)=0$ ，其他情况下，根据题意得：<br>$$<br>F_X(x)=P(X\le x)=\frac{1}{2}P(X\le x| Y=0)+\frac{1}{2}P(X\le x|Y=1)<br>$$<br>又因为<br>$$<br>P(X\le x|Y=0)=1,\quad P(X\le x|Y=1)=1-e^{-\lambda x}<br>$$<br>得到<br>$$<br>F_X(x)=\cases{\frac{1}{2}(2-e^{-\lambda x}), &amp; if $x \ge 0$ \0, &amp; 其他情况}<br>$$<br>注意：这个累积分布函数 CDF 在 $x=0$ 处连续，随机变量 $X$ 既不是离散的也不是连续的。</p>
+<p>用 $X$ 表示等待的时间，用 $Y$ 表示在Jane之前顾客的数量。于是得到：$\forall x &lt;0, F_X(x)=0$ ，其他情况下，根据题意得：</p>
+<p>$$<br>F_X(x)=P(X\le x)=\frac{1}{2}P(X\le x| Y=0)+\frac{1}{2}P(X\le x|Y=1)<br>$$</p>
+<p>又因为<br>$$<br>P(X\le x|Y=0)=1,\quad P(X\le x|Y=1)=1-e^{-\lambda x}<br>$$<br>得到</p>
+
+$$
+F_X(x)=\cases{\frac{1}{2}(2-e^{-\lambda x}), & if $x \ge 0$ \\0, & 其他情况}
+$$
+
+<p>注意：这个累积分布函数 CDF 在 $x=0$ 处连续，随机变量 $X$ 既不是离散的也不是连续的。</p>
 <h3 id="投飞标游戏"><a href="#投飞标游戏" class="headerlink" title="投飞标游戏"></a>投飞标游戏</h3><p>Alvin在进行飞镖游戏，飞镖的靶是一块半径为 r 的圆板。记 $X$ 为飞镖的落点到靶心的距离。假设落点在靶板上均匀地分布。</p>
 <p>(a) 求出 $X$ 的概率密度函数、均值和方差。</p>
-<p>$X$ 的累积分布函数比较容易求得：<br>$$<br>F_X(x)=\cases{<br>P(X\le x)=\frac{\pi x^2}{\pi r^2}=(\frac{x}{r})^2, &amp; if $\forall x\in [0,r]$\<br>0, &amp; if $x &lt; 0$\<br>1, &amp; if $x&gt;r$<br>}<br>$$<br>通过微分，得到概率密度函数：<br>$$<br>f_X(x)=\cases{<br>\frac{2x}{r^2}, &amp; if $0\le x\le r$\<br>0, &amp; otherwise<br>}<br>$$<br>进而通过积分得到：<br>$$<br>E[X]=\int_{0}^{r}\frac{2x^2}{r^2}dx=\frac{2r}{3}\<br>E[X^2]=\int_{0}{r}\frac{2x^3}{r^2}dx=\frac{r^2}{2}\<br>var(X)=E[X^2]-(E[X])^2=\frac{r^2}{2}-\frac{4r^2}{9}=\frac{r^2}{18}<br>$$<br>(b) 靶上画出了一个半径为 $t$ 的同心圆。若 $X\le t$ ，Alvin的得分为 $S=\frac{1}{X}$ ，其他情况 $S=0$ 。求出 $S$ 的分布函数。 $S$ 是不是连续随机变量？</p>
-<p>由题意得：当且仅当 $X\le t$ ，Alvin 获得一个介于 $[\frac{1}{t}, +\infty)$ 的分数s，其它情况下，他的得分为 0 。因此：<br>$$<br>F_S(s)=\cases{<br>0, \quad \text{if $s&lt;0$}\<br>P(S\le s)=1-P(X\le t), \quad \text{if $0\le s\le \frac{1}{t}$  (即Alvin击中了内圆之外)} \<br>P(S\le s)=P(X\le t)P(S\le s|X\le t)+P(X&gt;t)P(S\le s|X&gt;t) \quad \text{if $s &gt; \frac{1}{t}$}<br>}<br>$$<br>根据题意，得到：<br>$$<br>P(X\le t)=\frac{t^2}{r^2},\quad P(X&gt;t)=1-\frac{t^2}{r^2}<br>$$<br>而且因为当 $X&gt;t, S=0$ ， 所以 $P(S\le s|X&gt; t)=1$ 。</p>
-<p>进而得到：<br>$$<br>P(S\le s| X\le t)=P(\frac{1}{X}\le s|X\le t)=P(\frac{1}{s}\le X|X\le t) = \frac{P(\frac{1}{s}\le X \le t)}{P(X\le t)} =\frac{\frac{\pi t^2 -\pi(\frac{1}{s})^2}{\pi r^2}}{\frac{\pi t^2}{\pi r^2}}=1-\frac{1}{s^2t^2}<br>$$<br>最后得到：<br>$$<br>F_S(s)=\cases{<br>    0, &amp; \text{if }s&lt;0 \<br>    1-\frac{t^2}{r^2}, &amp; \text{if } 0\le s \le \frac{1}{t}\<br>    1-\frac{1}{s^2r^2} &amp; \text{if } \frac{1}{t}&lt;s<br>}<br>$$<br>因为 $F_S(s)$ 在 $s=0$ 处不连续，所以随机变量 $S$ 不是连续的。</p>
+<p>$X$ 的累积分布函数比较容易求得：</p>
+
+$$
+F_X(x)=\cases{
+P(X\le x)=\frac{\pi x^2}{\pi r^2}=(\frac{x}{r})^2, & if $\forall x\in [0,r]$\\
+0, & if $x < 0$\\
+1, & if $x>r$
+}
+$$
+
+<p>通过微分，得到概率密度函数：</p>
+
+$$
+f_X(x)=\cases{
+\frac{2x}{r^2}, & if $0\le x\le r$\\
+0, & otherwise
+}
+$$
+
+<p>进而通过积分得到：</p>
+
+$$
+E[X]=\int_{0}^{r}\frac{2x^2}{r^2}dx=\frac{2r}{3}\\
+E[X^2]=\int_{0}{r}\frac{2x^3}{r^2}dx=\frac{r^2}{2}\\
+var(X)=E[X^2]-(E[X])^2=\frac{r^2}{2}-\frac{4r^2}{9}=\frac{r^2}{18}
+$$
+
+<p>(b) 靶上画出了一个半径为 $t$ 的同心圆。若 $X\le t$ ，Alvin的得分为 $S=\frac{1}{X}$ ，其他情况 $S=0$ 。求出 $S$ 的分布函数。 $S$ 是不是连续随机变量？</p>
+<p>由题意得：当且仅当 $X\le t$ ，Alvin 获得一个介于 $[\frac{1}{t}, +\infty)$ 的分数s，其它情况下，他的得分为 0 。因此：</p>
+
+$$
+F_S(s)=\cases{ 
+0, \quad \text{if $s<0$}\\
+P(S\le s)=1-P(X\le t), \quad \text{if $0\le s\le \frac{1}{t}$ (即Alvin击中了内圆之外)} \\
+P(S\le s)=P(X\le t)P(S\le s|X\le t)+P(X>t)P(S\le s|X>t), \quad \text{if $s > \frac{1}{t}$}
+}
+$$
+
+<p>根据题意，得到：</p>
+
+$$
+P(X\le t)=\frac{t^2}{r^2},\quad P(X>t)=1-\frac{t^2}{r^2}
+$$
+
+<p>而且因为当 $X&gt;t, S=0$ ， 所以 $P(S\le s|X&gt; t)=1$ 。</p>
+<p>进而得到：</p>
+
+$$
+P(S\le s| X\le t)=P(\frac{1}{X}\le s|X\le t)=P(\frac{1}{s}\le X|X\le t) = \frac{P(\frac{1}{s}\le X \le t)}{P(X\le t)} =\frac{\frac{\pi t^2 -\pi(\frac{1}{s})^2}{\pi r^2}}{\frac{\pi t^2}{\pi r^2}}=1-\frac{1}{s^2t^2}
+$$
+
+
+<p>最后得到：</p>
+
+$$
+F_S(s)=\cases{
+    0, \quad \text{if $s<0$} \\
+    1-\frac{t^2}{r^2}, \quad \text{if } 0\le s < \frac{1}{t}\\
+    1-\frac{1}{s^2r^2}, \quad \text{if $\frac{1}{t} < s$} 
+}
+$$
+
+
+<p>因为 $F_S(s)$ 在 $s=0$ 处不连续，所以随机变量 $S$ 不是连续的。</p>
 <h2 id="几何和指数随机变量的分布函数"><a href="#几何和指数随机变量的分布函数" class="headerlink" title="几何和指数随机变量的分布函数"></a>几何和指数随机变量的分布函数</h2><p><strong>由于分布函数对一切随机变量都适用，可以利用它来探索离散和连续随机变量之间的关系</strong>。特别地，此处讨论几何随机变量和指数随机变量之间的关系。</p>
-<p>设 $X$ 是一个几何随机变量，其参数为 $p$ ，即 $X$ 是在伯努利独立试验序列中直到第一次成功所需要的试验次数，而伯努利试验的参数为 $p$ 。这样对于 $k=1,2\cdots,$  得到 $P(X=k)=p(1-p)^{k-1}$ ，而 $X$ 的 CDF 为：<br>$$<br>F_{geo}(n)=\sum\limits_{k=1}^{n}p(1-p)^{k-1}=p\frac{1-(1-p)^n}{1-(1-p)}=1-(1-p)^n,\quad n=1,2,\cdots<br>$$<br>现在设 $X$ 是一个指数随机变量，其参数 $\lambda&gt;0$ 。其 CDF 是<br>$$<br>F_{exp}(x)=P(X\le x)=0,\quad x\le 0\<br>F_{exp}(x)=\int_{0}^{x}\lambda e^{-\lambda t}dt=-e^{-\lambda t}|^{x}<em>{0}=1-e^{-\lambda x},\quad x&gt;0<br>$$<br>现在比较两个分布函数，令 $\delta=\frac{-ln(1-p)}{\lambda}\rightarrow \delta\lambda=-ln(1 - p)$ ，这样得到：<br>$$<br>e^{-\lambda\delta}=1-p \quad (*)<br>$$<br>那么，将 $(*)​$ 代入 $F</em>{geo}(n)​$ 得：$1-(e^{-\lambda\delta})^n=1-e^{-n\lambda\delta}​$ ，而分布函数 $F_{exp}​$ 在 $x=n\delta​$ 处为： $1-e^{-\lambda n\delta}=1-e^{-n\lambda\delta}​$ 是与 $F_{geo}​$ 在 $n​$ 处相等的，$n=1,2,\cdots​$ ，即：<br>$$<br>F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots<br>$$<br>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
+<p>设 $X$ 是一个几何随机变量，其参数为 $p$ ，即 $X$ 是在伯努利独立试验序列中直到第一次成功所需要的试验次数，而伯努利试验的参数为 $p$ 。这样对于 $k=1,2\cdots,$  得到<br>$P(X=k)=p(1-p)^{k-1}$ ，而 $X$ 的 CDF 为：</p>
+
+$$
+F_{geo}(n)=\sum\limits_{k=1}^{n}p(1-p)^{k-1}=p\frac{1-(1-p)^n}{1-(1-p)}=1-(1-p)^n,\quad n=1,2,\cdots
+$$
+
+
+<p>现在设 $X$ 是一个指数随机变量，其参数 $\lambda&gt;0$ 。其 CDF 是</p>
+
+$$
+F_{exp}(x)=P(X\le x)=0,\quad x\le 0\\
+F_{exp}(x)=\int_{0}^{x}\lambda e^{-\lambda t}dt=-e^{-\lambda t}|^{x}_{0}=1-e^{-\lambda x},\quad x>0
+$$
+
+<p>现在比较两个分布函数，令 $\delta=\frac{-ln(1-p)}{\lambda}\rightarrow \delta\lambda=-ln(1 - p)$ ，这样得到：</p>
+
+$$
+e^{-\lambda\delta}=1-p \quad (*)
+$$
+
+<p>那么，将 $(*)$ 代入 $F_{geo}(n)$ 得：$1-(e^{-\lambda\delta})^n=1-e^{-n\lambda\delta}$ ，而分布函数 $F_{exp}$ 在 $x=n\delta$ 处为： $1-e^{-\lambda n\delta}=1-e^{-n\lambda\delta}$ 是与 $F_{geo}$ 在 $n$ 处相等的，$n=1,2,\cdots$ ，即：</p>
+
+$$
+F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots
+$$
+
+<p>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
 <p>几何随机变量和指数随机变量的分布函数之间的关系。图中离散分布函数为 $X\delta$ 的分布函数，$X$ 是参数为 $p=1-e^{-\lambda x}$ 的几何随机变量。当 $\delta\rightarrow 0$ 时，$X\delta$ 的分布函数趋于指数分布函数 $1-e^{-\lambda x}$ 。</p>
 
       
@@ -587,8 +695,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2017/08/27/normal_random_variables/" rel="prev" title="经典摘录-正态随机变量">
-                经典摘录-正态随机变量 <i class="fa fa-chevron-right"></i>
+              <a href="/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/" rel="prev" title="经典摘录-分段常数概率密度函数的均值和方差">
+                经典摘录-分段常数概率密度函数的均值和方差 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -814,7 +922,7 @@
     
       <span class="post-meta-item-text">Site words total count</span>
     
-    <span title="Site words total count">929.9k</span>
+    <span title="Site words total count">929.1k</span>
   
 </div>
 

@@ -2,6 +2,62 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://snaildove.github.io/2017/08/25/mean_and_variance_of_sample_and_estimating_probability_by_simulation/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/25/exponential_random_variables/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/26/mean_and_variance_of_uniform_random_variable/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/26/cumulative_distribution_function/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2019/01/01/Maximum-Likelihood-Estimation_VS_Bayes-Estimation/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/2017/08/27/normal_random_variables/</loc>
+    
+    <lastmod>2022-11-01</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</loc>
     
     <lastmod>2022-10-06</lastmod>
@@ -149,42 +205,7 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/2017/08/27/normal_random_variables/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/26/mean_and_variance_of_uniform_random_variable/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/2017/08/23/mean_and_variance_of_the_geometric/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/25/mean_and_variance_of_sample_and_estimating_probability_by_simulation/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/27/mean_and_variance_of_a_piecewise_constant_PDF/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/28/mean_and_variance_of_Bernoulli_and_Possion_random/</loc>
     
     <lastmod>2022-10-06</lastmod>
     
@@ -261,13 +282,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/2017/08/25/exponential_random_variables/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/2017/08/07/engineering_matrices/</loc>
     
     <lastmod>2022-10-06</lastmod>
@@ -283,13 +297,6 @@
   
   <url>
     <loc>https://snaildove.github.io/2015/05/01/decision_tree/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2017/08/26/cumulative_distribution_function/</loc>
     
     <lastmod>2022-10-06</lastmod>
     
@@ -402,13 +409,6 @@
   
   <url>
     <loc>https://snaildove.github.io/2018/06/05/Neural+machine+translation+with+attention+-+v4/</loc>
-    
-    <lastmod>2022-10-06</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/2019/01/01/Maximum-Likelihood-Estimation_VS_Bayes-Estimation/</loc>
     
     <lastmod>2022-10-06</lastmod>
     
@@ -1019,260 +1019,260 @@
 
   <url>
     <loc>https://snaildove.github.io/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   
   <url>
-    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/Spark/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/linux/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/deep-learning/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Machine-Learning/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Hadoop-YARN/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Distributed-System/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/probability/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/Calculus-and-Differential/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/probability/</loc>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Calculus-and-Differential/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/nlp-sequence-models/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Spark/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/linear-algebra/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Redis/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/distributed-compute/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Big-Data/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Estimate/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Information-Theory/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Python-Data-Science-Cookbook/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/NLP/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/kaggle/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/NLP/</loc>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/distributed-system/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/java/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/english/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/hexo/</loc>
-    <lastmod>2022-10-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/XGBoost/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Data-Structure/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Structuring-Machine-Learning-Projects/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Machine-Learning-by-Andrew-NG/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/linux/</loc>
+    <lastmod>2022-11-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/Latex/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/papers/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/tags/google/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -1280,22 +1280,22 @@
 
   
   <url>
-    <loc>https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <loc>https://snaildove.github.io/categories/English/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/categories/English/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <loc>https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/</loc>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://snaildove.github.io/categories/English-%E4%B8%AD%E6%96%87/</loc>
-    <lastmod>2022-10-10</lastmod>
+    <lastmod>2022-11-01</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
