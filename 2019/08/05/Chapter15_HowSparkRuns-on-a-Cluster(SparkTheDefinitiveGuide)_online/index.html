@@ -97,18 +97,18 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 15 How Spark Runs on a Cluster Spark如何在集群上的运行译者：https:&#x2F;&#x2F;snaildove.github.io Thus far in the book, we focused on Spark’s properties as a programming interface. We have discussed how the struc">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566492359588.png">
-<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494008338.png">
-<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494720815.png">
-<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495102805.png">
-<meta property="og:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495233939.png">
+<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566492359588.png">
+<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494008338.png">
+<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494720815.png">
+<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495102805.png">
+<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495233939.png">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-10-06T03:45:29.409Z">
+<meta property="article:modified_time" content="2022-11-05T15:26:45.868Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -453,7 +453,7 @@
       
 
       
-        <img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-15-How-Spark-Runs-on-a-Cluster-Spark如何在集群上的运行"><a href="#Chapter-15-How-Spark-Runs-on-a-Cluster-Spark如何在集群上的运行" class="headerlink" title="Chapter 15 How Spark Runs on a Cluster Spark如何在集群上的运行"></a>Chapter 15 How Spark Runs on a Cluster Spark如何在集群上的运行</h1><center><strong>译者</strong>：<u><a style="color:#0879e3" href="https://snaildove.github.io">https://snaildove.github.io</a></u></center>
 Thus far in the book, we focused on Spark’s properties as a programming interface. We have discussed how the structured APIs take a logical operation, break it up into a logical plan, and convert that to a physical plan that actually consists of Resilient Distributed Dataset (RDD) operations that execute across the cluster of machines. This chapter focuses on what happens when Spark goes about executing that code. We discuss this in an implementation-agnostic way—this depends on neither the cluster manager that you’re using nor the code that you’re running. At the end of the day, all Spark code runs the same way.
@@ -488,7 +488,7 @@ This chapter covers several key topics:
 <p><strong>The cluster manager 集群管理员</strong></p>
 <p>The Spark Driver and Executors do not exist in a void, and this is where the cluster manager comes in. The cluster manager is responsible for maintaining a cluster of machines that will run your Spark Application(s). Somewhat confusingly, a cluster manager will have its own “driver” (sometimes called master) and “worker” abstractions. The core difference is that these are tied to physical machines rather than processes (as they are in Spark). Figure 15-1 shows a basic cluster setup. The machine on the left of the illustration is the <em>Cluster Manager Driver Node</em>. The circles represent daemon processes running on and managing each of the individual worker nodes. There is no Spark Application running as of yet—these are just the processes from the cluster manager.</p>
 <p>Spark驱动程序和执行器不存在于一个空间，这就是集群管理器所处的位置。集群管理器负责维护运行Spark应用程序的机器集群。有些令人困惑的是，集群管理器将有自己的“驱动程序（driver）”（有时称为master）和“工作者（worker）”的抽象结构。核心区别在于，它们与物理机器而不是进程（如 Spark 中的进程）联系在一起。 图15-1显示了一个基本的集群设置。图左侧的机器是群集管理器驱动程序节点。圆圈表示运行在每个工作节点上并管理每个工作节点的守护进程。到目前为止还没有运行spark应用程序，这些只是来自集群管理器的进程。</p>
-![1566491986663](http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566491986663.png)
+![1566491986663](http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566491986663.png)
 
 <p>When it comes time to actually run a Spark Application, we request resources from the cluster manager to run it. Depending on how our application is configured, this can include a place to run the Spark driver or might be just resources for the executors for our Spark Application. Over the course of Spark Application execution, the cluster manager will be responsible for managing the underlying machines that our application is running on.</p>
 <p>在实际运行Spark应用程序时，我们从集群管理器请求资源来运行它。根据应用程序的配置方式，这可能包括一个运行Spark驱动程序的位置，或者可能只是Spark应用程序的执行者的资源。在Spark应用程序执行过程中，集群管理员将负责管理应用程序运行的底层机器。</p>
@@ -506,10 +506,10 @@ This chapter covers several key topics:
 <p>我们将使用图15-1作为模板详细介绍每种方法。在下面的部分中，带实心边框的矩形表示 Spark 驱动程序进程，而带虚线边框的矩形表示执行程序进程。</p>
 <h4 id="Cluster-mode-集群模式"><a href="#Cluster-mode-集群模式" class="headerlink" title="Cluster mode 集群模式"></a><font style="color:#3399cc">Cluster mode 集群模式</font></h4><p>Cluster mode is probably the most common way of running Spark Applications. In cluster mode, a user submits a pre-compiled JAR, Python script, or R script to a cluster manager. The cluster manager then launches the driver process on a worker node inside the cluster, in addition to the executor processes. This means that the cluster manager is responsible for maintaining all Spark Application–related processes. Figure 15-2 shows that the cluster manager placed our driver on a worker node and the executors on other worker nodes.</p>
 <p>集群模式可能是运行Spark应用程序的最常见方式。在集群模式下，用户向集群管理器提交预编译的JAR、Python脚本或R脚本。然后，除了执行器进程之外，集群管理员在集群内的工作节点上启动驱动程序进程。这意味着集群管理员负责维护所有与Spark应用程序相关的流程。图15-2显示集群管理器将我们的驱动程序放在一个工作节点上，而执行器放在其他工作节点上。 </p>
-<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566492359588.png" alt="1566492359588"></p>
+<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566492359588.png" alt="1566492359588"></p>
 <h4 id="Client-mode-客户端模式"><a href="#Client-mode-客户端模式" class="headerlink" title="Client mode 客户端模式"></a><font style="color:#3399cc">Client mode 客户端模式</font></h4><p>Client mode is nearly the same as cluster mode except that the Spark driver remains on the client machine that submitted the application. This means that the client machine is responsible for maintaining the Spark driver process, and the cluster manager maintains the executor processses. In Figure 15-3, we are running the Spark Application from a machine that is not colocated on the cluster. These machines are commonly referred to as gateway machines or edge nodes. In Figure 15-3, you can see that the driver is running on a machine outside of the cluster but that the workers are located on machines in the cluster. </p>
 <p>客户端模式与集群模式几乎相同，只是Spark驱动程序保留在提交应用程序的客户端上。这意味着客户端负责维护Spark 驱动程序进程，集群管理员维护执行器进程。在图15-3中，我们运行的Spark应用程序来自一台未在集群上并置的机器。这些机器通常被称为网关机器或边缘节点。在图15-3中，您可以看到驱动程序（driver）在集群外部的一台机器上运行，但工作人员（worker）位于集群中的机器上。</p>
-![1566493012713](http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566493012713.png)
+![1566493012713](http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566493012713.png)
 
 <h4 id="Local-mode-本地模式"><a href="#Local-mode-本地模式" class="headerlink" title="Local mode 本地模式"></a><font style="color:#3399cc">Local mode 本地模式</font></h4><p>Local mode is a significant departure from the previous two modes: it runs the entire Spark Application on a single machine. It achieves parallelism through threads on that single machine. This is a common way to learn Spark, to test your applications, or experiment iteratively with local development. However, we do not recommend using local mode for running production applications.</p>
 <p>本地模式与前两种模式有很大的不同：它在一台机器上运行整个Spark应用程序。它通过单个机器上的线程实现并行性。这是学习Spark、测试应用程序或使用本地开发进行迭代实验的常用方法。但是，我们不建议在运行生产应用程序时使用本地模式。</p>
@@ -523,7 +523,7 @@ This section also makes use of illustrations and follows the same notation that 
 <hr>
 <h3 id="Client-Request-客户端请求"><a href="#Client-Request-客户端请求" class="headerlink" title="Client Request 客户端请求"></a><font style="color:#000000">Client Request 客户端请求</font></h3><p>The first step is for you to submit an actual application. This will be a pre-compiled JAR or library. At this point, you are executing code on your local machine and you’re going to make a request to the cluster manager driver node (Figure 15-4). Here, we are explicitly asking for resources for the <em>Spark driver process</em> only. We assume that the cluster manager accepts this offer and places the driver onto a node in the cluster. The client process that submitted the original job exits and the application is off and running on the cluster.</p>
 <p>第一步是提交实际的申请。这将是一个预编译的 JAR 或库。此时，您正在本地计算机上执行代码，并将向集群管理员驱动程序节点发出请求（图15-4）。这里，我们明确地要求只为 Spark 驱动程序进程提供资源。我们假设集群管理员接受这个提议，并将驱动程序放在集群中的一个节点上。提交原始作业的客户端进程退出，应用程序在集群上关闭并运行。</p>
-<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494008338.png" alt="1566494008338"></p>
+<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494008338.png" alt="1566494008338"></p>
 <p>To do this, you’ll run something like the following command in your terminal:</p>
 <p>为此，您将在终端中运行如下命令：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.&#x2F;bin&#x2F;spark-submit \</span><br><span class="line">--class &lt;main-class&gt; \</span><br><span class="line">--master &lt;master-url&gt; \</span><br><span class="line">--deploy-mode cluster \</span><br><span class="line">--conf &lt;key&gt;&#x3D;&lt;value&gt; \</span><br><span class="line">... # other options</span><br><span class="line">&lt;application-jar&gt; \</span><br><span class="line">[application-arguments]</span><br></pre></td></tr></table></figure>
@@ -531,15 +531,15 @@ This section also makes use of illustrations and follows the same notation that 
 <h3 id="Launch-启动（应用程序）"><a href="#Launch-启动（应用程序）" class="headerlink" title="Launch 启动（应用程序）"></a><font style="color:#000000">Launch 启动（应用程序）</font></h3><p>Now that the driver process has been placed on the cluster, it begins running user code (Figure 15-5). This code must include a <font face="constant-width" color="#000000" size=3>SparkSession</font> that initializes a Spark cluster (e.g., driver + executors). The <font face="constant-width" color="#000000" size=3>SparkSession</font> will subsequently communicate with the cluster manager (the darker line), asking it to launch Spark executor processes across the cluster (the lighter lines). The number of executors and their relevant configurations are set by the user via the command-line arguments in the original <font face="constant-width" color="#000000" size=3>spark-submit</font> call.</p>
 现在驱动程序进程已经放置在集群上，它开始运行用户代码（图15-5）。此代码必须包含初始化 Spark 集群的SparkSession（例如，驱动程序+执行器）。SparkSession 随后将与集群管理器（较暗的线）通信，要求它在集群中启动 Spark executor进程（较亮的线）。执行器（executor）的数量及其相关配置由用户通过原始 spark-submit 调用中的命令行参数设置。
 
-<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494720815.png" alt="1566494720815"></p>
+<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566494720815.png" alt="1566494720815"></p>
 <p>The cluster manager responds by launching the executor processes (assuming all goes well) and sends the relevant information about their locations to the driver process. After everything is hooked upcorrectly, we have a “Spark Cluster” as you likely think of it today.</p>
 <p>集群管理器通过启动执行器进程（假设一切正常）进行响应，并将有关其位置的相关信息发送到驱动程序进程。在所有的东西都连接正确之后，我们就有了一个“Spark 集群”，就像你今天想象的那样。</p>
 <h3 id="Execution-执行"><a href="#Execution-执行" class="headerlink" title="Execution 执行"></a><font style="color:#000000">Execution 执行</font></h3><p>Now that we have a “Spark Cluster,” Spark goes about its merry way executing code, as shown in Figure 15-6. The driver and the workers communicate among themselves, executing code and moving data around. The driver schedules tasks onto each worker, and each worker responds with the status of those tasks and success or failure. (We cover these details shortly.)</p>
 <p>既然我们有了一个“Spark 集群”，Spark就会以一种愉快的方式执行代码，如图15-6所示。驱动程序和工作人员（workers ）之间进行通信，执行代码并移动数据。驱动程序将任务调度到每个工作人员（workers ）身上，每个工作人员对这些任务的状态以及成功或失败作出响应。（我们将很快介绍这些细节。）</p>
-<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495102805.png" alt="1566495102805"></p>
+<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495102805.png" alt="1566495102805"></p>
 <h3 id="Completion-完成"><a href="#Completion-完成" class="headerlink" title="Completion 完成"></a><font color="#000000" >Completion 完成</font></h3><p>After a Spark Application completes, the driver processs exits with either success or failure (Figure 15-7). The cluster manager then shuts down the executors in that Spark cluster for the driver. At this point, you can see the success or failure of the Spark Application by asking the cluster manager for this information.</p>
 <p>Spark应用程序完成后，驱动程序进程以成功或失败退出（图15-7）。然后，集群管理员为驱动程序关闭该 Spark 集群中的执行器。此时，通过向集群管理器询问这些信息，您可以看到 Spark 应用程序的成功或失败。</p>
-<p><img src="http://rjbb1mw2m.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495233939.png" alt="1566495233939"></p>
+<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter15/1566495233939.png" alt="1566495233939"></p>
 <h2 id="The-Life-Cycle-of-a-Spark-Application-Inside-Spark-Spark应用程序的生命周期（Spark内部）"><a href="#The-Life-Cycle-of-a-Spark-Application-Inside-Spark-Spark应用程序的生命周期（Spark内部）" class="headerlink" title="The Life Cycle of a Spark Application (Inside Spark) Spark应用程序的生命周期（Spark内部）"></a><font style="color:#9a161a">The Life Cycle of a Spark Application (Inside Spark) Spark应用程序的生命周期（Spark内部）</font></h2><p>We just examined the life cycle of a Spark Application outside of user code (basically the infrastructure that supports Spark), but it’s arguably more important to talk about what happens within Spark when you run an application. This is “user-code” (the actual code that you write that defines your Spark Application). Each application is made up of one or more Spark jobs. Spark jobs within an application are executed serially (unless you use threading to launch multiple actions in parallel).</p>
 <p>我们刚刚研究了 Spark 应用程序在用户代码之外的生命周期（基本上是支持 Spark 的基础设施），但是讨论运行应用程序时 Spark 内发生的事情可能更重要。这是“用户代码”（定义 Spark 应用程序的实际代码）。每个应用程序由一个或多个 Spark 作业组成。应用程序中的 Spark 作业是串行执行的（除非使用线程并行启动多个操作）。</p>
 ### <font style="color:#000000">The SparkSession</font>
