@@ -97,14 +97,14 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 19 Performance Tuning 性能调优Chapter 18 covered the Spark user interface (UI) and basic first-aid for your Spark Application. Using the tools outlined in that chapter, you should be able to ens">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter19/1564413229643.png">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter19/1564413229643.png">
 <meta property="article:published_time" content="2019-08-12T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-05T15:26:45.899Z">
+<meta property="article:modified_time" content="2022-12-27T14:22:42.381Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -449,7 +449,7 @@
       
 
       
-        <img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-19-Performance-Tuning-性能调优"><a href="#Chapter-19-Performance-Tuning-性能调优" class="headerlink" title="Chapter 19 Performance Tuning 性能调优"></a>Chapter 19 Performance Tuning 性能调优</h1><p>Chapter 18 covered the Spark user interface (UI) and basic first-aid for your Spark Application. Using the tools outlined in that chapter, you should be able to ensure that your jobs run reliably. However, sometimes you’ll also need them to run faster or more efficiently for a variety of reasons. That’s what this chapter is about. Here, we present a discussion of some of the performance choices that are available to make your jobs run faster.</p>
 <p>第18章介绍了Spark用户界面（UI）和 Spark应用程序的基本急救。使用这一章中概述的工具，您应该能够确保工作可靠地运行。但是，有时出于各种原因，您还需要它们更快或更高效地运行。这就是本章的内容。在这里，我们将讨论一些性能选择，这些选择可以使您的工作运行得更快。</p>
@@ -604,7 +604,7 @@
 <p>图19-1给出了该过程的简单说明。</p>
 <p>We load an initial DataFrame from a CSV file and then derive some new DataFrames from it using transformations. We can avoid having to recompute the original DataFrame (i.e., load and parse the CSV file) many times by adding a line to cache it along the way.</p>
 <p>我们从csv文件加载一个初始数据帧，然后使用转换从中派生一些新的数据帧。我们可以避免多次重新计算原始数据帧（即加载和解析csv文件），方法是添加一行缓存它。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter19/1564413229643.png" alt="1564413229643"></p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter19/1564413229643.png" alt="1564413229643"></p>
 <p>Now let’s walk through the code:</p>
 <p>现在让我们完整地学习一个代码：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># in Python</span></span><br><span class="line"><span class="comment"># Original loading code that does *not* cache DataFrame</span></span><br><span class="line">DF1 = spark.read.format(<span class="string">"csv"</span>)\</span><br><span class="line">.option(<span class="string">"inferSchema"</span>, <span class="string">"true"</span>)\</span><br><span class="line">.option(<span class="string">"header"</span>, <span class="string">"true"</span>)\</span><br><span class="line">.load(<span class="string">"/data/flight-data/csv/2015-summary.csv"</span>)</span><br><span class="line">DF2 = DF1.groupBy(<span class="string">"DEST_COUNTRY_NAME"</span>).count().collect()</span><br><span class="line">DF3 = DF1.groupBy(<span class="string">"ORIGIN_COUNTRY_NAME"</span>).count().collect()</span><br><span class="line">DF4 = DF1.groupBy(<span class="string">"count"</span>).count().collect()</span><br></pre></td></tr></table></figure>

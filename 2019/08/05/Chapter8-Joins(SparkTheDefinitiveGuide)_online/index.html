@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 8. Joins 连接译者：https:&#x2F;&#x2F;snaildove.github.io  Chapter 7 covered aggregating single datasets, which is helpful, but more often than not, your Spark applications are going to bring together a lar">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg">
 <meta property="article:published_time" content="2019-08-04T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-05T15:26:45.989Z">
+<meta property="article:modified_time" content="2022-12-27T14:22:42.486Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -450,7 +450,7 @@
       
 
       
-        <img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-8-Joins-连接"><a href="#Chapter-8-Joins-连接" class="headerlink" title="Chapter 8. Joins 连接"></a>Chapter 8. Joins 连接</h1><center><strong>译者</strong>：<u><a style="color:#0879e3" href="https://snaildove.github.io">https://snaildove.github.io</a></u></center>
 
@@ -1089,14 +1089,14 @@ You should use cross-joins only if you are absolutely, 100 percent sure that thi
 <p>我们简化的连接视图的核心基础是，在Spark中，您将有一个大表或一个小表。尽管这显然是一个范围（如果您有“中型表”，事情的发生会有所不同），但是为了便于说明，将其区分成2个范围可能会有所帮助。</p>
 <h4 id="Big-table–to–big-table-大表与大表的连接"><a href="#Big-table–to–big-table-大表与大表的连接" class="headerlink" title="Big table–to–big table 大表与大表的连接"></a><font color="#3399cc">Big table–to–big table 大表与大表的连接</font></h4><p>When you join a big table to another big table, you end up with a shuffle join, such as that illustrates in Figure 8-1. </p>
 <p>当将一个大表连接到另一个大表时，最终将进行随机组合，如图8-1所示。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg" alt="1572709612960"> </p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.1-JoiningTwoBigTables.jpg" alt="1572709612960"> </p>
 <p>In a shuffle join, every node talks to every other node and they share data according to which node has a certain key or set of keys (on which you are joining). These joins are expensive because the network can become congested with traffic, especially if your data is not partitioned well. </p>
 <p>在数据再分配连接中，每个节点都与其他每个节点通信，并根据哪个节点具有某个键或一组键（要加入的键）共享数据。这些连接代价非常高，因为网络可能会变得拥塞，特别是如果您的数据没有很好地分区的时候。</p>
 <p>This join describes taking a big table of data and joining it to another big table of data. An example of this might be a company that receives billions of messages every day from the Internet of Things, and needs to identify the day-over-day changes that have occurred. The way to do this is by joining on deviceId, messageType, and date in one column, and date - 1 day in the other column. In Figure 8-1, DataFrame 1 and DataFrame 2 are both large DataFrames. This means that all worker nodes (and potentially every partition) will need to communicate with one another during the entire join process (with no intelligent partitioning of data).</p>
 <p>此连接描述获取一个大数据表并将其连接到另一个大数据表。例如，一家公司每天从物联网接收数十亿条消息，并且需要确定每天发生的变化，这就是一个例子。要做到这一点，方法是在一列中加入deviceId，messageType和date，在另一列中加入date-1天。在图8-1中，DataFrame 1和DataFrame 2都是大型DataFrame。这意味着所有工作节点（以及可能的每个分区）在整个连接过程中都需要相互通信（没有智能分区数据）。</p>
 <h4 id="Big-table–to–small-table-大表连接小表"><a href="#Big-table–to–small-table-大表连接小表" class="headerlink" title="Big table–to–small table 大表连接小表"></a><font color="#3399cc">Big table–to–small table 大表连接小表</font></h4><p>When the table is small enough to fit into the memory of a single worker node, with some breathing room of course, we can optimize our join. Although we can use a big table–to–big table communication strategy, it can often be more efficient to use a broadcast join. What this means is that we will replicate our small DataFrame onto every worker node in the cluster (be it located on one machine or many). Now this sounds expensive. However, what this does is prevent us from performing the all-to-all communication during the entire join process. Instead, we perform it only once at the beginning and then let each individual worker node perform the work without having to wait or communicate with any other worker node, as is depicted in Figure 8-2. </p>
 <p>当表足够小到融入单个工作节点的内存时，当然还有一些喘息的空间，我们可以优化连接。尽管我们可以使用大表对大表的通信策略，但使用广播连接通常会更有效。这意味着我们将把小型DataFrame复制到集群中的每个工作节点上（无论它位于一台计算机上还是多台计算机上）。现在听起来代价很高。但是，这样做会阻止我们在整个连接过程中执行所有节点之间相互的通信。相反，我们仅在开始时执行一次，然后让每个单独的工作程序节点执行工作，而不必等待或与任何其他工作程序节点通信，如图8-2所示。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg" alt="1572709687893"></p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter8/Figure8.2-ABroadcastJoin.jpg" alt="1572709687893"></p>
 <p>At the beginning of this join will be a large communication, just like in the previous type of join. However, immediately after that first, there will be no further communication between nodes. This means that joins will be performed on every single node individually, making CPU the biggest bottleneck. For our current set of data, we can see that Spark has automatically set this up as a broadcast join by looking at the explain plan: </p>
 <p>与以前的连接类型一样，此连接的开始将进行大量通信。但是，紧接在那之后，节点之间将不再有进一步的通信。这意味着连接将在每个单个节点上单独执行，这使CPU成为最大的瓶颈。对于我们当前的数据集，我们可以通过查看解释计划来看到Spark已<strong>自动</strong>将其设置为广播连接：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">val</span> joinExpr = person.col(<span class="string">"graduate_program"</span>) === graduateProgram.col(<span class="string">"id"</span>)</span><br><span class="line">person.join(graduateProgram, joinExpr).explain()</span><br></pre></td></tr></table></figure>
@@ -1216,8 +1216,8 @@ You should use cross-joins only if you are absolutely, 100 percent sure that thi
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/08/05/Chapter7_Aggregations(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 7. Aggregations">
-                翻译 Chapter 7. Aggregations <i class="fa fa-chevron-right"></i>
+              <a href="/2019/08/05/Chapter4_StructuredAPIOverview(SparkTheDefinitiveGuide)_online/" rel="prev" title="翻译 Chapter 4 Structured API Overview">
+                翻译 Chapter 4 Structured API Overview <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>

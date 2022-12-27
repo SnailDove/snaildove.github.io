@@ -97,17 +97,17 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="Chapter 22 Event-Time and Stateful ProcessingChapter 21 covered the core concepts and basic APIs; this chapter dives into event-time and stateful processing. Event-time processing is a hot topic bec">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565188361752.png">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565255555140.png">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565276939426.png">
-<meta property="og:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565279336906.png">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565188361752.png">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565255555140.png">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565276939426.png">
+<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565279336906.png">
 <meta property="article:published_time" content="2019-07-27T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-11-05T15:26:45.923Z">
+<meta property="article:modified_time" content="2022-12-27T14:22:42.404Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Spark">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
+<meta name="twitter:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark%E6%9D%83%E5%A8%81%E6%8C%87%E5%8D%97%E5%B0%81%E9%9D%A2.jpg">
 
 
 
@@ -452,7 +452,7 @@
       
 
       
-        <img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
+        <img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Spark权威指南封面.jpg" alt="1" style="zoom:68%;"/>
 
 <h1 id="Chapter-22-Event-Time-and-Stateful-Processing"><a href="#Chapter-22-Event-Time-and-Stateful-Processing" class="headerlink" title="Chapter 22 Event-Time and Stateful Processing"></a>Chapter 22 Event-Time and Stateful Processing</h1><p>Chapter 21 covered the core concepts and basic APIs; this chapter dives into event-time and stateful processing. Event-time processing is a hot topic because we analyze information with respect to the time that it was created, not processed. The key idea between this style of processing is that over the lifetime of the job, Spark will maintain relevant state that it can update over the course of the job before outputting it to the sink.</p>
 <p>第21章介绍了核心概念和基本API；本章深入讨论事件时间（event-time）和状态处理（stateful processing）。事件时间处理是一个热门话题，因为我们分析与创建时间相关的信息，而不是与处理时间相关的信息。这种处理方式之间的关键思想是，在作业的整个生命周期中，Spark 将保持相关状态，以便在将作业输出到接收器之前在作业的整个过程中进行更新。</p>
@@ -466,7 +466,7 @@
 <p><strong>Processing time 处理时间</strong></p>
 <p>Processing time is the time at which the stream-processing system actually receives data. This is usually less important than event time because when it’s processed is largely an implementation detail. This can’t ever be out of order because it’s a property of the streaming system at a certain time (not an external system like event time). Those explanations are nice and abstract, so let’s use a more tangible example. Suppose that we have a datacenter located in San Francisco. An event occurs in two places at the same time: one in Ecuador, the other in Virginia (see Figure 22-1)。</p>
 <p>处理时间是流处理系统实际接收数据的时间。这通常不如事件时间重要，因为处理时间在很大程度上是一个实现细节。这永远不会有问题，因为它是流系统在特定时间（而不是外部系统，如事件时间）的属性。这些解释既好又抽象，所以让我们用一个更具体的例子。假设我们有一个位于旧金山的数据中心。一个事件同时发生在两个地方：一个在厄瓜多尔，另一个在弗吉尼亚（见图22-1：遍布世界的事件时间）。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565188361752.png" alt="1565188361752"></p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565188361752.png" alt="1565188361752"></p>
 <p>Due to the location of the datacenter, the event in Virginia is likely to show up in our datacenter before the event in Ecuador. If we were to analyze this data based on processing time, it would appear that the event in Virginia occurred before the event in Ecuador: something that we know to be wrong. However, if we were to analyze the data based on event time (largely ignoring the time at which it’s processed), we would see that these events occurred at the same time. </p>
 <p>由于数据中心的位置，弗吉尼亚州的事件可能会在厄瓜多尔的事件之前出现在我们的数据中心。如果我们根据处理时间来分析这些数据，弗吉尼亚州的事件似乎发生在厄瓜多尔事件之前：我们知道这是错误的。但是，如果我们基于事件时间分析数据（主要忽略处理数据的时间），我们将看到这些事件同时发生。</p>
 <p>As we mentioned, the fundamental idea is that the order of the series of events in the processing system does not guarantee an ordering in event time. This can be somewhat unintuitive, but is worth reinforcing. Computer networks are unreliable. That means that events can be dropped, slowed down, repeated, or be sent without issue. Because individual events are not guaranteed to suffer one fate orthe other, we must acknowledge that any number of things can happen to these events on the way from the source of the information to our stream processing system. For this reason, we need to operate on event time and look at the overall stream with reference to this information contained in the data rather than on when it arrives in the system. This means that we hope to compare events based on the time at which those events occurred. </p>
@@ -509,7 +509,7 @@
 
 <h3 id="Tumbling-Windows-滚动的窗口"><a href="#Tumbling-Windows-滚动的窗口" class="headerlink" title="Tumbling Windows 滚动的窗口"></a><font color="#000000">Tumbling Windows 滚动的窗口</font></h3><p>The simplest operation is simply to count the number of occurrences of an event in a given window. Figure 22-2 depicts the process when performing a simple summation based on the input data and a key.</p>
 <p>最简单的操作就是计算给定窗口中事件的发生次数。图22-2，描述了基于输入数据和键，执行简单求和时的过程。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565255555140.png" alt="1565255555140"></p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565255555140.png" alt="1565255555140"></p>
 <p>We’re performing an aggregation of keys over a window of time. We update the result table(depending on the output mode) when every trigger runs, which will operate on the data received since the last trigger. In the case of our actual dataset (and Figure 22-2), we’ll do so in 10-minute windows without any overlap between them (each, and only one event can fall into one window). This will update in real time, as well, meaning that if new events were being added upstream to our system, Structured Streaming would update those counts accordingly. This is the complete output mode, Spark will output the entire result table regardless of whether we’ve seen the entire dataset : </p>
 <p>我们在一段时间内执行 keys 聚合。当每个触发器运行时，我们更新结果表（取决于输出模式），它将对自上一个触发器以来接收的数据进行操作。在实际数据集（和图22-2）的情况下，我们将在10分钟的窗口中完成这项工作，它们之间没有任何重叠（每个窗口中只能有一个事件落在一个窗口中）。这也将实时更新，这意味着如果在系统上游添加新事件，Structured Streaming 将相应地更新这些计数。这是完整的输出模式，Spark 将输出整个结果表，而不管我们是否看到了整个数据集 ：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.&#123;window, col&#125;</span><br><span class="line">withEventTime.groupBy(window(col(<span class="string">"event_time"</span>), <span class="string">"10 minutes"</span>)).count()</span><br><span class="line">.writeStream</span><br><span class="line">.queryName(<span class="string">"events_per_window"</span>)</span><br><span class="line">.format(<span class="string">"memory"</span>)</span><br><span class="line">.outputMode(<span class="string">"complete"</span>)</span><br><span class="line">.start()</span><br></pre></td></tr></table></figure>
@@ -538,7 +538,7 @@
 
 <h4 id="Sliding-windows-滑动窗口"><a href="#Sliding-windows-滑动窗口" class="headerlink" title="Sliding windows 滑动窗口"></a><font color="0a7ae5">Sliding windows 滑动窗口</font></h4><p>The previous example was simple counts in a given window. Another approach is that we can decouple the window from the starting time of the window. Figure 22-3 illustrates what we mean.</p>
 <p>前一个例子是给定窗口中的简单计数。另一种方法是我们可以将窗口与窗口的开始时间分离。图22-3说明了我们的意思。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565276939426.png" alt="1565276939426"></p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565276939426.png" alt="1565276939426"></p>
 <p>In the figure, we are running a sliding window through which we look at an hour increment, but we’d like to get the state every 10 minutes. This means that we will update the values over time and will include the last hours of data. In this example, we have 10-minute windows, starting every five minutes. Therefore each event will fall into two different windows. You can tweak this further according to your needs:</p>
 <p>在图中，我们运行一个滑动窗口，通过它我们可以看到一个小时增量，但是我们希望每10分钟获得一个状态。这意味着我们将随着时间的推移更新这些值，并包括最后几个小时的数据。在这个例子中，我们有10分钟的窗口，每5分钟启动一次。因此，每个事件将分为两个不同的窗口。您可以根据需要进一步调整：</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// in Scala</span></span><br><span class="line"><span class="keyword">import</span> org.apache.spark.sql.functions.&#123;window, col&#125;</span><br><span class="line">withEventTime.groupBy(window(col(<span class="string">"event_time"</span>), <span class="string">"10 minutes"</span>, <span class="string">"5 minutes"</span>))</span><br><span class="line">.count()</span><br><span class="line">.writeStream()</span><br><span class="line">.queryName(<span class="string">"events_per_window"</span>)</span><br><span class="line">.format(<span class="string">"memory"</span>)</span><br><span class="line">.outputMode(<span class="string">"complete"</span>)</span><br><span class="line">.start()</span><br></pre></td></tr></table></figure>
@@ -559,7 +559,7 @@
 <p>具体来说，水印是给定事件或一组事件之后的一段时间，在此时间之后，我们不希望看到更多的数据。我们知道这可能是由于网络延迟、设备断开连接或任何其他问题造成的。在 DStreams API 中，如果某个事件在某个时间发生，但在某个给定窗口的批处理开始时未到达处理系统，则没有可靠的方法以这种方式处理延迟数据，它将显示在其他批处理中。Structured Streaming 补救了这点。在事件时间和状态处理中，给定窗口的状态或数据集与处理窗口分离。这意味着，随着更多事件的到来，Structured Streaming 将继续更新包含更多信息的窗口。</p>
 <p>Let’s return back to our event time example from the beginning of the chapter, shown now in Figure 22-4</p>
 <p>让我们回到本章开头的事件时间示例，如图22-4所示。</p>
-<p><img src="http://rkvsnhk03.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565279336906.png" alt="1565279336906"></p>
+<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/SparkTheDefinitiveGuide/Chapter22/1565279336906.png" alt="1565279336906"></p>
 <p>In this example, let’s imagine that we frequently see some amount of delay from our customers in Latin America. Therefore, we specify a watermark of 10 minutes. When doing this, we instruct Spark that any event that occurs more than 10 “event-time” minutes past a previous event should be ignored. Conversely, this also states that we expect to see every event within 10 minutes. After that, Spark should remove intermediate state and, depending on the output mode, do something with the result. As mentioned at the beginning of the chapter, we need to specify watermarks because if we did not, we’d need to keep all of our windows around forever, expecting them to be updated forever. This brings us to the core question when working with event-time: “how late do I expect to see data?” The answer to this question will be the watermark that you’ll configure for your data.</p>
 <p>在这个例子中，假设我们经常看到拉丁美洲客户的延迟。因此，我们指定10分钟的水印。在执行此操作时，我们指示 Spark，应忽略发生在上一个事件之后超过10“事件时间”分钟的任何事件。相反，这也说明我们期望在10分钟内看到每个事件。之后，Spark 应消除中间状态，并根据输出模式对结果进行处理。正如本章开头所提到的，我们需要指定水印，因为如果没有，我们将需要永远保留所有窗口，期待它们永远更新。在处理事件时间时，这就给我们带来了一个核心问题：“我希望看到数据有多晚？“此问题的答案将是为数据配置的水印。</p>
 <p>Returning to our dataset, if we know that we typically see data as produced downstream in minutes but we have seen delays in events up to five hours after they occur (perhaps the user lost cell phone connectivity), we’d specify the watermark in the following way : </p>
