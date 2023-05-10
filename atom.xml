@@ -6,7 +6,7 @@
   <link href="https://snaildove.github.io/atom.xml" rel="self"/>
   
   <link href="https://snaildove.github.io/"/>
-  <updated>2023-05-10T16:59:02.008Z</updated>
+  <updated>2023-05-10T17:03:21.254Z</updated>
   <id>https://snaildove.github.io/</id>
   
   <author>
@@ -21,7 +21,7 @@
     <link href="https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2020/02/10/summary_of_Translation(SparkTheDefinitiveGuide)_online/</id>
     <published>2020-02-09T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:02.008Z</updated>
+    <updated>2023-05-10T17:03:21.254Z</updated>
     
     
       
@@ -46,7 +46,7 @@
     <link href="https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online/"/>
     <id>https://snaildove.github.io/2019/12/31/Paper-Google-Bigtable_translation-and-summary_online/</id>
     <published>2019-12-30T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.803Z</updated>
+    <updated>2023-05-10T17:03:21.045Z</updated>
     
     
       
@@ -75,7 +75,7 @@
     <link href="https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/"/>
     <id>https://snaildove.github.io/2019/12/11/a-brief-introduction-of-Paxos-Raft-ZAB/</id>
     <published>2019-12-10T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.856Z</updated>
+    <updated>2023-05-10T17:03:21.093Z</updated>
     
     
       
@@ -100,7 +100,7 @@
     <link href="https://snaildove.github.io/2019/11/14/HyperLogLog/"/>
     <id>https://snaildove.github.io/2019/11/14/HyperLogLog/</id>
     <published>2019-11-13T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.728Z</updated>
+    <updated>2023-05-10T17:03:20.976Z</updated>
     
     
       
@@ -133,57 +133,7 @@
     <link href="https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/11/07/Chapter11_DataSets(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.490Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
-    
-    
-    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
-    <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/"/>
-    <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</id>
-    <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.497Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
-        
-      
-    
-    
-    
-    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
-    
-    
-    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>翻译 Chapter 13 Advanced RDDs</title>
-    <link href="https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/"/>
-    <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
-    <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.505Z</updated>
+    <updated>2023-05-10T17:03:20.781Z</updated>
     
     
       
@@ -208,7 +158,57 @@
     <link href="https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/11/07/Chapter14_Distributed-Shared-Variables(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.512Z</updated>
+    <updated>2023-05-10T17:03:20.798Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 13 Advanced RDDs</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter13_Advanced-RDDs(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2023-05-10T17:03:20.791Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot;</summary>
+        
+      
+    
+    
+    
+    <category term="English" scheme="https://snaildove.github.io/categories/English/"/>
+    
+    
+    <category term="Spark" scheme="https://snaildove.github.io/tags/Spark/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>翻译 Chapter 12 Resilient Distributed Datasets (RDDs)</title>
+    <link href="https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/"/>
+    <id>https://snaildove.github.io/2019/11/07/Chapter12_Resilient-Distributed-Datasets-(RDDs)(SparkTheDefinitiveGuide)_online/</id>
+    <published>2019-11-06T16:00:00.000Z</published>
+    <updated>2023-05-10T17:03:20.785Z</updated>
     
     
       
@@ -233,7 +233,7 @@
     <link href="https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/11/07/Chapter3_A-Tour-of-Spark-Toolset(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-11-06T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.639Z</updated>
+    <updated>2023-05-10T17:03:20.893Z</updated>
     
     
       
@@ -258,7 +258,7 @@
     <link href="https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/10/20/Chapter10_Spark-SQL(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-10-19T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.482Z</updated>
+    <updated>2023-05-10T17:03:20.776Z</updated>
     
     
       
@@ -283,7 +283,7 @@
     <link href="https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/10/20/Chapter9_DataSources(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-10-19T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.687Z</updated>
+    <updated>2023-05-10T17:03:20.932Z</updated>
     
     
       
@@ -308,7 +308,7 @@
     <link href="https://snaildove.github.io/2019/09/01/Chapter27_Regression(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/09/01/Chapter27_Regression(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-31T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.616Z</updated>
+    <updated>2023-05-10T17:03:20.881Z</updated>
     
     
       
@@ -333,7 +333,7 @@
     <link href="https://snaildove.github.io/2019/09/01/Chapter26_Classification(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/09/01/Chapter26_Classification(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-31T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.609Z</updated>
+    <updated>2023-05-10T17:03:20.876Z</updated>
     
     
       
@@ -358,7 +358,7 @@
     <link href="https://snaildove.github.io/2019/08/31/Chapter28_Recommendation(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/08/31/Chapter28_Recommendation(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-30T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.624Z</updated>
+    <updated>2023-05-10T17:03:20.885Z</updated>
     
     
       
@@ -383,7 +383,7 @@
     <link href="https://snaildove.github.io/2019/08/26/Chapter25_PreprocessingAndFeature(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/08/26/Chapter25_PreprocessingAndFeature(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-25T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.601Z</updated>
+    <updated>2023-05-10T17:03:20.869Z</updated>
     
     
       
@@ -408,7 +408,7 @@
     <link href="https://snaildove.github.io/2019/08/20/Chapter24_Advanced-Analytics-and-Machine-Learning-Overview(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/08/20/Chapter24_Advanced-Analytics-and-Machine-Learning-Overview(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-19T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.591Z</updated>
+    <updated>2023-05-10T17:03:20.863Z</updated>
     
     
       
@@ -433,7 +433,7 @@
     <link href="https://snaildove.github.io/2019/08/20/Structured-Streaming-Programming-Guide_online/"/>
     <id>https://snaildove.github.io/2019/08/20/Structured-Streaming-Programming-Guide_online/</id>
     <published>2019-08-19T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.822Z</updated>
+    <updated>2023-05-10T17:03:21.059Z</updated>
     
     
       
@@ -458,7 +458,7 @@
     <link href="https://snaildove.github.io/2019/08/13/Chapter19_Performance-Tuning(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/08/13/Chapter19_Performance-Tuning(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-12T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.550Z</updated>
+    <updated>2023-05-10T17:03:20.830Z</updated>
     
     
       
@@ -483,7 +483,7 @@
     <link href="https://snaildove.github.io/2019/08/10/Chapter23_StructuredStreamingInProduction(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/08/10/Chapter23_StructuredStreamingInProduction(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-09T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.583Z</updated>
+    <updated>2023-05-10T17:03:20.857Z</updated>
     
     
       
@@ -508,7 +508,7 @@
     <link href="https://snaildove.github.io/2019/08/10/Chapter18_Monitoring-and-Debugging(SparkTheDefinitiveGuide)_online/"/>
     <id>https://snaildove.github.io/2019/08/10/Chapter18_Monitoring-and-Debugging(SparkTheDefinitiveGuide)_online/</id>
     <published>2019-08-09T16:00:00.000Z</published>
-    <updated>2023-05-10T16:59:01.543Z</updated>
+    <updated>2023-05-10T17:03:20.823Z</updated>
     
     
       
