@@ -1061,14 +1061,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Machine-Learning/</loc>
+    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
+    <loc>https://snaildove.github.io/tags/Machine-Learning/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1096,14 +1096,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
+    <loc>https://snaildove.github.io/tags/probability/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/probability/</loc>
+    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1208,20 +1208,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/XGBoost/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/hexo/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
@@ -1230,6 +1216,20 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/XGBoost/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
