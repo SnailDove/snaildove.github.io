@@ -1026,7 +1026,21 @@
 
   
   <url>
-    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
+    <loc>https://snaildove.github.io/tags/Spark/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/linux/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1034,6 +1048,20 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/deep-learning/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/neural-networks-deep-learning/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1068,14 +1096,14 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/probability/</loc>
+    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/convolutional-neural-networks/</loc>
+    <loc>https://snaildove.github.io/tags/probability/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1090,13 +1118,6 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/nlp-sequence-models/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/Spark/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1166,13 +1187,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Improving-Deep-Neural-Networks/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/distributed-system/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
@@ -1194,20 +1208,6 @@
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/XGBoost/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://snaildove.github.io/tags/hexo/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
@@ -1216,6 +1216,20 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/Basic-Algorithm/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/Machine-Learning-feature-engineering/</loc>
+    <lastmod>2023-05-10</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://snaildove.github.io/tags/XGBoost/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1237,20 +1251,6 @@
   
   <url>
     <loc>https://snaildove.github.io/tags/Machine-Learning-by-Andrew-NG/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/linux/</loc>
-    <lastmod>2023-05-10</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://snaildove.github.io/tags/distributed-system/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -1280,14 +1280,14 @@
 
   
   <url>
-    <loc>https://snaildove.github.io/categories/English/</loc>
+    <loc>https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://snaildove.github.io/categories/%E4%B8%AD%E6%96%87/</loc>
+    <loc>https://snaildove.github.io/categories/English/</loc>
     <lastmod>2023-05-10</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
