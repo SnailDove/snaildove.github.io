@@ -97,43 +97,43 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="前言EM（期望最大）算法有很多的应用，最广泛的就是混合高斯模型、聚类、HMM等等，本质上就是一种优化算法，不断迭代，获得优值，与梯度下降、牛顿法、共轭梯度法都起到同一类的作用。 本文是对李航《统计学习方法》的第9章复习总结，主要内容如下  EM（期望最大）算法证明有跳跃性的地方全部事无巨细地写出来，  在 三硬币例子解析 这一节将会把这个例子跟公式一一对应起来  GMM（高斯混合模型）迭代公式证明">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540625262559.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629489022.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629535384.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629838496.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633799099.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633951648.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634136349.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634346383.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634609480.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634779544.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634917442.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634901751.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635377338.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635519121.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635774989.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658158963.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658354291.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540804968425.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540805335528.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660313512.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660432941.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660738386.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660826025.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660851087.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540661928677.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540718325352.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540719981294.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720314102.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720724130.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720890464.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540625262559.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629489022.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629535384.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629838496.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633799099.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633951648.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634136349.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634346383.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634609480.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634779544.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634917442.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634901751.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635377338.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635519121.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635774989.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658158963.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658354291.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540804968425.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540805335528.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660313512.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660432941.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660738386.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660826025.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660851087.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540661928677.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540718325352.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540719981294.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720314102.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720724130.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720890464.png">
 <meta property="article:published_time" content="2018-09-30T16:00:00.000Z">
-<meta property="article:modified_time" content="2022-12-27T14:22:42.251Z">
+<meta property="article:modified_time" content="2023-05-10T16:50:53.669Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Machine Learning">
 <meta property="article:tag" content="统计学习方法">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540625262559.png">
+<meta name="twitter:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540625262559.png">
 
 
 
@@ -497,7 +497,7 @@
 <p>当然大家也可以参考 Stanford 吴恩达主讲的 <a href="http://cs229.stanford.edu/" target="_blank" rel="noopener">CS299 Machine Learning</a> 的 <a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">EM课件</a> ，相比之下《统计学习方法》这本书在 Jensen‘s inequality（琴声不等式）讲的不够详细，其他都差不多，只是Q函数定义不同，这两种定义都很流行所以后文也会介绍<a href="#CS299 EM算法与《统计学习方法》的表述不同点">区别</a>。</p>
 <h1 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h1><h2 id="9-1-EM算法的引入"><a href="#9-1-EM算法的引入" class="headerlink" title="9.1 EM算法的引入"></a>9.1 EM算法的引入</h2><p>概率模型有时既含有<strong>观测变量（observable variable）</strong> ， 又含有<strong>隐变量（hidden variable）</strong>或<strong>潜在变量（latent variable）</strong> 。</p>
 <p><u> 如果概率模型的变量都是观测变量， 那么给定数据， 可以直接用极大似然估计法或贝叶斯估计法估计模型参数。 但是， 当模型含有隐变量时， 就不能简单地使用这些估计方法。 EM算法就是含有隐变量的概率模型参数的极大似然估计法， 或极大后验概率估计法</u>。 我们仅讨论极大似然估计， 极大后验概率估计与其类似。</p>
-<h3 id="9-1-1-EM算法"><a href="#9-1-1-EM算法" class="headerlink" title="9.1.1 EM算法"></a>9.1.1 EM算法</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540625262559.png" alt="1540625262559"></p>
+<h3 id="9-1-1-EM算法"><a href="#9-1-1-EM算法" class="headerlink" title="9.1.1 EM算法"></a>9.1.1 EM算法</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540625262559.png" alt="1540625262559"></p>
 <p>这里， 随机变量 $y$ 是观测变量， 表示一次试验观测的结果是1或0； 随机变量 $z$ 是隐变量， 表示未观测到的掷硬币 $A$ 的结果； $\theta＝( \pi ,p， q)$ 是模型参数。 这一模型是以上数据的生成模型。 注意， 随机变量 $y$ 的数据可以观测， 随机变量 $z$ 的数据不可观测。<br>$$<br>\begin{align}<br>P(y|\theta) &amp;= \sum\limits_{z}P(y,z|\theta)=\sum\limits_{z}\frac{P(z,\theta)}{P(\theta)}\cdot\frac{P(y,z,\theta)}{P(z, \theta)}=\sum\limits_{z}P(z|\theta)P(y|z,\theta) \<br>&amp;= P(z=1|\theta)P(y|z=1, \theta) + P(z=0|\theta)P(y|z=0, \theta)\<br>&amp;= \pi p^y(1-p)^{(1-y)} + (1 - \pi) q^y(1-q)^{(1-y)} \tag{9.1}\<br>&amp;= \begin{cases} \pi p + (1 - \pi) q, &amp;y=1\ \pi (1-p) + (1-\pi)(1-q), &amp;y=0\end{cases}<br>\end{align}<br>$$<br>将观测数据表示为 $Y＝(Y_1， Y_2,…,Y_n)^T$， 未观测数据表示为 $Z＝(Z_1,Z_2,…,Z_n)^T$， 则观测数据的似然函数为<br>$$<br>P(Y|\theta) = \sum\limits_{Z}P(Y,Z|\theta)=\sum\limits_{Z}P(Z|\theta)P(Y|Z,\theta) \tag{9.2}<br>$$<br>即：<br>$$<br>P(Y|\theta)= \prod_{j=1}^{n}\left{\pi p^{y_j}(1-p)^{(1-y_j)} + (1 - \pi) q^{y_j}(1-q)^{(1-y_j)}\right} \tag{9.3}<br>$$<br>考虑求模型参数 $\theta =(\pi, p, q) $ 的极大似然估计，即：<br>$$<br>\begin{align}<br>\hat{\theta}&amp;=\mathop{\arg\max}<em>{\theta} \mathrm{log}P(Y|\theta) \<br>&amp;= \mathop{\arg\max}</em>{\theta}\log\prod_{j=1}^{n}P(Y|\theta) \Leftarrow\text{n次抛硬币试验都是独立} \<br>&amp;= \mathop{\arg\max}<em>{\theta}\sum\limits</em>{j=1}^{n}\log P(Y|\theta) \<br>&amp;= \mathop{\arg\max}<em>{\theta}\sum\limits</em>{j=1}^{n}\log\left{\sum\limits_{Z}{P(Z|\theta)P(Y|Z,\theta)}\right} \tag{9-3}<br>\end{align}<br>$$<br><strong>问题：这里为什么要取对数？</strong></p>
 <ul>
 <li>取对数之后累积变为累和，求导更加方便（后面三硬币例子解析将会看到）</li>
@@ -505,61 +505,61 @@
 </ul>
 <p><strong>这个问题没有解析解，因为隐变量数据无法获得，只有通过迭代的方法求解</strong>。 EM算法就是可以用于求解这个问题的一种迭代算法。 </p>
 <p>一般地， 用 $Y$ 表示观测随机变量的数据， $Z$ 表示隐随机变量的数据。 $Y$ 和 $Z$ 连在一起称为<strong>完全数据（complete-data） **， 观测数据 $Y$ 又称为</strong>不完全数据（incomplete-data） **。 假设给定观测数据 $Y$， 其概率分布是 $P(Y|\theta)$， 其中是需要估计的模型参数， 那么不完全数据 $Y$ 的似然函数是 $P(Y|\theta)$， 对数似然函数 $L(\theta)＝\mathrm{log}P(Y|\theta)$ ； 假设 $Y$ 和 $Z$ 的联合概率分布是 $P(Y, Z|\theta)$， 那么完全数据的对数似然函数是 $\mathrm{log}P(Y, Z|\theta)$。 </p>
-<h3 id="9-1-2-EM算法的导出"><a href="#9-1-2-EM算法的导出" class="headerlink" title="9.1.2 EM算法的导出"></a>9.1.2 EM算法的导出</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629489022.png" alt="1540629489022"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629535384.png" alt="1540629535384"></p>
-<p><strong>注</strong>：书上给出琴声不等式（$\ln\sum_j\lambda_jy_j\geq \sum_j\lambda_j\log y_j,\quad \lambda_j\ge 0,\sum_j\lambda_j=1$），自行维基百科一下了解详情。最后一步源自于 $Z$ 所有可能取值的概率和为1<br>$$<br>\mathrm{log}P(Y|\theta^{(i)})=\mathrm{log}P(Y|\theta^{(i)}) \cdot \sum\limits_{Z}P(Z|Y, \theta^{(i)})<br>$$<br><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629838496.png" alt="1540629838496"><br>$$<br>\begin{align}<br>\theta^{(i+1)} &amp;= \mathop{\arg\max}<em>{\theta} \left{ L(\theta^{(i)}) + \sum\limits</em>{Z}P(Z|Y, \theta^{(i)})\mathrm{log}\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})}\right} \<br>&amp;= \mathop{\arg\max}<em>{\theta}\left{ \mathrm{log}P(Y|\theta^{(i)})\sum\limits</em>{Z}P(Z|Y, \theta^{(i)})  + \sum\limits_{Z}P(Z|Y, \theta^{(i)})\mathrm{log}\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})} \right} \<br>\end{align}<br>$$<br>加号右边，利用对数函数的性质得到：<br>$$<br>\begin{align}<br>&amp;\sum\limits_{Z}P(Z|Y, \theta^{(i)})\mathrm{log}\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})} \<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta^{(i)})\left{\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)] - \mathrm{log}[P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})]\right} \<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta^{(i)})\left{\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)] - \mathrm{log}P(Z|Y,\theta^{(i)})-\mathrm{log}P(Y|\theta^{(i)})\right} \<br>&amp;= \sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)] - \sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}P(Z|Y,\theta^{(i)})-\sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}P(Y|\theta^{(i)}) \<br>\end{align}<br>$$<br>代入上式可得：<br>$$<br>\begin{align}<br>\theta^{(i+1)} &amp;= \mathop{\arg\max}<em>{\theta} \left{ \sum\limits</em>{Z}P(Z|Y, \theta^{(i)})\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)]-\sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}P(Z|Y,\theta^{(i)}) \right} \<br>\end{align}<br>$$</p>
+<h3 id="9-1-2-EM算法的导出"><a href="#9-1-2-EM算法的导出" class="headerlink" title="9.1.2 EM算法的导出"></a>9.1.2 EM算法的导出</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629489022.png" alt="1540629489022"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629535384.png" alt="1540629535384"></p>
+<p><strong>注</strong>：书上给出琴声不等式（$\ln\sum_j\lambda_jy_j\geq \sum_j\lambda_j\log y_j,\quad \lambda_j\ge 0,\sum_j\lambda_j=1$），自行维基百科一下了解详情。最后一步源自于 $Z$ 所有可能取值的概率和为1<br>$$<br>\mathrm{log}P(Y|\theta^{(i)})=\mathrm{log}P(Y|\theta^{(i)}) \cdot \sum\limits_{Z}P(Z|Y, \theta^{(i)})<br>$$<br><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540629838496.png" alt="1540629838496"><br>$$<br>\begin{align}<br>\theta^{(i+1)} &amp;= \mathop{\arg\max}<em>{\theta} \left{ L(\theta^{(i)}) + \sum\limits</em>{Z}P(Z|Y, \theta^{(i)})\mathrm{log}\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})}\right} \<br>&amp;= \mathop{\arg\max}<em>{\theta}\left{ \mathrm{log}P(Y|\theta^{(i)})\sum\limits</em>{Z}P(Z|Y, \theta^{(i)})  + \sum\limits_{Z}P(Z|Y, \theta^{(i)})\mathrm{log}\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})} \right} \<br>\end{align}<br>$$<br>加号右边，利用对数函数的性质得到：<br>$$<br>\begin{align}<br>&amp;\sum\limits_{Z}P(Z|Y, \theta^{(i)})\mathrm{log}\frac{P(Y|Z,\theta)P(Z|\theta)}{P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})} \<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta^{(i)})\left{\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)] - \mathrm{log}[P(Z|Y,\theta^{(i)})P(Y|\theta^{(i)})]\right} \<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta^{(i)})\left{\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)] - \mathrm{log}P(Z|Y,\theta^{(i)})-\mathrm{log}P(Y|\theta^{(i)})\right} \<br>&amp;= \sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)] - \sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}P(Z|Y,\theta^{(i)})-\sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}P(Y|\theta^{(i)}) \<br>\end{align}<br>$$<br>代入上式可得：<br>$$<br>\begin{align}<br>\theta^{(i+1)} &amp;= \mathop{\arg\max}<em>{\theta} \left{ \sum\limits</em>{Z}P(Z|Y, \theta^{(i)})\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)]-\sum\limits_{Z}P(Z|Y,\theta^{(i)})\mathrm{log}P(Z|Y,\theta^{(i)}) \right} \<br>\end{align}<br>$$</p>
 <p>由于在迭代求第 $i+1$ 步时，$\theta^{(i)}$ 是已知的，那么由训练数据中可以求得 $P(Z|Y,\theta^{(i)})$ ，所以在 $\theta^{(i)}$ 值确定的情况下，$P(Z|Y,\theta^{(i)})$ 的值也是确定的而不是变量，那么对上式极大化等价求解对下面式子的极大化<br>$$<br>\begin{align}<br>\theta^{(i+1)} &amp;= \mathop{\arg\max}<em>{\theta} \left{ \sum\limits</em>{Z}P(Z|Y, \theta^{(i)})\mathrm{log}[P(Y|Z,\theta)P(Z|\theta)]\right} \<br>&amp;= \mathop{\arg\max}<em>{\theta} \left{ \sum\limits</em>{Z}P(Z|Y, \theta^{(i)})\mathrm{log}P(Y,Z|\theta)\right}  \<br>&amp;= \mathop{\arg\max}_{\theta}Q(\theta, \theta^{(i)}) \tag{9.17}<br>\end{align}<br>$$</p>
-<h4 id="Q函数"><a href="#Q函数" class="headerlink" title="Q函数"></a>Q函数</h4><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633799099.png" alt="1540633799099"></p>
-<h4 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h4><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633951648.png" alt="1540633951648"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634136349.png" alt="1540634136349"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634346383.png" alt="1540634346383"></p>
-<h4 id="EM算法解释"><a href="#EM算法解释" class="headerlink" title="EM算法解释"></a>EM算法解释</h4><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634609480.png" alt="1540634609480"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634779544.png" alt="1540634779544"></p>
-<h3 id="9-1-3-EM算法在非监督学习中的应用"><a href="#9-1-3-EM算法在非监督学习中的应用" class="headerlink" title="9.1.3 EM算法在非监督学习中的应用"></a>9.1.3 EM算法在非监督学习中的应用</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634917442.png" alt="1540634917442"></p>
+<h4 id="Q函数"><a href="#Q函数" class="headerlink" title="Q函数"></a>Q函数</h4><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633799099.png" alt="1540633799099"></p>
+<h4 id="EM算法"><a href="#EM算法" class="headerlink" title="EM算法"></a>EM算法</h4><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540633951648.png" alt="1540633951648"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634136349.png" alt="1540634136349"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634346383.png" alt="1540634346383"></p>
+<h4 id="EM算法解释"><a href="#EM算法解释" class="headerlink" title="EM算法解释"></a>EM算法解释</h4><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634609480.png" alt="1540634609480"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634779544.png" alt="1540634779544"></p>
+<h3 id="9-1-3-EM算法在非监督学习中的应用"><a href="#9-1-3-EM算法在非监督学习中的应用" class="headerlink" title="9.1.3 EM算法在非监督学习中的应用"></a>9.1.3 EM算法在非监督学习中的应用</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634917442.png" alt="1540634917442"></p>
 <h2 id="9-2-EM算法的收敛性"><a href="#9-2-EM算法的收敛性" class="headerlink" title="9.2 EM算法的收敛性"></a>9.2 EM算法的收敛性</h2><p>这一部分原书讲的比较详细，不画蛇添足，贴上来。</p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634901751.png" alt="1540634901751"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635377338.png" alt="1540635377338"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635519121.png" alt="1540635519121"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540634901751.png" alt="1540634901751"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635377338.png" alt="1540635377338"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635519121.png" alt="1540635519121"></p>
 <h2 id="三硬币例子解析"><a href="#三硬币例子解析" class="headerlink" title="三硬币例子解析"></a>三硬币例子解析</h2><p><strong>前文讲到抛硬币的例子，现在重新详细推导一下三硬币这个例子。</strong></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635774989.png" alt="1540635774989"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540635774989.png" alt="1540635774989"></p>
 <p>$j$ 是训练集中的数据编号，实际上书上这里求得是<br>$$<br>\begin{align}<br>P(Z|y_j,\theta^{(i)}) = \cases{P(Z=1|y_j,\theta^{(i)})=\mu_{j}^{(i+1)} \ P(Z=0|y_j,\theta^{(i)})=1- \mu_{j}^{(i+1)}}<br>\end{align}<br>$$<br>前文已知Q函数：<br>$$<br>Q(\theta, \theta^{(i)})=\sum\limits_{Z}P(Z|Y, \theta^{(i)})\mathrm{log}P(Y,Z|\theta)<br>$$</p>
 <h3 id="第一步求期望"><a href="#第一步求期望" class="headerlink" title="第一步求期望"></a>第一步求期望</h3><p>即求Q函数，由本文开头的 <a href="#9.1.1 EM算法">9.1.1 EM算法</a> 这一节的公式 (9-3)  和 Q函数得到，在多个样本情况下 Q 函数为：<br>$$<br>\begin{align}<br>Q(\theta, \theta^{(i)}) &amp;=  \sum\limits_{j=1}^{n}\sum\limits_{Z}P(Z|y_j, \theta^{(i)})\log P(y_j,Z|\theta)\<br>&amp;= \sum\limits_{j=1}^{n}\left{ P(Z=1|y_j, \theta^{(i)})\mathrm{log}P(y_j,Z=1|\theta) + P(Z=0|y_j, \theta^{(i)})\mathrm{log}P(y_j,Z=0|\theta) \right}\<br>&amp;= \sum\limits_{j=1}^{n}\left{\mu_{j}^{(i+1)}log P(y_j,Z=1|\theta) + (1-\mu_{j}^{(i+1)})\mathrm{log}P(y_j,Z=0|\theta) \right}\<br>&amp;= \sum\limits_{j=1}^{n}\left{\mu_{j}^{(i+1)}\log [\pi p^{y_j}(1-p)^{1-y_j}]+(1-\mu_{j}^{(i+1)})\log [(1-\pi )q^{y_j}(1-q)^{1-y_j}]  \right}\<br>\end{align}<br>$$</p>
 <h3 id="第二步极大化Q函数"><a href="#第二步极大化Q函数" class="headerlink" title="第二步极大化Q函数"></a>第二步极大化Q函数</h3><p>$\begin{align}<br>\theta^{(i+1)} =  \mathop{\arg\max}<em>{\theta}Q(\theta, \theta^{(i)}) = \mathop{\arg\max}</em>{\theta}  \left{\sum\limits_{j=1}^{n} \sum\limits_{Z}P(Z|y_j, \theta^{(i)})\log P(y_j,Z|\theta)\right}<br>\end{align}$ 用微积分求解最大值，先求导数为0点（为了求导方便令对数的底数为e，即认为此处对数函数为自然对数）：<br>$$<br>\begin{aligned} \frac{\partial Q(\theta,\theta^{(i)})}{\partial \pi}&amp;=\sum_{j=1}^N{\frac{\mu_{j}^{(i+1)}\ln [\pi p^{y_j}(1-p)^{1-y_j}]+(1-\mu_{j}^{(i+1)})\ln [(1-\pi )q^{y_j}(1-q)^{1-y_j}] }{\partial \pi}}\&amp;=\sum_{j=1}^N{ \mu_{j}^{(i+1)}\frac{p^{y_j}(1-p)^{1-y_j}}{\pi p^{y_j}(1-p)^{1-y_j}}+(1-\mu_{j}^{(i+1)})\frac{-q^{y_j}(1-q)^{1-y_j}}{(1-\pi )q^{y_j}(1-q)^{1-y_j}} }\&amp;=\sum_{j=1}^N{ \frac{\mu_{j}^{(i+1)}-\pi }{\pi (1-\pi)}}\&amp;=\frac{(\sum_{j=1}^N\mu_{j}^{(i+1)})-n\pi }{\pi (1-\pi)} \end{aligned}<br>$$</p>
 <p>$$<br>\begin{aligned}<br>\because \quad\frac{\partial Q(\theta,\theta^{(i)})}{\partial \pi}=0 &amp;\implies \pi =\frac 1n\sum_{j=1}^N\mu_{j}^{(i+1)}\<br>\therefore \quad \pi^{(i+1)}&amp;=\frac 1n\sum_{j=1}^N\mu_{j}^{(i+1)} \end{aligned}<br>$$</p>
 <p>$$<br>\begin{aligned} \frac{\partial Q(\theta,\theta^{(i)})}{\partial p}&amp;=\sum_{j=1}^N{\frac{\mu_{j}^{(i+1)}\ln [\pi p^{y_j}(1-p)^{1-y_j}]+(1-\mu_{j}^{(i+1)})\ln [(1-\pi )q^{y_j}(1-q)^{1-y_j}] }{\partial p}}\&amp;=\sum_{j=1}^N{\mu_{j}^{(i+1)}\frac{\pi (y_jp^{y_j-1}(1-p)^{1-y_j}+p^{y_j}(-1)(1-y_j)(1-p)^{1-y_j-1})}{\pi p^{y_j}(1-p)^{1-y_j}}+0 }\&amp;=\sum_{j=1}^N{ \frac{\mu_{j}^{(i+1)}(y_j-p) }{p(1-p)}}\&amp;=\frac{(\sum_{j=1}^N\mu_{j}^{(i+1)}y_j)-(p\sum_{j=1}^N\mu_{j}^{(i+1)}) }{p(1-p)} \end{aligned}<br>$$</p>
 <p>$$<br>\begin{aligned}<br>\because \quad \frac{\partial Q(\theta,\theta^{(i)})}{\partial p}=0 &amp;\implies p =\frac{\sum_{j=1}^N \mu^{(i+1)}<em>j y_j}{\sum_{j=1}^N\mu^{(i+1)}<em>j} \<br>\therefore \quad p^{(i+1)}&amp;=\frac{\sum</em>{j=1}^N\mu^{(i+1)}_j y_j}{\sum</em>{j=1}^N\mu^{(i+1)}<em>j}  \<br>q^{(i+1)}&amp;=\frac{\sum</em>{j=1}^N(1-\mu^{(i+1)}_j)y_j}{\sum_{j=1}^N(1-\mu^{(i+1)}_j)}<br>\end{aligned}<br>$$<br>可以参照书上的结果，一模一样：</p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658158963.png" alt="1540658158963"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658354291.png" alt="1540658354291"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658158963.png" alt="1540658158963"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540658354291.png" alt="1540658354291"></p>
 <h2 id="CS299-EM算法与《统计学习方法》的表述不同点"><a href="#CS299-EM算法与《统计学习方法》的表述不同点" class="headerlink" title="CS299 EM算法与《统计学习方法》的表述不同点"></a>CS299 EM算法与《统计学习方法》的表述不同点</h2><ol>
 <li><p>《统计学习方法》这部分术语源自于鼎鼎大名的<a href="https://web.stanford.edu/~hastie/ElemStatLearn//" target="_blank" rel="noopener">ESL 全称：The Elements of Statistical Learning</a>，这也是Stanford统计经典巨作。</p>
-<p> <img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540804968425.png" alt="1540804968425"></p>
+<p> <img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540804968425.png" alt="1540804968425"></p>
 </li>
 <li><p>Stanford 吴恩达主讲的 <a href="http://cs229.stanford.edu/" target="_blank" rel="noopener">CS299 Machine Learning</a> 的 <a href="http://cs229.stanford.edu/notes/cs229-notes8.pdf" target="_blank" rel="noopener">EM课件</a></p>
-<p> <img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540805335528.png" alt="1540805335528"></p>
+<p> <img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540805335528.png" alt="1540805335528"></p>
 <p> <strong>由本文的推导，易得 ESL 中的 $ Q_{ESL} = Q_{CS299}\frac{\log P(X,Z;\theta)}{Q_{CS299}} $</strong> </p>
 </li>
 </ol>
 <h2 id="9-3-EM算法在高斯混合模型学习中的应用"><a href="#9-3-EM算法在高斯混合模型学习中的应用" class="headerlink" title="9.3 EM算法在高斯混合模型学习中的应用"></a>9.3 EM算法在高斯混合模型学习中的应用</h2><p>EM算法的一个重要应用是高斯混合模型的参数估计。 高斯混合模型应用广泛， 在许多情况下， EM算法是学习高斯混合模型（Gaussian misture model） 的有效方法。 </p>
-<h3 id="9-3-1-高斯混合模型"><a href="#9-3-1-高斯混合模型" class="headerlink" title="9.3.1 高斯混合模型"></a>9.3.1 高斯混合模型</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660313512.png" alt="1540660313512"></p>
-<h3 id="9-3-2-高斯混合模型参数估计的EM算法"><a href="#9-3-2-高斯混合模型参数估计的EM算法" class="headerlink" title="9.3.2 高斯混合模型参数估计的EM算法"></a>9.3.2 高斯混合模型参数估计的EM算法</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660432941.png" alt="1540660432941"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660738386.png" alt="1540660738386"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660826025.png" alt="1540660826025"></p>
+<h3 id="9-3-1-高斯混合模型"><a href="#9-3-1-高斯混合模型" class="headerlink" title="9.3.1 高斯混合模型"></a>9.3.1 高斯混合模型</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660313512.png" alt="1540660313512"></p>
+<h3 id="9-3-2-高斯混合模型参数估计的EM算法"><a href="#9-3-2-高斯混合模型参数估计的EM算法" class="headerlink" title="9.3.2 高斯混合模型参数估计的EM算法"></a>9.3.2 高斯混合模型参数估计的EM算法</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660432941.png" alt="1540660432941"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660738386.png" alt="1540660738386"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660826025.png" alt="1540660826025"></p>
 <p><b><span style="color: red">注意：上面的极大化的求混合模型参数迭代公式的过程参考： 大牛<a href="https://www.cnblogs.com/jerrylead/" target="_blank" rel="noopener">JerryLead</a> 的 <a href="https://www.cnblogs.com/jerrylead/archive/2011/04/06/2006936.html" target="_blank" rel="noopener">（EM算法）The EM Algorithm </a></span></b></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660851087.png" alt="1540660851087"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540660851087.png" alt="1540660851087"></p>
 <h3 id="与K-means比较"><a href="#与K-means比较" class="headerlink" title="与K-means比较"></a>与K-means比较</h3><p>相同点：都是可用于聚类的算法；都需要指定K值。</p>
 <p>不同点：GMM可以给出一个样本属于某类的概率是多少。</p>
 <h2 id="9-4-EM算法的推广"><a href="#9-4-EM算法的推广" class="headerlink" title="9.4 EM算法的推广"></a>9.4 EM算法的推广</h2><p>EM算法还可以解释为F函数（F function） 的<strong>极大-极大算法（maximization maximization algorithm）</strong> ， 基于这个解释有若干变形与推广， 如<strong>广义期望极大（generalized expectation maximization，GEM）</strong> 算法。</p>
 <p> <b><font color="red" bold="true">注：原文引理(9.1)(9.2)的证明有坑需要注意，先看原文，后面列出详细过程</font></b></p>
-<h3 id="9-4-1-F函数的极大-极大算法"><a href="#9-4-1-F函数的极大-极大算法" class="headerlink" title="9.4.1 F函数的极大-极大算法"></a>9.4.1 F函数的极大-极大算法</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540661928677.png" alt="1540661928677"></p>
+<h3 id="9-4-1-F函数的极大-极大算法"><a href="#9-4-1-F函数的极大-极大算法" class="headerlink" title="9.4.1 F函数的极大-极大算法"></a>9.4.1 F函数的极大-极大算法</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540661928677.png" alt="1540661928677"></p>
 <p>熵这块，不清楚的可以回顾一下我的另一篇总结：<a href="/2018/03/28/Information_Theory/">《机器学习中的信息论基础》</a> 。</p>
 <p><b><span style="color:red">引理9.1需要更详细说明：</span></b><br>$$<br>L=E_{\tilde{p}}\log P(Y,Z|\theta) - E_{\tilde{p}}\log \tilde{P}(Z) + \lambda\left{1-\sum\limits_{Z}\tilde{P}(Z)\right}<br>$$<br><strong>证明过程思路：拉格朗日求有约束的极大值</strong>。需要注意，由<strong>累加号和均值</strong>可以看出这里的 $Z$  是指 $Z_i, i$ 这里是 $Z$ 的离散值的标号 ，因此需要**重写公式 (9.35) **比较清楚：<br>$$<br>L=\sum\limits_{Z_i}{\tilde{P}(Z_i)}\log P(Y,Z_i|\theta) - \sum\limits_{Z_i}{\tilde{P}(Z_i)}\log \tilde{P}(Z_i)+\lambda\left{1-\sum\limits_{Z_i}\tilde{P}(Z_i)\right}<br>$$<br>所以这里其实是 $L$ 关于 $P(Z_i)$的求导（这里作者求导的时候把对数函数默认当做自然对数）：<br>$$<br>\begin{align}<br>&amp;\frac{\partial{L}}{\partial{\tilde{P}(Z_i)}}=\log P(Y,Z_i|\theta)-\log \tilde{P}(Z_i)-1-\lambda \<br>&amp;\because\quad\frac{\partial{L}}{\partial{\tilde{P}(Z_i)}}=0\ &amp;\therefore\quad \lambda=\log P(Y,Z_i|\theta)-\log \tilde{P}(Z_i)-1<br>\end{align}<br>$$<br>上式两端同取对数：<br>$$<br>\begin{align}<br>\lambda+1&amp;=\log P(Y,Z_i|\theta)-\log \tilde{P}(Z_i) \<br> &amp;\Rightarrow e^{\lambda+1}=\frac{P(Y,Z_i|\theta)}{\tilde{P}(Z_i)}  \<br>&amp;\Rightarrow\tilde{P}(Z_i)=\frac{P(Y,Z_i|\theta)}{e^{\lambda+1}} \tag{9-1}<br>\end{align}<br>$$<br>由离散变量的概率和为1，得到：<br>$$<br>\begin{align}<br>\sum\limits_{Z_i}e^{\lambda+1} &amp;= \frac{\sum\limits_{Z_i}P(Y,Z_i|\theta)}{\sum\limits_{Z_i}\tilde{P}(Z_i)} \Rightarrow\<br>e^{\lambda+1} &amp;= P(Y|\theta) \tag{9-2}<br>\end{align}<br>$$<br>将 (9-2) 代入 (9-1)​ 式，得到<br>$$<br>\begin{align}<br>\tilde{P}(Z_i)&amp;=\frac{P(Y,Z_i|\theta)}{P(Y|\theta)} \<br>&amp;=\frac{P(Y,Z_i,\theta)}{p(\theta)}\frac{P(\theta)}{P(Y,\theta)} \<br>&amp;= P(Z_i|Y,\theta)<br>\end{align}<br>$$<br>这里前提条件是 $\theta$ 是固定情况下的推导过程，所以原文给上式标记出了 $\theta$ ，又因为每个 $Z_i$ 都符合这个式子，那么可重写上式：<br>$$<br>\tilde{P}_{\theta}(Z) = P(Z|Y,\theta)<br>$$<br><b><font color="red">这样引理9.1证明完毕。</font></b></p>
-<p> <img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540718325352.png" alt="1540718325352"></p>
+<p> <img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540718325352.png" alt="1540718325352"></p>
 <p><b><font color="red">引理9.2如下</font></b></p>
 <p>由公式 $(9.33)$ 和 $(9.34)$ :<br>$$<br>F(\tilde{P}, \theta)=E_{\tilde{p}}[\log P(Y,Z|\theta)] + H(\tilde{P}) \<br>\tilde{P}<em>{\theta}(Z) = P(Z|Y,\theta)<br>$$<br>得到：<br>$$<br>\begin{align}<br>F(\tilde{P}, \theta)&amp;=\sum\limits</em>{Z}{\tilde{P}<em>{\theta}(Z)}\log P(Y,Z|\theta) - \sum\limits</em>{Z}{\tilde{P}<em>{\theta}(Z)}\log \tilde{P}</em>{\theta}(Z) \<br>&amp;=\sum\limits_{Z} P(Z|Y,\theta)\log P(Y,Z|\theta) - \sum\limits_{Z}P(Z|Y,\theta)\log P(Z|Y,\theta) \<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta)[\log P(Y,Z|\theta) - \log P(Z|Y,\theta)] \<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta)\log\frac{P(Y,Z|\theta)}{P(Z|Y,\theta)}\<br>&amp;=\sum\limits_{Z}P(Z|Y,\theta)\log\left{\frac{P(Y,Z,\theta)}{p(\theta)}\frac{P(Y,\theta)}{P(Y,Z,\theta)}\right}\<br>&amp;= \sum\limits_{Z}P(Z|Y,\theta)\log P(Y|\theta) \<br>&amp;= \log P(Y|\theta) \<br> \end{align}<br>$$<br><b><font color="red">引理9.2证明完毕</font></b></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540719981294.png" alt="1540719981294"></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720314102.png" alt="1540720314102"></p>
-<h3 id="9-4-2-GEM算法"><a href="#9-4-2-GEM算法" class="headerlink" title="9.4.2 GEM算法"></a>9.4.2 GEM算法</h3><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720724130.png" alt="1540720724130"></p>
-<h2 id="本章概要"><a href="#本章概要" class="headerlink" title="本章概要"></a>本章概要</h2><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720890464.png" alt="1540720890464"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540719981294.png" alt="1540719981294"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720314102.png" alt="1540720314102"></p>
+<h3 id="9-4-2-GEM算法"><a href="#9-4-2-GEM算法" class="headerlink" title="9.4.2 GEM算法"></a>9.4.2 GEM算法</h3><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720724130.png" alt="1540720724130"></p>
+<h2 id="本章概要"><a href="#本章概要" class="headerlink" title="本章概要"></a>本章概要</h2><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpages/LiHang_Statistical-learning-methods/9-EM/1540720890464.png" alt="1540720890464"></p>
 <h2 id="引用"><a href="#引用" class="headerlink" title="引用"></a>引用</h2><ol>
 <li><p>The Expectation Maximization Algorithm: A short tutorial - Sean Borman</p>
 </li>
@@ -884,7 +884,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

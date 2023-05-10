@@ -97,15 +97,15 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="说明：全文摘自 Introduction to probability, 2nd Edition 分布函数我们分别用概率质量函数 PMF(Probability Mass Function) 和概率密度函数 PDF(Probability Density Function) 来刻画随机变量 $X$ 的取值规律。现在希望用一个统一的数学工具去刻画随机变量的取值规律。   分布函数（用记号 CDF 表">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png">
 <meta property="article:published_time" content="2017-08-26T12:16:00.000Z">
-<meta property="article:modified_time" content="2022-12-27T14:22:42.620Z">
+<meta property="article:modified_time" content="2023-05-10T16:50:54.172Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="probability">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
+<meta name="twitter:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png">
 
 
 
@@ -462,9 +462,9 @@ $$
 <p><strong>分布函数又称为累积分布函数（cumulative distribution function）</strong>，累积意味着 $F_X(x)$ 将 $X$ 取值的概率由 $-\infty\rightarrow x$。 </p>
 <p>在一个概率模型中，随机变量可以有不同的类型，可以是离散的，也可以是连续的，甚至可以是既非离散的也非连续的。但不管是什么类型的随机变量，它们有一个共同的特征，即都有一个分布函数，这是因为 ${X\le x}$ 是一个随机事件，这些事件的概率形成概率分布。今后，凡是通过 PMF\PDF\CDF刻画事件 ${X\le x}$ 概率的，都称为<strong>随机变量 $X$ 的概率律</strong>。因此离散情况下的分布列，连续情况下的概率密度函数以及一般情况下的分布函数都是相应的随机变量的概率律。</p>
 <p>下图分别给出不同的离散随机变量和连续随机变量的 CDF 的一些说明。从这些图像以及 CDF 的定义，可以得到 CDF 的某些性质。</p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png" alt="Figure_3.6_CDFs_of_some_discrete_variables.png"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/1.png" alt="Figure_3.6_CDFs_of_some_discrete_variables.png"></p>
 <p>上图这些离散随机变量的 CDF ，通过随机变量的概率质量函数（PMF）可求得相应的分布函数：<br>$$<br>F_X(x)=P(X\le x)=\sum\limits_{k\le x}p_{X}(k)<br>$$<br>这个函数是一个阶梯函数，在具有正概率的那些点上具有跳跃。在跳跃点上， $F_X(x)$ 取较大的那个值，即 $F_X(x)$ 保持右连续。</p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png" alt="Figure_3.7_CDFs_of_some_continuous_random_variables.png"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/2.png" alt="Figure_3.7_CDFs_of_some_continuous_random_variables.png"></p>
 <p>上图的这些连续随机变量的 $CDF$ 。通过随机变量的概率密度函数（PDF）可求得相应的分布函数：<br>$$<br>F_X(x)=P(X\le x)=\int_{-\infty}^{+\infty}f_X(t)dt<br>$$<br>概率密度函数 $f_X(x)$ 可由 CDF 经求微分得到：<br>$$<br>f_X(x)=\frac{dF_X(x)}{dx}(x)<br>$$<br>对于连续随机变量，CDF 是连续的</p>
 <h2 id="CDF-的性质"><a href="#CDF-的性质" class="headerlink" title="CDF 的性质"></a>CDF 的性质</h2><p>假设 $X$ 的 CDF $F_X(x)$ 是由下式定义的 ：<br>$$<br>F_X(x)=P(X\le x), \forall x<br>$$<br>并且 $F_X(x)$ 具有下列性质：</p>
 <ol>
@@ -596,7 +596,7 @@ $$
 F_{exp}(n\delta)=F_{geo}(n)=, n=1,2,\cdots
 $$
 
-<p>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
+<p>现在假定以很快的速度抛掷一枚不均匀的硬币 (每 $\delta$ 秒抛掷一次，$\delta \ll 1$)，每次抛掷，正面向上的概率为 $p=1-e^{-\lambda\delta}$ 。这样第一次得到正面向上所抛掷的次数为 $X$ ，第一次得到正面向上的时刻为 $X\delta$ ，$X\delta$ 与参数为 $\lambda$ 的指数随机变量十分接近，这只需看它们的分布函数即可（看下图）。这在本书第六章讨论伯努利和泊松分布过程的时候，这种关系显得特别重要。<br><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/introduction-to-probability/cumulative-distribution-function/3.png" alt="Figure_3.8_Relation_of_the_geometric_and_the_exponential_CDFs.png"></p>
 <p>几何随机变量和指数随机变量的分布函数之间的关系。图中离散分布函数为 $X\delta$ 的分布函数，$X$ 是参数为 $p=1-e^{-\lambda x}$ 的几何随机变量。当 $\delta\rightarrow 0$ 时，$X\delta$ 的分布函数趋于指数分布函数 $1-e^{-\lambda x}$ 。</p>
 
       
@@ -908,7 +908,7 @@ $$
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>

@@ -97,22 +97,22 @@
 <meta property="og:site_name" content="SnailDove&#39;s blog">
 <meta property="og:description" content="PLA(Perception Learning Algorithm) 适用于二维及高维的线性可划分问题。问题的答案只有同意或者不同意。 例子银行可以根据顾客的个人信息来判断是否给顾客发放信用卡。将顾客抽象为一个向量$X$，包括姓名、年龄、年收入、负债数等。同时设定各个属性所占的权重向量为$W$，对于正相关的属性设置相对较高的权重，如年收入，对于负相关的属性设置较低的权重，如负债数。$y$表示是否想">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/1.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/2.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/3.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/4.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/5.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/6.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/7.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/8.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/9.png">
-<meta property="og:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/10.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/1.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/2.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/3.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/4.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/5.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/6.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/7.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/8.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/9.png">
+<meta property="og:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/10.png">
 <meta property="article:published_time" content="2015-04-24T12:16:00.000Z">
-<meta property="article:modified_time" content="2022-12-27T14:22:42.718Z">
+<meta property="article:modified_time" content="2023-05-10T16:50:54.292Z">
 <meta property="article:author" content="SnailDove">
 <meta property="article:tag" content="Machine Learning">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/1.png">
+<meta name="twitter:image" content="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/1.png">
 
 
 
@@ -463,35 +463,35 @@
       
         <p>PLA(Perception Learning Algorithm) 适用于二维及高维的线性可划分问题。问题的答案只有同意或者不同意。</p>
 <h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>银行可以根据顾客的个人信息来判断是否给顾客发放信用卡。<strong>将顾客抽象为一个向量$X$，包括姓名、年龄、年收入、负债数等。同时设定各个属性所占的权重向量为$W$，对于正相关的属性设置相对较高的权重，如年收入，对于负相关的属性设置较低的权重，如负债数。$y$表示是否想该用户发放了信用卡。</strong>通过求$X$和$W$的内积减去一个阀值threshold，若为正则同意发放信用卡，否则不发放信用卡。我们假设存在着一个从$X$到$Y$的映射$f$，PLA算法就是用来模拟这个映射，使得求出的函数与$f$尽可能的相似，起码在已知的数据集(即样本上)上一致。</p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/1.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/1.png" alt="img"></p>
 <p>**PLA算法即用来求向量$W$**，使得在已知的数据中机器做出的判断与现实数据相同。当$X$为二维向量时，相当于在平面上画出一条直线将所有的点分成两部分，一部分同意发送，另一部分的不同意。内积可以表示成：<br>$$<br>\begin{eqnarray}<br>h(x) &amp;=&amp; sign((\sum\limits_{i=1}^{d}W_i X_i)-threshold)\<br>&amp;=&amp; sign((\sum\limits_{i=1}^{d}W_i X_i)+\underbrace{(-threshold)}_{W_0}\times\underbrace{(+1)}_{X_0})\<br>&amp;=&amp; sign(\sum\limits_{i=0}^{d}W_i X_i)\<br>&amp;=&amp; sign(W^TX)<br>\end{eqnarray}<br>$$</p>
 <p>其中$X_0=1，W_0=-threshold$</p>
 <p>$y_s$的值域：${+1，-1}$，($y_s$ 表示样本中$y$的值，用于输入到算法进行调整)</p>
 <p>结合文中例子：$y_s=1$ 表示在给定的样本数据中，给该用户发放了信用卡，$y_s= -1$表示未发放。</p>
 <p>PLA先假定$W_0$为向量$\vec{0}$，然后找到一个不满足条件的点，调整$W$的值，依次进行<strong>迭代所有样本数据</strong>使得最终可以将两部分完全分开。</p>
 <h2 id="W的调整方案"><a href="#W的调整方案" class="headerlink" title="W的调整方案"></a>W的调整方案</h2><p><strong>错误驱动调整</strong></p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/2.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/2.png" alt="img"></p>
 <p>解释一下ppt的内容，出现错误分2种情况：</p>
 <ol>
 <li> 在给定的已知数据中向该用户发放了数据，即$y_s(i)$样本中第$i$个数据为$+1$，但算法给出的结果是不发放（$h(X_i) &lt;0$），说明两个向量的内积为负，需要调整$W$向量使得两条向量更接近，此时令调整系数为样本的$y_s(i)$，则调整后的$W_{t+1}= W_t + y_s(i)X_i$，$W$的下标$t, t+1$表示调整的次数，示意图:</li>
 </ol>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/3.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/3.png" alt="img"></p>
 <ol start="2">
 <li> 在给定的已知数据中向该用户发放了数据，即$y_s(i)$样本中第$i$个数据为$-1$，但算法给出的结果是不发放（$h(X_i) &gt; 0$），说明两个向量的内积为正，需要调整$W$向量使得两条向量更远离，此时令调整系数为样本的$y_s(i)$，则调整后的$W_{t+1}= W_t + y_s(i)X_i$，示意图:</li>
 </ol>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/4.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/4.png" alt="img"></p>
 <p><strong>注意：2种不同情况的调整的表达式都一样</strong></p>
-<h2 id="对于线性可分的数据集，PLA算法是可收敛的"><a href="#对于线性可分的数据集，PLA算法是可收敛的" class="headerlink" title="对于线性可分的数据集，PLA算法是可收敛的"></a>对于线性可分的数据集，PLA算法是可收敛的</h2><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/5.png" alt="img"></p>
+<h2 id="对于线性可分的数据集，PLA算法是可收敛的"><a href="#对于线性可分的数据集，PLA算法是可收敛的" class="headerlink" title="对于线性可分的数据集，PLA算法是可收敛的"></a>对于线性可分的数据集，PLA算法是可收敛的</h2><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/5.png" alt="img"></p>
 <p><strong>两个向量的内积增大说明：</strong></p>
 <ol>
 <li> <strong>两个向量夹角越小</strong></li>
 <li> <strong>或者向量的长度增大</strong></li>
 </ol>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/6.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/6.png" alt="img"></p>
 <p>老师的ppt上 $||W_{t+1}||^2  \le  ||W_t||^2 + max{1 \le i \le  n\ \ |\ \ ||y_i X_i||^2}$ 其中，$y_i$的值域 ${+1, -1}$</p>
 <p>因此 $||W_{t+1}||^2  \le  ||W_t||^2 + max{1 \le i \le n\ \ |\ \ ||X_i||^2}$</p>
 <p>这说明每次调整后，向量的长度增加有限。不妨</p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/7.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/7.png" alt="img"></p>
 <p>带入上一公式得到：</p>
 <p>$$<br>\begin{eqnarray}<br>\frac{||W_{t+1}||^2}{||W_{t}||^2} &amp;\le&amp; \frac{||W_{t}||^2 + max||y_n x_n||^2}{||W_{t}||^2} \<br>&amp;=&amp; \frac{||W_{t}||^2 + max||x_n||^2}{||W_{t}||^2} \<br>&amp;=&amp;1+ \frac{R^2}{||W(t)||^2}<br>\end{eqnarray}<br>$$</p>
 <p>因此$W_t$最终是收敛的，到此已经证明了PLA算法最终可以停止。</p>
@@ -499,11 +499,11 @@
 <p>$$<br>\begin{eqnarray}<br>W_f^t W_t &amp;=&amp; W_f^t(W_{t-1}+y_s(t-1)X_{t-1}) \<br>&amp;=&amp; W_f^tW_{t-1}+y_s(t-1)W_f^tX(t-1) \<br>&amp;\ge&amp; W_f^tW_{t-1}+min(yW_f^tX) \<br>&amp;\ge&amp; W_f^tW_{t-2}+2,min(yW_f^tX) \<br>&amp;\cdots&amp; \<br>&amp;\ge&amp; W_f^tW_0 + t,min(yW_f^tX)  \<br>&amp;=&amp; t,min(yW_f^tX)<br>\end{eqnarray}<br>$$</p>
 <p>$$<br>\begin{eqnarray}<br>||W_t||^2 &amp;\le&amp; ||W_{t-1}||^2+max(||X||^2)\<br>&amp;\le&amp; ||W_{t-2}||^2+2,max(||X||^2)\<br>&amp;\cdots&amp; \<br>&amp;\le&amp; ||W_0||^2+t,max(||X||^2)\<br>&amp;=&amp; t, max(||X||^2)<br>\end{eqnarray}<br>$$</p>
 <p>那么来看这个式子：$\frac{W_f^t  W_t}{||W_f^t||\ ||W_t||}\ge \frac{t\ min(yW_f^tX)}{||W_f^t||\sqrt{t,(max(||X||))^2}}=\sqrt{t}, \frac{min(yW_f^tX)}{||W_f^t||max(||X||)} $  </p>
-<p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/8.png" alt="img"></p>
+<p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/8.png" alt="img"></p>
 <p>再根据余弦值最大为1，可以得到$\frac{W_f^tW_t}{||W_f^t||\ ||W_t||}\le 1$，于是我们得到调整次数：$t\le \frac{||W_f^t||(max(||X||))^2}{(min(yW_f^tX))^2}={R^2 \over \rho^2}$.</p>
-<h2 id="PLA的优缺点"><a href="#PLA的优缺点" class="headerlink" title="PLA的优缺点"></a>PLA的优缺点</h2><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/9.png" alt="img"></p>
+<h2 id="PLA的优缺点"><a href="#PLA的优缺点" class="headerlink" title="PLA的优缺点"></a>PLA的优缺点</h2><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/9.png" alt="img"></p>
 <p>一方面，我事先肯定不知道$W_f^t$，另一方面为了应对可能出现的噪声。那么怎么衡量当前得到的直线能够满足要求呢？我们只能在每一步的时候都判断一下，调整后的$W_{t+1}$<strong>是否</strong>比上一次的$W_t$能够线性可分更多的数据，于是有了下面的改进算法Pocket PLA，PocketPLA比PLA在调整的时候多做一步：判断当前改正犯的错是否比之前更小，也就是贪心选择。</p>
-<h2 id="Pocket-PLA"><a href="#Pocket-PLA" class="headerlink" title="Pocket PLA"></a>Pocket PLA</h2><p><img src="http://rnjz5vyy6.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/10.png" alt="img"></p>
+<h2 id="Pocket-PLA"><a href="#Pocket-PLA" class="headerlink" title="Pocket PLA"></a>Pocket PLA</h2><p><img src="http://rufzo5fy8.hn-bkt.clouddn.com/gitpage/Hsuan-Tien_Lin/perception-learning-algorithm/10.png" alt="img"></p>
 <p>参考</p>
 <ol>
 <li> <a href="http://www.cnblogs.com/HappyAngel/p/3456762.html" target="_blank" rel="noopener">HappyAngel</a></li>
@@ -820,7 +820,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2022</span>
+        <div class="copyright">&copy; 2018 &mdash; <span itemprop="copyrightYear">2023</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
